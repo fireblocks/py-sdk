@@ -1,0 +1,895 @@
+# fireblocks_client.TransactionsApi
+
+All URIs are relative to *https://api.fireblocks.io/v1*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**cancel_transaction**](TransactionsApi.md#cancel_transaction) | **POST** /transactions/{txId}/cancel | Cancel a transaction
+[**create_transaction**](TransactionsApi.md#create_transaction) | **POST** /transactions | Create a new transaction
+[**drop_transaction**](TransactionsApi.md#drop_transaction) | **POST** /transactions/{txId}/drop | Drop ETH transaction by ID
+[**estimate_network_fee**](TransactionsApi.md#estimate_network_fee) | **GET** /estimate_network_fee | Estimate the required fee for an asset
+[**estimate_transaction_fee**](TransactionsApi.md#estimate_transaction_fee) | **POST** /transactions/estimate_fee | Estimate transaction fee
+[**freeze_transaction**](TransactionsApi.md#freeze_transaction) | **POST** /transactions/{txId}/freeze | Freeze a transaction
+[**get_transaction_by_external_id**](TransactionsApi.md#get_transaction_by_external_id) | **GET** /transactions/external_tx_id/{externalTxId}/ | Find a specific transaction by external transaction ID
+[**get_transaction_by_id**](TransactionsApi.md#get_transaction_by_id) | **GET** /transactions/{txId} | Find a specific transaction by Fireblocks transaction ID
+[**get_transactions**](TransactionsApi.md#get_transactions) | **GET** /transactions | List transaction history
+[**set_confirmation_threshold_for_transaction**](TransactionsApi.md#set_confirmation_threshold_for_transaction) | **POST** /transactions/{txId}/set_confirmation_threshold | Set confirmation threshold by transaction ID
+[**set_confirmation_threshold_for_transaction_by_hash**](TransactionsApi.md#set_confirmation_threshold_for_transaction_by_hash) | **POST** /txHash/{txHash}/set_confirmation_threshold | Set confirmation threshold by transaction hash
+[**unfreeze_transaction**](TransactionsApi.md#unfreeze_transaction) | **POST** /transactions/{txId}/unfreeze | Unfreeze a transaction
+[**validate_address**](TransactionsApi.md#validate_address) | **GET** /transactions/validate_address/{assetId}/{address} | Validate destination address
+
+
+# **cancel_transaction**
+> CancelTransactionResponse cancel_transaction(tx_id)
+
+Cancel a transaction
+
+Cancels a transaction by ID.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = 'tx_id_example' # str | The ID of the transaction to cancel
+
+    try:
+        # Cancel a transaction
+        api_response = api_instance.cancel_transaction(tx_id)
+        print("The response of TransactionsApi->cancel_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->cancel_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction to cancel | 
+
+### Return type
+
+[**CancelTransactionResponse**](CancelTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An Transaction object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_transaction**
+> CreateTransactionResponse create_transaction(transaction_request=transaction_request)
+
+Create a new transaction
+
+Creates a new transaction.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    transaction_request = fireblocks_client.TransactionRequest() # TransactionRequest |  (optional)
+
+    try:
+        # Create a new transaction
+        api_response = api_instance.create_transaction(transaction_request=transaction_request)
+        print("The response of TransactionsApi->create_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transaction_request** | [**TransactionRequest**](TransactionRequest.md)|  | [optional] 
+
+### Return type
+
+[**CreateTransactionResponse**](CreateTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A transaction object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **drop_transaction**
+> DropTransactionResponse drop_transaction(tx_id, drop_transaction_request=drop_transaction_request)
+
+Drop ETH transaction by ID
+
+Drops a stuck ETH transaction and creates a replacement transaction.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = 'tx_id_example' # str | The ID of the transaction
+    drop_transaction_request = fireblocks_client.DropTransactionRequest() # DropTransactionRequest |  (optional)
+
+    try:
+        # Drop ETH transaction by ID
+        api_response = api_instance.drop_transaction(tx_id, drop_transaction_request=drop_transaction_request)
+        print("The response of TransactionsApi->drop_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->drop_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction | 
+ **drop_transaction_request** | [**DropTransactionRequest**](DropTransactionRequest.md)|  | [optional] 
+
+### Return type
+
+[**DropTransactionResponse**](DropTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Created successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **estimate_network_fee**
+> EstimatedNetworkFeeResponse estimate_network_fee(asset_id)
+
+Estimate the required fee for an asset
+
+Gets the estimated required fee for an asset. For UTXO based assets, the response will contain the suggested fee per byte, for ETH/ETC based assets, the suggested gas price, and for XRP/XLM, the transaction fee.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    asset_id = 'asset_id_example' # str | The asset for which to estimate the fee
+
+    try:
+        # Estimate the required fee for an asset
+        api_response = api_instance.estimate_network_fee(asset_id)
+        print("The response of TransactionsApi->estimate_network_fee:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->estimate_network_fee: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **str**| The asset for which to estimate the fee | 
+
+### Return type
+
+[**EstimatedNetworkFeeResponse**](EstimatedNetworkFeeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Estimated fees response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **estimate_transaction_fee**
+> EstimatedTransactionFeeResponse estimate_transaction_fee(transaction_request=transaction_request)
+
+Estimate transaction fee
+
+Estimates the transaction fee for a transaction request. * Note: Supports all Fireblocks assets except ZCash (ZEC).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    transaction_request = fireblocks_client.TransactionRequest() # TransactionRequest |  (optional)
+
+    try:
+        # Estimate transaction fee
+        api_response = api_instance.estimate_transaction_fee(transaction_request=transaction_request)
+        print("The response of TransactionsApi->estimate_transaction_fee:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->estimate_transaction_fee: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transaction_request** | [**TransactionRequest**](TransactionRequest.md)|  | [optional] 
+
+### Return type
+
+[**EstimatedTransactionFeeResponse**](EstimatedTransactionFeeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Estimated fees response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **freeze_transaction**
+> FreezeTransactionResponse freeze_transaction(tx_id)
+
+Freeze a transaction
+
+Freezes a transaction by ID.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = 'tx_id_example' # str | The ID of the transaction to freeze
+
+    try:
+        # Freeze a transaction
+        api_response = api_instance.freeze_transaction(tx_id)
+        print("The response of TransactionsApi->freeze_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->freeze_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction to freeze | 
+
+### Return type
+
+[**FreezeTransactionResponse**](FreezeTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | freeze response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_transaction_by_external_id**
+> TransactionResponse get_transaction_by_external_id(external_tx_id)
+
+Find a specific transaction by external transaction ID
+
+Returns transaction by external transaction ID.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    external_tx_id = '00000000-0000-0000-0000-000000000000' # str | The external ID of the transaction to return
+
+    try:
+        # Find a specific transaction by external transaction ID
+        api_response = api_instance.get_transaction_by_external_id(external_tx_id)
+        print("The response of TransactionsApi->get_transaction_by_external_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->get_transaction_by_external_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **external_tx_id** | **str**| The external ID of the transaction to return | 
+
+### Return type
+
+[**TransactionResponse**](TransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An Transaction object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_transaction_by_id**
+> TransactionResponse get_transaction_by_id(tx_id)
+
+Find a specific transaction by Fireblocks transaction ID
+
+Returns a transaction by ID.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = '00000000-0000-0000-0000-000000000000' # str | The ID of the transaction to return
+
+    try:
+        # Find a specific transaction by Fireblocks transaction ID
+        api_response = api_instance.get_transaction_by_id(tx_id)
+        print("The response of TransactionsApi->get_transaction_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->get_transaction_by_id: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction to return | 
+
+### Return type
+
+[**TransactionResponse**](TransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An Transaction object |  * X-Request-ID -  <br>  |
+**400** | Error Response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_transactions**
+> List[TransactionResponse] get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash)
+
+List transaction history
+
+Lists the transaction history for your workspace.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    before = 'before_example' # str | Unix timestamp in milliseconds. Returns only transactions created before the specified date (optional)
+    after = 'after_example' # str | Unix timestamp in milliseconds. Returns only transactions created after the specified date (optional)
+    status = 'status_example' # str | You can filter by one of the statuses. (optional)
+    order_by = 'order_by_example' # str | The field to order the results by (optional)
+    sort = 'sort_example' # str | The direction to order the results by (optional)
+    limit = 200 # int | Limits the number of results. If not provided, a limit of 200 will be used. The maximum allowed limit is 500 (optional) (default to 200)
+    source_type = 'source_type_example' # str | The source type of the transaction (optional)
+    source_id = 'source_id_example' # str | The source ID of the transaction (optional)
+    dest_type = 'dest_type_example' # str | The destination type of the transaction (optional)
+    dest_id = 'dest_id_example' # str | The destination ID of the transaction (optional)
+    assets = 'assets_example' # str | A list of assets to filter by, seperated by commas (optional)
+    tx_hash = 'tx_hash_example' # str | Returns only results with a specified txHash (optional)
+
+    try:
+        # List transaction history
+        api_response = api_instance.get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash)
+        print("The response of TransactionsApi->get_transactions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->get_transactions: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **before** | **str**| Unix timestamp in milliseconds. Returns only transactions created before the specified date | [optional] 
+ **after** | **str**| Unix timestamp in milliseconds. Returns only transactions created after the specified date | [optional] 
+ **status** | **str**| You can filter by one of the statuses. | [optional] 
+ **order_by** | **str**| The field to order the results by | [optional] 
+ **sort** | **str**| The direction to order the results by | [optional] 
+ **limit** | **int**| Limits the number of results. If not provided, a limit of 200 will be used. The maximum allowed limit is 500 | [optional] [default to 200]
+ **source_type** | **str**| The source type of the transaction | [optional] 
+ **source_id** | **str**| The source ID of the transaction | [optional] 
+ **dest_type** | **str**| The destination type of the transaction | [optional] 
+ **dest_id** | **str**| The destination ID of the transaction | [optional] 
+ **assets** | **str**| A list of assets to filter by, seperated by commas | [optional] 
+ **tx_hash** | **str**| Returns only results with a specified txHash | [optional] 
+
+### Return type
+
+[**List[TransactionResponse]**](TransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of transactions |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_confirmation_threshold_for_transaction**
+> SetConfirmationsThresholdResponse set_confirmation_threshold_for_transaction(tx_id, set_confirmations_threshold_request=set_confirmations_threshold_request)
+
+Set confirmation threshold by transaction ID
+
+Overrides the required number of confirmations for transaction completion by transaction ID.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = 'tx_id_example' # str | The ID of the transaction
+    set_confirmations_threshold_request = fireblocks_client.SetConfirmationsThresholdRequest() # SetConfirmationsThresholdRequest |  (optional)
+
+    try:
+        # Set confirmation threshold by transaction ID
+        api_response = api_instance.set_confirmation_threshold_for_transaction(tx_id, set_confirmations_threshold_request=set_confirmations_threshold_request)
+        print("The response of TransactionsApi->set_confirmation_threshold_for_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction | 
+ **set_confirmations_threshold_request** | [**SetConfirmationsThresholdRequest**](SetConfirmationsThresholdRequest.md)|  | [optional] 
+
+### Return type
+
+[**SetConfirmationsThresholdResponse**](SetConfirmationsThresholdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Set successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_confirmation_threshold_for_transaction_by_hash**
+> SetConfirmationsThresholdResponse set_confirmation_threshold_for_transaction_by_hash(tx_hash, set_confirmations_threshold_request=set_confirmations_threshold_request)
+
+Set confirmation threshold by transaction hash
+
+Overrides the required number of confirmations for transaction completion by transaction hash.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_hash = 'tx_hash_example' # str | The TxHash
+    set_confirmations_threshold_request = fireblocks_client.SetConfirmationsThresholdRequest() # SetConfirmationsThresholdRequest |  (optional)
+
+    try:
+        # Set confirmation threshold by transaction hash
+        api_response = api_instance.set_confirmation_threshold_for_transaction_by_hash(tx_hash, set_confirmations_threshold_request=set_confirmations_threshold_request)
+        print("The response of TransactionsApi->set_confirmation_threshold_for_transaction_by_hash:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction_by_hash: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_hash** | **str**| The TxHash | 
+ **set_confirmations_threshold_request** | [**SetConfirmationsThresholdRequest**](SetConfirmationsThresholdRequest.md)|  | [optional] 
+
+### Return type
+
+[**SetConfirmationsThresholdResponse**](SetConfirmationsThresholdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A list of transactions affected by the change |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unfreeze_transaction**
+> UnfreezeTransactionResponse unfreeze_transaction(tx_id)
+
+Unfreeze a transaction
+
+Unfreezes a transaction by ID and makes the transaction available again.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    tx_id = 'tx_id_example' # str | The ID of the transaction to unfreeze
+
+    try:
+        # Unfreeze a transaction
+        api_response = api_instance.unfreeze_transaction(tx_id)
+        print("The response of TransactionsApi->unfreeze_transaction:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->unfreeze_transaction: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| The ID of the transaction to unfreeze | 
+
+### Return type
+
+[**UnfreezeTransactionResponse**](UnfreezeTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Unfreeze response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **validate_address**
+> ValidateAddressResponse validate_address(asset_id, address)
+
+Validate destination address
+
+Checks if an address is valid (for XRP, DOT, XLM, and EOS).
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.TransactionsApi(api_client)
+    asset_id = 'asset_id_example' # str | The asset of the address
+    address = 'address_example' # str | The address to validate
+
+    try:
+        # Validate destination address
+        api_response = api_instance.validate_address(asset_id, address)
+        print("The response of TransactionsApi->validate_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->validate_address: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset_id** | **str**| The asset of the address | 
+ **address** | **str**| The address to validate | 
+
+### Return type
+
+[**ValidateAddressResponse**](ValidateAddressResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An Transaction object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

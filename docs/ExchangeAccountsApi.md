@@ -8,11 +8,11 @@ Method | HTTP request | Description
 [**get_exchange_account_asset**](ExchangeAccountsApi.md#get_exchange_account_asset) | **GET** /exchange_accounts/{exchangeAccountId}/{assetId} | Find an asset for an exchange account
 [**get_exchange_account_by_id**](ExchangeAccountsApi.md#get_exchange_account_by_id) | **GET** /exchange_accounts/{exchangeAccountId} | Find a specific exchange account
 [**get_exchange_accounts**](ExchangeAccountsApi.md#get_exchange_accounts) | **GET** /exchange_accounts | List exchange accounts
-[**internal_transfer**](ExchangeAccountsApi.md#internal_transfer) | **POST** /exchange_accounts/{exchangeAccountId}/internal_transfer | Internal tranfer for exchange accounts
+[**internal_transfer**](ExchangeAccountsApi.md#internal_transfer) | **POST** /exchange_accounts/{exchangeAccountId}/internal_transfer | Internal transfer for exchange accounts
 
 
 # **convert_assets**
-> convert_assets(exchange_account_id, convert_assets_request=convert_assets_request)
+> convert_assets(exchange_account_id, convert_exchange_account_request=convert_exchange_account_request)
 
 Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
 
@@ -39,11 +39,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fireblocks_client.ExchangeAccountsApi(api_client)
     exchange_account_id = 'exchange_account_id_example' # str | The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts.
-    convert_assets_request = fireblocks_client.ConvertAssetsRequest() # ConvertAssetsRequest |  (optional)
+    convert_exchange_account_request = fireblocks_client.ConvertExchangeAccountRequest() # ConvertExchangeAccountRequest |  (optional)
 
     try:
         # Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
-        api_instance.convert_assets(exchange_account_id, convert_assets_request=convert_assets_request)
+        api_instance.convert_assets(exchange_account_id, convert_exchange_account_request=convert_exchange_account_request)
     except Exception as e:
         print("Exception when calling ExchangeAccountsApi->convert_assets: %s\n" % e)
 ```
@@ -53,7 +53,7 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **exchange_account_id** | **str**| The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts. | 
- **convert_assets_request** | [**ConvertAssetsRequest**](ConvertAssetsRequest.md)|  | [optional] 
+ **convert_exchange_account_request** | [**ConvertExchangeAccountRequest**](ConvertExchangeAccountRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -270,9 +270,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **internal_transfer**
-> internal_transfer(exchange_account_id, internal_transfer_request=internal_transfer_request)
+> internal_transfer(exchange_account_id, create_internal_transfer_request=create_internal_transfer_request)
 
-Internal tranfer for exchange accounts
+Internal transfer for exchange accounts
 
 Transfers funds between trading accounts under the same exchange account.
 
@@ -297,11 +297,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fireblocks_client.ExchangeAccountsApi(api_client)
     exchange_account_id = 'exchange_account_id_example' # str | The ID of the exchange account to return
-    internal_transfer_request = fireblocks_client.InternalTransferRequest() # InternalTransferRequest |  (optional)
+    create_internal_transfer_request = fireblocks_client.CreateInternalTransferRequest() # CreateInternalTransferRequest |  (optional)
 
     try:
-        # Internal tranfer for exchange accounts
-        api_instance.internal_transfer(exchange_account_id, internal_transfer_request=internal_transfer_request)
+        # Internal transfer for exchange accounts
+        api_instance.internal_transfer(exchange_account_id, create_internal_transfer_request=create_internal_transfer_request)
     except Exception as e:
         print("Exception when calling ExchangeAccountsApi->internal_transfer: %s\n" % e)
 ```
@@ -311,7 +311,7 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **exchange_account_id** | **str**| The ID of the exchange account to return | 
- **internal_transfer_request** | [**InternalTransferRequest**](InternalTransferRequest.md)|  | [optional] 
+ **create_internal_transfer_request** | [**CreateInternalTransferRequest**](CreateInternalTransferRequest.md)|  | [optional] 
 
 ### Return type
 

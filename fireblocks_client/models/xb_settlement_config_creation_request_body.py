@@ -32,7 +32,7 @@ class XBSettlementConfigCreationRequestBody(BaseModel):
     name: StrictStr = Field(..., description="The name for the cross-border settlement configuration")
     corridor_id: XBSettlementCorridorId = Field(..., alias="corridorId")
     steps: XBSettlementConfigStepsRecord = ...
-    conversion_slippage_basis_points: Optional[conint(strict=True, le=10000, ge=0)] = Field(10000, alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10% ")
+    conversion_slippage_basis_points: Optional[conint(strict=True, le=10000, ge=0)] = Field(10000, alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10%")
     __properties = ["name", "corridorId", "steps", "conversionSlippageBasisPoints"]
 
     class Config:

@@ -60,7 +60,7 @@ class TestExchangeAccountsApi(unittest.TestCase):
     def test_internal_transfer(self):
         """Test case for internal_transfer
 
-        Internal tranfer for exchange accounts  # noqa: E501
+        Internal transfer for exchange accounts  # noqa: E501
         """
         pass
 

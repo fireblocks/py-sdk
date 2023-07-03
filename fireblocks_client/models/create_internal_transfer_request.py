@@ -21,14 +21,18 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, Field, StrictStr
+from fireblocks_client.models.trading_account_type import TradingAccountType
 
-class XBSettlementFlowExecutionRequestBody(BaseModel):
+class CreateInternalTransferRequest(BaseModel):
     """
-    XBSettlementFlowExecutionRequestBody
+    CreateInternalTransferRequest
     """
-    conversion_slippage_basis_points: Optional[conint(strict=True, le=10000, ge=0)] = Field(10000, alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10%")
-    __properties = ["conversionSlippageBasisPoints"]
+    asset: Optional[StrictStr] = None
+    amount: Optional[StrictStr] = None
+    source_type: Optional[TradingAccountType] = Field(None, alias="sourceType")
+    dest_type: Optional[TradingAccountType] = Field(None, alias="destType")
+    __properties = ["asset", "amount", "sourceType", "destType"]
 
     class Config:
         populate_by_name = True
@@ -44,8 +48,8 @@ class XBSettlementFlowExecutionRequestBody(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> XBSettlementFlowExecutionRequestBody:
-        """Create an instance of XBSettlementFlowExecutionRequestBody from a JSON string"""
+    def from_json(cls, json_str: str) -> CreateInternalTransferRequest:
+        """Create an instance of CreateInternalTransferRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,16 +61,19 @@ class XBSettlementFlowExecutionRequestBody(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> XBSettlementFlowExecutionRequestBody:
-        """Create an instance of XBSettlementFlowExecutionRequestBody from a dict"""
+    def from_dict(cls, obj: dict) -> CreateInternalTransferRequest:
+        """Create an instance of CreateInternalTransferRequest from a dict"""
         if obj is None:
             return None
 
         if type(obj) is not dict:
-            return XBSettlementFlowExecutionRequestBody.parse_obj(obj)
+            return CreateInternalTransferRequest.parse_obj(obj)
 
-        _obj = XBSettlementFlowExecutionRequestBody.parse_obj({
-            "conversion_slippage_basis_points": obj.get("conversionSlippageBasisPoints") if obj.get("conversionSlippageBasisPoints") is not None else 10000
+        _obj = CreateInternalTransferRequest.parse_obj({
+            "asset": obj.get("asset"),
+            "amount": obj.get("amount"),
+            "source_type": obj.get("sourceType"),
+            "dest_type": obj.get("destType")
         })
         return _obj
 

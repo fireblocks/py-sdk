@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name for the cross-border settlement configuration | 
 **corridor_id** | [**XBSettlementCorridorId**](XBSettlementCorridorId.md) |  | 
 **steps** | [**XBSettlementConfigStepsRecord**](XBSettlementConfigStepsRecord.md) |  | 
-**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10%  | [optional] [default to 10000]
+**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10% | [optional] [default to 10000]
 
 ## Example
 

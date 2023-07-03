@@ -20,15 +20,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, conint
 
-class XBSettlementFlowExecutionRequestBody(BaseModel):
+from pydantic import BaseModel, Field, StrictFloat, StrictStr
+
+class ConvertExchangeAccountRequest(BaseModel):
     """
-    XBSettlementFlowExecutionRequestBody
+    ConvertExchangeAccountRequest
     """
-    conversion_slippage_basis_points: Optional[conint(strict=True, le=10000, ge=0)] = Field(10000, alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10%")
-    __properties = ["conversionSlippageBasisPoints"]
+    src_asset: StrictStr = Field(..., alias="srcAsset", description="Name of the source asset (must be in a currency that is supported for conversions in the selected exchange type that corresponds to your exchange ID)")
+    dest_asset: StrictStr = Field(..., alias="destAsset", description="Name of the destination asset (must be in a currency that is supported for conversions in the selected exchange type that corresponds to your exchange ID)")
+    amount: StrictFloat = Field(..., description="The amount to transfer (in the currency of the source asset)")
+    __properties = ["srcAsset", "destAsset", "amount"]
 
     class Config:
         populate_by_name = True
@@ -44,8 +46,8 @@ class XBSettlementFlowExecutionRequestBody(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> XBSettlementFlowExecutionRequestBody:
-        """Create an instance of XBSettlementFlowExecutionRequestBody from a JSON string"""
+    def from_json(cls, json_str: str) -> ConvertExchangeAccountRequest:
+        """Create an instance of ConvertExchangeAccountRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,16 +59,18 @@ class XBSettlementFlowExecutionRequestBody(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> XBSettlementFlowExecutionRequestBody:
-        """Create an instance of XBSettlementFlowExecutionRequestBody from a dict"""
+    def from_dict(cls, obj: dict) -> ConvertExchangeAccountRequest:
+        """Create an instance of ConvertExchangeAccountRequest from a dict"""
         if obj is None:
             return None
 
         if type(obj) is not dict:
-            return XBSettlementFlowExecutionRequestBody.parse_obj(obj)
+            return ConvertExchangeAccountRequest.parse_obj(obj)
 
-        _obj = XBSettlementFlowExecutionRequestBody.parse_obj({
-            "conversion_slippage_basis_points": obj.get("conversionSlippageBasisPoints") if obj.get("conversionSlippageBasisPoints") is not None else 10000
+        _obj = ConvertExchangeAccountRequest.parse_obj({
+            "src_asset": obj.get("srcAsset"),
+            "dest_asset": obj.get("destAsset"),
+            "amount": obj.get("amount")
         })
         return _obj
 

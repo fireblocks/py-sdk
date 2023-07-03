@@ -21,10 +21,10 @@ from pydantic import Field, constr
 
 from typing import List, Optional
 
-from fireblocks_client.models.convert_assets_request import ConvertAssetsRequest
+from fireblocks_client.models.convert_exchange_account_request import ConvertExchangeAccountRequest
+from fireblocks_client.models.create_internal_transfer_request import CreateInternalTransferRequest
 from fireblocks_client.models.exchange_account import ExchangeAccount
 from fireblocks_client.models.exchange_asset import ExchangeAsset
-from fireblocks_client.models.internal_transfer_request import InternalTransferRequest
 
 from fireblocks_client.api_client import ApiClient
 from fireblocks_client.api_client import Configuration
@@ -51,20 +51,20 @@ class ExchangeAccountsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def convert_assets(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts.")], convert_assets_request : Optional[ConvertAssetsRequest] = None, **kwargs) -> None:  # noqa: E501
+    def convert_assets(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts.")], convert_exchange_account_request : Optional[ConvertExchangeAccountRequest] = None, **kwargs) -> None:  # noqa: E501
         """Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.  # noqa: E501
 
         Convert assets within an exchange account  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.convert_assets(exchange_account_id, convert_assets_request, async_req=True)
+        >>> thread = api.convert_assets(exchange_account_id, convert_exchange_account_request, async_req=True)
         >>> result = thread.get()
 
         :param exchange_account_id: The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts. (required)
         :type exchange_account_id: str
-        :param convert_assets_request:
-        :type convert_assets_request: ConvertAssetsRequest
+        :param convert_exchange_account_request:
+        :type convert_exchange_account_request: ConvertExchangeAccountRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -81,23 +81,23 @@ class ExchangeAccountsApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.convert_assets_with_http_info(exchange_account_id, convert_assets_request, **kwargs)  # noqa: E501
+        return self.convert_assets_with_http_info(exchange_account_id, convert_exchange_account_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def convert_assets_with_http_info(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts.")], convert_assets_request : Optional[ConvertAssetsRequest] = None, **kwargs):  # noqa: E501
+    def convert_assets_with_http_info(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts.")], convert_exchange_account_request : Optional[ConvertExchangeAccountRequest] = None, **kwargs):  # noqa: E501
         """Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.  # noqa: E501
 
         Convert assets within an exchange account  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.convert_assets_with_http_info(exchange_account_id, convert_assets_request, async_req=True)
+        >>> thread = api.convert_assets_with_http_info(exchange_account_id, convert_exchange_account_request, async_req=True)
         >>> result = thread.get()
 
         :param exchange_account_id: The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts. (required)
         :type exchange_account_id: str
-        :param convert_assets_request:
-        :type convert_assets_request: ConvertAssetsRequest
+        :param convert_exchange_account_request:
+        :type convert_exchange_account_request: ConvertExchangeAccountRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -126,7 +126,7 @@ class ExchangeAccountsApi(object):
 
         _all_params = [
             'exchange_account_id',
-            'convert_assets_request'
+            'convert_exchange_account_request'
         ]
         _all_params.extend(
             [
@@ -167,8 +167,8 @@ class ExchangeAccountsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['convert_assets_request']:
-            _body_params = _params['convert_assets_request']
+        if _params['convert_exchange_account_request']:
+            _body_params = _params['convert_exchange_account_request']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -624,20 +624,20 @@ class ExchangeAccountsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def internal_transfer(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account to return")], internal_transfer_request : Optional[InternalTransferRequest] = None, **kwargs) -> None:  # noqa: E501
-        """Internal tranfer for exchange accounts  # noqa: E501
+    def internal_transfer(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account to return")], create_internal_transfer_request : Optional[CreateInternalTransferRequest] = None, **kwargs) -> None:  # noqa: E501
+        """Internal transfer for exchange accounts  # noqa: E501
 
         Transfers funds between trading accounts under the same exchange account.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.internal_transfer(exchange_account_id, internal_transfer_request, async_req=True)
+        >>> thread = api.internal_transfer(exchange_account_id, create_internal_transfer_request, async_req=True)
         >>> result = thread.get()
 
         :param exchange_account_id: The ID of the exchange account to return (required)
         :type exchange_account_id: str
-        :param internal_transfer_request:
-        :type internal_transfer_request: InternalTransferRequest
+        :param create_internal_transfer_request:
+        :type create_internal_transfer_request: CreateInternalTransferRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -654,23 +654,23 @@ class ExchangeAccountsApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
-        return self.internal_transfer_with_http_info(exchange_account_id, internal_transfer_request, **kwargs)  # noqa: E501
+        return self.internal_transfer_with_http_info(exchange_account_id, create_internal_transfer_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def internal_transfer_with_http_info(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account to return")], internal_transfer_request : Optional[InternalTransferRequest] = None, **kwargs):  # noqa: E501
-        """Internal tranfer for exchange accounts  # noqa: E501
+    def internal_transfer_with_http_info(self, exchange_account_id : Annotated[constr(strict=True), Field(..., description="The ID of the exchange account to return")], create_internal_transfer_request : Optional[CreateInternalTransferRequest] = None, **kwargs):  # noqa: E501
+        """Internal transfer for exchange accounts  # noqa: E501
 
         Transfers funds between trading accounts under the same exchange account.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.internal_transfer_with_http_info(exchange_account_id, internal_transfer_request, async_req=True)
+        >>> thread = api.internal_transfer_with_http_info(exchange_account_id, create_internal_transfer_request, async_req=True)
         >>> result = thread.get()
 
         :param exchange_account_id: The ID of the exchange account to return (required)
         :type exchange_account_id: str
-        :param internal_transfer_request:
-        :type internal_transfer_request: InternalTransferRequest
+        :param create_internal_transfer_request:
+        :type create_internal_transfer_request: CreateInternalTransferRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -699,7 +699,7 @@ class ExchangeAccountsApi(object):
 
         _all_params = [
             'exchange_account_id',
-            'internal_transfer_request'
+            'create_internal_transfer_request'
         ]
         _all_params.extend(
             [
@@ -740,8 +740,8 @@ class ExchangeAccountsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['internal_transfer_request']:
-            _body_params = _params['internal_transfer_request']
+        if _params['create_internal_transfer_request']:
+            _body_params = _params['create_internal_transfer_request']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(

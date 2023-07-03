@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **corridor_id** | [**XBSettlementCorridorId**](XBSettlementCorridorId.md) |  | 
 **name** | **str** | The name for the cross-border ettlement configuration | 
 **steps** | [**XBSettlementConfigStepsRecord**](XBSettlementConfigStepsRecord.md) |  | 
-**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10%  | [default to 10000]
+**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10% | [default to 10000]
 **created_at** | **float** | The creation time in epoch format. | 
 
 ## Example

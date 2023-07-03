@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10%  | [optional] [default to 10000]
+**conversion_slippage_basis_points** | **int** | Slippage configuarion in basis points, the default value is 10% | [optional] [default to 10000]
 
 ## Example
 

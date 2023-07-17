@@ -33,7 +33,7 @@ class XBSettlementConfigModel(BaseModel):
     corridor_id: XBSettlementCorridorId = Field(..., alias="corridorId")
     name: StrictStr = Field(..., description="The name for the cross-border ettlement configuration")
     steps: XBSettlementConfigStepsRecord = ...
-    conversion_slippage_basis_points: conint(strict=True, le=10000, ge=0) = Field(..., alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10% ")
+    conversion_slippage_basis_points: conint(strict=True, le=10000, ge=0) = Field(..., alias="conversionSlippageBasisPoints", description="Slippage configuarion in basis points, the default value is 10%")
     created_at: StrictFloat = Field(..., alias="createdAt", description="The creation time in epoch format.")
     __properties = ["configId", "corridorId", "name", "steps", "conversionSlippageBasisPoints", "createdAt"]
 

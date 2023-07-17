@@ -73,10 +73,10 @@ class Configuration(object):
 
     def __init__(self, base_path: str =None, api_key: str=None, secret_key: str=None, connection_pool_maxsize: int=None, options: SDKOptions=None):
         self._base_path = base_path or "https://api.fireblocks.io/v1"
-        if os.environ["FIREBLOCKS_BASE_PATH"] is not None:
+        if base_path is not None:
             self._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
-        elif self._base_path is None:
-            self._base_path = "https://api.fireblocks.io/v1"
+        elif os.environ["FIREBLOCKS_BASE_PATH"] is None:
+            self._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
 
         self._api_key = api_key
         if os.environ["FIREBLOCKS_API_KEY"] is not None and self._api_key is None:
@@ -120,10 +120,6 @@ class Configuration(object):
             conf._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
         elif self._base_path is None:
             conf._base_path = "https://api.fireblocks.io/v1"
-
-        conf._base_path = "https://api.fireblocks.io/v1"
-        if os.environ["FIREBLOCKS_BASE_PATH"] is not None:
-            conf._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
 
         if os.environ["FIREBLOCKS_API_KEY"] is not  None:
             conf._api_key = os.environ["FIREBLOCKS_API_KEY"]

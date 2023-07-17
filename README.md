@@ -2,7 +2,7 @@
 
 The Fireblocks SDK allows developers to integrate with the Fireblocks platform and perform various operations, such as managing vault accounts and executing transactions.
 
-For detailed documentation and additional resources, please refer to the [Fireblocks Developer Portal](https://developer.fireblocks.com/).
+For detailed documentation and additional resources, please refer to the [Fireblocks Developer Portal](https://developers.fireblocks.com/).
 
 ## Installation
 
@@ -11,7 +11,7 @@ To use the Fireblocks SDK, follow these steps:
 Install the SDK using npm:
 
 ```shell
-npm install fireblocks-sdk
+pip3 @fireblocks/install fireblocks-api-client-python
 ```
 
 ## Usage

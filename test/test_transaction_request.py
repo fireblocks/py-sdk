@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction_request import TransactionRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransactionRequest(unittest.TestCase):
     """TransactionRequest unit test stubs"""
 
@@ -30,49 +30,52 @@ class TestTransactionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TransactionRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TransactionRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TransactionRequest`
         """
         model = fireblocks_client.models.transaction_request.TransactionRequest()  # noqa: E501
         if include_optional :
-            return TransactionRequest(
-                operation = 'TRANSFER', 
-                note = 'Ticket 123', 
-                external_tx_id = '00000000-0000-0000-0000-000000000000', 
-                asset_id = 'ETH', 
-                source = fireblocks_client.models.transfer_peer_path.TransferPeerPath(
+        return TransactionRequest(
+            operation = 'TRANSFER', 
+            note = 'Ticket 123', 
+            external_tx_id = '00000000-0000-0000-0000-000000000000', 
+            asset_id = 'ETH', 
+            source = fireblocks_client.models.transfer_peer_path.TransferPeerPath(
                     type = 'VAULT_ACCOUNT', 
+                    sub_type = 'BINANCE', 
                     id = '', 
+                    name = '', 
                     wallet_id = '', ), 
-                destination = None, 
-                destinations = [
+            destination = None, 
+            destinations = [
                     fireblocks_client.models.transaction_request_destination.TransactionRequestDestination(
                         amount = '', 
                         destination = null, )
                     ], 
-                amount = None, 
-                treat_as_gross_amount = False, 
-                force_sweep = False, 
-                fee_level = 'MEDIUM', 
-                fee = None, 
-                priority_fee = None, 
-                fail_on_low_fee = True, 
-                max_fee = '120', 
-                gas_limit = None, 
-                gas_price = None, 
-                network_fee = None, 
-                replace_tx_by_hash = '00000000-0000-0000-0000-000000000000', 
-                extra_parameters = None, 
-                customer_ref_id = 'abcdef', 
-                auto_staking = True, 
-                network_staking = None, 
-                cpu_staking = None
-            )
+            amount = None, 
+            treat_as_gross_amount = False, 
+            force_sweep = False, 
+            fee_level = 'MEDIUM', 
+            fee = None, 
+            priority_fee = None, 
+            fail_on_low_fee = True, 
+            max_fee = '120', 
+            gas_limit = None, 
+            gas_price = None, 
+            network_fee = None, 
+            replace_tx_by_hash = '00000000-0000-0000-0000-000000000000', 
+            extra_parameters = None, 
+            customer_ref_id = 'abcdef', 
+            auto_staking = True, 
+            network_staking = None, 
+            cpu_staking = None
+        )
         else :
-            return TransactionRequest(
+        return TransactionRequest(
         )
         """
 

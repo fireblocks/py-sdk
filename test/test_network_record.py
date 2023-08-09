@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_record import NetworkRecord  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkRecord(unittest.TestCase):
     """NetworkRecord unit test stubs"""
 
@@ -30,33 +30,34 @@ class TestNetworkRecord(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkRecord
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkRecord
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkRecord`
         """
         model = fireblocks_client.models.network_record.NetworkRecord()  # noqa: E501
         if include_optional :
-            return NetworkRecord(
-                source = None, 
-                destination = None, 
-                tx_hash = '', 
-                network_fee = '', 
-                asset_id = '', 
-                net_amount = '', 
-                is_dropped = True, 
-                type = '', 
-                destination_address = '', 
-                source_address = '', 
-                amount_usd = '', 
-                index = 1.337, 
-                reward_info = fireblocks_client.models.reward_info.RewardInfo(
+        return NetworkRecord(
+            source = None, 
+            destination = None, 
+            tx_hash = '', 
+            network_fee = '', 
+            asset_id = '', 
+            net_amount = '', 
+            is_dropped = True, 
+            type = '', 
+            destination_address = '', 
+            source_address = '', 
+            amount_usd = '', 
+            index = 1.337, 
+            reward_info = fireblocks_client.models.reward_info.RewardInfo(
                     src_rewards = '', 
                     dest_rewards = '', )
-            )
+        )
         else :
-            return NetworkRecord(
+        return NetworkRecord(
         )
         """
 

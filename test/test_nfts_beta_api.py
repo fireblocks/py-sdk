@@ -18,26 +18,29 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.nfts_beta_api import NFTsBetaApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestNFTsBetaApi(unittest.TestCase):
     """NFTsBetaApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.nfts_beta_api.NFTsBetaApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_get_nft_token_by_id(self):
-        """Test case for get_nft_token_by_id
+    def test_get_nft(self):
+        """Test case for get_nft
 
         List token data by ID  # noqa: E501
         """
         pass
 
-    def test_get_nft_tokens(self):
-        """Test case for get_nft_tokens
+    def test_get_nfts(self):
+        """Test case for get_nfts
 
         List tokens by IDs  # noqa: E501
         """
@@ -50,17 +53,17 @@ class TestNFTsBetaApi(unittest.TestCase):
         """
         pass
 
-    def test_update_nft_token_by_id(self):
-        """Test case for update_nft_token_by_id
+    def test_list_owned_collections(self):
+        """Test case for list_owned_collections
 
-        Refresh token metadata  # noqa: E501
+        List owned collections (paginated)  # noqa: E501
         """
         pass
 
-    def test_update_nft_token_status(self):
-        """Test case for update_nft_token_status
+    def test_refresh_nft_metadata(self):
+        """Test case for refresh_nft_metadata
 
-        Update token ownership status  # noqa: E501
+        Refresh token metadata  # noqa: E501
         """
         pass
 
@@ -68,6 +71,13 @@ class TestNFTsBetaApi(unittest.TestCase):
         """Test case for update_ownership_tokens
 
         Refresh vault account tokens  # noqa: E501
+        """
+        pass
+
+    def test_update_token_ownership_status(self):
+        """Test case for update_token_ownership_status
+
+        Update token ownership status  # noqa: E501
         """
         pass
 

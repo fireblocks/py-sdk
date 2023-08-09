@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_connection_response import CreateConnectionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateConnectionResponse(unittest.TestCase):
     """CreateConnectionResponse unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestCreateConnectionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateConnectionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateConnectionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateConnectionResponse`
         """
         model = fireblocks_client.models.create_connection_response.CreateConnectionResponse()  # noqa: E501
         if include_optional :
-            return CreateConnectionResponse(
-                id = '4e9e7051-f3b2-48e9-8ee6-b12492552657', 
-                session_metadata = None
-            )
+        return CreateConnectionResponse(
+            id = '4e9e7051-f3b2-48e9-8ee6-b12492552657', 
+            session_metadata = None
+        )
         else :
-            return CreateConnectionResponse(
+        return CreateConnectionResponse(
                 id = '4e9e7051-f3b2-48e9-8ee6-b12492552657',
                 session_metadata = None,
         )

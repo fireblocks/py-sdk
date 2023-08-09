@@ -20,9 +20,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 from fireblocks_client.models.config_change_request_status import ConfigChangeRequestStatus
+from fireblocks_client.models.wallet_asset_additional_info import WalletAssetAdditionalInfo
 
 class ExternalWalletAsset(BaseModel):
     """
@@ -33,7 +34,8 @@ class ExternalWalletAsset(BaseModel):
     address: Optional[StrictStr] = None
     tag: Optional[StrictStr] = None
     activation_time: Optional[StrictStr] = Field(None, alias="activationTime")
-    __properties = ["id", "status", "address", "tag", "activationTime"]
+    additional_info: Optional[conlist(WalletAssetAdditionalInfo)] = Field(None, alias="additionalInfo")
+    __properties = ["id", "status", "address", "tag", "activationTime", "additionalInfo"]
 
     class Config:
         populate_by_name = True
@@ -59,6 +61,13 @@ class ExternalWalletAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in additional_info (list)
+        _items = []
+        if self.additional_info:
+            for _item in self.additional_info:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['additionalInfo'] = _items
         return _dict
 
     @classmethod
@@ -75,7 +84,8 @@ class ExternalWalletAsset(BaseModel):
             "status": obj.get("status"),
             "address": obj.get("address"),
             "tag": obj.get("tag"),
-            "activation_time": obj.get("activationTime")
+            "activation_time": obj.get("activationTime"),
+            "additional_info": [WalletAssetAdditionalInfo.from_dict(_item) for _item in obj.get("additionalInfo")] if obj.get("additionalInfo") is not None else None
         })
         return _obj
 

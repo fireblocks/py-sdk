@@ -22,7 +22,7 @@ import re  # noqa: F401
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictFloat, StrictStr, ValidationError, validator
 from typing import Any, List, Literal
-from pydantic import StrictStr, Field, validate_arguments
+from pydantic import Field, validate_arguments
 
 TRANSACTIONREQUESTNETWORKSTAKING_ONE_OF_SCHEMAS = ["float", "str"]
 

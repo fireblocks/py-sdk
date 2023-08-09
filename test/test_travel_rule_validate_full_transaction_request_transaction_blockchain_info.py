@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request_transaction_blockchain_info import TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestTravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(unit
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request_transaction_blockchain_info.TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(
-                tx_hash = '', 
-                origin = '', 
-                destination = ''
-            )
+        return TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(
+            tx_hash = '', 
+            origin = '', 
+            destination = ''
+        )
         else :
-            return TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(
+        return TravelRuleValidateFullTransactionRequestTransactionBlockchainInfo(
                 tx_hash = '',
                 origin = '',
                 destination = '',

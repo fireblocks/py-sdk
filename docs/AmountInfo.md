@@ -5,10 +5,10 @@ The details of the requested amount to transfer.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **str** | If the transfer is a withdrawal from an exchange, the actual amount that was requested to be transferred. Otherwise, the requested amount | [optional] 
-**requested_amount** | **str** |  | [optional] 
-**net_amount** | **str** | The net amount of the transaction, after fee deduction | [optional] 
-**amount_usd** | **str** | The USD value of the requested amount | [optional] 
+**amount** | **str** | If the transfer is a withdrawal from an exchange, the actual amount that was requested to be transferred. Otherwise, the requested amount. | [optional] 
+**requested_amount** | **str** | The amount requested by the user. | [optional] 
+**net_amount** | **str** | The net amount of the transaction, after fee deduction. | [optional] 
+**amount_usd** | **str** | The USD value of the requested amount. | [optional] 
 
 ## Example
 

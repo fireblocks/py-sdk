@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.add_asset_to_contract_request import AddAssetToContractRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAddAssetToContractRequest(unittest.TestCase):
     """AddAssetToContractRequest unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestAddAssetToContractRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AddAssetToContractRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AddAssetToContractRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AddAssetToContractRequest`
         """
         model = fireblocks_client.models.add_asset_to_contract_request.AddAssetToContractRequest()  # noqa: E501
         if include_optional :
-            return AddAssetToContractRequest(
-                address = '', 
-                tag = ''
-            )
+        return AddAssetToContractRequest(
+            address = '', 
+            tag = ''
+        )
         else :
-            return AddAssetToContractRequest(
+        return AddAssetToContractRequest(
                 address = '',
         )
         """

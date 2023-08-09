@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.block_info import BlockInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestBlockInfo(unittest.TestCase):
     """BlockInfo unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestBlockInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test BlockInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test BlockInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `BlockInfo`
         """
         model = fireblocks_client.models.block_info.BlockInfo()  # noqa: E501
         if include_optional :
-            return BlockInfo(
-                block_height = '', 
-                block_hash = ''
-            )
+        return BlockInfo(
+            block_height = '', 
+            block_hash = ''
+        )
         else :
-            return BlockInfo(
+        return BlockInfo(
         )
         """
 

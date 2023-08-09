@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_connection_response_session_metadata import CreateConnectionResponseSessionMetadata  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateConnectionResponseSessionMetadata(unittest.TestCase):
     """CreateConnectionResponseSessionMetadata unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestCreateConnectionResponseSessionMetadata(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateConnectionResponseSessionMetadata
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateConnectionResponseSessionMetadata
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateConnectionResponseSessionMetadata`
         """
         model = fireblocks_client.models.create_connection_response_session_metadata.CreateConnectionResponseSessionMetadata()  # noqa: E501
         if include_optional :
-            return CreateConnectionResponseSessionMetadata(
-                app_url = '', 
-                app_name = '', 
-                app_description = '', 
-                app_icon = ''
-            )
+        return CreateConnectionResponseSessionMetadata(
+            app_url = '', 
+            app_name = '', 
+            app_description = '', 
+            app_icon = ''
+        )
         else :
-            return CreateConnectionResponseSessionMetadata(
+        return CreateConnectionResponseSessionMetadata(
                 app_url = '',
         )
         """

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_connection_routing_policy_signet import NetworkConnectionRoutingPolicySignet  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkConnectionRoutingPolicySignet(unittest.TestCase):
     """NetworkConnectionRoutingPolicySignet unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestNetworkConnectionRoutingPolicySignet(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkConnectionRoutingPolicySignet
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkConnectionRoutingPolicySignet
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkConnectionRoutingPolicySignet`
         """
         model = fireblocks_client.models.network_connection_routing_policy_signet.NetworkConnectionRoutingPolicySignet()  # noqa: E501
         if include_optional :
-            return NetworkConnectionRoutingPolicySignet(
-                scheme = 'NONE', 
-                dst_type = 'FIAT_ACCOUNT', 
-                dst_id = ''
-            )
+        return NetworkConnectionRoutingPolicySignet(
+            scheme = 'NONE', 
+            dst_type = 'FIAT_ACCOUNT', 
+            dst_id = ''
+        )
         else :
-            return NetworkConnectionRoutingPolicySignet(
+        return NetworkConnectionRoutingPolicySignet(
                 scheme = 'NONE',
                 dst_type = 'FIAT_ACCOUNT',
                 dst_id = '',

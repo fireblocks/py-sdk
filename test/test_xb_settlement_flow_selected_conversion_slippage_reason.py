@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_flow_selected_conversion_slippage_reason import XBSettlementFlowSelectedConversionSlippageReason  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFlowSelectedConversionSlippageReason(unittest.TestCase):
     """XBSettlementFlowSelectedConversionSlippageReason unit test stubs"""
 

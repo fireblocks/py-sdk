@@ -36,8 +36,6 @@ class VaultAsset(BaseModel):
     frozen: Optional[StrictStr] = Field(None, description="The cumulative frozen balance")
     locked_amount: Optional[StrictStr] = Field(None, alias="lockedAmount", description="Funds in outgoing transactions that are not yet published to the network")
     staked: Optional[StrictStr] = Field(None, description="Staked balance")
-    max_bip44_address_index_used: Optional[StrictFloat] = Field(None, alias="maxBip44AddressIndexUsed", description="The maximum BIP44 index used in deriving addresses for this wallet")
-    max_bip44_change_address_index_used: Optional[StrictFloat] = Field(None, alias="maxBip44ChangeAddressIndexUsed", description="The maximum BIP44 index used in deriving change addresses for this wallet")
     total_staked_cpu: Optional[StrictFloat] = Field(None, alias="totalStakedCPU", description="Deprecated")
     total_staked_network: Optional[StrictStr] = Field(None, alias="totalStakedNetwork", description="Deprecated")
     self_staked_cpu: Optional[StrictStr] = Field(None, alias="selfStakedCPU", description="Deprecated")
@@ -47,7 +45,7 @@ class VaultAsset(BaseModel):
     block_height: Optional[StrictStr] = Field(None, alias="blockHeight")
     block_hash: Optional[StrictStr] = Field(None, alias="blockHash")
     rewards_info: Optional[RewardsInfo] = Field(None, alias="rewardsInfo")
-    __properties = ["id", "total", "balance", "available", "pending", "frozen", "lockedAmount", "staked", "maxBip44AddressIndexUsed", "maxBip44ChangeAddressIndexUsed", "totalStakedCPU", "totalStakedNetwork", "selfStakedCPU", "selfStakedNetwork", "pendingRefundCPU", "pendingRefundNetwork", "blockHeight", "blockHash", "rewardsInfo"]
+    __properties = ["id", "total", "balance", "available", "pending", "frozen", "lockedAmount", "staked", "totalStakedCPU", "totalStakedNetwork", "selfStakedCPU", "selfStakedNetwork", "pendingRefundCPU", "pendingRefundNetwork", "blockHeight", "blockHash", "rewardsInfo"]
 
     class Config:
         populate_by_name = True
@@ -96,8 +94,6 @@ class VaultAsset(BaseModel):
             "frozen": obj.get("frozen"),
             "locked_amount": obj.get("lockedAmount"),
             "staked": obj.get("staked"),
-            "max_bip44_address_index_used": obj.get("maxBip44AddressIndexUsed"),
-            "max_bip44_change_address_index_used": obj.get("maxBip44ChangeAddressIndexUsed"),
             "total_staked_cpu": obj.get("totalStakedCPU"),
             "total_staked_network": obj.get("totalStakedNetwork"),
             "self_staked_cpu": obj.get("selfStakedCPU"),

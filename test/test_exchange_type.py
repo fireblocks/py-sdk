@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.exchange_type import ExchangeType  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestExchangeType(unittest.TestCase):
     """ExchangeType unit test stubs"""
 

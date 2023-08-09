@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.exchange_account import ExchangeAccount  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestExchangeAccount(unittest.TestCase):
     """ExchangeAccount unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestExchangeAccount(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ExchangeAccount
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ExchangeAccount
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ExchangeAccount`
         """
         model = fireblocks_client.models.exchange_account.ExchangeAccount()  # noqa: E501
         if include_optional :
-            return ExchangeAccount(
-                id = '', 
-                type = 'BINANCE', 
-                name = '', 
-                status = '', 
-                assets = [
+        return ExchangeAccount(
+            id = '', 
+            type = 'BINANCE', 
+            name = '', 
+            status = '', 
+            assets = [
                     fireblocks_client.models.exchange_asset.ExchangeAsset(
                         id = '', 
                         balance = '', 
@@ -51,7 +52,7 @@ class TestExchangeAccount(unittest.TestCase):
                         total = '', 
                         available = '', )
                     ], 
-                trading_accounts = [
+            trading_accounts = [
                     fireblocks_client.models.exchange_trading_account.ExchangeTradingAccount(
                         type = '', 
                         name = '', 
@@ -64,11 +65,11 @@ class TestExchangeAccount(unittest.TestCase):
                                 available = '', )
                             ], )
                     ], 
-                is_subaccount = True, 
-                main_account_id = ''
-            )
+            is_subaccount = True, 
+            main_account_id = ''
+        )
         else :
-            return ExchangeAccount(
+        return ExchangeAccount(
         )
         """
 

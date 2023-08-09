@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.vault_asset import VaultAsset  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestVaultAsset(unittest.TestCase):
     """VaultAsset unit test stubs"""
 
@@ -30,38 +30,37 @@ class TestVaultAsset(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VaultAsset
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test VaultAsset
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `VaultAsset`
         """
         model = fireblocks_client.models.vault_asset.VaultAsset()  # noqa: E501
         if include_optional :
-            return VaultAsset(
-                id = '', 
-                total = '', 
-                balance = '', 
-                available = '', 
-                pending = '', 
-                frozen = '', 
-                locked_amount = '', 
-                staked = '', 
-                max_bip44_address_index_used = 1.337, 
-                max_bip44_change_address_index_used = 1.337, 
-                total_staked_cpu = 1.337, 
-                total_staked_network = '', 
-                self_staked_cpu = '', 
-                self_staked_network = '', 
-                pending_refund_cpu = '', 
-                pending_refund_network = '', 
-                block_height = '', 
-                block_hash = '', 
-                rewards_info = fireblocks_client.models.rewards_info.RewardsInfo(
+        return VaultAsset(
+            id = '', 
+            total = '', 
+            balance = '', 
+            available = '', 
+            pending = '', 
+            frozen = '', 
+            locked_amount = '', 
+            staked = '', 
+            total_staked_cpu = 1.337, 
+            total_staked_network = '', 
+            self_staked_cpu = '', 
+            self_staked_network = '', 
+            pending_refund_cpu = '', 
+            pending_refund_network = '', 
+            block_height = '', 
+            block_hash = '', 
+            rewards_info = fireblocks_client.models.rewards_info.RewardsInfo(
                     pending_rewards = '', )
-            )
+        )
         else :
-            return VaultAsset(
+        return VaultAsset(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_routing_policy_for_network_id_request import SetRoutingPolicyForNetworkIdRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetRoutingPolicyForNetworkIdRequest(unittest.TestCase):
     """SetRoutingPolicyForNetworkIdRequest unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestSetRoutingPolicyForNetworkIdRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetRoutingPolicyForNetworkIdRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetRoutingPolicyForNetworkIdRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetRoutingPolicyForNetworkIdRequest`
         """
         model = fireblocks_client.models.set_routing_policy_for_network_id_request.SetRoutingPolicyForNetworkIdRequest()  # noqa: E501
         if include_optional :
-            return SetRoutingPolicyForNetworkIdRequest(
-                routing_policy = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy(
+        return SetRoutingPolicyForNetworkIdRequest(
+            routing_policy = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy(
                     crypto = null, 
                     sen = null, 
                     signet = null, 
                     sen_test = null, 
                     signet_test = null, )
-            )
+        )
         else :
-            return SetRoutingPolicyForNetworkIdRequest(
+        return SetRoutingPolicyForNetworkIdRequest(
                 routing_policy = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy(
                     crypto = null, 
                     sen = null, 

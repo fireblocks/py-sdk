@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request import TravelRuleValidateFullTransactionRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequest unit test stubs"""
 
@@ -30,36 +30,37 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequest`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request.TravelRuleValidateFullTransactionRequest()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequest(
-                transaction_asset = '', 
-                transaction_amount = '', 
-                originator_did = '', 
-                beneficiary_did = '', 
-                originator_vas_pdid = '', 
-                beneficiary_vas_pdid = '', 
-                beneficiary_vas_pname = '', 
-                transaction_blockchain_info = None, 
-                originator = None, 
-                beneficiary = None, 
-                encrypted = '', 
-                protocol = '', 
-                notification_email = '', 
-                skip_beneficiary_data_validation = True, 
-                travel_rule_behavior = True, 
-                originator_proof = None, 
-                beneficiary_proof = None, 
-                pii = None
-            )
+        return TravelRuleValidateFullTransactionRequest(
+            transaction_asset = '', 
+            transaction_amount = '', 
+            originator_did = '', 
+            beneficiary_did = '', 
+            originator_vas_pdid = '', 
+            beneficiary_vas_pdid = '', 
+            beneficiary_vas_pname = '', 
+            transaction_blockchain_info = None, 
+            originator = None, 
+            beneficiary = None, 
+            encrypted = '', 
+            protocol = '', 
+            notification_email = '', 
+            skip_beneficiary_data_validation = True, 
+            travel_rule_behavior = True, 
+            originator_proof = None, 
+            beneficiary_proof = None, 
+            pii = None
+        )
         else :
-            return TravelRuleValidateFullTransactionRequest(
+        return TravelRuleValidateFullTransactionRequest(
                 transaction_asset = '',
                 transaction_amount = '',
                 originator_did = '',

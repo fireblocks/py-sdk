@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.update_vault_account_asset_address_request import UpdateVaultAccountAssetAddressRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUpdateVaultAccountAssetAddressRequest(unittest.TestCase):
     """UpdateVaultAccountAssetAddressRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestUpdateVaultAccountAssetAddressRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UpdateVaultAccountAssetAddressRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UpdateVaultAccountAssetAddressRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UpdateVaultAccountAssetAddressRequest`
         """
         model = fireblocks_client.models.update_vault_account_asset_address_request.UpdateVaultAccountAssetAddressRequest()  # noqa: E501
         if include_optional :
-            return UpdateVaultAccountAssetAddressRequest(
-                description = ''
-            )
+        return UpdateVaultAccountAssetAddressRequest(
+            description = ''
+        )
         else :
-            return UpdateVaultAccountAssetAddressRequest(
+        return UpdateVaultAccountAssetAddressRequest(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.unspent_inputs_response import UnspentInputsResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUnspentInputsResponse(unittest.TestCase):
     """UnspentInputsResponse unit test stubs"""
 
@@ -30,25 +30,26 @@ class TestUnspentInputsResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UnspentInputsResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UnspentInputsResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UnspentInputsResponse`
         """
         model = fireblocks_client.models.unspent_inputs_response.UnspentInputsResponse()  # noqa: E501
         if include_optional :
-            return UnspentInputsResponse(
-                input = fireblocks_client.models.unspent_input.UnspentInput(
+        return UnspentInputsResponse(
+            input = fireblocks_client.models.unspent_input.UnspentInput(
                     tx_hash = '', 
                     index = 1.337, ), 
-                address = '', 
-                amount = '', 
-                confirmations = 1.337, 
-                status = ''
-            )
+            address = '', 
+            amount = '', 
+            confirmations = 1.337, 
+            status = ''
+        )
         else :
-            return UnspentInputsResponse(
+        return UnspentInputsResponse(
         )
         """
 

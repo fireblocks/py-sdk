@@ -25,7 +25,7 @@ from fireblocks_client.models.custom_crypto_routing_dest import CustomCryptoRout
 from fireblocks_client.models.default_network_routing_dest import DefaultNetworkRoutingDest
 from fireblocks_client.models.none_network_routing_dest import NoneNetworkRoutingDest
 from typing import Any, List, Literal
-from pydantic import StrictStr, Field, validate_arguments
+from pydantic import Field, validate_arguments
 
 NETWORKCONNECTIONROUTINGPOLICYCRYPTO_ONE_OF_SCHEMAS = ["CustomCryptoRoutingDest", "DefaultNetworkRoutingDest", "NoneNetworkRoutingDest"]
 

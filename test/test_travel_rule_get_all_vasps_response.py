@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_get_all_vasps_response import TravelRuleGetAllVASPsResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleGetAllVASPsResponse(unittest.TestCase):
     """TravelRuleGetAllVASPsResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestTravelRuleGetAllVASPsResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleGetAllVASPsResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleGetAllVASPsResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleGetAllVASPsResponse`
         """
         model = fireblocks_client.models.travel_rule_get_all_vasps_response.TravelRuleGetAllVASPsResponse()  # noqa: E501
         if include_optional :
-            return TravelRuleGetAllVASPsResponse(
-                vasps = [
+        return TravelRuleGetAllVASPsResponse(
+            vasps = [
                     fireblocks_client.models.travel_rule_vasp.TravelRuleVASP(
                         did = '', 
                         name = '', 
@@ -104,9 +105,9 @@ class TestTravelRuleGetAllVASPsResponse(unittest.TestCase):
                             country = , 
                             description = , ), )
                     ]
-            )
+        )
         else :
-            return TravelRuleGetAllVASPsResponse(
+        return TravelRuleGetAllVASPsResponse(
                 vasps = [
                     fireblocks_client.models.travel_rule_vasp.TravelRuleVASP(
                         did = '', 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.gas_station_properties_response import GasStationPropertiesResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestGasStationPropertiesResponse(unittest.TestCase):
     """GasStationPropertiesResponse unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestGasStationPropertiesResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test GasStationPropertiesResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test GasStationPropertiesResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `GasStationPropertiesResponse`
         """
         model = fireblocks_client.models.gas_station_properties_response.GasStationPropertiesResponse()  # noqa: E501
         if include_optional :
-            return GasStationPropertiesResponse(
-                balance = None, 
-                configuration = fireblocks_client.models.gas_station_configuration.GasStationConfiguration(
+        return GasStationPropertiesResponse(
+            balance = None, 
+            configuration = fireblocks_client.models.gas_station_configuration.GasStationConfiguration(
                     gas_threshold = '', 
                     gas_cap = '', 
                     max_gas_price = '', )
-            )
+        )
         else :
-            return GasStationPropertiesResponse(
+        return GasStationPropertiesResponse(
         )
         """
 

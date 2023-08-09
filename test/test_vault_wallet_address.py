@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.vault_wallet_address import VaultWalletAddress  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestVaultWalletAddress(unittest.TestCase):
     """VaultWalletAddress unit test stubs"""
 
@@ -30,29 +30,30 @@ class TestVaultWalletAddress(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VaultWalletAddress
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test VaultWalletAddress
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `VaultWalletAddress`
         """
         model = fireblocks_client.models.vault_wallet_address.VaultWalletAddress()  # noqa: E501
         if include_optional :
-            return VaultWalletAddress(
-                asset_id = '', 
-                address = '', 
-                description = '', 
-                tag = '', 
-                type = '', 
-                customer_ref_id = '', 
-                address_format = 'SEGWIT', 
-                legacy_address = '', 
-                enterprise_address = '', 
-                bip44_address_index = 56, 
-                user_defined = True
-            )
+        return VaultWalletAddress(
+            asset_id = '', 
+            address = '', 
+            description = '', 
+            tag = '', 
+            type = '', 
+            customer_ref_id = '', 
+            address_format = 'SEGWIT', 
+            legacy_address = '', 
+            enterprise_address = '', 
+            bip44_address_index = 56, 
+            user_defined = True
+        )
         else :
-            return VaultWalletAddress(
+        return VaultWalletAddress(
         )
         """
 

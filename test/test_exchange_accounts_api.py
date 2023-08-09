@@ -18,11 +18,14 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.exchange_accounts_api import ExchangeAccountsApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestExchangeAccountsApi(unittest.TestCase):
     """ExchangeAccountsApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.exchange_accounts_api.ExchangeAccountsApi()  # noqa: E501
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_get_flow_response import XBSettlementGetFlowResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementGetFlowResponse(unittest.TestCase):
     """XBSettlementGetFlowResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestXBSettlementGetFlowResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementGetFlowResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementGetFlowResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementGetFlowResponse`
         """
         model = fireblocks_client.models.xb_settlement_get_flow_response.XBSettlementGetFlowResponse()  # noqa: E501
         if include_optional :
-            return XBSettlementGetFlowResponse(
-                preview = fireblocks_client.models.xb_settlement_flow_preview_model.XBSettlementFlowPreviewModel(
+        return XBSettlementGetFlowResponse(
+            preview = fireblocks_client.models.xb_settlement_flow_preview_model.XBSettlementFlowPreviewModel(
                     flow_id = '', 
                     config_id = '', 
                     conversion_rate = '', 
@@ -59,7 +60,7 @@ class TestXBSettlementGetFlowResponse(unittest.TestCase):
                             estimated_time = 1.337, 
                             is_sign_required = True, )
                         }, ), 
-                execution = fireblocks_client.models.xb_settlement_flow_execution_model.XBSettlementFlowExecutionModel(
+            execution = fireblocks_client.models.xb_settlement_flow_execution_model.XBSettlementFlowExecutionModel(
                     flow_id = '', 
                     config_id = '', 
                     input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
@@ -85,9 +86,9 @@ class TestXBSettlementGetFlowResponse(unittest.TestCase):
                     selected_conversion_slippage = fireblocks_client.models.xb_settlement_flow_execution_model_selected_conversion_slippage.XBSettlementFlowExecutionModel_selectedConversionSlippage(
                         basis_points = 1.337, 
                         reason = 'DEFAULT', ), )
-            )
+        )
         else :
-            return XBSettlementGetFlowResponse(
+        return XBSettlementGetFlowResponse(
         )
         """
 

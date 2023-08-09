@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
+**sub_type** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
 **wallet_id** | **str** |  | [optional] 
 **one_time_address** | [**OneTimeAddress**](OneTimeAddress.md) |  | [optional] 
 

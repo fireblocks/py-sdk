@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_routing_policy_for_network_connection_request import SetRoutingPolicyForNetworkConnectionRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetRoutingPolicyForNetworkConnectionRequest(unittest.TestCase):
     """SetRoutingPolicyForNetworkConnectionRequest unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestSetRoutingPolicyForNetworkConnectionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetRoutingPolicyForNetworkConnectionRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetRoutingPolicyForNetworkConnectionRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetRoutingPolicyForNetworkConnectionRequest`
         """
         model = fireblocks_client.models.set_routing_policy_for_network_connection_request.SetRoutingPolicyForNetworkConnectionRequest()  # noqa: E501
         if include_optional :
-            return SetRoutingPolicyForNetworkConnectionRequest(
-                routing_policy = fireblocks_client.models.network_connection_routing_policy.NetworkConnectionRoutingPolicy(
+        return SetRoutingPolicyForNetworkConnectionRequest(
+            routing_policy = fireblocks_client.models.network_connection_routing_policy.NetworkConnectionRoutingPolicy(
                     crypto = null, 
                     sen = null, 
                     signet = null, 
                     sen_test = null, 
                     signet_test = null, )
-            )
+        )
         else :
-            return SetRoutingPolicyForNetworkConnectionRequest(
+        return SetRoutingPolicyForNetworkConnectionRequest(
                 routing_policy = fireblocks_client.models.network_connection_routing_policy.NetworkConnectionRoutingPolicy(
                     crypto = null, 
                     sen = null, 

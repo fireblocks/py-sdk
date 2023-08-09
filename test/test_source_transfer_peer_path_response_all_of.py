@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.source_transfer_peer_path_response_all_of import SourceTransferPeerPathResponseAllOf  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSourceTransferPeerPathResponseAllOf(unittest.TestCase):
     """SourceTransferPeerPathResponseAllOf unit test stubs"""
 
@@ -30,20 +30,23 @@ class TestSourceTransferPeerPathResponseAllOf(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SourceTransferPeerPathResponseAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SourceTransferPeerPathResponseAllOf
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SourceTransferPeerPathResponseAllOf`
         """
         model = fireblocks_client.models.source_transfer_peer_path_response_all_of.SourceTransferPeerPathResponseAllOf()  # noqa: E501
         if include_optional :
-            return SourceTransferPeerPathResponseAllOf(
-                name = '', 
-                sub_type = ''
-            )
+        return SourceTransferPeerPathResponseAllOf(
+            type = '', 
+            sub_type = '', 
+            id = '', 
+            name = ''
+        )
         else :
-            return SourceTransferPeerPathResponseAllOf(
+        return SourceTransferPeerPathResponseAllOf(
         )
         """
 

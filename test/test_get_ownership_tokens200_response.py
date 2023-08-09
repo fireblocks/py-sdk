@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.get_ownership_tokens200_response import GetOwnershipTokens200Response  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestGetOwnershipTokens200Response(unittest.TestCase):
     """GetOwnershipTokens200Response unit test stubs"""
 
@@ -30,18 +30,19 @@ class TestGetOwnershipTokens200Response(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test GetOwnershipTokens200Response
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test GetOwnershipTokens200Response
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `GetOwnershipTokens200Response`
         """
         model = fireblocks_client.models.get_ownership_tokens200_response.GetOwnershipTokens200Response()  # noqa: E501
         if include_optional :
-            return GetOwnershipTokens200Response(
-                paging = fireblocks_client.models.paging.Paging(
+        return GetOwnershipTokens200Response(
+            paging = fireblocks_client.models.paging.Paging(
                     next = '', ), 
-                data = [
+            data = [
                     fireblocks_client.models.token_ownership_response.TokenOwnershipResponse(
                         id = '', 
                         token_id = '', 
@@ -62,9 +63,9 @@ class TestGetOwnershipTokens200Response(unittest.TestCase):
                         description = '', 
                         name = '', )
                     ]
-            )
+        )
         else :
-            return GetOwnershipTokens200Response(
+        return GetOwnershipTokens200Response(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.signed_message import SignedMessage  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSignedMessage(unittest.TestCase):
     """SignedMessage unit test stubs"""
 
@@ -30,29 +30,30 @@ class TestSignedMessage(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SignedMessage
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SignedMessage
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SignedMessage`
         """
         model = fireblocks_client.models.signed_message.SignedMessage()  # noqa: E501
         if include_optional :
-            return SignedMessage(
-                content = '', 
-                algorithm = 'MPC_ECDSA_SECP256K1', 
-                derivation_path = [
+        return SignedMessage(
+            content = '', 
+            algorithm = 'MPC_ECDSA_SECP256K1', 
+            derivation_path = [
                     1.337
                     ], 
-                signature = fireblocks_client.models.signed_message_signature.SignedMessage_signature(
+            signature = fireblocks_client.models.signed_message_signature.SignedMessage_signature(
                     full_sig = '', 
                     r = '', 
                     s = '', 
                     v = 1.337, ), 
-                public_key = ''
-            )
+            public_key = ''
+        )
         else :
-            return SignedMessage(
+        return SignedMessage(
         )
         """
 

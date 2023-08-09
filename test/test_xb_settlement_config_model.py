@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_config_model import XBSettlementConfigModel  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementConfigModel(unittest.TestCase):
     """XBSettlementConfigModel unit test stubs"""
 
@@ -30,29 +30,30 @@ class TestXBSettlementConfigModel(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementConfigModel
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementConfigModel
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementConfigModel`
         """
         model = fireblocks_client.models.xb_settlement_config_model.XBSettlementConfigModel()  # noqa: E501
         if include_optional :
-            return XBSettlementConfigModel(
-                config_id = '', 
-                corridor_id = 'MX_US', 
-                name = '', 
-                steps = {
+        return XBSettlementConfigModel(
+            config_id = '', 
+            corridor_id = 'MX_US', 
+            name = '', 
+            steps = {
                     'key' : fireblocks_client.models.xb_settlement_config_steps_record_value.XBSettlementConfigStepsRecord_value(
                         account_id = '', 
                         input_asset_id = null, 
                         output_asset_id = null, )
                     }, 
-                conversion_slippage_basis_points = 0, 
-                created_at = 1.337
-            )
+            conversion_slippage_basis_points = 0, 
+            created_at = 1.337
+        )
         else :
-            return XBSettlementConfigModel(
+        return XBSettlementConfigModel(
                 config_id = '',
                 corridor_id = 'MX_US',
                 name = '',

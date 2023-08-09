@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_internal_wallet_request import CreateInternalWalletRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateInternalWalletRequest(unittest.TestCase):
     """CreateInternalWalletRequest unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestCreateInternalWalletRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateInternalWalletRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateInternalWalletRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateInternalWalletRequest`
         """
         model = fireblocks_client.models.create_internal_wallet_request.CreateInternalWalletRequest()  # noqa: E501
         if include_optional :
-            return CreateInternalWalletRequest(
-                name = '', 
-                customer_ref_id = ''
-            )
+        return CreateInternalWalletRequest(
+            name = '', 
+            customer_ref_id = ''
+        )
         else :
-            return CreateInternalWalletRequest(
+        return CreateInternalWalletRequest(
         )
         """
 

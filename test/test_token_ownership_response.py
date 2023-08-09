@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.token_ownership_response import TokenOwnershipResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTokenOwnershipResponse(unittest.TestCase):
     """TokenOwnershipResponse unit test stubs"""
 
@@ -30,36 +30,37 @@ class TestTokenOwnershipResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TokenOwnershipResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TokenOwnershipResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TokenOwnershipResponse`
         """
         model = fireblocks_client.models.token_ownership_response.TokenOwnershipResponse()  # noqa: E501
         if include_optional :
-            return TokenOwnershipResponse(
-                id = '', 
-                token_id = '', 
-                standard = '', 
-                metadata_uri = '', 
-                cached_metadata_uri = '', 
-                media = [
+        return TokenOwnershipResponse(
+            id = '', 
+            token_id = '', 
+            standard = '', 
+            metadata_uri = '', 
+            cached_metadata_uri = '', 
+            media = [
                     fireblocks_client.models.media_entity_response.MediaEntityResponse(
                         url = '', 
                         content_type = 'IMAGE', )
                     ], 
-                collection = None, 
-                balance = '', 
-                vault_account_id = '', 
-                ownership_start_time = 1.337, 
-                ownership_last_update_time = 1.337, 
-                blockchain_descriptor = 'ETH', 
-                description = '', 
-                name = ''
-            )
+            collection = None, 
+            balance = '', 
+            vault_account_id = '', 
+            ownership_start_time = 1.337, 
+            ownership_last_update_time = 1.337, 
+            blockchain_descriptor = 'ETH', 
+            description = '', 
+            name = ''
+        )
         else :
-            return TokenOwnershipResponse(
+        return TokenOwnershipResponse(
                 id = '',
                 token_id = '',
                 standard = '',

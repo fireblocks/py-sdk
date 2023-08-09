@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_fiat_asset import XBSettlementFiatAsset  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFiatAsset(unittest.TestCase):
     """XBSettlementFiatAsset unit test stubs"""
 

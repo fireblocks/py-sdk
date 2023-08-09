@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.redeem_funds_to_linked_dda_request import RedeemFundsToLinkedDDARequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestRedeemFundsToLinkedDDARequest(unittest.TestCase):
     """RedeemFundsToLinkedDDARequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestRedeemFundsToLinkedDDARequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test RedeemFundsToLinkedDDARequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test RedeemFundsToLinkedDDARequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `RedeemFundsToLinkedDDARequest`
         """
         model = fireblocks_client.models.redeem_funds_to_linked_dda_request.RedeemFundsToLinkedDDARequest()  # noqa: E501
         if include_optional :
-            return RedeemFundsToLinkedDDARequest(
-                amount = 1.337
-            )
+        return RedeemFundsToLinkedDDARequest(
+            amount = 1.337
+        )
         else :
-            return RedeemFundsToLinkedDDARequest(
+        return RedeemFundsToLinkedDDARequest(
         )
         """
 

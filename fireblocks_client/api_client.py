@@ -31,13 +31,12 @@ import secrets
 import pkg_resources
 from hashlib import sha256
 
-from urllib.parse import quote
+from urllib.parse import quote, urlparse, urlencode
 
 from fireblocks_client.configuration import Configuration, SDKOptions
 import fireblocks_client.models
 from fireblocks_client import rest
 from fireblocks_client.exceptions import ApiValueError, ApiException
-
 
 class ApiClient(object):
     """Generic API client for OpenAPI client library builds.
@@ -158,7 +157,7 @@ class ApiClient(object):
                 # specified safe chars, encode everything
                 resource_path = resource_path.replace(
                     '{%s}' % k,
-                    quote(str(v), safe=config.safe_chars_for_path_param)
+                    quote(str(v))
                 )
 
         # post parameters
@@ -181,7 +180,7 @@ class ApiClient(object):
 
         # request url
         if _host is None:
-            url = self.configuration._base_path + resource_path
+            url = self.configuration.base_path + resource_path
         else:
             # use server/host defined in path or operation instead
             url = _host + resource_path
@@ -193,6 +192,12 @@ class ApiClient(object):
                                                      collection_formats)
             url += "?" + url_query
 
+        base_path = self.configuration.base_path + resource_path
+        path = urlparse(base_path).path
+        if query_params:
+            path += f"?{urlencode(query_params)}"
+
+        headers = self.get_headers(path, body, header_params)
         if self.configuration.options.timeoutInMs:
             self._request_timeout = self.configuration.options.timeoutInMs
         try:
@@ -200,7 +205,7 @@ class ApiClient(object):
             response_data = self.request(
                 method, url,
                 query_params=query_params,
-                headers=header_params,
+                headers=headers,
                 post_params=post_params, body=body,
                 _preload_content=_preload_content,
                 _request_timeout=_request_timeout)
@@ -229,10 +234,8 @@ class ApiClient(object):
             response_data.data = response_data.data.decode(encoding)
 
         # deserialize response data
-        if response_type == "bytearray":
+        if response_type:
             return_data = response_data.data
-        elif response_type:
-            return_data = self.deserialize(response_data, response_type)
         else:
             return_data = None
 
@@ -390,10 +393,9 @@ class ApiClient(object):
             If parameter async_req is False or missing,
             then the method will return the response directly.
         """
-        headers = self.get_headers(resource_path, body, header_params)
         if not async_req:
             return self.__call_api(resource_path, method,
-                                   path_params, query_params, headers,
+                                   path_params, query_params, header_params,
                                    body, post_params, files,
                                    response_types_map, auth_settings,
                                    _return_http_data_only, collection_formats,
@@ -403,7 +405,7 @@ class ApiClient(object):
         return self.pool.apply_async(self.__call_api, (resource_path,
                                                        method, path_params,
                                                        query_params,
-                                                       headers, body,
+                                                       header_params, body,
                                                        post_params, files,
                                                        response_types_map,
                                                        auth_settings,
@@ -419,7 +421,7 @@ class ApiClient(object):
         return {
             **header_params,
             "Authorization": f"Bearer {token}",
-            "X-API-Key": self.configuration._api_key,
+            "X-API-Key": self.configuration.api_key,
             "User-Agent": self.user_agent
         }
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_flow_execution_model_selected_conversion_slippage import XBSettlementFlowExecutionModelSelectedConversionSlippage  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFlowExecutionModelSelectedConversionSlippage(unittest.TestCase):
     """XBSettlementFlowExecutionModelSelectedConversionSlippage unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestXBSettlementFlowExecutionModelSelectedConversionSlippage(unittest.Test
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementFlowExecutionModelSelectedConversionSlippage
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementFlowExecutionModelSelectedConversionSlippage
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementFlowExecutionModelSelectedConversionSlippage`
         """
         model = fireblocks_client.models.xb_settlement_flow_execution_model_selected_conversion_slippage.XBSettlementFlowExecutionModelSelectedConversionSlippage()  # noqa: E501
         if include_optional :
-            return XBSettlementFlowExecutionModelSelectedConversionSlippage(
-                basis_points = 1.337, 
-                reason = 'DEFAULT'
-            )
+        return XBSettlementFlowExecutionModelSelectedConversionSlippage(
+            basis_points = 1.337, 
+            reason = 'DEFAULT'
+        )
         else :
-            return XBSettlementFlowExecutionModelSelectedConversionSlippage(
+        return XBSettlementFlowExecutionModelSelectedConversionSlippage(
                 basis_points = 1.337,
                 reason = 'DEFAULT',
         )

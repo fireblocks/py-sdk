@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.authorization_info import AuthorizationInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAuthorizationInfo(unittest.TestCase):
     """AuthorizationInfo unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestAuthorizationInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AuthorizationInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AuthorizationInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AuthorizationInfo`
         """
         model = fireblocks_client.models.authorization_info.AuthorizationInfo()  # noqa: E501
         if include_optional :
-            return AuthorizationInfo(
-                allow_operator_as_authorizer = True, 
-                logic = 'AND', 
-                groups = [
+        return AuthorizationInfo(
+            allow_operator_as_authorizer = True, 
+            logic = 'AND', 
+            groups = [
                     fireblocks_client.models.authorization_groups.AuthorizationGroups(
                         th = 1.337, 
                         users = {
                             'PENDING_AUTHORIZATION' : 'PENDING_AUTHORIZATION'
                             }, )
                     ]
-            )
+        )
         else :
-            return AuthorizationInfo(
+        return AuthorizationInfo(
         )
         """
 

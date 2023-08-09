@@ -18,11 +18,14 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.vaults_api import VaultsApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestVaultsApi(unittest.TestCase):
     """VaultsApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.vaults_api.VaultsApi()  # noqa: E501
 

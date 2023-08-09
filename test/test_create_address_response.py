@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_address_response import CreateAddressResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateAddressResponse(unittest.TestCase):
     """CreateAddressResponse unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestCreateAddressResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateAddressResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateAddressResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateAddressResponse`
         """
         model = fireblocks_client.models.create_address_response.CreateAddressResponse()  # noqa: E501
         if include_optional :
-            return CreateAddressResponse(
-                address = '', 
-                legacy_address = '', 
-                enterprise_address = '', 
-                tag = '', 
-                bip44_address_index = 56
-            )
+        return CreateAddressResponse(
+            address = '', 
+            legacy_address = '', 
+            enterprise_address = '', 
+            tag = '', 
+            bip44_address_index = 56
+        )
         else :
-            return CreateAddressResponse(
+        return CreateAddressResponse(
         )
         """
 

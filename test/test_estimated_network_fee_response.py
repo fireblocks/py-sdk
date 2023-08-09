@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.estimated_network_fee_response import EstimatedNetworkFeeResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestEstimatedNetworkFeeResponse(unittest.TestCase):
     """EstimatedNetworkFeeResponse unit test stubs"""
 
@@ -30,36 +30,37 @@ class TestEstimatedNetworkFeeResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test EstimatedNetworkFeeResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test EstimatedNetworkFeeResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `EstimatedNetworkFeeResponse`
         """
         model = fireblocks_client.models.estimated_network_fee_response.EstimatedNetworkFeeResponse()  # noqa: E501
         if include_optional :
-            return EstimatedNetworkFeeResponse(
-                low = fireblocks_client.models.network_fee.NetworkFee(
+        return EstimatedNetworkFeeResponse(
+            low = fireblocks_client.models.network_fee.NetworkFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', ), 
-                medium = fireblocks_client.models.network_fee.NetworkFee(
+            medium = fireblocks_client.models.network_fee.NetworkFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', ), 
-                high = fireblocks_client.models.network_fee.NetworkFee(
+            high = fireblocks_client.models.network_fee.NetworkFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', )
-            )
+        )
         else :
-            return EstimatedNetworkFeeResponse(
+        return EstimatedNetworkFeeResponse(
                 low = fireblocks_client.models.network_fee.NetworkFee(
                     fee_per_byte = '', 
                     gas_price = '', 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_asset import XBSettlementAsset  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementAsset(unittest.TestCase):
     """XBSettlementAsset unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestXBSettlementAsset(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementAsset
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementAsset
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementAsset`
         """
         model = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset()  # noqa: E501
         if include_optional :
-            return XBSettlementAsset(
-                amount = '', 
-                asset_id = None
-            )
+        return XBSettlementAsset(
+            amount = '', 
+            asset_id = None
+        )
         else :
-            return XBSettlementAsset(
+        return XBSettlementAsset(
                 amount = '',
         )
         """

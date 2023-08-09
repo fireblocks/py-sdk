@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_network_id_name_request import SetNetworkIdNameRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetNetworkIdNameRequest(unittest.TestCase):
     """SetNetworkIdNameRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestSetNetworkIdNameRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetNetworkIdNameRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetNetworkIdNameRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetNetworkIdNameRequest`
         """
         model = fireblocks_client.models.set_network_id_name_request.SetNetworkIdNameRequest()  # noqa: E501
         if include_optional :
-            return SetNetworkIdNameRequest(
-                name = ''
-            )
+        return SetNetworkIdNameRequest(
+            name = ''
+        )
         else :
-            return SetNetworkIdNameRequest(
+        return SetNetworkIdNameRequest(
                 name = '',
         )
         """

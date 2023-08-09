@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_connection_response import NetworkConnectionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkConnectionResponse(unittest.TestCase):
     """NetworkConnectionResponse unit test stubs"""
 
@@ -30,34 +30,35 @@ class TestNetworkConnectionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkConnectionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkConnectionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkConnectionResponse`
         """
         model = fireblocks_client.models.network_connection_response.NetworkConnectionResponse()  # noqa: E501
         if include_optional :
-            return NetworkConnectionResponse(
-                id = '', 
-                local_channel = None, 
-                remote_channel = None, 
-                status = 'WAITING_FOR_APPROVAL', 
-                local_network_id = fireblocks_client.models.network_id.NetworkId(
+        return NetworkConnectionResponse(
+            id = '', 
+            local_channel = None, 
+            remote_channel = None, 
+            status = 'WAITING_FOR_APPROVAL', 
+            local_network_id = fireblocks_client.models.network_id.NetworkId(
                     id = '', 
                     name = '', ), 
-                remote_network_id = fireblocks_client.models.network_id.NetworkId(
+            remote_network_id = fireblocks_client.models.network_id.NetworkId(
                     id = '', 
                     name = '', ), 
-                routing_policy = fireblocks_client.models.network_connection_routing_policy.NetworkConnectionRoutingPolicy(
+            routing_policy = fireblocks_client.models.network_connection_routing_policy.NetworkConnectionRoutingPolicy(
                     crypto = null, 
                     sen = null, 
                     signet = null, 
                     sen_test = null, 
                     signet_test = null, )
-            )
+        )
         else :
-            return NetworkConnectionResponse(
+        return NetworkConnectionResponse(
                 id = '',
                 status = 'WAITING_FOR_APPROVAL',
                 local_network_id = fireblocks_client.models.network_id.NetworkId(

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.custom_crypto_routing_dest import CustomCryptoRoutingDest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCustomCryptoRoutingDest(unittest.TestCase):
     """CustomCryptoRoutingDest unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestCustomCryptoRoutingDest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CustomCryptoRoutingDest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CustomCryptoRoutingDest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CustomCryptoRoutingDest`
         """
         model = fireblocks_client.models.custom_crypto_routing_dest.CustomCryptoRoutingDest()  # noqa: E501
         if include_optional :
-            return CustomCryptoRoutingDest(
-                scheme = 'CUSTOM', 
-                dst_type = 'VAULT', 
-                dst_id = ''
-            )
+        return CustomCryptoRoutingDest(
+            scheme = 'CUSTOM', 
+            dst_type = 'VAULT', 
+            dst_id = ''
+        )
         else :
-            return CustomCryptoRoutingDest(
+        return CustomCryptoRoutingDest(
                 scheme = 'CUSTOM',
                 dst_type = 'VAULT',
                 dst_id = '',

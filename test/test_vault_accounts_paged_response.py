@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.vault_accounts_paged_response import VaultAccountsPagedResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestVaultAccountsPagedResponse(unittest.TestCase):
     """VaultAccountsPagedResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestVaultAccountsPagedResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VaultAccountsPagedResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test VaultAccountsPagedResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `VaultAccountsPagedResponse`
         """
         model = fireblocks_client.models.vault_accounts_paged_response.VaultAccountsPagedResponse()  # noqa: E501
         if include_optional :
-            return VaultAccountsPagedResponse(
-                accounts = [
+        return VaultAccountsPagedResponse(
+            accounts = [
                     fireblocks_client.models.vault_account.VaultAccount(
                         id = '', 
                         name = '', 
@@ -53,8 +54,6 @@ class TestVaultAccountsPagedResponse(unittest.TestCase):
                                 frozen = '', 
                                 locked_amount = '', 
                                 staked = '', 
-                                max_bip44_address_index_used = 1.337, 
-                                max_bip44_change_address_index_used = 1.337, 
                                 total_staked_cpu = 1.337, 
                                 total_staked_network = '', 
                                 self_staked_cpu = '', 
@@ -70,14 +69,14 @@ class TestVaultAccountsPagedResponse(unittest.TestCase):
                         customer_ref_id = '', 
                         auto_fuel = True, )
                     ], 
-                paging = fireblocks_client.models.vault_accounts_paged_response_paging.VaultAccountsPagedResponse_paging(
+            paging = fireblocks_client.models.vault_accounts_paged_response_paging.VaultAccountsPagedResponse_paging(
                     before = '', 
                     after = '', ), 
-                previous_url = '', 
-                next_url = ''
-            )
+            previous_url = '', 
+            next_url = ''
+        )
         else :
-            return VaultAccountsPagedResponse(
+        return VaultAccountsPagedResponse(
         )
         """
 

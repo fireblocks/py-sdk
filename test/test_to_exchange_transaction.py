@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.to_exchange_transaction import ToExchangeTransaction  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestToExchangeTransaction(unittest.TestCase):
     """ToExchangeTransaction unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestToExchangeTransaction(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ToExchangeTransaction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ToExchangeTransaction
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ToExchangeTransaction`
         """
         model = fireblocks_client.models.to_exchange_transaction.ToExchangeTransaction()  # noqa: E501
         if include_optional :
-            return ToExchangeTransaction(
-                asset_id = '', 
-                amount = '', 
-                dst_address = '', 
-                dst_tag = ''
-            )
+        return ToExchangeTransaction(
+            asset_id = '', 
+            amount = '', 
+            dst_address = '', 
+            dst_tag = ''
+        )
         else :
-            return ToExchangeTransaction(
+        return ToExchangeTransaction(
         )
         """
 

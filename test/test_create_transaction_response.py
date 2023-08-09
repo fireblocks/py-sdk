@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_transaction_response import CreateTransactionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateTransactionResponse(unittest.TestCase):
     """CreateTransactionResponse unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestCreateTransactionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateTransactionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateTransactionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateTransactionResponse`
         """
         model = fireblocks_client.models.create_transaction_response.CreateTransactionResponse()  # noqa: E501
         if include_optional :
-            return CreateTransactionResponse(
-                id = '', 
-                status = '', 
-                system_messages = fireblocks_client.models.system_message_info.SystemMessageInfo(
+        return CreateTransactionResponse(
+            id = '', 
+            status = '', 
+            system_messages = fireblocks_client.models.system_message_info.SystemMessageInfo(
                     type = 'WARN', 
                     message = 'Slow transaction processing. Outgoing transactions might be stuck.', )
-            )
+        )
         else :
-            return CreateTransactionResponse(
+        return CreateTransactionResponse(
         )
         """
 

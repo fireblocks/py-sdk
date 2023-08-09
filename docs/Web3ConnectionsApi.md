@@ -4,14 +4,14 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_wc_connection**](Web3ConnectionsApi.md#create_wc_connection) | **POST** /connections/wc | Create a new Web3 connection.
-[**delete_wc_connection**](Web3ConnectionsApi.md#delete_wc_connection) | **DELETE** /connections/wc/{id} | Remove an existing Web3 connection.
-[**get_connections**](Web3ConnectionsApi.md#get_connections) | **GET** /connections | List all open Web3 connections.
-[**update_wc_connection**](Web3ConnectionsApi.md#update_wc_connection) | **PUT** /connections/wc/{id} | Respond to a pending Web3 connection request.
+[**create**](Web3ConnectionsApi.md#create) | **POST** /connections/wc | Create a new Web3 connection.
+[**get**](Web3ConnectionsApi.md#get) | **GET** /connections | List all open Web3 connections.
+[**remove**](Web3ConnectionsApi.md#remove) | **DELETE** /connections/wc/{id} | Remove an existing Web3 connection.
+[**submit**](Web3ConnectionsApi.md#submit) | **PUT** /connections/wc/{id} | Respond to a pending Web3 connection request.
 
 
-# **create_wc_connection**
-> CreateConnectionResponse create_wc_connection(create_connection_request)
+# **create**
+> CreateConnectionResponse create(create_connection_request)
 
 Create a new Web3 connection.
 
@@ -41,11 +41,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # Create a new Web3 connection.
-        api_response = api_instance.create_wc_connection(create_connection_request)
-        print("The response of Web3ConnectionsApi->create_wc_connection:\n")
+        api_response = api_instance.create(create_connection_request)
+        print("The response of Web3ConnectionsApi->create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling Web3ConnectionsApi->create_wc_connection: %s\n" % e)
+        print("Exception when calling Web3ConnectionsApi->create: %s\n" % e)
 ```
 
 ### Parameters
@@ -76,8 +76,82 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_wc_connection**
-> delete_wc_connection(id)
+# **get**
+> GetConnectionsResponse get(order=order, filter=filter, sort=sort, page_size=page_size, next=next)
+
+List all open Web3 connections.
+
+Get open Web3 connections.
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.Web3ConnectionsApi(api_client)
+    order = 'ASC' # str | List order; ascending or descending. (optional) (default to 'ASC')
+    filter = {'key': fireblocks_client.GetFilterParameter()} # GetFilterParameter | Parsed filter object (optional)
+    sort = 'createdAt' # str | Property to sort Web3 connections by. (optional) (default to 'createdAt')
+    page_size = 10 # float | Amount of results to return in the next page. (optional) (default to 10)
+    next = 'next_example' # str | Cursor to the next page (optional)
+
+    try:
+        # List all open Web3 connections.
+        api_response = api_instance.get(order=order, filter=filter, sort=sort, page_size=page_size, next=next)
+        print("The response of Web3ConnectionsApi->get:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Web3ConnectionsApi->get: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order** | **str**| List order; ascending or descending. | [optional] [default to &#39;ASC&#39;]
+ **filter** | [**GetFilterParameter**](.md)| Parsed filter object | [optional] 
+ **sort** | **str**| Property to sort Web3 connections by. | [optional] [default to &#39;createdAt&#39;]
+ **page_size** | **float**| Amount of results to return in the next page. | [optional] [default to 10]
+ **next** | **str**| Cursor to the next page | [optional] 
+
+### Return type
+
+[**GetConnectionsResponse**](GetConnectionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  * X-Request-ID -  <br>  |
+**400** | Query parameters were invalid |  * X-Request-ID -  <br>  |
+**500** | Something went wrong |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove**
+> remove(id)
 
 Remove an existing Web3 connection.
 
@@ -107,9 +181,9 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # Remove an existing Web3 connection.
-        api_instance.delete_wc_connection(id)
+        api_instance.remove(id)
     except Exception as e:
-        print("Exception when calling Web3ConnectionsApi->delete_wc_connection: %s\n" % e)
+        print("Exception when calling Web3ConnectionsApi->remove: %s\n" % e)
 ```
 
 ### Parameters
@@ -140,82 +214,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_connections**
-> GetConnectionsResponse get_connections(order=order, filter=filter, sort=sort, page_size=page_size, next=next)
-
-List all open Web3 connections.
-
-Get open Web3 connections.
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import os
-import fireblocks_client
-from fireblocks_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.fireblocks.io/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fireblocks_client.Configuration(
-    host = "https://api.fireblocks.io/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with fireblocks_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = fireblocks_client.Web3ConnectionsApi(api_client)
-    order = 'ASC' # str | List order; ascending or descending. (optional) (default to 'ASC')
-    filter = {'key': fireblocks_client.GetConnectionsFilterParameter()} # GetConnectionsFilterParameter | Parsed filter object (optional)
-    sort = 'createdAt' # str | Property to sort Web3 connections by. (optional) (default to 'createdAt')
-    page_size = 10 # float | Amount of results to return in the next page. (optional) (default to 10)
-    next = 'next_example' # str | Cursor to the next page (optional)
-
-    try:
-        # List all open Web3 connections.
-        api_response = api_instance.get_connections(order=order, filter=filter, sort=sort, page_size=page_size, next=next)
-        print("The response of Web3ConnectionsApi->get_connections:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling Web3ConnectionsApi->get_connections: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **order** | **str**| List order; ascending or descending. | [optional] [default to &#39;ASC&#39;]
- **filter** | [**GetConnectionsFilterParameter**](.md)| Parsed filter object | [optional] 
- **sort** | **str**| Property to sort Web3 connections by. | [optional] [default to &#39;createdAt&#39;]
- **page_size** | **float**| Amount of results to return in the next page. | [optional] [default to 10]
- **next** | **str**| Cursor to the next page | [optional] 
-
-### Return type
-
-[**GetConnectionsResponse**](GetConnectionsResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  * X-Request-ID -  <br>  |
-**400** | Query parameters were invalid |  * X-Request-ID -  <br>  |
-**500** | Something went wrong |  * X-Request-ID -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_wc_connection**
-> update_wc_connection(id, respond_to_connection_request)
+# **submit**
+> submit(id, respond_to_connection_request)
 
 Respond to a pending Web3 connection request.
 
@@ -246,9 +246,9 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # Respond to a pending Web3 connection request.
-        api_instance.update_wc_connection(id, respond_to_connection_request)
+        api_instance.submit(id, respond_to_connection_request)
     except Exception as e:
-        print("Exception when calling Web3ConnectionsApi->update_wc_connection: %s\n" % e)
+        print("Exception when calling Web3ConnectionsApi->submit: %s\n" % e)
 ```
 
 ### Parameters

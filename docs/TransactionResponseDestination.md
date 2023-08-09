@@ -4,8 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **str** |  | [optional] 
-**amount_usd** | **str** |  | [optional] 
+**destination_address** | **object** | Address where the asset was transferred. | [optional] 
+**destination_address_description** | **object** | Description of the address. | [optional] 
+**amount** | **str** | The amount to be sent to this destination. | [optional] 
+**amount_usd** | **str** | The USD value of the requested amount. | [optional] 
 **aml_screening_result** | [**AmlScreeningResult**](AmlScreeningResult.md) |  | [optional] 
 **destination** | [**DestinationTransferPeerPathResponse**](DestinationTransferPeerPathResponse.md) |  | [optional] 
 **authorization_info** | [**AuthorizationInfo**](AuthorizationInfo.md) |  | [optional] 

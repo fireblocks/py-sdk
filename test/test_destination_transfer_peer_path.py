@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.destination_transfer_peer_path import DestinationTransferPeerPath  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestDestinationTransferPeerPath(unittest.TestCase):
     """DestinationTransferPeerPath unit test stubs"""
 
@@ -30,24 +30,27 @@ class TestDestinationTransferPeerPath(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DestinationTransferPeerPath
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test DestinationTransferPeerPath
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `DestinationTransferPeerPath`
         """
         model = fireblocks_client.models.destination_transfer_peer_path.DestinationTransferPeerPath()  # noqa: E501
         if include_optional :
-            return DestinationTransferPeerPath(
-                type = 'VAULT_ACCOUNT', 
-                id = '', 
-                wallet_id = '', 
-                one_time_address = fireblocks_client.models.one_time_address.OneTimeAddress(
+        return DestinationTransferPeerPath(
+            type = 'VAULT_ACCOUNT', 
+            sub_type = 'BINANCE', 
+            id = '', 
+            name = '', 
+            wallet_id = '', 
+            one_time_address = fireblocks_client.models.one_time_address.OneTimeAddress(
                     address = '', 
                     tag = '', )
-            )
+        )
         else :
-            return DestinationTransferPeerPath(
+        return DestinationTransferPeerPath(
                 type = 'VAULT_ACCOUNT',
         )
         """

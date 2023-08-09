@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_transaction_request_beneficiary_address import TravelRuleValidateTransactionRequestBeneficiaryAddress  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateTransactionRequestBeneficiaryAddress(unittest.TestCase):
     """TravelRuleValidateTransactionRequestBeneficiaryAddress unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestTravelRuleValidateTransactionRequestBeneficiaryAddress(unittest.TestCa
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateTransactionRequestBeneficiaryAddress
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateTransactionRequestBeneficiaryAddress
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateTransactionRequestBeneficiaryAddress`
         """
         model = fireblocks_client.models.travel_rule_validate_transaction_request_beneficiary_address.TravelRuleValidateTransactionRequestBeneficiaryAddress()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateTransactionRequestBeneficiaryAddress(
-                street = '1234 Example St', 
-                city = 'New York', 
-                state = 'NY', 
-                postal_code = '10001'
-            )
+        return TravelRuleValidateTransactionRequestBeneficiaryAddress(
+            street = '1234 Example St', 
+            city = 'New York', 
+            state = 'NY', 
+            postal_code = '10001'
+        )
         else :
-            return TravelRuleValidateTransactionRequestBeneficiaryAddress(
+        return TravelRuleValidateTransactionRequestBeneficiaryAddress(
                 street = '1234 Example St',
                 city = 'New York',
                 state = 'NY',

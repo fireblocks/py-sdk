@@ -510,7 +510,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_paged_vault_accounts**
-> VaultAccountsPagedResponse get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, max_bip44_address_index_used=max_bip44_address_index_used, max_bip44_change_address_index_used=max_bip44_change_address_index_used, order_by=order_by, before=before, after=after, limit=limit)
+> VaultAccountsPagedResponse get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit)
 
 List vault acounts (Paginated)
 
@@ -540,16 +540,14 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     name_suffix = 'name_suffix_example' # str |  (optional)
     min_amount_threshold = 3.4 # float |  (optional)
     asset_id = 'asset_id_example' # str |  (optional)
-    max_bip44_address_index_used = 3.4 # float |  (optional)
-    max_bip44_change_address_index_used = 3.4 # float |  (optional)
     order_by = 'DESC' # str |  (optional) (default to 'DESC')
     before = 'before_example' # str |  (optional)
     after = 'after_example' # str |  (optional)
-    limit = 200 # float |  (optional) (default to 200)
+    limit = 200 # int |  (optional) (default to 200)
 
     try:
         # List vault acounts (Paginated)
-        api_response = api_instance.get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, max_bip44_address_index_used=max_bip44_address_index_used, max_bip44_change_address_index_used=max_bip44_change_address_index_used, order_by=order_by, before=before, after=after, limit=limit)
+        api_response = api_instance.get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit)
         print("The response of VaultsApi->get_paged_vault_accounts:\n")
         pprint(api_response)
     except Exception as e:
@@ -564,12 +562,10 @@ Name | Type | Description  | Notes
  **name_suffix** | **str**|  | [optional] 
  **min_amount_threshold** | **float**|  | [optional] 
  **asset_id** | **str**|  | [optional] 
- **max_bip44_address_index_used** | **float**|  | [optional] 
- **max_bip44_change_address_index_used** | **float**|  | [optional] 
  **order_by** | **str**|  | [optional] [default to &#39;DESC&#39;]
  **before** | **str**|  | [optional] 
  **after** | **str**|  | [optional] 
- **limit** | **float**|  | [optional] [default to 200]
+ **limit** | **int**|  | [optional] [default to 200]
 
 ### Return type
 
@@ -1000,7 +996,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_vault_accounts**
-> List[VaultAccount] get_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, max_bip44_address_index_used=max_bip44_address_index_used, max_bip44_change_address_index_used=max_bip44_change_address_index_used)
+> List[VaultAccount] get_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id)
 
 List vault accounts
 
@@ -1030,12 +1026,10 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     name_suffix = 'name_suffix_example' # str |  (optional)
     min_amount_threshold = 3.4 # float |  (optional)
     asset_id = 'asset_id_example' # str |  (optional)
-    max_bip44_address_index_used = 3.4 # float |  (optional)
-    max_bip44_change_address_index_used = 3.4 # float |  (optional)
 
     try:
         # List vault accounts
-        api_response = api_instance.get_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, max_bip44_address_index_used=max_bip44_address_index_used, max_bip44_change_address_index_used=max_bip44_change_address_index_used)
+        api_response = api_instance.get_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id)
         print("The response of VaultsApi->get_vault_accounts:\n")
         pprint(api_response)
     except Exception as e:
@@ -1050,8 +1044,6 @@ Name | Type | Description  | Notes
  **name_suffix** | **str**|  | [optional] 
  **min_amount_threshold** | **float**|  | [optional] 
  **asset_id** | **str**|  | [optional] 
- **max_bip44_address_index_used** | **float**|  | [optional] 
- **max_bip44_change_address_index_used** | **float**|  | [optional] 
 
 ### Return type
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.add_collateral_request_body import AddCollateralRequestBody  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAddCollateralRequestBody(unittest.TestCase):
     """AddCollateralRequestBody unit test stubs"""
 
@@ -30,23 +30,26 @@ class TestAddCollateralRequestBody(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AddCollateralRequestBody
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AddCollateralRequestBody
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AddCollateralRequestBody`
         """
         model = fireblocks_client.models.add_collateral_request_body.AddCollateralRequestBody()  # noqa: E501
         if include_optional :
-            return AddCollateralRequestBody(
-                transaction_request = fireblocks_client.models.transaction_request.TransactionRequest(
+        return AddCollateralRequestBody(
+            transaction_request = fireblocks_client.models.transaction_request.TransactionRequest(
                     operation = 'TRANSFER', 
                     note = 'Ticket 123', 
                     external_tx_id = '00000000-0000-0000-0000-000000000000', 
                     asset_id = 'ETH', 
                     source = fireblocks_client.models.transfer_peer_path.TransferPeerPath(
                         type = 'VAULT_ACCOUNT', 
+                        sub_type = 'BINANCE', 
                         id = '', 
+                        name = '', 
                         wallet_id = '', ), 
                     destination = null, 
                     destinations = [
@@ -70,10 +73,10 @@ class TestAddCollateralRequestBody(unittest.TestCase):
                     auto_staking = True, 
                     network_staking = null, 
                     cpu_staking = null, ), 
-                is_src_collateral = True
-            )
+            is_src_collateral = True
+        )
         else :
-            return AddCollateralRequestBody(
+        return AddCollateralRequestBody(
         )
         """
 

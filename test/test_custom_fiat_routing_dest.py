@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.custom_fiat_routing_dest import CustomFiatRoutingDest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCustomFiatRoutingDest(unittest.TestCase):
     """CustomFiatRoutingDest unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestCustomFiatRoutingDest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CustomFiatRoutingDest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CustomFiatRoutingDest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CustomFiatRoutingDest`
         """
         model = fireblocks_client.models.custom_fiat_routing_dest.CustomFiatRoutingDest()  # noqa: E501
         if include_optional :
-            return CustomFiatRoutingDest(
-                scheme = 'CUSTOM', 
-                dst_type = 'FIAT_ACCOUNT', 
-                dst_id = ''
-            )
+        return CustomFiatRoutingDest(
+            scheme = 'CUSTOM', 
+            dst_type = 'FIAT_ACCOUNT', 
+            dst_id = ''
+        )
         else :
-            return CustomFiatRoutingDest(
+        return CustomFiatRoutingDest(
                 scheme = 'CUSTOM',
                 dst_type = 'FIAT_ACCOUNT',
                 dst_id = '',

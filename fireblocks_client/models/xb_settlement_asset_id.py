@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from fireblocks_client.models.xb_settlement_crypto_asset import XBSettlementCryptoAsset
 from fireblocks_client.models.xb_settlement_fiat_asset import XBSettlementFiatAsset
 from typing import Any, List, Literal
-from pydantic import StrictStr, Field, validate_arguments
+from pydantic import Field, validate_arguments
 
 XBSETTLEMENTASSETID_ONE_OF_SCHEMAS = ["XBSettlementCryptoAsset", "XBSettlementFiatAsset"]
 

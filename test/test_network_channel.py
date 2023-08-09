@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_channel import NetworkChannel  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkChannel(unittest.TestCase):
     """NetworkChannel unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestNetworkChannel(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkChannel
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkChannel
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkChannel`
         """
         model = fireblocks_client.models.network_channel.NetworkChannel()  # noqa: E501
         if include_optional :
-            return NetworkChannel(
-                network_id = '', 
-                name = ''
-            )
+        return NetworkChannel(
+            network_id = '', 
+            name = ''
+        )
         else :
-            return NetworkChannel(
+        return NetworkChannel(
         )
         """
 

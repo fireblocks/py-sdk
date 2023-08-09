@@ -16,8 +16,6 @@ Method | HTTP request | Description
 
 Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
 
-Convert assets within an exchange account
-
 ### Example
 
 ```python
@@ -270,7 +268,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **internal_transfer**
-> internal_transfer(exchange_account_id, internal_transfer_request=internal_transfer_request)
+> internal_transfer(exchange_account_id, create_internal_transfer_request=create_internal_transfer_request)
 
 Internal tranfer for exchange accounts
 
@@ -297,11 +295,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fireblocks_client.ExchangeAccountsApi(api_client)
     exchange_account_id = 'exchange_account_id_example' # str | The ID of the exchange account to return
-    internal_transfer_request = fireblocks_client.InternalTransferRequest() # InternalTransferRequest |  (optional)
+    create_internal_transfer_request = fireblocks_client.CreateInternalTransferRequest() # CreateInternalTransferRequest |  (optional)
 
     try:
         # Internal tranfer for exchange accounts
-        api_instance.internal_transfer(exchange_account_id, internal_transfer_request=internal_transfer_request)
+        api_instance.internal_transfer(exchange_account_id, create_internal_transfer_request=create_internal_transfer_request)
     except Exception as e:
         print("Exception when calling ExchangeAccountsApi->internal_transfer: %s\n" % e)
 ```
@@ -311,7 +309,7 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **exchange_account_id** | **str**| The ID of the exchange account to return | 
- **internal_transfer_request** | [**InternalTransferRequest**](InternalTransferRequest.md)|  | [optional] 
+ **create_internal_transfer_request** | [**CreateInternalTransferRequest**](CreateInternalTransferRequest.md)|  | [optional] 
 
 ### Return type
 

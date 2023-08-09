@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_config_creation_request_body import XBSettlementConfigCreationRequestBody  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementConfigCreationRequestBody(unittest.TestCase):
     """XBSettlementConfigCreationRequestBody unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestXBSettlementConfigCreationRequestBody(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementConfigCreationRequestBody
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementConfigCreationRequestBody
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementConfigCreationRequestBody`
         """
         model = fireblocks_client.models.xb_settlement_config_creation_request_body.XBSettlementConfigCreationRequestBody()  # noqa: E501
         if include_optional :
-            return XBSettlementConfigCreationRequestBody(
-                name = '', 
-                corridor_id = 'MX_US', 
-                steps = {
+        return XBSettlementConfigCreationRequestBody(
+            name = '', 
+            corridor_id = 'MX_US', 
+            steps = {
                     'key' : fireblocks_client.models.xb_settlement_config_steps_record_value.XBSettlementConfigStepsRecord_value(
                         account_id = '', 
                         input_asset_id = null, 
                         output_asset_id = null, )
                     }, 
-                conversion_slippage_basis_points = 0
-            )
+            conversion_slippage_basis_points = 0
+        )
         else :
-            return XBSettlementConfigCreationRequestBody(
+        return XBSettlementConfigCreationRequestBody(
                 name = '',
                 corridor_id = 'MX_US',
                 steps = {

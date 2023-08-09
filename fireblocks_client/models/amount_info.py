@@ -27,10 +27,10 @@ class AmountInfo(BaseModel):
     """
     The details of the requested amount to transfer.
     """
-    amount: Optional[StrictStr] = Field(None, description="If the transfer is a withdrawal from an exchange, the actual amount that was requested to be transferred. Otherwise, the requested amount")
-    requested_amount: Optional[StrictStr] = Field(None, alias="requestedAmount")
-    net_amount: Optional[StrictStr] = Field(None, alias="netAmount", description="The net amount of the transaction, after fee deduction")
-    amount_usd: Optional[StrictStr] = Field(None, alias="amountUSD", description="The USD value of the requested amount")
+    amount: Optional[StrictStr] = Field(None, description="If the transfer is a withdrawal from an exchange, the actual amount that was requested to be transferred. Otherwise, the requested amount.")
+    requested_amount: Optional[StrictStr] = Field(None, alias="requestedAmount", description="The amount requested by the user.")
+    net_amount: Optional[StrictStr] = Field(None, alias="netAmount", description="The net amount of the transaction, after fee deduction.")
+    amount_usd: Optional[StrictStr] = Field(None, alias="amountUSD", description="The USD value of the requested amount.")
     __properties = ["amount", "requestedAmount", "netAmount", "amountUSD"]
 
     class Config:

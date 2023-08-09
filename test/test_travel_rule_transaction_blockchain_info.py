@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_transaction_blockchain_info import TravelRuleTransactionBlockchainInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleTransactionBlockchainInfo(unittest.TestCase):
     """TravelRuleTransactionBlockchainInfo unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestTravelRuleTransactionBlockchainInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleTransactionBlockchainInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleTransactionBlockchainInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleTransactionBlockchainInfo`
         """
         model = fireblocks_client.models.travel_rule_transaction_blockchain_info.TravelRuleTransactionBlockchainInfo()  # noqa: E501
         if include_optional :
-            return TravelRuleTransactionBlockchainInfo(
-                tx_hash = '', 
-                origin = '', 
-                destination = ''
-            )
+        return TravelRuleTransactionBlockchainInfo(
+            tx_hash = '', 
+            origin = '', 
+            destination = ''
+        )
         else :
-            return TravelRuleTransactionBlockchainInfo(
+        return TravelRuleTransactionBlockchainInfo(
                 tx_hash = '',
                 origin = '',
                 destination = '',

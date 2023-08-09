@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.unsigned_message import UnsignedMessage  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUnsignedMessage(unittest.TestCase):
     """UnsignedMessage unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestUnsignedMessage(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UnsignedMessage
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UnsignedMessage
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UnsignedMessage`
         """
         model = fireblocks_client.models.unsigned_message.UnsignedMessage()  # noqa: E501
         if include_optional :
-            return UnsignedMessage(
-                content = '', 
-                bip44address_index = 56, 
-                bip44change = 1.337, 
-                derivation_path = [
+        return UnsignedMessage(
+            content = '', 
+            bip44address_index = 56, 
+            bip44change = 1.337, 
+            derivation_path = [
                     1.337
                     ]
-            )
+        )
         else :
-            return UnsignedMessage(
+        return UnsignedMessage(
                 content = '',
         )
         """

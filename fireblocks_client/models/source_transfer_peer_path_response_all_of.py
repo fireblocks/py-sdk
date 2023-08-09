@@ -27,9 +27,11 @@ class SourceTransferPeerPathResponseAllOf(BaseModel):
     """
     The transaction’s source.
     """
-    name: Optional[StrictStr] = None
-    sub_type: Optional[StrictStr] = Field(None, alias="subType", description="The specific exchange, fiat account or unmanaged wallet (either INTERNAL / EXTERNAL)")
-    __properties = ["name", "subType"]
+    type: Optional[StrictStr] = None
+    sub_type: Optional[StrictStr] = Field(None, alias="subType", description="In case the type is set to `EXCHANGE_ACCOUNT` or `FIAT_ACCOUNT`, the specific exchange vendor name or fiat vendor name. In case the type is set to `INTERNAL_WALLET` or `EXTERNAL_WALLET`, the subType is set to `Internal` or `External`.")
+    id: Optional[StrictStr] = Field(None, description="The ID of the peer. You can retrieve the ID of each venue object using the endpoints for [listing vault accounts](https://developers.fireblocks.com/reference/get_vault-accounts-paged), [listing exchange account](https://developers.fireblocks.com/reference/get_exchange-accounts), [listing fiat accounts](https://developers.fireblocks.com/reference/get_fiat-accounts), [listing internal wallets](https://developers.fireblocks.com/reference/get_internal-wallets), [listing external wallets](https://developers.fireblocks.com/reference/get_external-wallets), [listing network connections](https://developers.fireblocks.com/reference/get_network-connections). For the other types, this parameter is not needed.")
+    name: Optional[StrictStr] = Field(None, description="The name of the peer.")
+    __properties = ["type", "subType", "id", "name"]
 
     class Config:
         populate_by_name = True
@@ -67,8 +69,10 @@ class SourceTransferPeerPathResponseAllOf(BaseModel):
             return SourceTransferPeerPathResponseAllOf.parse_obj(obj)
 
         _obj = SourceTransferPeerPathResponseAllOf.parse_obj({
-            "name": obj.get("name"),
-            "sub_type": obj.get("subType")
+            "type": obj.get("type"),
+            "sub_type": obj.get("subType"),
+            "id": obj.get("id"),
+            "name": obj.get("name")
         })
         return _obj
 

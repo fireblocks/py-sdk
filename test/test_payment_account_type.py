@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.payment_account_type import PaymentAccountType  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPaymentAccountType(unittest.TestCase):
     """PaymentAccountType unit test stubs"""
 

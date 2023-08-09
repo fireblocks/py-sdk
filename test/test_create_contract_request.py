@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_contract_request import CreateContractRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateContractRequest(unittest.TestCase):
     """CreateContractRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestCreateContractRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateContractRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateContractRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateContractRequest`
         """
         model = fireblocks_client.models.create_contract_request.CreateContractRequest()  # noqa: E501
         if include_optional :
-            return CreateContractRequest(
-                name = ''
-            )
+        return CreateContractRequest(
+            name = ''
+        )
         else :
-            return CreateContractRequest(
+        return CreateContractRequest(
         )
         """
 

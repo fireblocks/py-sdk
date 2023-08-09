@@ -4,16 +4,17 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_nft_token_by_id**](NFTsBetaApi.md#get_nft_token_by_id) | **GET** /nfts/tokens/{id} | List token data by ID
-[**get_nft_tokens**](NFTsBetaApi.md#get_nft_tokens) | **GET** /nfts/tokens | List tokens by IDs
+[**get_nft**](NFTsBetaApi.md#get_nft) | **GET** /nfts/tokens/{id} | List token data by ID
+[**get_nfts**](NFTsBetaApi.md#get_nfts) | **GET** /nfts/tokens | List tokens by IDs
 [**get_ownership_tokens**](NFTsBetaApi.md#get_ownership_tokens) | **GET** /nfts/ownership/tokens | List all owned tokens (paginated)
-[**update_nft_token_by_id**](NFTsBetaApi.md#update_nft_token_by_id) | **PUT** /nfts/tokens/{id} | Refresh token metadata
-[**update_nft_token_status**](NFTsBetaApi.md#update_nft_token_status) | **PUT** /nfts/ownership/tokens/{id}/status | Update token ownership status
+[**list_owned_collections**](NFTsBetaApi.md#list_owned_collections) | **GET** /nfts/ownership/collections | List owned collections (paginated)
+[**refresh_nft_metadata**](NFTsBetaApi.md#refresh_nft_metadata) | **PUT** /nfts/tokens/{id} | Refresh token metadata
 [**update_ownership_tokens**](NFTsBetaApi.md#update_ownership_tokens) | **PUT** /nfts/ownership/tokens | Refresh vault account tokens
+[**update_token_ownership_status**](NFTsBetaApi.md#update_token_ownership_status) | **PUT** /nfts/ownership/tokens/{id}/status | Update token ownership status
 
 
-# **get_nft_token_by_id**
-> TokenResponse get_nft_token_by_id(id)
+# **get_nft**
+> TokenResponse get_nft(id)
 
 List token data by ID
 
@@ -43,11 +44,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # List token data by ID
-        api_response = api_instance.get_nft_token_by_id(id)
-        print("The response of NFTsBetaApi->get_nft_token_by_id:\n")
+        api_response = api_instance.get_nft(id)
+        print("The response of NFTsBetaApi->get_nft:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling NFTsBetaApi->get_nft_token_by_id: %s\n" % e)
+        print("Exception when calling NFTsBetaApi->get_nft: %s\n" % e)
 ```
 
 ### Parameters
@@ -76,8 +77,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_nft_tokens**
-> GetNFTTokens200Response get_nft_tokens(ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
+# **get_nfts**
+> GetNFTs200Response get_nfts(ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
 
 List tokens by IDs
 
@@ -111,11 +112,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # List tokens by IDs
-        api_response = api_instance.get_nft_tokens(ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
-        print("The response of NFTsBetaApi->get_nft_tokens:\n")
+        api_response = api_instance.get_nfts(ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
+        print("The response of NFTsBetaApi->get_nfts:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling NFTsBetaApi->get_nft_tokens: %s\n" % e)
+        print("Exception when calling NFTsBetaApi->get_nfts: %s\n" % e)
 ```
 
 ### Parameters
@@ -130,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNFTTokens200Response**](GetNFTTokens200Response.md)
+[**GetNFTs200Response**](GetNFTs200Response.md)
 
 ### Authorization
 
@@ -149,7 +150,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_ownership_tokens**
-> GetOwnershipTokens200Response get_ownership_tokens(blockchain_descriptor=blockchain_descriptor, vault_account_ids=vault_account_ids, ids=ids, collection_ids=collection_ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, status=status)
+> GetOwnershipTokens200Response get_ownership_tokens(blockchain_descriptor=blockchain_descriptor, vault_account_ids=vault_account_ids, ids=ids, collection_ids=collection_ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, status=status, search=search)
 
 List all owned tokens (paginated)
 
@@ -184,10 +185,11 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
     order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
     status = 'LISTED' # str | Token ownership status (optional) (default to 'LISTED')
+    search = 'search_example' # str | Search owned tokens and their collections. Possible criteria for search:  token name and id within the contract/collection, collection name, blockchain descriptor and name. (optional)
 
     try:
         # List all owned tokens (paginated)
-        api_response = api_instance.get_ownership_tokens(blockchain_descriptor=blockchain_descriptor, vault_account_ids=vault_account_ids, ids=ids, collection_ids=collection_ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, status=status)
+        api_response = api_instance.get_ownership_tokens(blockchain_descriptor=blockchain_descriptor, vault_account_ids=vault_account_ids, ids=ids, collection_ids=collection_ids, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, status=status, search=search)
         print("The response of NFTsBetaApi->get_ownership_tokens:\n")
         pprint(api_response)
     except Exception as e:
@@ -207,6 +209,7 @@ Name | Type | Description  | Notes
  **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
  **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
  **status** | **str**| Token ownership status | [optional] [default to &#39;LISTED&#39;]
+ **search** | **str**| Search owned tokens and their collections. Possible criteria for search:  token name and id within the contract/collection, collection name, blockchain descriptor and name. | [optional] 
 
 ### Return type
 
@@ -228,8 +231,80 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_nft_token_by_id**
-> update_nft_token_by_id(id)
+# **list_owned_collections**
+> ListOwnedCollections200Response list_owned_collections(search=search, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
+
+List owned collections (paginated)
+
+Returns all collections in your workspace  **Note**: This endpoint is now in Beta, disabled for general availability at this time.  To enroll in beta & enable this endpoint, contact your Fireblocks Customer Success Manager or reach out to [CSM@fireblocks.com](mailto:CSM@fireblocks.com). 
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.NFTsBetaApi(api_client)
+    search = 'search_example' # str | Search owned collections. Possible criteria for search: collection name, collection contract address. (optional)
+    page_cursor = 'page_cursor_example' # str | Page cursor to fetch (optional)
+    page_size = 3.4 # float | Items per page (max 100) (optional)
+    sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
+    order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
+
+    try:
+        # List owned collections (paginated)
+        api_response = api_instance.list_owned_collections(search=search, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order)
+        print("The response of NFTsBetaApi->list_owned_collections:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NFTsBetaApi->list_owned_collections: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search** | **str**| Search owned collections. Possible criteria for search: collection name, collection contract address. | [optional] 
+ **page_cursor** | **str**| Page cursor to fetch | [optional] 
+ **page_size** | **float**| Items per page (max 100) | [optional] 
+ **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
+ **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
+
+### Return type
+
+[**ListOwnedCollections200Response**](ListOwnedCollections200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **refresh_nft_metadata**
+> refresh_nft_metadata(id)
 
 Refresh token metadata
 
@@ -259,9 +334,9 @@ with fireblocks_client.ApiClient(configuration) as api_client:
 
     try:
         # Refresh token metadata
-        api_instance.update_nft_token_by_id(id)
+        api_instance.refresh_nft_metadata(id)
     except Exception as e:
-        print("Exception when calling NFTsBetaApi->update_nft_token_by_id: %s\n" % e)
+        print("Exception when calling NFTsBetaApi->refresh_nft_metadata: %s\n" % e)
 ```
 
 ### Parameters
@@ -287,70 +362,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  * X-Request-ID -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_nft_token_status**
-> update_nft_token_status(id, update_token_ownership_status_dto)
-
-Update token ownership status
-
-Updates token ownership status for a tenant, in all tenant vaults.  **Note**: This endpoint is now in Beta, disabled for general availability at this time.  To enroll in beta & enable this endpoint, contact your Fireblocks Customer Success Manager or reach out to [CSM@fireblocks.com](mailto:CSM@fireblocks.com). 
-
-### Example
-
-```python
-from __future__ import print_function
-import time
-import os
-import fireblocks_client
-from fireblocks_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://api.fireblocks.io/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fireblocks_client.Configuration(
-    host = "https://api.fireblocks.io/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with fireblocks_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = fireblocks_client.NFTsBetaApi(api_client)
-    id = 'NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd' # str | NFT ID
-    update_token_ownership_status_dto = fireblocks_client.UpdateTokenOwnershipStatusDto() # UpdateTokenOwnershipStatusDto | 
-
-    try:
-        # Update token ownership status
-        api_instance.update_nft_token_status(id, update_token_ownership_status_dto)
-    except Exception as e:
-        print("Exception when calling NFTsBetaApi->update_nft_token_status: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| NFT ID | 
- **update_token_ownership_status_dto** | [**UpdateTokenOwnershipStatusDto**](UpdateTokenOwnershipStatusDto.md)|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -415,6 +426,70 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_token_ownership_status**
+> update_token_ownership_status(id, update_token_ownership_status_dto)
+
+Update token ownership status
+
+Updates token ownership status for a tenant, in all tenant vaults.  **Note**: This endpoint is now in Beta, disabled for general availability at this time.  To enroll in beta & enable this endpoint, contact your Fireblocks Customer Success Manager or reach out to [CSM@fireblocks.com](mailto:CSM@fireblocks.com). 
+
+### Example
+
+```python
+from __future__ import print_function
+import time
+import os
+import fireblocks_client
+from fireblocks_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.fireblocks.io/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fireblocks_client.Configuration(
+    host = "https://api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with fireblocks_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fireblocks_client.NFTsBetaApi(api_client)
+    id = 'NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd' # str | NFT ID
+    update_token_ownership_status_dto = fireblocks_client.UpdateTokenOwnershipStatusDto() # UpdateTokenOwnershipStatusDto | 
+
+    try:
+        # Update token ownership status
+        api_instance.update_token_ownership_status(id, update_token_ownership_status_dto)
+    except Exception as e:
+        print("Exception when calling NFTsBetaApi->update_token_ownership_status: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| NFT ID | 
+ **update_token_ownership_status_dto** | [**UpdateTokenOwnershipStatusDto**](UpdateTokenOwnershipStatusDto.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

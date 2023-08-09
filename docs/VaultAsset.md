@@ -12,8 +12,6 @@ Name | Type | Description | Notes
 **frozen** | **str** | The cumulative frozen balance | [optional] 
 **locked_amount** | **str** | Funds in outgoing transactions that are not yet published to the network | [optional] 
 **staked** | **str** | Staked balance | [optional] 
-**max_bip44_address_index_used** | **float** | The maximum BIP44 index used in deriving addresses for this wallet | [optional] 
-**max_bip44_change_address_index_used** | **float** | The maximum BIP44 index used in deriving change addresses for this wallet | [optional] 
 **total_staked_cpu** | **float** | Deprecated | [optional] 
 **total_staked_network** | **str** | Deprecated | [optional] 
 **self_staked_cpu** | **str** | Deprecated | [optional] 

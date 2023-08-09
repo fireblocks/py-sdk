@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.reward_info import RewardInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestRewardInfo(unittest.TestCase):
     """RewardInfo unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestRewardInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test RewardInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test RewardInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `RewardInfo`
         """
         model = fireblocks_client.models.reward_info.RewardInfo()  # noqa: E501
         if include_optional :
-            return RewardInfo(
-                src_rewards = '', 
-                dest_rewards = ''
-            )
+        return RewardInfo(
+            src_rewards = '', 
+            dest_rewards = ''
+        )
         else :
-            return RewardInfo(
+        return RewardInfo(
         )
         """
 

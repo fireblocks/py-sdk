@@ -25,7 +25,7 @@ from fireblocks_client.models.custom_fiat_routing_dest import CustomFiatRoutingD
 from fireblocks_client.models.default_network_routing_dest import DefaultNetworkRoutingDest
 from fireblocks_client.models.none_network_routing_dest import NoneNetworkRoutingDest
 from typing import Any, List, Literal
-from pydantic import StrictStr, Field, validate_arguments
+from pydantic import Field, validate_arguments
 
 NETWORKCONNECTIONROUTINGPOLICYSIGNET_ONE_OF_SCHEMAS = ["CustomFiatRoutingDest", "DefaultNetworkRoutingDest", "NoneNetworkRoutingDest"]
 

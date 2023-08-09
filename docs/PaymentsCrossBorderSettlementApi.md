@@ -209,8 +209,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Cross-border settlement configuration deleted successfully. Returns the deleted configuration. |  -  |
-**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **404** | No cross-border settlement configuration exists with the provided ID. |  -  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -279,8 +279,8 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Cross-border settlement flow started to execute successfully |  -  |
 **400** | Error while trying to execute the cross-border flow |  -  |
-**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **404** | Invalid flowId. |  -  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -346,8 +346,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Returns the requested cross-border settlement configuration |  -  |
-**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **404** | No cross-border settlement configuration exists with the provided ID. |  -  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -475,8 +475,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Returns cross-border settlement flow details. For unexecuted flows, a preview object will return, showing the estimated time, amounts, and fees. Note that this data structure updates as the flow progresses, including the total fees (accumulated), state, and steps.  |  -  |
-**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **404** | Invalid flowId. |  -  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -544,9 +544,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Cross-border settlement configuration edited successfully |  -  |
+**404** | No cross-border settlement configuration exists with the provided ID. |  -  |
 **400** | Error creating the cross-border request. Configuration not modified. |  -  |
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
-**404** | No cross-border settlement configuration exists with the provided ID. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

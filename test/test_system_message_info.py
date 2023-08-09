@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.system_message_info import SystemMessageInfo  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSystemMessageInfo(unittest.TestCase):
     """SystemMessageInfo unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestSystemMessageInfo(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SystemMessageInfo
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SystemMessageInfo
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SystemMessageInfo`
         """
         model = fireblocks_client.models.system_message_info.SystemMessageInfo()  # noqa: E501
         if include_optional :
-            return SystemMessageInfo(
-                type = 'WARN', 
-                message = 'Slow transaction processing. Outgoing transactions might be stuck.'
-            )
+        return SystemMessageInfo(
+            type = 'WARN', 
+            message = 'Slow transaction processing. Outgoing transactions might be stuck.'
+        )
         else :
-            return SystemMessageInfo(
+        return SystemMessageInfo(
         )
         """
 

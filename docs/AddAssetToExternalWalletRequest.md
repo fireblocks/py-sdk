@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | The wallet&#39;s address (or xpub) of the wallet | 
 **tag** | **str** | For XRP wallets, the destination tag; for EOS/XLM, the memo; for the fiat providers (BLINC by BCB Group), the Bank Transfer Description | [optional] 
+**additional_info** | [**AddAssetToExternalWalletRequestOneOf1AdditionalInfo**](AddAssetToExternalWalletRequestOneOf1AdditionalInfo.md) |  | 
 
 ## Example
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.check_third_party_routing_for_network_connection200_response import CheckThirdPartyRoutingForNetworkConnection200Response  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCheckThirdPartyRoutingForNetworkConnection200Response(unittest.TestCase):
     """CheckThirdPartyRoutingForNetworkConnection200Response unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestCheckThirdPartyRoutingForNetworkConnection200Response(unittest.TestCas
         pass
 
     def make_instance(self, include_optional):
-        """Test CheckThirdPartyRoutingForNetworkConnection200Response
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CheckThirdPartyRoutingForNetworkConnection200Response
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CheckThirdPartyRoutingForNetworkConnection200Response`
         """
         model = fireblocks_client.models.check_third_party_routing_for_network_connection200_response.CheckThirdPartyRoutingForNetworkConnection200Response()  # noqa: E501
         if include_optional :
-            return CheckThirdPartyRoutingForNetworkConnection200Response(
-                is_third_party_routing = True, 
-                description = ''
-            )
+        return CheckThirdPartyRoutingForNetworkConnection200Response(
+            is_third_party_routing = True, 
+            description = ''
+        )
         else :
-            return CheckThirdPartyRoutingForNetworkConnection200Response(
+        return CheckThirdPartyRoutingForNetworkConnection200Response(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction_response import TransactionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransactionResponse(unittest.TestCase):
     """TransactionResponse unit test stubs"""
 
@@ -30,29 +30,32 @@ class TestTransactionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TransactionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TransactionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TransactionResponse`
         """
         model = fireblocks_client.models.transaction_response.TransactionResponse()  # noqa: E501
         if include_optional :
-            return TransactionResponse(
-                id = '', 
-                external_tx_id = '', 
-                status = '', 
-                sub_status = '', 
-                tx_hash = '', 
-                operation = 'TRANSFER', 
-                note = '', 
-                asset_id = '', 
-                source = None, 
-                source_address = '', 
-                tag = '', 
-                destination = None, 
-                destinations = [
+        return TransactionResponse(
+            id = '', 
+            external_tx_id = '', 
+            status = '', 
+            sub_status = '', 
+            tx_hash = '', 
+            operation = 'TRANSFER', 
+            note = '', 
+            asset_id = '', 
+            source = None, 
+            source_address = '', 
+            tag = '', 
+            destination = None, 
+            destinations = [
                     fireblocks_client.models.transaction_response_destination.TransactionResponseDestination(
+                        destination_address = null, 
+                        destination_address_description = null, 
                         amount = '', 
                         amount_usd = '', 
                         aml_screening_result = fireblocks_client.models.aml_screening_result.AmlScreeningResult(
@@ -70,26 +73,26 @@ class TestTransactionResponse(unittest.TestCase):
                                         }, )
                                 ], ), )
                     ], 
-                destination_address = '', 
-                destination_address_description = '', 
-                destination_tag = '', 
-                contract_call_decoded_data = fireblocks_client.models.transaction_response_contract_call_decoded_data.TransactionResponse_contractCallDecodedData(
+            destination_address = '', 
+            destination_address_description = '', 
+            destination_tag = '', 
+            contract_call_decoded_data = fireblocks_client.models.transaction_response_contract_call_decoded_data.TransactionResponse_contractCallDecodedData(
                     contract_name = '', 
                     function_calls = [
                         None
                         ], ), 
-                amount_info = fireblocks_client.models.amount_info.AmountInfo(
+            amount_info = fireblocks_client.models.amount_info.AmountInfo(
                     amount = '', 
                     requested_amount = '', 
                     net_amount = '', 
                     amount_usd = '', ), 
-                treat_as_gross_amount = True, 
-                fee_info = fireblocks_client.models.fee_info.FeeInfo(
+            treat_as_gross_amount = True, 
+            fee_info = fireblocks_client.models.fee_info.FeeInfo(
                     network_fee = '', 
                     service_fee = '', 
                     gas_price = '', ), 
-                fee_currency = '', 
-                network_records = [
+            fee_currency = '', 
+            network_records = [
                     fireblocks_client.models.network_record.NetworkRecord(
                         source = null, 
                         destination = null, 
@@ -107,14 +110,14 @@ class TestTransactionResponse(unittest.TestCase):
                             src_rewards = '', 
                             dest_rewards = '', ), )
                     ], 
-                created_at = 1.337, 
-                last_updated = 1.337, 
-                created_by = '', 
-                signed_by = [
+            created_at = 1.337, 
+            last_updated = 1.337, 
+            created_by = '', 
+            signed_by = [
                     ''
                     ], 
-                rejected_by = '', 
-                authorization_info = fireblocks_client.models.authorization_info.AuthorizationInfo(
+            rejected_by = '', 
+            authorization_info = fireblocks_client.models.authorization_info.AuthorizationInfo(
                     allow_operator_as_authorizer = True, 
                     logic = 'AND', 
                     groups = [
@@ -124,13 +127,13 @@ class TestTransactionResponse(unittest.TestCase):
                                 'PENDING_AUTHORIZATION' : 'PENDING_AUTHORIZATION'
                                 }, )
                         ], ), 
-                exchange_tx_id = '', 
-                customer_ref_id = '', 
-                aml_screening_result = fireblocks_client.models.aml_screening_result.AmlScreeningResult(
+            exchange_tx_id = '', 
+            customer_ref_id = '', 
+            aml_screening_result = fireblocks_client.models.aml_screening_result.AmlScreeningResult(
                     provider = '', 
                     payload = fireblocks_client.models.payload.payload(), ), 
-                extra_parameters = None, 
-                signed_messages = fireblocks_client.models.signed_message.SignedMessage(
+            extra_parameters = None, 
+            signed_messages = fireblocks_client.models.signed_message.SignedMessage(
                     content = '', 
                     algorithm = 'MPC_ECDSA_SECP256K1', 
                     derivation_path = [
@@ -142,28 +145,28 @@ class TestTransactionResponse(unittest.TestCase):
                         s = '', 
                         v = 1.337, ), 
                     public_key = '', ), 
-                num_of_confirmations = 1.337, 
-                block_info = fireblocks_client.models.block_info.BlockInfo(
+            num_of_confirmations = 1.337, 
+            block_info = fireblocks_client.models.block_info.BlockInfo(
                     block_height = '', 
                     block_hash = '', ), 
-                index = 1.337, 
-                reward_info = fireblocks_client.models.reward_info.RewardInfo(
+            index = 1.337, 
+            reward_info = fireblocks_client.models.reward_info.RewardInfo(
                     src_rewards = '', 
                     dest_rewards = '', ), 
-                system_messages = fireblocks_client.models.system_message_info.SystemMessageInfo(
+            system_messages = fireblocks_client.models.system_message_info.SystemMessageInfo(
                     type = 'WARN', 
                     message = 'Slow transaction processing. Outgoing transactions might be stuck.', ), 
-                address_type = 'WHITELISTED', 
-                requested_amount = 1.337, 
-                amount = 1.337, 
-                net_amount = 1.337, 
-                amount_usd = 1.337, 
-                service_fee = 1.337, 
-                fee = 1.337, 
-                network_fee = 1.337
-            )
+            address_type = 'WHITELISTED', 
+            requested_amount = 1.337, 
+            amount = 1.337, 
+            net_amount = 1.337, 
+            amount_usd = 1.337, 
+            service_fee = 1.337, 
+            fee = 1.337, 
+            network_fee = 1.337
+        )
         else :
-            return TransactionResponse(
+        return TransactionResponse(
         )
         """
 

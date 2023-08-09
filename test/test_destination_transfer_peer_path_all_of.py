@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.destination_transfer_peer_path_all_of import DestinationTransferPeerPathAllOf  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestDestinationTransferPeerPathAllOf(unittest.TestCase):
     """DestinationTransferPeerPathAllOf unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestDestinationTransferPeerPathAllOf(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DestinationTransferPeerPathAllOf
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test DestinationTransferPeerPathAllOf
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `DestinationTransferPeerPathAllOf`
         """
         model = fireblocks_client.models.destination_transfer_peer_path_all_of.DestinationTransferPeerPathAllOf()  # noqa: E501
         if include_optional :
-            return DestinationTransferPeerPathAllOf(
-                one_time_address = fireblocks_client.models.one_time_address.OneTimeAddress(
+        return DestinationTransferPeerPathAllOf(
+            one_time_address = fireblocks_client.models.one_time_address.OneTimeAddress(
                     address = '', 
                     tag = '', )
-            )
+        )
         else :
-            return DestinationTransferPeerPathAllOf(
+        return DestinationTransferPeerPathAllOf(
         )
         """
 

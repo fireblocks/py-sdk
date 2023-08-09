@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.to_collateral_transaction import ToCollateralTransaction  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestToCollateralTransaction(unittest.TestCase):
     """ToCollateralTransaction unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestToCollateralTransaction(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ToCollateralTransaction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ToCollateralTransaction
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ToCollateralTransaction`
         """
         model = fireblocks_client.models.to_collateral_transaction.ToCollateralTransaction()  # noqa: E501
         if include_optional :
-            return ToCollateralTransaction(
-                asset = '', 
-                amount = '', 
-                src_address = '', 
-                src_tag = '', 
-                fee = ''
-            )
+        return ToCollateralTransaction(
+            asset = '', 
+            amount = '', 
+            src_address = '', 
+            src_tag = '', 
+            fee = ''
+        )
         else :
-            return ToCollateralTransaction(
+        return ToCollateralTransaction(
         )
         """
 

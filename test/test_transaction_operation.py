@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction_operation import TransactionOperation  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransactionOperation(unittest.TestCase):
     """TransactionOperation unit test stubs"""
 

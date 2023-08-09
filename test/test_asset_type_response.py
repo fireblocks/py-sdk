@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.asset_type_response import AssetTypeResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAssetTypeResponse(unittest.TestCase):
     """AssetTypeResponse unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestAssetTypeResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AssetTypeResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AssetTypeResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AssetTypeResponse`
         """
         model = fireblocks_client.models.asset_type_response.AssetTypeResponse()  # noqa: E501
         if include_optional :
-            return AssetTypeResponse(
-                id = '', 
-                name = '', 
-                type = 'ALGO_ASSET', 
-                contract_address = '', 
-                native_asset = '', 
-                decimals = 1.337
-            )
+        return AssetTypeResponse(
+            id = '', 
+            name = '', 
+            type = 'ALGO_ASSET', 
+            contract_address = '', 
+            native_asset = '', 
+            decimals = 1.337
+        )
         else :
-            return AssetTypeResponse(
+        return AssetTypeResponse(
                 id = '',
                 name = '',
                 type = 'ALGO_ASSET',

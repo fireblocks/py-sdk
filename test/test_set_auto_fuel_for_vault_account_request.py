@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_auto_fuel_for_vault_account_request import SetAutoFuelForVaultAccountRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetAutoFuelForVaultAccountRequest(unittest.TestCase):
     """SetAutoFuelForVaultAccountRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestSetAutoFuelForVaultAccountRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetAutoFuelForVaultAccountRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetAutoFuelForVaultAccountRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetAutoFuelForVaultAccountRequest`
         """
         model = fireblocks_client.models.set_auto_fuel_for_vault_account_request.SetAutoFuelForVaultAccountRequest()  # noqa: E501
         if include_optional :
-            return SetAutoFuelForVaultAccountRequest(
-                auto_fuel = True
-            )
+        return SetAutoFuelForVaultAccountRequest(
+            auto_fuel = True
+        )
         else :
-            return SetAutoFuelForVaultAccountRequest(
+        return SetAutoFuelForVaultAccountRequest(
         )
         """
 

@@ -29,15 +29,26 @@ class DestinationTransferPeerPath(BaseModel):
     DestinationTransferPeerPath
     """
     type: StrictStr = ...
+    sub_type: Optional[StrictStr] = Field(None, alias="subType")
     id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
     wallet_id: Optional[StrictStr] = Field(None, alias="walletId")
     one_time_address: Optional[OneTimeAddress] = Field(None, alias="oneTimeAddress")
-    __properties = ["type", "id", "walletId", "oneTimeAddress"]
+    __properties = ["type", "subType", "id", "name", "walletId", "oneTimeAddress"]
 
     @validator('type')
     def type_validate_enum(cls, v):
         if v not in ('VAULT_ACCOUNT', 'EXCHANGE_ACCOUNT', 'INTERNAL_WALLET', 'EXTERNAL_WALLET', 'NETWORK_CONNECTION', 'FIAT_ACCOUNT', 'COMPOUND', 'GAS_STATION', 'ONE_TIME_ADDRESS', 'UNKNOWN', 'END_USER_WALLET'):
             raise ValueError("must be one of enum values ('VAULT_ACCOUNT', 'EXCHANGE_ACCOUNT', 'INTERNAL_WALLET', 'EXTERNAL_WALLET', 'NETWORK_CONNECTION', 'FIAT_ACCOUNT', 'COMPOUND', 'GAS_STATION', 'ONE_TIME_ADDRESS', 'UNKNOWN', 'END_USER_WALLET')")
+        return v
+
+    @validator('sub_type')
+    def sub_type_validate_enum(cls, v):
+        if v is None:
+            return v
+
+        if v not in ('BINANCE', 'BINANCEUS', 'BITFINEX', 'BITHUMB', 'BITMEX', 'BITSO', 'BITSTAMP', 'BITTREX', 'BLINC', 'BYBIT', 'CIRCLE', 'COINBASEEXCHANGE', 'COINBASEPRO', 'COINMETRO', 'COINSPRO', 'CRYPTOCOM', 'DERIBIT', 'GEMINI', 'HITBTC', 'HUOBI', 'INDEPENDENTRESERVE', 'KORBIT', 'KRAKEN', 'KRAKENINTL', 'KUCOIN', 'LIQUID', 'OKCOIN', 'OKEX', 'PAXOS', 'POLONIEX', 'External', 'Internal'):
+            raise ValueError("must be one of enum values ('BINANCE', 'BINANCEUS', 'BITFINEX', 'BITHUMB', 'BITMEX', 'BITSO', 'BITSTAMP', 'BITTREX', 'BLINC', 'BYBIT', 'CIRCLE', 'COINBASEEXCHANGE', 'COINBASEPRO', 'COINMETRO', 'COINSPRO', 'CRYPTOCOM', 'DERIBIT', 'GEMINI', 'HITBTC', 'HUOBI', 'INDEPENDENTRESERVE', 'KORBIT', 'KRAKEN', 'KRAKENINTL', 'KUCOIN', 'LIQUID', 'OKCOIN', 'OKEX', 'PAXOS', 'POLONIEX', 'External', 'Internal')")
         return v
 
     class Config:
@@ -80,7 +91,9 @@ class DestinationTransferPeerPath(BaseModel):
 
         _obj = DestinationTransferPeerPath.parse_obj({
             "type": obj.get("type"),
+            "sub_type": obj.get("subType"),
             "id": obj.get("id"),
+            "name": obj.get("name"),
             "wallet_id": obj.get("walletId"),
             "one_time_address": OneTimeAddress.from_dict(obj.get("oneTimeAddress")) if obj.get("oneTimeAddress") is not None else None
         })

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.vault_account import VaultAccount  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestVaultAccount(unittest.TestCase):
     """VaultAccount unit test stubs"""
 
@@ -30,18 +30,19 @@ class TestVaultAccount(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VaultAccount
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test VaultAccount
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `VaultAccount`
         """
         model = fireblocks_client.models.vault_account.VaultAccount()  # noqa: E501
         if include_optional :
-            return VaultAccount(
-                id = '', 
-                name = '', 
-                assets = [
+        return VaultAccount(
+            id = '', 
+            name = '', 
+            assets = [
                     fireblocks_client.models.vault_asset.VaultAsset(
                         id = '', 
                         total = '', 
@@ -51,8 +52,6 @@ class TestVaultAccount(unittest.TestCase):
                         frozen = '', 
                         locked_amount = '', 
                         staked = '', 
-                        max_bip44_address_index_used = 1.337, 
-                        max_bip44_change_address_index_used = 1.337, 
                         total_staked_cpu = 1.337, 
                         total_staked_network = '', 
                         self_staked_cpu = '', 
@@ -64,12 +63,12 @@ class TestVaultAccount(unittest.TestCase):
                         rewards_info = fireblocks_client.models.rewards_info.RewardsInfo(
                             pending_rewards = '', ), )
                     ], 
-                hidden_on_ui = True, 
-                customer_ref_id = '', 
-                auto_fuel = True
-            )
+            hidden_on_ui = True, 
+            customer_ref_id = '', 
+            auto_fuel = True
+        )
         else :
-            return VaultAccount(
+        return VaultAccount(
         )
         """
 

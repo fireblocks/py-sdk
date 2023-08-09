@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.error import Error  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestError(unittest.TestCase):
     """Error unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestError(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test Error
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test Error
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `Error`
         """
         model = fireblocks_client.models.error.Error()  # noqa: E501
         if include_optional :
-            return Error(
-                message = '', 
-                code = 1.337
-            )
+        return Error(
+            message = '', 
+            code = 1.337
+        )
         else :
-            return Error(
+        return Error(
         )
         """
 

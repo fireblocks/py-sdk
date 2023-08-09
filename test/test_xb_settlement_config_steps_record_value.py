@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_config_steps_record_value import XBSettlementConfigStepsRecordValue  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementConfigStepsRecordValue(unittest.TestCase):
     """XBSettlementConfigStepsRecordValue unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestXBSettlementConfigStepsRecordValue(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementConfigStepsRecordValue
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementConfigStepsRecordValue
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementConfigStepsRecordValue`
         """
         model = fireblocks_client.models.xb_settlement_config_steps_record_value.XBSettlementConfigStepsRecordValue()  # noqa: E501
         if include_optional :
-            return XBSettlementConfigStepsRecordValue(
-                account_id = '', 
-                input_asset_id = None, 
-                output_asset_id = None
-            )
+        return XBSettlementConfigStepsRecordValue(
+            account_id = '', 
+            input_asset_id = None, 
+            output_asset_id = None
+        )
         else :
-            return XBSettlementConfigStepsRecordValue(
+        return XBSettlementConfigStepsRecordValue(
                 account_id = '',
         )
         """

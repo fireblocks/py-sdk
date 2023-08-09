@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_update_vasp_details import TravelRuleUpdateVASPDetails  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleUpdateVASPDetails(unittest.TestCase):
     """TravelRuleUpdateVASPDetails unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestTravelRuleUpdateVASPDetails(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleUpdateVASPDetails
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleUpdateVASPDetails
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleUpdateVASPDetails`
         """
         model = fireblocks_client.models.travel_rule_update_vasp_details.TravelRuleUpdateVASPDetails()  # noqa: E501
         if include_optional :
-            return TravelRuleUpdateVASPDetails(
-                did = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2', 
-                pii_didkey = 'did:key:z6Mks5CZRaiooKYhq5TwtXQC1gWhwiZnmiKfFrMnYY62MhYf'
-            )
+        return TravelRuleUpdateVASPDetails(
+            did = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2', 
+            pii_didkey = 'did:key:z6Mks5CZRaiooKYhq5TwtXQC1gWhwiZnmiKfFrMnYY62MhYf'
+        )
         else :
-            return TravelRuleUpdateVASPDetails(
+        return TravelRuleUpdateVASPDetails(
                 did = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2',
                 pii_didkey = 'did:key:z6Mks5CZRaiooKYhq5TwtXQC1gWhwiZnmiKfFrMnYY62MhYf',
         )

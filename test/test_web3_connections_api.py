@@ -18,40 +18,43 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.web3_connections_api import Web3ConnectionsApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestWeb3ConnectionsApi(unittest.TestCase):
     """Web3ConnectionsApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.web3_connections_api.Web3ConnectionsApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_create_wc_connection(self):
-        """Test case for create_wc_connection
+    def test_create(self):
+        """Test case for create
 
         Create a new Web3 connection.  # noqa: E501
         """
         pass
 
-    def test_delete_wc_connection(self):
-        """Test case for delete_wc_connection
-
-        Remove an existing Web3 connection.  # noqa: E501
-        """
-        pass
-
-    def test_get_connections(self):
-        """Test case for get_connections
+    def test_get(self):
+        """Test case for get
 
         List all open Web3 connections.  # noqa: E501
         """
         pass
 
-    def test_update_wc_connection(self):
-        """Test case for update_wc_connection
+    def test_remove(self):
+        """Test case for remove
+
+        Remove an existing Web3 connection.  # noqa: E501
+        """
+        pass
+
+    def test_submit(self):
+        """Test case for submit
 
         Respond to a pending Web3 connection request.  # noqa: E501
         """

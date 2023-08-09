@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.respond_to_connection_request import RespondToConnectionRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestRespondToConnectionRequest(unittest.TestCase):
     """RespondToConnectionRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestRespondToConnectionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test RespondToConnectionRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test RespondToConnectionRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `RespondToConnectionRequest`
         """
         model = fireblocks_client.models.respond_to_connection_request.RespondToConnectionRequest()  # noqa: E501
         if include_optional :
-            return RespondToConnectionRequest(
-                approve = True
-            )
+        return RespondToConnectionRequest(
+            approve = True
+        )
         else :
-            return RespondToConnectionRequest(
+        return RespondToConnectionRequest(
                 approve = True,
         )
         """

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_flow_preview_model import XBSettlementFlowPreviewModel  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFlowPreviewModel(unittest.TestCase):
     """XBSettlementFlowPreviewModel unit test stubs"""
 
@@ -30,29 +30,30 @@ class TestXBSettlementFlowPreviewModel(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementFlowPreviewModel
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementFlowPreviewModel
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementFlowPreviewModel`
         """
         model = fireblocks_client.models.xb_settlement_flow_preview_model.XBSettlementFlowPreviewModel()  # noqa: E501
         if include_optional :
-            return XBSettlementFlowPreviewModel(
-                flow_id = '', 
-                config_id = '', 
-                conversion_rate = '', 
-                input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+        return XBSettlementFlowPreviewModel(
+            flow_id = '', 
+            config_id = '', 
+            conversion_rate = '', 
+            input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                estimated_output_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+            estimated_output_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                total_estimated_fee = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+            total_estimated_fee = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                total_estimated_time = 1.337, 
-                steps = {
+            total_estimated_time = 1.337, 
+            steps = {
                     'key' : fireblocks_client.models.xb_settlement_flow_setup_step.XBSettlementFlowSetupStep(
                         account_id = '', 
                         input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
@@ -64,9 +65,9 @@ class TestXBSettlementFlowPreviewModel(unittest.TestCase):
                         estimated_time = 1.337, 
                         is_sign_required = True, )
                     }
-            )
+        )
         else :
-            return XBSettlementFlowPreviewModel(
+        return XBSettlementFlowPreviewModel(
                 flow_id = '',
                 config_id = '',
                 conversion_rate = '',

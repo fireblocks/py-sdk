@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_ownership_proof import TravelRuleOwnershipProof  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleOwnershipProof(unittest.TestCase):
     """TravelRuleOwnershipProof unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestTravelRuleOwnershipProof(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleOwnershipProof
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleOwnershipProof
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleOwnershipProof`
         """
         model = fireblocks_client.models.travel_rule_ownership_proof.TravelRuleOwnershipProof()  # noqa: E501
         if include_optional :
-            return TravelRuleOwnershipProof(
-                type = 'passport', 
-                id = '123456789', 
-                name = 'Alice', 
-                country = 'US', 
-                issue_date = '2022-01-01', 
-                issuer = 'US Government'
-            )
+        return TravelRuleOwnershipProof(
+            type = 'passport', 
+            id = '123456789', 
+            name = 'Alice', 
+            country = 'US', 
+            issue_date = '2022-01-01', 
+            issuer = 'US Government'
+        )
         else :
-            return TravelRuleOwnershipProof(
+        return TravelRuleOwnershipProof(
                 type = 'passport',
                 id = '123456789',
                 name = 'Alice',

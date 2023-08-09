@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_vault_account_asset_request import CreateVaultAccountAssetRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateVaultAccountAssetRequest(unittest.TestCase):
     """CreateVaultAccountAssetRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestCreateVaultAccountAssetRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateVaultAccountAssetRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateVaultAccountAssetRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateVaultAccountAssetRequest`
         """
         model = fireblocks_client.models.create_vault_account_asset_request.CreateVaultAccountAssetRequest()  # noqa: E501
         if include_optional :
-            return CreateVaultAccountAssetRequest(
-                eos_account_name = ''
-            )
+        return CreateVaultAccountAssetRequest(
+            eos_account_name = ''
+        )
         else :
-            return CreateVaultAccountAssetRequest(
+        return CreateVaultAccountAssetRequest(
         )
         """
 

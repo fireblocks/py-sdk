@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.aml_screening_result import AmlScreeningResult  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAmlScreeningResult(unittest.TestCase):
     """AmlScreeningResult unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestAmlScreeningResult(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AmlScreeningResult
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AmlScreeningResult
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AmlScreeningResult`
         """
         model = fireblocks_client.models.aml_screening_result.AmlScreeningResult()  # noqa: E501
         if include_optional :
-            return AmlScreeningResult(
-                provider = '', 
-                payload = None
-            )
+        return AmlScreeningResult(
+            provider = '', 
+            payload = None
+        )
         else :
-            return AmlScreeningResult(
+        return AmlScreeningResult(
         )
         """
 

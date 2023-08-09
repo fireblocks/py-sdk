@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request_originator_proof import TravelRuleValidateFullTransactionRequestOriginatorProof  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequestOriginatorProof(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequestOriginatorProof unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestTravelRuleValidateFullTransactionRequestOriginatorProof(unittest.TestC
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequestOriginatorProof
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequestOriginatorProof
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequestOriginatorProof`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request_originator_proof.TravelRuleValidateFullTransactionRequestOriginatorProof()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequestOriginatorProof(
-                type = 'passport', 
-                id = '123456789', 
-                name = 'Alice', 
-                country = 'US', 
-                issue_date = '2022-01-01', 
-                issuer = 'US Government'
-            )
+        return TravelRuleValidateFullTransactionRequestOriginatorProof(
+            type = 'passport', 
+            id = '123456789', 
+            name = 'Alice', 
+            country = 'US', 
+            issue_date = '2022-01-01', 
+            issuer = 'US Government'
+        )
         else :
-            return TravelRuleValidateFullTransactionRequestOriginatorProof(
+        return TravelRuleValidateFullTransactionRequestOriginatorProof(
                 type = 'passport',
                 id = '123456789',
                 name = 'Alice',

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_discoverability_for_network_id_request import SetDiscoverabilityForNetworkIdRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetDiscoverabilityForNetworkIdRequest(unittest.TestCase):
     """SetDiscoverabilityForNetworkIdRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestSetDiscoverabilityForNetworkIdRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetDiscoverabilityForNetworkIdRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetDiscoverabilityForNetworkIdRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetDiscoverabilityForNetworkIdRequest`
         """
         model = fireblocks_client.models.set_discoverability_for_network_id_request.SetDiscoverabilityForNetworkIdRequest()  # noqa: E501
         if include_optional :
-            return SetDiscoverabilityForNetworkIdRequest(
-                is_discoverable = True
-            )
+        return SetDiscoverabilityForNetworkIdRequest(
+            is_discoverable = True
+        )
         else :
-            return SetDiscoverabilityForNetworkIdRequest(
+        return SetDiscoverabilityForNetworkIdRequest(
                 is_discoverable = True,
         )
         """

@@ -73,19 +73,19 @@ class Configuration(object):
 
     def __init__(self, base_path: str =None, api_key: str=None, secret_key: str=None, connection_pool_maxsize: int=None, options: SDKOptions=None):
         self._base_path = base_path or "https://api.fireblocks.io/v1"
-        if os.environ["FIREBLOCKS_BASE_PATH"] is not None:
+        if base_path is not None:
+            self._base_path = base_path
+        elif os.environ.get("FIREBLOCKS_BASE_PATH",None) is not None:
             self._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
-        elif self._base_path is None:
-            self._base_path = "https://api.fireblocks.io/v1"
 
         self._api_key = api_key
-        if os.environ["FIREBLOCKS_API_KEY"] is not None and self._api_key is None:
+        if os.environ.get("FIREBLOCKS_API_KEY",None) is not None and self._api_key is None:
             self._api_key = os.environ["FIREBLOCKS_API_KEY"]
         if self._api_key is None:
             raise ValueError("api_key is missing please provide it and try again")
 
         self._secret_key = secret_key
-        if os.environ["FIREBLOCKS_SECRET_KEY"] is not  None and self._secret_key is None:
+        if os.environ.get("FIREBLOCKS_SECRET_KEY",None) is not  None and self._secret_key is None:
             self._secret_key = os.environ["FIREBLOCKS_SECRET_KEY"]
         if self._secret_key is None:
             raise ValueError("secret_key is missing please provide it and try again")
@@ -116,21 +116,17 @@ class Configuration(object):
 
     def get_default(self):
         conf = Configuration()
-        if os.environ["FIREBLOCKS_BASE_PATH"] is not None:
+        if os.environ.get("FIREBLOCKS_BASE_PATH",None) is not None:
             conf._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
         elif self._base_path is None:
             conf._base_path = "https://api.fireblocks.io/v1"
 
-        conf._base_path = "https://api.fireblocks.io/v1"
-        if os.environ["FIREBLOCKS_BASE_PATH"] is not None:
-            conf._base_path = os.environ["FIREBLOCKS_BASE_PATH"]
-
-        if os.environ["FIREBLOCKS_API_KEY"] is not  None:
+        if os.environ.get("FIREBLOCKS_API_KEY",None) is not  None:
             conf._api_key = os.environ["FIREBLOCKS_API_KEY"]
         else:
             raise ValueError("api_key is missing please provide it and try again")
 
-        if os.environ["FIREBLOCKS_SECRET_KEY"] is not  None:
+        if os.environ.get("FIREBLOCKS_SECRET_KEY",None) is not  None:
             conf._secret_key = os.environ["FIREBLOCKS_SECRET_KEY"]
         else:
             raise ValueError("secret_key is missing please provide it and try again")
@@ -142,7 +138,6 @@ class Configuration(object):
         return conf
 
     def sign_jwt(self, path, body_json=""):
-        url_path = urlparse(self._base_path + path).path
         timestamp = time.time()
         nonce = secrets.randbits(63)
         timestamp_secs = math.floor(timestamp)
@@ -152,7 +147,7 @@ class Configuration(object):
         if to_dict_op is not None:
             body_json = to_dict_op()
         token = {
-            "uri": url_path,
+            "uri": path,
             "nonce": nonce,
             "iat": timestamp_secs,
             "exp": timestamp_secs + 55,
@@ -165,6 +160,14 @@ class Configuration(object):
     @property
     def options(self):
         return self._options
+
+    @property
+    def base_path(self):
+        return self._base_path
+
+    @property
+    def api_key(self):
+        return self._api_key
 
     @options.setter
     def options(self, options):

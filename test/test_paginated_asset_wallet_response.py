@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.paginated_asset_wallet_response import PaginatedAssetWalletResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPaginatedAssetWalletResponse(unittest.TestCase):
     """PaginatedAssetWalletResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestPaginatedAssetWalletResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedAssetWalletResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test PaginatedAssetWalletResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `PaginatedAssetWalletResponse`
         """
         model = fireblocks_client.models.paginated_asset_wallet_response.PaginatedAssetWalletResponse()  # noqa: E501
         if include_optional :
-            return PaginatedAssetWalletResponse(
-                asset_wallets = [
+        return PaginatedAssetWalletResponse(
+            asset_wallets = [
                     fireblocks_client.models.asset_wallet.AssetWallet(
                         vault_id = '', 
                         asset_id = '', 
@@ -53,12 +54,12 @@ class TestPaginatedAssetWalletResponse(unittest.TestCase):
                         block_hash = '', 
                         creation_timestamp = '', )
                     ], 
-                paging = fireblocks_client.models.paginated_asset_wallet_response_paging.PaginatedAssetWalletResponse_paging(
+            paging = fireblocks_client.models.paginated_asset_wallet_response_paging.PaginatedAssetWalletResponse_paging(
                     before = '', 
                     after = '', )
-            )
+        )
         else :
-            return PaginatedAssetWalletResponse(
+        return PaginatedAssetWalletResponse(
         )
         """
 

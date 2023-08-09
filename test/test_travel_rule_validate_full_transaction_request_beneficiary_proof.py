@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request_beneficiary_proof import TravelRuleValidateFullTransactionRequestBeneficiaryProof  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequestBeneficiaryProof(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequestBeneficiaryProof unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestTravelRuleValidateFullTransactionRequestBeneficiaryProof(unittest.Test
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequestBeneficiaryProof
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequestBeneficiaryProof
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequestBeneficiaryProof`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request_beneficiary_proof.TravelRuleValidateFullTransactionRequestBeneficiaryProof()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequestBeneficiaryProof(
-                type = 'passport', 
-                id = '123456789', 
-                name = 'Alice', 
-                country = 'US', 
-                issue_date = '2022-01-01', 
-                issuer = 'US Government'
-            )
+        return TravelRuleValidateFullTransactionRequestBeneficiaryProof(
+            type = 'passport', 
+            id = '123456789', 
+            name = 'Alice', 
+            country = 'US', 
+            issue_date = '2022-01-01', 
+            issuer = 'US Government'
+        )
         else :
-            return TravelRuleValidateFullTransactionRequestBeneficiaryProof(
+        return TravelRuleValidateFullTransactionRequestBeneficiaryProof(
                 type = 'passport',
                 id = '123456789',
                 name = 'Alice',

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_customer_ref_id_for_vault_account_request import SetCustomerRefIdForVaultAccountRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetCustomerRefIdForVaultAccountRequest(unittest.TestCase):
     """SetCustomerRefIdForVaultAccountRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestSetCustomerRefIdForVaultAccountRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetCustomerRefIdForVaultAccountRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetCustomerRefIdForVaultAccountRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetCustomerRefIdForVaultAccountRequest`
         """
         model = fireblocks_client.models.set_customer_ref_id_for_vault_account_request.SetCustomerRefIdForVaultAccountRequest()  # noqa: E501
         if include_optional :
-            return SetCustomerRefIdForVaultAccountRequest(
-                customer_ref_id = ''
-            )
+        return SetCustomerRefIdForVaultAccountRequest(
+            customer_ref_id = ''
+        )
         else :
-            return SetCustomerRefIdForVaultAccountRequest(
+        return SetCustomerRefIdForVaultAccountRequest(
         )
         """
 

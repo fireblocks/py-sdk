@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.trading_account_type import TradingAccountType  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTradingAccountType(unittest.TestCase):
     """TradingAccountType unit test stubs"""
 

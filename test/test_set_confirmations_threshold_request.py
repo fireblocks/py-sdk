@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.set_confirmations_threshold_request import SetConfirmationsThresholdRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSetConfirmationsThresholdRequest(unittest.TestCase):
     """SetConfirmationsThresholdRequest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestSetConfirmationsThresholdRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SetConfirmationsThresholdRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SetConfirmationsThresholdRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SetConfirmationsThresholdRequest`
         """
         model = fireblocks_client.models.set_confirmations_threshold_request.SetConfirmationsThresholdRequest()  # noqa: E501
         if include_optional :
-            return SetConfirmationsThresholdRequest(
-                num_of_confirmations = 1.337
-            )
+        return SetConfirmationsThresholdRequest(
+            num_of_confirmations = 1.337
+        )
         else :
-            return SetConfirmationsThresholdRequest(
+        return SetConfirmationsThresholdRequest(
         )
         """
 

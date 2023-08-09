@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_pii_ivms import TravelRulePiiIVMS  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRulePiiIVMS(unittest.TestCase):
     """TravelRulePiiIVMS unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestTravelRulePiiIVMS(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRulePiiIVMS
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRulePiiIVMS
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRulePiiIVMS`
         """
         model = fireblocks_client.models.travel_rule_pii_ivms.TravelRulePiiIVMS()  # noqa: E501
         if include_optional :
-            return TravelRulePiiIVMS(
-                full_name = '', 
-                date_of_birth = '', 
-                place_of_birth = '', 
-                address = '', 
-                identification_number = '', 
-                nationality = '', 
-                country_of_residence = '', 
-                tax_identification_number = '', 
-                customer_number = ''
-            )
+        return TravelRulePiiIVMS(
+            full_name = '', 
+            date_of_birth = '', 
+            place_of_birth = '', 
+            address = '', 
+            identification_number = '', 
+            nationality = '', 
+            country_of_residence = '', 
+            tax_identification_number = '', 
+            customer_number = ''
+        )
         else :
-            return TravelRulePiiIVMS(
+        return TravelRulePiiIVMS(
                 full_name = '',
                 date_of_birth = '',
                 place_of_birth = '',

@@ -20,7 +20,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, Optional
 from pydantic import BaseModel, Field, StrictStr
 from fireblocks_client.models.aml_screening_result import AmlScreeningResult
 from fireblocks_client.models.authorization_info import AuthorizationInfo
@@ -30,12 +30,14 @@ class TransactionResponseDestination(BaseModel):
     """
     TransactionResponseDestination
     """
-    amount: Optional[StrictStr] = None
-    amount_usd: Optional[StrictStr] = Field(None, alias="amountUSD")
+    destination_address: Optional[Any] = Field(None, alias="destinationAddress", description="Address where the asset was transferred.")
+    destination_address_description: Optional[Any] = Field(None, alias="destinationAddressDescription", description="Description of the address.")
+    amount: Optional[StrictStr] = Field(None, description="The amount to be sent to this destination.")
+    amount_usd: Optional[StrictStr] = Field(None, alias="amountUSD", description="The USD value of the requested amount.")
     aml_screening_result: Optional[AmlScreeningResult] = Field(None, alias="amlScreeningResult")
     destination: Optional[DestinationTransferPeerPathResponse] = None
     authorization_info: Optional[AuthorizationInfo] = Field(None, alias="authorizationInfo")
-    __properties = ["amount", "amountUSD", "amlScreeningResult", "destination", "authorizationInfo"]
+    __properties = ["destinationAddress", "destinationAddressDescription", "amount", "amountUSD", "amlScreeningResult", "destination", "authorizationInfo"]
 
     class Config:
         populate_by_name = True
@@ -70,6 +72,16 @@ class TransactionResponseDestination(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of authorization_info
         if self.authorization_info:
             _dict['authorizationInfo'] = self.authorization_info.to_dict()
+        # set to None if destination_address (nullable) is None
+        # and __fields_set__ contains the field
+        if self.destination_address is None and "destination_address" in self.__fields_set__:
+            _dict['destinationAddress'] = None
+
+        # set to None if destination_address_description (nullable) is None
+        # and __fields_set__ contains the field
+        if self.destination_address_description is None and "destination_address_description" in self.__fields_set__:
+            _dict['destinationAddressDescription'] = None
+
         return _dict
 
     @classmethod
@@ -82,6 +94,8 @@ class TransactionResponseDestination(BaseModel):
             return TransactionResponseDestination.parse_obj(obj)
 
         _obj = TransactionResponseDestination.parse_obj({
+            "destination_address": obj.get("destinationAddress"),
+            "destination_address_description": obj.get("destinationAddressDescription"),
             "amount": obj.get("amount"),
             "amount_usd": obj.get("amountUSD"),
             "aml_screening_result": AmlScreeningResult.from_dict(obj.get("amlScreeningResult")) if obj.get("amlScreeningResult") is not None else None,

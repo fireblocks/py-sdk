@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.payout_init_method import PayoutInitMethod  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPayoutInitMethod(unittest.TestCase):
     """PayoutInitMethod unit test stubs"""
 

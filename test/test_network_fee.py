@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_fee import NetworkFee  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkFee(unittest.TestCase):
     """NetworkFee unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestNetworkFee(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkFee
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkFee
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkFee`
         """
         model = fireblocks_client.models.network_fee.NetworkFee()  # noqa: E501
         if include_optional :
-            return NetworkFee(
-                fee_per_byte = '', 
-                gas_price = '', 
-                network_fee = '', 
-                base_fee = '', 
-                priority_fee = ''
-            )
+        return NetworkFee(
+            fee_per_byte = '', 
+            gas_price = '', 
+            network_fee = '', 
+            base_fee = '', 
+            priority_fee = ''
+        )
         else :
-            return NetworkFee(
+        return NetworkFee(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_address import TravelRuleAddress  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleAddress(unittest.TestCase):
     """TravelRuleAddress unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestTravelRuleAddress(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleAddress
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleAddress
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleAddress`
         """
         model = fireblocks_client.models.travel_rule_address.TravelRuleAddress()  # noqa: E501
         if include_optional :
-            return TravelRuleAddress(
-                street = '1234 Example St', 
-                city = 'New York', 
-                state = 'NY', 
-                postal_code = '10001'
-            )
+        return TravelRuleAddress(
+            street = '1234 Example St', 
+            city = 'New York', 
+            state = 'NY', 
+            postal_code = '10001'
+        )
         else :
-            return TravelRuleAddress(
+        return TravelRuleAddress(
                 street = '1234 Example St',
                 city = 'New York',
                 state = 'NY',

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.term import Term  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTerm(unittest.TestCase):
     """Term unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestTerm(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test Term
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test Term
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `Term`
         """
         model = fireblocks_client.models.term.Term()  # noqa: E501
         if include_optional :
-            return Term(
-                network_connection_id = '', 
-                outgoing = True, 
-                asset = '', 
-                amount = '', 
-                note = '', 
-                operation = ''
-            )
+        return Term(
+            network_connection_id = '', 
+            outgoing = True, 
+            asset = '', 
+            amount = '', 
+            note = '', 
+            operation = ''
+        )
         else :
-            return Term(
+        return Term(
         )
         """
 

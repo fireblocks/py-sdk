@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.default_network_routing_dest import DefaultNetworkRoutingDest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestDefaultNetworkRoutingDest(unittest.TestCase):
     """DefaultNetworkRoutingDest unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestDefaultNetworkRoutingDest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DefaultNetworkRoutingDest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test DefaultNetworkRoutingDest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `DefaultNetworkRoutingDest`
         """
         model = fireblocks_client.models.default_network_routing_dest.DefaultNetworkRoutingDest()  # noqa: E501
         if include_optional :
-            return DefaultNetworkRoutingDest(
-                scheme = 'DEFAULT'
-            )
+        return DefaultNetworkRoutingDest(
+            scheme = 'DEFAULT'
+        )
         else :
-            return DefaultNetworkRoutingDest(
+        return DefaultNetworkRoutingDest(
                 scheme = 'DEFAULT',
         )
         """

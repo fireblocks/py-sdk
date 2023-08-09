@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.media_entity_response import MediaEntityResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestMediaEntityResponse(unittest.TestCase):
     """MediaEntityResponse unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestMediaEntityResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test MediaEntityResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test MediaEntityResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `MediaEntityResponse`
         """
         model = fireblocks_client.models.media_entity_response.MediaEntityResponse()  # noqa: E501
         if include_optional :
-            return MediaEntityResponse(
-                url = '', 
-                content_type = 'IMAGE'
-            )
+        return MediaEntityResponse(
+            url = '', 
+            content_type = 'IMAGE'
+        )
         else :
-            return MediaEntityResponse(
+        return MediaEntityResponse(
                 url = '',
                 content_type = 'IMAGE',
         )

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.remove_collateral_request_body import RemoveCollateralRequestBody  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestRemoveCollateralRequestBody(unittest.TestCase):
     """RemoveCollateralRequestBody unit test stubs"""
 
@@ -30,23 +30,26 @@ class TestRemoveCollateralRequestBody(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test RemoveCollateralRequestBody
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test RemoveCollateralRequestBody
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `RemoveCollateralRequestBody`
         """
         model = fireblocks_client.models.remove_collateral_request_body.RemoveCollateralRequestBody()  # noqa: E501
         if include_optional :
-            return RemoveCollateralRequestBody(
-                transaction_request = fireblocks_client.models.transaction_request.TransactionRequest(
+        return RemoveCollateralRequestBody(
+            transaction_request = fireblocks_client.models.transaction_request.TransactionRequest(
                     operation = 'TRANSFER', 
                     note = 'Ticket 123', 
                     external_tx_id = '00000000-0000-0000-0000-000000000000', 
                     asset_id = 'ETH', 
                     source = fireblocks_client.models.transfer_peer_path.TransferPeerPath(
                         type = 'VAULT_ACCOUNT', 
+                        sub_type = 'BINANCE', 
                         id = '', 
+                        name = '', 
                         wallet_id = '', ), 
                     destination = null, 
                     destinations = [
@@ -70,10 +73,10 @@ class TestRemoveCollateralRequestBody(unittest.TestCase):
                     auto_staking = True, 
                     network_staking = null, 
                     cpu_staking = null, ), 
-                is_dst_collateral = True
-            )
+            is_dst_collateral = True
+        )
         else :
-            return RemoveCollateralRequestBody(
+        return RemoveCollateralRequestBody(
         )
         """
 

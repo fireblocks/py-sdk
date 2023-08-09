@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.session_dto_session_metadata import SessionDTOSessionMetadata  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSessionDTOSessionMetadata(unittest.TestCase):
     """SessionDTOSessionMetadata unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestSessionDTOSessionMetadata(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SessionDTOSessionMetadata
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SessionDTOSessionMetadata
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SessionDTOSessionMetadata`
         """
         model = fireblocks_client.models.session_dto_session_metadata.SessionDTOSessionMetadata()  # noqa: E501
         if include_optional :
-            return SessionDTOSessionMetadata(
-                app_url = '', 
-                app_name = '', 
-                app_description = '', 
-                app_icon = ''
-            )
+        return SessionDTOSessionMetadata(
+            app_url = '', 
+            app_name = '', 
+            app_description = '', 
+            app_icon = ''
+        )
         else :
-            return SessionDTOSessionMetadata(
+        return SessionDTOSessionMetadata(
                 app_url = '',
         )
         """

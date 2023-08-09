@@ -204,8 +204,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Returns the current status of the payout instruction set, including the status of each payout instruction and the transactions created in the process. |  -  |
-**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **404** | No payout with the given payout ID exists. |  -  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  -  |
 **5XX** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

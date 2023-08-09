@@ -18,11 +18,14 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.travel_rule_beta_api import TravelRuleBetaApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestTravelRuleBetaApi(unittest.TestCase):
     """TravelRuleBetaApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.travel_rule_beta_api.TravelRuleBetaApi()  # noqa: E501
 

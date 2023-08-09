@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.unfreeze_transaction_response import UnfreezeTransactionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUnfreezeTransactionResponse(unittest.TestCase):
     """UnfreezeTransactionResponse unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestUnfreezeTransactionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UnfreezeTransactionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UnfreezeTransactionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UnfreezeTransactionResponse`
         """
         model = fireblocks_client.models.unfreeze_transaction_response.UnfreezeTransactionResponse()  # noqa: E501
         if include_optional :
-            return UnfreezeTransactionResponse(
-                success = True
-            )
+        return UnfreezeTransactionResponse(
+            success = True
+        )
         else :
-            return UnfreezeTransactionResponse(
+        return UnfreezeTransactionResponse(
         )
         """
 

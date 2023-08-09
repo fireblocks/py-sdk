@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.asset_wallet import AssetWallet  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestAssetWallet(unittest.TestCase):
     """AssetWallet unit test stubs"""
 
@@ -30,29 +30,30 @@ class TestAssetWallet(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AssetWallet
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test AssetWallet
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `AssetWallet`
         """
         model = fireblocks_client.models.asset_wallet.AssetWallet()  # noqa: E501
         if include_optional :
-            return AssetWallet(
-                vault_id = '', 
-                asset_id = '', 
-                available = '', 
-                total = '', 
-                pending = '', 
-                staked = '', 
-                frozen = '', 
-                locked_amount = '', 
-                block_height = '', 
-                block_hash = '', 
-                creation_timestamp = ''
-            )
+        return AssetWallet(
+            vault_id = '', 
+            asset_id = '', 
+            available = '', 
+            total = '', 
+            pending = '', 
+            staked = '', 
+            frozen = '', 
+            locked_amount = '', 
+            block_height = '', 
+            block_hash = '', 
+            creation_timestamp = ''
+        )
         else :
-            return AssetWallet(
+        return AssetWallet(
         )
         """
 

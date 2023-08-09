@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_get_all_configs_response import XBSettlementGetAllConfigsResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementGetAllConfigsResponse(unittest.TestCase):
     """XBSettlementGetAllConfigsResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestXBSettlementGetAllConfigsResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementGetAllConfigsResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementGetAllConfigsResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementGetAllConfigsResponse`
         """
         model = fireblocks_client.models.xb_settlement_get_all_configs_response.XBSettlementGetAllConfigsResponse()  # noqa: E501
         if include_optional :
-            return XBSettlementGetAllConfigsResponse(
-                configurations = [
+        return XBSettlementGetAllConfigsResponse(
+            configurations = [
                     fireblocks_client.models.xb_settlement_config_model.XBSettlementConfigModel(
                         config_id = '', 
                         corridor_id = 'MX_US', 
@@ -53,9 +54,9 @@ class TestXBSettlementGetAllConfigsResponse(unittest.TestCase):
                         conversion_slippage_basis_points = 0, 
                         created_at = 1.337, )
                     ]
-            )
+        )
         else :
-            return XBSettlementGetAllConfigsResponse(
+        return XBSettlementGetAllConfigsResponse(
                 configurations = [
                     fireblocks_client.models.xb_settlement_config_model.XBSettlementConfigModel(
                         config_id = '', 

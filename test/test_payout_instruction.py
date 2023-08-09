@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.payout_instruction import PayoutInstruction  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPayoutInstruction(unittest.TestCase):
     """PayoutInstruction unit test stubs"""
 
@@ -30,25 +30,26 @@ class TestPayoutInstruction(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PayoutInstruction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test PayoutInstruction
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `PayoutInstruction`
         """
         model = fireblocks_client.models.payout_instruction.PayoutInstruction()  # noqa: E501
         if include_optional :
-            return PayoutInstruction(
-                id = '', 
-                payee_account = fireblocks_client.models.payee_account.PayeeAccount(
+        return PayoutInstruction(
+            id = '', 
+            payee_account = fireblocks_client.models.payee_account.PayeeAccount(
                     id = '', 
                     type = 'VAULT_ACCOUNT', ), 
-                amount = fireblocks_client.models.instruction_amount.InstructionAmount(
+            amount = fireblocks_client.models.instruction_amount.InstructionAmount(
                     amount = '', 
                     asset_id = '', )
-            )
+        )
         else :
-            return PayoutInstruction(
+        return PayoutInstruction(
                 payee_account = fireblocks_client.models.payee_account.PayeeAccount(
                     id = '', 
                     type = 'VAULT_ACCOUNT', ),

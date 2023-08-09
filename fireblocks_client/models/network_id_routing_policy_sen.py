@@ -24,7 +24,7 @@ from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from fireblocks_client.models.custom_fiat_routing_dest import CustomFiatRoutingDest
 from fireblocks_client.models.none_network_routing_dest import NoneNetworkRoutingDest
 from typing import Any, List, Literal
-from pydantic import StrictStr, Field, validate_arguments
+from pydantic import Field, validate_arguments
 
 NETWORKIDROUTINGPOLICYSEN_ONE_OF_SCHEMAS = ["CustomFiatRoutingDest", "NoneNetworkRoutingDest"]
 

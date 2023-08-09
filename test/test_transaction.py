@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction import Transaction  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransaction(unittest.TestCase):
     """Transaction unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestTransaction(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test Transaction
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test Transaction
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `Transaction`
         """
         model = fireblocks_client.models.transaction.Transaction()  # noqa: E501
         if include_optional :
-            return Transaction(
-                id = '', 
-                state = 'SUBMITTED', 
-                timestamp = 1.337, 
-                instruction_id = ''
-            )
+        return Transaction(
+            id = '', 
+            state = 'SUBMITTED', 
+            timestamp = 1.337, 
+            instruction_id = ''
+        )
         else :
-            return Transaction(
+        return Transaction(
                 id = '',
                 state = 'SUBMITTED',
         )

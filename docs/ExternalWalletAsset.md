@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **address** | **str** |  | [optional] 
 **tag** | **str** |  | [optional] 
 **activation_time** | **str** |  | [optional] 
+**additional_info** | [**List[WalletAssetAdditionalInfo]**](WalletAssetAdditionalInfo.md) |  | [optional] 
 
 ## Example
 

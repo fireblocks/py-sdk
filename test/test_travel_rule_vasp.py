@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_vasp import TravelRuleVASP  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleVASP(unittest.TestCase):
     """TravelRuleVASP unit test stubs"""
 
@@ -30,61 +30,62 @@ class TestTravelRuleVASP(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleVASP
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleVASP
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleVASP`
         """
         model = fireblocks_client.models.travel_rule_vasp.TravelRuleVASP()  # noqa: E501
         if include_optional :
-            return TravelRuleVASP(
-                did = '', 
-                name = '', 
-                verification_status = '', 
-                address_line1 = '', 
-                address_line2 = '', 
-                city = '', 
-                country = '', 
-                email_domains = '', 
-                website = '', 
-                logo = '', 
-                legal_structure = '', 
-                legal_name = '', 
-                year_founded = '', 
-                incorporation_country = '', 
-                is_regulated = '', 
-                other_names = '', 
-                identification_type = '', 
-                identification_country = '', 
-                business_number = '', 
-                regulatory_authorities = '', 
-                jurisdictions = '', 
-                street = '', 
-                number = '', 
-                unit = '', 
-                post_code = '', 
-                state = '', 
-                certificates = '', 
-                description = '', 
-                travel_rule_openvasp = '', 
-                travel_rule_sygna = '', 
-                travel_rule_trisa = '', 
-                travel_rule_trlight = '', 
-                travel_rule_email = '', 
-                travel_rule_trp = '', 
-                travel_rule_shyft = '', 
-                travel_rule_ustravelrulewg = '', 
-                created_at = '', 
-                created_by = '', 
-                updated_at = '', 
-                updated_by = '', 
-                last_sent_date = '', 
-                last_received_date = '', 
-                documents = '', 
-                has_admin = True, 
-                is_notifiable = True, 
-                issuers = fireblocks_client.models.travel_rule_issuers.TravelRuleIssuers(
+        return TravelRuleVASP(
+            did = '', 
+            name = '', 
+            verification_status = '', 
+            address_line1 = '', 
+            address_line2 = '', 
+            city = '', 
+            country = '', 
+            email_domains = '', 
+            website = '', 
+            logo = '', 
+            legal_structure = '', 
+            legal_name = '', 
+            year_founded = '', 
+            incorporation_country = '', 
+            is_regulated = '', 
+            other_names = '', 
+            identification_type = '', 
+            identification_country = '', 
+            business_number = '', 
+            regulatory_authorities = '', 
+            jurisdictions = '', 
+            street = '', 
+            number = '', 
+            unit = '', 
+            post_code = '', 
+            state = '', 
+            certificates = '', 
+            description = '', 
+            travel_rule_openvasp = '', 
+            travel_rule_sygna = '', 
+            travel_rule_trisa = '', 
+            travel_rule_trlight = '', 
+            travel_rule_email = '', 
+            travel_rule_trp = '', 
+            travel_rule_shyft = '', 
+            travel_rule_ustravelrulewg = '', 
+            created_at = '', 
+            created_by = '', 
+            updated_at = '', 
+            updated_by = '', 
+            last_sent_date = '', 
+            last_received_date = '', 
+            documents = '', 
+            has_admin = True, 
+            is_notifiable = True, 
+            issuers = fireblocks_client.models.travel_rule_issuers.TravelRuleIssuers(
                     year_founded = fireblocks_client.models.travel_rule_issuer.TravelRuleIssuer(
                         issuer_did = '', ), 
                     is_regulated = fireblocks_client.models.travel_rule_issuer.TravelRuleIssuer(
@@ -101,9 +102,9 @@ class TestTravelRuleVASP(unittest.TestCase):
                     city = , 
                     country = , 
                     description = , )
-            )
+        )
         else :
-            return TravelRuleVASP(
+        return TravelRuleVASP(
                 did = '',
                 name = '',
                 verification_status = '',

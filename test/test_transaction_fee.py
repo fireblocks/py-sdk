@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction_fee import TransactionFee  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransactionFee(unittest.TestCase):
     """TransactionFee unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestTransactionFee(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TransactionFee
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TransactionFee
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TransactionFee`
         """
         model = fireblocks_client.models.transaction_fee.TransactionFee()  # noqa: E501
         if include_optional :
-            return TransactionFee(
-                fee_per_byte = '', 
-                gas_price = '', 
-                gas_limit = '', 
-                network_fee = '', 
-                base_fee = '', 
-                priority_fee = ''
-            )
+        return TransactionFee(
+            fee_per_byte = '', 
+            gas_price = '', 
+            gas_limit = '', 
+            network_fee = '', 
+            base_fee = '', 
+            priority_fee = ''
+        )
         else :
-            return TransactionFee(
+        return TransactionFee(
         )
         """
 

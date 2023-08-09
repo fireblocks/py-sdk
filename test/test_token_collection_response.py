@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.token_collection_response import TokenCollectionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTokenCollectionResponse(unittest.TestCase):
     """TokenCollectionResponse unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestTokenCollectionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TokenCollectionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TokenCollectionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TokenCollectionResponse`
         """
         model = fireblocks_client.models.token_collection_response.TokenCollectionResponse()  # noqa: E501
         if include_optional :
-            return TokenCollectionResponse(
-                id = '', 
-                name = '', 
-                symbol = ''
-            )
+        return TokenCollectionResponse(
+            id = '', 
+            name = '', 
+            symbol = ''
+        )
         else :
-            return TokenCollectionResponse(
+        return TokenCollectionResponse(
                 id = '',
                 name = '',
                 symbol = '',

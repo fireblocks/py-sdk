@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.convert_assets_request import ConvertAssetsRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestConvertAssetsRequest(unittest.TestCase):
     """ConvertAssetsRequest unit test stubs"""
 
@@ -30,21 +30,22 @@ class TestConvertAssetsRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ConvertAssetsRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ConvertAssetsRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ConvertAssetsRequest`
         """
         model = fireblocks_client.models.convert_assets_request.ConvertAssetsRequest()  # noqa: E501
         if include_optional :
-            return ConvertAssetsRequest(
-                src_asset = '', 
-                dest_asset = '', 
-                amount = 1.337
-            )
+        return ConvertAssetsRequest(
+            src_asset = '', 
+            dest_asset = '', 
+            amount = 1.337
+        )
         else :
-            return ConvertAssetsRequest(
+        return ConvertAssetsRequest(
                 src_asset = '',
                 dest_asset = '',
                 amount = 1.337,

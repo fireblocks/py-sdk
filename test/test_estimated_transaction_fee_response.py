@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.estimated_transaction_fee_response import EstimatedTransactionFeeResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestEstimatedTransactionFeeResponse(unittest.TestCase):
     """EstimatedTransactionFeeResponse unit test stubs"""
 
@@ -30,39 +30,40 @@ class TestEstimatedTransactionFeeResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test EstimatedTransactionFeeResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test EstimatedTransactionFeeResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `EstimatedTransactionFeeResponse`
         """
         model = fireblocks_client.models.estimated_transaction_fee_response.EstimatedTransactionFeeResponse()  # noqa: E501
         if include_optional :
-            return EstimatedTransactionFeeResponse(
-                low = fireblocks_client.models.transaction_fee.TransactionFee(
+        return EstimatedTransactionFeeResponse(
+            low = fireblocks_client.models.transaction_fee.TransactionFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     gas_limit = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', ), 
-                medium = fireblocks_client.models.transaction_fee.TransactionFee(
+            medium = fireblocks_client.models.transaction_fee.TransactionFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     gas_limit = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', ), 
-                high = fireblocks_client.models.transaction_fee.TransactionFee(
+            high = fireblocks_client.models.transaction_fee.TransactionFee(
                     fee_per_byte = '', 
                     gas_price = '', 
                     gas_limit = '', 
                     network_fee = '', 
                     base_fee = '', 
                     priority_fee = '', )
-            )
+        )
         else :
-            return EstimatedTransactionFeeResponse(
+        return EstimatedTransactionFeeResponse(
                 low = fireblocks_client.models.transaction_fee.TransactionFee(
                     fee_per_byte = '', 
                     gas_price = '', 

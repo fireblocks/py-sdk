@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.vault_accounts_paged_response_paging import VaultAccountsPagedResponsePaging  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestVaultAccountsPagedResponsePaging(unittest.TestCase):
     """VaultAccountsPagedResponsePaging unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestVaultAccountsPagedResponsePaging(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test VaultAccountsPagedResponsePaging
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test VaultAccountsPagedResponsePaging
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `VaultAccountsPagedResponsePaging`
         """
         model = fireblocks_client.models.vault_accounts_paged_response_paging.VaultAccountsPagedResponsePaging()  # noqa: E501
         if include_optional :
-            return VaultAccountsPagedResponsePaging(
-                before = '', 
-                after = ''
-            )
+        return VaultAccountsPagedResponsePaging(
+            before = '', 
+            after = ''
+        )
         else :
-            return VaultAccountsPagedResponsePaging(
+        return VaultAccountsPagedResponsePaging(
         )
         """
 

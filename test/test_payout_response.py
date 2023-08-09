@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.payout_response import PayoutResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPayoutResponse(unittest.TestCase):
     """PayoutResponse unit test stubs"""
 
@@ -30,25 +30,26 @@ class TestPayoutResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PayoutResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test PayoutResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `PayoutResponse`
         """
         model = fireblocks_client.models.payout_response.PayoutResponse()  # noqa: E501
         if include_optional :
-            return PayoutResponse(
-                payout_id = '', 
-                payment_account = fireblocks_client.models.payment_account_response.PaymentAccountResponse(
+        return PayoutResponse(
+            payout_id = '', 
+            payment_account = fireblocks_client.models.payment_account_response.PaymentAccountResponse(
                     id = '', 
                     type = 'VAULT_ACCOUNT', ), 
-                created_at = 1.337, 
-                state = 'CREATED', 
-                status = 'REGISTERED', 
-                reason_of_failure = '', 
-                init_method = 'FILE', 
-                instruction_set = [
+            created_at = 1.337, 
+            state = 'CREATED', 
+            status = 'REGISTERED', 
+            reason_of_failure = '', 
+            init_method = 'FILE', 
+            instruction_set = [
                     fireblocks_client.models.payout_instruction_response.PayoutInstructionResponse(
                         id = '', 
                         payee_account = fireblocks_client.models.payee_account_response.PayeeAccountResponse(
@@ -66,10 +67,10 @@ class TestPayoutResponse(unittest.TestCase):
                                 instruction_id = '', )
                             ], )
                     ], 
-                report_url = ''
-            )
+            report_url = ''
+        )
         else :
-            return PayoutResponse(
+        return PayoutResponse(
                 payout_id = '',
                 payment_account = fireblocks_client.models.payment_account_response.PaymentAccountResponse(
                     id = '', 

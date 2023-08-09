@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.exchange_asset import ExchangeAsset  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestExchangeAsset(unittest.TestCase):
     """ExchangeAsset unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestExchangeAsset(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ExchangeAsset
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ExchangeAsset
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ExchangeAsset`
         """
         model = fireblocks_client.models.exchange_asset.ExchangeAsset()  # noqa: E501
         if include_optional :
-            return ExchangeAsset(
-                id = '', 
-                balance = '', 
-                locked_amount = '', 
-                total = '', 
-                available = ''
-            )
+        return ExchangeAsset(
+            id = '', 
+            balance = '', 
+            locked_amount = '', 
+            total = '', 
+            available = ''
+        )
         else :
-            return ExchangeAsset(
+        return ExchangeAsset(
         )
         """
 

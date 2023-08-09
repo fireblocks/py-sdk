@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.transaction_response_destination import TransactionResponseDestination  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTransactionResponseDestination(unittest.TestCase):
     """TransactionResponseDestination unit test stubs"""
 
@@ -30,22 +30,25 @@ class TestTransactionResponseDestination(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TransactionResponseDestination
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TransactionResponseDestination
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TransactionResponseDestination`
         """
         model = fireblocks_client.models.transaction_response_destination.TransactionResponseDestination()  # noqa: E501
         if include_optional :
-            return TransactionResponseDestination(
-                amount = '', 
-                amount_usd = '', 
-                aml_screening_result = fireblocks_client.models.aml_screening_result.AmlScreeningResult(
+        return TransactionResponseDestination(
+            destination_address = None, 
+            destination_address_description = None, 
+            amount = '', 
+            amount_usd = '', 
+            aml_screening_result = fireblocks_client.models.aml_screening_result.AmlScreeningResult(
                     provider = '', 
                     payload = fireblocks_client.models.payload.payload(), ), 
-                destination = None, 
-                authorization_info = fireblocks_client.models.authorization_info.AuthorizationInfo(
+            destination = None, 
+            authorization_info = fireblocks_client.models.authorization_info.AuthorizationInfo(
                     allow_operator_as_authorizer = True, 
                     logic = 'AND', 
                     groups = [
@@ -55,9 +58,9 @@ class TestTransactionResponseDestination(unittest.TestCase):
                                 'PENDING_AUTHORIZATION' : 'PENDING_AUTHORIZATION'
                                 }, )
                         ], )
-            )
+        )
         else :
-            return TransactionResponseDestination(
+        return TransactionResponseDestination(
         )
         """
 

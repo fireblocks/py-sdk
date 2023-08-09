@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_config_step import XBSettlementConfigStep  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementConfigStep(unittest.TestCase):
     """XBSettlementConfigStep unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestXBSettlementConfigStep(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementConfigStep
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementConfigStep
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementConfigStep`
         """
         model = fireblocks_client.models.xb_settlement_config_step.XBSettlementConfigStep()  # noqa: E501
         if include_optional :
-            return XBSettlementConfigStep(
-                step_type = 'ON_RAMP', 
-                account_id = ''
-            )
+        return XBSettlementConfigStep(
+            step_type = 'ON_RAMP', 
+            account_id = ''
+        )
         else :
-            return XBSettlementConfigStep(
+        return XBSettlementConfigStep(
                 step_type = 'ON_RAMP',
                 account_id = '',
         )

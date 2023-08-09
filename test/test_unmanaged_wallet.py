@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.unmanaged_wallet import UnmanagedWallet  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUnmanagedWallet(unittest.TestCase):
     """UnmanagedWallet unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestUnmanagedWallet(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UnmanagedWallet
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UnmanagedWallet
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UnmanagedWallet`
         """
         model = fireblocks_client.models.unmanaged_wallet.UnmanagedWallet()  # noqa: E501
         if include_optional :
-            return UnmanagedWallet(
-                id = '', 
-                name = '', 
-                customer_ref_id = '', 
-                assets = [
+        return UnmanagedWallet(
+            id = '', 
+            name = '', 
+            customer_ref_id = '', 
+            assets = [
                     fireblocks_client.models.wallet_asset.WalletAsset(
                         id = '', 
                         balance = '', 
@@ -52,9 +53,9 @@ class TestUnmanagedWallet(unittest.TestCase):
                         tag = '', 
                         activation_time = '', )
                     ]
-            )
+        )
         else :
-            return UnmanagedWallet(
+        return UnmanagedWallet(
                 id = '',
                 name = '',
         )

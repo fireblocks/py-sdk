@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_transaction_response import TravelRuleValidateTransactionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateTransactionResponse(unittest.TestCase):
     """TravelRuleValidateTransactionResponse unit test stubs"""
 
@@ -30,25 +30,26 @@ class TestTravelRuleValidateTransactionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateTransactionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateTransactionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateTransactionResponse`
         """
         model = fireblocks_client.models.travel_rule_validate_transaction_response.TravelRuleValidateTransactionResponse()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateTransactionResponse(
-                is_valid = True, 
-                type = 'TRAVELRULE', 
-                beneficiary_address_type = 'UNKNOWN', 
-                address_source = 'UNKNOWN', 
-                beneficiary_vas_pdid = 'did:ethr:0x46a7ed5813ce735387df2bfb245bd7722e0de992', 
-                beneficiary_vas_pname = 'Fireblocks', 
-                warnings = ["optional-beneficiaryAccountNumber"]
-            )
+        return TravelRuleValidateTransactionResponse(
+            is_valid = True, 
+            type = 'TRAVELRULE', 
+            beneficiary_address_type = 'UNKNOWN', 
+            address_source = 'UNKNOWN', 
+            beneficiary_vas_pdid = 'did:ethr:0x46a7ed5813ce735387df2bfb245bd7722e0de992', 
+            beneficiary_vas_pname = 'Fireblocks', 
+            warnings = ["optional-beneficiaryAccountNumber"]
+        )
         else :
-            return TravelRuleValidateTransactionResponse(
+        return TravelRuleValidateTransactionResponse(
                 is_valid = True,
                 type = 'TRAVELRULE',
                 beneficiary_address_type = 'UNKNOWN',

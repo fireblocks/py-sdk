@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.network_id_routing_policy import NetworkIdRoutingPolicy  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestNetworkIdRoutingPolicy(unittest.TestCase):
     """NetworkIdRoutingPolicy unit test stubs"""
 
@@ -30,23 +30,24 @@ class TestNetworkIdRoutingPolicy(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test NetworkIdRoutingPolicy
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test NetworkIdRoutingPolicy
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `NetworkIdRoutingPolicy`
         """
         model = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy()  # noqa: E501
         if include_optional :
-            return NetworkIdRoutingPolicy(
-                crypto = None, 
-                sen = None, 
-                signet = None, 
-                sen_test = None, 
-                signet_test = None
-            )
+        return NetworkIdRoutingPolicy(
+            crypto = None, 
+            sen = None, 
+            signet = None, 
+            sen_test = None, 
+            signet_test = None
+        )
         else :
-            return NetworkIdRoutingPolicy(
+        return NetworkIdRoutingPolicy(
         )
         """
 

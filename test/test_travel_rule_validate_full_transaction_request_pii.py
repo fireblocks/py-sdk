@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request_pii import TravelRuleValidateFullTransactionRequestPii  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequestPii(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequestPii unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestTravelRuleValidateFullTransactionRequestPii(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequestPii
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequestPii
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequestPii`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request_pii.TravelRuleValidateFullTransactionRequestPii()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequestPii(
-                full_name = '', 
-                date_of_birth = '', 
-                place_of_birth = '', 
-                address = '', 
-                identification_number = '', 
-                nationality = '', 
-                country_of_residence = '', 
-                tax_identification_number = '', 
-                customer_number = ''
-            )
+        return TravelRuleValidateFullTransactionRequestPii(
+            full_name = '', 
+            date_of_birth = '', 
+            place_of_birth = '', 
+            address = '', 
+            identification_number = '', 
+            nationality = '', 
+            country_of_residence = '', 
+            tax_identification_number = '', 
+            customer_number = ''
+        )
         else :
-            return TravelRuleValidateFullTransactionRequestPii(
+        return TravelRuleValidateFullTransactionRequestPii(
                 full_name = '',
                 date_of_birth = '',
                 place_of_birth = '',

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.get_connections_response import GetConnectionsResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestGetConnectionsResponse(unittest.TestCase):
     """GetConnectionsResponse unit test stubs"""
 
@@ -30,16 +30,17 @@ class TestGetConnectionsResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test GetConnectionsResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test GetConnectionsResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `GetConnectionsResponse`
         """
         model = fireblocks_client.models.get_connections_response.GetConnectionsResponse()  # noqa: E501
         if include_optional :
-            return GetConnectionsResponse(
-                data = [
+        return GetConnectionsResponse(
+            data = [
                     fireblocks_client.models.session_dto.SessionDTO(
                         id = '4e9e7051-f3b2-48e9-8ee6-b12492552657', 
                         user_id = '', 
@@ -51,11 +52,11 @@ class TestGetConnectionsResponse(unittest.TestCase):
                         connection_method = 'API', 
                         creation_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ], 
-                paging = fireblocks_client.models.paging.Paging(
+            paging = fireblocks_client.models.paging.Paging(
                     next = '', )
-            )
+        )
         else :
-            return GetConnectionsResponse(
+        return GetConnectionsResponse(
                 data = [
                     fireblocks_client.models.session_dto.SessionDTO(
                         id = '4e9e7051-f3b2-48e9-8ee6-b12492552657', 

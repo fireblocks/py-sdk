@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.dispatch_payout_response import DispatchPayoutResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestDispatchPayoutResponse(unittest.TestCase):
     """DispatchPayoutResponse unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestDispatchPayoutResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DispatchPayoutResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test DispatchPayoutResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `DispatchPayoutResponse`
         """
         model = fireblocks_client.models.dispatch_payout_response.DispatchPayoutResponse()  # noqa: E501
         if include_optional :
-            return DispatchPayoutResponse(
-                payout_id = ''
-            )
+        return DispatchPayoutResponse(
+            payout_id = ''
+        )
         else :
-            return DispatchPayoutResponse(
+        return DispatchPayoutResponse(
                 payout_id = '',
         )
         """

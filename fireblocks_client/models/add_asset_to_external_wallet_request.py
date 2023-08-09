@@ -15,60 +15,108 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
 
+from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from fireblocks_client.models.add_asset_to_external_wallet_request_one_of import AddAssetToExternalWalletRequestOneOf
+from fireblocks_client.models.add_asset_to_external_wallet_request_one_of1 import AddAssetToExternalWalletRequestOneOf1
+from typing import Any, List, Literal
+from pydantic import Field, validate_arguments
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+ADDASSETTOEXTERNALWALLETREQUEST_ONE_OF_SCHEMAS = ["AddAssetToExternalWalletRequestOneOf", "AddAssetToExternalWalletRequestOneOf1"]
 
 class AddAssetToExternalWalletRequest(BaseModel):
     """
     AddAssetToExternalWalletRequest
     """
-    address: StrictStr = Field(..., description="The wallet's address (or xpub) of the wallet")
-    tag: Optional[StrictStr] = Field(None, description="For XRP wallets, the destination tag; for EOS/XLM, the memo; for the fiat providers (BLINC by BCB Group), the Bank Transfer Description")
-    __properties = ["address", "tag"]
+    # data type: AddAssetToExternalWalletRequestOneOf
+    oneof_schema_1_validator: Optional[AddAssetToExternalWalletRequestOneOf] = None
+    # data type: AddAssetToExternalWalletRequestOneOf1
+    oneof_schema_2_validator: Optional[AddAssetToExternalWalletRequestOneOf1] = None
+    actual_instance: Any
+    one_of_schemas: List[str] = Literal[ADDASSETTOEXTERNALWALLETREQUEST_ONE_OF_SCHEMAS]
 
     class Config:
-        populate_by_name = True
         validate_assignment = True
         arbitrary_types_allowed = True
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    @validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        instance = cls()
+        error_messages = []
+        match = 0
+        # validate data type: AddAssetToExternalWalletRequestOneOf
+        if type(v) is not AddAssetToExternalWalletRequestOneOf:
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AddAssetToExternalWalletRequestOneOf`")
+        else:
+            match += 1
 
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+        # validate data type: AddAssetToExternalWalletRequestOneOf1
+        if type(v) is not AddAssetToExternalWalletRequestOneOf1:
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AddAssetToExternalWalletRequestOneOf1`")
+        else:
+            match += 1
 
-    @classmethod
-    def from_json(cls, json_str: str) -> AddAssetToExternalWalletRequest:
-        """Create an instance of AddAssetToExternalWalletRequest from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+        else:
+            return v
 
     @classmethod
     def from_dict(cls, obj: dict) -> AddAssetToExternalWalletRequest:
-        """Create an instance of AddAssetToExternalWalletRequest from a dict"""
-        if obj is None:
-            return None
+        return cls.from_json(json.dumps(obj))
 
-        if type(obj) is not dict:
-            return AddAssetToExternalWalletRequest.parse_obj(obj)
+    @classmethod
+    def from_json(cls, json_str: str) -> AddAssetToExternalWalletRequest:
+        """Returns the object represented by the json string"""
+        instance = cls()
+        error_messages = []
+        match = 0
 
-        _obj = AddAssetToExternalWalletRequest.parse_obj({
-            "address": obj.get("address"),
-            "tag": obj.get("tag")
-        })
-        return _obj
+        # deserialize data into AddAssetToExternalWalletRequestOneOf
+        try:
+            instance.actual_instance = AddAssetToExternalWalletRequestOneOf.from_json(json_str)
+            match += 1
+        except ValidationError as e:
+            error_messages.append(str(e))
+        # deserialize data into AddAssetToExternalWalletRequestOneOf1
+        try:
+            instance.actual_instance = AddAssetToExternalWalletRequestOneOf1.from_json(json_str)
+            match += 1
+        except ValidationError as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+        else:
+            return instance
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is not None:
+            return self.actual_instance.to_json()
+        else:
+            return "null"
+
+    def to_dict(self) -> dict:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is not None:
+            return self.actual_instance.to_dict()
+        else:
+            return dict()
+
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.dict())
 

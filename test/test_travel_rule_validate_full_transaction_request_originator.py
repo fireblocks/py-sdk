@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_validate_full_transaction_request_originator import TravelRuleValidateFullTransactionRequestOriginator  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleValidateFullTransactionRequestOriginator(unittest.TestCase):
     """TravelRuleValidateFullTransactionRequestOriginator unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestTravelRuleValidateFullTransactionRequestOriginator(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleValidateFullTransactionRequestOriginator
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleValidateFullTransactionRequestOriginator
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleValidateFullTransactionRequestOriginator`
         """
         model = fireblocks_client.models.travel_rule_validate_full_transaction_request_originator.TravelRuleValidateFullTransactionRequestOriginator()  # noqa: E501
         if include_optional :
-            return TravelRuleValidateFullTransactionRequestOriginator(
-                full_name = '', 
-                date_of_birth = '', 
-                place_of_birth = '', 
-                address = '', 
-                identification_number = '', 
-                nationality = '', 
-                country_of_residence = '', 
-                tax_identification_number = '', 
-                customer_number = ''
-            )
+        return TravelRuleValidateFullTransactionRequestOriginator(
+            full_name = '', 
+            date_of_birth = '', 
+            place_of_birth = '', 
+            address = '', 
+            identification_number = '', 
+            nationality = '', 
+            country_of_residence = '', 
+            tax_identification_number = '', 
+            customer_number = ''
+        )
         else :
-            return TravelRuleValidateFullTransactionRequestOriginator(
+        return TravelRuleValidateFullTransactionRequestOriginator(
                 full_name = '',
                 date_of_birth = '',
                 place_of_birth = '',

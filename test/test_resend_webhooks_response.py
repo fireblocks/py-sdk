@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.resend_webhooks_response import ResendWebhooksResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestResendWebhooksResponse(unittest.TestCase):
     """ResendWebhooksResponse unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestResendWebhooksResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ResendWebhooksResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ResendWebhooksResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ResendWebhooksResponse`
         """
         model = fireblocks_client.models.resend_webhooks_response.ResendWebhooksResponse()  # noqa: E501
         if include_optional :
-            return ResendWebhooksResponse(
-                messages_count = 1.337
-            )
+        return ResendWebhooksResponse(
+            messages_count = 1.337
+        )
         else :
-            return ResendWebhooksResponse(
+        return ResendWebhooksResponse(
         )
         """
 

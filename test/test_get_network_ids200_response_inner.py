@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.get_network_ids200_response_inner import GetNetworkIds200ResponseInner  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestGetNetworkIds200ResponseInner(unittest.TestCase):
     """GetNetworkIds200ResponseInner unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestGetNetworkIds200ResponseInner(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test GetNetworkIds200ResponseInner
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test GetNetworkIds200ResponseInner
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `GetNetworkIds200ResponseInner`
         """
         model = fireblocks_client.models.get_network_ids200_response_inner.GetNetworkIds200ResponseInner()  # noqa: E501
         if include_optional :
-            return GetNetworkIds200ResponseInner(
-                id = '', 
-                name = '', 
-                routing_policy = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy(
+        return GetNetworkIds200ResponseInner(
+            id = '', 
+            name = '', 
+            routing_policy = fireblocks_client.models.network_id_routing_policy.NetworkIdRoutingPolicy(
                     crypto = null, 
                     sen = null, 
                     signet = null, 
                     sen_test = null, 
                     signet_test = null, ), 
-                is_discoverable = True
-            )
+            is_discoverable = True
+        )
         else :
-            return GetNetworkIds200ResponseInner(
+        return GetNetworkIds200ResponseInner(
                 id = '',
                 name = '',
         )

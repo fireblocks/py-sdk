@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.user_response import UserResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUserResponse(unittest.TestCase):
     """UserResponse unit test stubs"""
 
@@ -30,24 +30,25 @@ class TestUserResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UserResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UserResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UserResponse`
         """
         model = fireblocks_client.models.user_response.UserResponse()  # noqa: E501
         if include_optional :
-            return UserResponse(
-                id = '', 
-                first_name = '', 
-                last_name = '', 
-                role = '', 
-                email = '', 
-                enabled = True
-            )
+        return UserResponse(
+            id = '', 
+            first_name = '', 
+            last_name = '', 
+            role = '', 
+            email = '', 
+            enabled = True
+        )
         else :
-            return UserResponse(
+        return UserResponse(
         )
         """
 

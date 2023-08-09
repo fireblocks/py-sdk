@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.create_connection_request import CreateConnectionRequest  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestCreateConnectionRequest(unittest.TestCase):
     """CreateConnectionRequest unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestCreateConnectionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CreateConnectionRequest
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test CreateConnectionRequest
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `CreateConnectionRequest`
         """
         model = fireblocks_client.models.create_connection_request.CreateConnectionRequest()  # noqa: E501
         if include_optional :
-            return CreateConnectionRequest(
-                vault_account_id = 1, 
-                fee_level = 'MEDIUM', 
-                uri = 'wc:77752975-906f-48f5-b59f-047826ee947e@1?bridge=https%3A%2F%2F0.bridge.walletconnect.org&key=64be99adc6086b7a729b0ec8c7e1f174927ab92e84f5c6f9527050225344a637', 
-                chain_ids = ["ETH","ETH_TEST"]
-            )
+        return CreateConnectionRequest(
+            vault_account_id = 1, 
+            fee_level = 'MEDIUM', 
+            uri = 'wc:77752975-906f-48f5-b59f-047826ee947e@1?bridge=https%3A%2F%2F0.bridge.walletconnect.org&key=64be99adc6086b7a729b0ec8c7e1f174927ab92e84f5c6f9527050225344a637', 
+            chain_ids = ["ETH","ETH_TEST"]
+        )
         else :
-            return CreateConnectionRequest(
+        return CreateConnectionRequest(
                 vault_account_id = 1,
                 fee_level = 'MEDIUM',
                 uri = 'wc:77752975-906f-48f5-b59f-047826ee947e@1?bridge=https%3A%2F%2F0.bridge.walletconnect.org&key=64be99adc6086b7a729b0ec8c7e1f174927ab92e84f5c6f9527050225344a637',

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.fiat_account import FiatAccount  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestFiatAccount(unittest.TestCase):
     """FiatAccount unit test stubs"""
 
@@ -30,27 +30,28 @@ class TestFiatAccount(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test FiatAccount
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test FiatAccount
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `FiatAccount`
         """
         model = fireblocks_client.models.fiat_account.FiatAccount()  # noqa: E501
         if include_optional :
-            return FiatAccount(
-                id = '', 
-                type = 'BLINC', 
-                name = '', 
-                address = '', 
-                assets = [
+        return FiatAccount(
+            id = '', 
+            type = 'BLINC', 
+            name = '', 
+            address = '', 
+            assets = [
                     fireblocks_client.models.fiat_asset.FiatAsset(
                         id = '', 
                         balance = '', )
                     ]
-            )
+        )
         else :
-            return FiatAccount(
+        return FiatAccount(
         )
         """
 

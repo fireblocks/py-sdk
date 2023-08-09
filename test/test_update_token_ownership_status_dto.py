@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.update_token_ownership_status_dto import UpdateTokenOwnershipStatusDto  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestUpdateTokenOwnershipStatusDto(unittest.TestCase):
     """UpdateTokenOwnershipStatusDto unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestUpdateTokenOwnershipStatusDto(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test UpdateTokenOwnershipStatusDto
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test UpdateTokenOwnershipStatusDto
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `UpdateTokenOwnershipStatusDto`
         """
         model = fireblocks_client.models.update_token_ownership_status_dto.UpdateTokenOwnershipStatusDto()  # noqa: E501
         if include_optional :
-            return UpdateTokenOwnershipStatusDto(
-                status = 'LISTED'
-            )
+        return UpdateTokenOwnershipStatusDto(
+            status = 'LISTED'
+        )
         else :
-            return UpdateTokenOwnershipStatusDto(
+        return UpdateTokenOwnershipStatusDto(
                 status = 'LISTED',
         )
         """

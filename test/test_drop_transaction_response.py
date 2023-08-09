@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.drop_transaction_response import DropTransactionResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestDropTransactionResponse(unittest.TestCase):
     """DropTransactionResponse unit test stubs"""
 
@@ -30,22 +30,23 @@ class TestDropTransactionResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DropTransactionResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test DropTransactionResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `DropTransactionResponse`
         """
         model = fireblocks_client.models.drop_transaction_response.DropTransactionResponse()  # noqa: E501
         if include_optional :
-            return DropTransactionResponse(
-                success = True, 
-                transactions = [
+        return DropTransactionResponse(
+            success = True, 
+            transactions = [
                     ''
                     ]
-            )
+        )
         else :
-            return DropTransactionResponse(
+        return DropTransactionResponse(
         )
         """
 

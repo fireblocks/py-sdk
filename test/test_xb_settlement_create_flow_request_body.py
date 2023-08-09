@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_create_flow_request_body import XBSettlementCreateFlowRequestBody  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementCreateFlowRequestBody(unittest.TestCase):
     """XBSettlementCreateFlowRequestBody unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestXBSettlementCreateFlowRequestBody(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementCreateFlowRequestBody
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementCreateFlowRequestBody
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementCreateFlowRequestBody`
         """
         model = fireblocks_client.models.xb_settlement_create_flow_request_body.XBSettlementCreateFlowRequestBody()  # noqa: E501
         if include_optional :
-            return XBSettlementCreateFlowRequestBody(
-                config_id = '', 
-                amount = ''
-            )
+        return XBSettlementCreateFlowRequestBody(
+            config_id = '', 
+            amount = ''
+        )
         else :
-            return XBSettlementCreateFlowRequestBody(
+        return XBSettlementCreateFlowRequestBody(
                 config_id = '',
                 amount = '',
         )

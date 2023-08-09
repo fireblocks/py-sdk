@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_flow_steps_execution_record import XBSettlementFlowStepsExecutionRecord  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFlowStepsExecutionRecord(unittest.TestCase):
     """XBSettlementFlowStepsExecutionRecord unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestXBSettlementFlowStepsExecutionRecord(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementFlowStepsExecutionRecord
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementFlowStepsExecutionRecord
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementFlowStepsExecutionRecord`
         """
         model = fireblocks_client.models.xb_settlement_flow_steps_execution_record.XBSettlementFlowStepsExecutionRecord()  # noqa: E501
         if include_optional :
-            return XBSettlementFlowStepsExecutionRecord(
-                step_type = 'ON_RAMP'
-            )
+        return XBSettlementFlowStepsExecutionRecord(
+            step_type = 'ON_RAMP'
+        )
         else :
-            return XBSettlementFlowStepsExecutionRecord(
+        return XBSettlementFlowStepsExecutionRecord(
         )
         """
 

@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.paginated_asset_wallet_response_paging import PaginatedAssetWalletResponsePaging  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestPaginatedAssetWalletResponsePaging(unittest.TestCase):
     """PaginatedAssetWalletResponsePaging unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestPaginatedAssetWalletResponsePaging(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedAssetWalletResponsePaging
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test PaginatedAssetWalletResponsePaging
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `PaginatedAssetWalletResponsePaging`
         """
         model = fireblocks_client.models.paginated_asset_wallet_response_paging.PaginatedAssetWalletResponsePaging()  # noqa: E501
         if include_optional :
-            return PaginatedAssetWalletResponsePaging(
-                before = '', 
-                after = ''
-            )
+        return PaginatedAssetWalletResponsePaging(
+            before = '', 
+            after = ''
+        )
         else :
-            return PaginatedAssetWalletResponsePaging(
+        return PaginatedAssetWalletResponsePaging(
         )
         """
 

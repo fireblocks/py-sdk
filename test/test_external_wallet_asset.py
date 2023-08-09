@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.external_wallet_asset import ExternalWalletAsset  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestExternalWalletAsset(unittest.TestCase):
     """ExternalWalletAsset unit test stubs"""
 
@@ -30,23 +30,43 @@ class TestExternalWalletAsset(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ExternalWalletAsset
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test ExternalWalletAsset
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `ExternalWalletAsset`
         """
         model = fireblocks_client.models.external_wallet_asset.ExternalWalletAsset()  # noqa: E501
         if include_optional :
-            return ExternalWalletAsset(
-                id = '', 
-                status = 'WAITING_FOR_APPROVAL', 
-                address = '', 
-                tag = '', 
-                activation_time = ''
-            )
+        return ExternalWalletAsset(
+            id = '', 
+            status = 'WAITING_FOR_APPROVAL', 
+            address = '', 
+            tag = '', 
+            activation_time = '', 
+            additional_info = [
+                    fireblocks_client.models.wallet_asset_additional_info.WalletAssetAdditionalInfo(
+                        account_holder_given_name = '', 
+                        account_holder_surname = '', 
+                        account_holder_city = '', 
+                        account_holder_country = '', 
+                        account_holder_address1 = '', 
+                        account_holder_address2 = '', 
+                        account_holder_district = '', 
+                        account_holder_postal_code = '', 
+                        aba_routing_number = '', 
+                        aba_account_number = '', 
+                        aba_country = '', 
+                        iban = '', 
+                        iban_city = '', 
+                        iban_country = '', 
+                        spei_clabe = '', 
+                        spei_name = '', )
+                    ]
+        )
         else :
-            return ExternalWalletAsset(
+        return ExternalWalletAsset(
         )
         """
 

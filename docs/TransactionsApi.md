@@ -542,7 +542,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transactions**
-> List[TransactionResponse] get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash)
+> List[TransactionResponse] get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id)
 
 List transaction history
 
@@ -571,7 +571,7 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     before = 'before_example' # str | Unix timestamp in milliseconds. Returns only transactions created before the specified date (optional)
     after = 'after_example' # str | Unix timestamp in milliseconds. Returns only transactions created after the specified date (optional)
     status = 'status_example' # str | You can filter by one of the statuses. (optional)
-    order_by = 'order_by_example' # str | The field to order the results by (optional)
+    order_by = 'order_by_example' # str | The field to order the results by  **Note**: Ordering by a field that is not createdAt may result with transactions that receive updates as you request the next or previous pages of results, resulting with missing those transactions. (optional)
     sort = 'sort_example' # str | The direction to order the results by (optional)
     limit = 200 # int | Limits the number of results. If not provided, a limit of 200 will be used. The maximum allowed limit is 500 (optional) (default to 200)
     source_type = 'source_type_example' # str | The source type of the transaction (optional)
@@ -580,10 +580,12 @@ with fireblocks_client.ApiClient(configuration) as api_client:
     dest_id = 'dest_id_example' # str | The destination ID of the transaction (optional)
     assets = 'assets_example' # str | A list of assets to filter by, seperated by commas (optional)
     tx_hash = 'tx_hash_example' # str | Returns only results with a specified txHash (optional)
+    source_wallet_id = 'source_wallet_id_example' # str | Returns only results where the source is a specific end user wallet (optional)
+    dest_wallet_id = 'dest_wallet_id_example' # str | Returns only results where the destination is a specific end user wallet (optional)
 
     try:
         # List transaction history
-        api_response = api_instance.get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash)
+        api_response = api_instance.get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id)
         print("The response of TransactionsApi->get_transactions:\n")
         pprint(api_response)
     except Exception as e:
@@ -597,7 +599,7 @@ Name | Type | Description  | Notes
  **before** | **str**| Unix timestamp in milliseconds. Returns only transactions created before the specified date | [optional] 
  **after** | **str**| Unix timestamp in milliseconds. Returns only transactions created after the specified date | [optional] 
  **status** | **str**| You can filter by one of the statuses. | [optional] 
- **order_by** | **str**| The field to order the results by | [optional] 
+ **order_by** | **str**| The field to order the results by  **Note**: Ordering by a field that is not createdAt may result with transactions that receive updates as you request the next or previous pages of results, resulting with missing those transactions. | [optional] 
  **sort** | **str**| The direction to order the results by | [optional] 
  **limit** | **int**| Limits the number of results. If not provided, a limit of 200 will be used. The maximum allowed limit is 500 | [optional] [default to 200]
  **source_type** | **str**| The source type of the transaction | [optional] 
@@ -606,6 +608,8 @@ Name | Type | Description  | Notes
  **dest_id** | **str**| The destination ID of the transaction | [optional] 
  **assets** | **str**| A list of assets to filter by, seperated by commas | [optional] 
  **tx_hash** | **str**| Returns only results with a specified txHash | [optional] 
+ **source_wallet_id** | **str**| Returns only results where the source is a specific end user wallet | [optional] 
+ **dest_wallet_id** | **str**| Returns only results where the destination is a specific end user wallet | [optional] 
 
 ### Return type
 
@@ -623,7 +627,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A list of transactions |  * X-Request-ID -  <br>  |
+**200** | A list of transactions |  * X-Request-ID -  <br>  * next-page -  <br>  * prev-page -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

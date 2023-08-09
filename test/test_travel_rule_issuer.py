@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.travel_rule_issuer import TravelRuleIssuer  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestTravelRuleIssuer(unittest.TestCase):
     """TravelRuleIssuer unit test stubs"""
 
@@ -30,19 +30,20 @@ class TestTravelRuleIssuer(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test TravelRuleIssuer
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test TravelRuleIssuer
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `TravelRuleIssuer`
         """
         model = fireblocks_client.models.travel_rule_issuer.TravelRuleIssuer()  # noqa: E501
         if include_optional :
-            return TravelRuleIssuer(
-                issuer_did = ''
-            )
+        return TravelRuleIssuer(
+            issuer_did = ''
+        )
         else :
-            return TravelRuleIssuer(
+        return TravelRuleIssuer(
                 issuer_did = '',
         )
         """

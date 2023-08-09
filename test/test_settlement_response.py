@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.settlement_response import SettlementResponse  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestSettlementResponse(unittest.TestCase):
     """SettlementResponse unit test stubs"""
 
@@ -30,20 +30,21 @@ class TestSettlementResponse(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SettlementResponse
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test SettlementResponse
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `SettlementResponse`
         """
         model = fireblocks_client.models.settlement_response.SettlementResponse()  # noqa: E501
         if include_optional :
-            return SettlementResponse(
-                id = '', 
-                initiator = '', 
-                exchange_reply = '', 
-                fireblocks_initiated_transactions = None, 
-                exchange_requested_transactions = fireblocks_client.models.settlement_response.SettlementResponse(
+        return SettlementResponse(
+            id = '', 
+            initiator = '', 
+            exchange_reply = '', 
+            fireblocks_initiated_transactions = None, 
+            exchange_requested_transactions = fireblocks_client.models.settlement_response.SettlementResponse(
                     id = '', 
                     initiator = '', 
                     exchange_reply = '', 
@@ -53,9 +54,9 @@ class TestSettlementResponse(unittest.TestCase):
                         initiator = '', 
                         exchange_reply = '', 
                         fireblocks_initiated_transactions = fireblocks_client.models.fireblocks_initiated_transactions.fireblocksInitiatedTransactions(), ), )
-            )
+        )
         else :
-            return SettlementResponse(
+        return SettlementResponse(
         )
         """
 

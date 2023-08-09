@@ -14,12 +14,12 @@
 
 
 import unittest
-import datetime
 
+"""
 import fireblocks_client
 from fireblocks_client.models.xb_settlement_flow_setup_step import XBSettlementFlowSetupStep  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+"""
 class TestXBSettlementFlowSetupStep(unittest.TestCase):
     """XBSettlementFlowSetupStep unit test stubs"""
 
@@ -30,30 +30,31 @@ class TestXBSettlementFlowSetupStep(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test XBSettlementFlowSetupStep
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
+        """
+        Test XBSettlementFlowSetupStep
+        include_option is a boolean, when False only required
+        params are included, when True both required and
+        optional params are included """
         # uncomment below to create an instance of `XBSettlementFlowSetupStep`
         """
         model = fireblocks_client.models.xb_settlement_flow_setup_step.XBSettlementFlowSetupStep()  # noqa: E501
         if include_optional :
-            return XBSettlementFlowSetupStep(
-                account_id = '', 
-                input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+        return XBSettlementFlowSetupStep(
+            account_id = '', 
+            input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                output_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+            output_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                estimated_fee_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
+            estimated_fee_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 
                     asset_id = null, ), 
-                estimated_time = 1.337, 
-                is_sign_required = True
-            )
+            estimated_time = 1.337, 
+            is_sign_required = True
+        )
         else :
-            return XBSettlementFlowSetupStep(
+        return XBSettlementFlowSetupStep(
                 account_id = '',
                 input_amount = fireblocks_client.models.xb_settlement_asset.XBSettlementAsset(
                     amount = '', 

@@ -18,11 +18,14 @@ import unittest
 import fireblocks_client
 from fireblocks_client.api.external_wallets_api import ExternalWalletsApi  # noqa: E501
 from fireblocks_client.rest import ApiException
-
+import importlib
+import os
+import sys
 
 class TestExternalWalletsApi(unittest.TestCase):
     """ExternalWalletsApi unit test stubs"""
-
+    os.environ["FIREBLOCKS_API_KEY"] = ""
+    os.environ["FIREBLOCKS_SECRET_KEY"]  = ""
     def setUp(self):
         self.api = fireblocks_client.api.external_wallets_api.ExternalWalletsApi()  # noqa: E501
 

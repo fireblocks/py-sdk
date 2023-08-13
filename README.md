@@ -30,7 +30,7 @@ Note: response header deserialization has not yet been added
 ## Installation & Usage
 If the python package is hosted on a repository, you can install directly using:
 ```sh
-pip install fireblocks-sdk
+pip install fireblocks
 ```
 
 Then import the package:

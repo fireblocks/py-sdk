@@ -8,7 +8,7 @@ For detailed documentation and additional resources, please refer to the [Firebl
 > **Warning**
 > This package is currently in a beta stage and should be used at your own risk.
 > The provided interfaces might go through backwards-incompatibale changes.
-> For a more stable SDK, please use the [Fireblocks Javascript/Typescript SDK](https://github.com/fireblocks/fireblocks-sdk-js)
+> For a more stable SDK, please use the [Fireblocks Python SDK](https://github.com/fireblocks/fireblocks-sdk-py)
 
 - API version: 1.6.2
 - Package version: 1.0.0

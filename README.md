@@ -85,31 +85,6 @@ tx_request = tx_api_instance.create_transaction(
     )
 ```
 
-```python
-
-import time
-import fireblocks_client
-from pprint import pprint
-from fireblocks_client.apis.tags import audit_logs_api
-from fireblocks_client.model.error import Error
-# Defining the host is optional and defaults to https://api.fireblocks.io/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fireblocks_client.Configuration(
-    host = "https://api.fireblocks.io/v1"
-)
-
-
-
-api_instance = audit_logs_api.AuditLogsApi()
-time_period = "DAY" # str | The last time period to fetch audit logs
-
-try:
-    # Get audit logs
-    api_instance.get_audits(time_period)
-except fireblocks_client.ApiException as e:
-    print("Exception when calling AuditLogsApi->get_audits: %s\n" % e)
-```
-
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://developers.fireblocks.com/reference/*

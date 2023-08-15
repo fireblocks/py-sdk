@@ -1,4 +1,4 @@
-[![PyPI version](https://badge.fury.io/py/fireblocks-sdk.svg)](https://badge.fury.io/py/fireblocks)
+[![PyPI version](https://badge.fury.io/py/fireblocks.svg)](https://badge.fury.io/py/fireblocks)
 
 
 # Fireblocks SDK
@@ -62,28 +62,14 @@ vault_api = vaults_api.VaultsApi(config);
 
 ## Examples
 
-<p><strong>Creating a Vault Account</strong><br>
+<p><strong>Create a Vault Account</strong><br>
 To create a new vault account, you can use the following function:</p>
 
 ```python
-create_vault_account_response = vault_api.create_vault_account(body={"name": "Shahar Test Py"})
+create_vault_account_response = vault_api.create_vault_account(body={"name": "New Vault"})
 ```
 
-<p><strong>Creating a Vault Account</strong><br>
-To create a new vault account, you can use the following function:</p>
-
-```python
-create_vault_account_response = vault_api.create_vault_account(body={"name": "Shahar Test Py"})
-```
-
-<p><strong>Creating a Transaction</strong><br>
-To make a transaction between vault accounts, you can use the following function:</p>
-
-```python
-create_vault_account_response = vault_api.create_vault_account(body={"name": "Shahar Test Py"})
-```
-
-<p><strong>Creating a Transaction</strong><br>
+<p><strong>Create a Transaction</strong><br>
 To make a transaction between vault accounts, you can use the following function:</p>
 
 ```python
@@ -126,7 +112,7 @@ except fireblocks_client.ApiException as e:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.fireblocks.io/v1*
+All URIs are relative to *https://developers.fireblocks.com/reference/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

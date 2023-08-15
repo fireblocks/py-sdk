@@ -24,7 +24,7 @@ REQUIRES = [
     "certifi >= 14.5.14",
     "frozendict ~= 2.3.4",
     "python-dateutil ~= 2.7.0",
-    "setuptools >= 20.0.7",
+    "setuptools >= 20.0.8",
     "typing_extensions ~= 4.3.0",
     "urllib3 ~= 2.0.0",
     "aenum >= 3.1.11",
@@ -40,7 +40,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name=NAME,
-    version="0.0.7",
+    version="0.0.8",
     description="Fireblocks Auto Generated SDK",
     author="Fireblocks",
     author_email="support@fireblocks.com",

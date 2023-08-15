@@ -12,10 +12,6 @@ For detailed documentation and additional resources, please refer to the [Firebl
 > The provided interfaces might go through backwards-incompatibale changes.
 > For a more stable SDK, please use the [Fireblocks Javascript/Typescript SDK](https://github.com/fireblocks/fireblocks-sdk-js)
 
-- API version: 1.6.2
-- Package version: 1.0.0
-- Build package: org.openapitools.codegen.languages.PythonClientCodegen
-
 ## Requirements.
 
 Python &gt;&#x3D;3.7

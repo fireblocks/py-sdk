@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/fireblocks-sdk.svg)](https://badge.fury.io/py/fireblocks)
+
 
 # Fireblocks SDK
 

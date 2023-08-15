@@ -35,8 +35,12 @@ REQUIRES = [
     "python-dateutil ~= 2.7.0",
 ]
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 setup(
     name=NAME,
+    version="1.0.0",
     description="Fireblocks Auto Generated SDK",
     author="Fireblocks",
     author_email="support@fireblocks.com",
@@ -47,5 +51,13 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     license="MIT License (MIT)",
-    long_description="The Fireblocks SDK allows developers to seamlessly integrate with the Fireblocks platform and perform a variety of operations, including managing vault accounts and executing transactions securely."
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    classifiers=[
+        'Development Status :: Beta',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.7',
+    ],
 )

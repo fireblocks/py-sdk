@@ -1,6 +1,5 @@
 [![PyPI version](https://badge.fury.io/py/fireblocks.svg)](https://badge.fury.io/py/fireblocks)
 
-
 # Fireblocks SDK
 
 The Fireblocks SDK allows developers to seamlessly integrate with the Fireblocks platform and perform a variety of operations, including managing vault accounts and executing transactions securely.
@@ -83,7 +82,7 @@ tx_request = tx_api_instance.create_transaction(
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://developers.fireblocks.com/reference/*
+All URIs are relative to https://developers.fireblocks.com/reference/
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -125,13 +124,13 @@ Class | Method | HTTP request | Description
 *InternalWalletsApi* | [**get_internal_wallet_by_id**](docs/apis/tags/InternalWalletsApi.md#get_internal_wallet_by_id) | **get** /internal_wallets/{walletId} | Get assets for internal wallet
 *InternalWalletsApi* | [**get_internal_wallets**](docs/apis/tags/InternalWalletsApi.md#get_internal_wallets) | **get** /internal_wallets | List internal wallets
 *InternalWalletsApi* | [**set_customer_ref_id_for_internal_wallet**](docs/apis/tags/InternalWalletsApi.md#set_customer_ref_id_for_internal_wallet) | **post** /internal_wallets/{walletId}/set_customer_ref_id | Set an AML/KYT customer reference ID for an internal wallet
-*NFTsBetaApi* | [**get_nft**](docs/apis/tags/NFTsBetaApi.md#get_nft) | **get** /nfts/tokens/{id} | List token data by ID
-*NFTsBetaApi* | [**get_nfts**](docs/apis/tags/NFTsBetaApi.md#get_nfts) | **get** /nfts/tokens | List tokens by IDs
-*NFTsBetaApi* | [**get_ownership_tokens**](docs/apis/tags/NFTsBetaApi.md#get_ownership_tokens) | **get** /nfts/ownership/tokens | List all owned tokens (paginated)
-*NFTsBetaApi* | [**list_owned_collections**](docs/apis/tags/NFTsBetaApi.md#list_owned_collections) | **get** /nfts/ownership/collections | List owned collections (paginated)
-*NFTsBetaApi* | [**refresh_nft_metadata**](docs/apis/tags/NFTsBetaApi.md#refresh_nft_metadata) | **put** /nfts/tokens/{id} | Refresh token metadata
-*NFTsBetaApi* | [**update_ownership_tokens**](docs/apis/tags/NFTsBetaApi.md#update_ownership_tokens) | **put** /nfts/ownership/tokens | Refresh vault account tokens
-*NFTsBetaApi* | [**update_token_ownership_status**](docs/apis/tags/NFTsBetaApi.md#update_token_ownership_status) | **put** /nfts/ownership/tokens/{id}/status | Update token ownership status
+*NFTsApi* | [**get_nft**](docs/apis/tags/NFTsApi.md#get_nft) | **get** /nfts/tokens/{id} | List token data by ID
+*NFTsApi* | [**get_nfts**](docs/apis/tags/NFTsApi.md#get_nfts) | **get** /nfts/tokens | List tokens by IDs
+*NFTsApi* | [**get_ownership_tokens**](docs/apis/tags/NFTsApi.md#get_ownership_tokens) | **get** /nfts/ownership/tokens | List all owned tokens (paginated)
+*NFTsApi* | [**list_owned_collections**](docs/apis/tags/NFTsApi.md#list_owned_collections) | **get** /nfts/ownership/collections | List owned collections (paginated)
+*NFTsApi* | [**refresh_nft_metadata**](docs/apis/tags/NFTsApi.md#refresh_nft_metadata) | **put** /nfts/tokens/{id} | Refresh token metadata
+*NFTsApi* | [**update_ownership_tokens**](docs/apis/tags/NFTsApi.md#update_ownership_tokens) | **put** /nfts/ownership/tokens | Refresh vault account tokens
+*NFTsApi* | [**update_token_ownership_status**](docs/apis/tags/NFTsApi.md#update_token_ownership_status) | **put** /nfts/ownership/tokens/{id}/status | Update token ownership status
 *NetworkConnectionsApi* | [**check_third_party_routing_for_network_connection**](docs/apis/tags/NetworkConnectionsApi.md#check_third_party_routing_for_network_connection) | **get** /network_connections/{connectionId}/is_third_party_routing/{assetType} | Retrieve third-party network routing validation by asset type.
 *NetworkConnectionsApi* | [**create_network_connection**](docs/apis/tags/NetworkConnectionsApi.md#create_network_connection) | **post** /network_connections | Creates a new network connection
 *NetworkConnectionsApi* | [**create_network_id**](docs/apis/tags/NetworkConnectionsApi.md#create_network_id) | **post** /network_ids | Creates a new Network ID
@@ -145,6 +144,8 @@ Class | Method | HTTP request | Description
 *NetworkConnectionsApi* | [**set_network_id_name**](docs/apis/tags/NetworkConnectionsApi.md#set_network_id_name) | **patch** /network_ids/{networkId}/set_name | Update network ID&#x27;s name.
 *NetworkConnectionsApi* | [**set_routing_policy_for_network_connection**](docs/apis/tags/NetworkConnectionsApi.md#set_routing_policy_for_network_connection) | **patch** /network_connections/{connectionId}/set_routing_policy | Update network connection routing policy.
 *NetworkConnectionsApi* | [**set_routing_policy_for_network_id**](docs/apis/tags/NetworkConnectionsApi.md#set_routing_policy_for_network_id) | **patch** /network_ids/{networkId}/set_routing_policy | Update network id routing policy.
+*OTABetaApi* | [**get_ota_status**](docs/apis/tags/OTABetaApi.md#get_ota_status) | **get** /management/ota | Returns current OTA status
+*OTABetaApi* | [**set_ota_status**](docs/apis/tags/OTABetaApi.md#set_ota_status) | **post** /management/ota | Enable or disable transactions to OTA
 *OffExchangesApi* | [**add_off_exchange**](docs/apis/tags/OffExchangesApi.md#add_off_exchange) | **post** /off_exchange/add | add collateral
 *OffExchangesApi* | [**get_off_exchange_collateral_accounts**](docs/apis/tags/OffExchangesApi.md#get_off_exchange_collateral_accounts) | **get** /off_exchange/collateral_accounts/{mainExchangeAccountId} | Find a specific collateral exchange account
 *OffExchangesApi* | [**get_off_exchange_settlement_transactions**](docs/apis/tags/OffExchangesApi.md#get_off_exchange_settlement_transactions) | **get** /off_exchange/settlements/transactions | get settlements transactions from exchange
@@ -185,6 +186,11 @@ Class | Method | HTTP request | Description
 *TravelRuleBetaApi* | [**validate_full_travel_rule_transaction**](docs/apis/tags/TravelRuleBetaApi.md#validate_full_travel_rule_transaction) | **post** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
 *TravelRuleBetaApi* | [**validate_travel_rule_transaction**](docs/apis/tags/TravelRuleBetaApi.md#validate_travel_rule_transaction) | **post** /screening/travel_rule/transaction/validate | Validate Travel Rule Transaction
 *UsersApi* | [**get_users**](docs/apis/tags/UsersApi.md#get_users) | **get** /users | List users
+*UsersGroupsBetaApi* | [**create_user_group**](docs/apis/tags/UsersGroupsBetaApi.md#create_user_group) | **post** /users_groups | Create users group
+*UsersGroupsBetaApi* | [**delete_user_group**](docs/apis/tags/UsersGroupsBetaApi.md#delete_user_group) | **delete** /users_groups/{groupId} | Delete users group
+*UsersGroupsBetaApi* | [**get_user_group**](docs/apis/tags/UsersGroupsBetaApi.md#get_user_group) | **get** /users_groups/{groupId} | Get users group
+*UsersGroupsBetaApi* | [**get_user_groups**](docs/apis/tags/UsersGroupsBetaApi.md#get_user_groups) | **get** /users_groups | List users groups
+*UsersGroupsBetaApi* | [**update_user_group**](docs/apis/tags/UsersGroupsBetaApi.md#update_user_group) | **put** /users_groups/{groupId} | Update users group
 *VaultsApi* | [**activate_asset_for_vault_account**](docs/apis/tags/VaultsApi.md#activate_asset_for_vault_account) | **post** /vault/accounts/{vaultAccountId}/{assetId}/activate | Activate a wallet in a vault account
 *VaultsApi* | [**create_legacy_address_for_vault_account_asset**](docs/apis/tags/VaultsApi.md#create_legacy_address_for_vault_account_asset) | **post** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/create_legacy | Convert a segwit address to legacy format
 *VaultsApi* | [**create_vault_account**](docs/apis/tags/VaultsApi.md#create_vault_account) | **post** /vault/accounts | Create a new vault account
@@ -237,6 +243,7 @@ Class | Method | HTTP request | Description
  - [CreateInternalTransferRequest](docs/models/CreateInternalTransferRequest.md)
  - [CreatePayoutRequest](docs/models/CreatePayoutRequest.md)
  - [CreateTransactionResponse](docs/models/CreateTransactionResponse.md)
+ - [CreateUsersGroupResponse](docs/models/CreateUsersGroupResponse.md)
  - [CreateVaultAssetResponse](docs/models/CreateVaultAssetResponse.md)
  - [CustomCryptoRoutingDest](docs/models/CustomCryptoRoutingDest.md)
  - [CustomFiatRoutingDest](docs/models/CustomFiatRoutingDest.md)
@@ -357,7 +364,12 @@ Class | Method | HTTP request | Description
  - [UnspentInput](docs/models/UnspentInput.md)
  - [UnspentInputsResponse](docs/models/UnspentInputsResponse.md)
  - [UpdateTokenOwnershipStatusDto](docs/models/UpdateTokenOwnershipStatusDto.md)
+ - [UserGroupCreateRequest](docs/models/UserGroupCreateRequest.md)
+ - [UserGroupCreateResponse](docs/models/UserGroupCreateResponse.md)
+ - [UserGroupUpdateRequest](docs/models/UserGroupUpdateRequest.md)
  - [UserResponse](docs/models/UserResponse.md)
+ - [UsersGroupResponse](docs/models/UsersGroupResponse.md)
+ - [UsersGroupsResponse](docs/models/UsersGroupsResponse.md)
  - [ValidateAddressResponse](docs/models/ValidateAddressResponse.md)
  - [VaultAccount](docs/models/VaultAccount.md)
  - [VaultAccountsPagedResponse](docs/models/VaultAccountsPagedResponse.md)
@@ -416,6 +428,8 @@ Authentication schemes defined for the API:
 
 ## Author
 
+support@fireblocks.com
+support@fireblocks.com
 support@fireblocks.com
 support@fireblocks.com
 support@fireblocks.com

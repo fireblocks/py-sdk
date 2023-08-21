@@ -76,6 +76,8 @@ from fireblocks_client.apis.paths.gas_station import GasStation
 from fireblocks_client.apis.paths.gas_station_asset_id import GasStationAssetId
 from fireblocks_client.apis.paths.gas_station_configuration import GasStationConfiguration
 from fireblocks_client.apis.paths.gas_station_configuration_asset_id import GasStationConfigurationAssetId
+from fireblocks_client.apis.paths.users_groups import UsersGroups
+from fireblocks_client.apis.paths.users_groups_group_id import UsersGroupsGroupId
 from fireblocks_client.apis.paths.users import Users
 from fireblocks_client.apis.paths.audits import Audits
 from fireblocks_client.apis.paths.off_exchange_add import OffExchangeAdd
@@ -98,6 +100,7 @@ from fireblocks_client.apis.paths.screening_travel_rule_transaction_validate_ful
 from fireblocks_client.apis.paths.screening_travel_rule_vasp_did import ScreeningTravelRuleVaspDid
 from fireblocks_client.apis.paths.screening_travel_rule_vasp import ScreeningTravelRuleVasp
 from fireblocks_client.apis.paths.screeening_travel_rule_vasp_update import ScreeeningTravelRuleVaspUpdate
+from fireblocks_client.apis.paths.management_ota import ManagementOta
 from fireblocks_client.apis.paths.tap_active_policy import TapActivePolicy
 from fireblocks_client.apis.paths.tap_draft import TapDraft
 from fireblocks_client.apis.paths.tap_publish import TapPublish
@@ -180,6 +183,8 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.GAS_STATION_ASSET_ID: GasStationAssetId,
         PathValues.GAS_STATION_CONFIGURATION: GasStationConfiguration,
         PathValues.GAS_STATION_CONFIGURATION_ASSET_ID: GasStationConfigurationAssetId,
+        PathValues.USERS_GROUPS: UsersGroups,
+        PathValues.USERS_GROUPS_GROUP_ID: UsersGroupsGroupId,
         PathValues.USERS: Users,
         PathValues.AUDITS: Audits,
         PathValues.OFF_EXCHANGE_ADD: OffExchangeAdd,
@@ -202,6 +207,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.SCREENING_TRAVEL_RULE_VASP_DID: ScreeningTravelRuleVaspDid,
         PathValues.SCREENING_TRAVEL_RULE_VASP: ScreeningTravelRuleVasp,
         PathValues.SCREEENING_TRAVEL_RULE_VASP_UPDATE: ScreeeningTravelRuleVaspUpdate,
+        PathValues.MANAGEMENT_OTA: ManagementOta,
         PathValues.TAP_ACTIVE_POLICY: TapActivePolicy,
         PathValues.TAP_DRAFT: TapDraft,
         PathValues.TAP_PUBLISH: TapPublish,
@@ -285,6 +291,8 @@ path_to_api = PathToApi(
         PathValues.GAS_STATION_ASSET_ID: GasStationAssetId,
         PathValues.GAS_STATION_CONFIGURATION: GasStationConfiguration,
         PathValues.GAS_STATION_CONFIGURATION_ASSET_ID: GasStationConfigurationAssetId,
+        PathValues.USERS_GROUPS: UsersGroups,
+        PathValues.USERS_GROUPS_GROUP_ID: UsersGroupsGroupId,
         PathValues.USERS: Users,
         PathValues.AUDITS: Audits,
         PathValues.OFF_EXCHANGE_ADD: OffExchangeAdd,
@@ -307,6 +315,7 @@ path_to_api = PathToApi(
         PathValues.SCREENING_TRAVEL_RULE_VASP_DID: ScreeningTravelRuleVaspDid,
         PathValues.SCREENING_TRAVEL_RULE_VASP: ScreeningTravelRuleVasp,
         PathValues.SCREEENING_TRAVEL_RULE_VASP_UPDATE: ScreeeningTravelRuleVaspUpdate,
+        PathValues.MANAGEMENT_OTA: ManagementOta,
         PathValues.TAP_ACTIVE_POLICY: TapActivePolicy,
         PathValues.TAP_DRAFT: TapDraft,
         PathValues.TAP_PUBLISH: TapPublish,

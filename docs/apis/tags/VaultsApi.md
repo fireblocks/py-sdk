@@ -1229,7 +1229,7 @@ str,  | str,  |  |
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 200
+decimal.Decimal, int, float,  | decimal.Decimal,  |  | if omitted the server will use the default value of 200
 
 ### Return Types, Responses
 

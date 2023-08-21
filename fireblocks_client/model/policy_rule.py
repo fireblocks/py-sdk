@@ -585,6 +585,8 @@ class PolicyRule(
                                 
                                 
                                     class MetaOapg:
+                                        max_items = 3
+                                        min_items = 1
                                         
                                         
                                         class items(
@@ -826,6 +828,8 @@ class PolicyRule(
                                 
                                 
                                     class MetaOapg:
+                                        max_items = 3
+                                        min_items = 1
                                         
                                         
                                         class items(

@@ -25,118 +25,35 @@ import frozendict  # noqa: F401
 
 from fireblocks_client import schemas  # noqa: F401
 
-from fireblocks_client.model.vault_accounts_paged_response import VaultAccountsPagedResponse
+from fireblocks_client.model.error import Error
 
 from . import path
 
-# Query params
-NamePrefixSchema = schemas.StrSchema
-NameSuffixSchema = schemas.StrSchema
-MinAmountThresholdSchema = schemas.NumberSchema
-AssetIdSchema = schemas.StrSchema
-
-
-class OrderBySchema(
-    schemas.EnumBase,
-    schemas.StrSchema
-):
-
-
-    class MetaOapg:
-        enum_value_to_name = {
-            "ASC": "ASC",
-            "DESC": "DESC",
-        }
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
-BeforeSchema = schemas.StrSchema
-AfterSchema = schemas.StrSchema
-
-
-class LimitSchema(
-    schemas.NumberSchema
-):
-
-
-    class MetaOapg:
-        inclusive_maximum = 500
-        inclusive_minimum = 1
-RequestRequiredQueryParams = typing_extensions.TypedDict(
-    'RequestRequiredQueryParams',
+# Path params
+GroupIdSchema = schemas.StrSchema
+RequestRequiredPathParams = typing_extensions.TypedDict(
+    'RequestRequiredPathParams',
     {
+        'groupId': typing.Union[GroupIdSchema, str, ],
     }
 )
-RequestOptionalQueryParams = typing_extensions.TypedDict(
-    'RequestOptionalQueryParams',
+RequestOptionalPathParams = typing_extensions.TypedDict(
+    'RequestOptionalPathParams',
     {
-        'namePrefix': typing.Union[NamePrefixSchema, str, ],
-        'nameSuffix': typing.Union[NameSuffixSchema, str, ],
-        'minAmountThreshold': typing.Union[MinAmountThresholdSchema, decimal.Decimal, int, float, ],
-        'assetId': typing.Union[AssetIdSchema, str, ],
-        'orderBy': typing.Union[OrderBySchema, str, ],
-        'before': typing.Union[BeforeSchema, str, ],
-        'after': typing.Union[AfterSchema, str, ],
-        'limit': typing.Union[LimitSchema, decimal.Decimal, int, float, ],
     },
     total=False
 )
 
 
-class RequestQueryParams(RequestRequiredQueryParams, RequestOptionalQueryParams):
+class RequestPathParams(RequestRequiredPathParams, RequestOptionalPathParams):
     pass
 
 
-request_query_name_prefix = api_client.QueryParameter(
-    name="namePrefix",
-    style=api_client.ParameterStyle.FORM,
-    schema=NamePrefixSchema,
-    explode=True,
-)
-request_query_name_suffix = api_client.QueryParameter(
-    name="nameSuffix",
-    style=api_client.ParameterStyle.FORM,
-    schema=NameSuffixSchema,
-    explode=True,
-)
-request_query_min_amount_threshold = api_client.QueryParameter(
-    name="minAmountThreshold",
-    style=api_client.ParameterStyle.FORM,
-    schema=MinAmountThresholdSchema,
-    explode=True,
-)
-request_query_asset_id = api_client.QueryParameter(
-    name="assetId",
-    style=api_client.ParameterStyle.FORM,
-    schema=AssetIdSchema,
-    explode=True,
-)
-request_query_order_by = api_client.QueryParameter(
-    name="orderBy",
-    style=api_client.ParameterStyle.FORM,
-    schema=OrderBySchema,
-    explode=True,
-)
-request_query_before = api_client.QueryParameter(
-    name="before",
-    style=api_client.ParameterStyle.FORM,
-    schema=BeforeSchema,
-    explode=True,
-)
-request_query_after = api_client.QueryParameter(
-    name="after",
-    style=api_client.ParameterStyle.FORM,
-    schema=AfterSchema,
-    explode=True,
-)
-request_query_limit = api_client.QueryParameter(
-    name="limit",
-    style=api_client.ParameterStyle.FORM,
-    schema=LimitSchema,
-    explode=True,
+request_path_group_id = api_client.PathParameter(
+    name="groupId",
+    style=api_client.ParameterStyle.SIMPLE,
+    schema=GroupIdSchema,
+    required=True,
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
@@ -144,9 +61,8 @@ x_request_id_parameter = api_client.HeaderParameter(
     style=api_client.ParameterStyle.SIMPLE,
     schema=XRequestIDSchema,
 )
-SchemaFor200ResponseBody = VaultAccountsPagedResponse
-ResponseHeadersFor200 = typing_extensions.TypedDict(
-    'ResponseHeadersFor200',
+ResponseHeadersFor204 = typing_extensions.TypedDict(
+    'ResponseHeadersFor204',
     {
         'X-Request-ID': XRequestIDSchema,
     }
@@ -154,104 +70,128 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 
 
 @dataclass
-class ApiResponseFor200(api_client.ApiResponse):
+class ApiResponseFor204(api_client.ApiResponse):
+    response: urllib3.HTTPResponse
+    headers: ResponseHeadersFor204
+    body: schemas.Unset = schemas.unset
+
+
+_response_for_204 = api_client.OpenApiResponse(
+    response_cls=ApiResponseFor204,
+    headers=[
+        x_request_id_parameter,
+    ]
+)
+XRequestIDSchema = schemas.StrSchema
+x_request_id_parameter = api_client.HeaderParameter(
+    name="X-Request-ID",
+    style=api_client.ParameterStyle.SIMPLE,
+    schema=XRequestIDSchema,
+)
+SchemaFor0ResponseBodyApplicationJson = Error
+ResponseHeadersFor0 = typing_extensions.TypedDict(
+    'ResponseHeadersFor0',
+    {
+        'X-Request-ID': XRequestIDSchema,
+    }
+)
+
+
+@dataclass
+class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
+        SchemaFor0ResponseBodyApplicationJson,
     ]
-    headers: ResponseHeadersFor200
+    headers: ResponseHeadersFor0
 
 
-_response_for_200 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor200,
+_response_for_default = api_client.OpenApiResponse(
+    response_cls=ApiResponseForDefault,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
         x_request_id_parameter,
     ]
 )
 _status_code_to_response = {
-    '200': _response_for_200,
+    '204': _response_for_204,
+    'default': _response_for_default,
 }
 _all_accept_content_types = (
-    '*/*',
+    'application/json',
 )
 
 
 class BaseApi(api_client.Api):
     @typing.overload
-    def _get_paged_vault_accounts_oapg(
+    def _delete_user_group_oapg(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
-    def _get_paged_vault_accounts_oapg(
+    def _delete_user_group_oapg(
         self,
         skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def _get_paged_vault_accounts_oapg(
+    def _delete_user_group_oapg(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def _get_paged_vault_accounts_oapg(
+    def _delete_user_group_oapg(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
         """
-        List vault acounts (Paginated)
+        Delete users group
         :param skip_deserialization: If true then api_response.response will be set but
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
         """
-        self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+        self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
         used_path = path.value
 
-        prefix_separator_iterator = None
+        _path_params = {}
         for parameter in (
-            request_query_name_prefix,
-            request_query_name_suffix,
-            request_query_min_amount_threshold,
-            request_query_asset_id,
-            request_query_order_by,
-            request_query_before,
-            request_query_after,
-            request_query_limit,
+            request_path_group_id,
         ):
-            parameter_data = query_params.get(parameter.name, schemas.unset)
+            parameter_data = path_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
-            if prefix_separator_iterator is None:
-                prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
-            for serialized_value in serialized_data.values():
-                used_path += serialized_value
+            serialized_data = parameter.serialize(parameter_data)
+            _path_params.update(serialized_data)
+
+        for k, v in _path_params.items():
+            used_path = used_path.replace('{%s}' % k, v)
 
         _headers = HTTPHeaderDict()
         # TODO add cookie handling
@@ -261,7 +201,7 @@ class BaseApi(api_client.Api):
 
         response = self.api_client.call_api(
             resource_path=used_path,
-            method='get'.upper(),
+            method='delete'.upper(),
             headers=_headers,
             stream=stream,
             timeout=timeout,
@@ -274,7 +214,11 @@ class BaseApi(api_client.Api):
             if response_for_status:
                 api_response = response_for_status.deserialize(response, self.api_client.configuration)
             else:
-                api_response = api_client.ApiResponseWithoutDeserialization(response=response)
+                default_response = _status_code_to_response.get('default')
+                if default_response:
+                    api_response = default_response.deserialize(response, self.api_client.configuration)
+                else:
+                    api_response = api_client.ApiResponseWithoutDeserialization(response=response)
 
         if not 200 <= response.status <= 299:
             raise exceptions.ApiException(
@@ -286,54 +230,56 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class GetPagedVaultAccounts(BaseApi):
+class DeleteUserGroup(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     @typing.overload
-    def get_paged_vault_accounts(
+    def delete_user_group(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
-    def get_paged_vault_accounts(
+    def delete_user_group(
         self,
         skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def get_paged_vault_accounts(
+    def delete_user_group(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def get_paged_vault_accounts(
+    def delete_user_group(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._get_paged_vault_accounts_oapg(
-            query_params=query_params,
+        return self._delete_user_group_oapg(
+            path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,
@@ -341,54 +287,56 @@ class GetPagedVaultAccounts(BaseApi):
         )
 
 
-class ApiForget(BaseApi):
+class ApiFordelete(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
     @typing.overload
-    def get(
+    def delete(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: typing_extensions.Literal[False] = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
     ]: ...
 
     @typing.overload
-    def get(
+    def delete(
         self,
         skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
     ) -> api_client.ApiResponseWithoutDeserialization: ...
 
     @typing.overload
-    def get(
+    def delete(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = ...,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor204,
+        ApiResponseForDefault,
         api_client.ApiResponseWithoutDeserialization,
     ]: ...
 
-    def get(
+    def delete(
         self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
+        path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
         skip_deserialization: bool = False,
     ):
-        return self._get_paged_vault_accounts_oapg(
-            query_params=query_params,
+        return self._delete_user_group_oapg(
+            path_params=path_params,
             accept_content_types=accept_content_types,
             stream=stream,
             timeout=timeout,

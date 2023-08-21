@@ -1368,10 +1368,11 @@ class Api:
     Do not edit the class manually.
     """
 
-    def __init__(self, api_client: typing.Optional[ApiClient] = None):
-        if api_client is None:
-            api_client = ApiClient()
-        self.api_client = api_client
+    def __init__(self, configuration: typing.Optional[Configuration] = None):
+        if configuration is not None:
+            self.api_client = ApiClient(configuration)
+        else:
+            self.api_client = ApiClient()
 
     @staticmethod
     def _verify_typed_dict_inputs_oapg(

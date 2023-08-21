@@ -49,7 +49,7 @@ AfterSchema = schemas.StrSchema
 
 
 class LimitSchema(
-    schemas.IntSchema
+    schemas.NumberSchema
 ):
     pass
 RequestRequiredQueryParams = typing_extensions.TypedDict(
@@ -67,7 +67,7 @@ RequestOptionalQueryParams = typing_extensions.TypedDict(
         'orderBy': typing.Union[OrderBySchema, str, ],
         'before': typing.Union[BeforeSchema, str, ],
         'after': typing.Union[AfterSchema, str, ],
-        'limit': typing.Union[LimitSchema, decimal.Decimal, int, ],
+        'limit': typing.Union[LimitSchema, decimal.Decimal, int, float, ],
     },
     total=False
 )

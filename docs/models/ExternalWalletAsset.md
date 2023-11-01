@@ -11,6 +11,8 @@ Key | Input Type | Accessed Type | Description | Notes
 **id** | str,  | str,  |  | [optional] 
 **status** | [**ConfigChangeRequestStatus**](ConfigChangeRequestStatus.md) | [**ConfigChangeRequestStatus**](ConfigChangeRequestStatus.md) |  | [optional] 
 **address** | str,  | str,  |  | [optional] 
+**balance** | str,  | str,  |  | [optional] 
+**lockedAmount** | str,  | str,  |  | [optional] 
 **tag** | str,  | str,  |  | [optional] 
 **activationTime** | str,  | str,  |  | [optional] 
 **[additionalInfo](#additionalInfo)** | list, tuple,  | tuple,  |  | [optional] 

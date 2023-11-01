@@ -33,7 +33,7 @@ class PayoutInstructionState(
 
     Do not edit the class manually.
 
-    - NOT_STARTED	- waiting to start
+        - NOT_STARTED	- waiting to start
 - TRANSACTION_SENT - an underlying transaction was sent
 - COMPLETED	- completed successfully
 - FAILED - failed

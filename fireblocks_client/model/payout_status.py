@@ -33,7 +33,7 @@ class PayoutStatus(
 
     Do not edit the class manually.
 
-    - REQUESTED	payout requested with all its details
+        - REQUESTED	payout requested with all its details
 - VERIFIED	payout instruction set details were verified
 - PROCESSING	payout instruction set executed and is processing
 - FINALIZED	payout done (all payout instructions completed successfully)

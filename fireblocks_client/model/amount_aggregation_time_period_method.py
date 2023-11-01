@@ -33,7 +33,7 @@ class AmountAggregationTimePeriodMethod(
 
     Do not edit the class manually.
 
-    * PER_SINGLE_MATCH - Apply the limit to each listed entity
+        * PER_SINGLE_MATCH - Apply the limit to each listed entity
 * ACROSS_ALL_MATCHES - Apply the limit to the sum of all listed entities
 
     """

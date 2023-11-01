@@ -33,7 +33,7 @@ class PolicyStatus(
 
     Do not edit the class manually.
 
-    * SUCCESS - success
+        * SUCCESS - success
 * UNVALIDATED - not validated yet
 * INVALID_CONFIGURATION - at least one rule is invalid
 * PENDING - pending approval

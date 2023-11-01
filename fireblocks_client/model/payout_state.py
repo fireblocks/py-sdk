@@ -33,7 +33,7 @@ class PayoutState(
 
     Do not edit the class manually.
 
-    - CREATED - payout instruction set created with all its details
+        - CREATED - payout instruction set created with all its details
 - FILE_FOUND - new file found in the FTP
 - REQUESTED - payout requested with all its details
 - TRANSLATED - payout instruction account IDs identified and translated

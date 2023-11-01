@@ -33,7 +33,7 @@ class PolicySrcOrDestType(
 
     Do not edit the class manually.
 
-    * EXCHANGE - A third-party exchange account connected to your workspace
+        * EXCHANGE - A third-party exchange account connected to your workspace
 * UNMANAGED - A unmanaged wallet outside of Fireblocks workspace
 * VAULT - An account in your Fireblocks Vault
 * NETWORK_CONNECTION - A connection in your Fireblocks network

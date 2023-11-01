@@ -33,7 +33,7 @@ class XBSettlementCryptoAsset(
 
     Do not edit the class manually.
 
-    - XLM_USDC_5F3T : USDC over Stellar network
+        - XLM_USDC_5F3T : USDC over Stellar network
 
     """
 

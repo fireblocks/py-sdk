@@ -33,7 +33,7 @@ class PolicySrcOrDestSubType(
 
     Do not edit the class manually.
 
-    * EXTERNAL - A whitelisted wallet assigned as external is typically used for addresses managed by your clients and counterparties
+        * EXTERNAL - A whitelisted wallet assigned as external is typically used for addresses managed by your clients and counterparties
 * INTERNAL - A whitelisted wallet assigned as internal, is typically used for addresses that you control outside of your Fireblocks workspace
 * CONTRACT - A whitelisted wallet assigned as contract is for identifying and managing external smart contracts
 * EXCHANGETEST - Exchanges which operate only on testnet assets

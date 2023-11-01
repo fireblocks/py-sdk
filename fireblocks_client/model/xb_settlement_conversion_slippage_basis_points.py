@@ -32,7 +32,7 @@ class XBSettlementConversionSlippageBasisPoints(
 
     Do not edit the class manually.
 
-    Slippage configuarion in basis points, the default value is 10%
+        Slippage configuarion in basis points, the default value is 10%
 
     """
 

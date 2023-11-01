@@ -33,7 +33,7 @@ class PayeeAccountType(
 
     Do not edit the class manually.
 
-    - VAULT_ACCOUNT  	a native Fireblocks vault account
+        - VAULT_ACCOUNT  	a native Fireblocks vault account
 - EXCHANGE_ACCOUNT 	a third-party exchange account
 - INTERNAL_WALLET 	a whitelisted address marked as internal to the workspace/organization
 - EXTERNAL_WALLET	a whitelisted address marked as external

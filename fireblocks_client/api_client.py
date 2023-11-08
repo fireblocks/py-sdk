@@ -1094,7 +1094,6 @@ class ApiClient:
         path = path.replace("]", "%5D")
         if body_json is None:
             body_json = "".encode("utf-8")
-        print(body_json)
         token = {
             "uri": path,
             "nonce": nonce,
@@ -1128,7 +1127,7 @@ class ApiClient:
     def get_user_agent(self):
         """User agent for this API client"""
         version = setuptools.__version__
-        user_agent = f"fireblocks-py/{version}"
+        user_agent = f"fireblocks-py-sdk/{version}"
         if not self.configuration.options.anonymous_platform:
             user_agent += f" ({os.name} {os.uname().release}; {platform.system()} {platform.version()}; {platform.machine()})"
         if self.configuration.options.user_agent:
@@ -1169,8 +1168,6 @@ class ApiClient:
             path += f"?{parsed_url.query}"
         url = self.configuration.base_path + resource_path
         used_headers = self.get_headers(path, body, headers)
-        print(used_headers)
-        print(path)
 
         # perform request and return response
         response = self.request(

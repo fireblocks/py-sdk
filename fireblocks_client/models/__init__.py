@@ -63,6 +63,7 @@ from fireblocks_client.model.get_transaction_operation import GetTransactionOper
 from fireblocks_client.model.get_users_response import GetUsersResponse
 from fireblocks_client.model.instruction_amount import InstructionAmount
 from fireblocks_client.model.media_entity_response import MediaEntityResponse
+from fireblocks_client.model.ncw import Ncw
 from fireblocks_client.model.network_channel import NetworkChannel
 from fireblocks_client.model.network_connection import NetworkConnection
 from fireblocks_client.model.network_connection_response import NetworkConnectionResponse
@@ -104,6 +105,7 @@ from fireblocks_client.model.policy_validation import PolicyValidation
 from fireblocks_client.model.public_key_information import PublicKeyInformation
 from fireblocks_client.model.publish_result import PublishResult
 from fireblocks_client.model.remove_collateral_request_body import RemoveCollateralRequestBody
+from fireblocks_client.model.request_options import RequestOptions
 from fireblocks_client.model.resend_webhooks_response import ResendWebhooksResponse
 from fireblocks_client.model.respond_to_connection_request import RespondToConnectionRequest
 from fireblocks_client.model.reward_info import RewardInfo

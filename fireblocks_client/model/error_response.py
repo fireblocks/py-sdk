@@ -72,27 +72,34 @@ class ErrorResponse(
                                     "UNPROCESSABLE_ENTITY": "UNPROCESSABLE_ENTITY",
                                     "FORBIDDEN": "FORBIDDEN",
                                 }
-                                @schemas.classproperty
-                                def INTERNAL(cls):
-                                    return cls("INTERNAL")
-                                @schemas.classproperty
-                                def AUTHENTICATION(cls):
-                                    return cls("AUTHENTICATION")
-                                @schemas.classproperty
-                                def AUTHORIZATION(cls):
-                                    return cls("AUTHORIZATION")
-                                @schemas.classproperty
-                                def VALIDATION(cls):
-                                    return cls("VALIDATION")
-                                @schemas.classproperty
-                                def NOT_FOUND(cls):
-                                    return cls("NOT_FOUND")
-                                @schemas.classproperty
-                                def UNPROCESSABLE_ENTITY(cls):
-                                    return cls("UNPROCESSABLE_ENTITY")
-                                @schemas.classproperty
-                                def FORBIDDEN(cls):
-                                    return cls("FORBIDDEN")
+                            
+                            @schemas.classproperty
+                            def INTERNAL(cls):
+                                return cls("INTERNAL")
+                            
+                            @schemas.classproperty
+                            def AUTHENTICATION(cls):
+                                return cls("AUTHENTICATION")
+                            
+                            @schemas.classproperty
+                            def AUTHORIZATION(cls):
+                                return cls("AUTHORIZATION")
+                            
+                            @schemas.classproperty
+                            def VALIDATION(cls):
+                                return cls("VALIDATION")
+                            
+                            @schemas.classproperty
+                            def NOT_FOUND(cls):
+                                return cls("NOT_FOUND")
+                            
+                            @schemas.classproperty
+                            def UNPROCESSABLE_ENTITY(cls):
+                                return cls("UNPROCESSABLE_ENTITY")
+                            
+                            @schemas.classproperty
+                            def FORBIDDEN(cls):
+                                return cls("FORBIDDEN")
                         message = schemas.StrSchema
                         __annotations__ = {
                             "type": type,

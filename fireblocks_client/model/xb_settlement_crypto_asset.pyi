@@ -36,9 +36,11 @@ class XBSettlementCryptoAsset(
     - XLM_USDC_5F3T : USDC over Stellar network
 
     """
-        @schemas.classproperty
-        def XLM_USDC_5F3T(cls):
-            return cls("XLM_USDC_5F3T")
-        @schemas.classproperty
-        def XLM(cls):
-            return cls("XLM")
+    
+    @schemas.classproperty
+    def XLM_USDC_5F3T(cls):
+        return cls("XLM_USDC_5F3T")
+    
+    @schemas.classproperty
+    def XLM(cls):
+        return cls("XLM")

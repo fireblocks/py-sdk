@@ -68,33 +68,42 @@ class PolicyRuleError(
                         "src": "SRC",
                         "dst": "DST",
                     }
-                    @schemas.classproperty
-                    def OPERATOR(cls):
-                        return cls("operator")
-                    @schemas.classproperty
-                    def OPERATORS(cls):
-                        return cls("operators")
-                    @schemas.classproperty
-                    def AUTHORIZATION_GROUPS(cls):
-                        return cls("authorizationGroups")
-                    @schemas.classproperty
-                    def DESIGNATED_SIGNER(cls):
-                        return cls("designatedSigner")
-                    @schemas.classproperty
-                    def DESIGNATED_SIGNERS(cls):
-                        return cls("designatedSigners")
-                    @schemas.classproperty
-                    def CONTRACT_METHODS(cls):
-                        return cls("contractMethods")
-                    @schemas.classproperty
-                    def AMOUNT_AGGREGATION(cls):
-                        return cls("amountAggregation")
-                    @schemas.classproperty
-                    def SRC(cls):
-                        return cls("src")
-                    @schemas.classproperty
-                    def DST(cls):
-                        return cls("dst")
+                
+                @schemas.classproperty
+                def OPERATOR(cls):
+                    return cls("operator")
+                
+                @schemas.classproperty
+                def OPERATORS(cls):
+                    return cls("operators")
+                
+                @schemas.classproperty
+                def AUTHORIZATION_GROUPS(cls):
+                    return cls("authorizationGroups")
+                
+                @schemas.classproperty
+                def DESIGNATED_SIGNER(cls):
+                    return cls("designatedSigner")
+                
+                @schemas.classproperty
+                def DESIGNATED_SIGNERS(cls):
+                    return cls("designatedSigners")
+                
+                @schemas.classproperty
+                def CONTRACT_METHODS(cls):
+                    return cls("contractMethods")
+                
+                @schemas.classproperty
+                def AMOUNT_AGGREGATION(cls):
+                    return cls("amountAggregation")
+                
+                @schemas.classproperty
+                def SRC(cls):
+                    return cls("src")
+                
+                @schemas.classproperty
+                def DST(cls):
+                    return cls("dst")
             __annotations__ = {
                 "errorMessage": errorMessage,
                 "errorCode": errorCode,

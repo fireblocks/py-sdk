@@ -52,21 +52,27 @@ class TransactionOperation(
             "RAW": "RAW",
             "TYPED_MESSAGE": "TYPED_MESSAGE",
         }
-        @schemas.classproperty
-        def TRANSFER(cls):
-            return cls("TRANSFER")
-        @schemas.classproperty
-        def BURN(cls):
-            return cls("BURN")
-        @schemas.classproperty
-        def CONTRACT_CALL(cls):
-            return cls("CONTRACT_CALL")
-        @schemas.classproperty
-        def MINT(cls):
-            return cls("MINT")
-        @schemas.classproperty
-        def RAW(cls):
-            return cls("RAW")
-        @schemas.classproperty
-        def TYPED_MESSAGE(cls):
-            return cls("TYPED_MESSAGE")
+    
+    @schemas.classproperty
+    def TRANSFER(cls):
+        return cls("TRANSFER")
+    
+    @schemas.classproperty
+    def BURN(cls):
+        return cls("BURN")
+    
+    @schemas.classproperty
+    def CONTRACT_CALL(cls):
+        return cls("CONTRACT_CALL")
+    
+    @schemas.classproperty
+    def MINT(cls):
+        return cls("MINT")
+    
+    @schemas.classproperty
+    def RAW(cls):
+        return cls("RAW")
+    
+    @schemas.classproperty
+    def TYPED_MESSAGE(cls):
+        return cls("TYPED_MESSAGE")

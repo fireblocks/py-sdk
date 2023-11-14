@@ -33,45 +33,59 @@ class TradingAccountType(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def COIN_FUTURES(cls):
-            return cls("COIN_FUTURES")
-        @schemas.classproperty
-        def COIN_MARGINED_SWAP(cls):
-            return cls("COIN_MARGINED_SWAP")
-        @schemas.classproperty
-        def EXCHANGE(cls):
-            return cls("EXCHANGE")
-        @schemas.classproperty
-        def FUNDING(cls):
-            return cls("FUNDING")
-        @schemas.classproperty
-        def FUNDABLE(cls):
-            return cls("FUNDABLE")
-        @schemas.classproperty
-        def FUTURES(cls):
-            return cls("FUTURES")
-        @schemas.classproperty
-        def FUTURES_CROSS(cls):
-            return cls("FUTURES_CROSS")
-        @schemas.classproperty
-        def MARGIN(cls):
-            return cls("MARGIN")
-        @schemas.classproperty
-        def MARGIN_CROSS(cls):
-            return cls("MARGIN_CROSS")
-        @schemas.classproperty
-        def OPTIONS(cls):
-            return cls("OPTIONS")
-        @schemas.classproperty
-        def SPOT(cls):
-            return cls("SPOT")
-        @schemas.classproperty
-        def USDT_MARGINED_SWAP_CROSS(cls):
-            return cls("USDT_MARGINED_SWAP_CROSS")
-        @schemas.classproperty
-        def USDT_FUTURES(cls):
-            return cls("USDT_FUTURES")
-        @schemas.classproperty
-        def UNIFIED(cls):
-            return cls("UNIFIED")
+    
+    @schemas.classproperty
+    def COIN_FUTURES(cls):
+        return cls("COIN_FUTURES")
+    
+    @schemas.classproperty
+    def COIN_MARGINED_SWAP(cls):
+        return cls("COIN_MARGINED_SWAP")
+    
+    @schemas.classproperty
+    def EXCHANGE(cls):
+        return cls("EXCHANGE")
+    
+    @schemas.classproperty
+    def FUNDING(cls):
+        return cls("FUNDING")
+    
+    @schemas.classproperty
+    def FUNDABLE(cls):
+        return cls("FUNDABLE")
+    
+    @schemas.classproperty
+    def FUTURES(cls):
+        return cls("FUTURES")
+    
+    @schemas.classproperty
+    def FUTURES_CROSS(cls):
+        return cls("FUTURES_CROSS")
+    
+    @schemas.classproperty
+    def MARGIN(cls):
+        return cls("MARGIN")
+    
+    @schemas.classproperty
+    def MARGIN_CROSS(cls):
+        return cls("MARGIN_CROSS")
+    
+    @schemas.classproperty
+    def OPTIONS(cls):
+        return cls("OPTIONS")
+    
+    @schemas.classproperty
+    def SPOT(cls):
+        return cls("SPOT")
+    
+    @schemas.classproperty
+    def USDT_MARGINED_SWAP_CROSS(cls):
+        return cls("USDT_MARGINED_SWAP_CROSS")
+    
+    @schemas.classproperty
+    def USDT_FUTURES(cls):
+        return cls("USDT_FUTURES")
+    
+    @schemas.classproperty
+    def UNIFIED(cls):
+        return cls("UNIFIED")

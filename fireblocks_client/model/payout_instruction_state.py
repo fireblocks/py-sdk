@@ -52,21 +52,27 @@ class PayoutInstructionState(
             "TRANSLATION_ERROR": "TRANSLATION_ERROR",
             "SKIPPED": "SKIPPED",
         }
-        @schemas.classproperty
-        def NOT_STARTED(cls):
-            return cls("NOT_STARTED")
-        @schemas.classproperty
-        def TRANSACTION_SENT(cls):
-            return cls("TRANSACTION_SENT")
-        @schemas.classproperty
-        def COMPLETED(cls):
-            return cls("COMPLETED")
-        @schemas.classproperty
-        def FAILED(cls):
-            return cls("FAILED")
-        @schemas.classproperty
-        def TRANSLATION_ERROR(cls):
-            return cls("TRANSLATION_ERROR")
-        @schemas.classproperty
-        def SKIPPED(cls):
-            return cls("SKIPPED")
+    
+    @schemas.classproperty
+    def NOT_STARTED(cls):
+        return cls("NOT_STARTED")
+    
+    @schemas.classproperty
+    def TRANSACTION_SENT(cls):
+        return cls("TRANSACTION_SENT")
+    
+    @schemas.classproperty
+    def COMPLETED(cls):
+        return cls("COMPLETED")
+    
+    @schemas.classproperty
+    def FAILED(cls):
+        return cls("FAILED")
+    
+    @schemas.classproperty
+    def TRANSLATION_ERROR(cls):
+        return cls("TRANSLATION_ERROR")
+    
+    @schemas.classproperty
+    def SKIPPED(cls):
+        return cls("SKIPPED")

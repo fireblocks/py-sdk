@@ -54,24 +54,31 @@ class PolicyStatus(
             "AWAITING_QUORUM": "AWAITING_QUORUM",
             "UNHANDLED_ERROR": "UNHANDLED_ERROR",
         }
-        @schemas.classproperty
-        def SUCCESS(cls):
-            return cls("SUCCESS")
-        @schemas.classproperty
-        def UNVALIDATED(cls):
-            return cls("UNVALIDATED")
-        @schemas.classproperty
-        def INVALID_CONFIGURATION(cls):
-            return cls("INVALID_CONFIGURATION")
-        @schemas.classproperty
-        def PENDING(cls):
-            return cls("PENDING")
-        @schemas.classproperty
-        def PENDING_CONSOLE_APPROVAL(cls):
-            return cls("PENDING_CONSOLE_APPROVAL")
-        @schemas.classproperty
-        def AWAITING_QUORUM(cls):
-            return cls("AWAITING_QUORUM")
-        @schemas.classproperty
-        def UNHANDLED_ERROR(cls):
-            return cls("UNHANDLED_ERROR")
+    
+    @schemas.classproperty
+    def SUCCESS(cls):
+        return cls("SUCCESS")
+    
+    @schemas.classproperty
+    def UNVALIDATED(cls):
+        return cls("UNVALIDATED")
+    
+    @schemas.classproperty
+    def INVALID_CONFIGURATION(cls):
+        return cls("INVALID_CONFIGURATION")
+    
+    @schemas.classproperty
+    def PENDING(cls):
+        return cls("PENDING")
+    
+    @schemas.classproperty
+    def PENDING_CONSOLE_APPROVAL(cls):
+        return cls("PENDING_CONSOLE_APPROVAL")
+    
+    @schemas.classproperty
+    def AWAITING_QUORUM(cls):
+        return cls("AWAITING_QUORUM")
+    
+    @schemas.classproperty
+    def UNHANDLED_ERROR(cls):
+        return cls("UNHANDLED_ERROR")

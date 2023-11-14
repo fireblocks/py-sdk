@@ -27,6 +27,7 @@ import os
 from http import client as http_client
 from fireblocks_client.exceptions import ApiValueError
 
+
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
     "multipleOf",
     "maximum",

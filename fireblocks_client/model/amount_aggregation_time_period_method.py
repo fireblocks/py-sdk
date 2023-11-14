@@ -44,9 +44,11 @@ class AmountAggregationTimePeriodMethod(
             "PER_SINGLE_MATCH": "PER_SINGLE_MATCH",
             "ACROSS_ALL_MATCHES": "ACROSS_ALL_MATCHES",
         }
-        @schemas.classproperty
-        def PER_SINGLE_MATCH(cls):
-            return cls("PER_SINGLE_MATCH")
-        @schemas.classproperty
-        def ACROSS_ALL_MATCHES(cls):
-            return cls("ACROSS_ALL_MATCHES")
+    
+    @schemas.classproperty
+    def PER_SINGLE_MATCH(cls):
+        return cls("PER_SINGLE_MATCH")
+    
+    @schemas.classproperty
+    def ACROSS_ALL_MATCHES(cls):
+        return cls("ACROSS_ALL_MATCHES")

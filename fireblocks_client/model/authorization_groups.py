@@ -61,18 +61,22 @@ class AuthorizationGroups(
                                 "REJECTED": "REJECTED",
                                 "NA": "NA",
                             }
-                            @schemas.classproperty
-                            def PENDING_AUTHORIZATION(cls):
-                                return cls("PENDING_AUTHORIZATION")
-                            @schemas.classproperty
-                            def APPROVED(cls):
-                                return cls("APPROVED")
-                            @schemas.classproperty
-                            def REJECTED(cls):
-                                return cls("REJECTED")
-                            @schemas.classproperty
-                            def NA(cls):
-                                return cls("NA")
+                        
+                        @schemas.classproperty
+                        def PENDING_AUTHORIZATION(cls):
+                            return cls("PENDING_AUTHORIZATION")
+                        
+                        @schemas.classproperty
+                        def APPROVED(cls):
+                            return cls("APPROVED")
+                        
+                        @schemas.classproperty
+                        def REJECTED(cls):
+                            return cls("REJECTED")
+                        
+                        @schemas.classproperty
+                        def NA(cls):
+                            return cls("NA")
                 
                 def __getitem__(self, name: typing.Union[str, ]) -> MetaOapg.additional_properties:
                     # dict_instance[name] accessor

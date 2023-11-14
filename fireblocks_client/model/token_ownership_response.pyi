@@ -89,18 +89,22 @@ class TokenOwnershipResponse(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def ETH(cls):
-                        return cls("ETH")
-                    @schemas.classproperty
-                    def ETH_TEST3(cls):
-                        return cls("ETH_TEST3")
-                    @schemas.classproperty
-                    def POLYGON(cls):
-                        return cls("POLYGON")
-                    @schemas.classproperty
-                    def POLYGON_TEST_MUMBAI(cls):
-                        return cls("POLYGON_TEST_MUMBAI")
+                
+                @schemas.classproperty
+                def ETH(cls):
+                    return cls("ETH")
+                
+                @schemas.classproperty
+                def ETH_TEST3(cls):
+                    return cls("ETH_TEST3")
+                
+                @schemas.classproperty
+                def POLYGON(cls):
+                    return cls("POLYGON")
+                
+                @schemas.classproperty
+                def POLYGON_TEST_MUMBAI(cls):
+                    return cls("POLYGON_TEST_MUMBAI")
             description = schemas.StrSchema
             name = schemas.StrSchema
             metadataURI = schemas.StrSchema

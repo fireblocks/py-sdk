@@ -41,12 +41,15 @@ class XBSettlementFlowSelectedConversionSlippageReason(
             "CONFIG": "CONFIG",
             "FLOW": "FLOW",
         }
-        @schemas.classproperty
-        def DEFAULT(cls):
-            return cls("DEFAULT")
-        @schemas.classproperty
-        def CONFIG(cls):
-            return cls("CONFIG")
-        @schemas.classproperty
-        def FLOW(cls):
-            return cls("FLOW")
+    
+    @schemas.classproperty
+    def DEFAULT(cls):
+        return cls("DEFAULT")
+    
+    @schemas.classproperty
+    def CONFIG(cls):
+        return cls("CONFIG")
+    
+    @schemas.classproperty
+    def FLOW(cls):
+        return cls("FLOW")

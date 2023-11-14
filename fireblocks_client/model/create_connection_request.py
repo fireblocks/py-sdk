@@ -57,12 +57,14 @@ class CreateConnectionRequest(
                         "MEDIUM": "MEDIUM",
                         "HIGH": "HIGH",
                     }
-                    @schemas.classproperty
-                    def MEDIUM(cls):
-                        return cls("MEDIUM")
-                    @schemas.classproperty
-                    def HIGH(cls):
-                        return cls("HIGH")
+                
+                @schemas.classproperty
+                def MEDIUM(cls):
+                    return cls("MEDIUM")
+                
+                @schemas.classproperty
+                def HIGH(cls):
+                    return cls("HIGH")
             uri = schemas.StrSchema
             
             

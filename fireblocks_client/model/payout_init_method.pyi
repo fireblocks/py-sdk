@@ -33,9 +33,11 @@ class PayoutInitMethod(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def FILE(cls):
-            return cls("FILE")
-        @schemas.classproperty
-        def API(cls):
-            return cls("API")
+    
+    @schemas.classproperty
+    def FILE(cls):
+        return cls("FILE")
+    
+    @schemas.classproperty
+    def API(cls):
+        return cls("API")

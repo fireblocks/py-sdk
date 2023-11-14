@@ -33,81 +33,107 @@ class ExchangeType(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def BINANCE(cls):
-            return cls("BINANCE")
-        @schemas.classproperty
-        def BINANCEUS(cls):
-            return cls("BINANCEUS")
-        @schemas.classproperty
-        def BITFINEX(cls):
-            return cls("BITFINEX")
-        @schemas.classproperty
-        def BITHUMB(cls):
-            return cls("BITHUMB")
-        @schemas.classproperty
-        def BITMEX(cls):
-            return cls("BITMEX")
-        @schemas.classproperty
-        def BITSO(cls):
-            return cls("BITSO")
-        @schemas.classproperty
-        def BITSTAMP(cls):
-            return cls("BITSTAMP")
-        @schemas.classproperty
-        def BITTREX(cls):
-            return cls("BITTREX")
-        @schemas.classproperty
-        def CIRCLE(cls):
-            return cls("CIRCLE")
-        @schemas.classproperty
-        def COINBASEPRO(cls):
-            return cls("COINBASEPRO")
-        @schemas.classproperty
-        def COINMETRO(cls):
-            return cls("COINMETRO")
-        @schemas.classproperty
-        def COINSPRO(cls):
-            return cls("COINSPRO")
-        @schemas.classproperty
-        def CRYPTOCOM(cls):
-            return cls("CRYPTOCOM")
-        @schemas.classproperty
-        def DERIBIT(cls):
-            return cls("DERIBIT")
-        @schemas.classproperty
-        def FTX(cls):
-            return cls("FTX")
-        @schemas.classproperty
-        def FIXUS(cls):
-            return cls("FIXUS")
-        @schemas.classproperty
-        def GEMINI(cls):
-            return cls("GEMINI")
-        @schemas.classproperty
-        def HITBTC(cls):
-            return cls("HITBTC")
-        @schemas.classproperty
-        def HUOBI(cls):
-            return cls("HUOBI")
-        @schemas.classproperty
-        def KORBIT(cls):
-            return cls("KORBIT")
-        @schemas.classproperty
-        def KRAKEN(cls):
-            return cls("KRAKEN")
-        @schemas.classproperty
-        def LIQUID(cls):
-            return cls("LIQUID")
-        @schemas.classproperty
-        def POLONIEX(cls):
-            return cls("POLONIEX")
-        @schemas.classproperty
-        def OKCOIN(cls):
-            return cls("OKCOIN")
-        @schemas.classproperty
-        def OKEX(cls):
-            return cls("OKEX")
-        @schemas.classproperty
-        def SEEDCX(cls):
-            return cls("SEEDCX")
+    
+    @schemas.classproperty
+    def BINANCE(cls):
+        return cls("BINANCE")
+    
+    @schemas.classproperty
+    def BINANCEUS(cls):
+        return cls("BINANCEUS")
+    
+    @schemas.classproperty
+    def BITFINEX(cls):
+        return cls("BITFINEX")
+    
+    @schemas.classproperty
+    def BITHUMB(cls):
+        return cls("BITHUMB")
+    
+    @schemas.classproperty
+    def BITMEX(cls):
+        return cls("BITMEX")
+    
+    @schemas.classproperty
+    def BITSO(cls):
+        return cls("BITSO")
+    
+    @schemas.classproperty
+    def BITSTAMP(cls):
+        return cls("BITSTAMP")
+    
+    @schemas.classproperty
+    def BITTREX(cls):
+        return cls("BITTREX")
+    
+    @schemas.classproperty
+    def CIRCLE(cls):
+        return cls("CIRCLE")
+    
+    @schemas.classproperty
+    def COINBASEPRO(cls):
+        return cls("COINBASEPRO")
+    
+    @schemas.classproperty
+    def COINMETRO(cls):
+        return cls("COINMETRO")
+    
+    @schemas.classproperty
+    def COINSPRO(cls):
+        return cls("COINSPRO")
+    
+    @schemas.classproperty
+    def CRYPTOCOM(cls):
+        return cls("CRYPTOCOM")
+    
+    @schemas.classproperty
+    def DERIBIT(cls):
+        return cls("DERIBIT")
+    
+    @schemas.classproperty
+    def FTX(cls):
+        return cls("FTX")
+    
+    @schemas.classproperty
+    def FIXUS(cls):
+        return cls("FIXUS")
+    
+    @schemas.classproperty
+    def GEMINI(cls):
+        return cls("GEMINI")
+    
+    @schemas.classproperty
+    def HITBTC(cls):
+        return cls("HITBTC")
+    
+    @schemas.classproperty
+    def HUOBI(cls):
+        return cls("HUOBI")
+    
+    @schemas.classproperty
+    def KORBIT(cls):
+        return cls("KORBIT")
+    
+    @schemas.classproperty
+    def KRAKEN(cls):
+        return cls("KRAKEN")
+    
+    @schemas.classproperty
+    def LIQUID(cls):
+        return cls("LIQUID")
+    
+    @schemas.classproperty
+    def POLONIEX(cls):
+        return cls("POLONIEX")
+    
+    @schemas.classproperty
+    def OKCOIN(cls):
+        return cls("OKCOIN")
+    
+    @schemas.classproperty
+    def OKEX(cls):
+        return cls("OKEX")
+    
+    @schemas.classproperty
+    def SEEDCX(cls):
+        return cls("SEEDCX")

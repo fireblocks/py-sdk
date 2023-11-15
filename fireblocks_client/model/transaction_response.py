@@ -274,12 +274,14 @@ class TransactionResponse(
                         "WHITELISTED": "WHITELISTED",
                         "ONE_TIME": "ONE_TIME",
                     }
-                    @schemas.classproperty
-                    def WHITELISTED(cls):
-                        return cls("WHITELISTED")
-                    @schemas.classproperty
-                    def ONE_TIME(cls):
-                        return cls("ONE_TIME")
+                
+                @schemas.classproperty
+                def WHITELISTED(cls):
+                    return cls("WHITELISTED")
+                
+                @schemas.classproperty
+                def ONE_TIME(cls):
+                    return cls("ONE_TIME")
             requestedAmount = schemas.NumberSchema
             amount = schemas.NumberSchema
             netAmount = schemas.NumberSchema

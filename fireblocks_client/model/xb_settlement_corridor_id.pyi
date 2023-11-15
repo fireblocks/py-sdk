@@ -40,18 +40,23 @@ class XBSettlementCorridorId(
 - US_UK : USA (USD) to United Kingdon (GBP)
 
     """
-        @schemas.classproperty
-        def MX_US(cls):
-            return cls("MX_US")
-        @schemas.classproperty
-        def CO_US(cls):
-            return cls("CO_US")
-        @schemas.classproperty
-        def US_MX(cls):
-            return cls("US_MX")
-        @schemas.classproperty
-        def US_EU(cls):
-            return cls("US_EU")
-        @schemas.classproperty
-        def US_UK(cls):
-            return cls("US_UK")
+    
+    @schemas.classproperty
+    def MX_US(cls):
+        return cls("MX_US")
+    
+    @schemas.classproperty
+    def CO_US(cls):
+        return cls("CO_US")
+    
+    @schemas.classproperty
+    def US_MX(cls):
+        return cls("US_MX")
+    
+    @schemas.classproperty
+    def US_EU(cls):
+        return cls("US_EU")
+    
+    @schemas.classproperty
+    def US_UK(cls):
+        return cls("US_UK")

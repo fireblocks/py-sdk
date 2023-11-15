@@ -52,9 +52,10 @@ class NoneNetworkRoutingDest(
                     enum_value_to_name = {
                         "NONE": "NONE",
                     }
-                    @schemas.classproperty
-                    def NONE(cls):
-                        return cls("NONE")
+                
+                @schemas.classproperty
+                def NONE(cls):
+                    return cls("NONE")
             __annotations__ = {
                 "scheme": scheme,
             }

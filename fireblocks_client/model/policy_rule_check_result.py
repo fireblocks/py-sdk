@@ -58,12 +58,14 @@ class PolicyRuleCheckResult(
                         "ok": "OK",
                         "failure": "FAILURE",
                     }
-                    @schemas.classproperty
-                    def OK(cls):
-                        return cls("ok")
-                    @schemas.classproperty
-                    def FAILURE(cls):
-                        return cls("failure")
+                
+                @schemas.classproperty
+                def OK(cls):
+                    return cls("ok")
+                
+                @schemas.classproperty
+                def FAILURE(cls):
+                    return cls("failure")
             
             
             class errors(

@@ -54,9 +54,10 @@ class CustomFiatRoutingDest(
                     enum_value_to_name = {
                         "CUSTOM": "CUSTOM",
                     }
-                    @schemas.classproperty
-                    def CUSTOM(cls):
-                        return cls("CUSTOM")
+                
+                @schemas.classproperty
+                def CUSTOM(cls):
+                    return cls("CUSTOM")
             
             
             class dstType(
@@ -69,9 +70,10 @@ class CustomFiatRoutingDest(
                     enum_value_to_name = {
                         "FIAT_ACCOUNT": "FIAT_ACCOUNT",
                     }
-                    @schemas.classproperty
-                    def FIAT_ACCOUNT(cls):
-                        return cls("FIAT_ACCOUNT")
+                
+                @schemas.classproperty
+                def FIAT_ACCOUNT(cls):
+                    return cls("FIAT_ACCOUNT")
             dstId = schemas.StrSchema
             __annotations__ = {
                 "scheme": scheme,

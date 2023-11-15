@@ -32,10 +32,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -51,8 +48,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->get_nft: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -135,10 +131,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -173,8 +166,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->get_nfts: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -315,10 +307,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -346,8 +335,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->get_ownership_tokens: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -528,10 +516,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -554,8 +539,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->list_owned_collections: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -694,10 +678,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -712,8 +693,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->refresh_nft_metadata: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -787,10 +767,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -806,8 +783,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->update_ownership_tokens: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -891,10 +867,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = nfts_api.NFTsApi()
@@ -913,8 +886,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling NFTsApi->update_token_ownership_status: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

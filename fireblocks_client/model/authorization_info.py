@@ -53,12 +53,14 @@ class AuthorizationInfo(
                         "AND": "AND",
                         "OR": "OR",
                     }
-                    @schemas.classproperty
-                    def AND(cls):
-                        return cls("AND")
-                    @schemas.classproperty
-                    def OR(cls):
-                        return cls("OR")
+                
+                @schemas.classproperty
+                def AND(cls):
+                    return cls("AND")
+                
+                @schemas.classproperty
+                def OR(cls):
+                    return cls("OR")
             
             
             class groups(

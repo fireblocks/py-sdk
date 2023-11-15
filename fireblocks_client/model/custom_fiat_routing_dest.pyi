@@ -48,18 +48,20 @@ class CustomFiatRoutingDest(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def CUSTOM(cls):
-                        return cls("CUSTOM")
+                
+                @schemas.classproperty
+                def CUSTOM(cls):
+                    return cls("CUSTOM")
             
             
             class dstType(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def FIAT_ACCOUNT(cls):
-                        return cls("FIAT_ACCOUNT")
+                
+                @schemas.classproperty
+                def FIAT_ACCOUNT(cls):
+                    return cls("FIAT_ACCOUNT")
             dstId = schemas.StrSchema
             __annotations__ = {
                 "scheme": scheme,

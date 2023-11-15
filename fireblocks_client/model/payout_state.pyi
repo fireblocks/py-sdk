@@ -44,30 +44,39 @@ class PayoutState(
 - FAILED - one or more of the payout instructions failed
 
     """
-        @schemas.classproperty
-        def CREATED(cls):
-            return cls("CREATED")
-        @schemas.classproperty
-        def FILE_FOUND(cls):
-            return cls("FILE_FOUND")
-        @schemas.classproperty
-        def REQUESTED(cls):
-            return cls("REQUESTED")
-        @schemas.classproperty
-        def TRANSLATED(cls):
-            return cls("TRANSLATED")
-        @schemas.classproperty
-        def PROCESSING(cls):
-            return cls("PROCESSING")
-        @schemas.classproperty
-        def SUBMITTED(cls):
-            return cls("SUBMITTED")
-        @schemas.classproperty
-        def FINALIZED(cls):
-            return cls("FINALIZED")
-        @schemas.classproperty
-        def INSUFFICIENT_BALANCE(cls):
-            return cls("INSUFFICIENT_BALANCE")
-        @schemas.classproperty
-        def FAILED(cls):
-            return cls("FAILED")
+    
+    @schemas.classproperty
+    def CREATED(cls):
+        return cls("CREATED")
+    
+    @schemas.classproperty
+    def FILE_FOUND(cls):
+        return cls("FILE_FOUND")
+    
+    @schemas.classproperty
+    def REQUESTED(cls):
+        return cls("REQUESTED")
+    
+    @schemas.classproperty
+    def TRANSLATED(cls):
+        return cls("TRANSLATED")
+    
+    @schemas.classproperty
+    def PROCESSING(cls):
+        return cls("PROCESSING")
+    
+    @schemas.classproperty
+    def SUBMITTED(cls):
+        return cls("SUBMITTED")
+    
+    @schemas.classproperty
+    def FINALIZED(cls):
+        return cls("FINALIZED")
+    
+    @schemas.classproperty
+    def INSUFFICIENT_BALANCE(cls):
+        return cls("INSUFFICIENT_BALANCE")
+    
+    @schemas.classproperty
+    def FAILED(cls):
+        return cls("FAILED")

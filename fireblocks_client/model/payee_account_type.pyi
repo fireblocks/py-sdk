@@ -41,21 +41,27 @@ class PayeeAccountType(
 - FIAT_ACCOUNT	a third-party account of a fiat bank (Signature, BCB, etc)
 
     """
-        @schemas.classproperty
-        def VAULT_ACCOUNT(cls):
-            return cls("VAULT_ACCOUNT")
-        @schemas.classproperty
-        def EXCHANGE_ACCOUNT(cls):
-            return cls("EXCHANGE_ACCOUNT")
-        @schemas.classproperty
-        def INTERNAL_WALLET(cls):
-            return cls("INTERNAL_WALLET")
-        @schemas.classproperty
-        def EXTERNAL_WALLET(cls):
-            return cls("EXTERNAL_WALLET")
-        @schemas.classproperty
-        def NETWORK_CONNECTION(cls):
-            return cls("NETWORK_CONNECTION")
-        @schemas.classproperty
-        def FIAT_ACCOUNT(cls):
-            return cls("FIAT_ACCOUNT")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT(cls):
+        return cls("VAULT_ACCOUNT")
+    
+    @schemas.classproperty
+    def EXCHANGE_ACCOUNT(cls):
+        return cls("EXCHANGE_ACCOUNT")
+    
+    @schemas.classproperty
+    def INTERNAL_WALLET(cls):
+        return cls("INTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def EXTERNAL_WALLET(cls):
+        return cls("EXTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def NETWORK_CONNECTION(cls):
+        return cls("NETWORK_CONNECTION")
+    
+    @schemas.classproperty
+    def FIAT_ACCOUNT(cls):
+        return cls("FIAT_ACCOUNT")

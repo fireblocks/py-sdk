@@ -52,21 +52,27 @@ class PayoutStatus(
             "INSUFFICIENT_BALANCE": "INSUFFICIENT_BALANCE",
             "FAILED": "FAILED",
         }
-        @schemas.classproperty
-        def REGISTERED(cls):
-            return cls("REGISTERED")
-        @schemas.classproperty
-        def VERIFYING(cls):
-            return cls("VERIFYING")
-        @schemas.classproperty
-        def IN_PROGRESS(cls):
-            return cls("IN_PROGRESS")
-        @schemas.classproperty
-        def DONE(cls):
-            return cls("DONE")
-        @schemas.classproperty
-        def INSUFFICIENT_BALANCE(cls):
-            return cls("INSUFFICIENT_BALANCE")
-        @schemas.classproperty
-        def FAILED(cls):
-            return cls("FAILED")
+    
+    @schemas.classproperty
+    def REGISTERED(cls):
+        return cls("REGISTERED")
+    
+    @schemas.classproperty
+    def VERIFYING(cls):
+        return cls("VERIFYING")
+    
+    @schemas.classproperty
+    def IN_PROGRESS(cls):
+        return cls("IN_PROGRESS")
+    
+    @schemas.classproperty
+    def DONE(cls):
+        return cls("DONE")
+    
+    @schemas.classproperty
+    def INSUFFICIENT_BALANCE(cls):
+        return cls("INSUFFICIENT_BALANCE")
+    
+    @schemas.classproperty
+    def FAILED(cls):
+        return cls("FAILED")

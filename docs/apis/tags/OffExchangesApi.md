@@ -32,10 +32,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = off_exchanges_api.OffExchangesApi()
@@ -89,8 +86,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling OffExchangesApi->add_off_exchange: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -182,10 +178,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = off_exchanges_api.OffExchangesApi()
@@ -201,8 +194,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling OffExchangesApi->get_off_exchange_collateral_accounts: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -312,10 +304,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = off_exchanges_api.OffExchangesApi()
@@ -331,8 +320,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling OffExchangesApi->get_off_exchange_settlement_transactions: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -431,10 +419,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = off_exchanges_api.OffExchangesApi()
@@ -488,8 +473,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling OffExchangesApi->remove_off_exchange: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -582,10 +566,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = off_exchanges_api.OffExchangesApi()
@@ -602,8 +583,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling OffExchangesApi->settle_off_exchange_trades: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

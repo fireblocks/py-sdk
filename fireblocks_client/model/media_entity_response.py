@@ -62,33 +62,42 @@ class MediaEntityResponse(
                         "SVG": "SVG",
                         "AUDIO": "AUDIO",
                     }
-                    @schemas.classproperty
-                    def IMAGE(cls):
-                        return cls("IMAGE")
-                    @schemas.classproperty
-                    def VIDEO(cls):
-                        return cls("VIDEO")
-                    @schemas.classproperty
-                    def ANIMATION(cls):
-                        return cls("ANIMATION")
-                    @schemas.classproperty
-                    def THREE_D(cls):
-                        return cls("THREE_D")
-                    @schemas.classproperty
-                    def TEXT(cls):
-                        return cls("TEXT")
-                    @schemas.classproperty
-                    def GIF(cls):
-                        return cls("GIF")
-                    @schemas.classproperty
-                    def UNKNOWN_TYPE(cls):
-                        return cls("UNKNOWN_TYPE")
-                    @schemas.classproperty
-                    def SVG(cls):
-                        return cls("SVG")
-                    @schemas.classproperty
-                    def AUDIO(cls):
-                        return cls("AUDIO")
+                
+                @schemas.classproperty
+                def IMAGE(cls):
+                    return cls("IMAGE")
+                
+                @schemas.classproperty
+                def VIDEO(cls):
+                    return cls("VIDEO")
+                
+                @schemas.classproperty
+                def ANIMATION(cls):
+                    return cls("ANIMATION")
+                
+                @schemas.classproperty
+                def THREE_D(cls):
+                    return cls("THREE_D")
+                
+                @schemas.classproperty
+                def TEXT(cls):
+                    return cls("TEXT")
+                
+                @schemas.classproperty
+                def GIF(cls):
+                    return cls("GIF")
+                
+                @schemas.classproperty
+                def UNKNOWN_TYPE(cls):
+                    return cls("UNKNOWN_TYPE")
+                
+                @schemas.classproperty
+                def SVG(cls):
+                    return cls("SVG")
+                
+                @schemas.classproperty
+                def AUDIO(cls):
+                    return cls("AUDIO")
             __annotations__ = {
                 "url": url,
                 "contentType": contentType,

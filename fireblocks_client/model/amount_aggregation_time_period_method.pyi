@@ -37,9 +37,11 @@ class AmountAggregationTimePeriodMethod(
 * ACROSS_ALL_MATCHES - Apply the limit to the sum of all listed entities
 
     """
-        @schemas.classproperty
-        def PER_SINGLE_MATCH(cls):
-            return cls("PER_SINGLE_MATCH")
-        @schemas.classproperty
-        def ACROSS_ALL_MATCHES(cls):
-            return cls("ACROSS_ALL_MATCHES")
+    
+    @schemas.classproperty
+    def PER_SINGLE_MATCH(cls):
+        return cls("PER_SINGLE_MATCH")
+    
+    @schemas.classproperty
+    def ACROSS_ALL_MATCHES(cls):
+        return cls("ACROSS_ALL_MATCHES")

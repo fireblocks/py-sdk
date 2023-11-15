@@ -41,21 +41,27 @@ class TransactionOperation(
 * `RAW` - An off-chain message with no predefined format. Use it to sign any message with your private key, including protocols such as blockchains and custom transaction types that are not natively supported by Fireblocks. [Learn more about raw signing transactions.](https://developers.fireblocks.com/docs/raw-message-signing)
 
     """
-        @schemas.classproperty
-        def TRANSFER(cls):
-            return cls("TRANSFER")
-        @schemas.classproperty
-        def BURN(cls):
-            return cls("BURN")
-        @schemas.classproperty
-        def CONTRACT_CALL(cls):
-            return cls("CONTRACT_CALL")
-        @schemas.classproperty
-        def MINT(cls):
-            return cls("MINT")
-        @schemas.classproperty
-        def RAW(cls):
-            return cls("RAW")
-        @schemas.classproperty
-        def TYPED_MESSAGE(cls):
-            return cls("TYPED_MESSAGE")
+    
+    @schemas.classproperty
+    def TRANSFER(cls):
+        return cls("TRANSFER")
+    
+    @schemas.classproperty
+    def BURN(cls):
+        return cls("BURN")
+    
+    @schemas.classproperty
+    def CONTRACT_CALL(cls):
+        return cls("CONTRACT_CALL")
+    
+    @schemas.classproperty
+    def MINT(cls):
+        return cls("MINT")
+    
+    @schemas.classproperty
+    def RAW(cls):
+        return cls("RAW")
+    
+    @schemas.classproperty
+    def TYPED_MESSAGE(cls):
+        return cls("TYPED_MESSAGE")

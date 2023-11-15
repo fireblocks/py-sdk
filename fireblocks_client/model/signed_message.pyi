@@ -46,12 +46,14 @@ class SignedMessage(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def ECDSA_SECP256K1(cls):
-                        return cls("MPC_ECDSA_SECP256K1")
-                    @schemas.classproperty
-                    def EDDSA_ED25519(cls):
-                        return cls("MPC_EDDSA_ED25519")
+                
+                @schemas.classproperty
+                def ECDSA_SECP256K1(cls):
+                    return cls("MPC_ECDSA_SECP256K1")
+                
+                @schemas.classproperty
+                def EDDSA_ED25519(cls):
+                    return cls("MPC_EDDSA_ED25519")
             
             
             class derivationPath(

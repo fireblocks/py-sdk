@@ -53,12 +53,14 @@ class UpdateTokenOwnershipStatusDto(
                         "LISTED": "LISTED",
                         "ARCHIVED": "ARCHIVED",
                     }
-                    @schemas.classproperty
-                    def LISTED(cls):
-                        return cls("LISTED")
-                    @schemas.classproperty
-                    def ARCHIVED(cls):
-                        return cls("ARCHIVED")
+                
+                @schemas.classproperty
+                def LISTED(cls):
+                    return cls("LISTED")
+                
+                @schemas.classproperty
+                def ARCHIVED(cls):
+                    return cls("ARCHIVED")
             __annotations__ = {
                 "status": status,
             }

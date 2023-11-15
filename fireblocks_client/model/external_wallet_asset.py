@@ -43,6 +43,8 @@ class ExternalWalletAsset(
             def status() -> typing.Type['ConfigChangeRequestStatus']:
                 return ConfigChangeRequestStatus
             address = schemas.StrSchema
+            balance = schemas.StrSchema
+            lockedAmount = schemas.StrSchema
             tag = schemas.StrSchema
             activationTime = schemas.StrSchema
             
@@ -75,6 +77,8 @@ class ExternalWalletAsset(
                 "id": id,
                 "status": status,
                 "address": address,
+                "balance": balance,
+                "lockedAmount": lockedAmount,
                 "tag": tag,
                 "activationTime": activationTime,
                 "additionalInfo": additionalInfo,
@@ -90,6 +94,12 @@ class ExternalWalletAsset(
     def __getitem__(self, name: typing_extensions.Literal["address"]) -> MetaOapg.properties.address: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["balance"]) -> MetaOapg.properties.balance: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["lockedAmount"]) -> MetaOapg.properties.lockedAmount: ...
+    
+    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["tag"]) -> MetaOapg.properties.tag: ...
     
     @typing.overload
@@ -101,7 +111,7 @@ class ExternalWalletAsset(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "status", "address", "tag", "activationTime", "additionalInfo", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "status", "address", "balance", "lockedAmount", "tag", "activationTime", "additionalInfo", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -116,6 +126,12 @@ class ExternalWalletAsset(
     def get_item_oapg(self, name: typing_extensions.Literal["address"]) -> typing.Union[MetaOapg.properties.address, schemas.Unset]: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["balance"]) -> typing.Union[MetaOapg.properties.balance, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["lockedAmount"]) -> typing.Union[MetaOapg.properties.lockedAmount, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["tag"]) -> typing.Union[MetaOapg.properties.tag, schemas.Unset]: ...
     
     @typing.overload
@@ -127,7 +143,7 @@ class ExternalWalletAsset(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "status", "address", "tag", "activationTime", "additionalInfo", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "status", "address", "balance", "lockedAmount", "tag", "activationTime", "additionalInfo", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -137,6 +153,8 @@ class ExternalWalletAsset(
         id: typing.Union[MetaOapg.properties.id, str, schemas.Unset] = schemas.unset,
         status: typing.Union['ConfigChangeRequestStatus', schemas.Unset] = schemas.unset,
         address: typing.Union[MetaOapg.properties.address, str, schemas.Unset] = schemas.unset,
+        balance: typing.Union[MetaOapg.properties.balance, str, schemas.Unset] = schemas.unset,
+        lockedAmount: typing.Union[MetaOapg.properties.lockedAmount, str, schemas.Unset] = schemas.unset,
         tag: typing.Union[MetaOapg.properties.tag, str, schemas.Unset] = schemas.unset,
         activationTime: typing.Union[MetaOapg.properties.activationTime, str, schemas.Unset] = schemas.unset,
         additionalInfo: typing.Union[MetaOapg.properties.additionalInfo, list, tuple, schemas.Unset] = schemas.unset,
@@ -149,6 +167,8 @@ class ExternalWalletAsset(
             id=id,
             status=status,
             address=address,
+            balance=balance,
+            lockedAmount=lockedAmount,
             tag=tag,
             activationTime=activationTime,
             additionalInfo=additionalInfo,

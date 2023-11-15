@@ -33,18 +33,23 @@ class ConfigChangeRequestStatus(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def WAITING_FOR_APPROVAL(cls):
-            return cls("WAITING_FOR_APPROVAL")
-        @schemas.classproperty
-        def APPROVED(cls):
-            return cls("APPROVED")
-        @schemas.classproperty
-        def CANCELLED(cls):
-            return cls("CANCELLED")
-        @schemas.classproperty
-        def REJECTED(cls):
-            return cls("REJECTED")
-        @schemas.classproperty
-        def FAILED(cls):
-            return cls("FAILED")
+    
+    @schemas.classproperty
+    def WAITING_FOR_APPROVAL(cls):
+        return cls("WAITING_FOR_APPROVAL")
+    
+    @schemas.classproperty
+    def APPROVED(cls):
+        return cls("APPROVED")
+    
+    @schemas.classproperty
+    def CANCELLED(cls):
+        return cls("CANCELLED")
+    
+    @schemas.classproperty
+    def REJECTED(cls):
+        return cls("REJECTED")
+    
+    @schemas.classproperty
+    def FAILED(cls):
+        return cls("FAILED")

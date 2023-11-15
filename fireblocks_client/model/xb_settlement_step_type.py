@@ -48,15 +48,19 @@ class XBSettlementStepType(
             "OFF_RAMP": "OFF_RAMP",
             "FIAT_DESTINATION": "FIAT_DESTINATION",
         }
-        @schemas.classproperty
-        def ON_RAMP(cls):
-            return cls("ON_RAMP")
-        @schemas.classproperty
-        def VAULT_ACCOUNT(cls):
-            return cls("VAULT_ACCOUNT")
-        @schemas.classproperty
-        def OFF_RAMP(cls):
-            return cls("OFF_RAMP")
-        @schemas.classproperty
-        def FIAT_DESTINATION(cls):
-            return cls("FIAT_DESTINATION")
+    
+    @schemas.classproperty
+    def ON_RAMP(cls):
+        return cls("ON_RAMP")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT(cls):
+        return cls("VAULT_ACCOUNT")
+    
+    @schemas.classproperty
+    def OFF_RAMP(cls):
+        return cls("OFF_RAMP")
+    
+    @schemas.classproperty
+    def FIAT_DESTINATION(cls):
+        return cls("FIAT_DESTINATION")

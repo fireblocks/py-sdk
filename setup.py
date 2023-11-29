@@ -40,7 +40,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name=NAME,
-    version="1.0.1",
+    version="2.0.2",
     description="Fireblocks Auto Generated SDK",
     author="Fireblocks",
     author_email="support@fireblocks.com",

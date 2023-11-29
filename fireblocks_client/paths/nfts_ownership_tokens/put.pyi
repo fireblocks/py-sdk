@@ -154,57 +154,14 @@ class BaseApi(api_client.Api):
 class UpdateOwnershipTokens(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def update_ownership_tokens(self ,params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def update_ownership_tokens(self , params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
         return self._update_ownership_tokens_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._update_ownership_tokens_oapg(
-            query_params=query_params,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+    def put(self , params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+        return self._update_ownership_tokens_oapg(params, request_options)
 
 

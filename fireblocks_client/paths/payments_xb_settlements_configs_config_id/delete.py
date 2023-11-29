@@ -196,62 +196,14 @@ class BaseApi(api_client.Api):
 class DeleteXbSettlementConfig(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def delete_xb_settlement_config(self ,params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def delete_xb_settlement_config(self , params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
         return self._delete_xb_settlement_config_oapg(params, request_options)
 
 
 class ApiFordelete(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def delete(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._delete_xb_settlement_config_oapg(
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+    def delete(self , params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._delete_xb_settlement_config_oapg(params, request_options)
 
 

@@ -168,57 +168,14 @@ class BaseApi(api_client.Api):
 class Remove(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def remove(self ,params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def remove(self , params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
         return self._remove_oapg(params, request_options)
 
 
 class ApiFordelete(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def delete(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._remove_oapg(
-            path_params=path_params,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+    def delete(self , params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._remove_oapg(params, request_options)
 
 

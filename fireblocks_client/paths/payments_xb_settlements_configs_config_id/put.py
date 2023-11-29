@@ -237,87 +237,14 @@ class BaseApi(api_client.Api):
 class UpdateXbSettlementConfig(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def update_xb_settlement_config(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def update_xb_settlement_config(self , params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
         return self._update_xb_settlement_config_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-
-    @typing.overload
-    def put(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._update_xb_settlement_config_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+    def put(self , params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._update_xb_settlement_config_oapg(params, request_options)
 
 

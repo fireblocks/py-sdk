@@ -49,12 +49,14 @@ class VaultWalletAddress(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def SEGWIT(cls):
-                        return cls("SEGWIT")
-                    @schemas.classproperty
-                    def LEGACY(cls):
-                        return cls("LEGACY")
+                
+                @schemas.classproperty
+                def SEGWIT(cls):
+                    return cls("SEGWIT")
+                
+                @schemas.classproperty
+                def LEGACY(cls):
+                    return cls("LEGACY")
             legacyAddress = schemas.StrSchema
             enterpriseAddress = schemas.StrSchema
             bip44AddressIndex = schemas.IntSchema

@@ -30,10 +30,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = web3_connections_api.Web3ConnectionsApi()
@@ -52,8 +49,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling Web3ConnectionsApi->create: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -172,10 +168,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = web3_connections_api.Web3ConnectionsApi()
@@ -204,8 +197,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling Web3ConnectionsApi->get: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -373,10 +365,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = web3_connections_api.Web3ConnectionsApi()
@@ -391,8 +380,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling Web3ConnectionsApi->remove: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -509,10 +497,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = web3_connections_api.Web3ConnectionsApi()
@@ -531,8 +516,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling Web3ConnectionsApi->submit: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

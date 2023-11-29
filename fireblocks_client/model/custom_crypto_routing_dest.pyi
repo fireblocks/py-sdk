@@ -48,21 +48,24 @@ class CustomCryptoRoutingDest(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def CUSTOM(cls):
-                        return cls("CUSTOM")
+                
+                @schemas.classproperty
+                def CUSTOM(cls):
+                    return cls("CUSTOM")
             
             
             class dstType(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def VAULT(cls):
-                        return cls("VAULT")
-                    @schemas.classproperty
-                    def EXCHANGE(cls):
-                        return cls("EXCHANGE")
+                
+                @schemas.classproperty
+                def VAULT(cls):
+                    return cls("VAULT")
+                
+                @schemas.classproperty
+                def EXCHANGE(cls):
+                    return cls("EXCHANGE")
             dstId = schemas.StrSchema
             __annotations__ = {
                 "scheme": scheme,

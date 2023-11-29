@@ -51,12 +51,14 @@ class PolicyRuleCheckResult(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def OK(cls):
-                        return cls("ok")
-                    @schemas.classproperty
-                    def FAILURE(cls):
-                        return cls("failure")
+                
+                @schemas.classproperty
+                def OK(cls):
+                    return cls("ok")
+                
+                @schemas.classproperty
+                def FAILURE(cls):
+                    return cls("failure")
             
             
             class errors(

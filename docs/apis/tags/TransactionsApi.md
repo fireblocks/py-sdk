@@ -39,10 +39,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -58,8 +55,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->cancel_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -170,10 +166,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -224,8 +217,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -331,10 +323,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -369,8 +358,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->drop_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -490,10 +478,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -509,8 +494,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->estimate_network_fee: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -622,10 +606,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -676,8 +657,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->estimate_transaction_fee: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -781,10 +761,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -800,8 +777,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->freeze_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -884,10 +860,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -903,8 +876,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->get_transaction_by_external_id: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1014,10 +986,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1033,8 +1002,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->get_transaction_by_id: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1171,10 +1139,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1204,8 +1169,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->get_transactions: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1443,10 +1407,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1479,8 +1440,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1601,10 +1561,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1637,8 +1594,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction_by_hash: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1757,10 +1713,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1776,8 +1729,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->unfreeze_transaction: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1860,10 +1812,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = transactions_api.TransactionsApi()
@@ -1880,8 +1829,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling TransactionsApi->validate_address: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

@@ -56,27 +56,35 @@ class PolicySrcOrDestType(
             "ONE_TIME_ADDRESS": "ONE_TIME_ADDRESS",
             "*": "ASTERISK",
         }
-        @schemas.classproperty
-        def EXCHANGE(cls):
-            return cls("EXCHANGE")
-        @schemas.classproperty
-        def UNMANAGED(cls):
-            return cls("UNMANAGED")
-        @schemas.classproperty
-        def VAULT(cls):
-            return cls("VAULT")
-        @schemas.classproperty
-        def NETWORK_CONNECTION(cls):
-            return cls("NETWORK_CONNECTION")
-        @schemas.classproperty
-        def COMPOUND(cls):
-            return cls("COMPOUND")
-        @schemas.classproperty
-        def FIAT_ACCOUNT(cls):
-            return cls("FIAT_ACCOUNT")
-        @schemas.classproperty
-        def ONE_TIME_ADDRESS(cls):
-            return cls("ONE_TIME_ADDRESS")
-        @schemas.classproperty
-        def ASTERISK(cls):
-            return cls("*")
+    
+    @schemas.classproperty
+    def EXCHANGE(cls):
+        return cls("EXCHANGE")
+    
+    @schemas.classproperty
+    def UNMANAGED(cls):
+        return cls("UNMANAGED")
+    
+    @schemas.classproperty
+    def VAULT(cls):
+        return cls("VAULT")
+    
+    @schemas.classproperty
+    def NETWORK_CONNECTION(cls):
+        return cls("NETWORK_CONNECTION")
+    
+    @schemas.classproperty
+    def COMPOUND(cls):
+        return cls("COMPOUND")
+    
+    @schemas.classproperty
+    def FIAT_ACCOUNT(cls):
+        return cls("FIAT_ACCOUNT")
+    
+    @schemas.classproperty
+    def ONE_TIME_ADDRESS(cls):
+        return cls("ONE_TIME_ADDRESS")
+    
+    @schemas.classproperty
+    def ASTERISK(cls):
+        return cls("*")

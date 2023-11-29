@@ -30,18 +30,22 @@ class BlockchainDescriptorSchema(
     schemas.EnumBase,
     schemas.StrSchema
 ):
-        @schemas.classproperty
-        def ETH(cls):
-            return cls("ETH")
-        @schemas.classproperty
-        def ETH_TEST3(cls):
-            return cls("ETH_TEST3")
-        @schemas.classproperty
-        def POLYGON(cls):
-            return cls("POLYGON")
-        @schemas.classproperty
-        def POLYGON_TEST_MUMBAI(cls):
-            return cls("POLYGON_TEST_MUMBAI")
+    
+    @schemas.classproperty
+    def ETH(cls):
+        return cls("ETH")
+    
+    @schemas.classproperty
+    def ETH_TEST3(cls):
+        return cls("ETH_TEST3")
+    
+    @schemas.classproperty
+    def POLYGON(cls):
+        return cls("POLYGON")
+    
+    @schemas.classproperty
+    def POLYGON_TEST_MUMBAI(cls):
+        return cls("POLYGON_TEST_MUMBAI")
 VaultAccountIdsSchema = schemas.StrSchema
 IdsSchema = schemas.StrSchema
 CollectionIdsSchema = schemas.StrSchema
@@ -66,18 +70,22 @@ class SortSchema(
             schemas.EnumBase,
             schemas.StrSchema
         ):
-                @schemas.classproperty
-                def OWNERSHIP_LAST_UPDATE_TIME(cls):
-                    return cls("ownershipLastUpdateTime")
-                @schemas.classproperty
-                def NAME(cls):
-                    return cls("name")
-                @schemas.classproperty
-                def COLLECTION_NAME(cls):
-                    return cls("collection.name")
-                @schemas.classproperty
-                def BLOCKCHAIN_DESCRIPTOR(cls):
-                    return cls("blockchainDescriptor")
+            
+            @schemas.classproperty
+            def OWNERSHIP_LAST_UPDATE_TIME(cls):
+                return cls("ownershipLastUpdateTime")
+            
+            @schemas.classproperty
+            def NAME(cls):
+                return cls("name")
+            
+            @schemas.classproperty
+            def COLLECTION_NAME(cls):
+                return cls("collection.name")
+            
+            @schemas.classproperty
+            def BLOCKCHAIN_DESCRIPTOR(cls):
+                return cls("blockchainDescriptor")
 
     def __new__(
         cls,
@@ -98,24 +106,28 @@ class OrderSchema(
     schemas.EnumBase,
     schemas.StrSchema
 ):
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
 
 
 class StatusSchema(
     schemas.EnumBase,
     schemas.StrSchema
 ):
-        @schemas.classproperty
-        def LISTED(cls):
-            return cls("LISTED")
-        @schemas.classproperty
-        def ARCHIVED(cls):
-            return cls("ARCHIVED")
+    
+    @schemas.classproperty
+    def LISTED(cls):
+        return cls("LISTED")
+    
+    @schemas.classproperty
+    def ARCHIVED(cls):
+        return cls("ARCHIVED")
 
 
 class SearchSchema(

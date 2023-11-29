@@ -67,39 +67,51 @@ class GetTransactionOperation(
             "REDEEM_FROM_COMPOUND": "REDEEM_FROM_COMPOUND",
             "SUPPLY_TO_COMPOUND": "SUPPLY_TO_COMPOUND",
         }
-        @schemas.classproperty
-        def TRANSFER(cls):
-            return cls("TRANSFER")
-        @schemas.classproperty
-        def BURN(cls):
-            return cls("BURN")
-        @schemas.classproperty
-        def CONTRACT_CALL(cls):
-            return cls("CONTRACT_CALL")
-        @schemas.classproperty
-        def MINT(cls):
-            return cls("MINT")
-        @schemas.classproperty
-        def RAW(cls):
-            return cls("RAW")
-        @schemas.classproperty
-        def TYPED_MESSAGE(cls):
-            return cls("TYPED_MESSAGE")
-        @schemas.classproperty
-        def ENABLE_ASSET(cls):
-            return cls("ENABLE_ASSET")
-        @schemas.classproperty
-        def STAKE(cls):
-            return cls("STAKE")
-        @schemas.classproperty
-        def UNSTAKE(cls):
-            return cls("UNSTAKE")
-        @schemas.classproperty
-        def WITHDRAW(cls):
-            return cls("WITHDRAW")
-        @schemas.classproperty
-        def REDEEM_FROM_COMPOUND(cls):
-            return cls("REDEEM_FROM_COMPOUND")
-        @schemas.classproperty
-        def SUPPLY_TO_COMPOUND(cls):
-            return cls("SUPPLY_TO_COMPOUND")
+    
+    @schemas.classproperty
+    def TRANSFER(cls):
+        return cls("TRANSFER")
+    
+    @schemas.classproperty
+    def BURN(cls):
+        return cls("BURN")
+    
+    @schemas.classproperty
+    def CONTRACT_CALL(cls):
+        return cls("CONTRACT_CALL")
+    
+    @schemas.classproperty
+    def MINT(cls):
+        return cls("MINT")
+    
+    @schemas.classproperty
+    def RAW(cls):
+        return cls("RAW")
+    
+    @schemas.classproperty
+    def TYPED_MESSAGE(cls):
+        return cls("TYPED_MESSAGE")
+    
+    @schemas.classproperty
+    def ENABLE_ASSET(cls):
+        return cls("ENABLE_ASSET")
+    
+    @schemas.classproperty
+    def STAKE(cls):
+        return cls("STAKE")
+    
+    @schemas.classproperty
+    def UNSTAKE(cls):
+        return cls("UNSTAKE")
+    
+    @schemas.classproperty
+    def WITHDRAW(cls):
+        return cls("WITHDRAW")
+    
+    @schemas.classproperty
+    def REDEEM_FROM_COMPOUND(cls):
+        return cls("REDEEM_FROM_COMPOUND")
+    
+    @schemas.classproperty
+    def SUPPLY_TO_COMPOUND(cls):
+        return cls("SUPPLY_TO_COMPOUND")

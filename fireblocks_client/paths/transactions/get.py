@@ -41,12 +41,14 @@ class OrderBySchema(
             "createdAt": "CREATED_AT",
             "lastUpdated": "LAST_UPDATED",
         }
-        @schemas.classproperty
-        def CREATED_AT(cls):
-            return cls("createdAt")
-        @schemas.classproperty
-        def LAST_UPDATED(cls):
-            return cls("lastUpdated")
+    
+    @schemas.classproperty
+    def CREATED_AT(cls):
+        return cls("createdAt")
+    
+    @schemas.classproperty
+    def LAST_UPDATED(cls):
+        return cls("lastUpdated")
 
 
 class SortSchema(
@@ -60,12 +62,14 @@ class SortSchema(
             "ASC": "ASC",
             "DESC": "DESC",
         }
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
 
 
 class LimitSchema(
@@ -96,36 +100,46 @@ class SourceTypeSchema(
             "GAS_STATION": "GAS_STATION",
             "END_USER_WALLET": "END_USER_WALLET",
         }
-        @schemas.classproperty
-        def VAULT_ACCOUNT(cls):
-            return cls("VAULT_ACCOUNT")
-        @schemas.classproperty
-        def EXCHANGE_ACCOUNT(cls):
-            return cls("EXCHANGE_ACCOUNT")
-        @schemas.classproperty
-        def INTERNAL_WALLET(cls):
-            return cls("INTERNAL_WALLET")
-        @schemas.classproperty
-        def EXTERNAL_WALLET(cls):
-            return cls("EXTERNAL_WALLET")
-        @schemas.classproperty
-        def FIAT_ACCOUNT(cls):
-            return cls("FIAT_ACCOUNT")
-        @schemas.classproperty
-        def NETWORK_CONNECTION(cls):
-            return cls("NETWORK_CONNECTION")
-        @schemas.classproperty
-        def COMPOUND(cls):
-            return cls("COMPOUND")
-        @schemas.classproperty
-        def UNKNOWN(cls):
-            return cls("UNKNOWN")
-        @schemas.classproperty
-        def GAS_STATION(cls):
-            return cls("GAS_STATION")
-        @schemas.classproperty
-        def END_USER_WALLET(cls):
-            return cls("END_USER_WALLET")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT(cls):
+        return cls("VAULT_ACCOUNT")
+    
+    @schemas.classproperty
+    def EXCHANGE_ACCOUNT(cls):
+        return cls("EXCHANGE_ACCOUNT")
+    
+    @schemas.classproperty
+    def INTERNAL_WALLET(cls):
+        return cls("INTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def EXTERNAL_WALLET(cls):
+        return cls("EXTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def FIAT_ACCOUNT(cls):
+        return cls("FIAT_ACCOUNT")
+    
+    @schemas.classproperty
+    def NETWORK_CONNECTION(cls):
+        return cls("NETWORK_CONNECTION")
+    
+    @schemas.classproperty
+    def COMPOUND(cls):
+        return cls("COMPOUND")
+    
+    @schemas.classproperty
+    def UNKNOWN(cls):
+        return cls("UNKNOWN")
+    
+    @schemas.classproperty
+    def GAS_STATION(cls):
+        return cls("GAS_STATION")
+    
+    @schemas.classproperty
+    def END_USER_WALLET(cls):
+        return cls("END_USER_WALLET")
 SourceIdSchema = schemas.StrSchema
 
 
@@ -147,33 +161,42 @@ class DestTypeSchema(
             "ONE_TIME_ADDRESS": "ONE_TIME_ADDRESS",
             "END_USER_WALLET": "END_USER_WALLET",
         }
-        @schemas.classproperty
-        def VAULT_ACCOUNT(cls):
-            return cls("VAULT_ACCOUNT")
-        @schemas.classproperty
-        def EXCHANGE_ACCOUNT(cls):
-            return cls("EXCHANGE_ACCOUNT")
-        @schemas.classproperty
-        def INTERNAL_WALLET(cls):
-            return cls("INTERNAL_WALLET")
-        @schemas.classproperty
-        def EXTERNAL_WALLET(cls):
-            return cls("EXTERNAL_WALLET")
-        @schemas.classproperty
-        def FIAT_ACCOUNT(cls):
-            return cls("FIAT_ACCOUNT")
-        @schemas.classproperty
-        def NETWORK_CONNECTION(cls):
-            return cls("NETWORK_CONNECTION")
-        @schemas.classproperty
-        def COMPOUND(cls):
-            return cls("COMPOUND")
-        @schemas.classproperty
-        def ONE_TIME_ADDRESS(cls):
-            return cls("ONE_TIME_ADDRESS")
-        @schemas.classproperty
-        def END_USER_WALLET(cls):
-            return cls("END_USER_WALLET")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT(cls):
+        return cls("VAULT_ACCOUNT")
+    
+    @schemas.classproperty
+    def EXCHANGE_ACCOUNT(cls):
+        return cls("EXCHANGE_ACCOUNT")
+    
+    @schemas.classproperty
+    def INTERNAL_WALLET(cls):
+        return cls("INTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def EXTERNAL_WALLET(cls):
+        return cls("EXTERNAL_WALLET")
+    
+    @schemas.classproperty
+    def FIAT_ACCOUNT(cls):
+        return cls("FIAT_ACCOUNT")
+    
+    @schemas.classproperty
+    def NETWORK_CONNECTION(cls):
+        return cls("NETWORK_CONNECTION")
+    
+    @schemas.classproperty
+    def COMPOUND(cls):
+        return cls("COMPOUND")
+    
+    @schemas.classproperty
+    def ONE_TIME_ADDRESS(cls):
+        return cls("ONE_TIME_ADDRESS")
+    
+    @schemas.classproperty
+    def END_USER_WALLET(cls):
+        return cls("END_USER_WALLET")
 DestIdSchema = schemas.StrSchema
 AssetsSchema = schemas.StrSchema
 TxHashSchema = schemas.StrSchema

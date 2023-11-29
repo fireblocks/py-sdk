@@ -50,12 +50,14 @@ class SystemMessageInfo(
                         "WARN": "WARN",
                         "BLOCK": "BLOCK",
                     }
-                    @schemas.classproperty
-                    def WARN(cls):
-                        return cls("WARN")
-                    @schemas.classproperty
-                    def BLOCK(cls):
-                        return cls("BLOCK")
+                
+                @schemas.classproperty
+                def WARN(cls):
+                    return cls("WARN")
+                
+                @schemas.classproperty
+                def BLOCK(cls):
+                    return cls("BLOCK")
             message = schemas.StrSchema
             __annotations__ = {
                 "type": type,

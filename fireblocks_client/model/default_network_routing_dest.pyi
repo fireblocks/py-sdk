@@ -46,9 +46,10 @@ class DefaultNetworkRoutingDest(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def DEFAULT(cls):
-                        return cls("DEFAULT")
+                
+                @schemas.classproperty
+                def DEFAULT(cls):
+                    return cls("DEFAULT")
             __annotations__ = {
                 "scheme": scheme,
             }

@@ -59,15 +59,18 @@ class SortSchema(
                     "name": "NAME",
                     "blockchainDescriptor": "BLOCKCHAIN_DESCRIPTOR",
                 }
-                @schemas.classproperty
-                def COLLECTION_NAME(cls):
-                    return cls("collection.name")
-                @schemas.classproperty
-                def NAME(cls):
-                    return cls("name")
-                @schemas.classproperty
-                def BLOCKCHAIN_DESCRIPTOR(cls):
-                    return cls("blockchainDescriptor")
+            
+            @schemas.classproperty
+            def COLLECTION_NAME(cls):
+                return cls("collection.name")
+            
+            @schemas.classproperty
+            def NAME(cls):
+                return cls("name")
+            
+            @schemas.classproperty
+            def BLOCKCHAIN_DESCRIPTOR(cls):
+                return cls("blockchainDescriptor")
 
     def __new__(
         cls,
@@ -95,12 +98,14 @@ class OrderSchema(
             "DESC": "DESC",
             "ASC": "ASC",
         }
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
 RequestRequiredQueryParams = typing_extensions.TypedDict(
     'RequestRequiredQueryParams',
     {

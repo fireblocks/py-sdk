@@ -35,8 +35,8 @@ REQUIRES = [
     "python-dateutil ~= 2.7.0",
 ]
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
 
 setup(
     name=NAME,

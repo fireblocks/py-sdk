@@ -64,9 +64,10 @@ class SortSchema(
                 enum_value_to_name = {
                     "name": "NAME",
                 }
-                @schemas.classproperty
-                def NAME(cls):
-                    return cls("name")
+            
+            @schemas.classproperty
+            def NAME(cls):
+                return cls("name")
 
     def __new__(
         cls,
@@ -94,12 +95,14 @@ class OrderSchema(
             "DESC": "DESC",
             "ASC": "ASC",
         }
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
 RequestRequiredQueryParams = typing_extensions.TypedDict(
     'RequestRequiredQueryParams',
     {

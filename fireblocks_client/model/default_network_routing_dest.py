@@ -52,9 +52,10 @@ class DefaultNetworkRoutingDest(
                     enum_value_to_name = {
                         "DEFAULT": "DEFAULT",
                     }
-                    @schemas.classproperty
-                    def DEFAULT(cls):
-                        return cls("DEFAULT")
+                
+                @schemas.classproperty
+                def DEFAULT(cls):
+                    return cls("DEFAULT")
             __annotations__ = {
                 "scheme": scheme,
             }

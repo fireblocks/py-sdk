@@ -65,36 +65,46 @@ class AssetTypeResponse(
                         "XLM_ASSET": "XLM_ASSET",
                         "XDB_ASSET": "XDB_ASSET",
                     }
-                    @schemas.classproperty
-                    def ALGO_ASSET(cls):
-                        return cls("ALGO_ASSET")
-                    @schemas.classproperty
-                    def BASE_ASSET(cls):
-                        return cls("BASE_ASSET")
-                    @schemas.classproperty
-                    def BEP20(cls):
-                        return cls("BEP20")
-                    @schemas.classproperty
-                    def COMPOUND(cls):
-                        return cls("COMPOUND")
-                    @schemas.classproperty
-                    def ERC20(cls):
-                        return cls("ERC20")
-                    @schemas.classproperty
-                    def FIAT(cls):
-                        return cls("FIAT")
-                    @schemas.classproperty
-                    def SOL_ASSET(cls):
-                        return cls("SOL_ASSET")
-                    @schemas.classproperty
-                    def TRON_TRC20(cls):
-                        return cls("TRON_TRC20")
-                    @schemas.classproperty
-                    def XLM_ASSET(cls):
-                        return cls("XLM_ASSET")
-                    @schemas.classproperty
-                    def XDB_ASSET(cls):
-                        return cls("XDB_ASSET")
+                
+                @schemas.classproperty
+                def ALGO_ASSET(cls):
+                    return cls("ALGO_ASSET")
+                
+                @schemas.classproperty
+                def BASE_ASSET(cls):
+                    return cls("BASE_ASSET")
+                
+                @schemas.classproperty
+                def BEP20(cls):
+                    return cls("BEP20")
+                
+                @schemas.classproperty
+                def COMPOUND(cls):
+                    return cls("COMPOUND")
+                
+                @schemas.classproperty
+                def ERC20(cls):
+                    return cls("ERC20")
+                
+                @schemas.classproperty
+                def FIAT(cls):
+                    return cls("FIAT")
+                
+                @schemas.classproperty
+                def SOL_ASSET(cls):
+                    return cls("SOL_ASSET")
+                
+                @schemas.classproperty
+                def TRON_TRC20(cls):
+                    return cls("TRON_TRC20")
+                
+                @schemas.classproperty
+                def XLM_ASSET(cls):
+                    return cls("XLM_ASSET")
+                
+                @schemas.classproperty
+                def XDB_ASSET(cls):
+                    return cls("XDB_ASSET")
             contractAddress = schemas.StrSchema
             nativeAsset = schemas.StrSchema
             decimals = schemas.NumberSchema

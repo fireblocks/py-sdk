@@ -37,12 +37,14 @@ class OrderSchema(
             "ASC": "ASC",
             "DESC": "DESC",
         }
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
 
 
 class FilterSchema(
@@ -171,27 +173,34 @@ class SortSchema(
             "appUrl": "APP_URL",
             "appName": "APP_NAME",
         }
-        @schemas.classproperty
-        def ID(cls):
-            return cls("id")
-        @schemas.classproperty
-        def USER_ID(cls):
-            return cls("userId")
-        @schemas.classproperty
-        def VAULT_ACCOUNT_ID(cls):
-            return cls("vaultAccountId")
-        @schemas.classproperty
-        def CREATED_AT(cls):
-            return cls("createdAt")
-        @schemas.classproperty
-        def FEE_LEVEL(cls):
-            return cls("feeLevel")
-        @schemas.classproperty
-        def APP_URL(cls):
-            return cls("appUrl")
-        @schemas.classproperty
-        def APP_NAME(cls):
-            return cls("appName")
+    
+    @schemas.classproperty
+    def ID(cls):
+        return cls("id")
+    
+    @schemas.classproperty
+    def USER_ID(cls):
+        return cls("userId")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT_ID(cls):
+        return cls("vaultAccountId")
+    
+    @schemas.classproperty
+    def CREATED_AT(cls):
+        return cls("createdAt")
+    
+    @schemas.classproperty
+    def FEE_LEVEL(cls):
+        return cls("feeLevel")
+    
+    @schemas.classproperty
+    def APP_URL(cls):
+        return cls("appUrl")
+    
+    @schemas.classproperty
+    def APP_NAME(cls):
+        return cls("appName")
 
 
 class PageSizeSchema(

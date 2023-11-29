@@ -125,15 +125,18 @@ class TransactionRequest(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def LOW(cls):
-                        return cls("LOW")
-                    @schemas.classproperty
-                    def MEDIUM(cls):
-                        return cls("MEDIUM")
-                    @schemas.classproperty
-                    def HIGH(cls):
-                        return cls("HIGH")
+                
+                @schemas.classproperty
+                def LOW(cls):
+                    return cls("LOW")
+                
+                @schemas.classproperty
+                def MEDIUM(cls):
+                    return cls("MEDIUM")
+                
+                @schemas.classproperty
+                def HIGH(cls):
+                    return cls("HIGH")
             
             
             class fee(

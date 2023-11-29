@@ -32,7 +32,7 @@ class RESTClientObject(object):
 
         addition_pool_args = {}
 
-        if configuration.retries is not None:
+        if configuration.options and configuration.options.retries is not None:
             addition_pool_args["retries"] = configuration.retries
 
         if configuration.socket_options is not None:

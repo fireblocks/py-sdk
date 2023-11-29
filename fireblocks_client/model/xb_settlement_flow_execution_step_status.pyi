@@ -33,15 +33,19 @@ class XBSettlementFlowExecutionStepStatus(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def NOT_STARTED(cls):
-            return cls("NOT_STARTED")
-        @schemas.classproperty
-        def PROCESSING(cls):
-            return cls("PROCESSING")
-        @schemas.classproperty
-        def COMPLETED(cls):
-            return cls("COMPLETED")
-        @schemas.classproperty
-        def FAILED(cls):
-            return cls("FAILED")
+    
+    @schemas.classproperty
+    def NOT_STARTED(cls):
+        return cls("NOT_STARTED")
+    
+    @schemas.classproperty
+    def PROCESSING(cls):
+        return cls("PROCESSING")
+    
+    @schemas.classproperty
+    def COMPLETED(cls):
+        return cls("COMPLETED")
+    
+    @schemas.classproperty
+    def FAILED(cls):
+        return cls("FAILED")

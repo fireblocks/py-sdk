@@ -72,63 +72,82 @@ class Transaction(
                         "FAILED": "FAILED",
                         "TIMEOUT": "TIMEOUT",
                     }
-                    @schemas.classproperty
-                    def SUBMITTED(cls):
-                        return cls("SUBMITTED")
-                    @schemas.classproperty
-                    def QUEUED(cls):
-                        return cls("QUEUED")
-                    @schemas.classproperty
-                    def PENDING_AUTHORIZATION(cls):
-                        return cls("PENDING_AUTHORIZATION")
-                    @schemas.classproperty
-                    def PENDING_SIGNATURE(cls):
-                        return cls("PENDING_SIGNATURE")
-                    @schemas.classproperty
-                    def BROADCASTING(cls):
-                        return cls("BROADCASTING")
-                    @schemas.classproperty
-                    def PENDING_3RD_PARTY_MANUAL_APPROVAL(cls):
-                        return cls("PENDING_3RD_PARTY_MANUAL_APPROVAL")
-                    @schemas.classproperty
-                    def PENDING_3RD_PARTY(cls):
-                        return cls("PENDING_3RD_PARTY")
-                    @schemas.classproperty
-                    def PENDING(cls):
-                        return cls("PENDING")
-                    @schemas.classproperty
-                    def CONFIRMING(cls):
-                        return cls("CONFIRMING")
-                    @schemas.classproperty
-                    def CONFIRMED(cls):
-                        return cls("CONFIRMED")
-                    @schemas.classproperty
-                    def COMPLETED(cls):
-                        return cls("COMPLETED")
-                    @schemas.classproperty
-                    def PARTIALLY_COMPLETED(cls):
-                        return cls("PARTIALLY_COMPLETED")
-                    @schemas.classproperty
-                    def PENDING_AML_SCREENING(cls):
-                        return cls("PENDING_AML_SCREENING")
-                    @schemas.classproperty
-                    def CANCELLING(cls):
-                        return cls("CANCELLING")
-                    @schemas.classproperty
-                    def CANCELLED(cls):
-                        return cls("CANCELLED")
-                    @schemas.classproperty
-                    def REJECTED(cls):
-                        return cls("REJECTED")
-                    @schemas.classproperty
-                    def BLOCKED(cls):
-                        return cls("BLOCKED")
-                    @schemas.classproperty
-                    def FAILED(cls):
-                        return cls("FAILED")
-                    @schemas.classproperty
-                    def TIMEOUT(cls):
-                        return cls("TIMEOUT")
+                
+                @schemas.classproperty
+                def SUBMITTED(cls):
+                    return cls("SUBMITTED")
+                
+                @schemas.classproperty
+                def QUEUED(cls):
+                    return cls("QUEUED")
+                
+                @schemas.classproperty
+                def PENDING_AUTHORIZATION(cls):
+                    return cls("PENDING_AUTHORIZATION")
+                
+                @schemas.classproperty
+                def PENDING_SIGNATURE(cls):
+                    return cls("PENDING_SIGNATURE")
+                
+                @schemas.classproperty
+                def BROADCASTING(cls):
+                    return cls("BROADCASTING")
+                
+                @schemas.classproperty
+                def PENDING_3RD_PARTY_MANUAL_APPROVAL(cls):
+                    return cls("PENDING_3RD_PARTY_MANUAL_APPROVAL")
+                
+                @schemas.classproperty
+                def PENDING_3RD_PARTY(cls):
+                    return cls("PENDING_3RD_PARTY")
+                
+                @schemas.classproperty
+                def PENDING(cls):
+                    return cls("PENDING")
+                
+                @schemas.classproperty
+                def CONFIRMING(cls):
+                    return cls("CONFIRMING")
+                
+                @schemas.classproperty
+                def CONFIRMED(cls):
+                    return cls("CONFIRMED")
+                
+                @schemas.classproperty
+                def COMPLETED(cls):
+                    return cls("COMPLETED")
+                
+                @schemas.classproperty
+                def PARTIALLY_COMPLETED(cls):
+                    return cls("PARTIALLY_COMPLETED")
+                
+                @schemas.classproperty
+                def PENDING_AML_SCREENING(cls):
+                    return cls("PENDING_AML_SCREENING")
+                
+                @schemas.classproperty
+                def CANCELLING(cls):
+                    return cls("CANCELLING")
+                
+                @schemas.classproperty
+                def CANCELLED(cls):
+                    return cls("CANCELLED")
+                
+                @schemas.classproperty
+                def REJECTED(cls):
+                    return cls("REJECTED")
+                
+                @schemas.classproperty
+                def BLOCKED(cls):
+                    return cls("BLOCKED")
+                
+                @schemas.classproperty
+                def FAILED(cls):
+                    return cls("FAILED")
+                
+                @schemas.classproperty
+                def TIMEOUT(cls):
+                    return cls("TIMEOUT")
             timestamp = schemas.NumberSchema
             instructionId = schemas.StrSchema
             __annotations__ = {

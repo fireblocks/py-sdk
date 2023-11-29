@@ -33,18 +33,23 @@ class XBSettlementFiatAsset(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def USD(cls):
-            return cls("USD")
-        @schemas.classproperty
-        def MXN(cls):
-            return cls("MXN")
-        @schemas.classproperty
-        def COP(cls):
-            return cls("COP")
-        @schemas.classproperty
-        def EUR(cls):
-            return cls("EUR")
-        @schemas.classproperty
-        def GBP(cls):
-            return cls("GBP")
+    
+    @schemas.classproperty
+    def USD(cls):
+        return cls("USD")
+    
+    @schemas.classproperty
+    def MXN(cls):
+        return cls("MXN")
+    
+    @schemas.classproperty
+    def COP(cls):
+        return cls("COP")
+    
+    @schemas.classproperty
+    def EUR(cls):
+        return cls("EUR")
+    
+    @schemas.classproperty
+    def GBP(cls):
+        return cls("GBP")

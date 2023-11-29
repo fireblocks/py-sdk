@@ -39,6 +39,7 @@ class FiatAccountType(
         enum_value_to_name = {
             "BLINC": "BLINC",
         }
-        @schemas.classproperty
-        def BLINC(cls):
-            return cls("BLINC")
+    
+    @schemas.classproperty
+    def BLINC(cls):
+        return cls("BLINC")

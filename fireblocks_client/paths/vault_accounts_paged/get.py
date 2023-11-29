@@ -41,12 +41,14 @@ class OrderBySchema(
             "ASC": "ASC",
             "DESC": "DESC",
         }
-        @schemas.classproperty
-        def ASC(cls):
-            return cls("ASC")
-        @schemas.classproperty
-        def DESC(cls):
-            return cls("DESC")
+    
+    @schemas.classproperty
+    def ASC(cls):
+        return cls("ASC")
+    
+    @schemas.classproperty
+    def DESC(cls):
+        return cls("DESC")
 BeforeSchema = schemas.StrSchema
 AfterSchema = schemas.StrSchema
 

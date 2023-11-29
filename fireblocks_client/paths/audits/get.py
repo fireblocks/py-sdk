@@ -37,12 +37,14 @@ class TimePeriodSchema(
             "DAY": "DAY",
             "WEEK": "WEEK",
         }
-        @schemas.classproperty
-        def DAY(cls):
-            return cls("DAY")
-        @schemas.classproperty
-        def WEEK(cls):
-            return cls("WEEK")
+    
+    @schemas.classproperty
+    def DAY(cls):
+        return cls("DAY")
+    
+    @schemas.classproperty
+    def WEEK(cls):
+        return cls("WEEK")
 RequestRequiredQueryParams = typing_extensions.TypedDict(
     'RequestRequiredQueryParams',
     {

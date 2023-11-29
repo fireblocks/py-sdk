@@ -50,18 +50,23 @@ class PolicySrcOrDestSubType(
             "EXCHANGETEST": "EXCHANGETEST",
             "*": "ASTERISK",
         }
-        @schemas.classproperty
-        def EXTERNAL(cls):
-            return cls("EXTERNAL")
-        @schemas.classproperty
-        def INTERNAL(cls):
-            return cls("INTERNAL")
-        @schemas.classproperty
-        def CONTRACT(cls):
-            return cls("CONTRACT")
-        @schemas.classproperty
-        def EXCHANGETEST(cls):
-            return cls("EXCHANGETEST")
-        @schemas.classproperty
-        def ASTERISK(cls):
-            return cls("*")
+    
+    @schemas.classproperty
+    def EXTERNAL(cls):
+        return cls("EXTERNAL")
+    
+    @schemas.classproperty
+    def INTERNAL(cls):
+        return cls("INTERNAL")
+    
+    @schemas.classproperty
+    def CONTRACT(cls):
+        return cls("CONTRACT")
+    
+    @schemas.classproperty
+    def EXCHANGETEST(cls):
+        return cls("EXCHANGETEST")
+    
+    @schemas.classproperty
+    def ASTERISK(cls):
+        return cls("*")

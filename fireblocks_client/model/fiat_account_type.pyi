@@ -33,6 +33,7 @@ class FiatAccountType(
 
     Do not edit the class manually.
     """
-        @schemas.classproperty
-        def BLINC(cls):
-            return cls("BLINC")
+    
+    @schemas.classproperty
+    def BLINC(cls):
+        return cls("BLINC")

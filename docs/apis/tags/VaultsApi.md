@@ -51,10 +51,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -71,8 +68,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->activate_asset_for_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -190,10 +186,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -211,8 +204,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->create_legacy_address_for_vault_account_asset: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -338,10 +330,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -355,8 +344,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->create_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -471,10 +459,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -507,8 +492,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->create_vault_account_asset: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -643,10 +627,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -679,8 +660,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->create_vault_account_asset_address: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -815,10 +795,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -839,8 +816,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_asset_wallets: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -955,10 +931,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -994,8 +967,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_max_spendable_amount: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1122,10 +1094,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1149,8 +1118,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_paged_vault_accounts: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1290,10 +1258,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1325,8 +1290,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_public_key_info: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1453,10 +1417,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1498,8 +1459,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_public_key_info_for_address: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1649,10 +1609,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1669,8 +1626,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_account_asset: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1775,10 +1731,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1795,8 +1748,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_account_asset_addresses: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1920,10 +1872,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -1940,8 +1889,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_account_asset_unspent_inputs: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2065,10 +2013,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2084,8 +2029,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_account_by_id: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2195,10 +2139,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2218,8 +2159,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_accounts: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2360,10 +2300,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2379,8 +2316,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_asset_by_id: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2490,10 +2426,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2511,8 +2444,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->get_vault_assets: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2636,10 +2568,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2654,8 +2583,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->hide_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2758,10 +2686,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2778,8 +2703,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->set_auto_fuel_for_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2899,10 +2823,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -2919,8 +2840,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -3040,10 +2960,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -3062,8 +2979,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account_asset_address: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -3199,10 +3115,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -3217,8 +3130,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->unhide_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -3321,10 +3233,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -3341,8 +3250,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->update_vault_account: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -3462,10 +3370,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -3498,8 +3403,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         )
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->update_vault_account_asset_address: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -3636,10 +3540,7 @@ from pprint import pprint
 # Set Fireblocks Parameters
 os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If left unset, default path is api.fireblocks.com
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
-os.environ["FIREBLOCKS_SECRET_KEY"] = open(
-    "./fireblocks_secret.key",
-    "r",
-).read()
+os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
     # Create an instance of the API class
     api_instance = vaults_api.VaultsApi()
@@ -3672,8 +3573,7 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open(
         pprint(api_response)
     except fireblocks_client.ApiException as e:
         print("Exception when calling VaultsApi->update_vault_account_asset_balance: %s\n" % e)
-```
-### Parameters
+```### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

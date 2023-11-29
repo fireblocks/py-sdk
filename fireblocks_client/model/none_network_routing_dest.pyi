@@ -46,9 +46,10 @@ class NoneNetworkRoutingDest(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def NONE(cls):
-                        return cls("NONE")
+                
+                @schemas.classproperty
+                def NONE(cls):
+                    return cls("NONE")
             __annotations__ = {
                 "scheme": scheme,
             }

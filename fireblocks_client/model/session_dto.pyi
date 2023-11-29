@@ -93,12 +93,14 @@ class SessionDTO(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def MEDIUM(cls):
-                        return cls("MEDIUM")
-                    @schemas.classproperty
-                    def HIGH(cls):
-                        return cls("HIGH")
+                
+                @schemas.classproperty
+                def MEDIUM(cls):
+                    return cls("MEDIUM")
+                
+                @schemas.classproperty
+                def HIGH(cls):
+                    return cls("HIGH")
             
             
             class chainIds(
@@ -128,24 +130,28 @@ class SessionDTO(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def WALLET_CONNECT(cls):
-                        return cls("WalletConnect")
+                
+                @schemas.classproperty
+                def WALLET_CONNECT(cls):
+                    return cls("WalletConnect")
             
             
             class connectionMethod(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def DESKTOP(cls):
-                        return cls("DESKTOP")
-                    @schemas.classproperty
-                    def MOBILE(cls):
-                        return cls("MOBILE")
-                    @schemas.classproperty
-                    def API(cls):
-                        return cls("API")
+                
+                @schemas.classproperty
+                def DESKTOP(cls):
+                    return cls("DESKTOP")
+                
+                @schemas.classproperty
+                def MOBILE(cls):
+                    return cls("MOBILE")
+                
+                @schemas.classproperty
+                def API(cls):
+                    return cls("API")
             creationDate = schemas.DateTimeSchema
             __annotations__ = {
                 "id": id,

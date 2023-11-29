@@ -55,24 +55,28 @@ class PolicyRule(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def TRANSFER(cls):
-                        return cls("TRANSFER")
+                
+                @schemas.classproperty
+                def TRANSFER(cls):
+                    return cls("TRANSFER")
             
             
             class action(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def ALLOW(cls):
-                        return cls("ALLOW")
-                    @schemas.classproperty
-                    def BLOCK(cls):
-                        return cls("BLOCK")
-                    @schemas.classproperty
-                    def TIER(cls):
-                        return cls("2-TIER")
+                
+                @schemas.classproperty
+                def ALLOW(cls):
+                    return cls("ALLOW")
+                
+                @schemas.classproperty
+                def BLOCK(cls):
+                    return cls("BLOCK")
+                
+                @schemas.classproperty
+                def TIER(cls):
+                    return cls("2-TIER")
             asset = schemas.StrSchema
             
             
@@ -80,27 +84,32 @@ class PolicyRule(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def USD(cls):
-                        return cls("USD")
-                    @schemas.classproperty
-                    def EUR(cls):
-                        return cls("EUR")
-                    @schemas.classproperty
-                    def NATIVE(cls):
-                        return cls("NATIVE")
+                
+                @schemas.classproperty
+                def USD(cls):
+                    return cls("USD")
+                
+                @schemas.classproperty
+                def EUR(cls):
+                    return cls("EUR")
+                
+                @schemas.classproperty
+                def NATIVE(cls):
+                    return cls("NATIVE")
             
             
             class amountScope(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def SINGLE_TX(cls):
-                        return cls("SINGLE_TX")
-                    @schemas.classproperty
-                    def TIMEFRAME(cls):
-                        return cls("TIMEFRAME")
+                
+                @schemas.classproperty
+                def SINGLE_TX(cls):
+                    return cls("SINGLE_TX")
+                
+                @schemas.classproperty
+                def TIMEFRAME(cls):
+                    return cls("TIMEFRAME")
             amount = schemas.NumberSchema
             periodSec = schemas.NumberSchema
             externalDescriptor = schemas.StrSchema
@@ -121,9 +130,10 @@ class PolicyRule(
                             schemas.EnumBase,
                             schemas.StrSchema
                         ):
-                                @schemas.classproperty
-                                def ASTERISK(cls):
-                                    return cls("*")
+                            
+                            @schemas.classproperty
+                            def ASTERISK(cls):
+                                return cls("*")
                         
                         
                         class users(
@@ -265,36 +275,46 @@ class PolicyRule(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def TRANSFER(cls):
-                        return cls("TRANSFER")
-                    @schemas.classproperty
-                    def CONTRACT_CALL(cls):
-                        return cls("CONTRACT_CALL")
-                    @schemas.classproperty
-                    def APPROVE(cls):
-                        return cls("APPROVE")
-                    @schemas.classproperty
-                    def MINT(cls):
-                        return cls("MINT")
-                    @schemas.classproperty
-                    def BURN(cls):
-                        return cls("BURN")
-                    @schemas.classproperty
-                    def SUPPLY(cls):
-                        return cls("SUPPLY")
-                    @schemas.classproperty
-                    def REDEEM(cls):
-                        return cls("REDEEM")
-                    @schemas.classproperty
-                    def STAKE(cls):
-                        return cls("STAKE")
-                    @schemas.classproperty
-                    def RAW(cls):
-                        return cls("RAW")
-                    @schemas.classproperty
-                    def TYPED_MESSAGE(cls):
-                        return cls("TYPED_MESSAGE")
+                
+                @schemas.classproperty
+                def TRANSFER(cls):
+                    return cls("TRANSFER")
+                
+                @schemas.classproperty
+                def CONTRACT_CALL(cls):
+                    return cls("CONTRACT_CALL")
+                
+                @schemas.classproperty
+                def APPROVE(cls):
+                    return cls("APPROVE")
+                
+                @schemas.classproperty
+                def MINT(cls):
+                    return cls("MINT")
+                
+                @schemas.classproperty
+                def BURN(cls):
+                    return cls("BURN")
+                
+                @schemas.classproperty
+                def SUPPLY(cls):
+                    return cls("SUPPLY")
+                
+                @schemas.classproperty
+                def REDEEM(cls):
+                    return cls("REDEEM")
+                
+                @schemas.classproperty
+                def STAKE(cls):
+                    return cls("STAKE")
+                
+                @schemas.classproperty
+                def RAW(cls):
+                    return cls("RAW")
+                
+                @schemas.classproperty
+                def TYPED_MESSAGE(cls):
+                    return cls("TYPED_MESSAGE")
             designatedSigner = schemas.StrSchema
             
             
@@ -888,15 +908,18 @@ class PolicyRule(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
-                    @schemas.classproperty
-                    def WHITELISTED(cls):
-                        return cls("WHITELISTED")
-                    @schemas.classproperty
-                    def ONE_TIME(cls):
-                        return cls("ONE_TIME")
-                    @schemas.classproperty
-                    def ASTERISK(cls):
-                        return cls("*")
+                
+                @schemas.classproperty
+                def WHITELISTED(cls):
+                    return cls("WHITELISTED")
+                
+                @schemas.classproperty
+                def ONE_TIME(cls):
+                    return cls("ONE_TIME")
+                
+                @schemas.classproperty
+                def ASTERISK(cls):
+                    return cls("*")
             
             
             class authorizers(
@@ -937,12 +960,14 @@ class PolicyRule(
                             schemas.EnumBase,
                             schemas.StrSchema
                         ):
-                                @schemas.classproperty
-                                def AND(cls):
-                                    return cls("AND")
-                                @schemas.classproperty
-                                def OR(cls):
-                                    return cls("OR")
+                            
+                            @schemas.classproperty
+                            def AND(cls):
+                                return cls("AND")
+                            
+                            @schemas.classproperty
+                            def OR(cls):
+                                return cls("OR")
                         allowOperatorAsAuthorizer = schemas.BoolSchema
                         
                         

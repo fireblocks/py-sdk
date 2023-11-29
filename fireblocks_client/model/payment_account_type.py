@@ -41,12 +41,15 @@ class PaymentAccountType(
             "EXCHANGE_ACCOUNT": "EXCHANGE_ACCOUNT",
             "FIAT_ACCOUNT": "FIAT_ACCOUNT",
         }
-        @schemas.classproperty
-        def VAULT_ACCOUNT(cls):
-            return cls("VAULT_ACCOUNT")
-        @schemas.classproperty
-        def EXCHANGE_ACCOUNT(cls):
-            return cls("EXCHANGE_ACCOUNT")
-        @schemas.classproperty
-        def FIAT_ACCOUNT(cls):
-            return cls("FIAT_ACCOUNT")
+    
+    @schemas.classproperty
+    def VAULT_ACCOUNT(cls):
+        return cls("VAULT_ACCOUNT")
+    
+    @schemas.classproperty
+    def EXCHANGE_ACCOUNT(cls):
+        return cls("EXCHANGE_ACCOUNT")
+    
+    @schemas.classproperty
+    def FIAT_ACCOUNT(cls):
+        return cls("FIAT_ACCOUNT")

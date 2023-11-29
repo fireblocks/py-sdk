@@ -92,9 +92,9 @@ request_query_limit = api_client.QueryParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor200ResponseBody = PaginatedAssetWalletResponse
 ResponseHeadersFor200 = typing_extensions.TypedDict(
@@ -109,27 +109,27 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                SchemaFor200ResponseBody,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
 }
 _all_accept_content_types = (
     '*/*',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -145,25 +145,25 @@ class BaseApi(api_client.Api):
         query_params["after"] = params.get("after")
         query_params["limit"] = params.get("limit")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_total_amount_larger_than,
-            request_query_asset_id,
-            request_query_before,
-            request_query_after,
-            request_query_limit,
-        ):
+                request_query_total_amount_larger_than,
+                request_query_asset_id,
+                request_query_before,
+                request_query_after,
+                request_query_limit,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -247,11 +247,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_asset_wallets_oapg(
-            query_params=query_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

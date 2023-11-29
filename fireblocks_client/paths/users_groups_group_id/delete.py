@@ -51,9 +51,9 @@ request_path_group_id = api_client.PathParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 ResponseHeadersFor204 = typing_extensions.TypedDict(
     'ResponseHeadersFor204',
@@ -73,14 +73,14 @@ class ApiResponseFor204(api_client.ApiResponse):
 _response_for_204 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor204,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -95,28 +95,28 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '204': _response_for_204,
     'default': _response_for_default,
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -129,8 +129,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_group_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -145,7 +147,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -235,11 +236,11 @@ class ApiFordelete(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._delete_user_group_oapg(
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

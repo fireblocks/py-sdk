@@ -52,20 +52,18 @@ request_path_asset_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = GasStationConfiguration
-
-
 request_body_gas_station_configuration = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
     required=True,
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 ResponseHeadersFor201 = typing_extensions.TypedDict(
     'ResponseHeadersFor201',
@@ -85,14 +83,14 @@ class ApiResponseFor201(api_client.ApiResponse):
 _response_for_201 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor201,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -107,28 +105,28 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '201': _response_for_201,
     'default': _response_for_default,
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -141,8 +139,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_asset_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -157,13 +157,12 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
-        body = params.get(gas_station_configuration, schemas.unset)
+        body =  params.get(gas_station_configuration, schemas.unset)
         if body is schemas.unset:
             raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
+            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_gas_station_configuration.serialize(params, "application/json")
@@ -285,13 +284,13 @@ class ApiForput(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._update_gas_station_configuration_by_asset_id_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        path_params=path_params,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

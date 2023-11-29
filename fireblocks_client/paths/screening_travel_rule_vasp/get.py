@@ -80,24 +80,24 @@ SchemaFor200ResponseBodyApplicationJson = TravelRuleGetAllVASPsResponse
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 _status_code_to_response = {
     '200': _response_for_200,
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -112,24 +112,24 @@ class BaseApi(api_client.Api):
         query_params["page"] = params.get("page")
         query_params["fields"] = params.get("fields")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_order,
-            request_query_per_page,
-            request_query_page,
-            request_query_fields,
-        ):
+                request_query_order,
+                request_query_per_page,
+                request_query_page,
+                request_query_fields,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -213,11 +213,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_vasps_oapg(
-            query_params=query_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

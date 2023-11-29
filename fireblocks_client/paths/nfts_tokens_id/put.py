@@ -48,9 +48,9 @@ request_path_id = api_client.PathParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 ResponseHeadersFor202 = typing_extensions.TypedDict(
     'ResponseHeadersFor202',
@@ -70,9 +70,9 @@ class ApiResponseFor202(api_client.ApiResponse):
 _response_for_202 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor202,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '202': _response_for_202,
 }
@@ -88,8 +88,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -181,10 +183,10 @@ class ApiForput(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._refresh_nft_metadata_oapg(
-            path_params=path_params,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

@@ -102,9 +102,9 @@ request_path_address_index = api_client.PathParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor200ResponseBody = PublicKeyInformation
 ResponseHeadersFor200 = typing_extensions.TypedDict(
@@ -119,26 +119,26 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                SchemaFor200ResponseBody,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -153,21 +153,21 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     'default': _response_for_default,
@@ -175,7 +175,7 @@ _status_code_to_response = {
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -194,8 +194,10 @@ class BaseApi(api_client.Api):
             request_path_change,
             request_path_address_index,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -216,17 +218,16 @@ class BaseApi(api_client.Api):
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_compressed,
-        ):
+                request_query_compressed,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -320,12 +321,12 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_public_key_info_for_address_oapg(
-            query_params=query_params,
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        path_params=path_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

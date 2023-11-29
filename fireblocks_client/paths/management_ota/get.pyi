@@ -21,6 +21,7 @@ from fireblocks_client import schemas  # noqa: F401
 
 
 
+
 class SchemaFor200ResponseBodyApplicationJson(
     schemas.AnyTypeSchema,
 ):
@@ -76,18 +77,18 @@ class SchemaFor200ResponseBodyApplicationJson(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 
 
 @dataclass
@@ -99,10 +100,10 @@ class ApiResponseFor404(api_client.ApiResponse):
 
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
-)
+    )
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -111,8 +112,8 @@ class BaseApi(api_client.Api):
         """
         Returns current OTA status
         """
-        used_path = path.value
 
+        used_path = path.value
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -192,10 +193,10 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_ota_status_oapg(
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

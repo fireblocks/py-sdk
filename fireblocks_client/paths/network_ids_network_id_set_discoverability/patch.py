@@ -106,20 +106,18 @@ class SchemaForRequestBodyApplicationJson(
             _configuration=_configuration,
             **kwargs,
         )
-
-
 request_body_any_type = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
     required=True,
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 
 
@@ -189,26 +187,26 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                SchemaFor200ResponseBody,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -223,21 +221,21 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     'default': _response_for_default,
@@ -245,7 +243,7 @@ _status_code_to_response = {
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -258,8 +256,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_network_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -274,13 +274,12 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
-        body = params.get(any_type, schemas.unset)
+        body =  params.get(any_type, schemas.unset)
         if body is schemas.unset:
             raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
+            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_any_type.serialize(params, "application/json")
@@ -402,13 +401,13 @@ class ApiForpatch(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._set_discoverability_for_network_id_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        path_params=path_params,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

@@ -262,9 +262,9 @@ request_query_search = api_client.QueryParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 
 
@@ -367,27 +367,27 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                SchemaFor200ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -408,30 +408,30 @@ class BaseApi(api_client.Api):
         query_params["status"] = params.get("status")
         query_params["search"] = params.get("search")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_blockchain_descriptor,
-            request_query_vault_account_ids,
-            request_query_ids,
-            request_query_collection_ids,
-            request_query_page_cursor,
-            request_query_page_size,
-            request_query_sort,
-            request_query_order,
-            request_query_status,
-            request_query_search,
-        ):
+                request_query_blockchain_descriptor,
+                request_query_vault_account_ids,
+                request_query_ids,
+                request_query_collection_ids,
+                request_query_page_cursor,
+                request_query_page_size,
+                request_query_sort,
+                request_query_order,
+                request_query_status,
+                request_query_search,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -515,11 +515,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_ownership_tokens_oapg(
-            query_params=query_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

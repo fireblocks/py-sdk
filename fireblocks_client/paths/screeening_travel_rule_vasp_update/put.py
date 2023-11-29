@@ -25,13 +25,11 @@ from . import path
 
 # body param
 SchemaForRequestBodyApplicationJson = TravelRuleUpdateVASPDetails
-
-
 request_body_travel_rule_update_vasp_details = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
     required=True,
 )
 SchemaFor200ResponseBodyApplicationJson = TravelRuleUpdateVASPDetails
@@ -41,18 +39,18 @@ SchemaFor200ResponseBodyApplicationJson = TravelRuleUpdateVASPDetails
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 
 
 @dataclass
@@ -64,7 +62,7 @@ class ApiResponseFor400(api_client.ApiResponse):
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
-)
+    )
 
 
 @dataclass
@@ -76,7 +74,7 @@ class ApiResponseFor500(api_client.ApiResponse):
 
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
-)
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     '400': _response_for_400,
@@ -84,7 +82,7 @@ _status_code_to_response = {
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -93,14 +91,14 @@ class BaseApi(api_client.Api):
         """
         Add jsonDidKey to VASP details
         """
-        used_path = path.value
 
+        used_path = path.value
         _headers = HTTPHeaderDict()
 
-        body = params.get(travel_rule_update_vasp_details, schemas.unset)
+        body =  params.get(travel_rule_update_vasp_details, schemas.unset)
         if body is schemas.unset:
             raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
+            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_travel_rule_update_vasp_details.serialize(params, "application/json")
@@ -210,12 +208,12 @@ class ApiForput(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._travel_rule_api_controller_update_vasp_oapg(
-            body=body,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

@@ -18,6 +18,7 @@ import frozendict  # noqa: F401
 
 from fireblocks_client import schemas  # noqa: F401
 
+
 # Path params
 IdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -63,9 +64,9 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor404 = typing_extensions.TypedDict(
     'ResponseHeadersFor404',
@@ -85,9 +86,9 @@ class ApiResponseFor404(api_client.ApiResponse):
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor500 = typing_extensions.TypedDict(
     'ResponseHeadersFor500',
@@ -107,9 +108,9 @@ class ApiResponseFor500(api_client.ApiResponse):
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 
 
 class BaseApi(api_client.Api):
@@ -122,8 +123,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -215,10 +218,10 @@ class ApiFordelete(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._remove_oapg(
-            path_params=path_params,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

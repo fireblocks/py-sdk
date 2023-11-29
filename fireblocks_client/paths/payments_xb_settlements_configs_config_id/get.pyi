@@ -22,6 +22,7 @@ from fireblocks_client import schemas  # noqa: F401
 from fireblocks_client.model.error_response import ErrorResponse
 from fireblocks_client.model.xb_settlement_config_model import XBSettlementConfigModel
 
+
 # Path params
 ConfigIdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -55,18 +56,18 @@ SchemaFor200ResponseBodyApplicationJson = XBSettlementConfigModel
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -74,18 +75,18 @@ SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor404(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor404ResponseBodyApplicationJson,
-    ]
+                    SchemaFor404ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor404ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor404ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -93,18 +94,18 @@ SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor401(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor401ResponseBodyApplicationJson,
-    ]
+                    SchemaFor401ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_401 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor401,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor401ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor401ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 
 
@@ -112,21 +113,21 @@ SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor5XX(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor5XXResponseBodyApplicationJson,
-    ]
+                    SchemaFor5XXResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_5XX = api_client.OpenApiResponse(
     response_cls=ApiResponseFor5XX,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor5XXResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor5XXResponseBodyApplicationJson),
     },
-)
+    )
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -139,8 +140,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_config_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -155,7 +158,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -239,11 +241,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_xb_settlement_config_by_id_oapg(
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

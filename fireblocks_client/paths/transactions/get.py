@@ -319,21 +319,21 @@ request_query_dest_wallet_id = api_client.QueryParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 NextPageSchema = schemas.StrSchema
 next_page_parameter = api_client.HeaderParameter(
-    name="next-page",
+name="next-page",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=NextPageSchema,
+        schema=NextPageSchema,
 )
 PrevPageSchema = schemas.StrSchema
 prev_page_parameter = api_client.HeaderParameter(
-    name="prev-page",
+name="prev-page",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=PrevPageSchema,
+        schema=PrevPageSchema,
 )
 
 
@@ -375,28 +375,28 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                SchemaFor200ResponseBody,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
     headers=[
-        x_request_id_parameter,
-        next_page_parameter,
-        prev_page_parameter,
-    ]
-)
+            x_request_id_parameter,
+            next_page_parameter,
+            prev_page_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -411,21 +411,21 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     'default': _response_for_default,
@@ -433,7 +433,7 @@ _status_code_to_response = {
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -458,34 +458,34 @@ class BaseApi(api_client.Api):
         query_params["source_wallet_id"] = params.get("source_wallet_id")
         query_params["dest_wallet_id"] = params.get("dest_wallet_id")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_before,
-            request_query_after,
-            request_query_status,
-            request_query_order_by,
-            request_query_sort,
-            request_query_limit,
-            request_query_source_type,
-            request_query_source_id,
-            request_query_dest_type,
-            request_query_dest_id,
-            request_query_assets,
-            request_query_tx_hash,
-            request_query_source_wallet_id,
-            request_query_dest_wallet_id,
-        ):
+                request_query_before,
+                request_query_after,
+                request_query_status,
+                request_query_order_by,
+                request_query_sort,
+                request_query_limit,
+                request_query_source_type,
+                request_query_source_id,
+                request_query_dest_type,
+                request_query_dest_id,
+                request_query_assets,
+                request_query_tx_hash,
+                request_query_source_wallet_id,
+                request_query_dest_wallet_id,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -575,11 +575,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._get_transactions_oapg(
-            query_params=query_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

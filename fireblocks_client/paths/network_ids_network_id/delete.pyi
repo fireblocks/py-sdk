@@ -21,6 +21,7 @@ from fireblocks_client import schemas  # noqa: F401
 
 from fireblocks_client.model.error import Error
 
+
 # Path params
 NetworkIdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -109,18 +110,18 @@ class SchemaFor200ResponseBody(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                    SchemaFor200ResponseBody,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
-)
+    )
 XRequestIDSchema = schemas.StrSchema
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -135,25 +136,25 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -166,8 +167,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_network_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -182,7 +185,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -272,11 +274,11 @@ class ApiFordelete(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._delete_network_id_oapg(
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

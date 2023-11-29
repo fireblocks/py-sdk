@@ -18,6 +18,7 @@ import frozendict  # noqa: F401
 
 from fireblocks_client import schemas  # noqa: F401
 
+
 # Query params
 
 
@@ -94,9 +95,9 @@ class ApiResponseFor202(api_client.ApiResponse):
 _response_for_202 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor202,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 
 
 class BaseApi(api_client.Api):
@@ -109,19 +110,20 @@ class BaseApi(api_client.Api):
         query_params["blockchain_descriptor"] = params.get("blockchain_descriptor")
         query_params["vault_account_id"] = params.get("vault_account_id")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
+
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-            request_query_blockchain_descriptor,
-            request_query_vault_account_id,
-        ):
+                request_query_blockchain_descriptor,
+                request_query_vault_account_id,
+            ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
 
@@ -201,10 +203,10 @@ class ApiForput(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._update_ownership_tokens_oapg(
-            query_params=query_params,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        query_params=query_params,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

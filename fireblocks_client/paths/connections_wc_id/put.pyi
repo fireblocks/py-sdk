@@ -21,6 +21,7 @@ from fireblocks_client import schemas  # noqa: F401
 
 from fireblocks_client.model.respond_to_connection_request import RespondToConnectionRequest
 
+
 # Path params
 IdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -49,13 +50,11 @@ request_path_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = RespondToConnectionRequest
-
-
 request_body_respond_to_connection_request = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
     required=True,
 )
 XRequestIDSchema = schemas.StrSchema
@@ -77,9 +76,9 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor400 = typing_extensions.TypedDict(
     'ResponseHeadersFor400',
@@ -99,9 +98,9 @@ class ApiResponseFor400(api_client.ApiResponse):
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor404 = typing_extensions.TypedDict(
     'ResponseHeadersFor404',
@@ -121,9 +120,9 @@ class ApiResponseFor404(api_client.ApiResponse):
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor500 = typing_extensions.TypedDict(
     'ResponseHeadersFor500',
@@ -143,9 +142,9 @@ class ApiResponseFor500(api_client.ApiResponse):
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 
 
 class BaseApi(api_client.Api):
@@ -158,8 +157,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -174,13 +175,12 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
-        body = params.get(respond_to_connection_request, schemas.unset)
+        body =  params.get(respond_to_connection_request, schemas.unset)
         if body is schemas.unset:
             raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
+            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_respond_to_connection_request.serialize(params, "application/json")
@@ -290,12 +290,12 @@ class ApiForput(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._submit_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        path_params=path_params,
+        content_type=content_type,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

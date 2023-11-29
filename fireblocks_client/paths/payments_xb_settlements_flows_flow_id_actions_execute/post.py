@@ -53,13 +53,11 @@ request_path_flow_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = XBSettlementFlowExecutionRequestBody
-
-
 request_body_xb_settlement_flow_execution_request_body = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
 )
 SchemaFor200ResponseBodyApplicationJson = XBSettlementFlowExecutionModel
 
@@ -68,18 +66,18 @@ SchemaFor200ResponseBodyApplicationJson = XBSettlementFlowExecutionModel
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -87,18 +85,18 @@ SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor400(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor400ResponseBodyApplicationJson,
-    ]
+                    SchemaFor400ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor400ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor400ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -106,18 +104,18 @@ SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor404(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor404ResponseBodyApplicationJson,
-    ]
+                    SchemaFor404ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor404ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor404ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -125,18 +123,18 @@ SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor401(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor401ResponseBodyApplicationJson,
-    ]
+                    SchemaFor401ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_401 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor401,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor401ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor401ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 
 
@@ -144,18 +142,18 @@ SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor5XX(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor5XXResponseBodyApplicationJson,
-    ]
+                    SchemaFor5XXResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_5XX = api_client.OpenApiResponse(
     response_cls=ApiResponseFor5XX,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor5XXResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor5XXResponseBodyApplicationJson),
     },
-)
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     '400': _response_for_400,
@@ -165,7 +163,7 @@ _status_code_to_response = {
 }
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -178,8 +176,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_flow_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -194,7 +194,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         _fields = None
@@ -311,13 +310,13 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._execute_xb_settlement_flow_action_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        path_params=path_params,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

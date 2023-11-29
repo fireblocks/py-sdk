@@ -23,15 +23,14 @@ from fireblocks_client.model.error_response import ErrorResponse
 from fireblocks_client.model.xb_settlement_config_model import XBSettlementConfigModel
 from fireblocks_client.model.xb_settlement_config_creation_request_body import XBSettlementConfigCreationRequestBody
 
+
 # body param
 SchemaForRequestBodyApplicationJson = XBSettlementConfigCreationRequestBody
-
-
 request_body_xb_settlement_config_creation_request_body = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
 )
 SchemaFor200ResponseBodyApplicationJson = XBSettlementConfigModel
 
@@ -40,18 +39,18 @@ SchemaFor200ResponseBodyApplicationJson = XBSettlementConfigModel
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -59,18 +58,18 @@ SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor400(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor400ResponseBodyApplicationJson,
-    ]
+                    SchemaFor400ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor400ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor400ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -78,18 +77,18 @@ SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor401(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor401ResponseBodyApplicationJson,
-    ]
+                    SchemaFor401ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_401 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor401,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor401ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor401ResponseBodyApplicationJson),
     },
-)
+    )
 SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 
 
@@ -97,21 +96,21 @@ SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor5XX(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor5XXResponseBodyApplicationJson,
-    ]
+                    SchemaFor5XXResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_5XX = api_client.OpenApiResponse(
     response_cls=ApiResponseFor5XX,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor5XXResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor5XXResponseBodyApplicationJson),
     },
-)
+    )
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -120,8 +119,8 @@ class BaseApi(api_client.Api):
         """
         Create a new cross-border settlement configuration
         """
-        used_path = path.value
 
+        used_path = path.value
         _headers = HTTPHeaderDict()
 
         _fields = None
@@ -233,12 +232,12 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._create_xb_settlement_config_oapg(
-            body=body,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

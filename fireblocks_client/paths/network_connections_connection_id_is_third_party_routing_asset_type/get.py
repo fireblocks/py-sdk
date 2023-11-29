@@ -41,26 +41,21 @@ class AssetTypeSchema(
             "SIGNET_TEST": "SIGNET_TEST",
             "SEN_TEST": "SEN_TEST",
         }
-    
-    @schemas.classproperty
-    def CRYPTO(cls):
-        return cls("CRYPTO")
-    
-    @schemas.classproperty
-    def SIGNET(cls):
-        return cls("SIGNET")
-    
-    @schemas.classproperty
-    def SEN(cls):
-        return cls("SEN")
-    
-    @schemas.classproperty
-    def SIGNET_TEST(cls):
-        return cls("SIGNET_TEST")
-    
-    @schemas.classproperty
-    def SEN_TEST(cls):
-        return cls("SEN_TEST")
+        @schemas.classproperty
+        def CRYPTO(cls):
+            return cls("CRYPTO")
+        @schemas.classproperty
+        def SIGNET(cls):
+            return cls("SIGNET")
+        @schemas.classproperty
+        def SEN(cls):
+            return cls("SEN")
+        @schemas.classproperty
+        def SIGNET_TEST(cls):
+            return cls("SIGNET_TEST")
+        @schemas.classproperty
+        def SEN_TEST(cls):
+            return cls("SEN_TEST")
 RequestRequiredPathParams = typing_extensions.TypedDict(
     'RequestRequiredPathParams',
     {
@@ -94,9 +89,9 @@ request_path_asset_type = api_client.PathParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 
 
@@ -171,26 +166,26 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBody,
-    ]
+                SchemaFor200ResponseBody,
+        ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor200ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor200ResponseBody),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-    name="X-Request-ID",
+name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-    schema=XRequestIDSchema,
+        schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -205,21 +200,21 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _status_code_to_response = {
     '200': _response_for_200,
     'default': _response_for_default,
@@ -227,7 +222,7 @@ _status_code_to_response = {
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -241,8 +236,10 @@ class BaseApi(api_client.Api):
             request_path_connection_id,
             request_path_asset_type,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -258,7 +255,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         idempotency_key = request_options.get("idempotency_key")
@@ -348,11 +344,11 @@ class ApiForget(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._check_third_party_routing_for_network_connection_oapg(
-            path_params=path_params,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        path_params=path_params,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

@@ -22,6 +22,7 @@ from fireblocks_client import schemas  # noqa: F401
 from fireblocks_client.model.create_internal_transfer_request import CreateInternalTransferRequest
 from fireblocks_client.model.error import Error
 
+
 # Path params
 ExchangeAccountIdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -50,13 +51,11 @@ request_path_exchange_account_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = CreateInternalTransferRequest
-
-
 request_body_create_internal_transfer_request = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
 )
 XRequestIDSchema = schemas.StrSchema
 ResponseHeadersFor201 = typing_extensions.TypedDict(
@@ -77,9 +76,9 @@ class ApiResponseFor201(api_client.ApiResponse):
 _response_for_201 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor201,
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 XRequestIDSchema = schemas.StrSchema
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -94,24 +93,24 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -124,8 +123,10 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_exchange_account_id,
         ):
-            path_params[parameter.name] = params.get(parameter.name)
+            path_params[parameter.name] =  params.get(parameter.name,None)
+
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
+
         used_path = path.value
 
         _path_params = {}
@@ -140,7 +141,6 @@ class BaseApi(api_client.Api):
 
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
-
         _headers = HTTPHeaderDict()
 
         _fields = None
@@ -264,13 +264,13 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._internal_transfer_oapg(
-            body=body,
-            path_params=path_params,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        path_params=path_params,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

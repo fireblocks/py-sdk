@@ -23,15 +23,14 @@ from fireblocks_client.model.settlement_request_body import SettlementRequestBod
 from fireblocks_client.model.error import Error
 from fireblocks_client.model.settlement_response import SettlementResponse
 
+
 # body param
 SchemaForRequestBodyApplicationJson = SettlementRequestBody
-
-
 request_body_settlement_request_body = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
 )
 SchemaFor201ResponseBody = SettlementResponse
 
@@ -40,18 +39,18 @@ SchemaFor201ResponseBody = SettlementResponse
 class ApiResponseFor201(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor201ResponseBody,
-    ]
+                    SchemaFor201ResponseBody,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_201 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor201,
     content={
-        '*/*': api_client.MediaType(
-            schema=SchemaFor201ResponseBody),
+    '*/*': api_client.MediaType(
+    schema=SchemaFor201ResponseBody),
     },
-)
+    )
 XRequestIDSchema = schemas.StrSchema
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -66,25 +65,25 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor0ResponseBodyApplicationJson,
-    ]
+                SchemaFor0ResponseBodyApplicationJson,
+        ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor0ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-        x_request_id_parameter,
-    ]
-)
+            x_request_id_parameter,
+        ]
+    )
 _all_accept_content_types = (
     '*/*',
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -93,8 +92,8 @@ class BaseApi(api_client.Api):
         """
         create settlement for a trader
         """
-        used_path = path.value
 
+        used_path = path.value
         _headers = HTTPHeaderDict()
 
         _fields = None
@@ -213,12 +212,12 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._settle_off_exchange_trades_oapg(
-            body=body,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

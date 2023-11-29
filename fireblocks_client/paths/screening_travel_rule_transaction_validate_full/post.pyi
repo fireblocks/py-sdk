@@ -22,15 +22,14 @@ from fireblocks_client import schemas  # noqa: F401
 from fireblocks_client.model.travel_rule_validate_full_transaction_request import TravelRuleValidateFullTransactionRequest
 from fireblocks_client.model.travel_rule_validate_transaction_response import TravelRuleValidateTransactionResponse
 
+
 # body param
 SchemaForRequestBodyApplicationJson = TravelRuleValidateFullTransactionRequest
-
-
 request_body_travel_rule_validate_full_transaction_request = api_client.RequestBody(
-    content={
-        'application/json': api_client.MediaType(
-            schema=SchemaForRequestBodyApplicationJson),
-    },
+content={
+    'application/json': api_client.MediaType(
+        schema=SchemaForRequestBodyApplicationJson),
+},
     required=True,
 )
 SchemaFor200ResponseBodyApplicationJson = TravelRuleValidateTransactionResponse
@@ -40,18 +39,18 @@ SchemaFor200ResponseBodyApplicationJson = TravelRuleValidateTransactionResponse
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-        SchemaFor200ResponseBodyApplicationJson,
-    ]
+                    SchemaFor200ResponseBodyApplicationJson,
+                ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-        'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+    'application/json': api_client.MediaType(
+    schema=SchemaFor200ResponseBodyApplicationJson),
     },
-)
+    )
 
 
 @dataclass
@@ -63,7 +62,7 @@ class ApiResponseFor400(api_client.ApiResponse):
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
-)
+    )
 
 
 @dataclass
@@ -75,10 +74,10 @@ class ApiResponseFor500(api_client.ApiResponse):
 
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
-)
+    )
 _all_accept_content_types = (
     'application/json',
-)
+        )
 
 
 class BaseApi(api_client.Api):
@@ -87,14 +86,14 @@ class BaseApi(api_client.Api):
         """
         Validate Full Travel Rule Transaction
         """
-        used_path = path.value
 
+        used_path = path.value
         _headers = HTTPHeaderDict()
 
-        body = params.get(travel_rule_validate_full_transaction_request, schemas.unset)
+        body =  params.get(travel_rule_validate_full_transaction_request, schemas.unset)
         if body is schemas.unset:
             raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
+            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_travel_rule_validate_full_transaction_request.serialize(params, "application/json")
@@ -204,12 +203,12 @@ class ApiForpost(BaseApi):
         skip_deserialization: bool = False,
     ):
         return self._validate_full_travel_rule_transaction_oapg(
-            body=body,
-            content_type=content_type,
-            accept_content_types=accept_content_types,
-            stream=stream,
-            timeout=timeout,
-            skip_deserialization=skip_deserialization
-        )
+        body=body,
+        content_type=content_type,
+        accept_content_types=accept_content_types,
+        stream=stream,
+        timeout=timeout,
+        skip_deserialization=skip_deserialization
+    )
 
 

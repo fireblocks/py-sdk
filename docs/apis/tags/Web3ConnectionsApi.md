@@ -20,6 +20,7 @@ Initiate a new Web3 connection.  * Note: After this succeeds, make a request to 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import web3_connections_api
@@ -32,24 +33,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = web3_connections_api.Web3ConnectionsApi()
-    # example passing only required values which don't have defaults set
-    body = CreateConnectionRequest(
+# Create an instance of the API class
+api_instance = web3_connections_api.Web3ConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'create_connection_request': CreateConnectionRequest(
         vault_account_id=1,
         fee_level="MEDIUM",
         uri="wc:77752975-906f-48f5-b59f-047826ee947e@1?bridge=https%3A%2F%2F0.bridge.walletconnect.org&key=64be99adc6086b7a729b0ec8c7e1f174927ab92e84f5c6f9527050225344a637",
         chain_ids=["ETH","ETH_TEST"],
     )
-    try:
-        # Create a new Web3 connection.
-        api_response = api_instance.create(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling Web3ConnectionsApi->create: %s\n" % e)
-```### Parameters
+}
+try:
+    # Create a new Web3 connection.
+    api_response = api_instance.create(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling Web3ConnectionsApi->create: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -159,6 +163,7 @@ Get open Web3 connections.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import web3_connections_api
@@ -170,38 +175,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = web3_connections_api.Web3ConnectionsApi()
+# Create an instance of the API class
+api_instance = web3_connections_api.Web3ConnectionsApi()
 
-    # example passing only optional values
-    query_params = {
-        'order': "ASC",
-        'filter': dict(
-        id="id_example",
-        user_id="user_id_example",
-        vault_account_id=3.14,
-        connection_method="connection_method_example",
-        fee_level="fee_level_example",
-        app_url="app_url_example",
-        app_name="app_name_example",
-    ),
-        'sort': "createdAt",
-        'pageSize': 10,
-        'next': "next_example",
-    }
-    try:
-        # List all open Web3 connections.
-        api_response = api_instance.get(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling Web3ConnectionsApi->get: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -357,6 +339,7 @@ Remove a Web3 connection
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import web3_connections_api
@@ -367,24 +350,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = web3_connections_api.Web3ConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'id': "id_example",
-    }
-    try:
-        # Remove an existing Web3 connection.
-        api_response = api_instance.remove(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling Web3ConnectionsApi->remove: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = web3_connections_api.Web3ConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'id': "id_example",
+}
+try:
+    # Remove an existing Web3 connection.
+    api_response = api_instance.remove(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling Web3ConnectionsApi->remove: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -488,6 +471,7 @@ Submit a response to *approve* or *reject* an initiated Web3 connection. * Note:
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import web3_connections_api
@@ -499,29 +483,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = web3_connections_api.Web3ConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'id': "id_example",
-    }
-    body = RespondToConnectionRequest(
+# Create an instance of the API class
+api_instance = web3_connections_api.Web3ConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'id': "id_example",
+    'respond_to_connection_request': RespondToConnectionRequest(
         approve=True,
     )
-    try:
-        # Respond to a pending Web3 connection request.
-        api_response = api_instance.submit(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling Web3ConnectionsApi->submit: %s\n" % e)
-```### Parameters
+}
+try:
+    # Respond to a pending Web3 connection request.
+    api_response = api_instance.submit(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling Web3ConnectionsApi->submit: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

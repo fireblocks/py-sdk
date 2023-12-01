@@ -24,6 +24,7 @@ Create a new cross-border settlement configuration
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -37,27 +38,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
 
-    # example passing only optional values
-    body = XBSettlementConfigCreationRequestBody(
-        name="name_example",
-        corridor_id=XBSettlementCorridorId("MX_US"),
-        steps=XBSettlementConfigStepsRecord(
-            step_type=XBSettlementStepType("ON_RAMP"),
-        ),
-        conversion_slippage_basis_points=XBSettlementConversionSlippageBasisPoints(10000),
-    )
-    try:
-        # Create a new cross-border settlement configuration
-        api_response = api_instance.create_xb_settlement_config(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->create_xb_settlement_config: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -154,6 +140,7 @@ Create a cross-border flow (based on a cross-border configuration) with an amoun
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -167,23 +154,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
 
-    # example passing only optional values
-    body = XBSettlementCreateFlowRequestBody(
-        config_id="config_id_example",
-        amount="amount_example",
-    )
-    try:
-        # Create a new cross-border settlement flow
-        api_response = api_instance.create_xb_settlement_flow(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->create_xb_settlement_flow: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -280,6 +256,7 @@ Delete a cross-border settlement configuration. This does not delete or remove p
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -292,25 +269,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
-    }
-    try:
-        # Delete a cross-border settlement configuration
-        api_response = api_instance.delete_xb_settlement_config(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->delete_xb_settlement_config: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# example passing only required values which don't have defaults set
+params = {
+    'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
+}
+try:
+    # Delete a cross-border settlement configuration
+    api_response = api_instance.delete_xb_settlement_config(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsCrossBorderSettlementApi->delete_xb_settlement_config: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -408,6 +385,7 @@ Send a payment flow with 'flowId' for execution. If a differet slippage configur
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -421,43 +399,29 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'flowId': "98fb5a8b-65ff-4f15-b89c-80910aedbfb3",
-    }
-    try:
-        # Execute cross-border settlement flow
-        api_response = api_instance.execute_xb_settlement_flow_action(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->execute_xb_settlement_flow_action: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'flowId': "98fb5a8b-65ff-4f15-b89c-80910aedbfb3",
-    }
-    body = XBSettlementFlowExecutionRequestBody(
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# example passing only required values which don't have defaults set
+params = {
+    'flowId': "98fb5a8b-65ff-4f15-b89c-80910aedbfb3",
+    'xb_settlement_flow_execution_request_body': XBSettlementFlowExecutionRequestBody(
         conversion_slippage_basis_points=XBSettlementConversionSlippageBasisPoints(10000),
     )
-    try:
-        # Execute cross-border settlement flow
-        api_response = api_instance.execute_xb_settlement_flow_action(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->execute_xb_settlement_flow_action: %s\n" % e)
-```### Parameters
+}
+try:
+    # Execute cross-border settlement flow
+    api_response = api_instance.execute_xb_settlement_flow_action(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsCrossBorderSettlementApi->execute_xb_settlement_flow_action: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -578,6 +542,7 @@ Get a specific cross-border settlement configuration.</br> **Note:** The referen
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -590,25 +555,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
-    }
-    try:
-        # Get a specific cross-border settlement configuration
-        api_response = api_instance.get_xb_settlement_config_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->get_xb_settlement_config_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# example passing only required values which don't have defaults set
+params = {
+    'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
+}
+try:
+    # Get a specific cross-border settlement configuration
+    api_response = api_instance.get_xb_settlement_config_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsCrossBorderSettlementApi->get_xb_settlement_config_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -706,6 +671,7 @@ Get all the cross-border settlement configurations. </br> **Note:** The referenc
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -718,17 +684,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get all the cross-border settlement configurations
-        api_response = api_instance.get_xb_settlement_configs()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->get_xb_settlement_configs: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -795,6 +756,7 @@ Gets details for a specific cross-border settlement flow **Note:** The reference
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -807,25 +769,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'flowId': "98fb5a8b-65ff-4f15-b89c-80910aedbfb3",
-    }
-    try:
-        # Get specific cross-border settlement flow details
-        api_response = api_instance.get_xb_settlement_flow_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->get_xb_settlement_flow_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# example passing only required values which don't have defaults set
+params = {
+    'flowId': "98fb5a8b-65ff-4f15-b89c-80910aedbfb3",
+}
+try:
+    # Get specific cross-border settlement flow details
+    api_response = api_instance.get_xb_settlement_flow_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsCrossBorderSettlementApi->get_xb_settlement_flow_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -923,6 +885,7 @@ Edit a cross-border settlement configuration. Editing a configuration does not a
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_cross_border_settlement_api
@@ -936,47 +899,33 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
-    }
-    try:
-        # Edit a cross-border settlement configuration
-        api_response = api_instance.update_xb_settlement_config(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->update_xb_settlement_config: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
-    }
-    body = XBSettlementConfigEditRequestBody(
+# Create an instance of the API class
+api_instance = payments_cross_border_settlement_api.PaymentsCrossBorderSettlementApi()
+# example passing only required values which don't have defaults set
+params = {
+    'configId': "074791cc-ef32-4920-8373-95efbeea66c5",
+    'xb_settlement_config_edit_request_body': XBSettlementConfigEditRequestBody(
         name="name_example",
         steps=XBSettlementConfigStepsRecord(
             step_type=XBSettlementStepType("ON_RAMP"),
         ),
         conversion_slippage_basis_points=XBSettlementConversionSlippageBasisPoints(10000),
     )
-    try:
-        # Edit a cross-border settlement configuration
-        api_response = api_instance.update_xb_settlement_config(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsCrossBorderSettlementApi->update_xb_settlement_config: %s\n" % e)
-```### Parameters
+}
+try:
+    # Edit a cross-border settlement configuration
+    api_response = api_instance.update_xb_settlement_config(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsCrossBorderSettlementApi->update_xb_settlement_config: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

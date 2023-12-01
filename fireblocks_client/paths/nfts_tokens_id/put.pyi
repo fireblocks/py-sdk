@@ -18,7 +18,6 @@ import frozendict  # noqa: F401
 
 from fireblocks_client import schemas  # noqa: F401
 
-
 # Path params
 IdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -64,14 +63,14 @@ class ApiResponseFor202(api_client.ApiResponse):
 _response_for_202 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor202,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _refresh_nft_metadata_oapg(self, params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def _refresh_nft_metadata_oapg(self, params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Refresh token metadata
         """
@@ -79,10 +78,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -98,9 +96,10 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -121,63 +120,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class RefreshNftMetadata(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def refresh_nft_metadata(self ,params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def refresh_nft_metadata(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         return self._refresh_nft_metadata_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._refresh_nft_metadata_oapg(
-        path_params=path_params,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def put(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._refresh_nft_metadata_oapg(params, request_options)
 
 

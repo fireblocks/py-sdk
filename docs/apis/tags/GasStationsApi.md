@@ -20,6 +20,7 @@ Returns gas station settings and ETH balance.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import gas_stations_api
@@ -32,17 +33,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = gas_stations_api.GasStationsApi()
+# Create an instance of the API class
+api_instance = gas_stations_api.GasStationsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get gas station settings
-        api_response = api_instance.get_gas_station()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling GasStationsApi->get_gas_station: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -121,6 +117,7 @@ Returns gas station settings and balances for a requested asset.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import gas_stations_api
@@ -133,25 +130,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = gas_stations_api.GasStationsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get gas station settings by asset
-        api_response = api_instance.get_gas_station_by_asset_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling GasStationsApi->get_gas_station_by_asset_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = gas_stations_api.GasStationsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'assetId': "assetId_example",
+}
+try:
+    # Get gas station settings by asset
+    api_response = api_instance.get_gas_station_by_asset_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling GasStationsApi->get_gas_station_by_asset_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -247,6 +244,7 @@ Configures gas station settings for ETH.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import gas_stations_api
@@ -259,22 +257,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = gas_stations_api.GasStationsApi()
-    # example passing only required values which don't have defaults set
-    body = GasStationConfiguration(
+# Create an instance of the API class
+api_instance = gas_stations_api.GasStationsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'gas_station_configuration': GasStationConfiguration(
         gas_threshold="gas_threshold_example",
         gas_cap="gas_cap_example",
         max_gas_price="max_gas_price_example",
     )
-    try:
-        # Edit gas station settings
-        api_response = api_instance.update_gas_station_configuration(
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling GasStationsApi->update_gas_station_configuration: %s\n" % e)
-```### Parameters
+}
+try:
+    # Edit gas station settings
+    api_response = api_instance.update_gas_station_configuration(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling GasStationsApi->update_gas_station_configuration: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -363,6 +364,7 @@ Configures gas station settings for a requested asset.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import gas_stations_api
@@ -375,31 +377,30 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = gas_stations_api.GasStationsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'assetId': "assetId_example",
-    }
-    body = GasStationConfiguration(
+# Create an instance of the API class
+api_instance = gas_stations_api.GasStationsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'assetId': "assetId_example",
+    'gas_station_configuration': GasStationConfiguration(
         gas_threshold="gas_threshold_example",
         gas_cap="gas_cap_example",
         max_gas_price="max_gas_price_example",
     )
-    try:
-        # Edit gas station settings for an asset
-        api_response = api_instance.update_gas_station_configuration_by_asset_id(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling GasStationsApi->update_gas_station_configuration_by_asset_id: %s\n" % e)
-```### Parameters
+}
+try:
+    # Edit gas station settings for an asset
+    api_response = api_instance.update_gas_station_configuration_by_asset_id(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling GasStationsApi->update_gas_station_configuration_by_asset_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

@@ -18,6 +18,7 @@ Resends all failed webhook notifications.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import webhooks_api
@@ -30,17 +31,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = webhooks_api.WebhooksApi()
+# Create an instance of the API class
+api_instance = webhooks_api.WebhooksApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Resend failed webhooks
-        api_response = api_instance.resend_webhooks()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling WebhooksApi->resend_webhooks: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -119,6 +115,7 @@ Resends failed webhook notifications for a transaction by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import webhooks_api
@@ -130,27 +127,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = webhooks_api.WebhooksApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    body = None
-    try:
-        # Resend failed webhooks for a transaction by ID
-        api_response = api_instance.resend_webhooks_for_transaction(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling WebhooksApi->resend_webhooks_for_transaction: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = webhooks_api.WebhooksApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+    'any_type': None
+}
+try:
+    # Resend failed webhooks for a transaction by ID
+    api_response = api_instance.resend_webhooks_for_transaction(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling WebhooksApi->resend_webhooks_for_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

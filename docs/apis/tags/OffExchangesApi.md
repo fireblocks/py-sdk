@@ -21,6 +21,7 @@ add collateral, create deposit request
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import off_exchanges_api
@@ -34,59 +35,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = off_exchanges_api.OffExchangesApi()
+# Create an instance of the API class
+api_instance = off_exchanges_api.OffExchangesApi()
 
-    # example passing only optional values
-    body = AddCollateralRequestBody(
-        transaction_request=TransactionRequest(
-            operation=TransactionOperation("TRANSFER"),
-            note="Ticket 123",
-            external_tx_id="00000000-0000-0000-0000-000000000000",
-            asset_id="ETH",
-            source=TransferPeerPath(
-                type="VAULT_ACCOUNT",
-                sub_type="BINANCE",
-                id="id_example",
-                name="name_example",
-                wallet_id="wallet_id_example",
-            ),
-            destination=DestinationTransferPeerPath(None),
-            destinations=[
-                TransactionRequestDestination(
-                    amount="amount_example",
-,
-                )
-            ],
-            amount=None,
-            treat_as_gross_amount=False,
-            force_sweep=False,
-            fee_level="MEDIUM",
-            fee=None,
-            priority_fee=None,
-            fail_on_low_fee=True,
-            max_fee="120",
-            gas_limit=None,
-            gas_price=None,
-            network_fee=None,
-            replace_tx_by_hash="00000000-0000-0000-0000-000000000000",
-            extra_parameters=dict(),
-            customer_ref_id="abcdef",
-            auto_staking=True,
-            network_staking=None,
-,
-        ),
-        is_src_collateral=True,
-    )
-    try:
-        # add collateral
-        api_response = api_instance.add_off_exchange(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OffExchangesApi->add_off_exchange: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -168,6 +122,7 @@ Returns a collateral account by mainExchangeAccountId.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import off_exchanges_api
@@ -180,25 +135,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = off_exchanges_api.OffExchangesApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'mainExchangeAccountId': "mainExchangeAccountId_example",
-    }
-    try:
-        # Find a specific collateral exchange account
-        api_response = api_instance.get_off_exchange_collateral_accounts(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OffExchangesApi->get_off_exchange_collateral_accounts: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = off_exchanges_api.OffExchangesApi()
+# example passing only required values which don't have defaults set
+params = {
+    'mainExchangeAccountId': "mainExchangeAccountId_example",
+}
+try:
+    # Find a specific collateral exchange account
+    api_response = api_instance.get_off_exchange_collateral_accounts(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling OffExchangesApi->get_off_exchange_collateral_accounts: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -294,6 +249,7 @@ get settlements transactions from exchange
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import off_exchanges_api
@@ -306,25 +262,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = off_exchanges_api.OffExchangesApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'mainExchangeAccountId': "mainExchangeAccountId_example",
-    }
-    try:
-        # get settlements transactions from exchange
-        api_response = api_instance.get_off_exchange_settlement_transactions(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OffExchangesApi->get_off_exchange_settlement_transactions: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = off_exchanges_api.OffExchangesApi()
+# example passing only required values which don't have defaults set
+params = {
+    'mainExchangeAccountId': "mainExchangeAccountId_example",
+}
+try:
+    # get settlements transactions from exchange
+    api_response = api_instance.get_off_exchange_settlement_transactions(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling OffExchangesApi->get_off_exchange_settlement_transactions: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -408,6 +364,7 @@ remove collateral, create withdraw request
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import off_exchanges_api
@@ -421,59 +378,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = off_exchanges_api.OffExchangesApi()
+# Create an instance of the API class
+api_instance = off_exchanges_api.OffExchangesApi()
 
-    # example passing only optional values
-    body = RemoveCollateralRequestBody(
-        transaction_request=TransactionRequest(
-            operation=TransactionOperation("TRANSFER"),
-            note="Ticket 123",
-            external_tx_id="00000000-0000-0000-0000-000000000000",
-            asset_id="ETH",
-            source=TransferPeerPath(
-                type="VAULT_ACCOUNT",
-                sub_type="BINANCE",
-                id="id_example",
-                name="name_example",
-                wallet_id="wallet_id_example",
-            ),
-            destination=DestinationTransferPeerPath(None),
-            destinations=[
-                TransactionRequestDestination(
-                    amount="amount_example",
-,
-                )
-            ],
-            amount=None,
-            treat_as_gross_amount=False,
-            force_sweep=False,
-            fee_level="MEDIUM",
-            fee=None,
-            priority_fee=None,
-            fail_on_low_fee=True,
-            max_fee="120",
-            gas_limit=None,
-            gas_price=None,
-            network_fee=None,
-            replace_tx_by_hash="00000000-0000-0000-0000-000000000000",
-            extra_parameters=dict(),
-            customer_ref_id="abcdef",
-            auto_staking=True,
-            network_staking=None,
-,
-        ),
-        is_dst_collateral=True,
-    )
-    try:
-        # remove collateral
-        api_response = api_instance.remove_off_exchange(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OffExchangesApi->remove_off_exchange: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -555,6 +465,7 @@ create settlement for a trader
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import off_exchanges_api
@@ -568,22 +479,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = off_exchanges_api.OffExchangesApi()
+# Create an instance of the API class
+api_instance = off_exchanges_api.OffExchangesApi()
 
-    # example passing only optional values
-    body = SettlementRequestBody(
-        main_exchange_account_id="main_exchange_account_id_example",
-    )
-    try:
-        # create settlement for a trader
-        api_response = api_instance.settle_off_exchange_trades(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OffExchangesApi->settle_off_exchange_trades: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

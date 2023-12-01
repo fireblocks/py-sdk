@@ -52,17 +52,19 @@ request_path_exchange_account_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = CreateInternalTransferRequest
+
+
 request_body_create_internal_transfer_request = api_client.RequestBody(
-content={
-    'application/json': api_client.MediaType(
-        schema=SchemaForRequestBodyApplicationJson),
-},
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJson),
+    },
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 ResponseHeadersFor201 = typing_extensions.TypedDict(
     'ResponseHeadersFor201',
@@ -82,14 +84,14 @@ class ApiResponseFor201(api_client.ApiResponse):
 _response_for_201 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor201,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -104,33 +106,33 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor0ResponseBodyApplicationJson,
-        ]
+        SchemaFor0ResponseBodyApplicationJson,
+    ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _status_code_to_response = {
     '201': _response_for_201,
     'default': _response_for_default,
 }
 _all_accept_content_types = (
     'application/json',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _internal_transfer_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def _internal_transfer_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Internal tranfer for exchange accounts
         """
@@ -138,10 +140,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_exchange_account_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -157,18 +158,20 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
         _headers = HTTPHeaderDict()
-
         _fields = None
         _body = None
         serialized_data = request_body_create_internal_transfer_request.serialize(params, "application/json")
         _headers.add('Content-Type', "application/json")
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
+
         elif 'body' in serialized_data:
-            _body = serialized_data['body']
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+                _body = serialized_data['body']
+
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -196,96 +199,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class InternalTransfer(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def internal_transfer(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def internal_transfer(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         return self._internal_transfer_oapg(params, request_options)
 
 
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def post(
-        self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor201,
-        ApiResponseForDefault,
-    ]: ...
-
-    @typing.overload
-    def post(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor201,
-        ApiResponseForDefault,
-    ]: ...
-
-
-    @typing.overload
-    def post(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def post(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor201,
-        ApiResponseForDefault,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def post(
-        self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._internal_transfer_oapg(
-        body=body,
-        path_params=path_params,
-        content_type=content_type,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def post(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._internal_transfer_oapg(params, request_options)
 
 

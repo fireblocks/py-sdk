@@ -17,6 +17,7 @@ Get all audits
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import audit_logs_api
@@ -28,24 +29,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = audit_logs_api.AuditLogsApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'timePeriod': "DAY",
-    }
-    try:
-        # Get audit logs
-        api_response = api_instance.get_audits(
-            query_params=query_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling AuditLogsApi->get_audits: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = audit_logs_api.AuditLogsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'timePeriod': "DAY",
+}
+try:
+    # Get audit logs
+    api_response = api_instance.get_audits(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling AuditLogsApi->get_audits: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

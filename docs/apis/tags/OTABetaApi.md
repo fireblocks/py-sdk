@@ -18,6 +18,7 @@ Returns current OTA status
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import ota_beta_api
@@ -28,17 +29,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = ota_beta_api.OTABetaApi()
+# Create an instance of the API class
+api_instance = ota_beta_api.OTABetaApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Returns current OTA status
-        api_response = api_instance.get_ota_status()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OTABetaApi->get_ota_status: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -92,6 +88,7 @@ Enable or disable transactions to OTA
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import ota_beta_api
@@ -102,18 +99,21 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = ota_beta_api.OTABetaApi()
-    # example passing only required values which don't have defaults set
-    body = None
-    try:
-        # Enable or disable transactions to OTA
-        api_response = api_instance.set_ota_status(
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling OTABetaApi->set_ota_status: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = ota_beta_api.OTABetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'any_type': None
+}
+try:
+    # Enable or disable transactions to OTA
+    api_response = api_instance.set_ota_status(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling OTABetaApi->set_ota_status: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

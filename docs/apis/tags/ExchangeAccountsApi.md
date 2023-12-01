@@ -19,6 +19,7 @@ Convert exchange account funds from the source asset to the destination asset. C
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import exchange_accounts_api
@@ -30,39 +31,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = exchange_accounts_api.ExchangeAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-    }
-    try:
-        # Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
-        api_response = api_instance.convert_assets(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->convert_assets: %s\n" % e)
+# Create an instance of the API class
+api_instance = exchange_accounts_api.ExchangeAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'exchangeAccountId': "exchangeAccountId_example",
+    'any_type': None
+}
+try:
+    # Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
+    api_response = api_instance.convert_assets(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ExchangeAccountsApi->convert_assets: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-    }
-    body = None
-    try:
-        # Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
-        api_response = api_instance.convert_assets(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->convert_assets: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -170,6 +158,7 @@ Returns an asset for an exchange account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import exchange_accounts_api
@@ -182,26 +171,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = exchange_accounts_api.ExchangeAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Find an asset for an exchange account
-        api_response = api_instance.get_exchange_account_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->get_exchange_account_asset: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = exchange_accounts_api.ExchangeAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'exchangeAccountId': "exchangeAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Find an asset for an exchange account
+    api_response = api_instance.get_exchange_account_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ExchangeAccountsApi->get_exchange_account_asset: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -305,6 +294,7 @@ Returns an exchange account by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import exchange_accounts_api
@@ -317,25 +307,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = exchange_accounts_api.ExchangeAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-    }
-    try:
-        # Find a specific exchange account
-        api_response = api_instance.get_exchange_account_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->get_exchange_account_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = exchange_accounts_api.ExchangeAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'exchangeAccountId': "exchangeAccountId_example",
+}
+try:
+    # Find a specific exchange account
+    api_response = api_instance.get_exchange_account_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ExchangeAccountsApi->get_exchange_account_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -431,6 +421,7 @@ Returns all exchange accounts.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import exchange_accounts_api
@@ -443,17 +434,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = exchange_accounts_api.ExchangeAccountsApi()
+# Create an instance of the API class
+api_instance = exchange_accounts_api.ExchangeAccountsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List exchange accounts
-        api_response = api_instance.get_exchange_accounts()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->get_exchange_accounts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -538,6 +524,7 @@ Transfers funds between trading accounts under the same exchange account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import exchange_accounts_api
@@ -550,44 +537,31 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = exchange_accounts_api.ExchangeAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-    }
-    try:
-        # Internal tranfer for exchange accounts
-        api_response = api_instance.internal_transfer(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->internal_transfer: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'exchangeAccountId': "exchangeAccountId_example",
-    }
-    body = CreateInternalTransferRequest(
+# Create an instance of the API class
+api_instance = exchange_accounts_api.ExchangeAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'exchangeAccountId': "exchangeAccountId_example",
+    'create_internal_transfer_request': CreateInternalTransferRequest(
         asset="asset_example",
         amount="amount_example",
         source_type=TradingAccountType("COIN_FUTURES"),
         dest_type=TradingAccountType("COIN_FUTURES"),
     )
-    try:
-        # Internal tranfer for exchange accounts
-        api_response = api_instance.internal_transfer(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ExchangeAccountsApi->internal_transfer: %s\n" % e)
-```### Parameters
+}
+try:
+    # Internal tranfer for exchange accounts
+    api_response = api_instance.internal_transfer(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ExchangeAccountsApi->internal_transfer: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

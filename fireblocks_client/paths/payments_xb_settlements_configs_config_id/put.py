@@ -53,11 +53,13 @@ request_path_config_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = XBSettlementConfigEditRequestBody
+
+
 request_body_xb_settlement_config_edit_request_body = api_client.RequestBody(
-content={
-    'application/json': api_client.MediaType(
-        schema=SchemaForRequestBodyApplicationJson),
-},
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJson),
+    },
 )
 SchemaFor200ResponseBodyApplicationJson = XBSettlementConfigModel
 
@@ -66,18 +68,18 @@ SchemaFor200ResponseBodyApplicationJson = XBSettlementConfigModel
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor200ResponseBodyApplicationJson,
-                ]
+        SchemaFor200ResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor200ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
-    )
+)
 SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -85,18 +87,18 @@ SchemaFor404ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor404(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor404ResponseBodyApplicationJson,
-                ]
+        SchemaFor404ResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor404ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor404ResponseBodyApplicationJson),
     },
-    )
+)
 SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -104,18 +106,18 @@ SchemaFor400ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor400(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor400ResponseBodyApplicationJson,
-                ]
+        SchemaFor400ResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor400ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor400ResponseBodyApplicationJson),
     },
-    )
+)
 SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 
 
@@ -123,18 +125,18 @@ SchemaFor401ResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor401(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor401ResponseBodyApplicationJson,
-                ]
+        SchemaFor401ResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_401 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor401,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor401ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor401ResponseBodyApplicationJson),
     },
-    )
+)
 SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 
 
@@ -142,18 +144,18 @@ SchemaFor5XXResponseBodyApplicationJson = ErrorResponse
 class ApiResponseFor5XX(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor5XXResponseBodyApplicationJson,
-                ]
+        SchemaFor5XXResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_5XX = api_client.OpenApiResponse(
     response_cls=ApiResponseFor5XX,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor5XXResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor5XXResponseBodyApplicationJson),
     },
-    )
+)
 _status_code_to_response = {
     '200': _response_for_200,
     '404': _response_for_404,
@@ -163,12 +165,12 @@ _status_code_to_response = {
 }
 _all_accept_content_types = (
     'application/json',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _update_xb_settlement_config_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def _update_xb_settlement_config_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Edit a cross-border settlement configuration
         """
@@ -176,10 +178,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_config_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -195,18 +196,20 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
         _headers = HTTPHeaderDict()
-
         _fields = None
         _body = None
         serialized_data = request_body_xb_settlement_config_edit_request_body.serialize(params, "application/json")
         _headers.add('Content-Type', "application/json")
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
+
         elif 'body' in serialized_data:
-            _body = serialized_data['body']
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+                _body = serialized_data['body']
+
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -230,93 +233,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class UpdateXbSettlementConfig(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def update_xb_settlement_config(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def update_xb_settlement_config(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         return self._update_xb_settlement_config_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-
-    @typing.overload
-    def put(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        content_type: str = ...,
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        content_type: str = 'application/json',
-        body: typing.Union[SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._update_xb_settlement_config_oapg(
-        body=body,
-        path_params=path_params,
-        content_type=content_type,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def put(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._update_xb_settlement_config_oapg(params, request_options)
 
 

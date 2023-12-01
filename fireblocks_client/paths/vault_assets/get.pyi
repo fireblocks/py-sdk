@@ -22,7 +22,6 @@ from fireblocks_client import schemas  # noqa: F401
 from fireblocks_client.model.vault_asset import VaultAsset
 from fireblocks_client.model.error import Error
 
-
 # Query params
 AccountNamePrefixSchema = schemas.StrSchema
 AccountNameSuffixSchema = schemas.StrSchema
@@ -96,21 +95,21 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor200ResponseBody,
-        ]
+        SchemaFor200ResponseBody,
+    ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    '*/*': api_client.MediaType(
-    schema=SchemaFor200ResponseBody),
+        '*/*': api_client.MediaType(
+            schema=SchemaFor200ResponseBody),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 XRequestIDSchema = schemas.StrSchema
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -125,58 +124,62 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor0ResponseBodyApplicationJson,
-        ]
+        SchemaFor0ResponseBodyApplicationJson,
+    ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _all_accept_content_types = (
     '*/*',
     'application/json',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _get_vault_assets_oapg(self, params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def _get_vault_assets_oapg(self, params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         """
         Get asset balance for chosen assets
         """
         query_params = {}
-        query_params["account_name_prefix"] = params.get("account_name_prefix")
-        query_params["account_name_suffix"] = params.get("account_name_suffix")
+        if params and params.get("account_name_prefix"):
+            query_params["account_name_prefix"] = params.get("account_name_prefix")
+        if params and params.get("account_name_suffix"):
+            query_params["account_name_suffix"] = params.get("account_name_suffix")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
-
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-                request_query_account_name_prefix,
-                request_query_account_name_suffix,
-            ):
+            request_query_account_name_prefix,
+            request_query_account_name_suffix,
+        ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
         _headers = HTTPHeaderDict()
+        _fields = None
+        _body = None
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -202,70 +205,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class GetVaultAssets(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def get_vault_assets(self ,params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def get_vault_assets(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         return self._get_vault_assets_oapg(params, request_options)
 
 
 class ApiForget(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        ApiResponseForDefault,
-    ]: ...
-
-    @typing.overload
-    def get(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        ApiResponseForDefault,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._get_vault_assets_oapg(
-        query_params=query_params,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def get(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
+        return self._get_vault_assets_oapg(params, request_options)
 
 

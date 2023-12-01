@@ -29,6 +29,7 @@ The Fireblocks Network allows for flexibility around incoming deposits. A receiv
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -40,26 +41,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'connectionId': "connectionId_example",
-        'assetType': "CRYPTO",
-    }
-    try:
-        # Retrieve third-party network routing validation by asset type.
-        api_response = api_instance.check_third_party_routing_for_network_connection(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->check_third_party_routing_for_network_connection: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'connectionId': "connectionId_example",
+    'assetType': "CRYPTO",
+}
+try:
+    # Retrieve third-party network routing validation by asset type.
+    api_response = api_instance.check_third_party_routing_for_network_connection(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->check_third_party_routing_for_network_connection: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -171,6 +172,7 @@ Initiates a new network connection.  **Note:** This API call is subject to Flexi
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -184,30 +186,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
 
-    # example passing only optional values
-    body = NetworkConnection(
-        local_network_id="local_network_id_example",
-        remote_network_id="remote_network_id_example",
-        routing_policy=NetworkConnectionRoutingPolicy(
-            crypto=None,
-            sen=None,
-            signet=None,
-            sen_test=None,
-            signet_test=None,
-        ),
-    )
-    try:
-        # Creates a new network connection
-        api_response = api_instance.create_network_connection(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->create_network_connection: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -302,6 +286,7 @@ Creates a new Network ID.  **Note:** This API call is subject to Flexible Routin
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -315,20 +300,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
 
-    # example passing only optional values
-    body = None
-    try:
-        # Creates a new Network ID
-        api_response = api_instance.create_network_id(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->create_network_id: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -431,6 +408,7 @@ Deletes an existing network connection specified by its connection ID.  **Note:*
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -442,25 +420,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'connectionId': "connectionId_example",
-    }
-    try:
-        # Deletes a network connection by ID
-        api_response = api_instance.delete_network_connection(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->delete_network_connection: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'connectionId': "connectionId_example",
+}
+try:
+    # Deletes a network connection by ID
+    api_response = api_instance.delete_network_connection(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->delete_network_connection: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -563,6 +541,7 @@ Deletes a network by its ID.  **Note:** This API call is subject to Flexible Rou
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -574,25 +553,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    try:
-        # Deletes specific network ID.
-        api_response = api_instance.delete_network_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->delete_network_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'networkId': "networkId_example",
+}
+try:
+    # Deletes specific network ID.
+    api_response = api_instance.delete_network_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->delete_network_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -682,6 +661,7 @@ Gets a network connection by ID.  **Note:** This API call is subject to Flexible
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -694,25 +674,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'connectionId': "connectionId_example",
-    }
-    try:
-        # Get a network connection
-        api_response = api_instance.get_network_connection_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->get_network_connection_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'connectionId': "connectionId_example",
+}
+try:
+    # Get a network connection
+    api_response = api_instance.get_network_connection_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->get_network_connection_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -808,6 +788,7 @@ Returns all network connections.  **Note:** This API call is subject to Flexible
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -820,17 +801,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List network connections
-        api_response = api_instance.get_network_connections()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->get_network_connections: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -915,6 +891,7 @@ Retrieves a network by its ID.  **Note:** This API call is subject to Flexible R
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -927,25 +904,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    try:
-        # Returns specific network ID.
-        api_response = api_instance.get_network_id_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->get_network_id_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'networkId': "networkId_example",
+}
+try:
+    # Returns specific network ID.
+    api_response = api_instance.get_network_id_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->get_network_id_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1041,6 +1018,7 @@ Retrieves a list of all local and discoverable remote network IDs.  **Note:** Th
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -1053,17 +1031,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Returns all network IDs, both local IDs and discoverable remote IDs
-        api_response = api_instance.get_network_ids()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->get_network_ids: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -1161,6 +1134,7 @@ Update whether or not the network ID is discoverable by others.  **Note:** This 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -1172,28 +1146,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    body = None
-    try:
-        # Update network ID's discoverability.
-        api_response = api_instance.set_discoverability_for_network_id(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_discoverability_for_network_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'networkId': "networkId_example",
+    'any_type': None
+}
+try:
+    # Update network ID's discoverability.
+    api_response = api_instance.set_discoverability_for_network_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->set_discoverability_for_network_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -1312,6 +1285,7 @@ Updates name of a specified network ID.  **Note:** This API call is subject to F
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -1323,28 +1297,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    body = None
-    try:
-        # Update network ID's name.
-        api_response = api_instance.set_network_id_name(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_network_id_name: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'networkId': "networkId_example",
+    'any_type': None
+}
+try:
+    # Update network ID's name.
+    api_response = api_instance.set_network_id_name(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->set_network_id_name: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -1463,6 +1436,7 @@ Updates an existing network connection's routing policy.  **Note:** This API cal
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -1475,41 +1449,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'connectionId': "connectionId_example",
-    }
-    try:
-        # Update network connection routing policy.
-        api_response = api_instance.set_routing_policy_for_network_connection(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_connection: %s\n" % e)
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'connectionId': "connectionId_example",
+    'any_type': None
+}
+try:
+    # Update network connection routing policy.
+    api_response = api_instance.set_routing_policy_for_network_connection(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_connection: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'connectionId': "connectionId_example",
-    }
-    body = None
-    try:
-        # Update network connection routing policy.
-        api_response = api_instance.set_routing_policy_for_network_connection(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_connection: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -1628,6 +1588,7 @@ Updates the routing policy of a specified network ID.  **Note:** This API call i
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import network_connections_api
@@ -1640,41 +1601,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = network_connections_api.NetworkConnectionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    try:
-        # Update network id routing policy.
-        api_response = api_instance.set_routing_policy_for_network_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_id: %s\n" % e)
+# Create an instance of the API class
+api_instance = network_connections_api.NetworkConnectionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'networkId': "networkId_example",
+    'any_type': None
+}
+try:
+    # Update network id routing policy.
+    api_response = api_instance.set_routing_policy_for_network_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_id: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'networkId': "networkId_example",
-    }
-    body = None
-    try:
-        # Update network id routing policy.
-        api_response = api_instance.set_routing_policy_for_network_id(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NetworkConnectionsApi->set_routing_policy_for_network_id: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

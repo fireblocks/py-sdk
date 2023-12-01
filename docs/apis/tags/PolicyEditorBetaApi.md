@@ -21,6 +21,7 @@ Returns the active policy and its validation. </br> **Note:** These endpoints ar
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import policy_editor_beta_api
@@ -33,17 +34,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
+# Create an instance of the API class
+api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get the active policy and its validation
-        api_response = api_instance.get_active_policy()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PolicyEditorBetaApi->get_active_policy: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -122,6 +118,7 @@ Returns the active draft and its validation. </br> **Note:** These endpoints are
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import policy_editor_beta_api
@@ -134,17 +131,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
+# Create an instance of the API class
+api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get the active draft
-        api_response = api_instance.get_draft()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PolicyEditorBetaApi->get_draft: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -223,6 +215,7 @@ Send publish request of certain draft id and returns the response. </br> **Note:
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import policy_editor_beta_api
@@ -235,19 +228,22 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
-    # example passing only required values which don't have defaults set
-    body = None
-    try:
-        # Send publish request for a certain draft id
-        api_response = api_instance.publish_draft(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PolicyEditorBetaApi->publish_draft: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'any_type': None
+}
+try:
+    # Send publish request for a certain draft id
+    api_response = api_instance.publish_draft(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PolicyEditorBetaApi->publish_draft: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -349,6 +345,7 @@ Send publish request of set of policy rules and returns the response. </br> **No
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import policy_editor_beta_api
@@ -362,19 +359,22 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
-    # example passing only required values which don't have defaults set
-    body = None
-    try:
-        # Send publish request for a set of policy rules
-        api_response = api_instance.publish_policy_rules(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PolicyEditorBetaApi->publish_policy_rules: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'any_type': None
+}
+try:
+    # Send publish request for a set of policy rules
+    api_response = api_instance.publish_policy_rules(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PolicyEditorBetaApi->publish_policy_rules: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -490,6 +490,7 @@ Update the draft and return its validation. </br> **Note:** These endpoints are 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import policy_editor_beta_api
@@ -503,19 +504,22 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
-    # example passing only required values which don't have defaults set
-    body = None
-    try:
-        # Update the draft with a new set of rules
-        api_response = api_instance.update_draft(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PolicyEditorBetaApi->update_draft: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = policy_editor_beta_api.PolicyEditorBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'any_type': None
+}
+try:
+    # Update the draft with a new set of rules
+    api_response = api_instance.update_draft(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PolicyEditorBetaApi->update_draft: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

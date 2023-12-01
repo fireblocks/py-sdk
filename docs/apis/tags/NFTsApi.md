@@ -23,6 +23,7 @@ Returns the requested token data.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -34,25 +35,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
-    }
-    try:
-        # List token data by ID
-        api_response = api_instance.get_nft(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->get_nft: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
+}
+try:
+    # List token data by ID
+    api_response = api_instance.get_nft(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NFTsApi->get_nft: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -121,6 +122,7 @@ Returns the requested tokens data.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -133,44 +135,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'ids': "ids_example",
-    }
-    try:
-        # List tokens by IDs
-        api_response = api_instance.get_nfts(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->get_nfts: %s\n" % e)
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'ids': "ids_example",
+}
+try:
+    # List tokens by IDs
+    api_response = api_instance.get_nfts(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NFTsApi->get_nfts: %s\n" % e)
 
-    # example passing only optional values
-    query_params = {
-        'ids': "ids_example",
-        'pageCursor': "pageCursor_example",
-        'pageSize': 1,
-        'sort': [
-        "collection.name"
-    ],
-        'order': "ASC",
-    }
-    try:
-        # List tokens by IDs
-        api_response = api_instance.get_nfts(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->get_nfts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -297,6 +280,7 @@ Returns all tokens and their data in your workspace.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -309,37 +293,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
 
-    # example passing only optional values
-    query_params = {
-        'blockchainDescriptor': "ETH",
-        'vaultAccountIds': "vaultAccountIds_example",
-        'ids': "ids_example",
-        'collectionIds': "collectionIds_example",
-        'pageCursor': "pageCursor_example",
-        'pageSize': 1,
-        'sort': [
-        "ownershipLastUpdateTime"
-    ],
-        'order': "ASC",
-        'status': "LISTED",
-        'search': "search_example",
-    }
-    try:
-        # List all owned tokens (paginated)
-        api_response = api_instance.get_ownership_tokens(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->get_ownership_tokens: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -506,6 +468,7 @@ Returns all collections in your workspace
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -518,32 +481,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
 
-    # example passing only optional values
-    query_params = {
-        'search': "search_example",
-        'pageCursor': "pageCursor_example",
-        'pageSize': 1,
-        'sort': [
-        "name"
-    ],
-        'order': "ASC",
-    }
-    try:
-        # List owned collections (paginated)
-        api_response = api_instance.list_owned_collections(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->list_owned_collections: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -670,6 +616,7 @@ Updates the latest token metadata.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -680,24 +627,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
-    }
-    try:
-        # Refresh token metadata
-        api_response = api_instance.refresh_nft_metadata(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->refresh_nft_metadata: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
+}
+try:
+    # Refresh token metadata
+    api_response = api_instance.refresh_nft_metadata(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NFTsApi->refresh_nft_metadata: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -759,6 +706,7 @@ Updates all tokens and balances per blockchain and vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -769,25 +717,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'blockchainDescriptor': "ETH",
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    try:
-        # Refresh vault account tokens
-        api_response = api_instance.update_ownership_tokens(
-            query_params=query_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->update_ownership_tokens: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'blockchainDescriptor': "ETH",
+    'vaultAccountId': "vaultAccountId_example",
+}
+try:
+    # Refresh vault account tokens
+    api_response = api_instance.update_ownership_tokens(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NFTsApi->update_ownership_tokens: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -858,6 +806,7 @@ Updates token ownership status for a tenant, in all tenant vaults.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import nfts_api
@@ -869,29 +818,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = nfts_api.NFTsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
-    }
-    body = UpdateTokenOwnershipStatusDto(
+# Create an instance of the API class
+api_instance = nfts_api.NFTsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'id': "NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    'update_token_ownership_status_dto': UpdateTokenOwnershipStatusDto(
         status="LISTED",
     )
-    try:
-        # Update token ownership status
-        api_response = api_instance.update_token_ownership_status(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling NFTsApi->update_token_ownership_status: %s\n" % e)
-```### Parameters
+}
+try:
+    # Update token ownership status
+    api_response = api_instance.update_token_ownership_status(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling NFTsApi->update_token_ownership_status: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

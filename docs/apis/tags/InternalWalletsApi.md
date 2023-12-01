@@ -24,6 +24,7 @@ Creates a new internal wallet with the requested name.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -36,20 +37,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
 
-    # example passing only optional values
-    body = None
-    try:
-        # Create an internal wallet
-        api_response = api_instance.create_internal_wallet(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->create_internal_wallet: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -152,6 +145,7 @@ Adds an asset to an existing internal wallet.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -164,43 +158,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Add an asset to an internal wallet
-        api_response = api_instance.create_internal_wallet_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->create_internal_wallet_asset: %s\n" % e)
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+    'assetId': "assetId_example",
+    'any_type': None
+}
+try:
+    # Add an asset to an internal wallet
+    api_response = api_instance.create_internal_wallet_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->create_internal_wallet_asset: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'walletId': "walletId_example",
-        'assetId': "assetId_example",
-    }
-    body = None
-    try:
-        # Add an asset to an internal wallet
-        api_response = api_instance.create_internal_wallet_asset(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->create_internal_wallet_asset: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -321,6 +300,7 @@ Deletes an internal wallet by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -332,24 +312,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-    }
-    try:
-        # Delete an internal wallet
-        api_response = api_instance.delete_internal_wallet(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->delete_internal_wallet: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+}
+try:
+    # Delete an internal wallet
+    api_response = api_instance.delete_internal_wallet(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->delete_internal_wallet: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -439,6 +419,7 @@ Deletes a whitelisted address (for an asset) from an internal wallet.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -450,25 +431,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Delete a whitelisted address from an internal wallet
-        api_response = api_instance.delete_internal_wallet_asset(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->delete_internal_wallet_asset: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Delete a whitelisted address from an internal wallet
+    api_response = api_instance.delete_internal_wallet_asset(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->delete_internal_wallet_asset: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -566,6 +547,7 @@ Returns information for an asset in an internal wallet.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -578,26 +560,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get an asset from an internal wallet
-        api_response = api_instance.get_internal_wallet_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->get_internal_wallet_asset: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Get an asset from an internal wallet
+    api_response = api_instance.get_internal_wallet_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->get_internal_wallet_asset: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -701,6 +683,7 @@ Returns all assets in an internal wallet by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -713,25 +696,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-    }
-    try:
-        # Get assets for internal wallet
-        api_response = api_instance.get_internal_wallet_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->get_internal_wallet_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+}
+try:
+    # Get assets for internal wallet
+    api_response = api_instance.get_internal_wallet_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->get_internal_wallet_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -827,6 +810,7 @@ Gets a list of internal wallets.  **Note**: BTC-based assets belonging to whitel
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -839,17 +823,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List internal wallets
-        api_response = api_instance.get_internal_wallets()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->get_internal_wallets: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -934,6 +913,7 @@ Sets an AML/KYT customer reference ID for the specific internal wallet.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import internal_wallets_api
@@ -945,27 +925,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = internal_wallets_api.InternalWalletsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'walletId': "walletId_example",
-    }
-    body = None
-    try:
-        # Set an AML/KYT customer reference ID for an internal wallet
-        api_response = api_instance.set_customer_ref_id_for_internal_wallet(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling InternalWalletsApi->set_customer_ref_id_for_internal_wallet: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = internal_wallets_api.InternalWalletsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'walletId': "walletId_example",
+    'any_type': None
+}
+try:
+    # Set an AML/KYT customer reference ID for an internal wallet
+    api_response = api_instance.set_customer_ref_id_for_internal_wallet(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling InternalWalletsApi->set_customer_ref_id_for_internal_wallet: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

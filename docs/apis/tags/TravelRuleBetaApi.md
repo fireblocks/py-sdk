@@ -21,6 +21,7 @@ Get VASP Details.  Returns information about a VASP that has the specified DID. 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import travel_rule_beta_api
@@ -32,46 +33,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = travel_rule_beta_api.TravelRuleBetaApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'did': "did_example",
-    }
-    query_params = {
-    }
-    try:
-        # Get VASP details
-        api_response = api_instance.get_vaspby_did(
-            path_params=path_params,
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->get_vaspby_did: %s\n" % e)
+# Create an instance of the API class
+api_instance = travel_rule_beta_api.TravelRuleBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'did': "did_example",
+}
+try:
+    # Get VASP details
+    api_response = api_instance.get_vaspby_did(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TravelRuleBetaApi->get_vaspby_did: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'did': "did_example",
-    }
-    query_params = {
-        'fields': "fields_example",
-    }
-    try:
-        # Get VASP details
-        api_response = api_instance.get_vaspby_did(
-            path_params=path_params,
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->get_vaspby_did: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -158,6 +138,7 @@ Get All VASPs.  Returns a list of VASPs. VASPs can be searched and sorted and re
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import travel_rule_beta_api
@@ -169,29 +150,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = travel_rule_beta_api.TravelRuleBetaApi()
+# Create an instance of the API class
+api_instance = travel_rule_beta_api.TravelRuleBetaApi()
 
-    # example passing only optional values
-    query_params = {
-        'order': "order_example",
-        'per_page': 3.14,
-        'page': 3.14,
-        'fields': "fields_example",
-    }
-    try:
-        # Get All VASPs
-        api_response = api_instance.get_vasps(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->get_vasps: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -272,6 +239,7 @@ Update VASP Details.  Updates a VASP with the provided parameters. Use this endp
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import travel_rule_beta_api
@@ -283,22 +251,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = travel_rule_beta_api.TravelRuleBetaApi()
-    # example passing only required values which don't have defaults set
-    body = TravelRuleUpdateVASPDetails(
+# Create an instance of the API class
+api_instance = travel_rule_beta_api.TravelRuleBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'travel_rule_update_vasp_details': TravelRuleUpdateVASPDetails(
         did="did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2",
         pii_didkey="did:key:z6Mks5CZRaiooKYhq5TwtXQC1gWhwiZnmiKfFrMnYY62MhYf",
     )
-    try:
-        # Add jsonDidKey to VASP details
-        api_response = api_instance.travel_rule_api_controller_update_vasp(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->travel_rule_api_controller_update_vasp: %s\n" % e)
-```### Parameters
+}
+try:
+    # Add jsonDidKey to VASP details
+    api_response = api_instance.travel_rule_api_controller_update_vasp(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TravelRuleBetaApi->travel_rule_api_controller_update_vasp: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -369,6 +340,7 @@ Validate Full Travel Rule transactions.  Checks for all required information on 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import travel_rule_beta_api
@@ -381,10 +353,11 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = travel_rule_beta_api.TravelRuleBetaApi()
-    # example passing only required values which don't have defaults set
-    body = TravelRuleValidateFullTransactionRequest(
+# Create an instance of the API class
+api_instance = travel_rule_beta_api.TravelRuleBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'travel_rule_validate_full_transaction_request': TravelRuleValidateFullTransactionRequest(
         transaction_asset="transaction_asset_example",
         transaction_amount="transaction_amount_example",
         originator_did="originator_did_example",
@@ -404,15 +377,17 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read(
         beneficiary_proof=None,
         pii=None,
     )
-    try:
-        # Validate Full Travel Rule Transaction
-        api_response = api_instance.validate_full_travel_rule_transaction(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->validate_full_travel_rule_transaction: %s\n" % e)
-```### Parameters
+}
+try:
+    # Validate Full Travel Rule Transaction
+    api_response = api_instance.validate_full_travel_rule_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TravelRuleBetaApi->validate_full_travel_rule_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -483,6 +458,7 @@ Validate Travel Rule transactions.  Checks what beneficiary VASP details are req
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import travel_rule_beta_api
@@ -495,10 +471,11 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = travel_rule_beta_api.TravelRuleBetaApi()
-    # example passing only required values which don't have defaults set
-    body = TravelRuleValidateTransactionRequest(
+# Create an instance of the API class
+api_instance = travel_rule_beta_api.TravelRuleBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'travel_rule_validate_transaction_request': TravelRuleValidateTransactionRequest(
         transaction_asset="BTC",
         destination="bc1qxy2kgdygjrsqtzq2n0yrf1234p83kkfjhx0wlh",
         transaction_amount="10",
@@ -511,15 +488,17 @@ os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read(
         beneficiary_account_number="1234-1234-1234-12234",
         beneficiary_address=None,
     )
-    try:
-        # Validate Travel Rule Transaction
-        api_response = api_instance.validate_travel_rule_transaction(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TravelRuleBetaApi->validate_travel_rule_transaction: %s\n" % e)
-```### Parameters
+}
+try:
+    # Validate Travel Rule Transaction
+    api_response = api_instance.validate_travel_rule_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TravelRuleBetaApi->validate_travel_rule_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

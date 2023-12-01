@@ -23,6 +23,7 @@ Adds an asset to an existing contract.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -35,43 +36,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'contractId': "contractId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Add an asset to a contract
-        api_response = api_instance.add_asset_to_contract(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->add_asset_to_contract: %s\n" % e)
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'contractId': "contractId_example",
+    'assetId': "assetId_example",
+    'any_type': None
+}
+try:
+    # Add an asset to a contract
+    api_response = api_instance.add_asset_to_contract(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ContractsApi->add_asset_to_contract: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'contractId': "contractId_example",
-        'assetId': "assetId_example",
-    }
-    body = None
-    try:
-        # Add an asset to a contract
-        api_response = api_instance.add_asset_to_contract(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->add_asset_to_contract: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -192,6 +178,7 @@ Creates a new contract.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -204,20 +191,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
 
-    # example passing only optional values
-    body = None
-    try:
-        # Create a contract
-        api_response = api_instance.create_contract(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->create_contract: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -319,6 +298,7 @@ Deletes a contract by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -330,24 +310,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'contractId': "contractId_example",
-    }
-    try:
-        # Delete a contract
-        api_response = api_instance.delete_contract(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->delete_contract: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'contractId': "contractId_example",
+}
+try:
+    # Delete a contract
+    api_response = api_instance.delete_contract(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ContractsApi->delete_contract: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -437,6 +417,7 @@ Returns a contract asset by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -449,26 +430,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'contractId': "contractId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Find a contract asset
-        api_response = api_instance.get_asset_in_contract(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->get_asset_in_contract: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'contractId': "contractId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Find a contract asset
+    api_response = api_instance.get_asset_in_contract(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ContractsApi->get_asset_in_contract: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -572,6 +553,7 @@ Returns a contract by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -584,25 +566,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'contractId': "contractId_example",
-    }
-    try:
-        # Find a specific contract
-        api_response = api_instance.get_contract_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->get_contract_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'contractId': "contractId_example",
+}
+try:
+    # Find a specific contract
+    api_response = api_instance.get_contract_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ContractsApi->get_contract_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -698,6 +680,7 @@ Gets a list of contracts.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -710,17 +693,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List contracts
-        api_response = api_instance.get_contracts()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->get_contracts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -805,6 +783,7 @@ Deletes a contract asset by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import contracts_api
@@ -816,25 +795,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = contracts_api.ContractsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'contractId': "contractId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Delete a contract asset
-        api_response = api_instance.remove_asset_from_contract(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling ContractsApi->remove_asset_from_contract: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = contracts_api.ContractsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'contractId': "contractId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Delete a contract asset
+    api_response = api_instance.remove_asset_from_contract(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling ContractsApi->remove_asset_from_contract: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

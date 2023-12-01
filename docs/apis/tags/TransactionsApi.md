@@ -29,6 +29,7 @@ Cancels a transaction by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -41,25 +42,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    try:
-        # Cancel a transaction
-        api_response = api_instance.cancel_transaction(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->cancel_transaction: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+}
+try:
+    # Cancel a transaction
+    api_response = api_instance.cancel_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->cancel_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -155,6 +156,7 @@ Creates a new transaction.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -168,56 +170,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
 
-    # example passing only optional values
-    body = TransactionRequest(
-        operation=TransactionOperation("TRANSFER"),
-        note="Ticket 123",
-        external_tx_id="00000000-0000-0000-0000-000000000000",
-        asset_id="ETH",
-        source=TransferPeerPath(
-            type="VAULT_ACCOUNT",
-            sub_type="BINANCE",
-            id="id_example",
-            name="name_example",
-            wallet_id="wallet_id_example",
-        ),
-        destination=DestinationTransferPeerPath(None),
-        destinations=[
-            TransactionRequestDestination(
-                amount="amount_example",
-,
-            )
-        ],
-        amount=None,
-        treat_as_gross_amount=False,
-        force_sweep=False,
-        fee_level="MEDIUM",
-        fee=None,
-        priority_fee=None,
-        fail_on_low_fee=True,
-        max_fee="120",
-        gas_limit=None,
-        gas_price=None,
-        network_fee=None,
-        replace_tx_by_hash="00000000-0000-0000-0000-000000000000",
-        extra_parameters=dict(),
-        customer_ref_id="abcdef",
-        auto_staking=True,
-        network_staking=None,
-,
-    )
-    try:
-        # Create a new transaction
-        api_response = api_instance.create_transaction(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -312,6 +270,7 @@ Drops a stuck ETH transaction and creates a replacement transaction.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -325,45 +284,31 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    try:
-        # Drop ETH transaction by ID
-        api_response = api_instance.drop_transaction(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->drop_transaction: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'txId': "txId_example",
-    }
-    body = DropTransactionRequest(
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+    'drop_transaction_request': DropTransactionRequest(
         tx_id="tx_id_example",
         fee_level="fee_level_example",
         gas_price="gas_price_example",
     )
-    try:
-        # Drop ETH transaction by ID
-        api_response = api_instance.drop_transaction(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->drop_transaction: %s\n" % e)
-```### Parameters
+}
+try:
+    # Drop ETH transaction by ID
+    api_response = api_instance.drop_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->drop_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -468,6 +413,7 @@ Gets the estimated required fee for an asset. For UTXO based assets, the respons
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -480,25 +426,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'assetId': "assetId_example",
-    }
-    try:
-        # Estimate the required fee for an asset
-        api_response = api_instance.estimate_network_fee(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->estimate_network_fee: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'assetId': "assetId_example",
+}
+try:
+    # Estimate the required fee for an asset
+    api_response = api_instance.estimate_network_fee(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->estimate_network_fee: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -595,6 +541,7 @@ Estimates the transaction fee for a transaction request. * Note: Supports all Fi
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -608,56 +555,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
 
-    # example passing only optional values
-    body = TransactionRequest(
-        operation=TransactionOperation("TRANSFER"),
-        note="Ticket 123",
-        external_tx_id="00000000-0000-0000-0000-000000000000",
-        asset_id="ETH",
-        source=TransferPeerPath(
-            type="VAULT_ACCOUNT",
-            sub_type="BINANCE",
-            id="id_example",
-            name="name_example",
-            wallet_id="wallet_id_example",
-        ),
-        destination=DestinationTransferPeerPath(None),
-        destinations=[
-            TransactionRequestDestination(
-                amount="amount_example",
-,
-            )
-        ],
-        amount=None,
-        treat_as_gross_amount=False,
-        force_sweep=False,
-        fee_level="MEDIUM",
-        fee=None,
-        priority_fee=None,
-        fail_on_low_fee=True,
-        max_fee="120",
-        gas_limit=None,
-        gas_price=None,
-        network_fee=None,
-        replace_tx_by_hash="00000000-0000-0000-0000-000000000000",
-        extra_parameters=dict(),
-        customer_ref_id="abcdef",
-        auto_staking=True,
-        network_staking=None,
-,
-    )
-    try:
-        # Estimate transaction fee
-        api_response = api_instance.estimate_transaction_fee(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->estimate_transaction_fee: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -752,6 +655,7 @@ Freezes a transaction by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -763,25 +667,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    try:
-        # Freeze a transaction
-        api_response = api_instance.freeze_transaction(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->freeze_transaction: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+}
+try:
+    # Freeze a transaction
+    api_response = api_instance.freeze_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->freeze_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -850,6 +754,7 @@ Returns transaction by external transaction ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -862,25 +767,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'externalTxId': "00000000-0000-0000-0000-000000000000",
-    }
-    try:
-        # Find a specific transaction by external transaction ID
-        api_response = api_instance.get_transaction_by_external_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->get_transaction_by_external_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'externalTxId': "00000000-0000-0000-0000-000000000000",
+}
+try:
+    # Find a specific transaction by external transaction ID
+    api_response = api_instance.get_transaction_by_external_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->get_transaction_by_external_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -976,6 +881,7 @@ Returns a transaction by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -988,25 +894,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "00000000-0000-0000-0000-000000000000",
-    }
-    try:
-        # Find a specific transaction by Fireblocks transaction ID
-        api_response = api_instance.get_transaction_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->get_transaction_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "00000000-0000-0000-0000-000000000000",
+}
+try:
+    # Find a specific transaction by Fireblocks transaction ID
+    api_response = api_instance.get_transaction_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->get_transaction_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1129,6 +1035,7 @@ Lists the transaction history for your workspace.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -1141,39 +1048,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
 
-    # example passing only optional values
-    query_params = {
-        'before': "before_example",
-        'after': "after_example",
-        'status': "status_example",
-        'orderBy': "createdAt",
-        'sort': "ASC",
-        'limit': 200,
-        'sourceType': "VAULT_ACCOUNT",
-        'sourceId': "sourceId_example",
-        'destType': "VAULT_ACCOUNT",
-        'destId': "destId_example",
-        'assets': "assets_example",
-        'txHash': "txHash_example",
-        'sourceWalletId': "sourceWalletId_example",
-        'destWalletId': "destWalletId_example",
-    }
-    try:
-        # List transaction history
-        api_response = api_instance.get_transactions(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->get_transactions: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1396,6 +1279,7 @@ Overrides the required number of confirmations for transaction completion by tra
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -1409,43 +1293,29 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    try:
-        # Set confirmation threshold by transaction ID
-        api_response = api_instance.set_confirmation_threshold_for_transaction(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'txId': "txId_example",
-    }
-    body = SetConfirmationsThresholdRequest(
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+    'set_confirmations_threshold_request': SetConfirmationsThresholdRequest(
         num_of_confirmations=3.14,
     )
-    try:
-        # Set confirmation threshold by transaction ID
-        api_response = api_instance.set_confirmation_threshold_for_transaction(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction: %s\n" % e)
-```### Parameters
+}
+try:
+    # Set confirmation threshold by transaction ID
+    api_response = api_instance.set_confirmation_threshold_for_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -1550,6 +1420,7 @@ Overrides the required number of confirmations for transaction completion by tra
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -1563,43 +1434,29 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txHash': "txHash_example",
-    }
-    try:
-        # Set confirmation threshold by transaction hash
-        api_response = api_instance.set_confirmation_threshold_for_transaction_by_hash(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction_by_hash: %s\n" % e)
-
-    # example passing only optional values
-    path_params = {
-        'txHash': "txHash_example",
-    }
-    body = SetConfirmationsThresholdRequest(
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txHash': "txHash_example",
+    'set_confirmations_threshold_request': SetConfirmationsThresholdRequest(
         num_of_confirmations=3.14,
     )
-    try:
-        # Set confirmation threshold by transaction hash
-        api_response = api_instance.set_confirmation_threshold_for_transaction_by_hash(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction_by_hash: %s\n" % e)
-```### Parameters
+}
+try:
+    # Set confirmation threshold by transaction hash
+    api_response = api_instance.set_confirmation_threshold_for_transaction_by_hash(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->set_confirmation_threshold_for_transaction_by_hash: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -1704,6 +1561,7 @@ Unfreezes a transaction by ID and makes the transaction available again.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -1715,25 +1573,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'txId': "txId_example",
-    }
-    try:
-        # Unfreeze a transaction
-        api_response = api_instance.unfreeze_transaction(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->unfreeze_transaction: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'txId': "txId_example",
+}
+try:
+    # Unfreeze a transaction
+    api_response = api_instance.unfreeze_transaction(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->unfreeze_transaction: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1802,6 +1660,7 @@ Checks if an address is valid (for XRP, DOT, XLM, and EOS).
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import transactions_api
@@ -1814,26 +1673,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = transactions_api.TransactionsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'assetId': "assetId_example",
-        'address': "address_example",
-    }
-    try:
-        # Validate destination address
-        api_response = api_instance.validate_address(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling TransactionsApi->validate_address: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = transactions_api.TransactionsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'assetId': "assetId_example",
+    'address': "address_example",
+}
+try:
+    # Validate destination address
+    api_response = api_instance.validate_address(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling TransactionsApi->validate_address: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

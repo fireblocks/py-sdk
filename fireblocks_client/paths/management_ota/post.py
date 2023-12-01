@@ -73,11 +73,13 @@ class SchemaForRequestBodyApplicationJson(
             _configuration=_configuration,
             **kwargs,
         )
+
+
 request_body_any_type = api_client.RequestBody(
-content={
-    'application/json': api_client.MediaType(
-        schema=SchemaForRequestBodyApplicationJson),
-},
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJson),
+    },
     required=True,
 )
 
@@ -91,7 +93,7 @@ class ApiResponseFor202(api_client.ApiResponse):
 
 _response_for_202 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor202,
-    )
+)
 
 
 @dataclass
@@ -103,7 +105,7 @@ class ApiResponseFor400(api_client.ApiResponse):
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
-    )
+)
 
 
 @dataclass
@@ -115,7 +117,7 @@ class ApiResponseFor409(api_client.ApiResponse):
 
 _response_for_409 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor409,
-    )
+)
 
 
 @dataclass
@@ -127,7 +129,7 @@ class ApiResponseFor500(api_client.ApiResponse):
 
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
-    )
+)
 _status_code_to_response = {
     '202': _response_for_202,
     '400': _response_for_400,
@@ -138,29 +140,26 @@ _status_code_to_response = {
 
 class BaseApi(api_client.Api):
 
-    def _set_ota_status_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ] = None, request_options: RequestOptions = None):
+    def _set_ota_status_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
         """
         Enable or disable transactions to OTA
         """
-
         used_path = path.value
         _headers = HTTPHeaderDict()
-
-        body =  params.get(any_type, schemas.unset)
-        if body is schemas.unset:
-            raise exceptions.ApiValueError(
-            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_any_type.serialize(params, "application/json")
         _headers.add('Content-Type', "application/json")
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
+
         elif 'body' in serialized_data:
-            _body = serialized_data['body']
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+                _body = serialized_data['body']
+
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -184,81 +183,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class SetOtaStatus(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def set_ota_status(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ] = None, request_options: RequestOptions = None):
+    def set_ota_status(self , params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
         return self._set_ota_status_oapg(params, request_options)
 
 
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-    ]: ...
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        content_type: str = ...,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-    ]: ...
-
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        content_type: str = ...,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
-        content_type: str = 'application/json',
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._set_ota_status_oapg(
-        body=body,
-        content_type=content_type,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def post(self , params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
+        return self._set_ota_status_oapg(params, request_options)
 
 

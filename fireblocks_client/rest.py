@@ -21,7 +21,7 @@ from urllib3._collections import HTTPHeaderDict
 
 from fireblocks_client.exceptions import ApiException, ApiValueError
 
-
+urllib3.disable_warnings()
 logger = logging.getLogger(__name__)
 
 

@@ -41,6 +41,7 @@ Initiates activation for a wallet in a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -53,26 +54,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Activate a wallet in a vault account
-        api_response = api_instance.activate_asset_for_vault_account(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->activate_asset_for_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Activate a wallet in a vault account
+    api_response = api_instance.activate_asset_for_vault_account(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->activate_asset_for_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -176,6 +177,7 @@ Converts an existing segwit address to the legacy format.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -188,27 +190,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'addressId': "addressId_example",
-    }
-    try:
-        # Convert a segwit address to legacy format
-        api_response = api_instance.create_legacy_address_for_vault_account_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_legacy_address_for_vault_account_asset: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'addressId': "addressId_example",
+}
+try:
+    # Convert a segwit address to legacy format
+    api_response = api_instance.create_legacy_address_for_vault_account_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->create_legacy_address_for_vault_account_asset: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -320,6 +322,7 @@ Creates a new vault account with the requested name.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -332,19 +335,22 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    body = None
-    try:
-        # Create a new vault account
-        api_response = api_instance.create_vault_account(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'any_type': None
+}
+try:
+    # Create a new vault account
+    api_response = api_instance.create_vault_account(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->create_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -449,6 +455,7 @@ Creates a wallet for a specific asset in a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -461,43 +468,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Create a new wallet
-        api_response = api_instance.create_vault_account_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_vault_account_asset: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'any_type': None
+}
+try:
+    # Create a new wallet
+    api_response = api_instance.create_vault_account_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->create_vault_account_asset: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    body = None
-    try:
-        # Create a new wallet
-        api_response = api_instance.create_vault_account_asset(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_vault_account_asset: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -617,6 +609,7 @@ Creates a new deposit address for an asset of a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -629,43 +622,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Create new asset deposit address
-        api_response = api_instance.create_vault_account_asset_address(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_vault_account_asset_address: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'any_type': None
+}
+try:
+    # Create new asset deposit address
+    api_response = api_instance.create_vault_account_asset_address(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->create_vault_account_asset_address: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    body = None
-    try:
-        # Create new asset deposit address
-        api_response = api_instance.create_vault_account_asset_address(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->create_vault_account_asset_address: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -786,6 +764,7 @@ Gets all asset wallets at all of the vault accounts in your workspace. An asset 
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -797,30 +776,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
 
-    # example passing only optional values
-    query_params = {
-        'totalAmountLargerThan': 3.14,
-        'assetId': "assetId_example",
-        'before': "before_example",
-        'after': "after_example",
-        'limit': 200,
-    }
-    try:
-        # List asset wallets (Paginated)
-        api_response = api_instance.get_asset_wallets(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_asset_wallets: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -922,6 +886,7 @@ Get the maximum amount of a particular asset that can be spent in a single trans
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -933,46 +898,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    query_params = {
-    }
-    try:
-        # Get the maximum spendable amount in a single transaction.
-        api_response = api_instance.get_max_spendable_amount(
-            path_params=path_params,
-            query_params=query_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_max_spendable_amount: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Get the maximum spendable amount in a single transaction.
+    api_response = api_instance.get_max_spendable_amount(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_max_spendable_amount: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    query_params = {
-        'manualSignging': True,
-    }
-    try:
-        # Get the maximum spendable amount in a single transaction.
-        api_response = api_instance.get_max_spendable_amount(
-            path_params=path_params,
-            query_params=query_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_max_spendable_amount: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1085,6 +1029,7 @@ Gets all vault accounts in your workspace. This endpoint returns a limited amoun
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1096,33 +1041,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
 
-    # example passing only optional values
-    query_params = {
-        'namePrefix': "namePrefix_example",
-        'nameSuffix': "nameSuffix_example",
-        'minAmountThreshold': 3.14,
-        'assetId': "assetId_example",
-        'orderBy': "DESC",
-        'before': "before_example",
-        'after': "after_example",
-        'limit': 200,
-    }
-    try:
-        # List vault acounts (Paginated)
-        api_response = api_instance.get_paged_vault_accounts(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_paged_vault_accounts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1248,6 +1175,7 @@ Gets the public key information based on derivation path and signing algorithm.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1260,41 +1188,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    query_params = {
-        'derivationPath': "derivationPath_example",
-        'algorithm': "algorithm_example",
-    }
-    try:
-        # Get the public key information
-        api_response = api_instance.get_public_key_info(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_public_key_info: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'derivationPath': "derivationPath_example",
+    'algorithm': "algorithm_example",
+}
+try:
+    # Get the public key information
+    api_response = api_instance.get_public_key_info(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_public_key_info: %s\n" % e)
 
-    # example passing only optional values
-    query_params = {
-        'derivationPath': "derivationPath_example",
-        'algorithm': "algorithm_example",
-        'compressed': True,
-    }
-    try:
-        # Get the public key information
-        api_response = api_instance.get_public_key_info(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_public_key_info: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1407,6 +1320,7 @@ Gets the public key information for the vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1419,52 +1333,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'change': 3.14,
-        'addressIndex': 3.14,
-    }
-    query_params = {
-    }
-    try:
-        # Get the public key for a vault account
-        api_response = api_instance.get_public_key_info_for_address(
-            path_params=path_params,
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_public_key_info_for_address: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'change': 3.14,
+    'addressIndex': 3.14,
+}
+try:
+    # Get the public key for a vault account
+    api_response = api_instance.get_public_key_info_for_address(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_public_key_info_for_address: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'change': 3.14,
-        'addressIndex': 3.14,
-    }
-    query_params = {
-        'compressed': True,
-    }
-    try:
-        # Get the public key for a vault account
-        api_response = api_instance.get_public_key_info_for_address(
-            path_params=path_params,
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_public_key_info_for_address: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1599,6 +1489,7 @@ Returns a wallet for a specific asset of a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1611,26 +1502,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get the asset balance for a vault account
-        api_response = api_instance.get_vault_account_asset(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_account_asset: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Get the asset balance for a vault account
+    api_response = api_instance.get_vault_account_asset(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_vault_account_asset: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1721,6 +1612,7 @@ Lists all addresses for specific asset of vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1733,26 +1625,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get asset addresses
-        api_response = api_instance.get_vault_account_asset_addresses(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_account_asset_addresses: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Get asset addresses
+    api_response = api_instance.get_vault_account_asset_addresses(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_vault_account_asset_addresses: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -1862,6 +1754,7 @@ Returns unspent inputs information of an asset in a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -1874,26 +1767,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get UTXO unspent inputs information
-        api_response = api_instance.get_vault_account_asset_unspent_inputs(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_account_asset_unspent_inputs: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+}
+try:
+    # Get UTXO unspent inputs information
+    api_response = api_instance.get_vault_account_asset_unspent_inputs(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_vault_account_asset_unspent_inputs: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2003,6 +1896,7 @@ Returns the requested vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2015,25 +1909,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    try:
-        # Find a vault account by ID
-        api_response = api_instance.get_vault_account_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_account_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+}
+try:
+    # Find a vault account by ID
+    api_response = api_instance.get_vault_account_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_vault_account_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2129,6 +2023,7 @@ Gets all vault accounts in your workspace.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2141,29 +2036,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
 
-    # example passing only optional values
-    query_params = {
-        'namePrefix': "namePrefix_example",
-        'nameSuffix': "nameSuffix_example",
-        'minAmountThreshold': 3.14,
-        'assetId': "assetId_example",
-    }
-    try:
-        # List vault accounts
-        api_response = api_instance.get_vault_accounts(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_accounts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2290,6 +2171,7 @@ Gets the vault balance summary for an asset.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2302,25 +2184,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'assetId': "assetId_example",
-    }
-    try:
-        # Get vault balance by asset
-        api_response = api_instance.get_vault_asset_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_asset_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'assetId': "assetId_example",
+}
+try:
+    # Get vault balance by asset
+    api_response = api_instance.get_vault_asset_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->get_vault_asset_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2416,6 +2298,7 @@ Gets the assets amount summary for all accounts or filtered accounts.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2428,27 +2311,15 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
 
-    # example passing only optional values
-    query_params = {
-        'accountNamePrefix': "accountNamePrefix_example",
-        'accountNameSuffix': "accountNameSuffix_example",
-    }
-    try:
-        # Get asset balance for chosen assets
-        api_response = api_instance.get_vault_assets(
-            query_params=query_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->get_vault_assets: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2559,6 +2430,7 @@ Hides the requested vault account from the web console view.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2570,24 +2442,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    try:
-        # Hide a vault account in the console
-        api_response = api_instance.hide_vault_account(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->hide_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+}
+try:
+    # Hide a vault account in the console
+    api_response = api_instance.hide_vault_account(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->hide_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -2677,6 +2549,7 @@ Sets the autofueling property of the vault account to enabled or disabled.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2688,27 +2561,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    body = None
-    try:
-        # Turn autofueling on or off
-        api_response = api_instance.set_auto_fuel_for_vault_account(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->set_auto_fuel_for_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'any_type': None
+}
+try:
+    # Turn autofueling on or off
+    api_response = api_instance.set_auto_fuel_for_vault_account(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->set_auto_fuel_for_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -2814,6 +2686,7 @@ Assigns an AML/KYT customer reference ID for the vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2825,27 +2698,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    body = None
-    try:
-        # Set an AML/KYT customer reference ID for a vault account
-        api_response = api_instance.set_customer_ref_id_for_vault_account(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'any_type': None
+}
+try:
+    # Set an AML/KYT customer reference ID for a vault account
+    api_response = api_instance.set_customer_ref_id_for_vault_account(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -2951,6 +2823,7 @@ Sets an AML/KYT customer reference ID for a specific address.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -2962,29 +2835,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'addressId': "addressId_example",
-    }
-    body = None
-    try:
-        # Assign AML customer reference ID
-        api_response = api_instance.set_customer_ref_id_for_vault_account_asset_address(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account_asset_address: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'addressId': "addressId_example",
+    'any_type': None
+}
+try:
+    # Assign AML customer reference ID
+    api_response = api_instance.set_customer_ref_id_for_vault_account_asset_address(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->set_customer_ref_id_for_vault_account_asset_address: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -3106,6 +2978,7 @@ Makes a hidden vault account visible in web console view.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -3117,24 +2990,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    try:
-        # Unhide a vault account in the console
-        api_response = api_instance.unhide_vault_account(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->unhide_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+}
+try:
+    # Unhide a vault account in the console
+    api_response = api_instance.unhide_vault_account(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->unhide_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -3224,6 +3097,7 @@ Renames the requested vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -3235,27 +3109,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-    }
-    body = None
-    try:
-        # Rename a vault account
-        api_response = api_instance.update_vault_account(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->update_vault_account: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'any_type': None
+}
+try:
+    # Rename a vault account
+    api_response = api_instance.update_vault_account(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->update_vault_account: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -3361,6 +3234,7 @@ Updates the description of an existing address of an asset in a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -3372,43 +3246,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'addressId': "addressId_example",
-    }
-    try:
-        # Update address description
-        api_response = api_instance.update_vault_account_asset_address(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->update_vault_account_asset_address: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'addressId': "addressId_example",
+    'any_type': None
+}
+try:
+    # Update address description
+    api_response = api_instance.update_vault_account_asset_address(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->update_vault_account_asset_address: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-        'addressId': "addressId_example",
-    }
-    body = None
-    try:
-        # Update address description
-        api_response = api_instance.update_vault_account_asset_address(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->update_vault_account_asset_address: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -3530,6 +3389,7 @@ Updates the balance of a specific asset in a vault account.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import vaults_api
@@ -3542,43 +3402,28 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = vaults_api.VaultsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    try:
-        # Refresh asset balance data
-        api_response = api_instance.update_vault_account_asset_balance(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->update_vault_account_asset_balance: %s\n" % e)
+# Create an instance of the API class
+api_instance = vaults_api.VaultsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'vaultAccountId': "vaultAccountId_example",
+    'assetId': "assetId_example",
+    'body': dict()
+}
+try:
+    # Refresh asset balance data
+    api_response = api_instance.update_vault_account_asset_balance(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling VaultsApi->update_vault_account_asset_balance: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'vaultAccountId': "vaultAccountId_example",
-        'assetId': "assetId_example",
-    }
-    body = dict()
-    try:
-        # Refresh asset balance data
-        api_response = api_instance.update_vault_account_asset_balance(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling VaultsApi->update_vault_account_asset_balance: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBody, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is '*/*' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

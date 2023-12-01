@@ -21,7 +21,6 @@ from fireblocks_client import schemas  # noqa: F401
 
 from fireblocks_client.model.vault_accounts_paged_response import VaultAccountsPagedResponse
 
-
 # Query params
 NamePrefixSchema = schemas.StrSchema
 NameSuffixSchema = schemas.StrSchema
@@ -136,69 +135,79 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor200ResponseBody,
-        ]
+        SchemaFor200ResponseBody,
+    ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    '*/*': api_client.MediaType(
-    schema=SchemaFor200ResponseBody),
+        '*/*': api_client.MediaType(
+            schema=SchemaFor200ResponseBody),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _all_accept_content_types = (
     '*/*',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _get_paged_vault_accounts_oapg(self, params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def _get_paged_vault_accounts_oapg(self, params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         """
         List vault acounts (Paginated)
         """
         query_params = {}
-        query_params["name_prefix"] = params.get("name_prefix")
-        query_params["name_suffix"] = params.get("name_suffix")
-        query_params["min_amount_threshold"] = params.get("min_amount_threshold")
-        query_params["asset_id"] = params.get("asset_id")
-        query_params["order_by"] = params.get("order_by")
-        query_params["before"] = params.get("before")
-        query_params["after"] = params.get("after")
-        query_params["limit"] = params.get("limit")
+        if params and params.get("name_prefix"):
+            query_params["name_prefix"] = params.get("name_prefix")
+        if params and params.get("name_suffix"):
+            query_params["name_suffix"] = params.get("name_suffix")
+        if params and params.get("min_amount_threshold"):
+            query_params["min_amount_threshold"] = params.get("min_amount_threshold")
+        if params and params.get("asset_id"):
+            query_params["asset_id"] = params.get("asset_id")
+        if params and params.get("order_by"):
+            query_params["order_by"] = params.get("order_by")
+        if params and params.get("before"):
+            query_params["before"] = params.get("before")
+        if params and params.get("after"):
+            query_params["after"] = params.get("after")
+        if params and params.get("limit"):
+            query_params["limit"] = params.get("limit")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
-
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-                request_query_name_prefix,
-                request_query_name_suffix,
-                request_query_min_amount_threshold,
-                request_query_asset_id,
-                request_query_order_by,
-                request_query_before,
-                request_query_after,
-                request_query_limit,
-            ):
+            request_query_name_prefix,
+            request_query_name_suffix,
+            request_query_min_amount_threshold,
+            request_query_asset_id,
+            request_query_order_by,
+            request_query_before,
+            request_query_after,
+            request_query_limit,
+        ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
         _headers = HTTPHeaderDict()
+        _fields = None
+        _body = None
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -220,68 +229,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class GetPagedVaultAccounts(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def get_paged_vault_accounts(self ,params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def get_paged_vault_accounts(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         return self._get_paged_vault_accounts_oapg(params, request_options)
 
 
 class ApiForget(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def get(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def get(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._get_paged_vault_accounts_oapg(
-        query_params=query_params,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def get(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
+        return self._get_paged_vault_accounts_oapg(params, request_options)
 
 

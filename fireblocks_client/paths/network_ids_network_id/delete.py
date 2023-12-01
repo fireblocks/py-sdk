@@ -111,23 +111,23 @@ class SchemaFor200ResponseBody(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor200ResponseBody,
-                ]
+        SchemaFor200ResponseBody,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    '*/*': api_client.MediaType(
-    schema=SchemaFor200ResponseBody),
+        '*/*': api_client.MediaType(
+            schema=SchemaFor200ResponseBody),
     },
-    )
+)
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 SchemaFor0ResponseBodyApplicationJson = Error
 ResponseHeadersFor0 = typing_extensions.TypedDict(
@@ -142,21 +142,21 @@ ResponseHeadersFor0 = typing_extensions.TypedDict(
 class ApiResponseForDefault(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor0ResponseBodyApplicationJson,
-        ]
+        SchemaFor0ResponseBodyApplicationJson,
+    ]
     headers: ResponseHeadersFor0
 
 
 _response_for_default = api_client.OpenApiResponse(
     response_cls=ApiResponseForDefault,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor0ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor0ResponseBodyApplicationJson),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _status_code_to_response = {
     '200': _response_for_200,
     'default': _response_for_default,
@@ -164,12 +164,12 @@ _status_code_to_response = {
 _all_accept_content_types = (
     '*/*',
     'application/json',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _delete_network_id_oapg(self, params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def _delete_network_id_oapg(self, params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Deletes specific network ID.
         """
@@ -177,10 +177,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_network_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -196,10 +195,13 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
         _headers = HTTPHeaderDict()
+        _fields = None
+        _body = None
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -225,70 +227,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class DeleteNetworkId(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def delete_network_id(self ,params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def delete_network_id(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         return self._delete_network_id_oapg(params, request_options)
 
 
 class ApiFordelete(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        ApiResponseForDefault,
-    ]: ...
-
-    @typing.overload
-    def delete(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        ApiResponseForDefault,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def delete(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._delete_network_id_oapg(
-        path_params=path_params,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def delete(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._delete_network_id_oapg(params, request_options)
 
 

@@ -20,6 +20,7 @@ Deposits funds from the linked DDA.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import fiat_accounts_api
@@ -31,39 +32,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = fiat_accounts_api.FiatAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'accountId': "accountId_example",
-    }
-    try:
-        # Deposit funds from DDA
-        api_response = api_instance.deposit_funds_from_linked_dda(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->deposit_funds_from_linked_dda: %s\n" % e)
+# Create an instance of the API class
+api_instance = fiat_accounts_api.FiatAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'accountId': "accountId_example",
+    'any_type': None
+}
+try:
+    # Deposit funds from DDA
+    api_response = api_instance.deposit_funds_from_linked_dda(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling FiatAccountsApi->deposit_funds_from_linked_dda: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'accountId': "accountId_example",
-    }
-    body = None
-    try:
-        # Deposit funds from DDA
-        api_response = api_instance.deposit_funds_from_linked_dda(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->deposit_funds_from_linked_dda: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
@@ -169,6 +157,7 @@ Returns a fiat account by ID.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import fiat_accounts_api
@@ -181,25 +170,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = fiat_accounts_api.FiatAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'accountId': "accountId_example",
-    }
-    try:
-        # Find a specific fiat account
-        api_response = api_instance.get_fiat_account_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->get_fiat_account_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = fiat_accounts_api.FiatAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'accountId': "accountId_example",
+}
+try:
+    # Find a specific fiat account
+    api_response = api_instance.get_fiat_account_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling FiatAccountsApi->get_fiat_account_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -295,6 +284,7 @@ Returns all fiat accounts.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import fiat_accounts_api
@@ -307,17 +297,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = fiat_accounts_api.FiatAccountsApi()
+# Create an instance of the API class
+api_instance = fiat_accounts_api.FiatAccountsApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List fiat accounts
-        api_response = api_instance.get_fiat_accounts()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->get_fiat_accounts: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -402,6 +387,7 @@ Redeems funds to the linked DDA.
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import fiat_accounts_api
@@ -413,39 +399,26 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = fiat_accounts_api.FiatAccountsApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'accountId': "accountId_example",
-    }
-    try:
-        # Redeem funds to DDA
-        api_response = api_instance.redeem_funds_to_linked_dda(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->redeem_funds_to_linked_dda: %s\n" % e)
+# Create an instance of the API class
+api_instance = fiat_accounts_api.FiatAccountsApi()
+# example passing only required values which don't have defaults set
+params = {
+    'accountId': "accountId_example",
+    'any_type': None
+}
+try:
+    # Redeem funds to DDA
+    api_response = api_instance.redeem_funds_to_linked_dda(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling FiatAccountsApi->redeem_funds_to_linked_dda: %s\n" % e)
 
-    # example passing only optional values
-    path_params = {
-        'accountId': "accountId_example",
-    }
-    body = None
-    try:
-        # Redeem funds to DDA
-        api_response = api_instance.redeem_funds_to_linked_dda(
-            path_params=path_params,
-            body=body,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling FiatAccountsApi->redeem_funds_to_linked_dda: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

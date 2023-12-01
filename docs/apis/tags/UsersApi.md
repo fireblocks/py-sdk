@@ -17,6 +17,7 @@ List all users for the workspace.  Please note that this endpoint is available o
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_api
@@ -29,17 +30,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi()
+# Create an instance of the API class
+api_instance = users_api.UsersApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List users
-        api_response = api_instance.get_users()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersApi->get_users: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses

@@ -18,7 +18,6 @@ import frozendict  # noqa: F401
 
 from fireblocks_client import schemas  # noqa: F401
 
-
 # Query params
 
 
@@ -95,41 +94,43 @@ class ApiResponseFor202(api_client.ApiResponse):
 _response_for_202 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor202,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _update_ownership_tokens_oapg(self, params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def _update_ownership_tokens_oapg(self, params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         """
         Refresh vault account tokens
         """
         query_params = {}
-        query_params["blockchain_descriptor"] = params.get("blockchain_descriptor")
-        query_params["vault_account_id"] = params.get("vault_account_id")
+        if params and params.get("blockchain_descriptor"):
+            query_params["blockchain_descriptor"] = params.get("blockchain_descriptor")
+        if params and params.get("vault_account_id"):
+            query_params["vault_account_id"] = params.get("vault_account_id")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
-
         used_path = path.value
 
         prefix_separator_iterator = None
         for parameter in (
-                request_query_blockchain_descriptor,
-                request_query_vault_account_id,
-            ):
+            request_query_blockchain_descriptor,
+            request_query_vault_account_id,
+        ):
             parameter_data = query_params.get(parameter.name, schemas.unset)
             if parameter_data is schemas.unset:
                 continue
             if prefix_separator_iterator is None:
                 prefix_separator_iterator = parameter.get_prefix_separator_iterator()
-                serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
+            serialized_data = parameter.serialize(parameter_data, prefix_separator_iterator)
             for serialized_value in serialized_data.values():
                 used_path += serialized_value
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -150,63 +151,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class UpdateOwnershipTokens(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def update_ownership_tokens(self ,params: typing.Union[RequestQueryParams,] = None, request_options: RequestOptions = None):
+    def update_ownership_tokens(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
         return self._update_ownership_tokens_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor202,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        query_params: RequestQueryParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._update_ownership_tokens_oapg(
-        query_params=query_params,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def put(self , params: typing.Union[ RequestQueryParams,] = None, request_options: RequestOptions = None):
+        return self._update_ownership_tokens_oapg(params, request_options)
 
 

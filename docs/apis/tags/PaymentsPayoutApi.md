@@ -19,6 +19,7 @@ Create a payout instruction set
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_payout_api
@@ -32,38 +33,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_payout_api.PaymentsPayoutApi()
+# Create an instance of the API class
+api_instance = payments_payout_api.PaymentsPayoutApi()
 
-    # example passing only optional values
-    body = CreatePayoutRequest(
-        payment_account=PaymentAccount(
-            id="id_example",
-            type=PaymentAccountType("VAULT_ACCOUNT"),
-        ),
-        instruction_set=[
-            PayoutInstruction(
-                id="id_example",
-                payee_account=PayeeAccount(
-                    id="id_example",
-                    type=PayeeAccountType("VAULT_ACCOUNT"),
-                ),
-                amount=InstructionAmount(
-                    amount="amount_example",
-                    asset_id="asset_id_example",
-                ),
-            )
-        ],
-    )
-    try:
-        # Create a payout instruction set
-        api_response = api_instance.create_payout(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsPayoutApi->create_payout: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -160,6 +135,7 @@ Execute a payout instruction set
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_payout_api
@@ -172,25 +148,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_payout_api.PaymentsPayoutApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'payoutId': "1fe3b61f-7e1f-4a19-aff0-4f0a524d44d7",
-    }
-    try:
-        # Execute a payout instruction set
-        api_response = api_instance.execute_payout_action(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsPayoutApi->execute_payout_action: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = payments_payout_api.PaymentsPayoutApi()
+# example passing only required values which don't have defaults set
+params = {
+    'payoutId': "1fe3b61f-7e1f-4a19-aff0-4f0a524d44d7",
+}
+try:
+    # Execute a payout instruction set
+    api_response = api_instance.execute_payout_action(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsPayoutApi->execute_payout_action: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -288,6 +264,7 @@ Get the status of a payout instruction set
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import payments_payout_api
@@ -300,25 +277,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = payments_payout_api.PaymentsPayoutApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'payoutId': "1fe3b61f-7e1f-4a19-aff0-4f0a524d44d7",
-    }
-    try:
-        # Get the status of a payout instruction set
-        api_response = api_instance.get_payout_by_id(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling PaymentsPayoutApi->get_payout_by_id: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = payments_payout_api.PaymentsPayoutApi()
+# example passing only required values which don't have defaults set
+params = {
+    'payoutId': "1fe3b61f-7e1f-4a19-aff0-4f0a524d44d7",
+}
+try:
+    # Get the status of a payout instruction set
+    api_response = api_instance.get_payout_by_id(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling PaymentsPayoutApi->get_payout_by_id: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client

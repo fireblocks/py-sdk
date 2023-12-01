@@ -21,6 +21,7 @@ Create a new users group.</br>  **Note**: - This endpoint is now in Beta, disabl
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_groups_beta_api
@@ -34,24 +35,27 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_groups_beta_api.UsersGroupsBetaApi()
-    # example passing only required values which don't have defaults set
-    body = UserGroupCreateRequest(
+# Create an instance of the API class
+api_instance = users_groups_beta_api.UsersGroupsBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'user_group_create_request': UserGroupCreateRequest(
         group_name="group_name_example",
         member_ids=[
             "member_ids_example"
         ],
     )
-    try:
-        # Create users group
-        api_response = api_instance.create_user_group(
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersGroupsBetaApi->create_user_group: %s\n" % e)
-```### Parameters
+}
+try:
+    # Create users group
+    api_response = api_instance.create_user_group(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling UsersGroupsBetaApi->create_user_group: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -146,6 +150,7 @@ Delete a users group by ID.</br>  **Note**: - This endpoint is now in Beta, disa
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_groups_beta_api
@@ -157,24 +162,24 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_groups_beta_api.UsersGroupsBetaApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'groupId': "groupId_example",
-    }
-    try:
-        # Delete users group
-        api_response = api_instance.delete_user_group(
-            path_params=path_params,
-        )
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersGroupsBetaApi->delete_user_group: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = users_groups_beta_api.UsersGroupsBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'groupId': "groupId_example",
+}
+try:
+    # Delete users group
+    api_response = api_instance.delete_user_group(params)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling UsersGroupsBetaApi->delete_user_group: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -264,6 +269,7 @@ Get a users group by ID.</br>  **Note**: - This endpoint is now in Beta, disable
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_groups_beta_api
@@ -276,25 +282,25 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_groups_beta_api.UsersGroupsBetaApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'groupId': "groupId_example",
-    }
-    try:
-        # Get users group
-        api_response = api_instance.get_user_group(
-            path_params=path_params,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersGroupsBetaApi->get_user_group: %s\n" % e)
-```### Parameters
+# Create an instance of the API class
+api_instance = users_groups_beta_api.UsersGroupsBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'groupId': "groupId_example",
+}
+try:
+    # Get users group
+    api_response = api_instance.get_user_group(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling UsersGroupsBetaApi->get_user_group: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
@@ -390,6 +396,7 @@ Get all user groups in your workspace. </br>  **Note**: - This endpoint is now i
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_groups_beta_api
@@ -402,17 +409,12 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_groups_beta_api.UsersGroupsBetaApi()
+# Create an instance of the API class
+api_instance = users_groups_beta_api.UsersGroupsBetaApi()
 
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List users groups
-        api_response = api_instance.get_user_groups()
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersGroupsBetaApi->get_user_groups: %s\n" % e)
-```### Parameters
+```
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return Types, Responses
@@ -491,6 +493,7 @@ Update a users group by ID.</br>  **Note**: - This endpoint is now in Beta, disa
 
 ### Example
 
+
 ```python
 import fireblocks_client
 from fireblocks_client.apis.tags import users_groups_beta_api
@@ -504,33 +507,32 @@ os.environ["FIREBLOCKS_BASE_PATH"] = "https://sandbox-api.fireblocks.io/v1" # If
 os.environ["FIREBLOCKS_API_KEY"] = "api-key"
 os.environ["FIREBLOCKS_SECRET_KEY"] = open("./fireblocks_secret.key", "r").read()
 
-    # Create an instance of the API class
-    api_instance = users_groups_beta_api.UsersGroupsBetaApi()
-    # example passing only required values which don't have defaults set
-    path_params = {
-        'groupId': "groupId_example",
-    }
-    body = UserGroupUpdateRequest(
+# Create an instance of the API class
+api_instance = users_groups_beta_api.UsersGroupsBetaApi()
+# example passing only required values which don't have defaults set
+params = {
+    'groupId': "groupId_example",
+    'user_group_update_request': UserGroupUpdateRequest(
         group_name="group_name_example",
         member_ids=[
             "member_ids_example"
         ],
     )
-    try:
-        # Update users group
-        api_response = api_instance.update_user_group(
-            path_params=path_params,
-            body=body,
-        )
-        pprint(api_response)
-    except fireblocks_client.ApiException as e:
-        print("Exception when calling UsersGroupsBetaApi->update_user_group: %s\n" % e)
-```### Parameters
+}
+try:
+    # Update users group
+    api_response = api_instance.update_user_group(params)
+    pprint(api_response)
+except fireblocks_client.ApiException as e:
+    print("Exception when calling UsersGroupsBetaApi->update_user_group: %s\n" % e)
+
+```
+### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('*/*', 'application/json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file

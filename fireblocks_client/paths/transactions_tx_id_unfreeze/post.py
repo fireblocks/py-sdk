@@ -51,9 +51,9 @@ request_path_tx_id = api_client.PathParameter(
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 SchemaFor200ResponseBody = UnfreezeTransactionResponse
 ResponseHeadersFor200 = typing_extensions.TypedDict(
@@ -68,32 +68,32 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                SchemaFor200ResponseBody,
-        ]
+        SchemaFor200ResponseBody,
+    ]
     headers: ResponseHeadersFor200
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    '*/*': api_client.MediaType(
-    schema=SchemaFor200ResponseBody),
+        '*/*': api_client.MediaType(
+            schema=SchemaFor200ResponseBody),
     },
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _status_code_to_response = {
     '200': _response_for_200,
 }
 _all_accept_content_types = (
     '*/*',
-        )
+)
 
 
 class BaseApi(api_client.Api):
 
-    def _unfreeze_transaction_oapg(self, params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def _unfreeze_transaction_oapg(self, params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Unfreeze a transaction
         """
@@ -101,10 +101,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_tx_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -120,10 +119,13 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
         _headers = HTTPHeaderDict()
+        _fields = None
+        _body = None
 
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -145,68 +147,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class UnfreezeTransaction(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def unfreeze_transaction(self ,params: typing.Union[RequestPathParams] = None, request_options: RequestOptions = None):
+    def unfreeze_transaction(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
         return self._unfreeze_transaction_oapg(params, request_options)
 
 
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def post(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def post(
-        self,
-        skip_deserialization: typing_extensions.Literal[True],
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def post(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def post(
-        self,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._unfreeze_transaction_oapg(
-        path_params=path_params,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def post(self , params: typing.Union[ RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._unfreeze_transaction_oapg(params, request_options)
 
 

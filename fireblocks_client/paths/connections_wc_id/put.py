@@ -51,18 +51,20 @@ request_path_id = api_client.PathParameter(
 )
 # body param
 SchemaForRequestBodyApplicationJson = RespondToConnectionRequest
+
+
 request_body_respond_to_connection_request = api_client.RequestBody(
-content={
-    'application/json': api_client.MediaType(
-        schema=SchemaForRequestBodyApplicationJson),
-},
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJson),
+    },
     required=True,
 )
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 ResponseHeadersFor200 = typing_extensions.TypedDict(
     'ResponseHeadersFor200',
@@ -82,14 +84,14 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 ResponseHeadersFor400 = typing_extensions.TypedDict(
     'ResponseHeadersFor400',
@@ -109,14 +111,14 @@ class ApiResponseFor400(api_client.ApiResponse):
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 ResponseHeadersFor404 = typing_extensions.TypedDict(
     'ResponseHeadersFor404',
@@ -136,14 +138,14 @@ class ApiResponseFor404(api_client.ApiResponse):
 _response_for_404 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor404,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 XRequestIDSchema = schemas.StrSchema
 x_request_id_parameter = api_client.HeaderParameter(
-name="X-Request-ID",
+    name="X-Request-ID",
     style=api_client.ParameterStyle.SIMPLE,
-        schema=XRequestIDSchema,
+    schema=XRequestIDSchema,
 )
 ResponseHeadersFor500 = typing_extensions.TypedDict(
     'ResponseHeadersFor500',
@@ -163,9 +165,9 @@ class ApiResponseFor500(api_client.ApiResponse):
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
     headers=[
-            x_request_id_parameter,
-        ]
-    )
+        x_request_id_parameter,
+    ]
+)
 _status_code_to_response = {
     '200': _response_for_200,
     '400': _response_for_400,
@@ -176,7 +178,7 @@ _status_code_to_response = {
 
 class BaseApi(api_client.Api):
 
-    def _submit_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def _submit_oapg(self, params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         """
         Respond to a pending Web3 connection request.
         """
@@ -184,10 +186,9 @@ class BaseApi(api_client.Api):
         for parameter in (
             request_path_id,
         ):
-            path_params[parameter.name] =  params.get(parameter.name,None)
-
+            if params and params.get(parameter.name):
+                path_params[parameter.name] = params.get(parameter.name)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
-
         used_path = path.value
 
         _path_params = {}
@@ -203,22 +204,20 @@ class BaseApi(api_client.Api):
         for k, v in _path_params.items():
             used_path = used_path.replace('{%s}' % k, v)
         _headers = HTTPHeaderDict()
-
-        body =  params.get(respond_to_connection_request, schemas.unset)
-        if body is schemas.unset:
-            raise exceptions.ApiValueError(
-            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_respond_to_connection_request.serialize(params, "application/json")
         _headers.add('Content-Type', "application/json")
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
+
         elif 'body' in serialized_data:
-            _body = serialized_data['body']
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+                _body = serialized_data['body']
+
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -242,87 +241,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class Submit(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def submit(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,RequestPathParams] = None, request_options: RequestOptions = None):
+    def submit(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
         return self._submit_oapg(params, request_options)
 
 
 class ApiForput(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def put(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def put(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = ...,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-
-    @typing.overload
-    def put(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def put(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = ...,
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def put(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/json',
-        path_params: RequestPathParams = frozendict.frozendict(),
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._submit_oapg(
-        body=body,
-        path_params=path_params,
-        content_type=content_type,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def put(self , params: typing.Union[SchemaForRequestBodyApplicationJson, RequestPathParams] = None, request_options: RequestOptions = None):
+        return self._submit_oapg(params, request_options)
 
 

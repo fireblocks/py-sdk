@@ -26,11 +26,13 @@ from . import path
 
 # body param
 SchemaForRequestBodyApplicationJson = TravelRuleValidateFullTransactionRequest
+
+
 request_body_travel_rule_validate_full_transaction_request = api_client.RequestBody(
-content={
-    'application/json': api_client.MediaType(
-        schema=SchemaForRequestBodyApplicationJson),
-},
+    content={
+        'application/json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationJson),
+    },
     required=True,
 )
 SchemaFor200ResponseBodyApplicationJson = TravelRuleValidateTransactionResponse
@@ -40,18 +42,18 @@ SchemaFor200ResponseBodyApplicationJson = TravelRuleValidateTransactionResponse
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
-                    SchemaFor200ResponseBodyApplicationJson,
-                ]
+        SchemaFor200ResponseBodyApplicationJson,
+    ]
     headers: schemas.Unset = schemas.unset
 
 
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
-    'application/json': api_client.MediaType(
-    schema=SchemaFor200ResponseBodyApplicationJson),
+        'application/json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationJson),
     },
-    )
+)
 
 
 @dataclass
@@ -63,7 +65,7 @@ class ApiResponseFor400(api_client.ApiResponse):
 
 _response_for_400 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor400,
-    )
+)
 
 
 @dataclass
@@ -75,7 +77,7 @@ class ApiResponseFor500(api_client.ApiResponse):
 
 _response_for_500 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor500,
-    )
+)
 _status_code_to_response = {
     '200': _response_for_200,
     '400': _response_for_400,
@@ -83,7 +85,7 @@ _status_code_to_response = {
 }
 _all_accept_content_types = (
     'application/json',
-        )
+)
 
 
 class BaseApi(api_client.Api):
@@ -92,25 +94,22 @@ class BaseApi(api_client.Api):
         """
         Validate Full Travel Rule Transaction
         """
-
         used_path = path.value
         _headers = HTTPHeaderDict()
-
-        body =  params.get(travel_rule_validate_full_transaction_request, schemas.unset)
-        if body is schemas.unset:
-            raise exceptions.ApiValueError(
-            'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
         serialized_data = request_body_travel_rule_validate_full_transaction_request.serialize(params, "application/json")
         _headers.add('Content-Type', "application/json")
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
+
         elif 'body' in serialized_data:
-            _body = serialized_data['body']
-        idempotency_key = request_options.get("idempotency_key")
-        if idempotency_key:
-            _headers.add("Idempotency-Key", idempotency_key)
+                _body = serialized_data['body']
+
+        if request_options and request_options.get("idempotency_key"):
+            idempotency_key = request_options.get("idempotency_key")
+            if idempotency_key:
+                _headers.add("Idempotency-Key", idempotency_key)
 
         response = self.api_client.call_api(
             resource_path=used_path,
@@ -134,87 +133,20 @@ class BaseApi(api_client.Api):
                 api_response=api_response
             )
 
-        return api_response
+        return api_response.body
 
 
 class ValidateFullTravelRuleTransaction(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    def validate_full_travel_rule_transaction(self ,params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
+    def validate_full_travel_rule_transaction(self , params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
         return self._validate_full_travel_rule_transaction_oapg(params, request_options)
 
 
 class ApiForpost(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: typing_extensions.Literal["application/json"] = ...,
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = ...,
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: typing_extensions.Literal[False] = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-    ]: ...
-
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        skip_deserialization: typing_extensions.Literal[True],
-        content_type: str = ...,
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-    ) -> api_client.ApiResponseWithoutDeserialization: ...
-
-    @typing.overload
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = ...,
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = ...,
-    ) -> typing.Union[
-        ApiResponseFor200,
-        api_client.ApiResponseWithoutDeserialization,
-    ]: ...
-
-    def post(
-        self,
-        body: typing.Union[SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/json',
-        accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-        stream: bool = False,
-        timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-        skip_deserialization: bool = False,
-    ):
-        return self._validate_full_travel_rule_transaction_oapg(
-        body=body,
-        content_type=content_type,
-        accept_content_types=accept_content_types,
-        stream=stream,
-        timeout=timeout,
-        skip_deserialization=skip_deserialization
-    )
+    def post(self , params: typing.Union[SchemaForRequestBodyApplicationJson,] = None, request_options: RequestOptions = None):
+        return self._validate_full_travel_rule_transaction_oapg(params, request_options)
 
 

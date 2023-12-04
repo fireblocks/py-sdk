@@ -136,8 +136,8 @@ class BaseApi(api_client.Api):
         Estimate the required fee for an asset
         """
         query_params = {}
-        if params and params.get("asset_id"):
-            query_params["asset_id"] = params.get("asset_id")
+        if params and params.get("assetId"):
+            query_params["assetId"] = params.get("assetId")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

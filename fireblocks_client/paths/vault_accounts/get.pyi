@@ -168,14 +168,14 @@ class BaseApi(api_client.Api):
         List vault accounts
         """
         query_params = {}
-        if params and params.get("name_prefix"):
-            query_params["name_prefix"] = params.get("name_prefix")
-        if params and params.get("name_suffix"):
-            query_params["name_suffix"] = params.get("name_suffix")
-        if params and params.get("min_amount_threshold"):
-            query_params["min_amount_threshold"] = params.get("min_amount_threshold")
-        if params and params.get("asset_id"):
-            query_params["asset_id"] = params.get("asset_id")
+        if params and params.get("namePrefix"):
+            query_params["namePrefix"] = params.get("namePrefix")
+        if params and params.get("nameSuffix"):
+            query_params["nameSuffix"] = params.get("nameSuffix")
+        if params and params.get("minAmountThreshold"):
+            query_params["minAmountThreshold"] = params.get("minAmountThreshold")
+        if params and params.get("assetId"):
+            query_params["assetId"] = params.get("assetId")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

@@ -162,16 +162,16 @@ class BaseApi(api_client.Api):
         List vault acounts (Paginated)
         """
         query_params = {}
-        if params and params.get("name_prefix"):
-            query_params["name_prefix"] = params.get("name_prefix")
-        if params and params.get("name_suffix"):
-            query_params["name_suffix"] = params.get("name_suffix")
-        if params and params.get("min_amount_threshold"):
-            query_params["min_amount_threshold"] = params.get("min_amount_threshold")
-        if params and params.get("asset_id"):
-            query_params["asset_id"] = params.get("asset_id")
-        if params and params.get("order_by"):
-            query_params["order_by"] = params.get("order_by")
+        if params and params.get("namePrefix"):
+            query_params["namePrefix"] = params.get("namePrefix")
+        if params and params.get("nameSuffix"):
+            query_params["nameSuffix"] = params.get("nameSuffix")
+        if params and params.get("minAmountThreshold"):
+            query_params["minAmountThreshold"] = params.get("minAmountThreshold")
+        if params and params.get("assetId"):
+            query_params["assetId"] = params.get("assetId")
+        if params and params.get("orderBy"):
+            query_params["orderBy"] = params.get("orderBy")
         if params and params.get("before"):
             query_params["before"] = params.get("before")
         if params and params.get("after"):

@@ -377,28 +377,28 @@ class BaseApi(api_client.Api):
             query_params["after"] = params.get("after")
         if params and params.get("status"):
             query_params["status"] = params.get("status")
-        if params and params.get("order_by"):
-            query_params["order_by"] = params.get("order_by")
+        if params and params.get("orderBy"):
+            query_params["orderBy"] = params.get("orderBy")
         if params and params.get("sort"):
             query_params["sort"] = params.get("sort")
         if params and params.get("limit"):
             query_params["limit"] = params.get("limit")
-        if params and params.get("source_type"):
-            query_params["source_type"] = params.get("source_type")
-        if params and params.get("source_id"):
-            query_params["source_id"] = params.get("source_id")
-        if params and params.get("dest_type"):
-            query_params["dest_type"] = params.get("dest_type")
-        if params and params.get("dest_id"):
-            query_params["dest_id"] = params.get("dest_id")
+        if params and params.get("sourceType"):
+            query_params["sourceType"] = params.get("sourceType")
+        if params and params.get("sourceId"):
+            query_params["sourceId"] = params.get("sourceId")
+        if params and params.get("destType"):
+            query_params["destType"] = params.get("destType")
+        if params and params.get("destId"):
+            query_params["destId"] = params.get("destId")
         if params and params.get("assets"):
             query_params["assets"] = params.get("assets")
-        if params and params.get("tx_hash"):
-            query_params["tx_hash"] = params.get("tx_hash")
-        if params and params.get("source_wallet_id"):
-            query_params["source_wallet_id"] = params.get("source_wallet_id")
-        if params and params.get("dest_wallet_id"):
-            query_params["dest_wallet_id"] = params.get("dest_wallet_id")
+        if params and params.get("txHash"):
+            query_params["txHash"] = params.get("txHash")
+        if params and params.get("sourceWalletId"):
+            query_params["sourceWalletId"] = params.get("sourceWalletId")
+        if params and params.get("destWalletId"):
+            query_params["destWalletId"] = params.get("destWalletId")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

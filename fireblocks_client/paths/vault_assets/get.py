@@ -168,10 +168,10 @@ class BaseApi(api_client.Api):
         Get asset balance for chosen assets
         """
         query_params = {}
-        if params and params.get("account_name_prefix"):
-            query_params["account_name_prefix"] = params.get("account_name_prefix")
-        if params and params.get("account_name_suffix"):
-            query_params["account_name_suffix"] = params.get("account_name_suffix")
+        if params and params.get("accountNamePrefix"):
+            query_params["accountNamePrefix"] = params.get("accountNamePrefix")
+        if params and params.get("accountNameSuffix"):
+            query_params["accountNameSuffix"] = params.get("accountNameSuffix")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

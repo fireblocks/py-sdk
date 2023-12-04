@@ -160,8 +160,8 @@ class BaseApi(api_client.Api):
         Get the maximum spendable amount in a single transaction.
         """
         query_params = {}
-        if params and params.get("manual_signging"):
-            query_params["manual_signging"] = params.get("manual_signging")
+        if params and params.get("manualSignging"):
+            query_params["manualSignging"] = params.get("manualSignging")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         path_params = {}
         for parameter in (

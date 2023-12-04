@@ -139,10 +139,10 @@ class BaseApi(api_client.Api):
         List asset wallets (Paginated)
         """
         query_params = {}
-        if params and params.get("total_amount_larger_than"):
-            query_params["total_amount_larger_than"] = params.get("total_amount_larger_than")
-        if params and params.get("asset_id"):
-            query_params["asset_id"] = params.get("asset_id")
+        if params and params.get("totalAmountLargerThan"):
+            query_params["totalAmountLargerThan"] = params.get("totalAmountLargerThan")
+        if params and params.get("assetId"):
+            query_params["assetId"] = params.get("assetId")
         if params and params.get("before"):
             query_params["before"] = params.get("before")
         if params and params.get("after"):

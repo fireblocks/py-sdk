@@ -124,8 +124,8 @@ class BaseApi(api_client.Api):
         Get audit logs
         """
         query_params = {}
-        if params and params.get("time_period"):
-            query_params["time_period"] = params.get("time_period")
+        if params and params.get("timePeriod"):
+            query_params["timePeriod"] = params.get("timePeriod")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

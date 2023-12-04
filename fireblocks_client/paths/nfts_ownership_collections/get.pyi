@@ -265,10 +265,10 @@ class BaseApi(api_client.Api):
         query_params = {}
         if params and params.get("search"):
             query_params["search"] = params.get("search")
-        if params and params.get("page_cursor"):
-            query_params["page_cursor"] = params.get("page_cursor")
-        if params and params.get("page_size"):
-            query_params["page_size"] = params.get("page_size")
+        if params and params.get("pageCursor"):
+            query_params["pageCursor"] = params.get("pageCursor")
+        if params and params.get("pageSize"):
+            query_params["pageSize"] = params.get("pageSize")
         if params and params.get("sort"):
             query_params["sort"] = params.get("sort")
         if params and params.get("order"):

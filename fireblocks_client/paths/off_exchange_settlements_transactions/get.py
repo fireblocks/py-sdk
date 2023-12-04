@@ -121,8 +121,8 @@ class BaseApi(api_client.Api):
         get settlements transactions from exchange
         """
         query_params = {}
-        if params and params.get("main_exchange_account_id"):
-            query_params["main_exchange_account_id"] = params.get("main_exchange_account_id")
+        if params and params.get("mainExchangeAccountId"):
+            query_params["mainExchangeAccountId"] = params.get("mainExchangeAccountId")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

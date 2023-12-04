@@ -397,18 +397,18 @@ class BaseApi(api_client.Api):
         List all owned tokens (paginated)
         """
         query_params = {}
-        if params and params.get("blockchain_descriptor"):
-            query_params["blockchain_descriptor"] = params.get("blockchain_descriptor")
-        if params and params.get("vault_account_ids"):
-            query_params["vault_account_ids"] = params.get("vault_account_ids")
+        if params and params.get("blockchainDescriptor"):
+            query_params["blockchainDescriptor"] = params.get("blockchainDescriptor")
+        if params and params.get("vaultAccountIds"):
+            query_params["vaultAccountIds"] = params.get("vaultAccountIds")
         if params and params.get("ids"):
             query_params["ids"] = params.get("ids")
-        if params and params.get("collection_ids"):
-            query_params["collection_ids"] = params.get("collection_ids")
-        if params and params.get("page_cursor"):
-            query_params["page_cursor"] = params.get("page_cursor")
-        if params and params.get("page_size"):
-            query_params["page_size"] = params.get("page_size")
+        if params and params.get("collectionIds"):
+            query_params["collectionIds"] = params.get("collectionIds")
+        if params and params.get("pageCursor"):
+            query_params["pageCursor"] = params.get("pageCursor")
+        if params and params.get("pageSize"):
+            query_params["pageSize"] = params.get("pageSize")
         if params and params.get("sort"):
             query_params["sort"] = params.get("sort")
         if params and params.get("order"):

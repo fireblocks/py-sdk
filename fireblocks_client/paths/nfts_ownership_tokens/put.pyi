@@ -106,10 +106,10 @@ class BaseApi(api_client.Api):
         Refresh vault account tokens
         """
         query_params = {}
-        if params and params.get("blockchain_descriptor"):
-            query_params["blockchain_descriptor"] = params.get("blockchain_descriptor")
-        if params and params.get("vault_account_id"):
-            query_params["vault_account_id"] = params.get("vault_account_id")
+        if params and params.get("blockchainDescriptor"):
+            query_params["blockchainDescriptor"] = params.get("blockchainDescriptor")
+        if params and params.get("vaultAccountId"):
+            query_params["vaultAccountId"] = params.get("vaultAccountId")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)
         used_path = path.value
 

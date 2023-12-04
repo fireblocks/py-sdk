@@ -153,8 +153,8 @@ class BaseApi(api_client.Api):
         Get the public key information
         """
         query_params = {}
-        if params and params.get("derivation_path"):
-            query_params["derivation_path"] = params.get("derivation_path")
+        if params and params.get("derivationPath"):
+            query_params["derivationPath"] = params.get("derivationPath")
         if params and params.get("algorithm"):
             query_params["algorithm"] = params.get("algorithm")
         if params and params.get("compressed"):

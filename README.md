@@ -61,23 +61,21 @@ vault_api = vaults_api.VaultsApi(config);
 To create a new vault account, you can use the following function:</p>
 
 ```python
-create_vault_account_response = vault_api.create_vault_account(body={"name": "New Vault"})
+create_vault_account_response = vault_api.create_vault_account(params={"name": "New Vault"})
 ```
 
 <p><strong>Create a Transaction</strong><br>
 To make a transaction between vault accounts, you can use the following function:</p>
 
 ```python
-tx_request = tx_api_instance.create_transaction(
-        body=TransactionRequest(
+params = TransactionRequest(
             source=TransferPeerPath(id="0", type="VAULT_ACCOUNT"),
             destination=DestinationTransferPeerPath(
                 id="0", type="VAULT_ACCOUNT"
             ),
             assetId="ETH_TEST3",
-            amount="0.001",
-        )
-    )
+            amount="0.001",)
+tx_request = tx_api_instance.create_transaction(params)
 ```
 
 ## Documentation for API Endpoints

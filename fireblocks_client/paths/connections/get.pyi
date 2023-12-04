@@ -330,8 +330,8 @@ class BaseApi(api_client.Api):
             query_params["filter"] = params.get("filter")
         if params and params.get("sort"):
             query_params["sort"] = params.get("sort")
-        if params and params.get("page_size"):
-            query_params["page_size"] = params.get("page_size")
+        if params and params.get("pageSize"):
+            query_params["pageSize"] = params.get("pageSize")
         if params and params.get("next"):
             query_params["next"] = params.get("next")
         self._verify_typed_dict_inputs_oapg(RequestQueryParams, query_params)

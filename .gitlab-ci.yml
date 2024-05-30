@@ -1,6 +1,0 @@
-include:
-  - project: 'fireblocks/shell/common/templates/ci-infra'
-    file:
-      - 'pip-package-ci.yml'
-variables:
-  COVERAGE_PERCENTAGE: 50

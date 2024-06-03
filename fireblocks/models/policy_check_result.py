@@ -29,8 +29,8 @@ class PolicyCheckResult(BaseModel):
     Policy rules validation result
     """ # noqa: E501
     errors: Union[StrictFloat, StrictInt] = Field(description="Number of errors")
-    result: List[PolicyRuleCheckResult] = Field(description="A set of validation results")
-    __properties: ClassVar[List[str]] = ["errors", "result"]
+    results: List[PolicyRuleCheckResult] = Field(description="A set of validation results")
+    __properties: ClassVar[List[str]] = ["errors", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,13 +71,13 @@ class PolicyCheckResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in result (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
         _items = []
-        if self.result:
-            for _item in self.result:
+        if self.results:
+            for _item in self.results:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['result'] = _items
+            _dict['results'] = _items
         return _dict
 
     @classmethod
@@ -91,7 +91,7 @@ class PolicyCheckResult(BaseModel):
 
         _obj = cls.model_validate({
             "errors": obj.get("errors"),
-            "result": [PolicyRuleCheckResult.from_dict(_item) for _item in obj["result"]] if obj.get("result") is not None else None
+            "results": [PolicyRuleCheckResult.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
         })
         return _obj
 

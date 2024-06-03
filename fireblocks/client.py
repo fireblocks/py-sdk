@@ -34,6 +34,7 @@ from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.job_management_api import JobManagementApi
+from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
@@ -82,6 +83,7 @@ class Fireblocks:
         self._gas_stations = None
         self._internal_wallets = None
         self._job_management = None
+        self._key_link_beta = None
         self._nfts = None
         self._network_connections = None
         self._ota_beta = None
@@ -220,6 +222,12 @@ class Fireblocks:
         if self._job_management is None:
             self._job_management = JobManagementApi(self._api_client)
         return self._job_management
+
+    @property
+    def key_link_beta(self) -> KeyLinkBetaApi:
+        if self._key_link_beta is None:
+            self._key_link_beta = KeyLinkBetaApi(self._api_client)
+        return self._key_link_beta
 
     @property
     def nfts(self) -> NFTsApi:

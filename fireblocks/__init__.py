@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.2-beta"
+__version__ = "1.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -38,6 +38,7 @@ from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.job_management_api import JobManagementApi
+from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
@@ -217,6 +218,7 @@ from fireblocks.models.create_multiple_accounts_request import (
 from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionRequest
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
+from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
 from fireblocks.models.create_token_request_dto import CreateTokenRequestDto
 from fireblocks.models.create_token_request_dto_create_params import (
     CreateTokenRequestDtoCreateParams,
@@ -226,6 +228,10 @@ from fireblocks.models.create_transfer_config_operation_request import (
     CreateTransferConfigOperationRequest,
 )
 from fireblocks.models.create_user_group_response import CreateUserGroupResponse
+from fireblocks.models.create_validation_key_dto import CreateValidationKeyDto
+from fireblocks.models.create_validation_key_response_dto import (
+    CreateValidationKeyResponseDto,
+)
 from fireblocks.models.create_vault_account_connection_request import (
     CreateVaultAccountConnectionRequest,
 )
@@ -360,7 +366,11 @@ from fireblocks.models.get_max_spendable_amount_response import (
 from fireblocks.models.get_nfts_response import GetNFTsResponse
 from fireblocks.models.get_ota_status_response import GetOtaStatusResponse
 from fireblocks.models.get_ownership_tokens_response import GetOwnershipTokensResponse
+from fireblocks.models.get_signing_key_response_dto import GetSigningKeyResponseDto
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
+from fireblocks.models.get_validation_key_response_dto import (
+    GetValidationKeyResponseDto,
+)
 from fireblocks.models.get_whitelist_ip_addresses_response import (
     GetWhitelistIpAddressesResponse,
 )
@@ -382,6 +392,9 @@ from fireblocks.models.list_owned_collections_response import (
 )
 from fireblocks.models.list_owned_tokens_response import ListOwnedTokensResponse
 from fireblocks.models.media_entity_response import MediaEntityResponse
+from fireblocks.models.modify_signing_key_agent_id_dto import ModifySigningKeyAgentIdDto
+from fireblocks.models.modify_signing_key_dto import ModifySigningKeyDto
+from fireblocks.models.modify_validation_key_dto import ModifyValidationKeyDto
 from fireblocks.models.network_channel import NetworkChannel
 from fireblocks.models.network_connection import NetworkConnection
 from fireblocks.models.network_connection_response import NetworkConnectionResponse
@@ -537,6 +550,7 @@ from fireblocks.models.settlement_request_body import SettlementRequestBody
 from fireblocks.models.settlement_response import SettlementResponse
 from fireblocks.models.signed_message import SignedMessage
 from fireblocks.models.signed_message_signature import SignedMessageSignature
+from fireblocks.models.signing_key_dto import SigningKeyDto
 from fireblocks.models.smart_transfer_bad_request_response import (
     SmartTransferBadRequestResponse,
 )
@@ -716,6 +730,7 @@ from fireblocks.models.user_role import UserRole
 from fireblocks.models.user_status import UserStatus
 from fireblocks.models.user_type import UserType
 from fireblocks.models.validate_address_response import ValidateAddressResponse
+from fireblocks.models.validation_key_dto import ValidationKeyDto
 from fireblocks.models.validator_dto import ValidatorDto
 from fireblocks.models.vault_account import VaultAccount
 from fireblocks.models.vault_accounts_paged_response import VaultAccountsPagedResponse

@@ -100,7 +100,7 @@ def test_succeed_to_construct_api_client(setup_mocks):
     assert isinstance(api_client_instance, ThreadedApiClient)
     assert isinstance(api_client_instance.rest_client, MagicMock)
 
-def test_call_api_updates_headers_property(setup_mocks, mock_rest_client):
+def test_call_api_updates_headers_property_successfully(setup_mocks, mock_rest_client, mock_bearer_token_provider):
     api_client_instance = ThreadedApiClient(full_configuration)
     method = "GET"
     url = "https://api_endpoint.example.com/data"
@@ -108,6 +108,25 @@ def test_call_api_updates_headers_property(setup_mocks, mock_rest_client):
                         "X-API-Key": "my_api_key"}
 
     api_client_instance.call_api(method, url)
+    mock_bearer_token_provider.get_token.assert_called_once_with(method, "/data", None)
+    mock_rest_client.request.assert_called_once_with(
+        method,
+        url,
+        headers=expected_headers,
+        body=ANY,
+        post_params=ANY,
+        _request_timeout=ANY
+    )
+
+def test_call_api_with_query_params(setup_mocks, mock_rest_client, mock_bearer_token_provider):
+    api_client_instance = ThreadedApiClient(full_configuration)
+    method = "GET"
+    url = "https://api_endpoint.example.com/data?param1=value%201&param2=value2"
+    expected_headers = {"Authorization": "Bearer mocked_token",
+                        "X-API-Key": "my_api_key"}
+
+    api_client_instance.call_api(method, url)
+    mock_bearer_token_provider.get_token.assert_called_once_with(method, "/data?param1=value%201&param2=value2", None)
     mock_rest_client.request.assert_called_once_with(
         method,
         url,

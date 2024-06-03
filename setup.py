@@ -22,7 +22,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "fireblocks"
-VERSION = "0.0.2-beta"
+VERSION = "1.0.0"
 PYTHON_REQUIRES = ">=3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
@@ -53,7 +53,7 @@ setup(
     long_description=long_description,  # noqa: E501
     package_data={"fireblocks": ["py.typed"]},
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Software Development',
         'License :: OSI Approved :: MIT License',

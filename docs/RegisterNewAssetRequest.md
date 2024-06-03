@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**blockchain_id** | **str** | Native asset of blockchain | 
-**address** | **str** | Asset address | 
-**symbol** | **str** | Asset symbol | [optional] 
+**blockchain_id** | **str** | Native asset ID of the blockchain | 
+**address** | **str** | Asset address.  - For EVM based chains this should be the token contract address. - For Stellar (XLM) this should be the issuer address. - For Algorand (ALGO) this should be the asset ID. - For TRON (TRX) this should be the token contract address. - For NEAR this will be the token address.  | 
+**symbol** | **str** | Required for Stellar only, asset code is expected. | [optional] 
 
 ## Example
 

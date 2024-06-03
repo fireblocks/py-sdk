@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset** | **str** | Asset name | 
-**amount** | **float** | Amount | 
+**amount** | **str** | Amount | 
 **from_network_id** | **str** | Identifier of the origination Network Profile | 
 **to_network_id** | **str** | Identifier of the destination Network Profile | 
 

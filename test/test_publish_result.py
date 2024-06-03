@@ -102,7 +102,7 @@ class TestPublishResult(unittest.TestCase):
                     ],
                 check_result = fireblocks.models.policy_check_result.PolicyCheckResult(
                     errors = 1.337, 
-                    result = [
+                    results = [
                         fireblocks.models.policy_rule_check_result.PolicyRuleCheckResult(
                             index = 1.337, 
                             status = 'ok', 
@@ -187,7 +187,7 @@ class TestPublishResult(unittest.TestCase):
                     ],
                 check_result = fireblocks.models.policy_check_result.PolicyCheckResult(
                     errors = 1.337, 
-                    result = [
+                    results = [
                         fireblocks.models.policy_rule_check_result.PolicyRuleCheckResult(
                             index = 1.337, 
                             status = 'ok', 

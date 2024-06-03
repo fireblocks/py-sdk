@@ -7,7 +7,7 @@ Policy rules validation result
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **errors** | **float** | Number of errors | 
-**result** | [**List[PolicyRuleCheckResult]**](PolicyRuleCheckResult.md) | A set of validation results | 
+**results** | [**List[PolicyRuleCheckResult]**](PolicyRuleCheckResult.md) | A set of validation results | 
 
 ## Example
 

@@ -40,14 +40,14 @@ class TestSmartTransferUpdateTicketTerm(unittest.TestCase):
         if include_optional:
             return SmartTransferUpdateTicketTerm(
                 asset = 'BTC',
-                amount = 133.789161216184,
+                amount = '133.789161216184',
                 from_network_id = '947c6115-1f5f-4fb4-9fd6-a1f9dee14670',
                 to_network_id = '5d009697-c29b-48e0-aff8-1f4305d19dc2'
             )
         else:
             return SmartTransferUpdateTicketTerm(
                 asset = 'BTC',
-                amount = 133.789161216184,
+                amount = '133.789161216184',
                 from_network_id = '947c6115-1f5f-4fb4-9fd6-a1f9dee14670',
                 to_network_id = '5d009697-c29b-48e0-aff8-1f4305d19dc2',
         )

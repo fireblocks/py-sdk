@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class SmartTransferCreateTicketTerm(BaseModel):
     SmartTransferCreateTicketTerm
     """ # noqa: E501
     asset: StrictStr = Field(description="Asset name")
-    amount: Union[StrictFloat, StrictInt] = Field(description="Amount")
+    amount: StrictStr = Field(description="Amount")
     from_network_id: StrictStr = Field(description="Identifier of the origination Network Profile", alias="fromNetworkId")
     to_network_id: StrictStr = Field(description="Identifier of the destination Network Profile", alias="toNetworkId")
     __properties: ClassVar[List[str]] = ["asset", "amount", "fromNetworkId", "toNetworkId"]

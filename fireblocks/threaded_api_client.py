@@ -94,6 +94,8 @@ class ThreadedApiClient(ApiClient):
         header_params = header_params or {}
         parsed_url = urlparse(url)
         path = parsed_url.path
+        if parsed_url.query:
+            path += f"?{parsed_url.query}"
 
         self._update_headers(header_params, method, path, body)
 

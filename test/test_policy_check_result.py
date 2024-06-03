@@ -38,7 +38,7 @@ class TestPolicyCheckResult(unittest.TestCase):
         if include_optional:
             return PolicyCheckResult(
                 errors = 1.337,
-                result = [
+                results = [
                     fireblocks.models.policy_rule_check_result.PolicyRuleCheckResult(
                         index = 1.337, 
                         status = 'ok', 
@@ -54,7 +54,7 @@ class TestPolicyCheckResult(unittest.TestCase):
         else:
             return PolicyCheckResult(
                 errors = 1.337,
-                result = [
+                results = [
                     fireblocks.models.policy_rule_check_result.PolicyRuleCheckResult(
                         index = 1.337, 
                         status = 'ok', 

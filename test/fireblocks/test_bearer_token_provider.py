@@ -72,3 +72,25 @@ def test_get_token_when_get_method(mock_time, mock_uuid, secret_key):
     }
 
     assert decoded_token == expected_token
+
+@patch('uuid.uuid4', return_value=UUID('12345678-1234-5678-1234-567812345678'))  # Mocked uuid
+@patch('time.time', return_value=1609459200)  # Mocked timestamp
+def test_get_token_when_get_method_and_query_params(mock_time, mock_uuid, secret_key):
+    provider = BearerTokenProvider(api_key="dummy_api_key", secret_key=secret_key)
+    token = provider.get_token("GET", "/test/path?query_param1=val%20ue&query_param2=value", None)
+
+    # Assert that the token is a string
+    assert isinstance(token, str)
+    assert token == 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmkiOiIvdGVzdC9wYXRoP3F1ZXJ5X3BhcmFtMT12YWwlMjB1ZSZxdWVyeV9wYXJhbTI9dmFsdWUiLCJub25jZSI6IjEyMzQ1Njc4LTEyMzQtNTY3OC0xMjM0LTU2NzgxMjM0NTY3OCIsImlhdCI6MTYwOTQ1OTIwMCwiZXhwIjoxNjA5NDU5MjU1LCJzdWIiOiJkdW1teV9hcGlfa2V5IiwiYm9keUhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0.SSTxDTeTAEkTyBFsSwcfEFS-JQO--auEVfC-1_G2AMK7wrdBTbKMCsSnpsOqHMfachEveslDuz2mD8g_XyEc3Y6F7Gf9j2BOzcOWr7qOsbSOCPmNILQ42OyCSlY4I85vsjUus7WXtFTyGcxOmrjLEBO_5_Km0Tc-Tmu8fUGikiG2hh313r6tKvH4oBekt4vMzvdksw_-Qf1Z9_LqDWm8nIicaeDRJZJEzCq64wFOxpKDQb-voG6hYw1clm_f5L2dXkOMx_z_8FHjoDtsXbI2Z-ps983BTIg6M3_IE5C_wF2uKGIDVKua-4Rho9z8amlzd4B5YtwfW0SQB0CHGXH9iAYBO4nW3-juclVf4EpOVVMWciR07tzDA0nA2tItF54RmKHRqabq_Kfcm_uXh2qBbWLVODbJ51LQhkJbP1DWv7Ak3iZlZqoYic0c9BF0O1Jj6jl-PrJnE5FdZLJhCni2eTBwmH6HG-XV4OUWcd1pHuK3EjCqCnSJRjmW7I6gvpDPcisrh8mGdRfD7bPc3I4FSGTZoQMu8TbTOr0gZJwtPPdcSBGZk4kGn7rqWZz6ZA9-rPOg8TsaDI-XnZukdz6ylKX88lwIBiJUwhUa4FB8JO7amHtqSFi2X18-Fz5saRoQci3d3JwB0JX7Sz8bSW3bx-zPFuHKJtvap4Vp2UDIcb8'
+
+    # Example additional assertion: decode the token without verification to check structure
+    decoded_token = jwt.decode(token, options={"verify_signature": False})
+    expected_token = {
+        "uri": "/test/path?query_param1=val%20ue&query_param2=value",
+        "nonce": '12345678-1234-5678-1234-567812345678',
+        "iat": 1609459200,
+        "exp": 1609459200 + 55,
+        "sub": "dummy_api_key",
+        "bodyHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    }
+    assert decoded_token == expected_token

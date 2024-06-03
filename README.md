@@ -1,14 +1,9 @@
-# Fireblocks Python SDK (beta)
+# Official Fireblocks Python SDK
 [![PyPI version](https://badge.fury.io/py/fireblocks.svg)](https://badge.fury.io/py/fireblocks)
 
 The Fireblocks SDK allows developers to seamlessly integrate with the Fireblocks platform and perform a variety of operations, including managing vault accounts and executing transactions securely.
 
 For detailed API documentation please refer to the [Fireblocks API Reference](https://developers.fireblocks.com/reference/).
-
-> **Warning**
-> This package is currently in a beta stage and should be used at your own risk.
-> The provided interfaces might go through backwards-incompatibale changes.
-> For a more stable SDK, please use the [Fireblocks Python SDK](https://github.com/fireblocks/fireblocks-sdk-py)
 
 ## Requirements.
 
@@ -25,7 +20,6 @@ If the python package is hosted on a repository, you can install directly using:
 ```sh
 pip install fireblocks
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/fireblocks/py-sdk.git`)
 
 Then import the package:
 ```python
@@ -317,6 +311,15 @@ Class | Method | HTTP request | Description
 *JobManagementApi* | [**get_job_tasks**](docs/JobManagementApi.md#get_job_tasks) | **GET** /batch/{jobId}/tasks | Return a list of tasks for given job
 *JobManagementApi* | [**get_jobs**](docs/JobManagementApi.md#get_jobs) | **GET** /batch/jobs | Return a list of jobs belonging to tenant
 *JobManagementApi* | [**pause_job**](docs/JobManagementApi.md#pause_job) | **POST** /batch/{jobId}/pause | Pause a job
+*KeyLinkBetaApi* | [**create_signing_key**](docs/KeyLinkBetaApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
+*KeyLinkBetaApi* | [**create_validation_key**](docs/KeyLinkBetaApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
+*KeyLinkBetaApi* | [**disable_validation_key**](docs/KeyLinkBetaApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
+*KeyLinkBetaApi* | [**get_signing_key**](docs/KeyLinkBetaApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
+*KeyLinkBetaApi* | [**get_signing_keys_list**](docs/KeyLinkBetaApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
+*KeyLinkBetaApi* | [**get_validation_key**](docs/KeyLinkBetaApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
+*KeyLinkBetaApi* | [**get_validation_keys_list**](docs/KeyLinkBetaApi.md#get_validation_keys_list) | **GET** /key_link/validation_keys | Get list of registered validation keys
+*KeyLinkBetaApi* | [**set_agent_id**](docs/KeyLinkBetaApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id that can sign with the signing key identified by the Fireblocks provided &#x60;keyId&#x60;
+*KeyLinkBetaApi* | [**update_signing_key**](docs/KeyLinkBetaApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing by Fireblocks provided &#x60;keyId&#x60;
 *NFTsApi* | [**get_nft**](docs/NFTsApi.md#get_nft) | **GET** /nfts/tokens/{id} | List token data by ID
 *NFTsApi* | [**get_nfts**](docs/NFTsApi.md#get_nfts) | **GET** /nfts/tokens | List tokens by IDs
 *NFTsApi* | [**get_ownership_tokens**](docs/NFTsApi.md#get_ownership_tokens) | **GET** /nfts/ownership/tokens | List all owned tokens (paginated)
@@ -543,11 +546,14 @@ Class | Method | HTTP request | Description
  - [CreateNcwConnectionRequest](docs/CreateNcwConnectionRequest.md)
  - [CreateNetworkIdRequest](docs/CreateNetworkIdRequest.md)
  - [CreatePayoutRequest](docs/CreatePayoutRequest.md)
+ - [CreateSigningKeyDto](docs/CreateSigningKeyDto.md)
  - [CreateTokenRequestDto](docs/CreateTokenRequestDto.md)
  - [CreateTokenRequestDtoCreateParams](docs/CreateTokenRequestDtoCreateParams.md)
  - [CreateTransactionResponse](docs/CreateTransactionResponse.md)
  - [CreateTransferConfigOperationRequest](docs/CreateTransferConfigOperationRequest.md)
  - [CreateUserGroupResponse](docs/CreateUserGroupResponse.md)
+ - [CreateValidationKeyDto](docs/CreateValidationKeyDto.md)
+ - [CreateValidationKeyResponseDto](docs/CreateValidationKeyResponseDto.md)
  - [CreateVaultAccountConnectionRequest](docs/CreateVaultAccountConnectionRequest.md)
  - [CreateVaultAccountRequest](docs/CreateVaultAccountRequest.md)
  - [CreateVaultAssetResponse](docs/CreateVaultAssetResponse.md)
@@ -628,7 +634,9 @@ Class | Method | HTTP request | Description
  - [GetNFTsResponse](docs/GetNFTsResponse.md)
  - [GetOtaStatusResponse](docs/GetOtaStatusResponse.md)
  - [GetOwnershipTokensResponse](docs/GetOwnershipTokensResponse.md)
+ - [GetSigningKeyResponseDto](docs/GetSigningKeyResponseDto.md)
  - [GetTransactionOperation](docs/GetTransactionOperation.md)
+ - [GetValidationKeyResponseDto](docs/GetValidationKeyResponseDto.md)
  - [GetWhitelistIpAddressesResponse](docs/GetWhitelistIpAddressesResponse.md)
  - [GetWorkspaceStatusResponse](docs/GetWorkspaceStatusResponse.md)
  - [HttpContractDoesNotExistError](docs/HttpContractDoesNotExistError.md)
@@ -642,6 +650,9 @@ Class | Method | HTTP request | Description
  - [ListOwnedCollectionsResponse](docs/ListOwnedCollectionsResponse.md)
  - [ListOwnedTokensResponse](docs/ListOwnedTokensResponse.md)
  - [MediaEntityResponse](docs/MediaEntityResponse.md)
+ - [ModifySigningKeyAgentIdDto](docs/ModifySigningKeyAgentIdDto.md)
+ - [ModifySigningKeyDto](docs/ModifySigningKeyDto.md)
+ - [ModifyValidationKeyDto](docs/ModifyValidationKeyDto.md)
  - [NetworkChannel](docs/NetworkChannel.md)
  - [NetworkConnection](docs/NetworkConnection.md)
  - [NetworkConnectionResponse](docs/NetworkConnectionResponse.md)
@@ -751,6 +762,7 @@ Class | Method | HTTP request | Description
  - [SettlementResponse](docs/SettlementResponse.md)
  - [SignedMessage](docs/SignedMessage.md)
  - [SignedMessageSignature](docs/SignedMessageSignature.md)
+ - [SigningKeyDto](docs/SigningKeyDto.md)
  - [SmartTransferBadRequestResponse](docs/SmartTransferBadRequestResponse.md)
  - [SmartTransferCreateTicket](docs/SmartTransferCreateTicket.md)
  - [SmartTransferCreateTicketTerm](docs/SmartTransferCreateTicketTerm.md)
@@ -856,6 +868,7 @@ Class | Method | HTTP request | Description
  - [UserStatus](docs/UserStatus.md)
  - [UserType](docs/UserType.md)
  - [ValidateAddressResponse](docs/ValidateAddressResponse.md)
+ - [ValidationKeyDto](docs/ValidationKeyDto.md)
  - [ValidatorDto](docs/ValidatorDto.md)
  - [VaultAccount](docs/VaultAccount.md)
  - [VaultAccountsPagedResponse](docs/VaultAccountsPagedResponse.md)

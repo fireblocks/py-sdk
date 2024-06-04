@@ -16,7 +16,7 @@ import platform
 class UserAgentUtil:
     @staticmethod
     def get_user_agent(is_anonymous_platform: bool, custom_user_agent: str) -> str:
-        user_agent = "fireblocks/sdk/python/1.0.0"
+        user_agent = "fireblocks/sdk/python/1.0.2"
         if not is_anonymous_platform:
             os_type = platform.system()
             os_version = platform.release()

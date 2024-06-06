@@ -1,0 +1,49 @@
+name: Pull Request Action
+on:
+  push:
+    branches-ignore:
+      - master
+
+#jobs:
+#  create-pull-request:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out repository code
+#        uses: actions/checkout@v4
+#
+#      - name: Get last commit message
+#        id: last_commit
+#        run: echo "::set-output name=commit_message::$(git log -1 --pretty=%B)"
+#
+#      - name: Get branch name
+#        id: branch_name
+#        run: echo "::set-output name=branch_name::$(echo ${GITHUB_REF#refs/heads/})"
+#
+#      - name: pull-request
+#        uses: peter-evans/create-pull-request@v6
+#        with:
+#          labels: |
+#            report
+#            automated pr
+#          title: ${{ steps.last_commit.outputs.commit_message }}
+#          body: |
+#            This is an auto-generated pull request.
+#            ${{ steps.last_commit.outputs.commit_message }}
+#          draft: false
+#          base: master
+#          branch: ${{ steps.branch_name.outputs.branch_name }}
+jobs:
+  action-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ github.event.commits[0].message }}
+          assignee: ${{ github.actor }}
+          label: automatic,feature

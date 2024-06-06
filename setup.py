@@ -42,7 +42,7 @@ setup(
     description="Fireblocks API",
     author="Fireblocks",
     author_email="support@fireblocks.com",
-    url="https://pypi.org/project/fireblocks",
+    url="https://github.com/fireblocks/py-sdk",
     keywords=["Fireblocks", "SDK", "Fireblocks API"],
     python_requires=PYTHON_REQUIRES,
     install_requires=REQUIRES,

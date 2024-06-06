@@ -22,7 +22,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "fireblocks"
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 PYTHON_REQUIRES = ">=3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
@@ -42,7 +42,7 @@ setup(
     description="Fireblocks API",
     author="Fireblocks",
     author_email="support@fireblocks.com",
-    url="https://pypi.org/project/fireblocks",
+    url="https://github.com/fireblocks/py-sdk/tree/master",
     keywords=["Fireblocks", "SDK", "Fireblocks API"],
     python_requires=PYTHON_REQUIRES,
     install_requires=REQUIRES,

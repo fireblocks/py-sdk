@@ -21,10 +21,10 @@ def mock_platform(mocker):
     mocker.patch('platform.machine', return_value="x86_64")
 
 @pytest.mark.parametrize("is_anonymous_platform, user_agent, expected", [
-    (False, "customUserAgent", "customUserAgent fireblocks/sdk/python/1.0.2 (Linux 5.4.0-42-generic; x86_64)"),
-    (True, "customUserAgent", "customUserAgent fireblocks/sdk/python/1.0.2"),
-    (False, None, "fireblocks/sdk/python/1.0.2 (Linux 5.4.0-42-generic; x86_64)"),
-    (True, None, "fireblocks/sdk/python/1.0.2")])
+    (False, "customUserAgent", "customUserAgent fireblocks/sdk/python/1.0.3 (Linux 5.4.0-42-generic; x86_64)"),
+    (True, "customUserAgent", "customUserAgent fireblocks/sdk/python/1.0.3"),
+    (False, None, "fireblocks/sdk/python/1.0.3 (Linux 5.4.0-42-generic; x86_64)"),
+    (True, None, "fireblocks/sdk/python/1.0.3")])
 def test_get_user_agent(mock_platform, is_anonymous_platform, user_agent, expected):
     # Create an instance of UserAgentUtil
     util = UserAgentUtil()

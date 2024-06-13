@@ -63,7 +63,7 @@ class PolicyEditorBetaApi:
     ) -> Future[ApiResponse[PolicyAndValidationResponse]]:
         """Get the active policy and its validation
 
-        Returns the active policy and its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Returns the active policy and its validation....... </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

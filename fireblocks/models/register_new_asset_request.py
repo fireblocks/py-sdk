@@ -28,7 +28,7 @@ class RegisterNewAssetRequest(BaseModel):
     RegisterNewAssetRequest
     """ # noqa: E501
     blockchain_id: StrictStr = Field(description="Native asset ID of the blockchain", alias="blockchainId")
-    address: StrictStr = Field(description="Asset address.  - For EVM based chains this should be the token contract address. - For Stellar (XLM) this should be the issuer address. - For Algorand (ALGO) this should be the asset ID. - For TRON (TRX) this should be the token contract address. - For NEAR this will be the token address. ")
+    address: StrictStr = Field(description="Asset address. - EVM-based chains: token contract address - Stellar (XLM): issuer address - Algorand (ALGO): asset ID - TRON (TRX): token contract address - NEAR: token address - Solana: token's mint account address ")
     symbol: Optional[StrictStr] = Field(default=None, description="Required for Stellar only, asset code is expected.")
     __properties: ClassVar[List[str]] = ["blockchainId", "address", "symbol"]
 

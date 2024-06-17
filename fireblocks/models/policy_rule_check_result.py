@@ -36,8 +36,8 @@ class PolicyRuleCheckResult(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ok', 'failure']):
-            raise ValueError("must be one of enum values ('ok', 'failure')")
+        if value not in set(['ok', 'failure', 'test']):
+            raise ValueError("must be one of enum values ('ok', 'failure', 'test')")
         return value
 
     model_config = ConfigDict(

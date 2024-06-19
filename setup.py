@@ -22,7 +22,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "fireblocks"
-VERSION = "1.0.3"
+VERSION = "0.0.0-base_version"
 PYTHON_REQUIRES = ">=3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",

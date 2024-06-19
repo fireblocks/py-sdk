@@ -11,12 +11,13 @@
 """  # noqa: E501
 
 import platform
+from fireblocks import __version__
 
 
 class UserAgentUtil:
     @staticmethod
     def get_user_agent(is_anonymous_platform: bool, custom_user_agent: str) -> str:
-        user_agent = "fireblocks/sdk/python/1.0.3"
+        user_agent = f"fireblocks/sdk/python/{__version__}"
         if not is_anonymous_platform:
             os_type = platform.system()
             os_version = platform.release()

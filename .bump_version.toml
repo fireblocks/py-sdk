@@ -1,0 +1,17 @@
+[tool.bumpversion]
+commit = false
+tag = false
+current_version = "0.0.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\-(?P<release>[a-z_]+))?"
+serialize = [
+    "{major}.{minor}.{patch}-{release}",
+    "{major}.{minor}.{patch}"
+]
+[[tool.bumpversion.files]]
+filename = "setup.py"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+
+[[tool.bumpversion.files]]
+filename = "fireblocks/__init__.py"

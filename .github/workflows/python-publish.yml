@@ -48,8 +48,8 @@ jobs:
         run: |
           TAG_NAME=${{ github.event.release.tag_name }}
           echo $tag
-          git tag -d $TAG_NAME
-          git push origin :refs/tags/$TAG_NAME
+          git tag --delete $TAG_NAME
+          git push --delete origin $TAG_NAME
           git tag $TAG_NAME
           git push origin $TAG_NAME
 

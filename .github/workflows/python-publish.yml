@@ -50,10 +50,8 @@ jobs:
         run: |
           TAG_NAME=${{ github.event.release.tag_name }}
           echo $tag
-          git tag --delete $TAG_NAME
-          git push --delete origin $TAG_NAME
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
+          git tag --force $TAG_NAME
+          git push --force origin $TAG_NAME
 
   publish:
     needs: bump-version

@@ -32,6 +32,7 @@ from fireblocks.models.internal_transfer_response import InternalTransferRespons
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ExchangeAccountsApi:
@@ -97,6 +98,8 @@ class ExchangeAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="convert_assets", param_name="exchange_account_id", param_value=exchange_account_id)
 
         _param = self._convert_assets_serialize(
             exchange_account_id=exchange_account_id,
@@ -243,6 +246,8 @@ class ExchangeAccountsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_exchange_account", param_name="exchange_account_id", param_value=exchange_account_id)
+
         _param = self._get_exchange_account_serialize(
             exchange_account_id=exchange_account_id,
             _request_auth=_request_auth,
@@ -369,6 +374,9 @@ class ExchangeAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_exchange_account_asset", param_name="exchange_account_id", param_value=exchange_account_id)
+        validate_not_empty_string(function_name="get_exchange_account_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_exchange_account_asset_serialize(
             exchange_account_id=exchange_account_id,
@@ -503,6 +511,7 @@ class ExchangeAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_paged_exchange_accounts_serialize(
             limit=limit,
@@ -647,6 +656,8 @@ class ExchangeAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="internal_transfer", param_name="exchange_account_id", param_value=exchange_account_id)
 
         _param = self._internal_transfer_serialize(
             exchange_account_id=exchange_account_id,

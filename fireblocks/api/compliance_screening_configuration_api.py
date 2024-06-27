@@ -23,6 +23,7 @@ from fireblocks.models.screening_configurations_request import ScreeningConfigur
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ComplianceScreeningConfigurationApi:
@@ -79,6 +80,7 @@ class ComplianceScreeningConfigurationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_aml_screening_configuration_serialize(
             _request_auth=_request_auth,
@@ -195,6 +197,7 @@ class ComplianceScreeningConfigurationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_screening_configuration_serialize(
             _request_auth=_request_auth,

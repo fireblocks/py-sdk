@@ -31,6 +31,7 @@ from fireblocks.models.travel_rule_validate_transaction_response import TravelRu
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class TravelRuleBetaApi:
@@ -93,6 +94,8 @@ class TravelRuleBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_vaspby_did", param_name="did", param_value=did)
 
         _param = self._get_vaspby_did_serialize(
             did=did,
@@ -233,6 +236,7 @@ class TravelRuleBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_vasps_serialize(
             order=order,
@@ -380,6 +384,7 @@ class TravelRuleBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._update_vasp_serialize(
             travel_rule_update_vasp_details=travel_rule_update_vasp_details,
             idempotency_key=idempotency_key,
@@ -525,6 +530,7 @@ class TravelRuleBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._validate_full_travel_rule_transaction_serialize(
             travel_rule_validate_full_transaction_request=travel_rule_validate_full_transaction_request,
             idempotency_key=idempotency_key,
@@ -669,6 +675,7 @@ class TravelRuleBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._validate_travel_rule_transaction_serialize(
             travel_rule_validate_transaction_request=travel_rule_validate_transaction_request,

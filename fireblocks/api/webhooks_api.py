@@ -28,6 +28,7 @@ from fireblocks.models.resend_webhooks_response import ResendWebhooksResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class WebhooksApi:
@@ -93,6 +94,8 @@ class WebhooksApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="resend_transaction_webhooks", param_name="tx_id", param_value=tx_id)
 
         _param = self._resend_transaction_webhooks_serialize(
             tx_id=tx_id,
@@ -238,6 +241,7 @@ class WebhooksApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._resend_webhooks_serialize(
             idempotency_key=idempotency_key,

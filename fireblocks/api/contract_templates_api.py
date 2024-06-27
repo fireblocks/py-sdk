@@ -31,6 +31,7 @@ from fireblocks.models.templates_paginated_response import TemplatesPaginatedRes
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ContractTemplatesApi:
@@ -90,6 +91,8 @@ class ContractTemplatesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="delete_contract_template_by_id", param_name="contract_template_id", param_value=contract_template_id)
 
         _param = self._delete_contract_template_by_id_serialize(
             contract_template_id=contract_template_id,
@@ -221,6 +224,8 @@ class ContractTemplatesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="deploy_contract", param_name="contract_template_id", param_value=contract_template_id)
 
         _param = self._deploy_contract_serialize(
             contract_template_id=contract_template_id,
@@ -371,6 +376,8 @@ class ContractTemplatesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_constructor_by_contract_template_id", param_name="contract_template_id", param_value=contract_template_id)
+
         _param = self._get_constructor_by_contract_template_id_serialize(
             contract_template_id=contract_template_id,
             with_docs=with_docs,
@@ -501,6 +508,8 @@ class ContractTemplatesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_contract_template_by_id", param_name="contract_template_id", param_value=contract_template_id)
 
         _param = self._get_contract_template_by_id_serialize(
             contract_template_id=contract_template_id,
@@ -641,6 +650,7 @@ class ContractTemplatesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_contract_templates_serialize(
             limit=limit,
@@ -801,6 +811,9 @@ class ContractTemplatesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_function_abi_by_contract_template_id", param_name="contract_template_id", param_value=contract_template_id)
+        validate_not_empty_string(function_name="get_function_abi_by_contract_template_id", param_name="function_signature", param_value=function_signature)
+
         _param = self._get_function_abi_by_contract_template_id_serialize(
             contract_template_id=contract_template_id,
             function_signature=function_signature,
@@ -934,6 +947,7 @@ class ContractTemplatesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._upload_contract_template_serialize(
             contract_upload_request=contract_upload_request,

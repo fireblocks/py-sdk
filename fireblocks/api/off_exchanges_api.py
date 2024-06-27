@@ -32,6 +32,7 @@ from fireblocks.models.settlement_response import SettlementResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class OffExchangesApi:
@@ -94,6 +95,7 @@ class OffExchangesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._add_off_exchange_serialize(
             idempotency_key=idempotency_key,
@@ -236,6 +238,8 @@ class OffExchangesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_off_exchange_collateral_accounts", param_name="main_exchange_account_id", param_value=main_exchange_account_id)
+
         _param = self._get_off_exchange_collateral_accounts_serialize(
             main_exchange_account_id=main_exchange_account_id,
             _request_auth=_request_auth,
@@ -359,6 +363,8 @@ class OffExchangesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_off_exchange_settlement_transactions", param_name="main_exchange_account_id", param_value=main_exchange_account_id)
 
         _param = self._get_off_exchange_settlement_transactions_serialize(
             main_exchange_account_id=main_exchange_account_id,
@@ -488,6 +494,7 @@ class OffExchangesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._remove_off_exchange_serialize(
             idempotency_key=idempotency_key,
@@ -632,6 +639,7 @@ class OffExchangesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._settle_off_exchange_trades_serialize(
             idempotency_key=idempotency_key,

@@ -47,6 +47,7 @@ from fireblocks.models.vault_asset import VaultAsset
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class VaultsApi:
@@ -112,6 +113,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="activate_asset_for_vault_account", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="activate_asset_for_vault_account", param_name="asset_id", param_value=asset_id)
 
         _param = self._activate_asset_for_vault_account_serialize(
             vault_account_id=vault_account_id,
@@ -254,6 +258,10 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="create_legacy_address", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="create_legacy_address", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="create_legacy_address", param_name="address_id", param_value=address_id)
+
         _param = self._create_legacy_address_serialize(
             vault_account_id=vault_account_id,
             asset_id=asset_id,
@@ -392,6 +400,7 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_multiple_accounts_serialize(
             create_multiple_accounts_request=create_multiple_accounts_request,
@@ -536,6 +545,7 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_vault_account_serialize(
             create_vault_account_request=create_vault_account_request,
@@ -686,6 +696,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="create_vault_account_asset", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="create_vault_account_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._create_vault_account_asset_serialize(
             vault_account_id=vault_account_id,
@@ -844,6 +857,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="create_vault_account_asset_address", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="create_vault_account_asset_address", param_name="asset_id", param_value=asset_id)
 
         _param = self._create_vault_account_asset_address_serialize(
             vault_account_id=vault_account_id,
@@ -1009,6 +1025,7 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_asset_wallets_serialize(
             total_amount_larger_than=total_amount_larger_than,
             asset_id=asset_id,
@@ -1170,6 +1187,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_max_spendable_amount", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_max_spendable_amount", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_max_spendable_amount_serialize(
             vault_account_id=vault_account_id,
             asset_id=asset_id,
@@ -1324,6 +1344,7 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_paged_vault_accounts_serialize(
             name_prefix=name_prefix,
@@ -1498,6 +1519,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_public_key_info", param_name="derivation_path", param_value=derivation_path)
+        validate_not_empty_string(function_name="get_public_key_info", param_name="algorithm", param_value=algorithm)
+
         _param = self._get_public_key_info_serialize(
             derivation_path=derivation_path,
             algorithm=algorithm,
@@ -1648,6 +1672,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_public_key_info_for_address", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_public_key_info_for_address", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_public_key_info_for_address_serialize(
             vault_account_id=vault_account_id,
             asset_id=asset_id,
@@ -1793,6 +1820,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_unspent_inputs", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_unspent_inputs", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_unspent_inputs_serialize(
             vault_account_id=vault_account_id,
             asset_id=asset_id,
@@ -1921,6 +1951,8 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_vault_account", param_name="vault_account_id", param_value=vault_account_id)
+
         _param = self._get_vault_account_serialize(
             vault_account_id=vault_account_id,
             _request_auth=_request_auth,
@@ -2047,6 +2079,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_vault_account_asset", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_vault_account_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_vault_account_asset_serialize(
             vault_account_id=vault_account_id,
@@ -2187,6 +2222,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_vault_account_asset_addresses_paginated", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_vault_account_asset_addresses_paginated", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_vault_account_asset_addresses_paginated_serialize(
             vault_account_id=vault_account_id,
@@ -2337,6 +2375,7 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_vault_assets_serialize(
             account_name_prefix=account_name_prefix,
             account_name_suffix=account_name_suffix,
@@ -2469,6 +2508,8 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_vault_balance_by_asset", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_vault_balance_by_asset_serialize(
             asset_id=asset_id,
             _request_auth=_request_auth,
@@ -2595,6 +2636,8 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="hide_vault_account", param_name="vault_account_id", param_value=vault_account_id)
 
         _param = self._hide_vault_account_serialize(
             vault_account_id=vault_account_id,
@@ -2735,6 +2778,10 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_customer_ref_id_for_address", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="set_customer_ref_id_for_address", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="set_customer_ref_id_for_address", param_name="address_id", param_value=address_id)
 
         _param = self._set_customer_ref_id_for_address_serialize(
             vault_account_id=vault_account_id,
@@ -2895,6 +2942,8 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_vault_account_auto_fuel", param_name="vault_account_id", param_value=vault_account_id)
+
         _param = self._set_vault_account_auto_fuel_serialize(
             vault_account_id=vault_account_id,
             set_auto_fuel_request=set_auto_fuel_request,
@@ -3046,6 +3095,8 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_vault_account_customer_ref_id", param_name="vault_account_id", param_value=vault_account_id)
+
         _param = self._set_vault_account_customer_ref_id_serialize(
             vault_account_id=vault_account_id,
             set_customer_ref_id_request=set_customer_ref_id_request,
@@ -3194,6 +3245,8 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="unhide_vault_account", param_name="vault_account_id", param_value=vault_account_id)
+
         _param = self._unhide_vault_account_serialize(
             vault_account_id=vault_account_id,
             idempotency_key=idempotency_key,
@@ -3327,6 +3380,8 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_vault_account", param_name="vault_account_id", param_value=vault_account_id)
 
         _param = self._update_vault_account_serialize(
             vault_account_id=vault_account_id,
@@ -3484,6 +3539,10 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_vault_account_asset_address", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="update_vault_account_asset_address", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="update_vault_account_asset_address", param_name="address_id", param_value=address_id)
 
         _param = self._update_vault_account_asset_address_serialize(
             vault_account_id=vault_account_id,
@@ -3643,6 +3702,9 @@ class VaultsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_vault_account_asset_balance", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="update_vault_account_asset_balance", param_name="asset_id", param_value=asset_id)
 
         _param = self._update_vault_account_asset_balance_serialize(
             vault_account_id=vault_account_id,

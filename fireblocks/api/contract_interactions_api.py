@@ -30,6 +30,7 @@ from fireblocks.models.write_call_function_response_dto import WriteCallFunction
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ContractInteractionsApi:
@@ -95,6 +96,9 @@ class ContractInteractionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_deployed_contract_abi", param_name="contract_address", param_value=contract_address)
+        validate_not_empty_string(function_name="get_deployed_contract_abi", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_deployed_contract_abi_serialize(
             contract_address=contract_address,
@@ -236,6 +240,9 @@ class ContractInteractionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="read_call_function", param_name="contract_address", param_value=contract_address)
+        validate_not_empty_string(function_name="read_call_function", param_name="asset_id", param_value=asset_id)
 
         _param = self._read_call_function_serialize(
             contract_address=contract_address,
@@ -394,6 +401,9 @@ class ContractInteractionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="write_call_function", param_name="contract_address", param_value=contract_address)
+        validate_not_empty_string(function_name="write_call_function", param_name="asset_id", param_value=asset_id)
 
         _param = self._write_call_function_serialize(
             contract_address=contract_address,

@@ -27,6 +27,7 @@ from fireblocks.models.deployed_contracts_paginated_response import DeployedCont
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class DeployedContractsApi:
@@ -89,6 +90,9 @@ class DeployedContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_deployed_contract_by_address", param_name="contract_address", param_value=contract_address)
+        validate_not_empty_string(function_name="get_deployed_contract_by_address", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_deployed_contract_by_address_serialize(
             contract_address=contract_address,
@@ -217,6 +221,8 @@ class DeployedContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_deployed_contract_by_id", param_name="id", param_value=id)
 
         _param = self._get_deployed_contract_by_id_serialize(
             id=id,
@@ -353,6 +359,7 @@ class DeployedContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_deployed_contracts_serialize(
             page_cursor=page_cursor,

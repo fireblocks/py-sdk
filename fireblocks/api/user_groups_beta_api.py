@@ -30,6 +30,7 @@ from fireblocks.models.user_group_update_request import UserGroupUpdateRequest
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class UserGroupsBetaApi:
@@ -92,6 +93,7 @@ class UserGroupsBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_user_group_serialize(
             user_group_create_request=user_group_create_request,
@@ -234,6 +236,8 @@ class UserGroupsBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="delete_user_group", param_name="group_id", param_value=group_id)
+
         _param = self._delete_user_group_serialize(
             group_id=group_id,
             _request_auth=_request_auth,
@@ -358,6 +362,8 @@ class UserGroupsBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_user_group", param_name="group_id", param_value=group_id)
+
         _param = self._get_user_group_serialize(
             group_id=group_id,
             _request_auth=_request_auth,
@@ -478,6 +484,7 @@ class UserGroupsBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_user_groups_serialize(
             _request_auth=_request_auth,
@@ -604,6 +611,8 @@ class UserGroupsBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_user_group", param_name="group_id", param_value=group_id)
 
         _param = self._update_user_group_serialize(
             group_id=group_id,

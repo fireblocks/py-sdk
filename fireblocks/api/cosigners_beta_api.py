@@ -30,6 +30,7 @@ from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class CosignersBetaApi:
@@ -92,6 +93,9 @@ class CosignersBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_api_key", param_name="cosigner_id", param_value=cosigner_id)
+        validate_not_empty_string(function_name="get_api_key", param_name="api_key_id", param_value=api_key_id)
 
         _param = self._get_api_key_serialize(
             cosigner_id=cosigner_id,
@@ -229,6 +233,8 @@ class CosignersBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_api_keys", param_name="cosigner_id", param_value=cosigner_id)
 
         _param = self._get_api_keys_serialize(
             cosigner_id=cosigner_id,
@@ -372,6 +378,8 @@ class CosignersBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_cosigner", param_name="cosigner_id", param_value=cosigner_id)
+
         _param = self._get_cosigner_serialize(
             cosigner_id=cosigner_id,
             _request_auth=_request_auth,
@@ -501,6 +509,7 @@ class CosignersBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_cosigners_serialize(
             order=order,
@@ -642,6 +651,8 @@ class CosignersBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="rename_cosigner", param_name="cosigner_id", param_value=cosigner_id)
 
         _param = self._rename_cosigner_serialize(
             cosigner_id=cosigner_id,

@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ResetDeviceApi:
@@ -87,6 +88,8 @@ class ResetDeviceApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="reset_device", param_name="id", param_value=id)
 
         _param = self._reset_device_serialize(
             id=id,

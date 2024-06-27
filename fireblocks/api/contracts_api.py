@@ -29,6 +29,7 @@ from fireblocks.models.unmanaged_wallet import UnmanagedWallet
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ContractsApi:
@@ -97,6 +98,9 @@ class ContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="add_contract_asset", param_name="contract_id", param_value=contract_id)
+        validate_not_empty_string(function_name="add_contract_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._add_contract_asset_serialize(
             contract_id=contract_id,
@@ -250,6 +254,7 @@ class ContractsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._create_contract_serialize(
             idempotency_key=idempotency_key,
             create_contract_request=create_contract_request,
@@ -391,6 +396,8 @@ class ContractsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="delete_contract", param_name="contract_id", param_value=contract_id)
+
         _param = self._delete_contract_serialize(
             contract_id=contract_id,
             _request_auth=_request_auth,
@@ -517,6 +524,9 @@ class ContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="delete_contract_asset", param_name="contract_id", param_value=contract_id)
+        validate_not_empty_string(function_name="delete_contract_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._delete_contract_asset_serialize(
             contract_id=contract_id,
@@ -646,6 +656,8 @@ class ContractsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_contract", param_name="contract_id", param_value=contract_id)
+
         _param = self._get_contract_serialize(
             contract_id=contract_id,
             _request_auth=_request_auth,
@@ -773,6 +785,9 @@ class ContractsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_contract_asset", param_name="contract_id", param_value=contract_id)
+        validate_not_empty_string(function_name="get_contract_asset", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_contract_asset_serialize(
             contract_id=contract_id,
             asset_id=asset_id,
@@ -897,6 +912,7 @@ class ContractsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_contracts_serialize(
             _request_auth=_request_auth,

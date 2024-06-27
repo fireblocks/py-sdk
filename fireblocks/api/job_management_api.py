@@ -27,6 +27,7 @@ from fireblocks.models.task import Task
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class JobManagementApi:
@@ -89,6 +90,8 @@ class JobManagementApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="cancel_job", param_name="job_id", param_value=job_id)
 
         _param = self._cancel_job_serialize(
             job_id=job_id,
@@ -221,6 +224,8 @@ class JobManagementApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="continue_job", param_name="job_id", param_value=job_id)
+
         _param = self._continue_job_serialize(
             job_id=job_id,
             idempotency_key=idempotency_key,
@@ -349,6 +354,8 @@ class JobManagementApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_job", param_name="job_id", param_value=job_id)
+
         _param = self._get_job_serialize(
             job_id=job_id,
             _request_auth=_request_auth,
@@ -472,6 +479,8 @@ class JobManagementApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_job_tasks", param_name="job_id", param_value=job_id)
 
         _param = self._get_job_tasks_serialize(
             job_id=job_id,
@@ -599,6 +608,7 @@ class JobManagementApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_jobs_serialize(
             from_time=from_time,
@@ -734,6 +744,8 @@ class JobManagementApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="pause_job", param_name="job_id", param_value=job_id)
 
         _param = self._pause_job_serialize(
             job_id=job_id,

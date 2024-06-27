@@ -30,6 +30,7 @@ from fireblocks.models.unmanaged_wallet import UnmanagedWallet
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ExternalWalletsApi:
@@ -98,6 +99,9 @@ class ExternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="add_asset_to_external_wallet", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="add_asset_to_external_wallet", param_name="asset_id", param_value=asset_id)
 
         _param = self._add_asset_to_external_wallet_serialize(
             wallet_id=wallet_id,
@@ -251,6 +255,7 @@ class ExternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._create_external_wallet_serialize(
             idempotency_key=idempotency_key,
             create_wallet_request=create_wallet_request,
@@ -392,6 +397,8 @@ class ExternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="delete_external_wallet", param_name="wallet_id", param_value=wallet_id)
+
         _param = self._delete_external_wallet_serialize(
             wallet_id=wallet_id,
             _request_auth=_request_auth,
@@ -515,6 +522,8 @@ class ExternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_external_wallet", param_name="wallet_id", param_value=wallet_id)
 
         _param = self._get_external_wallet_serialize(
             wallet_id=wallet_id,
@@ -643,6 +652,9 @@ class ExternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_external_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_external_wallet_asset", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_external_wallet_asset_serialize(
             wallet_id=wallet_id,
             asset_id=asset_id,
@@ -768,6 +780,7 @@ class ExternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_external_wallets_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -890,6 +903,9 @@ class ExternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="remove_asset_from_external_wallet", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="remove_asset_from_external_wallet", param_name="asset_id", param_value=asset_id)
 
         _param = self._remove_asset_from_external_wallet_serialize(
             wallet_id=wallet_id,
@@ -1024,6 +1040,8 @@ class ExternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_external_wallet_customer_ref_id", param_name="wallet_id", param_value=wallet_id)
 
         _param = self._set_external_wallet_customer_ref_id_serialize(
             wallet_id=wallet_id,

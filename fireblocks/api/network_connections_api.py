@@ -38,6 +38,7 @@ from fireblocks.models.third_party_routing import ThirdPartyRouting
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class NetworkConnectionsApi:
@@ -100,6 +101,9 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="check_third_party_routing", param_name="connection_id", param_value=connection_id)
+        validate_not_empty_string(function_name="check_third_party_routing", param_name="asset_type", param_value=asset_type)
 
         _param = self._check_third_party_routing_serialize(
             connection_id=connection_id,
@@ -231,6 +235,7 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_network_connection_serialize(
             idempotency_key=idempotency_key,
@@ -376,6 +381,7 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._create_network_id_serialize(
             idempotency_key=idempotency_key,
             create_network_id_request=create_network_id_request,
@@ -517,6 +523,8 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="delete_network_connection", param_name="connection_id", param_value=connection_id)
+
         _param = self._delete_network_connection_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
@@ -640,6 +648,8 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="delete_network_id", param_name="network_id", param_value=network_id)
 
         _param = self._delete_network_id_serialize(
             network_id=network_id,
@@ -765,6 +775,8 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_network", param_name="connection_id", param_value=connection_id)
+
         _param = self._get_network_serialize(
             connection_id=connection_id,
             _request_auth=_request_auth,
@@ -886,6 +898,7 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_network_connections_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1005,6 +1018,8 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_network_id", param_name="network_id", param_value=network_id)
 
         _param = self._get_network_id_serialize(
             network_id=network_id,
@@ -1127,6 +1142,7 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_network_ids_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1243,6 +1259,7 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_routing_policy_asset_groups_serialize(
             _request_auth=_request_auth,
@@ -1366,6 +1383,8 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_network_id_discoverability", param_name="network_id", param_value=network_id)
 
         _param = self._set_network_id_discoverability_serialize(
             network_id=network_id,
@@ -1511,6 +1530,8 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_network_id_name", param_name="network_id", param_value=network_id)
+
         _param = self._set_network_id_name_serialize(
             network_id=network_id,
             set_network_id_name_request=set_network_id_name_request,
@@ -1655,6 +1676,8 @@ class NetworkConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_network_id_routing_policy", param_name="network_id", param_value=network_id)
+
         _param = self._set_network_id_routing_policy_serialize(
             network_id=network_id,
             set_network_id_routing_policy_request=set_network_id_routing_policy_request,
@@ -1798,6 +1821,8 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_routing_policy", param_name="connection_id", param_value=connection_id)
 
         _param = self._set_routing_policy_serialize(
             connection_id=connection_id,

@@ -27,6 +27,7 @@ from fireblocks.models.get_console_users_response import GetConsoleUsersResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ConsoleUserApi:
@@ -89,6 +90,7 @@ class ConsoleUserApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_console_user_serialize(
             idempotency_key=idempotency_key,
@@ -231,6 +233,7 @@ class ConsoleUserApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_console_users_serialize(
             _request_auth=_request_auth,

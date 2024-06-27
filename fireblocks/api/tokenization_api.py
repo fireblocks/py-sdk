@@ -29,6 +29,7 @@ from fireblocks.models.tokens_paginated_response import TokensPaginatedResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class TokenizationApi:
@@ -88,6 +89,8 @@ class TokenizationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_linked_token", param_name="id", param_value=id)
 
         _param = self._get_linked_token_serialize(
             id=id,
@@ -218,6 +221,7 @@ class TokenizationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_linked_tokens_serialize(
             page_cursor=page_cursor,
@@ -359,6 +363,7 @@ class TokenizationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._issue_new_token_serialize(
             create_token_request_dto=create_token_request_dto,
@@ -504,6 +509,7 @@ class TokenizationApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._link_serialize(
             token_link_request_dto=token_link_request_dto,
             idempotency_key=idempotency_key,
@@ -647,6 +653,8 @@ class TokenizationApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="unlink", param_name="id", param_value=id)
 
         _param = self._unlink_serialize(
             id=id,

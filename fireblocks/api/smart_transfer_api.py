@@ -39,6 +39,7 @@ from fireblocks.models.smart_transfer_user_groups_response import SmartTransferU
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class SmartTransferApi:
@@ -101,6 +102,8 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="cancel_ticket", param_name="ticket_id", param_value=ticket_id)
 
         _param = self._cancel_ticket_serialize(
             ticket_id=ticket_id,
@@ -234,6 +237,7 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_ticket_serialize(
             smart_transfer_create_ticket=smart_transfer_create_ticket,
@@ -383,6 +387,8 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="create_ticket_term", param_name="ticket_id", param_value=ticket_id)
+
         _param = self._create_ticket_term_serialize(
             ticket_id=ticket_id,
             smart_transfer_create_ticket_term=smart_transfer_create_ticket_term,
@@ -529,6 +535,8 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="find_ticket_by_id", param_name="ticket_id", param_value=ticket_id)
+
         _param = self._find_ticket_by_id_serialize(
             ticket_id=ticket_id,
             _request_auth=_request_auth,
@@ -656,6 +664,9 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="find_ticket_term_by_id", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="find_ticket_term_by_id", param_name="term_id", param_value=term_id)
 
         _param = self._find_ticket_term_by_id_serialize(
             ticket_id=ticket_id,
@@ -788,6 +799,8 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="fulfill_ticket", param_name="ticket_id", param_value=ticket_id)
 
         _param = self._fulfill_ticket_serialize(
             ticket_id=ticket_id,
@@ -927,6 +940,9 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="fund_ticket_term", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="fund_ticket_term", param_name="term_id", param_value=term_id)
 
         _param = self._fund_ticket_term_serialize(
             ticket_id=ticket_id,
@@ -1076,6 +1092,7 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_smart_transfer_user_groups_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1205,6 +1222,9 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="manually_fund_ticket_term", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="manually_fund_ticket_term", param_name="term_id", param_value=term_id)
 
         _param = self._manually_fund_ticket_term_serialize(
             ticket_id=ticket_id,
@@ -1359,6 +1379,9 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="remove_ticket_term", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="remove_ticket_term", param_name="term_id", param_value=term_id)
 
         _param = self._remove_ticket_term_serialize(
             ticket_id=ticket_id,
@@ -1515,6 +1538,7 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._search_tickets_serialize(
             q=q,
@@ -1721,6 +1745,8 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_external_ref_id", param_name="ticket_id", param_value=ticket_id)
+
         _param = self._set_external_ref_id_serialize(
             ticket_id=ticket_id,
             smart_transfer_set_ticket_external_id=smart_transfer_set_ticket_external_id,
@@ -1874,6 +1900,8 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_ticket_expiration", param_name="ticket_id", param_value=ticket_id)
+
         _param = self._set_ticket_expiration_serialize(
             ticket_id=ticket_id,
             smart_transfer_set_ticket_expiration=smart_transfer_set_ticket_expiration,
@@ -2024,6 +2052,7 @@ class SmartTransferApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._set_user_groups_serialize(
             smart_transfer_set_user_groups=smart_transfer_set_user_groups,
             idempotency_key=idempotency_key,
@@ -2171,6 +2200,8 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="submit_ticket", param_name="ticket_id", param_value=ticket_id)
 
         _param = self._submit_ticket_serialize(
             ticket_id=ticket_id,
@@ -2327,6 +2358,9 @@ class SmartTransferApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_ticket_term", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="update_ticket_term", param_name="term_id", param_value=term_id)
 
         _param = self._update_ticket_term_serialize(
             ticket_id=ticket_id,

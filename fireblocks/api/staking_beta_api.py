@@ -31,6 +31,7 @@ from fireblocks.models.provider_dto import ProviderDto
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class StakingBetaApi:
@@ -93,6 +94,8 @@ class StakingBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="approve_terms_of_service_by_provider_id", param_name="provider_id", param_value=provider_id)
 
         _param = self._approve_terms_of_service_by_provider_id_serialize(
             provider_id=provider_id,
@@ -229,6 +232,9 @@ class StakingBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="execute_action", param_name="chain_descriptor", param_value=chain_descriptor)
+        validate_not_empty_string(function_name="execute_action", param_name="action_id", param_value=action_id)
 
         _param = self._execute_action_serialize(
             chain_descriptor=chain_descriptor,
@@ -378,6 +384,7 @@ class StakingBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_all_delegations_serialize(
             chain_descriptor=chain_descriptor,
             _request_auth=_request_auth,
@@ -503,6 +510,8 @@ class StakingBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_chain_info", param_name="chain_descriptor", param_value=chain_descriptor)
+
         _param = self._get_chain_info_serialize(
             chain_descriptor=chain_descriptor,
             _request_auth=_request_auth,
@@ -623,6 +632,7 @@ class StakingBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_chains_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -741,6 +751,8 @@ class StakingBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_delegation_by_id", param_name="id", param_value=id)
 
         _param = self._get_delegation_by_id_serialize(
             id=id,
@@ -862,6 +874,7 @@ class StakingBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_providers_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -978,6 +991,7 @@ class StakingBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_summary_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1093,6 +1107,7 @@ class StakingBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_summary_by_vault_serialize(
             _request_auth=_request_auth,

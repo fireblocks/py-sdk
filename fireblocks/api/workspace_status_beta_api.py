@@ -23,6 +23,7 @@ from fireblocks.models.get_workspace_status_response import GetWorkspaceStatusRe
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class WorkspaceStatusBetaApi:
@@ -79,6 +80,7 @@ class WorkspaceStatusBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_workspace_status_serialize(
             _request_auth=_request_auth,

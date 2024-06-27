@@ -28,6 +28,7 @@ from fireblocks.models.payout_response import PayoutResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class PaymentsPayoutApi:
@@ -90,6 +91,7 @@ class PaymentsPayoutApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_payout_serialize(
             idempotency_key=idempotency_key,
@@ -237,6 +239,8 @@ class PaymentsPayoutApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="execute_payout_action", param_name="payout_id", param_value=payout_id)
+
         _param = self._execute_payout_action_serialize(
             payout_id=payout_id,
             idempotency_key=idempotency_key,
@@ -366,6 +370,8 @@ class PaymentsPayoutApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_payout", param_name="payout_id", param_value=payout_id)
 
         _param = self._get_payout_serialize(
             payout_id=payout_id,

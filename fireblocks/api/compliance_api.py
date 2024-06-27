@@ -29,6 +29,7 @@ from fireblocks.models.screening_update_configurations_request import ScreeningU
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class ComplianceApi:
@@ -85,6 +86,7 @@ class ComplianceApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_aml_post_screening_policy_serialize(
             _request_auth=_request_auth,
@@ -202,6 +204,7 @@ class ComplianceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_aml_screening_policy_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -318,6 +321,7 @@ class ComplianceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_post_screening_policy_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -433,6 +437,7 @@ class ComplianceApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_screening_policy_serialize(
             _request_auth=_request_auth,
@@ -552,6 +557,7 @@ class ComplianceApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._update_aml_screening_configuration_serialize(
             idempotency_key=idempotency_key,
@@ -676,6 +682,7 @@ class ComplianceApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._update_screening_configuration_serialize(
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
@@ -798,6 +805,7 @@ class ComplianceApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._update_travel_rule_config_serialize(
             idempotency_key=idempotency_key,

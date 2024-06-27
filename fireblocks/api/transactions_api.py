@@ -38,6 +38,7 @@ from fireblocks.models.validate_address_response import ValidateAddressResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class TransactionsApi:
@@ -103,6 +104,8 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="cancel_transaction", param_name="tx_id", param_value=tx_id)
 
         _param = self._cancel_transaction_serialize(
             tx_id=tx_id,
@@ -241,6 +244,7 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_transaction_serialize(
             x_end_user_wallet_id=x_end_user_wallet_id,
@@ -396,6 +400,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="drop_transaction", param_name="tx_id", param_value=tx_id)
+
         _param = self._drop_transaction_serialize(
             tx_id=tx_id,
             x_end_user_wallet_id=x_end_user_wallet_id,
@@ -545,6 +551,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="estimate_network_fee", param_name="asset_id", param_value=asset_id)
+
         _param = self._estimate_network_fee_serialize(
             asset_id=asset_id,
             _request_auth=_request_auth,
@@ -673,6 +681,7 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._estimate_transaction_fee_serialize(
             idempotency_key=idempotency_key,
@@ -821,6 +830,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="freeze_transaction", param_name="tx_id", param_value=tx_id)
+
         _param = self._freeze_transaction_serialize(
             tx_id=tx_id,
             x_end_user_wallet_id=x_end_user_wallet_id,
@@ -952,6 +963,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_transaction", param_name="tx_id", param_value=tx_id)
+
         _param = self._get_transaction_serialize(
             tx_id=tx_id,
             _request_auth=_request_auth,
@@ -1076,6 +1089,8 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_transaction_by_external_id", param_name="external_tx_id", param_value=external_tx_id)
 
         _param = self._get_transaction_by_external_id_serialize(
             external_tx_id=external_tx_id,
@@ -1239,6 +1254,7 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_transactions_serialize(
             before=before,
@@ -1450,6 +1466,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_confirmation_threshold_by_transaction_hash", param_name="tx_hash", param_value=tx_hash)
+
         _param = self._set_confirmation_threshold_by_transaction_hash_serialize(
             tx_hash=tx_hash,
             idempotency_key=idempotency_key,
@@ -1600,6 +1618,8 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_transaction_confirmation_threshold", param_name="tx_id", param_value=tx_id)
 
         _param = self._set_transaction_confirmation_threshold_serialize(
             tx_id=tx_id,
@@ -1752,6 +1772,8 @@ class TransactionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="unfreeze_transaction", param_name="tx_id", param_value=tx_id)
+
         _param = self._unfreeze_transaction_serialize(
             tx_id=tx_id,
             x_end_user_wallet_id=x_end_user_wallet_id,
@@ -1885,6 +1907,9 @@ class TransactionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="validate_address", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="validate_address", param_name="address", param_value=address)
 
         _param = self._validate_address_serialize(
             asset_id=asset_id,

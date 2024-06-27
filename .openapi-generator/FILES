@@ -965,6 +965,7 @@ fireblocks/rest.py
 fireblocks/threaded_api_client.py
 fireblocks/unknown_model.py
 fireblocks/user_agent_util.py
+fireblocks/validation_utils.py
 git_push.sh
 pyproject.toml
 requirements.txt
@@ -981,6 +982,7 @@ test/fireblocks/test_client_configuration.py
 test/fireblocks/test_threaded_api_client.py
 test/fireblocks/test_unknown_model.py
 test/fireblocks/test_user_agent_util.py
+test/fireblocks/test_validation_utils.py
 test/test_abi_function.py
 test/test_account.py
 test/test_account_type.py

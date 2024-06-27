@@ -25,6 +25,7 @@ from fireblocks.models.get_whitelist_ip_addresses_response import GetWhitelistIp
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class WhitelistIpAddressesApi:
@@ -84,6 +85,8 @@ class WhitelistIpAddressesApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_whitelist_ip_addresses", param_name="user_id", param_value=user_id)
 
         _param = self._get_whitelist_ip_addresses_serialize(
             user_id=user_id,

@@ -28,6 +28,7 @@ from fireblocks.models.gas_station_properties_response import GasStationProperti
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class GasStationsApi:
@@ -87,6 +88,8 @@ class GasStationsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_gas_station_by_asset_id", param_name="asset_id", param_value=asset_id)
 
         _param = self._get_gas_station_by_asset_id_serialize(
             asset_id=asset_id,
@@ -208,6 +211,7 @@ class GasStationsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_gas_station_info_serialize(
             _request_auth=_request_auth,
@@ -331,6 +335,7 @@ class GasStationsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._update_gas_station_configuration_serialize(
             gas_station_configuration=gas_station_configuration,
@@ -478,6 +483,8 @@ class GasStationsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_gas_station_configuration_by_asset_id", param_name="asset_id", param_value=asset_id)
 
         _param = self._update_gas_station_configuration_by_asset_id_serialize(
             asset_id=asset_id,

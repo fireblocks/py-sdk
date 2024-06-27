@@ -30,6 +30,7 @@ from fireblocks.models.wallet_asset import WalletAsset
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class InternalWalletsApi:
@@ -92,6 +93,7 @@ class InternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_internal_wallet_serialize(
             idempotency_key=idempotency_key,
@@ -243,6 +245,9 @@ class InternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="create_internal_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="create_internal_wallet_asset", param_name="asset_id", param_value=asset_id)
+
         _param = self._create_internal_wallet_asset_serialize(
             wallet_id=wallet_id,
             asset_id=asset_id,
@@ -392,6 +397,8 @@ class InternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="delete_internal_wallet", param_name="wallet_id", param_value=wallet_id)
+
         _param = self._delete_internal_wallet_serialize(
             wallet_id=wallet_id,
             _request_auth=_request_auth,
@@ -518,6 +525,9 @@ class InternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="delete_internal_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="delete_internal_wallet_asset", param_name="asset_id", param_value=asset_id)
 
         _param = self._delete_internal_wallet_asset_serialize(
             wallet_id=wallet_id,
@@ -647,6 +657,8 @@ class InternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_internal_wallet", param_name="wallet_id", param_value=wallet_id)
+
         _param = self._get_internal_wallet_serialize(
             wallet_id=wallet_id,
             _request_auth=_request_auth,
@@ -774,6 +786,9 @@ class InternalWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_internal_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_internal_wallet_asset", param_name="asset_id", param_value=asset_id)
+
         _param = self._get_internal_wallet_asset_serialize(
             wallet_id=wallet_id,
             asset_id=asset_id,
@@ -898,6 +913,7 @@ class InternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_internal_wallets_serialize(
             _request_auth=_request_auth,
@@ -1024,6 +1040,8 @@ class InternalWalletsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_customer_ref_id_for_internal_wallet", param_name="wallet_id", param_value=wallet_id)
 
         _param = self._set_customer_ref_id_for_internal_wallet_serialize(
             wallet_id=wallet_id,

@@ -28,6 +28,7 @@ from fireblocks.models.register_new_asset_request import RegisterNewAssetRequest
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class BlockchainsAssetsApi:
@@ -84,6 +85,7 @@ class BlockchainsAssetsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_supported_assets_serialize(
             _request_auth=_request_auth,
@@ -207,6 +209,7 @@ class BlockchainsAssetsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._register_new_asset_serialize(
             idempotency_key=idempotency_key,

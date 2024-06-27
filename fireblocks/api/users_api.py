@@ -24,6 +24,7 @@ from fireblocks.models.user_response import UserResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class UsersApi:
@@ -80,6 +81,7 @@ class UsersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_users_serialize(
             _request_auth=_request_auth,

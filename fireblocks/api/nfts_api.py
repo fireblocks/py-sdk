@@ -33,6 +33,7 @@ from fireblocks.models.update_token_ownership_status_dto import UpdateTokenOwner
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class NFTsApi:
@@ -92,6 +93,8 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_nft", param_name="id", param_value=id)
 
         _param = self._get_nft_serialize(
             id=id,
@@ -227,6 +230,8 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_nfts", param_name="ids", param_value=ids)
 
         _param = self._get_nfts_serialize(
             ids=ids,
@@ -416,6 +421,7 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_ownership_tokens_serialize(
             blockchain_descriptor=blockchain_descriptor,
@@ -642,6 +648,7 @@ class NFTsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._list_owned_collections_serialize(
             ncw_id=ncw_id,
             wallet_type=wallet_type,
@@ -834,6 +841,7 @@ class NFTsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._list_owned_tokens_serialize(
             ncw_id=ncw_id,
             wallet_type=wallet_type,
@@ -1011,6 +1019,8 @@ class NFTsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="refresh_nft_metadata", param_name="id", param_value=id)
+
         _param = self._refresh_nft_metadata_serialize(
             id=id,
             idempotency_key=idempotency_key,
@@ -1137,6 +1147,9 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_ownership_tokens", param_name="blockchain_descriptor", param_value=blockchain_descriptor)
+        validate_not_empty_string(function_name="update_ownership_tokens", param_name="vault_account_id", param_value=vault_account_id)
 
         _param = self._update_ownership_tokens_serialize(
             blockchain_descriptor=blockchain_descriptor,
@@ -1272,6 +1285,8 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_token_ownership_status", param_name="id", param_value=id)
 
         _param = self._update_token_ownership_status_serialize(
             id=id,
@@ -1414,6 +1429,7 @@ class NFTsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._update_tokens_ownership_spam_serialize(
             token_ownership_spam_update_payload=token_ownership_spam_update_payload,
             idempotency_key=idempotency_key,
@@ -1553,6 +1569,7 @@ class NFTsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._update_tokens_ownership_status_serialize(
             token_ownership_status_update_payload=token_ownership_status_update_payload,

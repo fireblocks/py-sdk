@@ -27,6 +27,7 @@ from fireblocks.models.get_audit_logs_response_dto import GetAuditLogsResponseDT
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class AuditLogsApi:
@@ -89,6 +90,7 @@ class AuditLogsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_audit_logs_serialize(
             time_period=time_period,
@@ -221,6 +223,7 @@ class AuditLogsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_audits_serialize(
             time_period=time_period,

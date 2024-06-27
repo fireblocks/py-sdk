@@ -30,6 +30,7 @@ from fireblocks.models.respond_to_connection_request import RespondToConnectionR
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class Web3ConnectionsApi:
@@ -92,6 +93,7 @@ class Web3ConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_serialize(
             create_connection_request=create_connection_request,
@@ -247,6 +249,7 @@ class Web3ConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._get_serialize(
             order=order,
             filter=filter,
@@ -398,6 +401,8 @@ class Web3ConnectionsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="remove", param_name="id", param_value=id)
+
         _param = self._remove_serialize(
             id=id,
             _request_auth=_request_auth,
@@ -522,6 +527,8 @@ class Web3ConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="submit", param_name="id", param_value=id)
 
         _param = self._submit_serialize(
             id=id,

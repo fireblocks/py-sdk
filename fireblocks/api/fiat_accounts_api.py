@@ -29,6 +29,7 @@ from fireblocks.models.redeem_funds_to_linked_dda_response import RedeemFundsToL
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class FiatAccountsApi:
@@ -94,6 +95,8 @@ class FiatAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="deposit_funds_from_linked_dda", param_name="account_id", param_value=account_id)
 
         _param = self._deposit_funds_from_linked_dda_serialize(
             account_id=account_id,
@@ -240,6 +243,8 @@ class FiatAccountsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_fiat_account", param_name="account_id", param_value=account_id)
+
         _param = self._get_fiat_account_serialize(
             account_id=account_id,
             _request_auth=_request_auth,
@@ -360,6 +365,7 @@ class FiatAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_fiat_accounts_serialize(
             _request_auth=_request_auth,
@@ -486,6 +492,8 @@ class FiatAccountsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="redeem_funds_to_linked_dda", param_name="account_id", param_value=account_id)
 
         _param = self._redeem_funds_to_linked_dda_serialize(
             account_id=account_id,

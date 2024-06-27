@@ -30,6 +30,7 @@ from fireblocks.models.publish_result import PublishResult
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class PolicyEditorBetaApi:
@@ -86,6 +87,7 @@ class PolicyEditorBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_active_policy_serialize(
             _request_auth=_request_auth,
@@ -203,6 +205,7 @@ class PolicyEditorBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_draft_serialize(
             _request_auth=_request_auth,
@@ -326,6 +329,7 @@ class PolicyEditorBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._publish_draft_serialize(
             publish_draft_request=publish_draft_request,
@@ -471,6 +475,7 @@ class PolicyEditorBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._publish_policy_rules_serialize(
             policy_rules=policy_rules,
             idempotency_key=idempotency_key,
@@ -614,6 +619,7 @@ class PolicyEditorBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._update_draft_serialize(
             policy_rules=policy_rules,

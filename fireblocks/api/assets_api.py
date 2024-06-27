@@ -27,6 +27,7 @@ from fireblocks.models.job_created import JobCreated
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class AssetsApi:
@@ -89,6 +90,7 @@ class AssetsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_assets_bulk_serialize(
             create_assets_bulk_request=create_assets_bulk_request,

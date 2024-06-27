@@ -35,6 +35,7 @@ from fireblocks.models.validation_key_dto import ValidationKeyDto
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class KeyLinkBetaApi:
@@ -97,6 +98,7 @@ class KeyLinkBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._create_signing_key_serialize(
             create_signing_key_dto=create_signing_key_dto,
@@ -242,6 +244,7 @@ class KeyLinkBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+
         _param = self._create_validation_key_serialize(
             create_validation_key_dto=create_validation_key_dto,
             idempotency_key=idempotency_key,
@@ -386,6 +389,8 @@ class KeyLinkBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="disable_validation_key", param_name="key_id", param_value=key_id)
+
         _param = self._disable_validation_key_serialize(
             key_id=key_id,
             modify_validation_key_dto=modify_validation_key_dto,
@@ -527,6 +532,8 @@ class KeyLinkBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_signing_key", param_name="key_id", param_value=key_id)
+
         _param = self._get_signing_key_serialize(
             key_id=key_id,
             _request_auth=_request_auth,
@@ -659,6 +666,7 @@ class KeyLinkBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_signing_keys_list_serialize(
             page_cursor=page_cursor,
@@ -804,6 +812,8 @@ class KeyLinkBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_validation_key", param_name="key_id", param_value=key_id)
+
         _param = self._get_validation_key_serialize(
             key_id=key_id,
             _request_auth=_request_auth,
@@ -936,6 +946,7 @@ class KeyLinkBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_validation_keys_list_serialize(
             page_cursor=page_cursor,
@@ -1084,6 +1095,8 @@ class KeyLinkBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="set_agent_id", param_name="key_id", param_value=key_id)
+
         _param = self._set_agent_id_serialize(
             key_id=key_id,
             modify_signing_key_agent_id_dto=modify_signing_key_agent_id_dto,
@@ -1227,6 +1240,8 @@ class KeyLinkBetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_signing_key", param_name="key_id", param_value=key_id)
 
         _param = self._update_signing_key_serialize(
             key_id=key_id,

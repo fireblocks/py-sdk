@@ -28,6 +28,7 @@ from fireblocks.models.set_ota_status_response import SetOtaStatusResponse
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
 from fireblocks.rest import RESTResponseType
+from fireblocks.validation_utils import validate_not_empty_string
 
 
 class OTABetaApi:
@@ -84,6 +85,7 @@ class OTABetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._get_ota_status_serialize(
             _request_auth=_request_auth,
@@ -207,6 +209,7 @@ class OTABetaApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+
 
         _param = self._set_ota_status_serialize(
             set_ota_status_request=set_ota_status_request,

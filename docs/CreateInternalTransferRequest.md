@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | **str** |  | [optional] 
-**amount** | **str** |  | [optional] 
-**source_type** | [**TradingAccountType**](TradingAccountType.md) |  | [optional] 
-**dest_type** | [**TradingAccountType**](TradingAccountType.md) |  | [optional] 
+**asset** | **str** |  | 
+**amount** | **str** |  | 
+**source_type** | [**TradingAccountType**](TradingAccountType.md) |  | 
+**dest_type** | [**TradingAccountType**](TradingAccountType.md) |  | 
 
 ## Example
 

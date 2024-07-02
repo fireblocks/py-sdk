@@ -33,7 +33,8 @@ class DestinationTransferPeerPathResponse(BaseModel):
     id: Optional[StrictStr] = Field(default=None, description="The ID of the peer. You can retrieve the ID of each venue object using the endpoints for [listing vault accounts](https://developers.fireblocks.com/reference/get_vault-accounts-paged), [listing exchange account](https://developers.fireblocks.com/reference/get_exchange-accounts), [listing fiat accounts](https://developers.fireblocks.com/reference/get_fiat-accounts), [listing internal wallets](https://developers.fireblocks.com/reference/get_internal-wallets), [listing external wallets](https://developers.fireblocks.com/reference/get_external-wallets), [listing network connections](https://developers.fireblocks.com/reference/get_network-connections). For the other types, this parameter is not needed.")
     name: Optional[StrictStr] = Field(default=None, description="The name of the peer.")
     wallet_id: Optional[StrictStr] = Field(default=None, alias="walletId")
-    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId"]
+    trading_account: Optional[StrictStr] = Field(default=None, description="If this transaction is an exchange internal transfer, this field will be populated with the type of that trading account.", alias="tradingAccount")
+    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "tradingAccount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,6 +80,11 @@ class DestinationTransferPeerPathResponse(BaseModel):
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
+        # set to None if trading_account (nullable) is None
+        # and model_fields_set contains the field
+        if self.trading_account is None and "trading_account" in self.model_fields_set:
+            _dict['tradingAccount'] = None
+
         return _dict
 
     @classmethod
@@ -95,7 +101,8 @@ class DestinationTransferPeerPathResponse(BaseModel):
             "subType": obj.get("subType"),
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "walletId": obj.get("walletId")
+            "walletId": obj.get("walletId"),
+            "tradingAccount": obj.get("tradingAccount")
         })
         return _obj
 

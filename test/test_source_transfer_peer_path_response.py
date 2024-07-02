@@ -43,7 +43,8 @@ class TestSourceTransferPeerPathResponse(unittest.TestCase):
                 sub_type = '',
                 id = '',
                 name = '',
-                wallet_id = ''
+                wallet_id = '',
+                trading_account = ''
             )
         else:
             return SourceTransferPeerPathResponse(

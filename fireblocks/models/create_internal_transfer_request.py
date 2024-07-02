@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from fireblocks.models.trading_account_type import TradingAccountType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +28,10 @@ class CreateInternalTransferRequest(BaseModel):
     """
     CreateInternalTransferRequest
     """ # noqa: E501
-    asset: Optional[StrictStr] = None
-    amount: Optional[StrictStr] = None
-    source_type: Optional[TradingAccountType] = Field(default=None, alias="sourceType")
-    dest_type: Optional[TradingAccountType] = Field(default=None, alias="destType")
+    asset: StrictStr
+    amount: StrictStr
+    source_type: TradingAccountType = Field(alias="sourceType")
+    dest_type: TradingAccountType = Field(alias="destType")
     __properties: ClassVar[List[str]] = ["asset", "amount", "sourceType", "destType"]
 
     model_config = ConfigDict(

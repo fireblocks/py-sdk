@@ -46,8 +46,8 @@ class TokenResponse(BaseModel):
     @field_validator('blockchain_descriptor')
     def blockchain_descriptor_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH']):
-            raise ValueError("must be one of enum values ('ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH')")
+        if value not in set(['ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3']):
+            raise ValueError("must be one of enum values ('ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3')")
         return value
 
     model_config = ConfigDict(

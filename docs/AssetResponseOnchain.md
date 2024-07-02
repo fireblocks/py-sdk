@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** | The asset name | 
 **address** | **str** | The asset address | [optional] 
 **decimals** | **float** | Number of decimals | 
-**standard** | **str** | The asset standard | 
+**standard** | **str** | The asset standard | [optional] 
 
 ## Example
 

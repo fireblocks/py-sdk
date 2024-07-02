@@ -50,7 +50,8 @@ class TestTransactionResponse(unittest.TestCase):
                     sub_type = '', 
                     id = '', 
                     name = '', 
-                    wallet_id = '', ),
+                    wallet_id = '', 
+                    trading_account = '', ),
                 source_address = '',
                 tag = '',
                 destination = fireblocks.models.destination_transfer_peer_path_response.DestinationTransferPeerPathResponse(
@@ -58,7 +59,8 @@ class TestTransactionResponse(unittest.TestCase):
                     sub_type = '', 
                     id = '', 
                     name = '', 
-                    wallet_id = '', ),
+                    wallet_id = '', 
+                    trading_account = '', ),
                 destinations = [
                     fireblocks.models.transaction_response_destination.TransactionResponseDestination(
                         destination_address = null, 
@@ -73,7 +75,8 @@ class TestTransactionResponse(unittest.TestCase):
                             sub_type = '', 
                             id = '', 
                             name = '', 
-                            wallet_id = '', ), 
+                            wallet_id = '', 
+                            trading_account = '', ), 
                         authorization_info = fireblocks.models.authorization_info.AuthorizationInfo(
                             allow_operator_as_authorizer = True, 
                             logic = 'AND', 
@@ -111,13 +114,15 @@ class TestTransactionResponse(unittest.TestCase):
                             sub_type = '', 
                             id = '', 
                             name = '', 
-                            wallet_id = '', ), 
+                            wallet_id = '', 
+                            trading_account = '', ), 
                         destination = fireblocks.models.destination_transfer_peer_path_response.DestinationTransferPeerPathResponse(
                             type = 'VAULT_ACCOUNT', 
                             sub_type = '', 
                             id = '', 
                             name = '', 
-                            wallet_id = '', ), 
+                            wallet_id = '', 
+                            trading_account = '', ), 
                         tx_hash = '', 
                         network_fee = '', 
                         asset_id = '', 

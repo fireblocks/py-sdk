@@ -31,7 +31,7 @@ class AssetResponseOnchain(BaseModel):
     name: StrictStr = Field(description="The asset name")
     address: Optional[StrictStr] = Field(default=None, description="The asset address")
     decimals: Union[StrictFloat, StrictInt] = Field(description="Number of decimals")
-    standard: StrictStr = Field(description="The asset standard")
+    standard: Optional[StrictStr] = Field(default=None, description="The asset standard")
     __properties: ClassVar[List[str]] = ["symbol", "name", "address", "decimals", "standard"]
 
     model_config = ConfigDict(

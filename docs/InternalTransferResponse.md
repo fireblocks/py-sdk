@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Indicates whether the transfer was successful | 
+**id** | **str** | The transaction ID of the internal transfer | [optional] 
 
 ## Example
 

@@ -48,7 +48,6 @@ class TestAssetResponseOnchain(unittest.TestCase):
                 symbol = 'TST3',
                 name = 'Test 3',
                 decimals = 18,
-                standard = 'ERC20',
         )
         """
 

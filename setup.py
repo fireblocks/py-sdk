@@ -35,6 +35,7 @@ REQUIRES = [
 
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
+    long_description = re.sub(r'(?<=\()docs/', https://github.com/fireblocks/py-sdk/tree/master + '/docs/', long_description)
 
 setup(
     name=NAME,

@@ -18,7 +18,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
@@ -620,6 +620,11 @@ class KeyLinkBetaApi:
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=50, strict=True, ge=1)], Annotated[int, Field(le=50, strict=True, ge=1)]]], Field(description="Amount of results to return in the next page")] = None,
         sort_by: Annotated[Optional[StrictStr], Field(description="Field(s) to use for sorting")] = None,
         order: Annotated[Optional[StrictStr], Field(description="Is the order ascending or descending")] = None,
+        vault_account_id: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Return keys assigned to a specific vault")] = None,
+        agent_user_id: Annotated[Optional[StrictStr], Field(description="Return keys associated with a specific agent user")] = None,
+        algorithm: Annotated[Optional[StrictStr], Field(description="Return only keys with a specific algorithm")] = None,
+        enabled: Annotated[Optional[StrictBool], Field(description="Return keys that have been proof of ownership")] = None,
+        available: Annotated[Optional[StrictBool], Field(description="Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -645,6 +650,16 @@ class KeyLinkBetaApi:
         :type sort_by: str
         :param order: Is the order ascending or descending
         :type order: str
+        :param vault_account_id: Return keys assigned to a specific vault
+        :type vault_account_id: float
+        :param agent_user_id: Return keys associated with a specific agent user
+        :type agent_user_id: str
+        :param algorithm: Return only keys with a specific algorithm
+        :type algorithm: str
+        :param enabled: Return keys that have been proof of ownership
+        :type enabled: bool
+        :param available: Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set
+        :type available: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -673,6 +688,11 @@ class KeyLinkBetaApi:
             page_size=page_size,
             sort_by=sort_by,
             order=order,
+            vault_account_id=vault_account_id,
+            agent_user_id=agent_user_id,
+            algorithm=algorithm,
+            enabled=enabled,
+            available=available,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -696,6 +716,11 @@ class KeyLinkBetaApi:
         page_size,
         sort_by,
         order,
+        vault_account_id,
+        agent_user_id,
+        algorithm,
+        enabled,
+        available,
         _request_auth,
         _content_type,
         _headers,
@@ -731,6 +756,26 @@ class KeyLinkBetaApi:
         if order is not None:
             
             _query_params.append(('order', order))
+            
+        if vault_account_id is not None:
+            
+            _query_params.append(('vaultAccountId', vault_account_id))
+            
+        if agent_user_id is not None:
+            
+            _query_params.append(('agentUserId', agent_user_id))
+            
+        if algorithm is not None:
+            
+            _query_params.append(('algorithm', algorithm))
+            
+        if enabled is not None:
+            
+            _query_params.append(('enabled', enabled))
+            
+        if available is not None:
+            
+            _query_params.append(('available', available))
             
         # process the header parameters
         # process the form parameters

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,8 @@ class InternalTransferResponse(BaseModel):
     InternalTransferResponse
     """ # noqa: E501
     success: StrictBool = Field(description="Indicates whether the transfer was successful")
-    __properties: ClassVar[List[str]] = ["success"]
+    id: Optional[StrictStr] = Field(default=None, description="The transaction ID of the internal transfer")
+    __properties: ClassVar[List[str]] = ["success", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +70,11 @@ class InternalTransferResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
         return _dict
 
     @classmethod
@@ -81,7 +87,8 @@ class InternalTransferResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success")
+            "success": obj.get("success"),
+            "id": obj.get("id")
         })
         return _obj
 

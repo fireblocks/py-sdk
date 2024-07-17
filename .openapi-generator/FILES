@@ -196,6 +196,7 @@ docs/GetAuditLogsResponse.md
 docs/GetAuditLogsResponseDTO.md
 docs/GetConnectionsResponse.md
 docs/GetConsoleUsersResponse.md
+docs/GetExchangeAccountsCredentialsPublicKeyResponse.md
 docs/GetFilterParameter.md
 docs/GetMaxSpendableAmountResponse.md
 docs/GetNFTsResponse.md
@@ -703,6 +704,7 @@ fireblocks/models/get_audit_logs_response.py
 fireblocks/models/get_audit_logs_response_dto.py
 fireblocks/models/get_connections_response.py
 fireblocks/models/get_console_users_response.py
+fireblocks/models/get_exchange_accounts_credentials_public_key_response.py
 fireblocks/models/get_filter_parameter.py
 fireblocks/models/get_max_spendable_amount_response.py
 fireblocks/models/get_nfts_response.py
@@ -1177,6 +1179,7 @@ test/test_get_audit_logs_response.py
 test/test_get_audit_logs_response_dto.py
 test/test_get_connections_response.py
 test/test_get_console_users_response.py
+test/test_get_exchange_accounts_credentials_public_key_response.py
 test/test_get_filter_parameter.py
 test/test_get_max_spendable_amount_response.py
 test/test_get_nfts_response.py

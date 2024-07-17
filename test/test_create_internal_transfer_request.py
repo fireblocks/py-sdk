@@ -46,6 +46,10 @@ class TestCreateInternalTransferRequest(unittest.TestCase):
             )
         else:
             return CreateInternalTransferRequest(
+                asset = '',
+                amount = '',
+                source_type = 'COIN_FUTURES',
+                dest_type = 'COIN_FUTURES',
         )
         """
 

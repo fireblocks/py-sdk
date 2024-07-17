@@ -321,7 +321,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_signing_keys_list**
-> GetSigningKeyResponseDto get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> GetSigningKeyResponseDto get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available)
 
 Get list of signing keys
 
@@ -356,10 +356,15 @@ with Fireblocks(configuration) as fireblocks:
     page_size = 10 # float | Amount of results to return in the next page (optional) (default to 10)
     sort_by = 'createdAt' # str | Field(s) to use for sorting (optional) (default to 'createdAt')
     order = 'ASC' # str | Is the order ascending or descending (optional) (default to 'ASC')
+    vault_account_id = 4 # float | Return keys assigned to a specific vault (optional)
+    agent_user_id = '12fed207-5bdf-4a0c-ab12-fcd2627f75d1' # str | Return keys associated with a specific agent user (optional)
+    algorithm = 'ECDSA_SECP256K1' # str | Return only keys with a specific algorithm (optional)
+    enabled = True # bool | Return keys that have been proof of ownership (optional)
+    available = True # bool | Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set (optional)
 
     try:
         # Get list of signing keys
-        api_response = fireblocks.key_link_beta.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        api_response = fireblocks.key_link_beta.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available).result()
         print("The response of KeyLinkBetaApi->get_signing_keys_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -377,6 +382,11 @@ Name | Type | Description  | Notes
  **page_size** | **float**| Amount of results to return in the next page | [optional] [default to 10]
  **sort_by** | **str**| Field(s) to use for sorting | [optional] [default to &#39;createdAt&#39;]
  **order** | **str**| Is the order ascending or descending | [optional] [default to &#39;ASC&#39;]
+ **vault_account_id** | **float**| Return keys assigned to a specific vault | [optional] 
+ **agent_user_id** | **str**| Return keys associated with a specific agent user | [optional] 
+ **algorithm** | **str**| Return only keys with a specific algorithm | [optional] 
+ **enabled** | **bool**| Return keys that have been proof of ownership | [optional] 
+ **available** | **bool**| Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set | [optional] 
 
 ### Return type
 

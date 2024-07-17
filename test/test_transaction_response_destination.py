@@ -51,7 +51,8 @@ class TestTransactionResponseDestination(unittest.TestCase):
                     sub_type = '', 
                     id = '', 
                     name = '', 
-                    wallet_id = '', ),
+                    wallet_id = '', 
+                    trading_account = '', ),
                 authorization_info = fireblocks.models.authorization_info.AuthorizationInfo(
                     allow_operator_as_authorizer = True, 
                     logic = 'AND', 

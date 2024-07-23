@@ -28,11 +28,11 @@ class NetworkIdResponse(BaseModel):
     """
     NetworkIdResponse
     """ # noqa: E501
-    id: StrictStr
-    name: StrictStr
     routing_policy: Optional[Dict[str, NetworkIdRoutingPolicyValue]] = Field(default=None, alias="routingPolicy")
     is_discoverable: Optional[StrictBool] = Field(default=None, description="The specific network is discoverable.", alias="isDiscoverable")
-    __properties: ClassVar[List[str]] = ["id", "name", "routingPolicy", "isDiscoverable"]
+    id: Optional[StrictStr] = Field(default=None, description="The specific network id")
+    name: Optional[StrictStr] = Field(default=None, description="The specific network name")
+    __properties: ClassVar[List[str]] = ["routingPolicy", "isDiscoverable", "id", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,15 +92,15 @@ class NetworkIdResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
             "routingPolicy": dict(
                 (_k, NetworkIdRoutingPolicyValue.from_dict(_v))
                 for _k, _v in obj["routingPolicy"].items()
             )
             if obj.get("routingPolicy") is not None
             else None,
-            "isDiscoverable": obj.get("isDiscoverable")
+            "isDiscoverable": obj.get("isDiscoverable"),
+            "id": obj.get("id"),
+            "name": obj.get("name")
         })
         return _obj
 

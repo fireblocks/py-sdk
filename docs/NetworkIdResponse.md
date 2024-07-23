@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**name** | **str** |  | 
 **routing_policy** | [**Dict[str, NetworkIdRoutingPolicyValue]**](NetworkIdRoutingPolicyValue.md) |  | [optional] 
 **is_discoverable** | **bool** | The specific network is discoverable. | [optional] 
+**id** | **str** | The specific network id | [optional] 
+**name** | **str** | The specific network name | [optional] 
 
 ## Example
 

@@ -41,6 +41,13 @@ class TestBlockchainsAssetsApi(unittest.TestCase):
         """
         pass
 
+    def test_set_asset_price(self) -> None:
+        """Test case for set_asset_price
+
+        Set asset price
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

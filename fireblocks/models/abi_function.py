@@ -30,7 +30,7 @@ class AbiFunction(BaseModel):
     """ # noqa: E501
     name: Optional[StrictStr] = Field(default=None, description="The name of the contract function as it appears in the ABI")
     state_mutability: Optional[StrictStr] = Field(default=None, description="The state mutability of the contract function as it appears in the ABI", alias="stateMutability")
-    type: StrictStr = Field(description="The type if the function")
+    type: StrictStr = Field(description="The type of the function")
     inputs: List[Parameter] = Field(description="The parameters that this function/constructor posses")
     outputs: Optional[List[Parameter]] = Field(default=None, description="The parameters that this 'read' function returns")
     description: Optional[StrictStr] = Field(default=None, description="The documentation of this function (if has any)")
@@ -49,8 +49,8 @@ class AbiFunction(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['function', 'constructor']):
-            raise ValueError("must be one of enum values ('function', 'constructor')")
+        if value not in set(['constructor', 'function', 'error', 'event', 'receive', 'fallback']):
+            raise ValueError("must be one of enum values ('constructor', 'function', 'error', 'event', 'receive', 'fallback')")
         return value
 
     model_config = ConfigDict(

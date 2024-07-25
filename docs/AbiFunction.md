@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the contract function as it appears in the ABI | [optional] 
 **state_mutability** | **str** | The state mutability of the contract function as it appears in the ABI | [optional] 
-**type** | **str** | The type if the function | 
+**type** | **str** | The type of the function | 
 **inputs** | [**List[Parameter]**](Parameter.md) | The parameters that this function/constructor posses | 
 **outputs** | [**List[Parameter]**](Parameter.md) | The parameters that this &#39;read&#39; function returns | [optional] 
 **description** | **str** | The documentation of this function (if has any) | [optional] 

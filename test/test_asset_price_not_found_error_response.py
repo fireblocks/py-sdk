@@ -15,11 +15,13 @@
 
 import unittest
 
-from fireblocks.models.network_id_response import NetworkIdResponse
+from fireblocks.models.asset_price_not_found_error_response import (
+    AssetPriceNotFoundErrorResponse,
+)
 
 
-class TestNetworkIdResponse(unittest.TestCase):
-    """NetworkIdResponse unit test stubs"""
+class TestAssetPriceNotFoundErrorResponse(unittest.TestCase):
+    """AssetPriceNotFoundErrorResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +29,28 @@ class TestNetworkIdResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> NetworkIdResponse:
-        """Test NetworkIdResponse
+    def make_instance(self, include_optional) -> AssetPriceNotFoundErrorResponse:
+        """Test AssetPriceNotFoundErrorResponse
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `NetworkIdResponse`
+        # uncomment below to create an instance of `AssetPriceNotFoundErrorResponse`
         """
-        model = NetworkIdResponse()
+        model = AssetPriceNotFoundErrorResponse()
         if include_optional:
-            return NetworkIdResponse(
-                routing_policy = {
-                    'key' : null
-                    },
-                is_discoverable = True,
-                id = '',
-                name = ''
+            return AssetPriceNotFoundErrorResponse(
+                message = 'Currency not found',
+                code = '3001'
             )
         else:
-            return NetworkIdResponse(
+            return AssetPriceNotFoundErrorResponse(
+                message = 'Currency not found',
+                code = '3001',
         )
         """
 
-    def testNetworkIdResponse(self):
-        """Test NetworkIdResponse"""
+    def testAssetPriceNotFoundErrorResponse(self):
+        """Test AssetPriceNotFoundErrorResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

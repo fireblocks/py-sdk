@@ -33,6 +33,9 @@ docs/AssetForbiddenErrorResponse.md
 docs/AssetInternalServerErrorResponse.md
 docs/AssetMetadataDto.md
 docs/AssetNotFoundErrorResponse.md
+docs/AssetPriceForbiddenErrorResponse.md
+docs/AssetPriceNotFoundErrorResponse.md
+docs/AssetPriceResponse.md
 docs/AssetResponse.md
 docs/AssetResponseMetadata.md
 docs/AssetResponseOnchain.md
@@ -322,6 +325,7 @@ docs/SessionDTO.md
 docs/SessionMetadata.md
 docs/SetAdminQuorumThresholdRequest.md
 docs/SetAdminQuorumThresholdResponse.md
+docs/SetAssetPriceRequest.md
 docs/SetAutoFuelRequest.md
 docs/SetConfirmationsThresholdRequest.md
 docs/SetConfirmationsThresholdResponse.md
@@ -556,6 +560,9 @@ fireblocks/models/asset_forbidden_error_response.py
 fireblocks/models/asset_internal_server_error_response.py
 fireblocks/models/asset_metadata_dto.py
 fireblocks/models/asset_not_found_error_response.py
+fireblocks/models/asset_price_forbidden_error_response.py
+fireblocks/models/asset_price_not_found_error_response.py
+fireblocks/models/asset_price_response.py
 fireblocks/models/asset_response.py
 fireblocks/models/asset_response_metadata.py
 fireblocks/models/asset_response_onchain.py
@@ -820,6 +827,7 @@ fireblocks/models/session_dto.py
 fireblocks/models/session_metadata.py
 fireblocks/models/set_admin_quorum_threshold_request.py
 fireblocks/models/set_admin_quorum_threshold_response.py
+fireblocks/models/set_asset_price_request.py
 fireblocks/models/set_auto_fuel_request.py
 fireblocks/models/set_confirmations_threshold_request.py
 fireblocks/models/set_confirmations_threshold_response.py
@@ -1016,6 +1024,9 @@ test/test_asset_forbidden_error_response.py
 test/test_asset_internal_server_error_response.py
 test/test_asset_metadata_dto.py
 test/test_asset_not_found_error_response.py
+test/test_asset_price_forbidden_error_response.py
+test/test_asset_price_not_found_error_response.py
+test/test_asset_price_response.py
 test/test_asset_response.py
 test/test_asset_response_metadata.py
 test/test_asset_response_onchain.py
@@ -1305,6 +1316,7 @@ test/test_session_dto.py
 test/test_session_metadata.py
 test/test_set_admin_quorum_threshold_request.py
 test/test_set_admin_quorum_threshold_response.py
+test/test_set_asset_price_request.py
 test/test_set_auto_fuel_request.py
 test/test_set_confirmations_threshold_request.py
 test/test_set_confirmations_threshold_response.py

@@ -28,7 +28,7 @@ class ReadCallFunctionDto(BaseModel):
     """
     ReadCallFunctionDto
     """ # noqa: E501
-    abi_function: List[ReadAbiFunction] = Field(description="The abi of the read function you wish to call", alias="abiFunction")
+    abi_function: ReadAbiFunction = Field(alias="abiFunction")
     __properties: ClassVar[List[str]] = ["abiFunction"]
 
     model_config = ConfigDict(
@@ -70,13 +70,9 @@ class ReadCallFunctionDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in abi_function (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of abi_function
         if self.abi_function:
-            for _item in self.abi_function:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['abiFunction'] = _items
+            _dict['abiFunction'] = self.abi_function.to_dict()
         return _dict
 
     @classmethod
@@ -89,7 +85,7 @@ class ReadCallFunctionDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "abiFunction": [ReadAbiFunction.from_dict(_item) for _item in obj["abiFunction"]] if obj.get("abiFunction") is not None else None
+            "abiFunction": ReadAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None
         })
         return _obj
 

@@ -18,28 +18,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CollectionOwnershipResponse(BaseModel):
+class AssetPriceResponse(BaseModel):
     """
-    CollectionOwnershipResponse
+    AssetPriceResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="Fireblocks collection id")
-    name: Optional[StrictStr] = Field(default=None, description="Collection name")
-    symbol: Optional[StrictStr] = Field(default=None, description="Collection symbol")
-    standard: Optional[StrictStr] = Field(default=None, description="Collection contract standard")
-    blockchain_descriptor: StrictStr = Field(description="Collection's blockchain", alias="blockchainDescriptor")
-    contract_address: Optional[StrictStr] = Field(default=None, description="Collection contract standard", alias="contractAddress")
-    __properties: ClassVar[List[str]] = ["id", "name", "symbol", "standard", "blockchainDescriptor", "contractAddress"]
+    legacy_id: StrictStr = Field(description="The ID of the asset", alias="legacyId")
+    last_update_at: Union[StrictFloat, StrictInt] = Field(description="Time of last price update", alias="lastUpdateAt")
+    currency: StrictStr = Field(description="Currency (according to ISO 4217 currency codes)")
+    price: Union[StrictFloat, StrictInt] = Field(description="Price in currency")
+    source: StrictStr = Field(description="Source of the price data")
+    __properties: ClassVar[List[str]] = ["legacyId", "lastUpdateAt", "currency", "price", "source"]
 
-    @field_validator('blockchain_descriptor')
-    def blockchain_descriptor_validate_enum(cls, value):
+    @field_validator('source')
+    def source_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'ETHERLINK', 'ETHERLINK_TEST']):
-            raise ValueError("must be one of enum values ('ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'ETHERLINK', 'ETHERLINK_TEST')")
+        if value not in set(['PUBLIC', 'PRIVATE']):
+            raise ValueError("must be one of enum values ('PUBLIC', 'PRIVATE')")
         return value
 
     model_config = ConfigDict(
@@ -60,7 +59,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a JSON string"""
+        """Create an instance of AssetPriceResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,7 +84,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a dict"""
+        """Create an instance of AssetPriceResponse from a dict"""
         if obj is None:
             return None
 
@@ -93,12 +92,11 @@ class CollectionOwnershipResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "symbol": obj.get("symbol"),
-            "standard": obj.get("standard"),
-            "blockchainDescriptor": obj.get("blockchainDescriptor"),
-            "contractAddress": obj.get("contractAddress")
+            "legacyId": obj.get("legacyId"),
+            "lastUpdateAt": obj.get("lastUpdateAt"),
+            "currency": obj.get("currency"),
+            "price": obj.get("price"),
+            "source": obj.get("source")
         })
         return _obj
 

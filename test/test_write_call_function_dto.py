@@ -38,7 +38,34 @@ class TestWriteCallFunctionDto(unittest.TestCase):
         if include_optional:
             return WriteCallFunctionDto(
                 vault_account_id = '0',
-                abi_function = [{"inputs":[{"name":"to","type":"address","internalType":"address","value":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66"},{"name":"amount","type":"uint256","internalType":"uint256","value":1000000}],"stateMutability":"nonpayable","type":"function","name":"mint"}],
+                abi_function = fireblocks.models.write_abi_function.WriteAbiFunction(
+                    state_mutability = 'nonpayable', 
+                    outputs = [
+                        fireblocks.models.parameter.Parameter(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            components = [
+                                fireblocks.models.parameter.Parameter(
+                                    name = '_name', 
+                                    description = 'The name of the token', 
+                                    internal_type = 'string', 
+                                    type = 'string', )
+                                ], )
+                        ], 
+                    type = 'function', 
+                    name = '', 
+                    inputs = [
+                        fireblocks.models.parameter_with_value.ParameterWithValue(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            value = 'true', 
+                            function_value = null, )
+                        ], 
+                    description = '', ),
                 amount = '12.345',
                 fee_level = 'MEDIUM',
                 fee = '2000',
@@ -47,7 +74,34 @@ class TestWriteCallFunctionDto(unittest.TestCase):
         else:
             return WriteCallFunctionDto(
                 vault_account_id = '0',
-                abi_function = [{"inputs":[{"name":"to","type":"address","internalType":"address","value":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66"},{"name":"amount","type":"uint256","internalType":"uint256","value":1000000}],"stateMutability":"nonpayable","type":"function","name":"mint"}],
+                abi_function = fireblocks.models.write_abi_function.WriteAbiFunction(
+                    state_mutability = 'nonpayable', 
+                    outputs = [
+                        fireblocks.models.parameter.Parameter(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            components = [
+                                fireblocks.models.parameter.Parameter(
+                                    name = '_name', 
+                                    description = 'The name of the token', 
+                                    internal_type = 'string', 
+                                    type = 'string', )
+                                ], )
+                        ], 
+                    type = 'function', 
+                    name = '', 
+                    inputs = [
+                        fireblocks.models.parameter_with_value.ParameterWithValue(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            value = 'true', 
+                            function_value = null, )
+                        ], 
+                    description = '', ),
         )
         """
 

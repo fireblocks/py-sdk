@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vault_account_id** | **str** | The vault account id this contract was deploy from | 
-**abi_function** | [**List[WriteAbiFunction]**](WriteAbiFunction.md) | The abi of the read function you wish to call | 
+**abi_function** | [**WriteAbiFunction**](WriteAbiFunction.md) |  | 
 **amount** | **str** | Amount in base asset. Being used in payable functions | [optional] 
 **fee_level** | **str** | Fee level for the write function transaction. interchangeable with the &#39;fee&#39; field | [optional] 
 **fee** | **str** | Max fee amount for the write function transaction. interchangeable with the &#39;feeLevel&#39; field | [optional] 

@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.network_id_response import NetworkIdResponse
+from fireblocks.models.set_asset_price_request import SetAssetPriceRequest
 
 
-class TestNetworkIdResponse(unittest.TestCase):
-    """NetworkIdResponse unit test stubs"""
+class TestSetAssetPriceRequest(unittest.TestCase):
+    """SetAssetPriceRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,28 @@ class TestNetworkIdResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> NetworkIdResponse:
-        """Test NetworkIdResponse
+    def make_instance(self, include_optional) -> SetAssetPriceRequest:
+        """Test SetAssetPriceRequest
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `NetworkIdResponse`
+        # uncomment below to create an instance of `SetAssetPriceRequest`
         """
-        model = NetworkIdResponse()
+        model = SetAssetPriceRequest()
         if include_optional:
-            return NetworkIdResponse(
-                routing_policy = {
-                    'key' : null
-                    },
-                is_discoverable = True,
-                id = '',
-                name = ''
+            return SetAssetPriceRequest(
+                currency = 'USD',
+                price = 3100
             )
         else:
-            return NetworkIdResponse(
+            return SetAssetPriceRequest(
+                currency = 'USD',
+                price = 3100,
         )
         """
 
-    def testNetworkIdResponse(self):
-        """Test NetworkIdResponse"""
+    def testSetAssetPriceRequest(self):
+        """Test SetAssetPriceRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

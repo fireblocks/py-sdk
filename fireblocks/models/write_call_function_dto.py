@@ -29,7 +29,7 @@ class WriteCallFunctionDto(BaseModel):
     WriteCallFunctionDto
     """ # noqa: E501
     vault_account_id: StrictStr = Field(description="The vault account id this contract was deploy from", alias="vaultAccountId")
-    abi_function: List[WriteAbiFunction] = Field(description="The abi of the read function you wish to call", alias="abiFunction")
+    abi_function: WriteAbiFunction = Field(alias="abiFunction")
     amount: Optional[StrictStr] = Field(default=None, description="Amount in base asset. Being used in payable functions")
     fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
     fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
@@ -85,13 +85,9 @@ class WriteCallFunctionDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in abi_function (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of abi_function
         if self.abi_function:
-            for _item in self.abi_function:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['abiFunction'] = _items
+            _dict['abiFunction'] = self.abi_function.to_dict()
         return _dict
 
     @classmethod
@@ -105,7 +101,7 @@ class WriteCallFunctionDto(BaseModel):
 
         _obj = cls.model_validate({
             "vaultAccountId": obj.get("vaultAccountId"),
-            "abiFunction": [WriteAbiFunction.from_dict(_item) for _item in obj["abiFunction"]] if obj.get("abiFunction") is not None else None,
+            "abiFunction": WriteAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None,
             "amount": obj.get("amount"),
             "feeLevel": obj.get("feeLevel"),
             "fee": obj.get("fee"),

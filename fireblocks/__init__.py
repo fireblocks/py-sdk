@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -123,6 +123,13 @@ from fireblocks.models.asset_internal_server_error_response import (
 )
 from fireblocks.models.asset_metadata_dto import AssetMetadataDto
 from fireblocks.models.asset_not_found_error_response import AssetNotFoundErrorResponse
+from fireblocks.models.asset_price_forbidden_error_response import (
+    AssetPriceForbiddenErrorResponse,
+)
+from fireblocks.models.asset_price_not_found_error_response import (
+    AssetPriceNotFoundErrorResponse,
+)
+from fireblocks.models.asset_price_response import AssetPriceResponse
 from fireblocks.models.asset_response import AssetResponse
 from fireblocks.models.asset_response_metadata import AssetResponseMetadata
 from fireblocks.models.asset_response_onchain import AssetResponseOnchain
@@ -525,6 +532,7 @@ from fireblocks.models.set_admin_quorum_threshold_request import (
 from fireblocks.models.set_admin_quorum_threshold_response import (
     SetAdminQuorumThresholdResponse,
 )
+from fireblocks.models.set_asset_price_request import SetAssetPriceRequest
 from fireblocks.models.set_auto_fuel_request import SetAutoFuelRequest
 from fireblocks.models.set_confirmations_threshold_request import (
     SetConfirmationsThresholdRequest,

@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.network_id_response import NetworkIdResponse
+from fireblocks.models.asset_price_response import AssetPriceResponse
 
 
-class TestNetworkIdResponse(unittest.TestCase):
-    """NetworkIdResponse unit test stubs"""
+class TestAssetPriceResponse(unittest.TestCase):
+    """AssetPriceResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,34 @@ class TestNetworkIdResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> NetworkIdResponse:
-        """Test NetworkIdResponse
+    def make_instance(self, include_optional) -> AssetPriceResponse:
+        """Test AssetPriceResponse
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `NetworkIdResponse`
+        # uncomment below to create an instance of `AssetPriceResponse`
         """
-        model = NetworkIdResponse()
+        model = AssetPriceResponse()
         if include_optional:
-            return NetworkIdResponse(
-                routing_policy = {
-                    'key' : null
-                    },
-                is_discoverable = True,
-                id = '',
-                name = ''
+            return AssetPriceResponse(
+                legacy_id = 'ETH',
+                last_update_at = 1716898542,
+                currency = 'USD',
+                price = 3500,
+                source = 'PRIVATE'
             )
         else:
-            return NetworkIdResponse(
+            return AssetPriceResponse(
+                legacy_id = 'ETH',
+                last_update_at = 1716898542,
+                currency = 'USD',
+                price = 3500,
+                source = 'PRIVATE',
         )
         """
 
-    def testNetworkIdResponse(self):
-        """Test NetworkIdResponse"""
+    def testAssetPriceResponse(self):
+        """Test AssetPriceResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

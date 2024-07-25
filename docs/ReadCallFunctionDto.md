@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**abi_function** | [**List[ReadAbiFunction]**](ReadAbiFunction.md) | The abi of the read function you wish to call | 
+**abi_function** | [**ReadAbiFunction**](ReadAbiFunction.md) |  | 
 
 ## Example
 

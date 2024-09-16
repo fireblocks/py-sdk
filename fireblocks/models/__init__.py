@@ -19,6 +19,7 @@ from fireblocks.models.api_user import APIUser
 from fireblocks.models.abi_function import AbiFunction
 from fireblocks.models.account import Account
 from fireblocks.models.account_type import AccountType
+from fireblocks.models.add_abi_request_dto import AddAbiRequestDto
 from fireblocks.models.add_asset_to_external_wallet_request import AddAssetToExternalWalletRequest
 from fireblocks.models.add_asset_to_external_wallet_request_one_of import AddAssetToExternalWalletRequestOneOf
 from fireblocks.models.add_asset_to_external_wallet_request_one_of1 import AddAssetToExternalWalletRequestOneOf1
@@ -40,7 +41,6 @@ from fireblocks.models.asset_already_exist_http_error import AssetAlreadyExistHt
 from fireblocks.models.asset_amount import AssetAmount
 from fireblocks.models.asset_bad_request_error_response import AssetBadRequestErrorResponse
 from fireblocks.models.asset_conflict_error_response import AssetConflictErrorResponse
-from fireblocks.models.asset_does_not_exist_http_error import AssetDoesNotExistHttpError
 from fireblocks.models.asset_forbidden_error_response import AssetForbiddenErrorResponse
 from fireblocks.models.asset_internal_server_error_response import AssetInternalServerErrorResponse
 from fireblocks.models.asset_metadata_dto import AssetMetadataDto
@@ -60,8 +60,17 @@ from fireblocks.models.authorization_info import AuthorizationInfo
 from fireblocks.models.block_info import BlockInfo
 from fireblocks.models.cancel_transaction_response import CancelTransactionResponse
 from fireblocks.models.chain_info_response_dto import ChainInfoResponseDto
+from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
+from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
+from fireblocks.models.collection_deploy_request_dto import CollectionDeployRequestDto
+from fireblocks.models.collection_link_dto import CollectionLinkDto
 from fireblocks.models.collection_metadata_dto import CollectionMetadataDto
+from fireblocks.models.collection_mint_request_dto import CollectionMintRequestDto
+from fireblocks.models.collection_mint_response_dto import CollectionMintResponseDto
 from fireblocks.models.collection_ownership_response import CollectionOwnershipResponse
+from fireblocks.models.collection_token_metadata_attribute_dto import CollectionTokenMetadataAttributeDto
+from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
+from fireblocks.models.collection_type import CollectionType
 from fireblocks.models.compliance_result import ComplianceResult
 from fireblocks.models.compliance_screening_result import ComplianceScreeningResult
 from fireblocks.models.config_change_request_status import ConfigChangeRequestStatus
@@ -80,6 +89,7 @@ from fireblocks.models.contract_doc import ContractDoc
 from fireblocks.models.contract_metadata_dto import ContractMetadataDto
 from fireblocks.models.contract_template_dto import ContractTemplateDto
 from fireblocks.models.contract_upload_request import ContractUploadRequest
+from fireblocks.models.contract_with_abi_dto import ContractWithAbiDto
 from fireblocks.models.conversion_config_operation import ConversionConfigOperation
 from fireblocks.models.conversion_operation_config_params import ConversionOperationConfigParams
 from fireblocks.models.conversion_operation_execution import ConversionOperationExecution
@@ -114,6 +124,7 @@ from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionR
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
 from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
+from fireblocks.models.create_signing_key_dto_proof_of_ownership import CreateSigningKeyDtoProofOfOwnership
 from fireblocks.models.create_token_request_dto import CreateTokenRequestDto
 from fireblocks.models.create_token_request_dto_create_params import CreateTokenRequestDtoCreateParams
 from fireblocks.models.create_transaction_response import CreateTransactionResponse
@@ -182,6 +193,7 @@ from fireblocks.models.execution_screening_operation import ExecutionScreeningOp
 from fireblocks.models.execution_transfer_operation import ExecutionTransferOperation
 from fireblocks.models.external_wallet_asset import ExternalWalletAsset
 from fireblocks.models.fee_info import FeeInfo
+from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
 from fireblocks.models.fiat_account import FiatAccount
 from fireblocks.models.fiat_account_type import FiatAccountType
 from fireblocks.models.fiat_asset import FiatAsset
@@ -193,11 +205,11 @@ from fireblocks.models.gas_station_configuration_response import GasStationConfi
 from fireblocks.models.gas_station_properties_response import GasStationPropertiesResponse
 from fireblocks.models.get_api_users_response import GetAPIUsersResponse
 from fireblocks.models.get_audit_logs_response import GetAuditLogsResponse
-from fireblocks.models.get_audit_logs_response_dto import GetAuditLogsResponseDTO
 from fireblocks.models.get_connections_response import GetConnectionsResponse
 from fireblocks.models.get_console_users_response import GetConsoleUsersResponse
 from fireblocks.models.get_exchange_accounts_credentials_public_key_response import GetExchangeAccountsCredentialsPublicKeyResponse
 from fireblocks.models.get_filter_parameter import GetFilterParameter
+from fireblocks.models.get_linked_collections_paginated_response import GetLinkedCollectionsPaginatedResponse
 from fireblocks.models.get_max_spendable_amount_response import GetMaxSpendableAmountResponse
 from fireblocks.models.get_nfts_response import GetNFTsResponse
 from fireblocks.models.get_ota_status_response import GetOtaStatusResponse
@@ -291,6 +303,7 @@ from fireblocks.models.related_transaction_dto import RelatedTransactionDto
 from fireblocks.models.remove_collateral_request_body import RemoveCollateralRequestBody
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
+from fireblocks.models.rescan_transaction import RescanTransaction
 from fireblocks.models.resend_transaction_webhooks_request import ResendTransactionWebhooksRequest
 from fireblocks.models.resend_webhooks_by_transaction_id_response import ResendWebhooksByTransactionIdResponse
 from fireblocks.models.resend_webhooks_response import ResendWebhooksResponse
@@ -437,6 +450,7 @@ from fireblocks.models.user_role import UserRole
 from fireblocks.models.user_status import UserStatus
 from fireblocks.models.user_type import UserType
 from fireblocks.models.validate_address_response import ValidateAddressResponse
+from fireblocks.models.validated_transactions_for_rescan import ValidatedTransactionsForRescan
 from fireblocks.models.validation_key_dto import ValidationKeyDto
 from fireblocks.models.validator_dto import ValidatorDto
 from fireblocks.models.vault_account import VaultAccount

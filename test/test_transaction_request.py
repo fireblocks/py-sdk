@@ -77,6 +77,7 @@ class TestTransactionRequest(unittest.TestCase):
                 priority_fee = None,
                 fail_on_low_fee = True,
                 max_fee = '120',
+                max_total_fee = '88',
                 gas_limit = None,
                 gas_price = None,
                 network_fee = None,
@@ -99,7 +100,8 @@ class TestTransactionRequest(unittest.TestCase):
                     pii = null, ),
                 auto_staking = True,
                 network_staking = None,
-                cpu_staking = None
+                cpu_staking = None,
+                use_gasless = True
             )
         else:
             return TransactionRequest(

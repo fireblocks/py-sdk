@@ -34,13 +34,6 @@ class TestAuditLogsApi(unittest.TestCase):
         """
         pass
 
-    def test_get_audits(self) -> None:
-        """Test case for get_audits
-
-        Get audit logs
-        """
-        pass
-
 
 if __name__ == "__main__":
     unittest.main()

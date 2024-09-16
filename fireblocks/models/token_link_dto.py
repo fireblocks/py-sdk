@@ -31,8 +31,8 @@ class TokenLinkDto(BaseModel):
     id: StrictStr = Field(description="The token link id")
     status: StrictStr = Field(description="The token status")
     type: Optional[StrictStr] = Field(default=None, description="The type of token")
-    ref_id: Optional[StrictStr] = Field(default=None, description="The Fireblocks' reference id. Can be a Fireblocks' supported asset, collectionId or contractId", alias="refId")
-    display_name: Optional[StrictStr] = Field(default=None, description="The token display name. If was not provided, would be taken from the contract template name", alias="displayName")
+    ref_id: Optional[StrictStr] = Field(default=None, description="The Fireblocks' reference id", alias="refId")
+    display_name: Optional[StrictStr] = Field(default=None, description="The token display name. If was not provided, would be taken from the contract template", alias="displayName")
     token_metadata: Optional[TokenLinkDtoTokenMetadata] = Field(default=None, alias="tokenMetadata")
     __properties: ClassVar[List[str]] = ["id", "status", "type", "refId", "displayName", "tokenMetadata"]
 

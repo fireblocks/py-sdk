@@ -68,6 +68,7 @@ class TestRemoveCollateralRequestBody(unittest.TestCase):
                     priority_fee = null, 
                     fail_on_low_fee = True, 
                     max_fee = '120', 
+                    max_total_fee = '88', 
                     gas_limit = null, 
                     gas_price = null, 
                     network_fee = null, 
@@ -90,7 +91,8 @@ class TestRemoveCollateralRequestBody(unittest.TestCase):
                         pii = null, ), 
                     auto_staking = True, 
                     network_staking = null, 
-                    cpu_staking = null, ),
+                    cpu_staking = null, 
+                    use_gasless = True, ),
                 is_dst_collateral = True
             )
         else:

@@ -40,7 +40,9 @@ class TestCreateVaultAccountRequest(unittest.TestCase):
                 name = '',
                 hidden_on_ui = True,
                 customer_ref_id = '',
-                auto_fuel = True
+                auto_fuel = True,
+                vault_type = 'MPC',
+                auto_assign = True
             )
         else:
             return CreateVaultAccountRequest(

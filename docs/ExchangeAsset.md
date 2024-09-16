@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **locked_amount** | **str** |  | [optional] 
 **total** | **str** |  | [optional] 
 **available** | **str** |  | [optional] 
+**credit** | **str** |  | [optional] 
 
 ## Example
 

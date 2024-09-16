@@ -39,7 +39,10 @@ class TestCreateSigningKeyDto(unittest.TestCase):
             return CreateSigningKeyDto(
                 signing_device_key_id = 'MyKey1',
                 signed_cert_pem = '-----BEGIN CERTIFICATE ... END CERTIFICATE-----',
-                agent_user_id = 'd18847b5-1df6-4c46-8f99-5cce47284529'
+                agent_user_id = 'd18847b5-1df6-4c46-8f99-5cce47284529',
+                proof_of_ownership = fireblocks.models.create_signing_key_dto_proof_of_ownership.CreateSigningKeyDto_proofOfOwnership(
+                    message = '0123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263', 
+                    signature = '0123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263', )
             )
         else:
             return CreateSigningKeyDto(

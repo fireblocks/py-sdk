@@ -40,14 +40,14 @@ class TestCollectionMetadataDto(unittest.TestCase):
                 fb_collection_id = '911fe739f0d4d123c98fd366c3bed35c6e30c00e',
                 name = 'Rarible',
                 symbol = 'RARI',
-                standard = 'ERC721',
-                blockchain_descriptor = 'ETH_TEST5',
+                standard = '["ERC721","ERC1155","FA2"]',
+                blockchain_descriptor = 'ETH',
                 contract_address = '0x1723017329a804564bC8d215496C89eaBf1F3211'
             )
         else:
             return CollectionMetadataDto(
                 fb_collection_id = '911fe739f0d4d123c98fd366c3bed35c6e30c00e',
-                blockchain_descriptor = 'ETH_TEST5',
+                blockchain_descriptor = 'ETH',
         )
         """
 

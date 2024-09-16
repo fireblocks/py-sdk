@@ -41,7 +41,7 @@ class TestTokensPaginatedResponse(unittest.TestCase):
                     fireblocks.models.token_link_dto.TokenLinkDto(
                         id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb', 
                         status = 'COMPLETED', 
-                        type = 'FUNGIBLE_TOKEN', 
+                        type = 'NON_FUNGIBLE_TOKEN', 
                         ref_id = 'BQ5R_MY_TOKEN', 
                         display_name = 'My Simple ERC20 Token', 
                         token_metadata = null, )
@@ -54,7 +54,7 @@ class TestTokensPaginatedResponse(unittest.TestCase):
                     fireblocks.models.token_link_dto.TokenLinkDto(
                         id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb', 
                         status = 'COMPLETED', 
-                        type = 'FUNGIBLE_TOKEN', 
+                        type = 'NON_FUNGIBLE_TOKEN', 
                         ref_id = 'BQ5R_MY_TOKEN', 
                         display_name = 'My Simple ERC20 Token', 
                         token_metadata = null, )

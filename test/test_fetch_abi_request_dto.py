@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.asset_does_not_exist_http_error import AssetDoesNotExistHttpError
+from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
 
 
-class TestAssetDoesNotExistHttpError(unittest.TestCase):
-    """AssetDoesNotExistHttpError unit test stubs"""
+class TestFetchAbiRequestDto(unittest.TestCase):
+    """FetchAbiRequestDto unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,27 +27,28 @@ class TestAssetDoesNotExistHttpError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AssetDoesNotExistHttpError:
-        """Test AssetDoesNotExistHttpError
+    def make_instance(self, include_optional) -> FetchAbiRequestDto:
+        """Test FetchAbiRequestDto
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AssetDoesNotExistHttpError`
+        # uncomment below to create an instance of `FetchAbiRequestDto`
         """
-        model = AssetDoesNotExistHttpError()
+        model = FetchAbiRequestDto()
         if include_optional:
-            return AssetDoesNotExistHttpError(
-                status_code = 404,
-                message = '',
-                error = 'Not Found'
+            return FetchAbiRequestDto(
+                base_asset_id = 'ETH',
+                contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66'
             )
         else:
-            return AssetDoesNotExistHttpError(
+            return FetchAbiRequestDto(
+                base_asset_id = 'ETH',
+                contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66',
         )
         """
 
-    def testAssetDoesNotExistHttpError(self):
-        """Test AssetDoesNotExistHttpError"""
+    def testFetchAbiRequestDto(self):
+        """Test FetchAbiRequestDto"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -41,7 +41,8 @@ class TestExchangeAsset(unittest.TestCase):
                 balance = '',
                 locked_amount = '',
                 total = '',
-                available = ''
+                available = '',
+                credit = ''
             )
         else:
             return ExchangeAsset(

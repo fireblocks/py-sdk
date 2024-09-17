@@ -38,13 +38,14 @@ class TestTokenLinkRequestDto(unittest.TestCase):
         if include_optional:
             return TokenLinkRequestDto(
                 type = 'FUNGIBLE_TOKEN',
-                ref_id = 'USDC_ETH_TEST5_1XF5',
-                display_name = 'My Simple ERC20 Token'
+                ref_id = 'USDC_ETH_TEST3_1XF5',
+                display_name = 'My Simple ERC20 Token',
+                base_asset_id = 'ETH_TEST3',
+                contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66'
             )
         else:
             return TokenLinkRequestDto(
                 type = 'FUNGIBLE_TOKEN',
-                ref_id = 'USDC_ETH_TEST5_1XF5',
         )
         """
 

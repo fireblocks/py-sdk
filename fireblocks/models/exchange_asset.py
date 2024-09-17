@@ -32,7 +32,8 @@ class ExchangeAsset(BaseModel):
     locked_amount: Optional[StrictStr] = Field(default=None, alias="lockedAmount")
     total: Optional[StrictStr] = None
     available: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "total", "available"]
+    credit: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "total", "available", "credit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +90,8 @@ class ExchangeAsset(BaseModel):
             "balance": obj.get("balance"),
             "lockedAmount": obj.get("lockedAmount"),
             "total": obj.get("total"),
-            "available": obj.get("available")
+            "available": obj.get("available"),
+            "credit": obj.get("credit")
         })
         return _obj
 

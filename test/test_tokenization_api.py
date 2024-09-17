@@ -27,6 +27,41 @@ class TestTokenizationApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_burn_collection_token(self) -> None:
+        """Test case for burn_collection_token
+
+        Burn tokens
+        """
+        pass
+
+    def test_create_new_collection(self) -> None:
+        """Test case for create_new_collection
+
+        Create a new collection
+        """
+        pass
+
+    def test_fetch_collection_token_details(self) -> None:
+        """Test case for fetch_collection_token_details
+
+        Get collection token details
+        """
+        pass
+
+    def test_get_collection_by_id(self) -> None:
+        """Test case for get_collection_by_id
+
+        Get a collection by id
+        """
+        pass
+
+    def test_get_linked_collections(self) -> None:
+        """Test case for get_linked_collections
+
+        Get collections
+        """
+        pass
+
     def test_get_linked_token(self) -> None:
         """Test case for get_linked_token
 
@@ -51,7 +86,14 @@ class TestTokenizationApi(unittest.TestCase):
     def test_link(self) -> None:
         """Test case for link
 
-        Link a token
+        Link a contract
+        """
+        pass
+
+    def test_mint_collection_token(self) -> None:
+        """Test case for mint_collection_token
+
+        Mint tokens
         """
         pass
 
@@ -59,6 +101,13 @@ class TestTokenizationApi(unittest.TestCase):
         """Test case for unlink
 
         Unlink a token
+        """
+        pass
+
+    def test_unlink_collection(self) -> None:
+        """Test case for unlink_collection
+
+        Delete a collection link
         """
         pass
 

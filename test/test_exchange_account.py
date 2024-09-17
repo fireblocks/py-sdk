@@ -47,7 +47,8 @@ class TestExchangeAccount(unittest.TestCase):
                         balance = '', 
                         locked_amount = '', 
                         total = '', 
-                        available = '', )
+                        available = '', 
+                        credit = '', )
                     ],
                 success = True,
                 trading_accounts = [
@@ -60,7 +61,8 @@ class TestExchangeAccount(unittest.TestCase):
                                 balance = '', 
                                 locked_amount = '', 
                                 total = '', 
-                                available = '', )
+                                available = '', 
+                                credit = '', )
                             ], )
                     ],
                 is_subaccount = True,

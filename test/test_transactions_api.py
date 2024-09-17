@@ -90,6 +90,13 @@ class TestTransactionsApi(unittest.TestCase):
         """
         pass
 
+    def test_rescan_transactions_beta(self) -> None:
+        """Test case for rescan_transactions_beta
+
+        rescan array of transactions
+        """
+        pass
+
     def test_set_confirmation_threshold_by_transaction_hash(self) -> None:
         """Test case for set_confirmation_threshold_by_transaction_hash
 

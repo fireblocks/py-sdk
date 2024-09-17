@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **id** | **str** | The token link id | 
 **status** | **str** | The token status | 
 **type** | **str** | The type of token | [optional] 
-**ref_id** | **str** | The Fireblocks&#39; reference id. Can be a Fireblocks&#39; supported asset, collectionId or contractId | [optional] 
-**display_name** | **str** | The token display name. If was not provided, would be taken from the contract template name | [optional] 
+**ref_id** | **str** | The Fireblocks&#39; reference id | [optional] 
+**display_name** | **str** | The token display name. If was not provided, would be taken from the contract template | [optional] 
 **token_metadata** | [**TokenLinkDtoTokenMetadata**](TokenLinkDtoTokenMetadata.md) |  | [optional] 
 
 ## Example

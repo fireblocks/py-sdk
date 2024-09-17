@@ -39,7 +39,7 @@ class TestTokenLinkDto(unittest.TestCase):
             return TokenLinkDto(
                 id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb',
                 status = 'COMPLETED',
-                type = 'FUNGIBLE_TOKEN',
+                type = 'NON_FUNGIBLE_TOKEN',
                 ref_id = 'BQ5R_MY_TOKEN',
                 display_name = 'My Simple ERC20 Token',
                 token_metadata = None

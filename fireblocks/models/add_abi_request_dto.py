@@ -18,19 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.abi_function import AbiFunction
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetAuditLogsResponseDTO(BaseModel):
+class AddAbiRequestDto(BaseModel):
     """
-    GetAuditLogsResponseDTO
+    AddAbiRequestDto
     """ # noqa: E501
-    data: Optional[List[Dict[str, Any]]] = None
-    total: Optional[Union[StrictFloat, StrictInt]] = None
-    cursor: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["data", "total", "cursor"]
+    contract_address: StrictStr = Field(description="The address of deployed contract", alias="contractAddress")
+    base_asset_id: StrictStr = Field(description="The blockchain base assetId", alias="baseAssetId")
+    abi: List[AbiFunction] = Field(description="The ABI of the contract")
+    name: Optional[StrictStr] = Field(default=None, description="The name of the contract")
+    __properties: ClassVar[List[str]] = ["contractAddress", "baseAssetId", "abi", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class GetAuditLogsResponseDTO(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetAuditLogsResponseDTO from a JSON string"""
+        """Create an instance of AddAbiRequestDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,16 +73,18 @@ class GetAuditLogsResponseDTO(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if cursor (nullable) is None
-        # and model_fields_set contains the field
-        if self.cursor is None and "cursor" in self.model_fields_set:
-            _dict['cursor'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in abi (list)
+        _items = []
+        if self.abi:
+            for _item in self.abi:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['abi'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetAuditLogsResponseDTO from a dict"""
+        """Create an instance of AddAbiRequestDto from a dict"""
         if obj is None:
             return None
 
@@ -88,9 +92,10 @@ class GetAuditLogsResponseDTO(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": obj.get("data"),
-            "total": obj.get("total"),
-            "cursor": obj.get("cursor")
+            "contractAddress": obj.get("contractAddress"),
+            "baseAssetId": obj.get("baseAssetId"),
+            "abi": [AbiFunction.from_dict(_item) for _item in obj["abi"]] if obj.get("abi") is not None else None,
+            "name": obj.get("name")
         })
         return _obj
 

@@ -18,19 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AssetDoesNotExistHttpError(BaseModel):
+class CreateSigningKeyDtoProofOfOwnership(BaseModel):
     """
-    AssetDoesNotExistHttpError
+    An object containing proof of ownership for the signing key.
     """ # noqa: E501
-    status_code: Optional[StrictInt] = Field(default=None, description="HTTP status code", alias="statusCode")
-    message: Optional[StrictStr] = Field(default=None, description="Error message")
-    error: Optional[StrictStr] = Field(default=None, description="Short description of the HTTP error")
-    __properties: ClassVar[List[str]] = ["statusCode", "message", "error"]
+    message: Annotated[str, Field(min_length=64, strict=True, max_length=2048)] = Field(description="The message to be signed by the key as proof of ownership. 64 to 1024 bytes in hexadecimal format.")
+    signature: Annotated[str, Field(min_length=64, strict=True, max_length=128)] = Field(description="The signature of the message. 64 bytes in hexadecimal format.")
+    __properties: ClassVar[List[str]] = ["message", "signature"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class AssetDoesNotExistHttpError(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetDoesNotExistHttpError from a JSON string"""
+        """Create an instance of CreateSigningKeyDtoProofOfOwnership from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +75,7 @@ class AssetDoesNotExistHttpError(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetDoesNotExistHttpError from a dict"""
+        """Create an instance of CreateSigningKeyDtoProofOfOwnership from a dict"""
         if obj is None:
             return None
 
@@ -83,9 +83,8 @@ class AssetDoesNotExistHttpError(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "statusCode": obj.get("statusCode"),
             "message": obj.get("message"),
-            "error": obj.get("error")
+            "signature": obj.get("signature")
         })
         return _obj
 

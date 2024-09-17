@@ -54,6 +54,7 @@ class TransactionRequest(BaseModel):
     priority_fee: Optional[TransactionRequestPriorityFee] = Field(default=None, alias="priorityFee")
     fail_on_low_fee: Optional[StrictBool] = Field(default=None, description="When set to `true`, in case the current `MEDIUM` fee level is higher than the one specified in the transaction, the transaction will fail to avoid getting stuck with no confirmations.", alias="failOnLowFee")
     max_fee: Optional[StrictStr] = Field(default=None, description="The maximum fee (gas price or fee per byte) that should be payed for the transaction.  In case the current value of the requested `feeLevel` is higher than this requested maximum fee.  Represented by a numeric string for accurate precision.", alias="maxFee")
+    max_total_fee: Optional[StrictStr] = Field(default=None, description="For BTC-based blockchains only. The maximum fee (in the units of the fee-paying asset) that should be paid for the transaction.", alias="maxTotalFee")
     gas_limit: Optional[TransactionRequestGasLimit] = Field(default=None, alias="gasLimit")
     gas_price: Optional[TransactionRequestGasPrice] = Field(default=None, alias="gasPrice")
     network_fee: Optional[TransactionRequestNetworkFee] = Field(default=None, alias="networkFee")
@@ -64,7 +65,8 @@ class TransactionRequest(BaseModel):
     auto_staking: Optional[StrictBool] = Field(default=None, description="This feature is no longer supported.", alias="autoStaking")
     network_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="networkStaking")
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
-    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "customerRefId", "travelRuleMessage", "autoStaking", "networkStaking", "cpuStaking"]
+    use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gaslsess configuration by sending true\\false", alias="useGasless")
+    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "customerRefId", "travelRuleMessage", "autoStaking", "networkStaking", "cpuStaking", "useGasless"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -182,6 +184,7 @@ class TransactionRequest(BaseModel):
             "priorityFee": TransactionRequestPriorityFee.from_dict(obj["priorityFee"]) if obj.get("priorityFee") is not None else None,
             "failOnLowFee": obj.get("failOnLowFee"),
             "maxFee": obj.get("maxFee"),
+            "maxTotalFee": obj.get("maxTotalFee"),
             "gasLimit": TransactionRequestGasLimit.from_dict(obj["gasLimit"]) if obj.get("gasLimit") is not None else None,
             "gasPrice": TransactionRequestGasPrice.from_dict(obj["gasPrice"]) if obj.get("gasPrice") is not None else None,
             "networkFee": TransactionRequestNetworkFee.from_dict(obj["networkFee"]) if obj.get("networkFee") is not None else None,
@@ -191,7 +194,8 @@ class TransactionRequest(BaseModel):
             "travelRuleMessage": TravelRuleCreateTransactionRequest.from_dict(obj["travelRuleMessage"]) if obj.get("travelRuleMessage") is not None else None,
             "autoStaking": obj.get("autoStaking"),
             "networkStaking": TransactionRequestNetworkStaking.from_dict(obj["networkStaking"]) if obj.get("networkStaking") is not None else None,
-            "cpuStaking": TransactionRequestNetworkStaking.from_dict(obj["cpuStaking"]) if obj.get("cpuStaking") is not None else None
+            "cpuStaking": TransactionRequestNetworkStaking.from_dict(obj["cpuStaking"]) if obj.get("cpuStaking") is not None else None,
+            "useGasless": obj.get("useGasless")
         })
         return _obj
 

@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.get_audit_logs_response_dto import GetAuditLogsResponseDTO
+from fireblocks.models.collection_mint_response_dto import CollectionMintResponseDto
 
 
-class TestGetAuditLogsResponseDTO(unittest.TestCase):
-    """GetAuditLogsResponseDTO unit test stubs"""
+class TestCollectionMintResponseDto(unittest.TestCase):
+    """CollectionMintResponseDto unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,29 +27,26 @@ class TestGetAuditLogsResponseDTO(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetAuditLogsResponseDTO:
-        """Test GetAuditLogsResponseDTO
+    def make_instance(self, include_optional) -> CollectionMintResponseDto:
+        """Test CollectionMintResponseDto
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `GetAuditLogsResponseDTO`
+        # uncomment below to create an instance of `CollectionMintResponseDto`
         """
-        model = GetAuditLogsResponseDTO()
+        model = CollectionMintResponseDto()
         if include_optional:
-            return GetAuditLogsResponseDTO(
-                data = [
-                    None
-                    ],
-                total = 1.337,
-                cursor = ''
+            return CollectionMintResponseDto(
+                tx_id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb'
             )
         else:
-            return GetAuditLogsResponseDTO(
+            return CollectionMintResponseDto(
+                tx_id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb',
         )
         """
 
-    def testGetAuditLogsResponseDTO(self):
-        """Test GetAuditLogsResponseDTO"""
+    def testCollectionMintResponseDto(self):
+        """Test CollectionMintResponseDto"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

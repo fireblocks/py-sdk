@@ -28,9 +28,11 @@ class TokenLinkRequestDto(BaseModel):
     TokenLinkRequestDto
     """ # noqa: E501
     type: StrictStr = Field(description="The type of token being linked")
-    ref_id: StrictStr = Field(description="The Fireblocks' token link reference id. For example, 'BQ5R_BDESC_ABC' if it's a fungible       asset", alias="refId")
+    ref_id: Optional[StrictStr] = Field(default=None, description="The Fireblocks' token link reference id. For example, 'BQ5R_BDESC_ABC' if it's a fungible       asset", alias="refId")
     display_name: Optional[StrictStr] = Field(default=None, description="The token display name", alias="displayName")
-    __properties: ClassVar[List[str]] = ["type", "refId", "displayName"]
+    base_asset_id: Optional[StrictStr] = Field(default=None, description="The blockchain base assetId", alias="baseAssetId")
+    contract_address: Optional[StrictStr] = Field(default=None, description="The contract's onchain address", alias="contractAddress")
+    __properties: ClassVar[List[str]] = ["type", "refId", "displayName", "baseAssetId", "contractAddress"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -92,7 +94,9 @@ class TokenLinkRequestDto(BaseModel):
         _obj = cls.model_validate({
             "type": obj.get("type"),
             "refId": obj.get("refId"),
-            "displayName": obj.get("displayName")
+            "displayName": obj.get("displayName"),
+            "baseAssetId": obj.get("baseAssetId"),
+            "contractAddress": obj.get("contractAddress")
         })
         return _obj
 

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **priority_fee** | [**TransactionRequestPriorityFee**](TransactionRequestPriorityFee.md) |  | [optional] 
 **fail_on_low_fee** | **bool** | When set to &#x60;true&#x60;, in case the current &#x60;MEDIUM&#x60; fee level is higher than the one specified in the transaction, the transaction will fail to avoid getting stuck with no confirmations. | [optional] 
 **max_fee** | **str** | The maximum fee (gas price or fee per byte) that should be payed for the transaction.  In case the current value of the requested &#x60;feeLevel&#x60; is higher than this requested maximum fee.  Represented by a numeric string for accurate precision. | [optional] 
+**max_total_fee** | **str** | For BTC-based blockchains only. The maximum fee (in the units of the fee-paying asset) that should be paid for the transaction. | [optional] 
 **gas_limit** | [**TransactionRequestGasLimit**](TransactionRequestGasLimit.md) |  | [optional] 
 **gas_price** | [**TransactionRequestGasPrice**](TransactionRequestGasPrice.md) |  | [optional] 
 **network_fee** | [**TransactionRequestNetworkFee**](TransactionRequestNetworkFee.md) |  | [optional] 
@@ -30,6 +31,7 @@ Name | Type | Description | Notes
 **auto_staking** | **bool** | This feature is no longer supported. | [optional] 
 **network_staking** | [**TransactionRequestNetworkStaking**](TransactionRequestNetworkStaking.md) |  | [optional] 
 **cpu_staking** | [**TransactionRequestNetworkStaking**](TransactionRequestNetworkStaking.md) |  | [optional] 
+**use_gasless** | **bool** | - Override the default gaslsess configuration by sending true\\false | [optional] 
 
 ## Example
 

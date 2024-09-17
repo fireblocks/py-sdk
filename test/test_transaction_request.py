@@ -77,6 +77,7 @@ class TestTransactionRequest(unittest.TestCase):
                 priority_fee = None,
                 fail_on_low_fee = True,
                 max_fee = '120',
+                max_total_fee = '88',
                 gas_limit = None,
                 gas_price = None,
                 network_fee = None,
@@ -86,6 +87,7 @@ class TestTransactionRequest(unittest.TestCase):
                 travel_rule_message = fireblocks.models.travel_rule_create_transaction_request.TravelRuleCreateTransactionRequest(
                     originator_vas_pdid = '', 
                     beneficiary_vas_pdid = '', 
+                    originator_vas_pname = '', 
                     beneficiary_vas_pname = '', 
                     transaction_blockchain_info = null, 
                     originator = null, 
@@ -94,12 +96,18 @@ class TestTransactionRequest(unittest.TestCase):
                     protocol = '', 
                     skip_beneficiary_data_validation = True, 
                     travel_rule_behavior = True, 
+                    originator_ref = '', 
+                    beneficiary_ref = '', 
+                    travel_rule_behavior_ref = '', 
                     originator_proof = null, 
                     beneficiary_proof = null, 
-                    pii = null, ),
+                    beneficiary_did = '', 
+                    originator_did = '', 
+                    is_non_custodial = True, ),
                 auto_staking = True,
                 network_staking = None,
-                cpu_staking = None
+                cpu_staking = None,
+                use_gasless = True
             )
         else:
             return TransactionRequest(

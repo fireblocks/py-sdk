@@ -15,11 +15,13 @@
 
 import unittest
 
-from fireblocks.models.asset_does_not_exist_http_error import AssetDoesNotExistHttpError
+from fireblocks.models.travel_rule_legal_name_identifiers import (
+    TravelRuleLegalNameIdentifiers,
+)
 
 
-class TestAssetDoesNotExistHttpError(unittest.TestCase):
-    """AssetDoesNotExistHttpError unit test stubs"""
+class TestTravelRuleLegalNameIdentifiers(unittest.TestCase):
+    """TravelRuleLegalNameIdentifiers unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,27 +29,26 @@ class TestAssetDoesNotExistHttpError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AssetDoesNotExistHttpError:
-        """Test AssetDoesNotExistHttpError
+    def make_instance(self, include_optional) -> TravelRuleLegalNameIdentifiers:
+        """Test TravelRuleLegalNameIdentifiers
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AssetDoesNotExistHttpError`
+        # uncomment below to create an instance of `TravelRuleLegalNameIdentifiers`
         """
-        model = AssetDoesNotExistHttpError()
+        model = TravelRuleLegalNameIdentifiers()
         if include_optional:
-            return AssetDoesNotExistHttpError(
-                status_code = 404,
-                message = '',
-                error = 'Not Found'
+            return TravelRuleLegalNameIdentifiers(
+                legal_person_name_identifier_type = '',
+                legal_person_name = ''
             )
         else:
-            return AssetDoesNotExistHttpError(
+            return TravelRuleLegalNameIdentifiers(
         )
         """
 
-    def testAssetDoesNotExistHttpError(self):
-        """Test AssetDoesNotExistHttpError"""
+    def testTravelRuleLegalNameIdentifiers(self):
+        """Test TravelRuleLegalNameIdentifiers"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

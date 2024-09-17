@@ -29,7 +29,7 @@ class TravelRuleValidateTransactionRequest(BaseModel):
     TravelRuleValidateTransactionRequest
     """ # noqa: E501
     transaction_asset: StrictStr = Field(description="Transaction asset symbol BTC,ETH)", alias="transactionAsset")
-    destination: StrictStr = Field(description="Transaction destination address")
+    destination: Optional[StrictStr] = Field(default=None, description="Transaction destination address")
     transaction_amount: StrictStr = Field(description="Transaction amount in the transaction asset", alias="transactionAmount")
     originator_vas_pdid: StrictStr = Field(description="This is the identifier assigned to your VASP", alias="originatorVASPdid")
     originator_equals_beneficiary: StrictBool = Field(description="\"True\" if the originator and beneficiary is the same person and you therefore do not need to collect any information. \"False\" if it is a third-party transfer.", alias="originatorEqualsBeneficiary")

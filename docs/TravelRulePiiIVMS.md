@@ -5,15 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**full_name** | **str** |  | [optional] 
-**date_of_birth** | **str** |  | [optional] 
-**place_of_birth** | **str** |  | [optional] 
-**address** | **str** |  | [optional] 
-**identification_number** | **str** |  | [optional] 
-**nationality** | **str** |  | [optional] 
-**country_of_residence** | **str** |  | [optional] 
-**tax_identification_number** | **str** |  | [optional] 
-**customer_number** | **str** |  | [optional] 
+**originator_persons** | [**List[TravelRulePersons]**](TravelRulePersons.md) |  | [optional] 
+**beneficiary_persons** | [**List[TravelRulePersons]**](TravelRulePersons.md) |  | [optional] 
+**account_number** | **List[str]** |  | [optional] 
 
 ## Example
 

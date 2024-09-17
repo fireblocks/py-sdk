@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **transaction_asset** | **str** | Transaction asset symbol BTC,ETH) | 
-**destination** | **str** | Transaction destination address | 
+**destination** | **str** | Transaction destination address | [optional] 
 **transaction_amount** | **str** | Transaction amount in the transaction asset | 
 **originator_vas_pdid** | **str** | This is the identifier assigned to your VASP | 
 **originator_equals_beneficiary** | **bool** | \&quot;True\&quot; if the originator and beneficiary is the same person and you therefore do not need to collect any information. \&quot;False\&quot; if it is a third-party transfer. | 

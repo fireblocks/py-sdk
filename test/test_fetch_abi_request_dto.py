@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.get_audit_logs_response_dto import GetAuditLogsResponseDTO
+from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
 
 
-class TestGetAuditLogsResponseDTO(unittest.TestCase):
-    """GetAuditLogsResponseDTO unit test stubs"""
+class TestFetchAbiRequestDto(unittest.TestCase):
+    """FetchAbiRequestDto unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,29 +27,28 @@ class TestGetAuditLogsResponseDTO(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetAuditLogsResponseDTO:
-        """Test GetAuditLogsResponseDTO
+    def make_instance(self, include_optional) -> FetchAbiRequestDto:
+        """Test FetchAbiRequestDto
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `GetAuditLogsResponseDTO`
+        # uncomment below to create an instance of `FetchAbiRequestDto`
         """
-        model = GetAuditLogsResponseDTO()
+        model = FetchAbiRequestDto()
         if include_optional:
-            return GetAuditLogsResponseDTO(
-                data = [
-                    None
-                    ],
-                total = 1.337,
-                cursor = ''
+            return FetchAbiRequestDto(
+                base_asset_id = 'ETH',
+                contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66'
             )
         else:
-            return GetAuditLogsResponseDTO(
+            return FetchAbiRequestDto(
+                base_asset_id = 'ETH',
+                contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66',
         )
         """
 
-    def testGetAuditLogsResponseDTO(self):
-        """Test GetAuditLogsResponseDTO"""
+    def testFetchAbiRequestDto(self):
+        """Test FetchAbiRequestDto"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

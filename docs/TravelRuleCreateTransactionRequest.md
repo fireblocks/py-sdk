@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **originator_vas_pdid** | **str** | The VASP ID of the transaction originator | [optional] 
 **beneficiary_vas_pdid** | **str** | The VASP ID of the transaction beneficiary | [optional] 
+**originator_vas_pname** | **str** |  | [optional] 
 **beneficiary_vas_pname** | **str** | The name of the VASP acting as the beneficiary | [optional] 
 **transaction_blockchain_info** | [**TravelRuleTransactionBlockchainInfo**](TravelRuleTransactionBlockchainInfo.md) | Information about the blockchain transaction | [optional] 
 **originator** | [**TravelRulePiiIVMS**](TravelRulePiiIVMS.md) | Information about the originator of the transaction | 
@@ -15,9 +16,14 @@ Name | Type | Description | Notes
 **protocol** | **str** | The protocol used to perform the travel rule | [optional] 
 **skip_beneficiary_data_validation** | **bool** | Whether to skip validation of beneficiary data | [optional] 
 **travel_rule_behavior** | **bool** | Whether to check if the transaction is a TRAVEL_RULE in the beneficiary VASP&#39;s jurisdiction | [optional] 
+**originator_ref** | **str** |  | [optional] 
+**beneficiary_ref** | **str** |  | [optional] 
+**travel_rule_behavior_ref** | **str** |  | [optional] 
 **originator_proof** | [**TravelRuleOwnershipProof**](TravelRuleOwnershipProof.md) | Ownership proof related to the originator of the transaction | [optional] 
 **beneficiary_proof** | [**TravelRuleOwnershipProof**](TravelRuleOwnershipProof.md) | Ownership proof related to the beneficiary of the transaction | [optional] 
-**pii** | [**TravelRulePiiIVMS**](TravelRulePiiIVMS.md) | Personal identifiable information related to the transaction | [optional] 
+**beneficiary_did** | **str** |  | [optional] 
+**originator_did** | **str** |  | [optional] 
+**is_non_custodial** | **bool** |  | [optional] 
 
 ## Example
 

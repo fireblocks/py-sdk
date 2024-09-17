@@ -53,25 +53,25 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                     origin = '', 
                     destination = '', ),
                 originator = fireblocks.models.travel_rule_pii_ivms.TravelRulePiiIVMS(
-                    full_name = '', 
-                    date_of_birth = '', 
-                    place_of_birth = '', 
-                    address = '', 
-                    identification_number = '', 
-                    nationality = '', 
-                    country_of_residence = '', 
-                    tax_identification_number = '', 
-                    customer_number = '', ),
+                    originator_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    beneficiary_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    account_number = [
+                        ''
+                        ], ),
                 beneficiary = fireblocks.models.travel_rule_pii_ivms.TravelRulePiiIVMS(
-                    full_name = '', 
-                    date_of_birth = '', 
-                    place_of_birth = '', 
-                    address = '', 
-                    identification_number = '', 
-                    nationality = '', 
-                    country_of_residence = '', 
-                    tax_identification_number = '', 
-                    customer_number = '', ),
+                    originator_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    beneficiary_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    account_number = [
+                        ''
+                        ], ),
                 encrypted = '',
                 protocol = '',
                 notification_email = '',
@@ -82,40 +82,30 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                     proof = '123456789', ),
                 beneficiary_proof = fireblocks.models.travel_rule_ownership_proof.TravelRuleOwnershipProof(
                     type = 'passport', 
-                    proof = '123456789', ),
-                pii = fireblocks.models.travel_rule_pii_ivms.TravelRulePiiIVMS(
-                    full_name = '', 
-                    date_of_birth = '', 
-                    place_of_birth = '', 
-                    address = '', 
-                    identification_number = '', 
-                    nationality = '', 
-                    country_of_residence = '', 
-                    tax_identification_number = '', 
-                    customer_number = '', )
+                    proof = '123456789', )
             )
         else:
             return TravelRuleValidateFullTransactionRequest(
                 originator = fireblocks.models.travel_rule_pii_ivms.TravelRulePiiIVMS(
-                    full_name = '', 
-                    date_of_birth = '', 
-                    place_of_birth = '', 
-                    address = '', 
-                    identification_number = '', 
-                    nationality = '', 
-                    country_of_residence = '', 
-                    tax_identification_number = '', 
-                    customer_number = '', ),
+                    originator_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    beneficiary_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    account_number = [
+                        ''
+                        ], ),
                 beneficiary = fireblocks.models.travel_rule_pii_ivms.TravelRulePiiIVMS(
-                    full_name = '', 
-                    date_of_birth = '', 
-                    place_of_birth = '', 
-                    address = '', 
-                    identification_number = '', 
-                    nationality = '', 
-                    country_of_residence = '', 
-                    tax_identification_number = '', 
-                    customer_number = '', ),
+                    originator_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    beneficiary_persons = [
+                        fireblocks.models.travel_rule_persons.TravelRulePersons()
+                        ], 
+                    account_number = [
+                        ''
+                        ], ),
         )
         """
 

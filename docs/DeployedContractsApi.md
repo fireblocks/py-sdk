@@ -4,10 +4,168 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_contract_abi**](DeployedContractsApi.md#add_contract_abi) | **POST** /tokenization/contracts/abi | Save contract ABI
+[**fetch_contract_abi**](DeployedContractsApi.md#fetch_contract_abi) | **POST** /tokenization/contracts/fetch_abi | Fetch the contract ABI
 [**get_deployed_contract_by_address**](DeployedContractsApi.md#get_deployed_contract_by_address) | **GET** /tokenization/contracts/{assetId}/{contractAddress} | Return deployed contract data
 [**get_deployed_contract_by_id**](DeployedContractsApi.md#get_deployed_contract_by_id) | **GET** /tokenization/contracts/{id} | Return deployed contract data by id
 [**get_deployed_contracts**](DeployedContractsApi.md#get_deployed_contracts) | **GET** /tokenization/contracts | List deployed contracts data
 
+
+# **add_contract_abi**
+> ContractWithAbiDto add_contract_abi(add_abi_request_dto, idempotency_key=idempotency_key)
+
+Save contract ABI
+
+Save contract ABI for the tenant
+
+### Example
+
+
+```python
+from fireblocks.models.add_abi_request_dto import AddAbiRequestDto
+from fireblocks.models.contract_with_abi_dto import ContractWithAbiDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    add_abi_request_dto = fireblocks.AddAbiRequestDto() # AddAbiRequestDto | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Save contract ABI
+        api_response = fireblocks.deployed_contracts.add_contract_abi(add_abi_request_dto, idempotency_key=idempotency_key).result()
+        print("The response of DeployedContractsApi->add_contract_abi:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DeployedContractsApi->add_contract_abi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **add_abi_request_dto** | [**AddAbiRequestDto**](AddAbiRequestDto.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ContractWithAbiDto**](ContractWithAbiDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Contract ABI created (or updated) for the tenant |  -  |
+**409** | Contract ABI already exists. |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fetch_contract_abi**
+> ContractWithAbiDto fetch_contract_abi(fetch_abi_request_dto, idempotency_key=idempotency_key)
+
+Fetch the contract ABI
+
+Fetch the ABI. If not found fetch the ABI from the block explorer
+
+### Example
+
+
+```python
+from fireblocks.models.contract_with_abi_dto import ContractWithAbiDto
+from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    fetch_abi_request_dto = fireblocks.FetchAbiRequestDto() # FetchAbiRequestDto | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Fetch the contract ABI
+        api_response = fireblocks.deployed_contracts.fetch_contract_abi(fetch_abi_request_dto, idempotency_key=idempotency_key).result()
+        print("The response of DeployedContractsApi->fetch_contract_abi:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DeployedContractsApi->fetch_contract_abi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fetch_abi_request_dto** | [**FetchAbiRequestDto**](FetchAbiRequestDto.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ContractWithAbiDto**](ContractWithAbiDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Contract ABI found. |  -  |
+**404** | Contract ABI not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_deployed_contract_by_address**
 > DeployedContractResponseDto get_deployed_contract_by_address(contract_address, asset_id)

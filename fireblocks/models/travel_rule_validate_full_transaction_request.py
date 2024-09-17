@@ -47,8 +47,7 @@ class TravelRuleValidateFullTransactionRequest(BaseModel):
     travel_rule_behavior: Optional[StrictBool] = Field(default=None, description="Whether to check if the transaction is a TRAVEL_RULE in the beneficiary VASP's jurisdiction", alias="travelRuleBehavior")
     originator_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, description="Ownership proof related to the originator of the transaction", alias="originatorProof")
     beneficiary_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, description="Ownership proof related to the beneficiary of the transaction", alias="beneficiaryProof")
-    pii: Optional[TravelRulePiiIVMS] = Field(default=None, description="Personal identifiable information related to the transaction")
-    __properties: ClassVar[List[str]] = ["transactionAsset", "transactionAmount", "originatorDid", "beneficiaryDid", "originatorVASPdid", "beneficiaryVASPdid", "beneficiaryVASPname", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "notificationEmail", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorProof", "beneficiaryProof", "pii"]
+    __properties: ClassVar[List[str]] = ["transactionAsset", "transactionAmount", "originatorDid", "beneficiaryDid", "originatorVASPdid", "beneficiaryVASPdid", "beneficiaryVASPname", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "notificationEmail", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorProof", "beneficiaryProof"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,9 +103,6 @@ class TravelRuleValidateFullTransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of beneficiary_proof
         if self.beneficiary_proof:
             _dict['beneficiaryProof'] = self.beneficiary_proof.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pii
-        if self.pii:
-            _dict['pii'] = self.pii.to_dict()
         return _dict
 
     @classmethod
@@ -135,8 +131,7 @@ class TravelRuleValidateFullTransactionRequest(BaseModel):
             "skipBeneficiaryDataValidation": obj.get("skipBeneficiaryDataValidation"),
             "travelRuleBehavior": obj.get("travelRuleBehavior"),
             "originatorProof": TravelRuleOwnershipProof.from_dict(obj["originatorProof"]) if obj.get("originatorProof") is not None else None,
-            "beneficiaryProof": TravelRuleOwnershipProof.from_dict(obj["beneficiaryProof"]) if obj.get("beneficiaryProof") is not None else None,
-            "pii": TravelRulePiiIVMS.from_dict(obj["pii"]) if obj.get("pii") is not None else None
+            "beneficiaryProof": TravelRuleOwnershipProof.from_dict(obj["beneficiaryProof"]) if obj.get("beneficiaryProof") is not None else None
         })
         return _obj
 

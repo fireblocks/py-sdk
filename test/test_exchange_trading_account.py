@@ -45,7 +45,8 @@ class TestExchangeTradingAccount(unittest.TestCase):
                         balance = '', 
                         locked_amount = '', 
                         total = '', 
-                        available = '', )
+                        available = '', 
+                        credit = '', )
                     ]
             )
         else:

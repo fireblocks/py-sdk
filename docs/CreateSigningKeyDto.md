@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **signing_device_key_id** | **str** | The ID, name or label of the key specified on the customer&#39;s signing device. | 
 **signed_cert_pem** | **str** | The signed certificate that includes the public key PEM of the signing key, signed by a validation key. | 
 **agent_user_id** | **str** | Id of user to which this key belongs | 
+**proof_of_ownership** | [**CreateSigningKeyDtoProofOfOwnership**](CreateSigningKeyDtoProofOfOwnership.md) |  | [optional] 
 
 ## Example
 

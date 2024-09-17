@@ -49,7 +49,8 @@ class TestExchangeAccountsPaged(unittest.TestCase):
                                 balance = '', 
                                 locked_amount = '', 
                                 total = '', 
-                                available = '', )
+                                available = '', 
+                                credit = '', )
                             ], 
                         success = True, 
                         trading_accounts = [

@@ -27,6 +27,20 @@ class TestDeployedContractsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_add_contract_abi(self) -> None:
+        """Test case for add_contract_abi
+
+        Save contract ABI
+        """
+        pass
+
+    def test_fetch_contract_abi(self) -> None:
+        """Test case for fetch_contract_abi
+
+        Fetch the contract ABI
+        """
+        pass
+
     def test_get_deployed_contract_by_address(self) -> None:
         """Test case for get_deployed_contract_by_address
 

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +31,19 @@ class CreateVaultAccountRequest(BaseModel):
     hidden_on_ui: Optional[StrictBool] = Field(default=None, description="Optional - if true, the created account and all related transactions will not be shown on Fireblocks console", alias="hiddenOnUI")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="Optional - Sets a customer reference ID", alias="customerRefId")
     auto_fuel: Optional[StrictBool] = Field(default=None, description="Optional - Sets the autoFuel property of the vault account", alias="autoFuel")
-    __properties: ClassVar[List[str]] = ["name", "hiddenOnUI", "customerRefId", "autoFuel"]
+    vault_type: Optional[StrictStr] = Field(default='MPC', description="Type of vault account. The default type will be set to MPC.<br/>  If the workspace does not support the selected type, it will return an error.", alias="vaultType")
+    auto_assign: Optional[StrictBool] = Field(default=False, description="Applicable only when the vault account type is KEY_LINK. For MPC, this parameter will be ignored.<br/> If set to true and there are available keys, random keys will be assigned to the newly created vault account.<br/> If set to true and there are no available keys to be assigned, it will return an error.<br/> If set to false, the vault account will be created without any keys.", alias="autoAssign")
+    __properties: ClassVar[List[str]] = ["name", "hiddenOnUI", "customerRefId", "autoFuel", "vaultType", "autoAssign"]
+
+    @field_validator('vault_type')
+    def vault_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MPC', 'KEY_LINK']):
+            raise ValueError("must be one of enum values ('MPC', 'KEY_LINK')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +99,9 @@ class CreateVaultAccountRequest(BaseModel):
             "name": obj.get("name"),
             "hiddenOnUI": obj.get("hiddenOnUI"),
             "customerRefId": obj.get("customerRefId"),
-            "autoFuel": obj.get("autoFuel")
+            "autoFuel": obj.get("autoFuel"),
+            "vaultType": obj.get("vaultType") if obj.get("vaultType") is not None else 'MPC',
+            "autoAssign": obj.get("autoAssign") if obj.get("autoAssign") is not None else False
         })
         return _obj
 

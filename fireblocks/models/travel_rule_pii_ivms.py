@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.travel_rule_persons import TravelRulePersons
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,16 +28,10 @@ class TravelRulePiiIVMS(BaseModel):
     """
     TravelRulePiiIVMS
     """ # noqa: E501
-    full_name: Optional[StrictStr] = Field(default=None, alias="fullName")
-    date_of_birth: Optional[StrictStr] = Field(default=None, alias="dateOfBirth")
-    place_of_birth: Optional[StrictStr] = Field(default=None, alias="placeOfBirth")
-    address: Optional[StrictStr] = None
-    identification_number: Optional[StrictStr] = Field(default=None, alias="identificationNumber")
-    nationality: Optional[StrictStr] = None
-    country_of_residence: Optional[StrictStr] = Field(default=None, alias="countryOfResidence")
-    tax_identification_number: Optional[StrictStr] = Field(default=None, alias="taxIdentificationNumber")
-    customer_number: Optional[StrictStr] = Field(default=None, alias="customerNumber")
-    __properties: ClassVar[List[str]] = ["fullName", "dateOfBirth", "placeOfBirth", "address", "identificationNumber", "nationality", "countryOfResidence", "taxIdentificationNumber", "customerNumber"]
+    originator_persons: Optional[List[TravelRulePersons]] = Field(default=None, alias="originatorPersons")
+    beneficiary_persons: Optional[List[TravelRulePersons]] = Field(default=None, alias="beneficiaryPersons")
+    account_number: Optional[List[StrictStr]] = Field(default=None, alias="accountNumber")
+    __properties: ClassVar[List[str]] = ["originatorPersons", "beneficiaryPersons", "accountNumber"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +72,20 @@ class TravelRulePiiIVMS(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in originator_persons (list)
+        _items = []
+        if self.originator_persons:
+            for _item in self.originator_persons:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['originatorPersons'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in beneficiary_persons (list)
+        _items = []
+        if self.beneficiary_persons:
+            for _item in self.beneficiary_persons:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['beneficiaryPersons'] = _items
         return _dict
 
     @classmethod
@@ -89,15 +98,9 @@ class TravelRulePiiIVMS(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "fullName": obj.get("fullName"),
-            "dateOfBirth": obj.get("dateOfBirth"),
-            "placeOfBirth": obj.get("placeOfBirth"),
-            "address": obj.get("address"),
-            "identificationNumber": obj.get("identificationNumber"),
-            "nationality": obj.get("nationality"),
-            "countryOfResidence": obj.get("countryOfResidence"),
-            "taxIdentificationNumber": obj.get("taxIdentificationNumber"),
-            "customerNumber": obj.get("customerNumber")
+            "originatorPersons": [TravelRulePersons.from_dict(_item) for _item in obj["originatorPersons"]] if obj.get("originatorPersons") is not None else None,
+            "beneficiaryPersons": [TravelRulePersons.from_dict(_item) for _item in obj["beneficiaryPersons"]] if obj.get("beneficiaryPersons") is not None else None,
+            "accountNumber": obj.get("accountNumber")
         })
         return _obj
 

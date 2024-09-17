@@ -37,15 +37,15 @@ class TestTravelRulePiiIVMS(unittest.TestCase):
         model = TravelRulePiiIVMS()
         if include_optional:
             return TravelRulePiiIVMS(
-                full_name = '',
-                date_of_birth = '',
-                place_of_birth = '',
-                address = '',
-                identification_number = '',
-                nationality = '',
-                country_of_residence = '',
-                tax_identification_number = '',
-                customer_number = ''
+                originator_persons = [
+                    fireblocks.models.travel_rule_persons.TravelRulePersons()
+                    ],
+                beneficiary_persons = [
+                    fireblocks.models.travel_rule_persons.TravelRulePersons()
+                    ],
+                account_number = [
+                    ''
+                    ]
             )
         else:
             return TravelRulePiiIVMS(

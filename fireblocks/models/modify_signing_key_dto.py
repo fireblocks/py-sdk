@@ -28,7 +28,7 @@ class ModifySigningKeyDto(BaseModel):
     """
     ModifySigningKeyDto
     """ # noqa: E501
-    vault_account_id: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(alias="vaultAccountId")
+    vault_account_id: Union[Annotated[float, Field(strict=True, ge=0)], Annotated[int, Field(strict=True, ge=0)]] = Field(alias="vaultAccountId")
     __properties: ClassVar[List[str]] = ["vaultAccountId"]
 
     model_config = ConfigDict(

@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from fireblocks.models.create_signing_key_dto_proof_of_ownership import CreateSigningKeyDtoProofOfOwnership
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +32,8 @@ class CreateSigningKeyDto(BaseModel):
     signing_device_key_id: Annotated[str, Field(strict=True, max_length=256)] = Field(description="The ID, name or label of the key specified on the customer's signing device.", alias="signingDeviceKeyId")
     signed_cert_pem: StrictStr = Field(description="The signed certificate that includes the public key PEM of the signing key, signed by a validation key.", alias="signedCertPem")
     agent_user_id: Annotated[str, Field(min_length=36, strict=True, max_length=36)] = Field(description="Id of user to which this key belongs", alias="agentUserId")
-    __properties: ClassVar[List[str]] = ["signingDeviceKeyId", "signedCertPem", "agentUserId"]
+    proof_of_ownership: Optional[CreateSigningKeyDtoProofOfOwnership] = Field(default=None, alias="proofOfOwnership")
+    __properties: ClassVar[List[str]] = ["signingDeviceKeyId", "signedCertPem", "agentUserId", "proofOfOwnership"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,9 @@ class CreateSigningKeyDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of proof_of_ownership
+        if self.proof_of_ownership:
+            _dict['proofOfOwnership'] = self.proof_of_ownership.to_dict()
         return _dict
 
     @classmethod
@@ -86,7 +91,8 @@ class CreateSigningKeyDto(BaseModel):
         _obj = cls.model_validate({
             "signingDeviceKeyId": obj.get("signingDeviceKeyId"),
             "signedCertPem": obj.get("signedCertPem"),
-            "agentUserId": obj.get("agentUserId")
+            "agentUserId": obj.get("agentUserId"),
+            "proofOfOwnership": CreateSigningKeyDtoProofOfOwnership.from_dict(obj["proofOfOwnership"]) if obj.get("proofOfOwnership") is not None else None
         })
         return _obj
 

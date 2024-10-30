@@ -318,7 +318,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_deployed_contracts**
-> DeployedContractsPaginatedResponse get_deployed_contracts(page_cursor=page_cursor, page_size=page_size, contract_address=contract_address, asset_id=asset_id, template_id=template_id)
+> DeployedContractsPaginatedResponse get_deployed_contracts(page_cursor=page_cursor, page_size=page_size, contract_address=contract_address, base_asset_id=base_asset_id, template_id=template_id)
 
 List deployed contracts data
 
@@ -352,12 +352,12 @@ with Fireblocks(configuration) as fireblocks:
     page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
     page_size = 10 # float | Number of items per page, requesting more then max will return max items (optional)
     contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66' # str | The contract's onchain address (optional)
-    asset_id = 'asset_id_example' # str |  (optional)
+    base_asset_id = 'base_asset_id_example' # str |  (optional)
     template_id = 'template_id_example' # str |  (optional)
 
     try:
         # List deployed contracts data
-        api_response = fireblocks.deployed_contracts.get_deployed_contracts(page_cursor=page_cursor, page_size=page_size, contract_address=contract_address, asset_id=asset_id, template_id=template_id).result()
+        api_response = fireblocks.deployed_contracts.get_deployed_contracts(page_cursor=page_cursor, page_size=page_size, contract_address=contract_address, base_asset_id=base_asset_id, template_id=template_id).result()
         print("The response of DeployedContractsApi->get_deployed_contracts:\n")
         pprint(api_response)
     except Exception as e:
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
  **page_cursor** | **str**| Page cursor to get the next page | [optional] 
  **page_size** | **float**| Number of items per page, requesting more then max will return max items | [optional] 
  **contract_address** | **str**| The contract&#39;s onchain address | [optional] 
- **asset_id** | **str**|  | [optional] 
+ **base_asset_id** | **str**|  | [optional] 
  **template_id** | **str**|  | [optional] 
 
 ### Return type

@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
+from fireblocks.models.smart_transfer_approve_term import SmartTransferApproveTerm
 from fireblocks.models.smart_transfer_create_ticket import SmartTransferCreateTicket
 from fireblocks.models.smart_transfer_create_ticket_term import SmartTransferCreateTicketTerm
 from fireblocks.models.smart_transfer_fund_term import SmartTransferFundTerm
@@ -29,6 +30,7 @@ from fireblocks.models.smart_transfer_manually_fund_term import SmartTransferMan
 from fireblocks.models.smart_transfer_set_ticket_expiration import SmartTransferSetTicketExpiration
 from fireblocks.models.smart_transfer_set_ticket_external_id import SmartTransferSetTicketExternalId
 from fireblocks.models.smart_transfer_set_user_groups import SmartTransferSetUserGroups
+from fireblocks.models.smart_transfer_statistic import SmartTransferStatistic
 from fireblocks.models.smart_transfer_submit_ticket import SmartTransferSubmitTicket
 from fireblocks.models.smart_transfer_ticket_filtered_response import SmartTransferTicketFilteredResponse
 from fireblocks.models.smart_transfer_ticket_response import SmartTransferTicketResponse
@@ -53,6 +55,169 @@ class SmartTransferApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def approve_dv_p_ticket_term(
+        self,
+        ticket_id: StrictStr,
+        term_id: StrictStr,
+        smart_transfer_approve_term: SmartTransferApproveTerm,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SmartTransferTicketTermResponse]]:
+        """Define funding source and give approve to contract to transfer asset
+
+        Set funding source for ticket term and creating approving transaction for contract to transfer asset
+
+        :param ticket_id: (required)
+        :type ticket_id: str
+        :param term_id: (required)
+        :type term_id: str
+        :param smart_transfer_approve_term: (required)
+        :type smart_transfer_approve_term: SmartTransferApproveTerm
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="approve_dv_p_ticket_term", param_name="ticket_id", param_value=ticket_id)
+        validate_not_empty_string(function_name="approve_dv_p_ticket_term", param_name="term_id", param_value=term_id)
+
+        _param = self._approve_dv_p_ticket_term_serialize(
+            ticket_id=ticket_id,
+            term_id=term_id,
+            smart_transfer_approve_term=smart_transfer_approve_term,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "SmartTransferTicketTermResponse",
+            '403': "SmartTransferForbiddenResponse",
+            '404': "SmartTransferNotFoundResponse",
+            '422': "SmartTransferBadRequestResponse",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _approve_dv_p_ticket_term_serialize(
+        self,
+        ticket_id,
+        term_id,
+        smart_transfer_approve_term,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if ticket_id is not None:
+            _path_params['ticketId'] = ticket_id
+        if term_id is not None:
+            _path_params['termId'] = term_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if smart_transfer_approve_term is not None:
+            _body_params = smart_transfer_approve_term
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/smart_transfers/{ticketId}/terms/{termId}/dvp/approve',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -888,6 +1053,141 @@ class SmartTransferApi:
 
 
     @validate_call
+    def fund_dvp_ticket(
+        self,
+        ticket_id: StrictStr,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
+        """Fund dvp ticket
+
+        Create or fulfill dvp ticket order
+
+        :param ticket_id: (required)
+        :type ticket_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="fund_dvp_ticket", param_name="ticket_id", param_value=ticket_id)
+
+        _param = self._fund_dvp_ticket_serialize(
+            ticket_id=ticket_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SmartTransferTicketResponse",
+            '403': "SmartTransferForbiddenResponse",
+            '404': "SmartTransferNotFoundResponse",
+            '422': "SmartTransferBadRequestResponse",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _fund_dvp_ticket_serialize(
+        self,
+        ticket_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if ticket_id is not None:
+            _path_params['ticketId'] = ticket_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/smart_transfers/{ticketId}/dvp/fund',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def fund_ticket_term(
         self,
         ticket_id: StrictStr,
@@ -1035,6 +1335,125 @@ class SmartTransferApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/smart-transfers/{ticketId}/terms/{termId}/fund',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_smart_transfer_statistic(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SmartTransferStatistic]]:
+        """Get smart transfers statistic
+
+        Get smart transfer statistic
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_smart_transfer_statistic_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SmartTransferStatistic",
+            '403': "SmartTransferForbiddenResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_smart_transfer_statistic_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/smart_transfers/statistic',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1476,7 +1895,7 @@ class SmartTransferApi:
         created_by_me: Annotated[Optional[StrictBool], Field(description="Filter created tickets by created by self or by others. Optional")] = None,
         expires_after: Annotated[Optional[datetime], Field(description="Lower bound of search range. Optional")] = None,
         expires_before: Annotated[Optional[datetime], Field(description="Upper bound of search range. Optional")] = None,
-        type: Annotated[Optional[StrictStr], Field(description="Type of transfer. ASYNC executes transfers as they are funded, ATOMIC executes all terms (legs) as one atomic transfer")] = None,
+        type: Annotated[Optional[StrictStr], Field(description="Type of transfer. ASYNC executes transfers as they are funded, DVP executes all terms (legs) as one dvp transfer")] = None,
         external_ref_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=64)]], Field(description="External ref. ID that workspace can use to identify ticket outside of Fireblocks system.")] = None,
         after: Annotated[Optional[StrictStr], Field(description="ID of the record after which to fetch $limit records")] = None,
         limit: Annotated[Optional[Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]]], Field(description="Number of records to fetch. By default, it is 100")] = None,
@@ -1509,7 +1928,7 @@ class SmartTransferApi:
         :type expires_after: datetime
         :param expires_before: Upper bound of search range. Optional
         :type expires_before: datetime
-        :param type: Type of transfer. ASYNC executes transfers as they are funded, ATOMIC executes all terms (legs) as one atomic transfer
+        :param type: Type of transfer. ASYNC executes transfers as they are funded, DVP executes all terms (legs) as one dvp transfer
         :type type: str
         :param external_ref_id: External ref. ID that workspace can use to identify ticket outside of Fireblocks system.
         :type external_ref_id: str

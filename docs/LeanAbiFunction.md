@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The function name | [optional] 
 **inputs** | [**List[ParameterWithValue]**](ParameterWithValue.md) | The function inputs | 
+**outputs** | [**List[ParameterWithValue]**](ParameterWithValue.md) | The function outputs | [optional] 
+**state_mutability** | **str** | The state mutability of the function (e.g., view, pure, nonpayable, payable) | [optional] 
 
 ## Example
 

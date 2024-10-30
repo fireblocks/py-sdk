@@ -311,6 +311,8 @@ docs/ReadAbiFunction.md
 docs/ReadCallFunctionDto.md
 docs/RedeemFundsToLinkedDDAResponse.md
 docs/RegisterNewAssetRequest.md
+docs/RelatedRequestDto.md
+docs/RelatedRequestStatusType.md
 docs/RelatedTransactionDto.md
 docs/RemoveCollateralRequestBody.md
 docs/RenameCosigner.md
@@ -359,7 +361,9 @@ docs/SignedMessage.md
 docs/SignedMessageSignature.md
 docs/SigningKeyDto.md
 docs/SmartTransferApi.md
+docs/SmartTransferApproveTerm.md
 docs/SmartTransferBadRequestResponse.md
+docs/SmartTransferCoinStatistic.md
 docs/SmartTransferCreateTicket.md
 docs/SmartTransferCreateTicketTerm.md
 docs/SmartTransferForbiddenResponse.md
@@ -369,6 +373,9 @@ docs/SmartTransferNotFoundResponse.md
 docs/SmartTransferSetTicketExpiration.md
 docs/SmartTransferSetTicketExternalId.md
 docs/SmartTransferSetUserGroups.md
+docs/SmartTransferStatistic.md
+docs/SmartTransferStatisticInflow.md
+docs/SmartTransferStatisticOutflow.md
 docs/SmartTransferSubmitTicket.md
 docs/SmartTransferTicket.md
 docs/SmartTransferTicketFilteredResponse.md
@@ -451,6 +458,7 @@ docs/TravelRuleVASP.md
 docs/TravelRuleValidateFullTransactionRequest.md
 docs/TravelRuleValidateTransactionRequest.md
 docs/TravelRuleValidateTransactionResponse.md
+docs/TravelRuleVaspForVault.md
 docs/UnfreezeTransactionResponse.md
 docs/UnmanagedWallet.md
 docs/UnspentInput.md
@@ -828,6 +836,8 @@ fireblocks/models/read_abi_function.py
 fireblocks/models/read_call_function_dto.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
 fireblocks/models/register_new_asset_request.py
+fireblocks/models/related_request_dto.py
+fireblocks/models/related_request_status_type.py
 fireblocks/models/related_transaction_dto.py
 fireblocks/models/remove_collateral_request_body.py
 fireblocks/models/rename_cosigner.py
@@ -874,7 +884,9 @@ fireblocks/models/settlement_response.py
 fireblocks/models/signed_message.py
 fireblocks/models/signed_message_signature.py
 fireblocks/models/signing_key_dto.py
+fireblocks/models/smart_transfer_approve_term.py
 fireblocks/models/smart_transfer_bad_request_response.py
+fireblocks/models/smart_transfer_coin_statistic.py
 fireblocks/models/smart_transfer_create_ticket.py
 fireblocks/models/smart_transfer_create_ticket_term.py
 fireblocks/models/smart_transfer_forbidden_response.py
@@ -884,6 +896,9 @@ fireblocks/models/smart_transfer_not_found_response.py
 fireblocks/models/smart_transfer_set_ticket_expiration.py
 fireblocks/models/smart_transfer_set_ticket_external_id.py
 fireblocks/models/smart_transfer_set_user_groups.py
+fireblocks/models/smart_transfer_statistic.py
+fireblocks/models/smart_transfer_statistic_inflow.py
+fireblocks/models/smart_transfer_statistic_outflow.py
 fireblocks/models/smart_transfer_submit_ticket.py
 fireblocks/models/smart_transfer_ticket.py
 fireblocks/models/smart_transfer_ticket_filtered_response.py
@@ -962,6 +977,7 @@ fireblocks/models/travel_rule_validate_full_transaction_request.py
 fireblocks/models/travel_rule_validate_transaction_request.py
 fireblocks/models/travel_rule_validate_transaction_response.py
 fireblocks/models/travel_rule_vasp.py
+fireblocks/models/travel_rule_vasp_for_vault.py
 fireblocks/models/unfreeze_transaction_response.py
 fireblocks/models/unmanaged_wallet.py
 fireblocks/models/unspent_input.py
@@ -1330,6 +1346,8 @@ test/test_read_abi_function.py
 test/test_read_call_function_dto.py
 test/test_redeem_funds_to_linked_dda_response.py
 test/test_register_new_asset_request.py
+test/test_related_request_dto.py
+test/test_related_request_status_type.py
 test/test_related_transaction_dto.py
 test/test_remove_collateral_request_body.py
 test/test_rename_cosigner.py
@@ -1378,7 +1396,9 @@ test/test_signed_message.py
 test/test_signed_message_signature.py
 test/test_signing_key_dto.py
 test/test_smart_transfer_api.py
+test/test_smart_transfer_approve_term.py
 test/test_smart_transfer_bad_request_response.py
+test/test_smart_transfer_coin_statistic.py
 test/test_smart_transfer_create_ticket.py
 test/test_smart_transfer_create_ticket_term.py
 test/test_smart_transfer_forbidden_response.py
@@ -1388,6 +1408,9 @@ test/test_smart_transfer_not_found_response.py
 test/test_smart_transfer_set_ticket_expiration.py
 test/test_smart_transfer_set_ticket_external_id.py
 test/test_smart_transfer_set_user_groups.py
+test/test_smart_transfer_statistic.py
+test/test_smart_transfer_statistic_inflow.py
+test/test_smart_transfer_statistic_outflow.py
 test/test_smart_transfer_submit_ticket.py
 test/test_smart_transfer_ticket.py
 test/test_smart_transfer_ticket_filtered_response.py
@@ -1470,6 +1493,7 @@ test/test_travel_rule_validate_full_transaction_request.py
 test/test_travel_rule_validate_transaction_request.py
 test/test_travel_rule_validate_transaction_response.py
 test/test_travel_rule_vasp.py
+test/test_travel_rule_vasp_for_vault.py
 test/test_unfreeze_transaction_response.py
 test/test_unmanaged_wallet.py
 test/test_unspent_input.py

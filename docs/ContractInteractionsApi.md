@@ -4,13 +4,13 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_deployed_contract_abi**](ContractInteractionsApi.md#get_deployed_contract_abi) | **GET** /contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions | Return deployed contract&#39;s ABI
-[**read_call_function**](ContractInteractionsApi.md#read_call_function) | **POST** /contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions/read | Call a read function on a deployed contract
-[**write_call_function**](ContractInteractionsApi.md#write_call_function) | **POST** /contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions/write | Call a write function on a deployed contract
+[**get_deployed_contract_abi**](ContractInteractionsApi.md#get_deployed_contract_abi) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions | Return deployed contract&#39;s ABI
+[**read_call_function**](ContractInteractionsApi.md#read_call_function) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/read | Call a read function on a deployed contract
+[**write_call_function**](ContractInteractionsApi.md#write_call_function) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/write | Call a write function on a deployed contract
 
 
 # **get_deployed_contract_abi**
-> ContractAbiResponseDto get_deployed_contract_abi(contract_address, asset_id, idempotency_key=idempotency_key)
+> ContractAbiResponseDto get_deployed_contract_abi(contract_address, base_asset_id, idempotency_key=idempotency_key)
 
 Return deployed contract's ABI
 
@@ -42,12 +42,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66' # str | The contract's onchain address
-    asset_id = 'asset_id_example' # str | 
+    base_asset_id = 'base_asset_id_example' # str | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Return deployed contract's ABI
-        api_response = fireblocks.contract_interactions.get_deployed_contract_abi(contract_address, asset_id, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.contract_interactions.get_deployed_contract_abi(contract_address, base_asset_id, idempotency_key=idempotency_key).result()
         print("The response of ContractInteractionsApi->get_deployed_contract_abi:\n")
         pprint(api_response)
     except Exception as e:
@@ -62,7 +62,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_address** | **str**| The contract&#39;s onchain address | 
- **asset_id** | **str**|  | 
+ **base_asset_id** | **str**|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -88,7 +88,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_call_function**
-> List[ParameterWithValue] read_call_function(contract_address, asset_id, read_call_function_dto, idempotency_key=idempotency_key)
+> List[ParameterWithValue] read_call_function(contract_address, base_asset_id, read_call_function_dto, idempotency_key=idempotency_key)
 
 Call a read function on a deployed contract
 
@@ -121,13 +121,13 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66' # str | The contract's onchain address
-    asset_id = 'asset_id_example' # str | 
+    base_asset_id = 'base_asset_id_example' # str | 
     read_call_function_dto = fireblocks.ReadCallFunctionDto() # ReadCallFunctionDto | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Call a read function on a deployed contract
-        api_response = fireblocks.contract_interactions.read_call_function(contract_address, asset_id, read_call_function_dto, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.contract_interactions.read_call_function(contract_address, base_asset_id, read_call_function_dto, idempotency_key=idempotency_key).result()
         print("The response of ContractInteractionsApi->read_call_function:\n")
         pprint(api_response)
     except Exception as e:
@@ -142,7 +142,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_address** | **str**| The contract&#39;s onchain address | 
- **asset_id** | **str**|  | 
+ **base_asset_id** | **str**|  | 
  **read_call_function_dto** | [**ReadCallFunctionDto**](ReadCallFunctionDto.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -169,7 +169,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **write_call_function**
-> WriteCallFunctionResponseDto write_call_function(contract_address, asset_id, write_call_function_dto, idempotency_key=idempotency_key)
+> WriteCallFunctionResponseDto write_call_function(contract_address, base_asset_id, write_call_function_dto, idempotency_key=idempotency_key)
 
 Call a write function on a deployed contract
 
@@ -202,13 +202,13 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66' # str | The contract's onchain address
-    asset_id = 'asset_id_example' # str | 
+    base_asset_id = 'base_asset_id_example' # str | 
     write_call_function_dto = fireblocks.WriteCallFunctionDto() # WriteCallFunctionDto | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Call a write function on a deployed contract
-        api_response = fireblocks.contract_interactions.write_call_function(contract_address, asset_id, write_call_function_dto, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.contract_interactions.write_call_function(contract_address, base_asset_id, write_call_function_dto, idempotency_key=idempotency_key).result()
         print("The response of ContractInteractionsApi->write_call_function:\n")
         pprint(api_response)
     except Exception as e:
@@ -223,7 +223,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_address** | **str**| The contract&#39;s onchain address | 
- **asset_id** | **str**|  | 
+ **base_asset_id** | **str**|  | 
  **write_call_function_dto** | [**WriteCallFunctionDto**](WriteCallFunctionDto.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 

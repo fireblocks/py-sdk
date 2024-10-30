@@ -40,7 +40,7 @@ class TestCreateTokenRequestDtoCreateParams(unittest.TestCase):
         if include_optional:
             return CreateTokenRequestDtoCreateParams(
                 contract_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d',
-                constructor_params = [{internalType=string, name=name, type=string, value=name}, {internalType=string, name=symbol, type=string, value=symbol}, {components=[{internalType=bool, name=_isMintable, type=bool}], internalType=struct MyStruct, name=customConfigProps, type=tuple, value=[{internalType=bool, name=_isMintable, type=bool, value=false}]}],
+                deploy_function_params = [{internalType=string, name=name, type=string, value=name}, {internalType=string, name=symbol, type=string, value=symbol}, {components=[{internalType=bool, name=_isMintable, type=bool}], internalType=struct MyStruct, name=customConfigProps, type=tuple, value=[{internalType=bool, name=_isMintable, type=bool, value=false}]}],
                 symbol = 'MyUSDT',
                 name = 'My USD Tether',
                 issuer_address = 'rnDV4JiwgRNhudPY2sm65AzECpRXaasL4r'

@@ -18,19 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.parameter_with_value import ParameterWithValue
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EVMTokenCreateParamsDto(BaseModel):
+class SmartTransferCoinStatistic(BaseModel):
     """
-    EVMTokenCreateParamsDto
+    Smart transfer coin statistic
     """ # noqa: E501
-    contract_id: StrictStr = Field(description="The id of the contract template that will be used to create the token", alias="contractId")
-    deploy_function_params: Optional[List[ParameterWithValue]] = Field(default=None, description="The deploy function parameters and values of the contract template", alias="deployFunctionParams")
-    __properties: ClassVar[List[str]] = ["contractId", "deployFunctionParams"]
+    asset: Optional[StrictStr] = None
+    amount: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["asset", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class EVMTokenCreateParamsDto(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EVMTokenCreateParamsDto from a JSON string"""
+        """Create an instance of SmartTransferCoinStatistic from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,18 +70,11 @@ class EVMTokenCreateParamsDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in deploy_function_params (list)
-        _items = []
-        if self.deploy_function_params:
-            for _item in self.deploy_function_params:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['deployFunctionParams'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EVMTokenCreateParamsDto from a dict"""
+        """Create an instance of SmartTransferCoinStatistic from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +82,8 @@ class EVMTokenCreateParamsDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contractId": obj.get("contractId"),
-            "deployFunctionParams": [ParameterWithValue.from_dict(_item) for _item in obj["deployFunctionParams"]] if obj.get("deployFunctionParams") is not None else None
+            "asset": obj.get("asset"),
+            "amount": obj.get("amount")
         })
         return _obj
 

@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "3.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -509,6 +509,8 @@ from fireblocks.models.redeem_funds_to_linked_dda_response import (
     RedeemFundsToLinkedDDAResponse,
 )
 from fireblocks.models.register_new_asset_request import RegisterNewAssetRequest
+from fireblocks.models.related_request_dto import RelatedRequestDto
+from fireblocks.models.related_request_status_type import RelatedRequestStatusType
 from fireblocks.models.related_transaction_dto import RelatedTransactionDto
 from fireblocks.models.remove_collateral_request_body import RemoveCollateralRequestBody
 from fireblocks.models.rename_cosigner import RenameCosigner
@@ -581,9 +583,11 @@ from fireblocks.models.settlement_response import SettlementResponse
 from fireblocks.models.signed_message import SignedMessage
 from fireblocks.models.signed_message_signature import SignedMessageSignature
 from fireblocks.models.signing_key_dto import SigningKeyDto
+from fireblocks.models.smart_transfer_approve_term import SmartTransferApproveTerm
 from fireblocks.models.smart_transfer_bad_request_response import (
     SmartTransferBadRequestResponse,
 )
+from fireblocks.models.smart_transfer_coin_statistic import SmartTransferCoinStatistic
 from fireblocks.models.smart_transfer_create_ticket import SmartTransferCreateTicket
 from fireblocks.models.smart_transfer_create_ticket_term import (
     SmartTransferCreateTicketTerm,
@@ -605,6 +609,13 @@ from fireblocks.models.smart_transfer_set_ticket_external_id import (
     SmartTransferSetTicketExternalId,
 )
 from fireblocks.models.smart_transfer_set_user_groups import SmartTransferSetUserGroups
+from fireblocks.models.smart_transfer_statistic import SmartTransferStatistic
+from fireblocks.models.smart_transfer_statistic_inflow import (
+    SmartTransferStatisticInflow,
+)
+from fireblocks.models.smart_transfer_statistic_outflow import (
+    SmartTransferStatisticOutflow,
+)
 from fireblocks.models.smart_transfer_submit_ticket import SmartTransferSubmitTicket
 from fireblocks.models.smart_transfer_ticket import SmartTransferTicket
 from fireblocks.models.smart_transfer_ticket_filtered_response import (
@@ -739,6 +750,7 @@ from fireblocks.models.travel_rule_validate_transaction_request import (
 from fireblocks.models.travel_rule_validate_transaction_response import (
     TravelRuleValidateTransactionResponse,
 )
+from fireblocks.models.travel_rule_vasp_for_vault import TravelRuleVaspForVault
 from fireblocks.models.unfreeze_transaction_response import UnfreezeTransactionResponse
 from fireblocks.models.unmanaged_wallet import UnmanagedWallet
 from fireblocks.models.unspent_input import UnspentInput

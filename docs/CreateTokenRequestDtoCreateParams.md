@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contract_id** | **str** | The id of the contract template that will be used to create the token | 
-**constructor_params** | **List[List[ParameterWithValue]]** | The constructor parameters and values of the contract template | [optional] 
+**deploy_function_params** | [**List[ParameterWithValue]**](ParameterWithValue.md) | The deploy function parameters and values of the contract template | [optional] 
 **symbol** | **str** | The symbol of the token | 
 **name** | **str** | The name of the token | 
 **issuer_address** | **str** | The address of the issuer of this token. Will be part of the identifier of this token on chain. | 

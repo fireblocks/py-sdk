@@ -18,19 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.parameter_with_value import ParameterWithValue
+from fireblocks.models.related_request_status_type import RelatedRequestStatusType
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EVMTokenCreateParamsDto(BaseModel):
+class RelatedRequestDto(BaseModel):
     """
-    EVMTokenCreateParamsDto
+    RelatedRequestDto
     """ # noqa: E501
-    contract_id: StrictStr = Field(description="The id of the contract template that will be used to create the token", alias="contractId")
-    deploy_function_params: Optional[List[ParameterWithValue]] = Field(default=None, description="The deploy function parameters and values of the contract template", alias="deployFunctionParams")
-    __properties: ClassVar[List[str]] = ["contractId", "deployFunctionParams"]
+    status: RelatedRequestStatusType
+    in_progress: StrictBool = Field(description="Indicates whether there is an ongoing action for this position related to this request", alias="inProgress")
+    amount: StrictStr = Field(description="Amount of tokens to Unstake")
+    tx_id: Optional[StrictStr] = Field(default=None, description="The transaction ID of the ongoing request", alias="txId")
+    __properties: ClassVar[List[str]] = ["status", "inProgress", "amount", "txId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class EVMTokenCreateParamsDto(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EVMTokenCreateParamsDto from a JSON string"""
+        """Create an instance of RelatedRequestDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,18 +73,11 @@ class EVMTokenCreateParamsDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in deploy_function_params (list)
-        _items = []
-        if self.deploy_function_params:
-            for _item in self.deploy_function_params:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['deployFunctionParams'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EVMTokenCreateParamsDto from a dict"""
+        """Create an instance of RelatedRequestDto from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +85,10 @@ class EVMTokenCreateParamsDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contractId": obj.get("contractId"),
-            "deployFunctionParams": [ParameterWithValue.from_dict(_item) for _item in obj["deployFunctionParams"]] if obj.get("deployFunctionParams") is not None else None
+            "status": obj.get("status"),
+            "inProgress": obj.get("inProgress"),
+            "amount": obj.get("amount"),
+            "txId": obj.get("txId")
         })
         return _obj
 

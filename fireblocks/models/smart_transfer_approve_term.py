@@ -23,24 +23,26 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LeanAbiFunction(BaseModel):
+class SmartTransferApproveTerm(BaseModel):
     """
-    LeanAbiFunction
+    SmartTransferApproveTerm
     """ # noqa: E501
-    name: Optional[StrictStr] = Field(default=None, description="The function name")
-    inputs: List[ParameterWithValue] = Field(description="The function inputs")
-    outputs: Optional[List[ParameterWithValue]] = Field(default=None, description="The function outputs")
-    state_mutability: Optional[StrictStr] = Field(default=None, description="The state mutability of the function (e.g., view, pure, nonpayable, payable)", alias="stateMutability")
-    __properties: ClassVar[List[str]] = ["name", "inputs", "outputs", "stateMutability"]
+    asset: StrictStr = Field(description="Asset name")
+    amount: StrictStr = Field(description="Amount")
+    src_id: StrictStr = Field(description="Id of the vault that is used as the source of the asset.", alias="srcId")
+    fee: Optional[StrictStr] = Field(default=None, description="Transaction fee")
+    fee_level: Optional[StrictStr] = Field(default=None, description="Transaction fee level.", alias="feeLevel")
+    note: Optional[StrictStr] = Field(default=None, description="Transaction note")
+    __properties: ClassVar[List[str]] = ["asset", "amount", "srcId", "fee", "feeLevel", "note"]
 
-    @field_validator('state_mutability')
-    def state_mutability_validate_enum(cls, value):
+    @field_validator('fee_level')
+    def fee_level_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['view', 'pure', 'nonpayable', 'payable']):
-            raise ValueError("must be one of enum values ('view', 'pure', 'nonpayable', 'payable')")
+        if value not in set(['LOW', 'MEDIUM', 'HIGH']):
+            raise ValueError("must be one of enum values ('LOW', 'MEDIUM', 'HIGH')")
         return value
 
     model_config = ConfigDict(
@@ -61,7 +63,7 @@ class LeanAbiFunction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LeanAbiFunction from a JSON string"""
+        """Create an instance of SmartTransferApproveTerm from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,25 +84,11 @@ class LeanAbiFunction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in inputs (list)
-        _items = []
-        if self.inputs:
-            for _item in self.inputs:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['inputs'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in outputs (list)
-        _items = []
-        if self.outputs:
-            for _item in self.outputs:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['outputs'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LeanAbiFunction from a dict"""
+        """Create an instance of SmartTransferApproveTerm from a dict"""
         if obj is None:
             return None
 
@@ -108,14 +96,13 @@ class LeanAbiFunction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "inputs": [ParameterWithValue.from_dict(_item) for _item in obj["inputs"]] if obj.get("inputs") is not None else None,
-            "outputs": [ParameterWithValue.from_dict(_item) for _item in obj["outputs"]] if obj.get("outputs") is not None else None,
-            "stateMutability": obj.get("stateMutability")
+            "asset": obj.get("asset"),
+            "amount": obj.get("amount"),
+            "srcId": obj.get("srcId"),
+            "fee": obj.get("fee"),
+            "feeLevel": obj.get("feeLevel"),
+            "note": obj.get("note")
         })
         return _obj
 
-from fireblocks.models.parameter_with_value import ParameterWithValue
-# TODO: Rewrite to not use raise_errors
-LeanAbiFunction.model_rebuild(raise_errors=False)
 

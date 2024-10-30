@@ -27,6 +27,13 @@ class TestTravelRuleBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_get_vasp_for_vault(self) -> None:
+        """Test case for get_vasp_for_vault
+
+        Get assigned VASP to vault
+        """
+        pass
+
     def test_get_vaspby_did(self) -> None:
         """Test case for get_vaspby_did
 
@@ -38,6 +45,13 @@ class TestTravelRuleBetaApi(unittest.TestCase):
         """Test case for get_vasps
 
         Get All VASPs
+        """
+        pass
+
+    def test_set_vasp_for_vault(self) -> None:
+        """Test case for set_vasp_for_vault
+
+        Assign VASP to vault
         """
         pass
 

@@ -4,13 +4,16 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**approve_dv_p_ticket_term**](SmartTransferApi.md#approve_dv_p_ticket_term) | **PUT** /smart_transfers/{ticketId}/terms/{termId}/dvp/approve | Define funding source and give approve to contract to transfer asset
 [**cancel_ticket**](SmartTransferApi.md#cancel_ticket) | **PUT** /smart-transfers/{ticketId}/cancel | Cancel Ticket
 [**create_ticket**](SmartTransferApi.md#create_ticket) | **POST** /smart-transfers | Create Ticket
 [**create_ticket_term**](SmartTransferApi.md#create_ticket_term) | **POST** /smart-transfers/{ticketId}/terms | Create leg (term)
 [**find_ticket_by_id**](SmartTransferApi.md#find_ticket_by_id) | **GET** /smart-transfers/{ticketId} | Search Tickets by ID
 [**find_ticket_term_by_id**](SmartTransferApi.md#find_ticket_term_by_id) | **GET** /smart-transfers/{ticketId}/terms/{termId} | Search ticket by leg (term) ID
 [**fulfill_ticket**](SmartTransferApi.md#fulfill_ticket) | **PUT** /smart-transfers/{ticketId}/fulfill | Fund ticket manually
+[**fund_dvp_ticket**](SmartTransferApi.md#fund_dvp_ticket) | **PUT** /smart_transfers/{ticketId}/dvp/fund | Fund dvp ticket
 [**fund_ticket_term**](SmartTransferApi.md#fund_ticket_term) | **PUT** /smart-transfers/{ticketId}/terms/{termId}/fund | Define funding source
+[**get_smart_transfer_statistic**](SmartTransferApi.md#get_smart_transfer_statistic) | **GET** /smart_transfers/statistic | Get smart transfers statistic
 [**get_smart_transfer_user_groups**](SmartTransferApi.md#get_smart_transfer_user_groups) | **GET** /smart-transfers/settings/user-groups | Get user group
 [**manually_fund_ticket_term**](SmartTransferApi.md#manually_fund_ticket_term) | **PUT** /smart-transfers/{ticketId}/terms/{termId}/manually-fund | Manually add term transaction
 [**remove_ticket_term**](SmartTransferApi.md#remove_ticket_term) | **DELETE** /smart-transfers/{ticketId}/terms/{termId} | Delete ticket leg (term)
@@ -21,6 +24,89 @@ Method | HTTP request | Description
 [**submit_ticket**](SmartTransferApi.md#submit_ticket) | **PUT** /smart-transfers/{ticketId}/submit | Submit ticket
 [**update_ticket_term**](SmartTransferApi.md#update_ticket_term) | **PUT** /smart-transfers/{ticketId}/terms/{termId} | Update ticket leg (term)
 
+
+# **approve_dv_p_ticket_term**
+> SmartTransferTicketTermResponse approve_dv_p_ticket_term(ticket_id, term_id, smart_transfer_approve_term, idempotency_key=idempotency_key)
+
+Define funding source and give approve to contract to transfer asset
+
+Set funding source for ticket term and creating approving transaction for contract to transfer asset
+
+### Example
+
+
+```python
+from fireblocks.models.smart_transfer_approve_term import SmartTransferApproveTerm
+from fireblocks.models.smart_transfer_ticket_term_response import SmartTransferTicketTermResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    ticket_id = 'ticket_id_example' # str | 
+    term_id = 'term_id_example' # str | 
+    smart_transfer_approve_term = fireblocks.SmartTransferApproveTerm() # SmartTransferApproveTerm | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Define funding source and give approve to contract to transfer asset
+        api_response = fireblocks.smart_transfer.approve_dv_p_ticket_term(ticket_id, term_id, smart_transfer_approve_term, idempotency_key=idempotency_key).result()
+        print("The response of SmartTransferApi->approve_dv_p_ticket_term:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SmartTransferApi->approve_dv_p_ticket_term: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ticket_id** | **str**|  | 
+ **term_id** | **str**|  | 
+ **smart_transfer_approve_term** | [**SmartTransferApproveTerm**](SmartTransferApproveTerm.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**SmartTransferTicketTermResponse**](SmartTransferTicketTermResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Creating approval transaction started |  -  |
+**403** | Unauthorized |  -  |
+**404** | Not found |  -  |
+**422** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_ticket**
 > SmartTransferTicketResponse cancel_ticket(ticket_id, idempotency_key=idempotency_key)
@@ -488,6 +574,84 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **fund_dvp_ticket**
+> SmartTransferTicketResponse fund_dvp_ticket(ticket_id, idempotency_key=idempotency_key)
+
+Fund dvp ticket
+
+Create or fulfill dvp ticket order
+
+### Example
+
+
+```python
+from fireblocks.models.smart_transfer_ticket_response import SmartTransferTicketResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    ticket_id = 'ticket_id_example' # str | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Fund dvp ticket
+        api_response = fireblocks.smart_transfer.fund_dvp_ticket(ticket_id, idempotency_key=idempotency_key).result()
+        print("The response of SmartTransferApi->fund_dvp_ticket:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SmartTransferApi->fund_dvp_ticket: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ticket_id** | **str**|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**SmartTransferTicketResponse**](SmartTransferTicketResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully started creating or fulfilling order on dvp Smart Transfer ticket |  -  |
+**403** | Unauthorized |  -  |
+**404** | Not found |  -  |
+**422** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **fund_ticket_term**
 > SmartTransferTicketTermResponse fund_ticket_term(ticket_id, term_id, smart_transfer_fund_term, idempotency_key=idempotency_key)
 
@@ -568,6 +732,77 @@ No authorization required
 **403** | Unauthorized |  -  |
 **404** | Not found |  -  |
 **422** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_smart_transfer_statistic**
+> SmartTransferStatistic get_smart_transfer_statistic()
+
+Get smart transfers statistic
+
+Get smart transfer statistic
+
+### Example
+
+
+```python
+from fireblocks.models.smart_transfer_statistic import SmartTransferStatistic
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get smart transfers statistic
+        api_response = fireblocks.smart_transfer.get_smart_transfer_statistic().result()
+        print("The response of SmartTransferApi->get_smart_transfer_statistic:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SmartTransferApi->get_smart_transfer_statistic: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SmartTransferStatistic**](SmartTransferStatistic.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Smart Transfer ticket statistic returned successfully |  -  |
+**403** | Unauthorized |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -836,7 +1071,7 @@ with Fireblocks(configuration) as fireblocks:
     created_by_me = True # bool | Filter created tickets by created by self or by others. Optional (optional)
     expires_after = '2013-10-20T19:20:30+01:00' # datetime | Lower bound of search range. Optional (optional)
     expires_before = '2013-10-20T19:20:30+01:00' # datetime | Upper bound of search range. Optional (optional)
-    type = 'type_example' # str | Type of transfer. ASYNC executes transfers as they are funded, ATOMIC executes all terms (legs) as one atomic transfer (optional)
+    type = 'type_example' # str | Type of transfer. ASYNC executes transfers as they are funded, DVP executes all terms (legs) as one dvp transfer (optional)
     external_ref_id = 'external_ref_id_example' # str | External ref. ID that workspace can use to identify ticket outside of Fireblocks system. (optional)
     after = 'after_example' # str | ID of the record after which to fetch $limit records (optional)
     limit = 3.4 # float | Number of records to fetch. By default, it is 100 (optional)
@@ -863,7 +1098,7 @@ Name | Type | Description  | Notes
  **created_by_me** | **bool**| Filter created tickets by created by self or by others. Optional | [optional] 
  **expires_after** | **datetime**| Lower bound of search range. Optional | [optional] 
  **expires_before** | **datetime**| Upper bound of search range. Optional | [optional] 
- **type** | **str**| Type of transfer. ASYNC executes transfers as they are funded, ATOMIC executes all terms (legs) as one atomic transfer | [optional] 
+ **type** | **str**| Type of transfer. ASYNC executes transfers as they are funded, DVP executes all terms (legs) as one dvp transfer | [optional] 
  **external_ref_id** | **str**| External ref. ID that workspace can use to identify ticket outside of Fireblocks system. | [optional] 
  **after** | **str**| ID of the record after which to fetch $limit records | [optional] 
  **limit** | **float**| Number of records to fetch. By default, it is 100 | [optional] 

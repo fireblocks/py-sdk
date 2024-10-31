@@ -27,6 +27,13 @@ class TestSmartTransferApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_approve_dv_p_ticket_term(self) -> None:
+        """Test case for approve_dv_p_ticket_term
+
+        Define funding source and give approve to contract to transfer asset
+        """
+        pass
+
     def test_cancel_ticket(self) -> None:
         """Test case for cancel_ticket
 
@@ -69,10 +76,24 @@ class TestSmartTransferApi(unittest.TestCase):
         """
         pass
 
+    def test_fund_dvp_ticket(self) -> None:
+        """Test case for fund_dvp_ticket
+
+        Fund dvp ticket
+        """
+        pass
+
     def test_fund_ticket_term(self) -> None:
         """Test case for fund_ticket_term
 
         Define funding source
+        """
+        pass
+
+    def test_get_smart_transfer_statistic(self) -> None:
+        """Test case for get_smart_transfer_statistic
+
+        Get smart transfers statistic
         """
         pass
 

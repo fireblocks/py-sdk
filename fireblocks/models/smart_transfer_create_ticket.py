@@ -41,8 +41,8 @@ class SmartTransferCreateTicket(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ASYNC']):
-            raise ValueError("must be one of enum values ('ASYNC')")
+        if value not in set(['ASYNC', 'DVP']):
+            raise ValueError("must be one of enum values ('ASYNC', 'DVP')")
         return value
 
     model_config = ConfigDict(

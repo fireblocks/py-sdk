@@ -30,7 +30,7 @@ class SmartTransferTicket(BaseModel):
     Data object with result data
     """ # noqa: E501
     id: StrictStr = Field(description="Unique id of Smart Transfer ticket")
-    type: StrictStr = Field(description="Kind of Smart Transfer. Can be either `ASYNC` or `ATOMIC`")
+    type: StrictStr = Field(description="Kind of Smart Transfer. Can be either `ASYNC` or `DVP`")
     direction: Optional[StrictStr] = Field(default=None, description="Direction of Smart Transfer.")
     status: StrictStr = Field(description="Current status of Smart Transfer ticket")
     terms: Optional[List[Optional[SmartTransferTicketTerm]]] = Field(default=None, description="Ticket terms (legs)")
@@ -54,8 +54,8 @@ class SmartTransferTicket(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ASYNC']):
-            raise ValueError("must be one of enum values ('ASYNC')")
+        if value not in set(['ASYNC', 'DVP']):
+            raise ValueError("must be one of enum values ('ASYNC', 'DVP')")
         return value
 
     @field_validator('direction')

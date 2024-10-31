@@ -73,7 +73,17 @@ class TestParameterWithValue(unittest.TestCase):
                                 ], 
                             value = 'true', 
                             function_value = null, )
-                        ], )
+                        ], 
+                    outputs = [
+                        fireblocks.models.parameter_with_value.ParameterWithValue(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            value = 'true', 
+                            function_value = null, )
+                        ], 
+                    state_mutability = 'nonpayable', )
             )
         else:
             return ParameterWithValue(

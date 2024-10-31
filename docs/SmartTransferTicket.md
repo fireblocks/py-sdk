@@ -7,7 +7,7 @@ Data object with result data
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique id of Smart Transfer ticket | 
-**type** | **str** | Kind of Smart Transfer. Can be either &#x60;ASYNC&#x60; or &#x60;ATOMIC&#x60; | 
+**type** | **str** | Kind of Smart Transfer. Can be either &#x60;ASYNC&#x60; or &#x60;DVP&#x60; | 
 **direction** | **str** | Direction of Smart Transfer. | [optional] 
 **status** | **str** | Current status of Smart Transfer ticket | 
 **terms** | [**List[SmartTransferTicketTerm]**](SmartTransferTicketTerm.md) | Ticket terms (legs) | [optional] 

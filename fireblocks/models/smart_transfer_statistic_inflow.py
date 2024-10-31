@@ -18,30 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.smart_transfer_coin_statistic import SmartTransferCoinStatistic
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LeanAbiFunction(BaseModel):
+class SmartTransferStatisticInflow(BaseModel):
     """
-    LeanAbiFunction
+    Inflow tickets data
     """ # noqa: E501
-    name: Optional[StrictStr] = Field(default=None, description="The function name")
-    inputs: List[ParameterWithValue] = Field(description="The function inputs")
-    outputs: Optional[List[ParameterWithValue]] = Field(default=None, description="The function outputs")
-    state_mutability: Optional[StrictStr] = Field(default=None, description="The state mutability of the function (e.g., view, pure, nonpayable, payable)", alias="stateMutability")
-    __properties: ClassVar[List[str]] = ["name", "inputs", "outputs", "stateMutability"]
-
-    @field_validator('state_mutability')
-    def state_mutability_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['view', 'pure', 'nonpayable', 'payable']):
-            raise ValueError("must be one of enum values ('view', 'pure', 'nonpayable', 'payable')")
-        return value
+    coins: Optional[List[SmartTransferCoinStatistic]] = None
+    ticket_count: Optional[StrictInt] = Field(default=None, alias="ticketCount")
+    __properties: ClassVar[List[str]] = ["coins", "ticketCount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +50,7 @@ class LeanAbiFunction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LeanAbiFunction from a JSON string"""
+        """Create an instance of SmartTransferStatisticInflow from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,25 +71,18 @@ class LeanAbiFunction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in inputs (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in coins (list)
         _items = []
-        if self.inputs:
-            for _item in self.inputs:
+        if self.coins:
+            for _item in self.coins:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['inputs'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in outputs (list)
-        _items = []
-        if self.outputs:
-            for _item in self.outputs:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['outputs'] = _items
+            _dict['coins'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LeanAbiFunction from a dict"""
+        """Create an instance of SmartTransferStatisticInflow from a dict"""
         if obj is None:
             return None
 
@@ -108,14 +90,9 @@ class LeanAbiFunction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "inputs": [ParameterWithValue.from_dict(_item) for _item in obj["inputs"]] if obj.get("inputs") is not None else None,
-            "outputs": [ParameterWithValue.from_dict(_item) for _item in obj["outputs"]] if obj.get("outputs") is not None else None,
-            "stateMutability": obj.get("stateMutability")
+            "coins": [SmartTransferCoinStatistic.from_dict(_item) for _item in obj["coins"]] if obj.get("coins") is not None else None,
+            "ticketCount": obj.get("ticketCount")
         })
         return _obj
 
-from fireblocks.models.parameter_with_value import ParameterWithValue
-# TODO: Rewrite to not use raise_errors
-LeanAbiFunction.model_rebuild(raise_errors=False)
 

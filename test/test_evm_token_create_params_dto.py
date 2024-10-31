@@ -38,7 +38,7 @@ class TestEVMTokenCreateParamsDto(unittest.TestCase):
         if include_optional:
             return EVMTokenCreateParamsDto(
                 contract_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d',
-                constructor_params = [{"internalType":"string","name":"name","type":"string","value":"name"},{"internalType":"string","name":"symbol","type":"string","value":"symbol"},{"components":[{"internalType":"bool","name":"_isMintable","type":"bool"}],"internalType":"struct MyStruct","name":"customConfigProps","type":"tuple","value":[{"internalType":"bool","name":"_isMintable","type":"bool","value":false}]}]
+                deploy_function_params = [{"internalType":"string","name":"name","type":"string","value":"name"},{"internalType":"string","name":"symbol","type":"string","value":"symbol"},{"components":[{"internalType":"bool","name":"_isMintable","type":"bool"}],"internalType":"struct MyStruct","name":"customConfigProps","type":"tuple","value":[{"internalType":"bool","name":"_isMintable","type":"bool","value":false}]}]
             )
         else:
             return EVMTokenCreateParamsDto(

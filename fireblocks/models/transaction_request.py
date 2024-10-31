@@ -65,7 +65,7 @@ class TransactionRequest(BaseModel):
     auto_staking: Optional[StrictBool] = Field(default=None, description="This feature is no longer supported.", alias="autoStaking")
     network_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="networkStaking")
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
-    use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gaslsess configuration by sending true\\false", alias="useGasless")
+    use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gasless configuration by sending true\\false", alias="useGasless")
     __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "customerRefId", "travelRuleMessage", "autoStaking", "networkStaking", "cpuStaking", "useGasless"]
 
     @field_validator('fee_level')

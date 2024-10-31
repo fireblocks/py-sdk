@@ -604,7 +604,7 @@ class DeployedContractsApi:
         page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=100, strict=True, ge=1)], Annotated[int, Field(le=100, strict=True, ge=1)]]], Field(description="Number of items per page, requesting more then max will return max items")] = None,
         contract_address: Annotated[Optional[StrictStr], Field(description="The contract's onchain address")] = None,
-        asset_id: Optional[StrictStr] = None,
+        base_asset_id: Optional[StrictStr] = None,
         template_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -629,8 +629,8 @@ class DeployedContractsApi:
         :type page_size: float
         :param contract_address: The contract's onchain address
         :type contract_address: str
-        :param asset_id:
-        :type asset_id: str
+        :param base_asset_id:
+        :type base_asset_id: str
         :param template_id:
         :type template_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -660,7 +660,7 @@ class DeployedContractsApi:
             page_cursor=page_cursor,
             page_size=page_size,
             contract_address=contract_address,
-            asset_id=asset_id,
+            base_asset_id=base_asset_id,
             template_id=template_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -684,7 +684,7 @@ class DeployedContractsApi:
         page_cursor,
         page_size,
         contract_address,
-        asset_id,
+        base_asset_id,
         template_id,
         _request_auth,
         _content_type,
@@ -718,9 +718,9 @@ class DeployedContractsApi:
             
             _query_params.append(('contractAddress', contract_address))
             
-        if asset_id is not None:
+        if base_asset_id is not None:
             
-            _query_params.append(('assetId', asset_id))
+            _query_params.append(('baseAssetId', base_asset_id))
             
         if template_id is not None:
             

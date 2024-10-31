@@ -4,12 +4,88 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_vasp_for_vault**](TravelRuleBetaApi.md#get_vasp_for_vault) | **GET** /screening/travel_rule/vault/{vaultAccountId}/vasp | Get assigned VASP to vault
 [**get_vaspby_did**](TravelRuleBetaApi.md#get_vaspby_did) | **GET** /screening/travel_rule/vasp/{did} | Get VASP details
 [**get_vasps**](TravelRuleBetaApi.md#get_vasps) | **GET** /screening/travel_rule/vasp | Get All VASPs
+[**set_vasp_for_vault**](TravelRuleBetaApi.md#set_vasp_for_vault) | **POST** /screening/travel_rule/vault/{vaultAccountId}/vasp | Assign VASP to vault
 [**update_vasp**](TravelRuleBetaApi.md#update_vasp) | **PUT** /screening/travel_rule/vasp/update | Add jsonDidKey to VASP details
 [**validate_full_travel_rule_transaction**](TravelRuleBetaApi.md#validate_full_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
 [**validate_travel_rule_transaction**](TravelRuleBetaApi.md#validate_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate | Validate Travel Rule Transaction
 
+
+# **get_vasp_for_vault**
+> TravelRuleVaspForVault get_vasp_for_vault(vault_account_id)
+
+Get assigned VASP to vault
+
+Get assigned VASP Did for a specific vault. Returns empty string vaspDid value in response if none assigned.
+
+### Example
+
+
+```python
+from fireblocks.models.travel_rule_vasp_for_vault import TravelRuleVaspForVault
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = '1' # str | The ID of the vault account
+
+    try:
+        # Get assigned VASP to vault
+        api_response = fireblocks.travel_rule_beta.get_vasp_for_vault(vault_account_id).result()
+        print("The response of TravelRuleBetaApi->get_vasp_for_vault:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TravelRuleBetaApi->get_vasp_for_vault: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+
+### Return type
+
+[**TravelRuleVaspForVault**](TravelRuleVaspForVault.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_vaspby_did**
 > TravelRuleVASP get_vaspby_did(did, fields=fields)
@@ -164,6 +240,84 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get all VASPs |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_vasp_for_vault**
+> TravelRuleVaspForVault set_vasp_for_vault(vault_account_id, travel_rule_vasp_for_vault, idempotency_key=idempotency_key)
+
+Assign VASP to vault
+
+Sets the VASP Did for a specific vault. Pass empty string to remove existing one.
+
+### Example
+
+
+```python
+from fireblocks.models.travel_rule_vasp_for_vault import TravelRuleVaspForVault
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+    travel_rule_vasp_for_vault = fireblocks.TravelRuleVaspForVault() # TravelRuleVaspForVault | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Assign VASP to vault
+        api_response = fireblocks.travel_rule_beta.set_vasp_for_vault(vault_account_id, travel_rule_vasp_for_vault, idempotency_key=idempotency_key).result()
+        print("The response of TravelRuleBetaApi->set_vasp_for_vault:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TravelRuleBetaApi->set_vasp_for_vault: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+ **travel_rule_vasp_for_vault** | [**TravelRuleVaspForVault**](TravelRuleVaspForVault.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**TravelRuleVaspForVault**](TravelRuleVaspForVault.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

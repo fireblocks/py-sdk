@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **auto_staking** | **bool** | This feature is no longer supported. | [optional] 
 **network_staking** | [**TransactionRequestNetworkStaking**](TransactionRequestNetworkStaking.md) |  | [optional] 
 **cpu_staking** | [**TransactionRequestNetworkStaking**](TransactionRequestNetworkStaking.md) |  | [optional] 
-**use_gasless** | **bool** | - Override the default gaslsess configuration by sending true\\false | [optional] 
+**use_gasless** | **bool** | - Override the default gasless configuration by sending true\\false | [optional] 
 
 ## Example
 

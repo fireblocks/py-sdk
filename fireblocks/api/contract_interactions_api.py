@@ -50,7 +50,7 @@ class ContractInteractionsApi:
     def get_deployed_contract_abi(
         self,
         contract_address: Annotated[StrictStr, Field(description="The contract's onchain address")],
-        asset_id: StrictStr,
+        base_asset_id: StrictStr,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -71,8 +71,8 @@ class ContractInteractionsApi:
 
         :param contract_address: The contract's onchain address (required)
         :type contract_address: str
-        :param asset_id: (required)
-        :type asset_id: str
+        :param base_asset_id: (required)
+        :type base_asset_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -98,11 +98,11 @@ class ContractInteractionsApi:
         """ # noqa: E501
 
         validate_not_empty_string(function_name="get_deployed_contract_abi", param_name="contract_address", param_value=contract_address)
-        validate_not_empty_string(function_name="get_deployed_contract_abi", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="get_deployed_contract_abi", param_name="base_asset_id", param_value=base_asset_id)
 
         _param = self._get_deployed_contract_abi_serialize(
             contract_address=contract_address,
-            asset_id=asset_id,
+            base_asset_id=base_asset_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -124,7 +124,7 @@ class ContractInteractionsApi:
     def _get_deployed_contract_abi_serialize(
         self,
         contract_address,
-        asset_id,
+        base_asset_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -147,8 +147,8 @@ class ContractInteractionsApi:
         # process the path parameters
         if contract_address is not None:
             _path_params['contractAddress'] = contract_address
-        if asset_id is not None:
-            _path_params['assetId'] = asset_id
+        if base_asset_id is not None:
+            _path_params['baseAssetId'] = base_asset_id
         # process the query parameters
         # process the header parameters
         if idempotency_key is not None:
@@ -171,7 +171,7 @@ class ContractInteractionsApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions',
+            resource_path='/contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -191,7 +191,7 @@ class ContractInteractionsApi:
     def read_call_function(
         self,
         contract_address: Annotated[StrictStr, Field(description="The contract's onchain address")],
-        asset_id: StrictStr,
+        base_asset_id: StrictStr,
         read_call_function_dto: ReadCallFunctionDto,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
@@ -213,8 +213,8 @@ class ContractInteractionsApi:
 
         :param contract_address: The contract's onchain address (required)
         :type contract_address: str
-        :param asset_id: (required)
-        :type asset_id: str
+        :param base_asset_id: (required)
+        :type base_asset_id: str
         :param read_call_function_dto: (required)
         :type read_call_function_dto: ReadCallFunctionDto
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
@@ -242,11 +242,11 @@ class ContractInteractionsApi:
         """ # noqa: E501
 
         validate_not_empty_string(function_name="read_call_function", param_name="contract_address", param_value=contract_address)
-        validate_not_empty_string(function_name="read_call_function", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="read_call_function", param_name="base_asset_id", param_value=base_asset_id)
 
         _param = self._read_call_function_serialize(
             contract_address=contract_address,
-            asset_id=asset_id,
+            base_asset_id=base_asset_id,
             read_call_function_dto=read_call_function_dto,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
@@ -269,7 +269,7 @@ class ContractInteractionsApi:
     def _read_call_function_serialize(
         self,
         contract_address,
-        asset_id,
+        base_asset_id,
         read_call_function_dto,
         idempotency_key,
         _request_auth,
@@ -293,8 +293,8 @@ class ContractInteractionsApi:
         # process the path parameters
         if contract_address is not None:
             _path_params['contractAddress'] = contract_address
-        if asset_id is not None:
-            _path_params['assetId'] = asset_id
+        if base_asset_id is not None:
+            _path_params['baseAssetId'] = base_asset_id
         # process the query parameters
         # process the header parameters
         if idempotency_key is not None:
@@ -332,7 +332,7 @@ class ContractInteractionsApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions/read',
+            resource_path='/contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/read',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -352,7 +352,7 @@ class ContractInteractionsApi:
     def write_call_function(
         self,
         contract_address: Annotated[StrictStr, Field(description="The contract's onchain address")],
-        asset_id: StrictStr,
+        base_asset_id: StrictStr,
         write_call_function_dto: WriteCallFunctionDto,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
@@ -374,8 +374,8 @@ class ContractInteractionsApi:
 
         :param contract_address: The contract's onchain address (required)
         :type contract_address: str
-        :param asset_id: (required)
-        :type asset_id: str
+        :param base_asset_id: (required)
+        :type base_asset_id: str
         :param write_call_function_dto: (required)
         :type write_call_function_dto: WriteCallFunctionDto
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
@@ -403,11 +403,11 @@ class ContractInteractionsApi:
         """ # noqa: E501
 
         validate_not_empty_string(function_name="write_call_function", param_name="contract_address", param_value=contract_address)
-        validate_not_empty_string(function_name="write_call_function", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="write_call_function", param_name="base_asset_id", param_value=base_asset_id)
 
         _param = self._write_call_function_serialize(
             contract_address=contract_address,
-            asset_id=asset_id,
+            base_asset_id=base_asset_id,
             write_call_function_dto=write_call_function_dto,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
@@ -430,7 +430,7 @@ class ContractInteractionsApi:
     def _write_call_function_serialize(
         self,
         contract_address,
-        asset_id,
+        base_asset_id,
         write_call_function_dto,
         idempotency_key,
         _request_auth,
@@ -454,8 +454,8 @@ class ContractInteractionsApi:
         # process the path parameters
         if contract_address is not None:
             _path_params['contractAddress'] = contract_address
-        if asset_id is not None:
-            _path_params['assetId'] = asset_id
+        if base_asset_id is not None:
+            _path_params['baseAssetId'] = base_asset_id
         # process the query parameters
         # process the header parameters
         if idempotency_key is not None:
@@ -493,7 +493,7 @@ class ContractInteractionsApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/contract_interactions/base_asset_id/{assetId}/contract_address/{contractAddress}/functions/write',
+            resource_path='/contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/write',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

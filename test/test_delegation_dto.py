@@ -45,6 +45,7 @@ class TestDelegationDto(unittest.TestCase):
                 amount = '0.05',
                 rewards_amount = '0.000856038',
                 date_created = '2023-07-13T15:55:34.256Z',
+                date_updated = '2023-07-13T15:55:34.256Z',
                 status = 'active',
                 related_transactions = [{"txId":"b70601f4-d7b1-4795-a8ee-b09cdb4r850d","completed":true},{"txId":"c80601f4-d7b1-4795-a8ee-b09cdb5b450c","completed":false}],
                 validator_address = 'FwR3PbjS5iyqzLiLugrBqKSa5EKZ4vK9SKs7eQXtT59f',
@@ -53,7 +54,8 @@ class TestDelegationDto(unittest.TestCase):
                 in_progress = True,
                 in_progress_tx_id = 'c80601f4-d7b1-4795-a8ee-b09cdb5b450c',
                 blockchain_position_info = fireblocks.models.solana_blockchain_data_dto.SolanaBlockchainDataDto(
-                    stake_account_address = '3Ru67FyzMTcdENmmRL4Eve4dtPd6AdpuypR21q5EQCdq', )
+                    stake_account_address = '3Ru67FyzMTcdENmmRL4Eve4dtPd6AdpuypR21q5EQCdq', ),
+                related_requests = [{"status":"deactivating","inProgress":false,"amount":"0.05","txId":"c80601f4-d7b1-4795-a8ee-b09cdb5b450c"}]
             )
         else:
             return DelegationDto(

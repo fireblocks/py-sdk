@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**RelatedRequestStatusType**](RelatedRequestStatusType.md) |  | 
+**status** | **str** | The status of the request | 
 **in_progress** | **bool** | Indicates whether there is an ongoing action for this position related to this request | 
 **amount** | **str** | Amount of tokens to Unstake | 
 **tx_id** | **str** | The transaction ID of the ongoing request | [optional] 

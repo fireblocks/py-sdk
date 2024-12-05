@@ -45,6 +45,7 @@ class TestSmartTransferTicketTermResponse(unittest.TestCase):
                     ticket_id = '900f04c3-83bc-428d-b681-aef682059637', 
                     asset = 'BTC', 
                     amount = '133.789161216184', 
+                    dvp_src_dst_vault_id = '1', 
                     amount_usd = '1333.789161216184', 
                     from_network_id = '947c6115-1f5f-4fb4-9fd6-a1f9dee14670', 
                     from_network_id_name = 'Source network profile name', 

@@ -33,6 +33,8 @@ class SmartTransferTicket(BaseModel):
     type: StrictStr = Field(description="Kind of Smart Transfer. Can be either `ASYNC` or `DVP`")
     direction: Optional[StrictStr] = Field(default=None, description="Direction of Smart Transfer.")
     status: StrictStr = Field(description="Current status of Smart Transfer ticket")
+    dvp_execution_status: Optional[StrictStr] = Field(default=None, description="Current status of DVP execution", alias="dvpExecutionStatus")
+    order_created_by_network_id: Optional[StrictStr] = Field(default=None, description="ID of network profile that created order", alias="orderCreatedByNetworkId")
     terms: Optional[List[Optional[SmartTransferTicketTerm]]] = Field(default=None, description="Ticket terms (legs)")
     expires_in: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Number of hours for expiration.This data is valid only it ticket not in DRAFT state and it will be used to calculate expiresAt value", alias="expiresIn")
     expires_at: Optional[datetime] = Field(default=None, description="Date and time at which the ticket will expire if no funding is performed.", alias="expiresAt")
@@ -49,7 +51,7 @@ class SmartTransferTicket(BaseModel):
     updated_at: datetime = Field(description="Date and time of last ticket update.", alias="updatedAt")
     canceled_by_me: Optional[StrictBool] = Field(default=None, alias="canceledByMe")
     created_by_me: Optional[StrictBool] = Field(default=None, alias="createdByMe")
-    __properties: ClassVar[List[str]] = ["id", "type", "direction", "status", "terms", "expiresIn", "expiresAt", "submittedAt", "expiredAt", "canceledAt", "fulfilledAt", "externalRefId", "note", "createdByNetworkId", "createdByNetworkIdName", "canceledByNetworkIdName", "createdAt", "updatedAt", "canceledByMe", "createdByMe"]
+    __properties: ClassVar[List[str]] = ["id", "type", "direction", "status", "dvpExecutionStatus", "orderCreatedByNetworkId", "terms", "expiresIn", "expiresAt", "submittedAt", "expiredAt", "canceledAt", "fulfilledAt", "externalRefId", "note", "createdByNetworkId", "createdByNetworkIdName", "canceledByNetworkIdName", "createdAt", "updatedAt", "canceledByMe", "createdByMe"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -73,6 +75,16 @@ class SmartTransferTicket(BaseModel):
         """Validates the enum"""
         if value not in set(['DRAFT', 'PENDING_APPROVAL', 'OPEN', 'IN_SETTLEMENT', 'FULFILLED', 'EXPIRED', 'CANCELED']):
             raise ValueError("must be one of enum values ('DRAFT', 'PENDING_APPROVAL', 'OPEN', 'IN_SETTLEMENT', 'FULFILLED', 'EXPIRED', 'CANCELED')")
+        return value
+
+    @field_validator('dvp_execution_status')
+    def dvp_execution_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['STARTED', 'CREATING_ORDER', 'ORDER_CREATED', 'FULFILLING', 'FULFILLING_ORDER_FAILED', 'CREATING_ORDER_FAILED', 'FULFILLED']):
+            raise ValueError("must be one of enum values ('STARTED', 'CREATING_ORDER', 'ORDER_CREATED', 'FULFILLING', 'FULFILLING_ORDER_FAILED', 'CREATING_ORDER_FAILED', 'FULFILLED')")
         return value
 
     model_config = ConfigDict(
@@ -137,6 +149,8 @@ class SmartTransferTicket(BaseModel):
             "type": obj.get("type"),
             "direction": obj.get("direction"),
             "status": obj.get("status"),
+            "dvpExecutionStatus": obj.get("dvpExecutionStatus"),
+            "orderCreatedByNetworkId": obj.get("orderCreatedByNetworkId"),
             "terms": [SmartTransferTicketTerm.from_dict(_item) for _item in obj["terms"]] if obj.get("terms") is not None else None,
             "expiresIn": obj.get("expiresIn"),
             "expiresAt": obj.get("expiresAt"),

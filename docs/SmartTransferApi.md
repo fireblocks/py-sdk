@@ -575,7 +575,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fund_dvp_ticket**
-> SmartTransferTicketResponse fund_dvp_ticket(ticket_id, idempotency_key=idempotency_key)
+> SmartTransferTicketResponse fund_dvp_ticket(ticket_id, smart_transfer_fund_dvp_ticket, idempotency_key=idempotency_key)
 
 Fund dvp ticket
 
@@ -585,6 +585,7 @@ Create or fulfill dvp ticket order
 
 
 ```python
+from fireblocks.models.smart_transfer_fund_dvp_ticket import SmartTransferFundDvpTicket
 from fireblocks.models.smart_transfer_ticket_response import SmartTransferTicketResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
@@ -607,11 +608,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     ticket_id = 'ticket_id_example' # str | 
+    smart_transfer_fund_dvp_ticket = fireblocks.SmartTransferFundDvpTicket() # SmartTransferFundDvpTicket | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Fund dvp ticket
-        api_response = fireblocks.smart_transfer.fund_dvp_ticket(ticket_id, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.smart_transfer.fund_dvp_ticket(ticket_id, smart_transfer_fund_dvp_ticket, idempotency_key=idempotency_key).result()
         print("The response of SmartTransferApi->fund_dvp_ticket:\n")
         pprint(api_response)
     except Exception as e:
@@ -626,6 +628,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ticket_id** | **str**|  | 
+ **smart_transfer_fund_dvp_ticket** | [**SmartTransferFundDvpTicket**](SmartTransferFundDvpTicket.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -638,7 +641,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

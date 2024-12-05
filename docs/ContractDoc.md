@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **events** | **str** | A description of the contract&#x60;s events | [optional] 
 **kind** | **str** | Is it devdoc or userdoc | 
 **methods** | [**Dict[str, FunctionDoc]**](FunctionDoc.md) | The description of the contract functions | 
-**version** | **str** | The version of the contract | 
+**version** | **float** | The version of the contract | 
 
 ## Example
 

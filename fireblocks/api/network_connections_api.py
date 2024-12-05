@@ -18,8 +18,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
-from typing import List, Optional
+from pydantic import Field, StrictBool, StrictStr
+from typing import List, Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
 from fireblocks.models.delete_network_connection_response import DeleteNetworkConnectionResponse
@@ -27,6 +27,7 @@ from fireblocks.models.delete_network_id_response import DeleteNetworkIdResponse
 from fireblocks.models.network_connection import NetworkConnection
 from fireblocks.models.network_connection_response import NetworkConnectionResponse
 from fireblocks.models.network_id_response import NetworkIdResponse
+from fireblocks.models.search_network_ids_response import SearchNetworkIdsResponse
 from fireblocks.models.set_network_id_discoverability_request import SetNetworkIdDiscoverabilityRequest
 from fireblocks.models.set_network_id_name_request import SetNetworkIdNameRequest
 from fireblocks.models.set_network_id_response import SetNetworkIdResponse
@@ -1116,7 +1117,7 @@ class NetworkConnectionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[List[NetworkIdResponse]]]:
-        """Returns all network IDs, both local IDs and discoverable remote IDs
+        """(Deprecated) Returns all network IDs, both local IDs and discoverable remote IDs
 
         Retrieves a list of all local and discoverable remote network IDs.  **Note:** This API call is subject to Flexible Routing Schemes.  Your routing policy defines how your transactions are routed. You can choose 1 of the 3 different schemes mentioned below for each asset type:   - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.   - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.   - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as \"Profile Routing\"  Default Workspace Presets:   - Network Profile Crypto → **Custom**   - Network Profile FIAT → **None**   - Network Connection Crypto → **Default**   - Network Connection FIAT → **Default**      - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`). 
 
@@ -1141,6 +1142,7 @@ class NetworkConnectionsApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /network_ids is deprecated.", DeprecationWarning)
 
 
         _param = self._get_network_ids_serialize(
@@ -1321,6 +1323,169 @@ class NetworkConnectionsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/network_ids/routing_policy_asset_groups',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def search_network_ids(
+        self,
+        search: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Search string - displayName networkId. Optional")] = None,
+        exclude_self: Annotated[Optional[StrictBool], Field(description="Exclude your networkIds. Optional, default false")] = None,
+        exclude_connected: Annotated[Optional[StrictBool], Field(description="Exclude connected networkIds. Optional, default false")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="ID of the record after which to fetch $limit records")] = None,
+        page_size: Annotated[Optional[Union[Annotated[float, Field(le=50, strict=True, ge=1)], Annotated[int, Field(le=50, strict=True, ge=1)]]], Field(description="Number of records to fetch. By default, it is 50")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SearchNetworkIdsResponse]]:
+        """Search network IDs, both local IDs and discoverable remote IDs
+
+        Retrieves a list of all local and discoverable remote network IDs. Can be filtered.  **Note:** This API call is subject to Flexible Routing Schemes.  Your routing policy defines how your transactions are routed. You can choose 1 of the 3 different schemes mentioned below for each asset type:   - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.   - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.   - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as \"Profile Routing\"  Default Workspace Presets:   - Network Profile Crypto → **Custom**   - Network Profile FIAT → **None**   - Network Connection Crypto → **Default**   - Network Connection FIAT → **Default**      - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`). 
+
+        :param search: Search string - displayName networkId. Optional
+        :type search: str
+        :param exclude_self: Exclude your networkIds. Optional, default false
+        :type exclude_self: bool
+        :param exclude_connected: Exclude connected networkIds. Optional, default false
+        :type exclude_connected: bool
+        :param page_cursor: ID of the record after which to fetch $limit records
+        :type page_cursor: str
+        :param page_size: Number of records to fetch. By default, it is 50
+        :type page_size: float
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._search_network_ids_serialize(
+            search=search,
+            exclude_self=exclude_self,
+            exclude_connected=exclude_connected,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SearchNetworkIdsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _search_network_ids_serialize(
+        self,
+        search,
+        exclude_self,
+        exclude_connected,
+        page_cursor,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if search is not None:
+            
+            _query_params.append(('search', search))
+            
+        if exclude_self is not None:
+            
+            _query_params.append(('excludeSelf', exclude_self))
+            
+        if exclude_connected is not None:
+            
+            _query_params.append(('excludeConnected', exclude_connected))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/network_ids/search',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -41,7 +41,10 @@ class TestCreateTokenRequestDto(unittest.TestCase):
                 asset_id = 'ETH_TEST5',
                 vault_account_id = '0',
                 create_params = None,
-                display_name = ''
+                display_name = '',
+                use_gasless = False,
+                fee = '2000',
+                fee_level = 'MEDIUM'
             )
         else:
             return CreateTokenRequestDto(

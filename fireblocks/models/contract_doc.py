@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.function_doc import FunctionDoc
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,7 +32,7 @@ class ContractDoc(BaseModel):
     events: Optional[StrictStr] = Field(default=None, description="A description of the contract`s events")
     kind: StrictStr = Field(description="Is it devdoc or userdoc")
     methods: Dict[str, FunctionDoc] = Field(description="The description of the contract functions")
-    version: StrictStr = Field(description="The version of the contract")
+    version: Union[StrictFloat, StrictInt] = Field(description="The version of the contract")
     __properties: ClassVar[List[str]] = ["details", "events", "kind", "methods", "version"]
 
     model_config = ConfigDict(

@@ -31,7 +31,7 @@ class AbiFunction(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="The name of the contract function as it appears in the ABI")
     state_mutability: Optional[StrictStr] = Field(default=None, description="The state mutability of the contract function as it appears in the ABI", alias="stateMutability")
     type: StrictStr = Field(description="The type of the function")
-    inputs: List[Parameter] = Field(description="The parameters that this function/constructor posses")
+    inputs: Optional[List[Parameter]] = Field(default=None, description="The parameters that this function/constructor posses")
     outputs: Optional[List[Parameter]] = Field(default=None, description="The parameters that this 'read' function returns")
     description: Optional[StrictStr] = Field(default=None, description="The documentation of this function (if has any)")
     __properties: ClassVar[List[str]] = ["name", "stateMutability", "type", "inputs", "outputs", "description"]

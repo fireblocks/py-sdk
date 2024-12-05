@@ -39,7 +39,10 @@ class TestContractDeployRequest(unittest.TestCase):
             return ContractDeployRequest(
                 asset_id = 'ETH_TEST5',
                 vault_account_id = '0',
-                constructor_parameters = [{"internalType":"string","name":"name_","type":"string","value":"TokenName"},{"internalType":"string","name":"symbol_","type":"string","value":"TokenSymbol"}]
+                constructor_parameters = [{"internalType":"string","name":"name_","type":"string","value":"TokenName"},{"internalType":"string","name":"symbol_","type":"string","value":"TokenSymbol"}],
+                use_gasless = False,
+                fee = '2000',
+                fee_level = 'MEDIUM'
             )
         else:
             return ContractDeployRequest(

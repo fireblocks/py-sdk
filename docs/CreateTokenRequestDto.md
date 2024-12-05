@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **vault_account_id** | **str** | The id of the vault account that initiated the request to issue the token | 
 **create_params** | [**CreateTokenRequestDtoCreateParams**](CreateTokenRequestDtoCreateParams.md) |  | 
 **display_name** | **str** |  | [optional] 
+**use_gasless** | **bool** | Indicates whether the token should be created in a gasless manner, utilizing the ERC-2771 standard. When set to true, the transaction will be relayed by a designated relayer. The workspace must be configured to use Fireblocks gasless relay. | [optional] 
+**fee** | **str** | Max fee amount for the write function transaction. interchangeable with the &#39;feeLevel&#39; field | [optional] 
+**fee_level** | **str** | Fee level for the write function transaction. interchangeable with the &#39;fee&#39; field | [optional] 
 
 ## Example
 

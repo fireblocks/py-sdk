@@ -363,7 +363,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_screening_configuration**
-> ScreeningUpdateConfigurationsRequest update_screening_configuration(idempotency_key=idempotency_key)
+> ScreeningUpdateConfigurations update_screening_configuration(screening_update_configurations, idempotency_key=idempotency_key)
 
 Tenant - Screening Configuration
 
@@ -373,7 +373,7 @@ Update tenant screening configuration.
 
 
 ```python
-from fireblocks.models.screening_update_configurations_request import ScreeningUpdateConfigurationsRequest
+from fireblocks.models.screening_update_configurations import ScreeningUpdateConfigurations
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -394,11 +394,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
+    screening_update_configurations = fireblocks.ScreeningUpdateConfigurations() # ScreeningUpdateConfigurations | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Tenant - Screening Configuration
-        api_response = fireblocks.compliance.update_screening_configuration(idempotency_key=idempotency_key).result()
+        api_response = fireblocks.compliance.update_screening_configuration(screening_update_configurations, idempotency_key=idempotency_key).result()
         print("The response of ComplianceApi->update_screening_configuration:\n")
         pprint(api_response)
     except Exception as e:
@@ -412,11 +413,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **screening_update_configurations** | [**ScreeningUpdateConfigurations**](ScreeningUpdateConfigurations.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**ScreeningUpdateConfigurationsRequest**](ScreeningUpdateConfigurationsRequest.md)
+[**ScreeningUpdateConfigurations**](ScreeningUpdateConfigurations.md)
 
 ### Authorization
 
@@ -424,7 +426,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

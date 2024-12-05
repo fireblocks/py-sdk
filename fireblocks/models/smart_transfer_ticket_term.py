@@ -32,6 +32,7 @@ class SmartTransferTicketTerm(BaseModel):
     ticket_id: StrictStr = Field(description="Unique id of Smart Transfer ticket", alias="ticketId")
     asset: StrictStr = Field(description="Asset name")
     amount: StrictStr = Field(description="Amount")
+    dvp_src_dst_vault_id: Optional[StrictStr] = Field(default=None, description="Identifier of the source and destination vault for DVP execution", alias="dvpSrcDstVaultId")
     amount_usd: Optional[StrictStr] = Field(default=None, description="Amount USD", alias="amountUsd")
     from_network_id: StrictStr = Field(description="Identifier of the origination Network Profile", alias="fromNetworkId")
     from_network_id_name: StrictStr = Field(description="Source network name", alias="fromNetworkIdName")
@@ -43,7 +44,7 @@ class SmartTransferTicketTerm(BaseModel):
     status: StrictStr = Field(description="Ticket term status")
     created_at: datetime = Field(description="Date and time when the term is created.", alias="createdAt")
     updated_at: datetime = Field(description="Date and time of last term update.", alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "ticketId", "asset", "amount", "amountUsd", "fromNetworkId", "fromNetworkIdName", "toNetworkId", "toNetworkIdName", "txHash", "fbTxId", "txStatus", "status", "createdAt", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["id", "ticketId", "asset", "amount", "dvpSrcDstVaultId", "amountUsd", "fromNetworkId", "fromNetworkIdName", "toNetworkId", "toNetworkIdName", "txHash", "fbTxId", "txStatus", "status", "createdAt", "updatedAt"]
 
     @field_validator('tx_status')
     def tx_status_validate_enum(cls, value):
@@ -132,6 +133,7 @@ class SmartTransferTicketTerm(BaseModel):
             "ticketId": obj.get("ticketId"),
             "asset": obj.get("asset"),
             "amount": obj.get("amount"),
+            "dvpSrcDstVaultId": obj.get("dvpSrcDstVaultId"),
             "amountUsd": obj.get("amountUsd"),
             "fromNetworkId": obj.get("fromNetworkId"),
             "fromNetworkIdName": obj.get("fromNetworkIdName"),

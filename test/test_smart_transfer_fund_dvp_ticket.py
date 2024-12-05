@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.unstake_request_dto import UnstakeRequestDto
+from fireblocks.models.smart_transfer_fund_dvp_ticket import SmartTransferFundDvpTicket
 
 
-class TestUnstakeRequestDto(unittest.TestCase):
-    """UnstakeRequestDto unit test stubs"""
+class TestSmartTransferFundDvpTicket(unittest.TestCase):
+    """SmartTransferFundDvpTicket unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,27 @@ class TestUnstakeRequestDto(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> UnstakeRequestDto:
-        """Test UnstakeRequestDto
+    def make_instance(self, include_optional) -> SmartTransferFundDvpTicket:
+        """Test SmartTransferFundDvpTicket
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `UnstakeRequestDto`
+        # uncomment below to create an instance of `SmartTransferFundDvpTicket`
         """
-        model = UnstakeRequestDto()
+        model = SmartTransferFundDvpTicket()
         if include_optional:
-            return UnstakeRequestDto(
-                id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e',
-                fee = '7',
+            return SmartTransferFundDvpTicket(
+                fee = '0.001',
                 fee_level = 'MEDIUM',
-                tx_note = 'unstake request id b70701f4-d7b1-4795-a8ee-b09cdb5b850d #ETH',
-                amount = '75'
+                note = 'Transaction note'
             )
         else:
-            return UnstakeRequestDto(
-                id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e',
+            return SmartTransferFundDvpTicket(
         )
         """
 
-    def testUnstakeRequestDto(self):
-        """Test UnstakeRequestDto"""
+    def testSmartTransferFundDvpTicket(self):
+        """Test SmartTransferFundDvpTicket"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

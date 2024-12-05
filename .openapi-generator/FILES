@@ -312,7 +312,6 @@ docs/ReadCallFunctionDto.md
 docs/RedeemFundsToLinkedDDAResponse.md
 docs/RegisterNewAssetRequest.md
 docs/RelatedRequestDto.md
-docs/RelatedRequestStatusType.md
 docs/RelatedTransactionDto.md
 docs/RemoveCollateralRequestBody.md
 docs/RenameCosigner.md
@@ -332,10 +331,11 @@ docs/ScreeningOperationFailure.md
 docs/ScreeningOperationType.md
 docs/ScreeningPolicyResponse.md
 docs/ScreeningProviderRulesConfigurationResponse.md
-docs/ScreeningUpdateConfigurationsRequest.md
+docs/ScreeningUpdateConfigurations.md
 docs/ScreeningValidationFailure.md
 docs/ScreeningVerdict.md
 docs/ScreeningVerdictMatchedRule.md
+docs/SearchNetworkIdsResponse.md
 docs/SessionDTO.md
 docs/SessionMetadata.md
 docs/SetAdminQuorumThresholdRequest.md
@@ -367,6 +367,7 @@ docs/SmartTransferCoinStatistic.md
 docs/SmartTransferCreateTicket.md
 docs/SmartTransferCreateTicketTerm.md
 docs/SmartTransferForbiddenResponse.md
+docs/SmartTransferFundDvpTicket.md
 docs/SmartTransferFundTerm.md
 docs/SmartTransferManuallyFundTerm.md
 docs/SmartTransferNotFoundResponse.md
@@ -837,7 +838,6 @@ fireblocks/models/read_call_function_dto.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
 fireblocks/models/register_new_asset_request.py
 fireblocks/models/related_request_dto.py
-fireblocks/models/related_request_status_type.py
 fireblocks/models/related_transaction_dto.py
 fireblocks/models/remove_collateral_request_body.py
 fireblocks/models/rename_cosigner.py
@@ -856,10 +856,11 @@ fireblocks/models/screening_operation_failure.py
 fireblocks/models/screening_operation_type.py
 fireblocks/models/screening_policy_response.py
 fireblocks/models/screening_provider_rules_configuration_response.py
-fireblocks/models/screening_update_configurations_request.py
+fireblocks/models/screening_update_configurations.py
 fireblocks/models/screening_validation_failure.py
 fireblocks/models/screening_verdict.py
 fireblocks/models/screening_verdict_matched_rule.py
+fireblocks/models/search_network_ids_response.py
 fireblocks/models/session_dto.py
 fireblocks/models/session_metadata.py
 fireblocks/models/set_admin_quorum_threshold_request.py
@@ -890,6 +891,7 @@ fireblocks/models/smart_transfer_coin_statistic.py
 fireblocks/models/smart_transfer_create_ticket.py
 fireblocks/models/smart_transfer_create_ticket_term.py
 fireblocks/models/smart_transfer_forbidden_response.py
+fireblocks/models/smart_transfer_fund_dvp_ticket.py
 fireblocks/models/smart_transfer_fund_term.py
 fireblocks/models/smart_transfer_manually_fund_term.py
 fireblocks/models/smart_transfer_not_found_response.py
@@ -1347,7 +1349,6 @@ test/test_read_call_function_dto.py
 test/test_redeem_funds_to_linked_dda_response.py
 test/test_register_new_asset_request.py
 test/test_related_request_dto.py
-test/test_related_request_status_type.py
 test/test_related_transaction_dto.py
 test/test_remove_collateral_request_body.py
 test/test_rename_cosigner.py
@@ -1367,10 +1368,11 @@ test/test_screening_operation_failure.py
 test/test_screening_operation_type.py
 test/test_screening_policy_response.py
 test/test_screening_provider_rules_configuration_response.py
-test/test_screening_update_configurations_request.py
+test/test_screening_update_configurations.py
 test/test_screening_validation_failure.py
 test/test_screening_verdict.py
 test/test_screening_verdict_matched_rule.py
+test/test_search_network_ids_response.py
 test/test_session_dto.py
 test/test_session_metadata.py
 test/test_set_admin_quorum_threshold_request.py
@@ -1402,6 +1404,7 @@ test/test_smart_transfer_coin_statistic.py
 test/test_smart_transfer_create_ticket.py
 test/test_smart_transfer_create_ticket_term.py
 test/test_smart_transfer_forbidden_response.py
+test/test_smart_transfer_fund_dvp_ticket.py
 test/test_smart_transfer_fund_term.py
 test/test_smart_transfer_manually_fund_term.py
 test/test_smart_transfer_not_found_response.py

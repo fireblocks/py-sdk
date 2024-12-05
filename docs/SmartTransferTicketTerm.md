@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **ticket_id** | **str** | Unique id of Smart Transfer ticket | 
 **asset** | **str** | Asset name | 
 **amount** | **str** | Amount | 
+**dvp_src_dst_vault_id** | **str** | Identifier of the source and destination vault for DVP execution | [optional] 
 **amount_usd** | **str** | Amount USD | [optional] 
 **from_network_id** | **str** | Identifier of the origination Network Profile | 
 **from_network_id_name** | **str** | Source network name | 

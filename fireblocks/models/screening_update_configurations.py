@@ -18,27 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RelatedRequestDto(BaseModel):
+class ScreeningUpdateConfigurations(BaseModel):
     """
-    RelatedRequestDto
+    ScreeningUpdateConfigurations
     """ # noqa: E501
-    status: StrictStr = Field(description="The status of the request")
-    in_progress: StrictBool = Field(description="Indicates whether there is an ongoing action for this position related to this request", alias="inProgress")
-    amount: StrictStr = Field(description="Amount of tokens to Unstake")
-    tx_id: Optional[StrictStr] = Field(default=None, description="The transaction ID of the ongoing request", alias="txId")
-    __properties: ClassVar[List[str]] = ["status", "inProgress", "amount", "txId"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['deactivating']):
-            raise ValueError("must be one of enum values ('deactivating')")
-        return value
+    disable_bypass: Optional[StrictBool] = Field(default=None, description="Flag to enable or disable bypass screening on tenant configuration.", alias="disableBypass")
+    disable_unfreeze: Optional[StrictBool] = Field(default=None, description="Flag to enable or disable unfreeze of transaction frozen by policy rule on tenant configuration.", alias="disableUnfreeze")
+    __properties: ClassVar[List[str]] = ["disableBypass", "disableUnfreeze"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -58,7 +49,7 @@ class RelatedRequestDto(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RelatedRequestDto from a JSON string"""
+        """Create an instance of ScreeningUpdateConfigurations from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +74,7 @@ class RelatedRequestDto(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RelatedRequestDto from a dict"""
+        """Create an instance of ScreeningUpdateConfigurations from a dict"""
         if obj is None:
             return None
 
@@ -91,10 +82,8 @@ class RelatedRequestDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
-            "inProgress": obj.get("inProgress"),
-            "amount": obj.get("amount"),
-            "txId": obj.get("txId")
+            "disableBypass": obj.get("disableBypass"),
+            "disableUnfreeze": obj.get("disableUnfreeze")
         })
         return _obj
 

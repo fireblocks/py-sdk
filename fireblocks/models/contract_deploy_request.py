@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.parameter_with_value import ParameterWithValue
 from typing import Optional, Set
@@ -31,7 +31,20 @@ class ContractDeployRequest(BaseModel):
     asset_id: StrictStr = Field(description="The base asset identifier of the blockchain you want to deploy to", alias="assetId")
     vault_account_id: StrictStr = Field(description="The vault account id you wish to deploy from", alias="vaultAccountId")
     constructor_parameters: Optional[List[ParameterWithValue]] = Field(default=None, description="The constructor parameters of this contract", alias="constructorParameters")
-    __properties: ClassVar[List[str]] = ["assetId", "vaultAccountId", "constructorParameters"]
+    use_gasless: Optional[StrictBool] = Field(default=None, description="Indicates whether the token should be created in a gasless manner, utilizing the ERC-2771 standard. When set to true, the transaction will be relayed by a designated relayer. The workspace must be configured to use Fireblocks gasless relay.", alias="useGasless")
+    fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
+    fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
+    __properties: ClassVar[List[str]] = ["assetId", "vaultAccountId", "constructorParameters", "useGasless", "fee", "feeLevel"]
+
+    @field_validator('fee_level')
+    def fee_level_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['LOW', 'MEDIUM', 'HIGH']):
+            raise ValueError("must be one of enum values ('LOW', 'MEDIUM', 'HIGH')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +106,10 @@ class ContractDeployRequest(BaseModel):
         _obj = cls.model_validate({
             "assetId": obj.get("assetId"),
             "vaultAccountId": obj.get("vaultAccountId"),
-            "constructorParameters": [ParameterWithValue.from_dict(_item) for _item in obj["constructorParameters"]] if obj.get("constructorParameters") is not None else None
+            "constructorParameters": [ParameterWithValue.from_dict(_item) for _item in obj["constructorParameters"]] if obj.get("constructorParameters") is not None else None,
+            "useGasless": obj.get("useGasless"),
+            "fee": obj.get("fee"),
+            "feeLevel": obj.get("feeLevel")
         })
         return _obj
 

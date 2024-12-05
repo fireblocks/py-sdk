@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.write_abi_function import WriteAbiFunction
 from typing import Optional, Set
@@ -34,7 +34,9 @@ class WriteCallFunctionDto(BaseModel):
     fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
     fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
     note: Optional[StrictStr] = Field(default=None, description="Custom note, not sent to the blockchain, that describes the transaction at your Fireblocks workspace")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "abiFunction", "amount", "feeLevel", "fee", "note"]
+    use_gasless: Optional[StrictBool] = Field(default=None, description="Indicates whether the token should be created in a gasless manner, utilizing the ERC-2771 standard. When set to true, the transaction will be relayed by a designated relayer. The workspace must be configured to use Fireblocks gasless relay.", alias="useGasless")
+    external_id: Optional[StrictStr] = Field(default=None, description="External id that can be used to identify the transaction in your system. The unique identifier of the transaction outside of Fireblocks with max length of 255 characters", alias="externalId")
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "abiFunction", "amount", "feeLevel", "fee", "note", "useGasless", "externalId"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -105,7 +107,9 @@ class WriteCallFunctionDto(BaseModel):
             "amount": obj.get("amount"),
             "feeLevel": obj.get("feeLevel"),
             "fee": obj.get("fee"),
-            "note": obj.get("note")
+            "note": obj.get("note"),
+            "useGasless": obj.get("useGasless"),
+            "externalId": obj.get("externalId")
         })
         return _obj
 

@@ -97,6 +97,13 @@ class TestNetworkConnectionsApi(unittest.TestCase):
         """
         pass
 
+    def test_search_network_ids(self) -> None:
+        """Test case for search_network_ids
+
+        Search network IDs, both local IDs and discoverable remote IDs
+        """
+        pass
+
     def test_set_network_id_discoverability(self) -> None:
         """Test case for set_network_id_discoverability
 

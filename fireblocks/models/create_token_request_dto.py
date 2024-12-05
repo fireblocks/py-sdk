@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.create_token_request_dto_create_params import CreateTokenRequestDtoCreateParams
 from typing import Optional, Set
@@ -33,7 +33,20 @@ class CreateTokenRequestDto(BaseModel):
     vault_account_id: StrictStr = Field(description="The id of the vault account that initiated the request to issue the token", alias="vaultAccountId")
     create_params: CreateTokenRequestDtoCreateParams = Field(alias="createParams")
     display_name: Optional[StrictStr] = Field(default=None, alias="displayName")
-    __properties: ClassVar[List[str]] = ["blockchainId", "assetId", "vaultAccountId", "createParams", "displayName"]
+    use_gasless: Optional[StrictBool] = Field(default=None, description="Indicates whether the token should be created in a gasless manner, utilizing the ERC-2771 standard. When set to true, the transaction will be relayed by a designated relayer. The workspace must be configured to use Fireblocks gasless relay.", alias="useGasless")
+    fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
+    fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
+    __properties: ClassVar[List[str]] = ["blockchainId", "assetId", "vaultAccountId", "createParams", "displayName", "useGasless", "fee", "feeLevel"]
+
+    @field_validator('fee_level')
+    def fee_level_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['LOW', 'MEDIUM', 'HIGH']):
+            raise ValueError("must be one of enum values ('LOW', 'MEDIUM', 'HIGH')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +106,10 @@ class CreateTokenRequestDto(BaseModel):
             "assetId": obj.get("assetId"),
             "vaultAccountId": obj.get("vaultAccountId"),
             "createParams": CreateTokenRequestDtoCreateParams.from_dict(obj["createParams"]) if obj.get("createParams") is not None else None,
-            "displayName": obj.get("displayName")
+            "displayName": obj.get("displayName"),
+            "useGasless": obj.get("useGasless"),
+            "fee": obj.get("fee"),
+            "feeLevel": obj.get("feeLevel")
         })
         return _obj
 

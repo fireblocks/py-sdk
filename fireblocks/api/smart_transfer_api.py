@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from fireblocks.models.smart_transfer_approve_term import SmartTransferApproveTerm
 from fireblocks.models.smart_transfer_create_ticket import SmartTransferCreateTicket
 from fireblocks.models.smart_transfer_create_ticket_term import SmartTransferCreateTicketTerm
+from fireblocks.models.smart_transfer_fund_dvp_ticket import SmartTransferFundDvpTicket
 from fireblocks.models.smart_transfer_fund_term import SmartTransferFundTerm
 from fireblocks.models.smart_transfer_manually_fund_term import SmartTransferManuallyFundTerm
 from fireblocks.models.smart_transfer_set_ticket_expiration import SmartTransferSetTicketExpiration
@@ -1056,6 +1057,7 @@ class SmartTransferApi:
     def fund_dvp_ticket(
         self,
         ticket_id: StrictStr,
+        smart_transfer_fund_dvp_ticket: SmartTransferFundDvpTicket,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -1076,6 +1078,8 @@ class SmartTransferApi:
 
         :param ticket_id: (required)
         :type ticket_id: str
+        :param smart_transfer_fund_dvp_ticket: (required)
+        :type smart_transfer_fund_dvp_ticket: SmartTransferFundDvpTicket
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1104,6 +1108,7 @@ class SmartTransferApi:
 
         _param = self._fund_dvp_ticket_serialize(
             ticket_id=ticket_id,
+            smart_transfer_fund_dvp_ticket=smart_transfer_fund_dvp_ticket,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1127,6 +1132,7 @@ class SmartTransferApi:
     def _fund_dvp_ticket_serialize(
         self,
         ticket_id,
+        smart_transfer_fund_dvp_ticket,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -1155,6 +1161,8 @@ class SmartTransferApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
+        if smart_transfer_fund_dvp_ticket is not None:
+            _body_params = smart_transfer_fund_dvp_ticket
 
 
         # set the HTTP header `Accept`
@@ -1164,6 +1172,19 @@ class SmartTransferApi:
             ]
         )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [

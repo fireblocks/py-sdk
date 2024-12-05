@@ -41,13 +41,13 @@ class TestContractDoc(unittest.TestCase):
                 events = 'Upgraded(address): {"details": "Emitted when the implementation is upgraded."}',
                 kind = 'dev',
                 methods = {"constructor":{"details":"Initializes the contract"}},
-                version = '1'
+                version = 1
             )
         else:
             return ContractDoc(
                 kind = 'dev',
                 methods = {"constructor":{"details":"Initializes the contract"}},
-                version = '1',
+                version = 1,
         )
         """
 

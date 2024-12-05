@@ -73,20 +73,6 @@ class TestAbiFunction(unittest.TestCase):
         else:
             return AbiFunction(
                 type = 'constructor',
-                inputs = [
-                    fireblocks.models.parameter.Parameter(
-                        name = '_name', 
-                        description = 'The name of the token', 
-                        internal_type = 'string', 
-                        type = 'string', 
-                        components = [
-                            fireblocks.models.parameter.Parameter(
-                                name = '_name', 
-                                description = 'The name of the token', 
-                                internal_type = 'string', 
-                                type = 'string', )
-                            ], )
-                    ],
         )
         """
 

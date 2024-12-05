@@ -15,13 +15,13 @@
 
 import unittest
 
-from fireblocks.models.screening_update_configurations_request import (
-    ScreeningUpdateConfigurationsRequest,
+from fireblocks.models.screening_update_configurations import (
+    ScreeningUpdateConfigurations,
 )
 
 
-class TestScreeningUpdateConfigurationsRequest(unittest.TestCase):
-    """ScreeningUpdateConfigurationsRequest unit test stubs"""
+class TestScreeningUpdateConfigurations(unittest.TestCase):
+    """ScreeningUpdateConfigurations unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,26 @@ class TestScreeningUpdateConfigurationsRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ScreeningUpdateConfigurationsRequest:
-        """Test ScreeningUpdateConfigurationsRequest
+    def make_instance(self, include_optional) -> ScreeningUpdateConfigurations:
+        """Test ScreeningUpdateConfigurations
         include_option is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ScreeningUpdateConfigurationsRequest`
+        # uncomment below to create an instance of `ScreeningUpdateConfigurations`
         """
-        model = ScreeningUpdateConfigurationsRequest()
+        model = ScreeningUpdateConfigurations()
         if include_optional:
-            return ScreeningUpdateConfigurationsRequest(
+            return ScreeningUpdateConfigurations(
                 disable_bypass = True,
                 disable_unfreeze = True
             )
         else:
-            return ScreeningUpdateConfigurationsRequest(
+            return ScreeningUpdateConfigurations(
         )
         """
 
-    def testScreeningUpdateConfigurationsRequest(self):
-        """Test ScreeningUpdateConfigurationsRequest"""
+    def testScreeningUpdateConfigurations(self):
+        """Test ScreeningUpdateConfigurations"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

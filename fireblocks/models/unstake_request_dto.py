@@ -31,7 +31,8 @@ class UnstakeRequestDto(BaseModel):
     fee: Optional[StrictStr] = Field(default=None, description="Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required.")
     fee_level: Optional[StrictStr] = Field(default=None, description="Represents the fee level for a transaction, which can be set as slow, medium, or fast. Only one of fee/feeLevel is required.", alias="feeLevel")
     tx_note: Optional[StrictStr] = Field(default=None, description="The note to associate with the transactions.", alias="txNote")
-    __properties: ClassVar[List[str]] = ["id", "fee", "feeLevel", "txNote"]
+    amount: Optional[StrictStr] = Field(default=None, description="The number of tokens to unstake.  This optional field is applicable only for liquid staking and allows for a partial unstake of the position.  If not provided, the entire position will be unstaked by default.")
+    __properties: ClassVar[List[str]] = ["id", "fee", "feeLevel", "txNote", "amount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +88,8 @@ class UnstakeRequestDto(BaseModel):
             "id": obj.get("id"),
             "fee": obj.get("fee"),
             "feeLevel": obj.get("feeLevel"),
-            "txNote": obj.get("txNote")
+            "txNote": obj.get("txNote"),
+            "amount": obj.get("amount")
         })
         return _obj
 

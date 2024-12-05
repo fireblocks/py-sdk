@@ -43,7 +43,8 @@ class TestExecuteActionRequest(unittest.TestCase):
                 tx_note = 'withdraw request id b70701f4-d7b1-4795-a8ee-b09cdb5b850d #ETH',
                 fee = '7',
                 fee_level = 'MEDIUM',
-                id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850f'
+                id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850f',
+                amount = '75'
             )
         else:
             return ExecuteActionRequest(

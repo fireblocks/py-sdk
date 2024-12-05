@@ -605,7 +605,7 @@ class DeployedContractsApi:
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=100, strict=True, ge=1)], Annotated[int, Field(le=100, strict=True, ge=1)]]], Field(description="Number of items per page, requesting more then max will return max items")] = None,
         contract_address: Annotated[Optional[StrictStr], Field(description="The contract's onchain address")] = None,
         base_asset_id: Optional[StrictStr] = None,
-        template_id: Optional[StrictStr] = None,
+        contract_template_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -631,8 +631,8 @@ class DeployedContractsApi:
         :type contract_address: str
         :param base_asset_id:
         :type base_asset_id: str
-        :param template_id:
-        :type template_id: str
+        :param contract_template_id:
+        :type contract_template_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -661,7 +661,7 @@ class DeployedContractsApi:
             page_size=page_size,
             contract_address=contract_address,
             base_asset_id=base_asset_id,
-            template_id=template_id,
+            contract_template_id=contract_template_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -685,7 +685,7 @@ class DeployedContractsApi:
         page_size,
         contract_address,
         base_asset_id,
-        template_id,
+        contract_template_id,
         _request_auth,
         _content_type,
         _headers,
@@ -722,9 +722,9 @@ class DeployedContractsApi:
             
             _query_params.append(('baseAssetId', base_asset_id))
             
-        if template_id is not None:
+        if contract_template_id is not None:
             
-            _query_params.append(('templateId', template_id))
+            _query_params.append(('contractTemplateId', contract_template_id))
             
         # process the header parameters
         # process the form parameters

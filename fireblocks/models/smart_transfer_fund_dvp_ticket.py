@@ -18,18 +18,29 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ScreeningUpdateConfigurationsRequest(BaseModel):
+class SmartTransferFundDvpTicket(BaseModel):
     """
-    ScreeningUpdateConfigurationsRequest
+    SmartTransferFundDvpTicket
     """ # noqa: E501
-    disable_bypass: Optional[StrictBool] = Field(default=None, description="Flag to enable or disable bypass screening on tenant configuration.", alias="disableBypass")
-    disable_unfreeze: Optional[StrictBool] = Field(default=None, description="Flag to enable or disable unfreeze of transaction frozen by policy rule on tenant configuration.", alias="disableUnfreeze")
-    __properties: ClassVar[List[str]] = ["disableBypass", "disableUnfreeze"]
+    fee: Optional[StrictStr] = Field(default=None, description="Transaction fee")
+    fee_level: Optional[StrictStr] = Field(default=None, description="Transaction fee level.", alias="feeLevel")
+    note: Optional[StrictStr] = Field(default=None, description="Transaction note")
+    __properties: ClassVar[List[str]] = ["fee", "feeLevel", "note"]
+
+    @field_validator('fee_level')
+    def fee_level_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['LOW', 'MEDIUM', 'HIGH']):
+            raise ValueError("must be one of enum values ('LOW', 'MEDIUM', 'HIGH')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +60,7 @@ class ScreeningUpdateConfigurationsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ScreeningUpdateConfigurationsRequest from a JSON string"""
+        """Create an instance of SmartTransferFundDvpTicket from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,7 +85,7 @@ class ScreeningUpdateConfigurationsRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ScreeningUpdateConfigurationsRequest from a dict"""
+        """Create an instance of SmartTransferFundDvpTicket from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +93,9 @@ class ScreeningUpdateConfigurationsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "disableBypass": obj.get("disableBypass"),
-            "disableUnfreeze": obj.get("disableUnfreeze")
+            "fee": obj.get("fee"),
+            "feeLevel": obj.get("feeLevel"),
+            "note": obj.get("note")
         })
         return _obj
 

@@ -24,7 +24,7 @@ from typing_extensions import Annotated
 from fireblocks.models.screening_configurations_request import ScreeningConfigurationsRequest
 from fireblocks.models.screening_policy_response import ScreeningPolicyResponse
 from fireblocks.models.screening_provider_rules_configuration_response import ScreeningProviderRulesConfigurationResponse
-from fireblocks.models.screening_update_configurations_request import ScreeningUpdateConfigurationsRequest
+from fireblocks.models.screening_update_configurations import ScreeningUpdateConfigurations
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -640,6 +640,7 @@ class ComplianceApi:
     @validate_call
     def update_screening_configuration(
         self,
+        screening_update_configurations: ScreeningUpdateConfigurations,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -653,11 +654,13 @@ class ComplianceApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[ScreeningUpdateConfigurationsRequest]]:
+    ) -> Future[ApiResponse[ScreeningUpdateConfigurations]]:
         """Tenant - Screening Configuration
 
         Update tenant screening configuration.
 
+        :param screening_update_configurations: (required)
+        :type screening_update_configurations: ScreeningUpdateConfigurations
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -684,6 +687,7 @@ class ComplianceApi:
 
 
         _param = self._update_screening_configuration_serialize(
+            screening_update_configurations=screening_update_configurations,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -692,7 +696,7 @@ class ComplianceApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ScreeningUpdateConfigurationsRequest",
+            '200': "ScreeningUpdateConfigurations",
         }
 
         return self.api_client.call_api(
@@ -703,6 +707,7 @@ class ComplianceApi:
 
     def _update_screening_configuration_serialize(
         self,
+        screening_update_configurations,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -729,6 +734,8 @@ class ComplianceApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
+        if screening_update_configurations is not None:
+            _body_params = screening_update_configurations
 
 
         # set the HTTP header `Accept`
@@ -738,6 +745,19 @@ class ComplianceApi:
             ]
         )
 
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [

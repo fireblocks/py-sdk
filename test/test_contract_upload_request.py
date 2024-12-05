@@ -52,10 +52,8 @@ class TestContractUploadRequest(unittest.TestCase):
                     events = 'Upgraded(address): {"details": "Emitted when the implementation is upgraded."}', 
                     kind = 'dev', 
                     methods = {"constructor":{"details":"Initializes the contract"}}, 
-                    version = '1', ),
-                abi = [
-                    [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}]
-                    ],
+                    version = 1, ),
+                abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
                 attributes = fireblocks.models.contract_attributes.ContractAttributes(
                     use_cases = [
                         ''
@@ -73,9 +71,7 @@ class TestContractUploadRequest(unittest.TestCase):
                 name = 'My Contract',
                 description = 'an ERC20 implementation',
                 bytecode = '',
-                abi = [
-                    [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}]
-                    ],
+                abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
         )
         """
 

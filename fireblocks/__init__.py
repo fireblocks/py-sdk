@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "4.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -510,7 +510,6 @@ from fireblocks.models.redeem_funds_to_linked_dda_response import (
 )
 from fireblocks.models.register_new_asset_request import RegisterNewAssetRequest
 from fireblocks.models.related_request_dto import RelatedRequestDto
-from fireblocks.models.related_request_status_type import RelatedRequestStatusType
 from fireblocks.models.related_transaction_dto import RelatedTransactionDto
 from fireblocks.models.remove_collateral_request_body import RemoveCollateralRequestBody
 from fireblocks.models.rename_cosigner import RenameCosigner
@@ -539,12 +538,13 @@ from fireblocks.models.screening_policy_response import ScreeningPolicyResponse
 from fireblocks.models.screening_provider_rules_configuration_response import (
     ScreeningProviderRulesConfigurationResponse,
 )
-from fireblocks.models.screening_update_configurations_request import (
-    ScreeningUpdateConfigurationsRequest,
+from fireblocks.models.screening_update_configurations import (
+    ScreeningUpdateConfigurations,
 )
 from fireblocks.models.screening_validation_failure import ScreeningValidationFailure
 from fireblocks.models.screening_verdict import ScreeningVerdict
 from fireblocks.models.screening_verdict_matched_rule import ScreeningVerdictMatchedRule
+from fireblocks.models.search_network_ids_response import SearchNetworkIdsResponse
 from fireblocks.models.session_dto import SessionDTO
 from fireblocks.models.session_metadata import SessionMetadata
 from fireblocks.models.set_admin_quorum_threshold_request import (
@@ -595,6 +595,7 @@ from fireblocks.models.smart_transfer_create_ticket_term import (
 from fireblocks.models.smart_transfer_forbidden_response import (
     SmartTransferForbiddenResponse,
 )
+from fireblocks.models.smart_transfer_fund_dvp_ticket import SmartTransferFundDvpTicket
 from fireblocks.models.smart_transfer_fund_term import SmartTransferFundTerm
 from fireblocks.models.smart_transfer_manually_fund_term import (
     SmartTransferManuallyFundTerm,

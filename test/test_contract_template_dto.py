@@ -45,9 +45,7 @@ class TestContractTemplateDto(unittest.TestCase):
  - mint
  - burn
 ',
-                abi = [
-                    [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}]
-                    ],
+                abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
                 attributes = fireblocks.models.contract_attributes.ContractAttributes(
                     use_cases = [
                         ''
@@ -64,7 +62,7 @@ class TestContractTemplateDto(unittest.TestCase):
                     events = 'Upgraded(address): {"details": "Emitted when the implementation is upgraded."}', 
                     kind = 'dev', 
                     methods = {"constructor":{"details":"Initializes the contract"}}, 
-                    version = '1', ),
+                    version = 1, ),
                 owner = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d',
                 vendor = fireblocks.models.vendor_dto.VendorDto(
                     id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b4453', 
@@ -80,9 +78,7 @@ class TestContractTemplateDto(unittest.TestCase):
                 id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d',
                 name = 'My Contract',
                 description = 'an ERC20 implementation',
-                abi = [
-                    [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}]
-                    ],
+                abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
                 is_public = True,
                 initialization_phase = 'ON_DEPLOYMENT',
         )

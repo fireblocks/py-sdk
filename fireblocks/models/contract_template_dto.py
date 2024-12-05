@@ -35,7 +35,7 @@ class ContractTemplateDto(BaseModel):
     name: StrictStr = Field(description="The name of the contract template")
     description: StrictStr = Field(description="A short description of the contract template")
     long_description: Optional[StrictStr] = Field(default=None, description="A full description of the contract template. May contain   to break the lines", alias="longDescription")
-    abi: List[List[AbiFunction]]
+    abi: List[AbiFunction] = Field(description="The abi of the contract template. Necessary for displaying and for after deployment encoding")
     attributes: Optional[ContractAttributes] = Field(default=None, description="The attributes related to this contract template. It will be displayed in the tokenization page")
     docs: Optional[ContractDoc] = Field(default=None, description="A `natspec` compliant documentation json. Can be retrieved from the output json after compilation")
     owner: Optional[StrictStr] = Field(default=None, description="The workspace id of the owner of this contract template. If it's a private contract, only this workspace will be allowed to deploy it")
@@ -103,14 +103,12 @@ class ContractTemplateDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in abi (list of list)
+        # override the default output from pydantic by calling `to_dict()` of each item in abi (list)
         _items = []
         if self.abi:
             for _item in self.abi:
                 if _item:
-                    _items.append(
-                         [_inner_item.to_dict() for _inner_item in _item if _inner_item is not None]
-                    )
+                    _items.append(_item.to_dict())
             _dict['abi'] = _items
         # override the default output from pydantic by calling `to_dict()` of attributes
         if self.attributes:
@@ -137,10 +135,7 @@ class ContractTemplateDto(BaseModel):
             "name": obj.get("name"),
             "description": obj.get("description"),
             "longDescription": obj.get("longDescription"),
-            "abi": [
-                    [AbiFunction.from_dict(_inner_item) for _inner_item in _item]
-                    for _item in obj["abi"]
-                ] if obj.get("abi") is not None else None,
+            "abi": [AbiFunction.from_dict(_item) for _item in obj["abi"]] if obj.get("abi") is not None else None,
             "attributes": ContractAttributes.from_dict(obj["attributes"]) if obj.get("attributes") is not None else None,
             "docs": ContractDoc.from_dict(obj["docs"]) if obj.get("docs") is not None else None,
             "owner": obj.get("owner"),

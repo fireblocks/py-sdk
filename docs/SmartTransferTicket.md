@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **type** | **str** | Kind of Smart Transfer. Can be either &#x60;ASYNC&#x60; or &#x60;DVP&#x60; | 
 **direction** | **str** | Direction of Smart Transfer. | [optional] 
 **status** | **str** | Current status of Smart Transfer ticket | 
+**dvp_execution_status** | **str** | Current status of DVP execution | [optional] 
+**order_created_by_network_id** | **str** | ID of network profile that created order | [optional] 
 **terms** | [**List[SmartTransferTicketTerm]**](SmartTransferTicketTerm.md) | Ticket terms (legs) | [optional] 
 **expires_in** | **float** | Number of hours for expiration.This data is valid only it ticket not in DRAFT state and it will be used to calculate expiresAt value | [optional] 
 **expires_at** | **datetime** | Date and time at which the ticket will expire if no funding is performed. | [optional] 

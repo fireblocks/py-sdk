@@ -69,7 +69,9 @@ class TestWriteCallFunctionDto(unittest.TestCase):
                 amount = '12.345',
                 fee_level = 'MEDIUM',
                 fee = '2000',
-                note = ''
+                note = '',
+                use_gasless = False,
+                external_id = '0192e4f5-924e-7bb9-8e5b-c748270feb38'
             )
         else:
             return WriteCallFunctionDto(

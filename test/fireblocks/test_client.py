@@ -28,6 +28,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
+from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
@@ -103,6 +104,9 @@ def test_get_cosigners_beta(fireblocks_instance):
 
 def test_get_deployed_contracts(fireblocks_instance):
     assert isinstance(fireblocks_instance.deployed_contracts, DeployedContractsApi)
+
+def test_get_embedded_wallets(fireblocks_instance):
+    assert isinstance(fireblocks_instance.embedded_wallets, EmbeddedWalletsApi)
 
 def test_get_exchange_accounts(fireblocks_instance):
     assert isinstance(fireblocks_instance.exchange_accounts, ExchangeAccountsApi)

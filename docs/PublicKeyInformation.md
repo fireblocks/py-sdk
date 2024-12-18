@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**algorithm** | **str** |  | [optional] 
-**derivation_path** | **List[float]** |  | [optional] 
-**public_key** | **str** |  | [optional] 
+**algorithm** | **str** | Elliptic Curve | [optional] 
+**derivation_path** | **List[int]** | BIP44 derivation path | [optional] 
+**public_key** | **str** | Compressed/Uncompressed public key value in hex representation | [optional] 
 
 ## Example
 

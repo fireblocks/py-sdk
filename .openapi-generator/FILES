@@ -171,6 +171,7 @@ docs/DropTransactionRequest.md
 docs/DropTransactionResponse.md
 docs/EVMTokenCreateParamsDto.md
 docs/EditGasStationConfigurationResponse.md
+docs/EmbeddedWalletsApi.md
 docs/ErrorResponse.md
 docs/ErrorResponseError.md
 docs/ErrorSchema.md
@@ -518,6 +519,7 @@ fireblocks/api/contract_templates_api.py
 fireblocks/api/contracts_api.py
 fireblocks/api/cosigners_beta_api.py
 fireblocks/api/deployed_contracts_api.py
+fireblocks/api/embedded_wallets_api.py
 fireblocks/api/exchange_accounts_api.py
 fireblocks/api/external_wallets_api.py
 fireblocks/api/fiat_accounts_api.py
@@ -1207,6 +1209,7 @@ test/test_draft_review_and_validation_response.py
 test/test_drop_transaction_request.py
 test/test_drop_transaction_response.py
 test/test_edit_gas_station_configuration_response.py
+test/test_embedded_wallets_api.py
 test/test_error_response.py
 test/test_error_response_error.py
 test/test_error_schema.py

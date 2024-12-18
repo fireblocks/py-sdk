@@ -28,6 +28,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
+from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
@@ -77,6 +78,7 @@ class Fireblocks:
         self._contracts = None
         self._cosigners_beta = None
         self._deployed_contracts = None
+        self._embedded_wallets = None
         self._exchange_accounts = None
         self._external_wallets = None
         self._fiat_accounts = None
@@ -186,6 +188,12 @@ class Fireblocks:
         if self._deployed_contracts is None:
             self._deployed_contracts = DeployedContractsApi(self._api_client)
         return self._deployed_contracts
+
+    @property
+    def embedded_wallets(self) -> EmbeddedWalletsApi:
+        if self._embedded_wallets is None:
+            self._embedded_wallets = EmbeddedWalletsApi(self._api_client)
+        return self._embedded_wallets
 
     @property
     def exchange_accounts(self) -> ExchangeAccountsApi:

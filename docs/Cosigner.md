@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **archived** | **bool** | Whether the cosigner is archived | 
 **id** | **str** | The unique identifier of the cosigner | 
 **name** | **str** | The name of the cosigner | [optional] 
+**type** | **str** | The type of the cosigner | [optional] 
+**version** | [**Version**](Version.md) |  | [optional] 
 
 ## Example
 

@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.version import Version
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,19 @@ class Cosigner(BaseModel):
     archived: StrictBool = Field(description="Whether the cosigner is archived")
     id: StrictStr = Field(description="The unique identifier of the cosigner")
     name: Optional[StrictStr] = Field(default=None, description="The name of the cosigner")
-    __properties: ClassVar[List[str]] = ["archived", "id", "name"]
+    type: Optional[StrictStr] = Field(default=None, description="The type of the cosigner")
+    version: Optional[Version] = None
+    __properties: ClassVar[List[str]] = ["archived", "id", "name", "type", "version"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SANDBOX', 'SGX', 'GCP-CONFSPACE', 'AWS-NITRO', 'PLAIN']):
+            raise ValueError("must be one of enum values ('SANDBOX', 'SGX', 'GCP-CONFSPACE', 'AWS-NITRO', 'PLAIN')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,11 +84,9 @@ class Cosigner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if name (nullable) is None
-        # and model_fields_set contains the field
-        if self.name is None and "name" in self.model_fields_set:
-            _dict['name'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of version
+        if self.version:
+            _dict['version'] = self.version.to_dict()
         return _dict
 
     @classmethod
@@ -90,7 +101,9 @@ class Cosigner(BaseModel):
         _obj = cls.model_validate({
             "archived": obj.get("archived"),
             "id": obj.get("id"),
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "type": obj.get("type"),
+            "version": Version.from_dict(obj["version"]) if obj.get("version") is not None else None
         })
         return _obj
 

@@ -40,12 +40,12 @@ class TestAssetBadRequestErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetBadRequestErrorResponse(
                 message = 'Listing an asset on the requested blockchain is not supported',
-                code = '3001'
+                code = 3001
             )
         else:
             return AssetBadRequestErrorResponse(
                 message = 'Listing an asset on the requested blockchain is not supported',
-                code = '3001',
+                code = 3001,
         )
         """
 

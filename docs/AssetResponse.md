@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **legacy_id** | **str** |  | 
 **asset_class** | **str** |  | 
-**onchain** | [**AssetResponseOnchain**](AssetResponseOnchain.md) |  | 
-**metadata** | [**AssetResponseMetadata**](AssetResponseMetadata.md) |  | 
+**onchain** | [**AssetOnchain**](AssetOnchain.md) |  | 
+**metadata** | [**AssetMetadata**](AssetMetadata.md) |  | 
 
 ## Example
 

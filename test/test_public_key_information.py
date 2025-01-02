@@ -37,11 +37,9 @@ class TestPublicKeyInformation(unittest.TestCase):
         model = PublicKeyInformation()
         if include_optional:
             return PublicKeyInformation(
-                algorithm = '',
-                derivation_path = [
-                    1.337
-                    ],
-                public_key = ''
+                algorithm = 'MPC_ECDSA_SECP256K1',
+                derivation_path = [44,0,0,0,0],
+                public_key = '1044c36403c1802818b472398f546a43a0d91569d5583a6e807c3825b155c7bd'
             )
         else:
             return PublicKeyInformation(

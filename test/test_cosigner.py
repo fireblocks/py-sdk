@@ -39,7 +39,10 @@ class TestCosigner(unittest.TestCase):
             return Cosigner(
                 archived = False,
                 id = '44fcead0-7053-4831-a53a-df7fb90d440f',
-                name = 'My Cosigner 1'
+                name = 'My Cosigner 1',
+                type = 'SGX',
+                version = fireblocks.models.version.Version(
+                    hash = 'a1b2c3d4', )
             )
         else:
             return Cosigner(

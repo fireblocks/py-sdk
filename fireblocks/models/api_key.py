@@ -20,7 +20,8 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.callback_handler import CallbackHandler
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,8 +30,9 @@ class ApiKey(BaseModel):
     ApiKey
     """ # noqa: E501
     id: StrictStr = Field(description="The unique identifier of the API key")
-    last_seen: datetime = Field(description="The date the API key was last seen", alias="lastSeen")
-    __properties: ClassVar[List[str]] = ["id", "lastSeen"]
+    last_seen: Optional[datetime] = Field(default=None, description="The date the API key was last seen", alias="lastSeen")
+    callback_handler: Optional[CallbackHandler] = Field(default=None, alias="callbackHandler")
+    __properties: ClassVar[List[str]] = ["id", "lastSeen", "callbackHandler"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,9 @@ class ApiKey(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of callback_handler
+        if self.callback_handler:
+            _dict['callbackHandler'] = self.callback_handler.to_dict()
         return _dict
 
     @classmethod
@@ -84,7 +89,8 @@ class ApiKey(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "lastSeen": obj.get("lastSeen")
+            "lastSeen": obj.get("lastSeen"),
+            "callbackHandler": CallbackHandler.from_dict(obj["callbackHandler"]) if obj.get("callbackHandler") is not None else None
         })
         return _obj
 

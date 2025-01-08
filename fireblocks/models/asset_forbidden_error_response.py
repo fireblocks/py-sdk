@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class AssetForbiddenErrorResponse(BaseModel):
     AssetForbiddenErrorResponse
     """ # noqa: E501
     message: StrictStr = Field(description="Forbidden error code")
-    code: StrictStr = Field(description="Error code")
+    code: Union[StrictFloat, StrictInt] = Field(description="Error code")
     __properties: ClassVar[List[str]] = ["message", "code"]
 
     model_config = ConfigDict(

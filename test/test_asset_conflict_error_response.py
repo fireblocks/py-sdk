@@ -38,12 +38,12 @@ class TestAssetConflictErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetConflictErrorResponse(
                 message = 'Asset already listed',
-                code = '3002'
+                code = 3002
             )
         else:
             return AssetConflictErrorResponse(
                 message = 'Asset already listed',
-                code = '3002',
+                code = 3002,
         )
         """
 

@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier of the audit log | [optional] 
-**timestamp** | **str** | The timestamp of the audit log | [optional] 
-**created_at** | **str** | The timestamp of the audit log creation | [optional] 
+**timestamp** | **float** | The timestamp of the audit log | [optional] 
+**created_at** | **float** | The timestamp of the audit log creation | [optional] 
 **user** | **str** | The user who performed the action | [optional] 
 **subject** | **str** | The subject of the action | [optional] 
 **event** | **str** | The event that was performed | [optional] 

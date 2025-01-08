@@ -39,13 +39,13 @@ class TestAssetResponse(unittest.TestCase):
             return AssetResponse(
                 legacy_id = 'TST3_ETH',
                 asset_class = 'FT',
-                onchain = fireblocks.models.asset_response_onchain.AssetResponse_onchain(
+                onchain = fireblocks.models.asset_onchain.AssetOnchain(
                     symbol = 'TST3', 
                     name = 'Test 3', 
                     address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991', 
                     decimals = 18, 
                     standard = 'ERC20', ),
-                metadata = fireblocks.models.asset_response_metadata.AssetResponse_metadata(
+                metadata = fireblocks.models.asset_metadata.AssetMetadata(
                     scope = 'Global', 
                     deprecated = False, )
             )
@@ -53,13 +53,13 @@ class TestAssetResponse(unittest.TestCase):
             return AssetResponse(
                 legacy_id = 'TST3_ETH',
                 asset_class = 'FT',
-                onchain = fireblocks.models.asset_response_onchain.AssetResponse_onchain(
+                onchain = fireblocks.models.asset_onchain.AssetOnchain(
                     symbol = 'TST3', 
                     name = 'Test 3', 
                     address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991', 
                     decimals = 18, 
                     standard = 'ERC20', ),
-                metadata = fireblocks.models.asset_response_metadata.AssetResponse_metadata(
+                metadata = fireblocks.models.asset_metadata.AssetMetadata(
                     scope = 'Global', 
                     deprecated = False, ),
         )

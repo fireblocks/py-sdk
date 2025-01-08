@@ -40,12 +40,12 @@ class TestAssetPriceNotFoundErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetPriceNotFoundErrorResponse(
                 message = 'Currency not found',
-                code = '3001'
+                code = 3001
             )
         else:
             return AssetPriceNotFoundErrorResponse(
                 message = 'Currency not found',
-                code = '3001',
+                code = 3001,
         )
         """
 

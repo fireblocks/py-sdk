@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** | Not found error message | 
-**code** | **str** | Error code | 
+**code** | **float** | Error code | 
 
 ## Example
 

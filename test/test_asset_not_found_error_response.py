@@ -37,13 +37,13 @@ class TestAssetNotFoundErrorResponse(unittest.TestCase):
         model = AssetNotFoundErrorResponse()
         if include_optional:
             return AssetNotFoundErrorResponse(
-                message = 'Invalid address, could not get asset information',
-                code = '3009'
+                message = 'Asset with specified ID not found',
+                code = 1504
             )
         else:
             return AssetNotFoundErrorResponse(
-                message = 'Invalid address, could not get asset information',
-                code = '3009',
+                message = 'Asset with specified ID not found',
+                code = 1504,
         )
         """
 

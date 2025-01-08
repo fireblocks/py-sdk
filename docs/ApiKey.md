@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier of the API key | 
-**last_seen** | **datetime** | The date the API key was last seen | 
+**last_seen** | **datetime** | The date the API key was last seen | [optional] 
+**callback_handler** | [**CallbackHandler**](CallbackHandler.md) |  | [optional] 
 
 ## Example
 

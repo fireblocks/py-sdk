@@ -24,6 +24,7 @@ from typing_extensions import Annotated
 from fireblocks.models.contract_abi_response_dto import ContractAbiResponseDto
 from fireblocks.models.parameter_with_value import ParameterWithValue
 from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
+from fireblocks.models.transaction_receipt_response import TransactionReceiptResponse
 from fireblocks.models.write_call_function_dto import WriteCallFunctionDto
 from fireblocks.models.write_call_function_response_dto import WriteCallFunctionResponseDto
 
@@ -172,6 +173,140 @@ class ContractInteractionsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_transaction_receipt(
+        self,
+        base_asset_id: Annotated[StrictStr, Field(description="The blockchain base assetId")],
+        tx_hash: Annotated[StrictStr, Field(description="The transaction hash")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TransactionReceiptResponse]]:
+        """Get transaction receipt
+
+        Retrieve the transaction receipt by blockchain native asset ID and transaction hash
+
+        :param base_asset_id: The blockchain base assetId (required)
+        :type base_asset_id: str
+        :param tx_hash: The transaction hash (required)
+        :type tx_hash: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_transaction_receipt", param_name="base_asset_id", param_value=base_asset_id)
+        validate_not_empty_string(function_name="get_transaction_receipt", param_name="tx_hash", param_value=tx_hash)
+
+        _param = self._get_transaction_receipt_serialize(
+            base_asset_id=base_asset_id,
+            tx_hash=tx_hash,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TransactionReceiptResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_transaction_receipt_serialize(
+        self,
+        base_asset_id,
+        tx_hash,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if base_asset_id is not None:
+            _path_params['baseAssetId'] = base_asset_id
+        if tx_hash is not None:
+            _path_params['txHash'] = tx_hash
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/contract_interactions/base_asset_id/{baseAssetId}/tx_hash/{txHash}/receipt',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

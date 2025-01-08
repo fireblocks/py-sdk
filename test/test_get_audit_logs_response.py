@@ -40,8 +40,8 @@ class TestGetAuditLogsResponse(unittest.TestCase):
                 data = [
                     fireblocks.models.audit_log_data.AuditLogData(
                         id = '', 
-                        timestamp = '', 
-                        created_at = '', 
+                        timestamp = 1.337, 
+                        created_at = 1.337, 
                         user = '', 
                         subject = '', 
                         event = '', 

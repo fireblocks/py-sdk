@@ -39,6 +39,7 @@ class TransferPeerPathType(str, Enum):
     ONE_TIME_ADDRESS = 'ONE_TIME_ADDRESS'
     UNKNOWN = 'UNKNOWN'
     END_USER_WALLET = 'END_USER_WALLET'
+    PROGRAM_CALL = 'PROGRAM_CALL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

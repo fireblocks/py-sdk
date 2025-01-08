@@ -27,6 +27,13 @@ class TestCosignersBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_add_cosigner(self) -> None:
+        """Test case for add_cosigner
+
+        Add cosigner
+        """
+        pass
+
     def test_get_api_key(self) -> None:
         """Test case for get_api_key
 
@@ -55,10 +62,38 @@ class TestCosignersBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_request_status(self) -> None:
+        """Test case for get_request_status
+
+        Get request status
+        """
+        pass
+
+    def test_pair_api_key(self) -> None:
+        """Test case for pair_api_key
+
+        Pair API key
+        """
+        pass
+
     def test_rename_cosigner(self) -> None:
         """Test case for rename_cosigner
 
         Rename cosigner
+        """
+        pass
+
+    def test_unpair_api_key(self) -> None:
+        """Test case for unpair_api_key
+
+        Unpair API key
+        """
+        pass
+
+    def test_update_callback_handler(self) -> None:
+        """Test case for update_callback_handler
+
+        Update API key callback handler
         """
         pass
 

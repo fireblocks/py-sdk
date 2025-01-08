@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** | Internal server error code | 
-**code** | **str** | Error code | 
+**code** | **float** | Error code | 
 
 ## Example
 

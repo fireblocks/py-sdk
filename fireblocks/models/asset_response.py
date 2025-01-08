@@ -20,8 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.asset_response_metadata import AssetResponseMetadata
-from fireblocks.models.asset_response_onchain import AssetResponseOnchain
+from fireblocks.models.asset_metadata import AssetMetadata
+from fireblocks.models.asset_onchain import AssetOnchain
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,8 +31,8 @@ class AssetResponse(BaseModel):
     """ # noqa: E501
     legacy_id: StrictStr = Field(alias="legacyId")
     asset_class: StrictStr = Field(alias="assetClass")
-    onchain: AssetResponseOnchain
-    metadata: AssetResponseMetadata
+    onchain: AssetOnchain
+    metadata: AssetMetadata
     __properties: ClassVar[List[str]] = ["legacyId", "assetClass", "onchain", "metadata"]
 
     @field_validator('asset_class')
@@ -101,8 +101,8 @@ class AssetResponse(BaseModel):
         _obj = cls.model_validate({
             "legacyId": obj.get("legacyId"),
             "assetClass": obj.get("assetClass"),
-            "onchain": AssetResponseOnchain.from_dict(obj["onchain"]) if obj.get("onchain") is not None else None,
-            "metadata": AssetResponseMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
+            "onchain": AssetOnchain.from_dict(obj["onchain"]) if obj.get("onchain") is not None else None,
+            "metadata": AssetMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

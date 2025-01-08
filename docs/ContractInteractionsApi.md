@@ -5,6 +5,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_deployed_contract_abi**](ContractInteractionsApi.md#get_deployed_contract_abi) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions | Return deployed contract&#39;s ABI
+[**get_transaction_receipt**](ContractInteractionsApi.md#get_transaction_receipt) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/tx_hash/{txHash}/receipt | Get transaction receipt
 [**read_call_function**](ContractInteractionsApi.md#read_call_function) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/read | Call a read function on a deployed contract
 [**write_call_function**](ContractInteractionsApi.md#write_call_function) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/write | Call a write function on a deployed contract
 
@@ -83,6 +84,82 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_transaction_receipt**
+> TransactionReceiptResponse get_transaction_receipt(base_asset_id, tx_hash)
+
+Get transaction receipt
+
+Retrieve the transaction receipt by blockchain native asset ID and transaction hash
+
+### Example
+
+
+```python
+from fireblocks.models.transaction_receipt_response import TransactionReceiptResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    base_asset_id = 'ETH_TEST6' # str | The blockchain base assetId
+    tx_hash = '0x3b015ca0518c55d7bff4e3f5aa5d0431705771553ba8a95cf20e34cb597f57f6' # str | The transaction hash
+
+    try:
+        # Get transaction receipt
+        api_response = fireblocks.contract_interactions.get_transaction_receipt(base_asset_id, tx_hash).result()
+        print("The response of ContractInteractionsApi->get_transaction_receipt:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ContractInteractionsApi->get_transaction_receipt: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **base_asset_id** | **str**| The blockchain base assetId | 
+ **tx_hash** | **str**| The transaction hash | 
+
+### Return type
+
+[**TransactionReceiptResponse**](TransactionReceiptResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Retrieved The Transaction Receipt Successfully |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

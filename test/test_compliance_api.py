@@ -55,6 +55,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_retry_rejected_transaction_bypass_screening_checks(self) -> None:
+        """Test case for retry_rejected_transaction_bypass_screening_checks
+
+        Calling the \"Bypass Screening Policy\" API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+        """
+        pass
+
     def test_update_aml_screening_configuration(self) -> None:
         """Test case for update_aml_screening_configuration
 

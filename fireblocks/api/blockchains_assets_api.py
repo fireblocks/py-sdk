@@ -226,9 +226,10 @@ class BlockchainsAssetsApi:
             '200': "AssetResponse",
             '400': "AssetBadRequestErrorResponse",
             '403': "AssetForbiddenErrorResponse",
-            '404': "AssetNotFoundErrorResponse",
+            '404': "TokenInfoNotFoundErrorResponse",
             '409': "AssetConflictErrorResponse",
             '500': "AssetInternalServerErrorResponse",
+            'default': "ErrorSchema",
         }
 
         return self.api_client.call_api(

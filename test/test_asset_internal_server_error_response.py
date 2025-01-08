@@ -40,12 +40,12 @@ class TestAssetInternalServerErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetInternalServerErrorResponse(
                 message = 'Internal server error',
-                code = '3005'
+                code = 3005
             )
         else:
             return AssetInternalServerErrorResponse(
                 message = 'Internal server error',
-                code = '3005',
+                code = 3005,
         )
         """
 

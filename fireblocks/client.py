@@ -18,6 +18,7 @@ from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.assets_api import AssetsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
+from fireblocks.api.blockchains_assets_beta_api import BlockchainsAssetsBetaApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
@@ -28,6 +29,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
+from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
@@ -35,6 +37,7 @@ from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.job_management_api import JobManagementApi
 from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
+from fireblocks.api.keys_beta_api import KeysBetaApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
@@ -43,7 +46,7 @@ from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
-from fireblocks.api.staking_beta_api import StakingBetaApi
+from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
@@ -52,6 +55,7 @@ from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
+from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
@@ -69,6 +73,7 @@ class Fireblocks:
         self._assets = None
         self._audit_logs = None
         self._blockchains_assets = None
+        self._blockchains_assets_beta = None
         self._compliance = None
         self._compliance_screening_configuration = None
         self._console_user = None
@@ -77,6 +82,7 @@ class Fireblocks:
         self._contracts = None
         self._cosigners_beta = None
         self._deployed_contracts = None
+        self._embedded_wallets = None
         self._exchange_accounts = None
         self._external_wallets = None
         self._fiat_accounts = None
@@ -84,6 +90,7 @@ class Fireblocks:
         self._internal_wallets = None
         self._job_management = None
         self._key_link_beta = None
+        self._keys_beta = None
         self._nfts = None
         self._network_connections = None
         self._ota_beta = None
@@ -92,7 +99,7 @@ class Fireblocks:
         self._policy_editor_beta = None
         self._reset_device = None
         self._smart_transfer = None
-        self._staking_beta = None
+        self._staking = None
         self._tokenization = None
         self._transactions = None
         self._travel_rule_beta = None
@@ -101,6 +108,7 @@ class Fireblocks:
         self._vaults = None
         self._web3_connections = None
         self._webhooks = None
+        self._webhooks_v2_beta = None
         self._workspace_status_beta = None
         self._whitelist_ip_addresses = None
 
@@ -136,6 +144,12 @@ class Fireblocks:
         if self._blockchains_assets is None:
             self._blockchains_assets = BlockchainsAssetsApi(self._api_client)
         return self._blockchains_assets
+
+    @property
+    def blockchains_assets_beta(self) -> BlockchainsAssetsBetaApi:
+        if self._blockchains_assets_beta is None:
+            self._blockchains_assets_beta = BlockchainsAssetsBetaApi(self._api_client)
+        return self._blockchains_assets_beta
 
     @property
     def compliance(self) -> ComplianceApi:
@@ -188,6 +202,12 @@ class Fireblocks:
         return self._deployed_contracts
 
     @property
+    def embedded_wallets(self) -> EmbeddedWalletsApi:
+        if self._embedded_wallets is None:
+            self._embedded_wallets = EmbeddedWalletsApi(self._api_client)
+        return self._embedded_wallets
+
+    @property
     def exchange_accounts(self) -> ExchangeAccountsApi:
         if self._exchange_accounts is None:
             self._exchange_accounts = ExchangeAccountsApi(self._api_client)
@@ -228,6 +248,12 @@ class Fireblocks:
         if self._key_link_beta is None:
             self._key_link_beta = KeyLinkBetaApi(self._api_client)
         return self._key_link_beta
+
+    @property
+    def keys_beta(self) -> KeysBetaApi:
+        if self._keys_beta is None:
+            self._keys_beta = KeysBetaApi(self._api_client)
+        return self._keys_beta
 
     @property
     def nfts(self) -> NFTsApi:
@@ -278,10 +304,10 @@ class Fireblocks:
         return self._smart_transfer
 
     @property
-    def staking_beta(self) -> StakingBetaApi:
-        if self._staking_beta is None:
-            self._staking_beta = StakingBetaApi(self._api_client)
-        return self._staking_beta
+    def staking(self) -> StakingApi:
+        if self._staking is None:
+            self._staking = StakingApi(self._api_client)
+        return self._staking
 
     @property
     def tokenization(self) -> TokenizationApi:
@@ -330,6 +356,12 @@ class Fireblocks:
         if self._webhooks is None:
             self._webhooks = WebhooksApi(self._api_client)
         return self._webhooks
+
+    @property
+    def webhooks_v2_beta(self) -> WebhooksV2BetaApi:
+        if self._webhooks_v2_beta is None:
+            self._webhooks_v2_beta = WebhooksV2BetaApi(self._api_client)
+        return self._webhooks_v2_beta
 
     @property
     def workspace_status_beta(self) -> WorkspaceStatusBetaApi:

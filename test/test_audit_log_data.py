@@ -38,8 +38,8 @@ class TestAuditLogData(unittest.TestCase):
         if include_optional:
             return AuditLogData(
                 id = '',
-                timestamp = '',
-                created_at = '',
+                timestamp = 1.337,
+                created_at = 1.337,
                 user = '',
                 subject = '',
                 event = '',

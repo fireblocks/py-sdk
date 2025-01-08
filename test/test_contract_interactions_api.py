@@ -34,6 +34,13 @@ class TestContractInteractionsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_transaction_receipt(self) -> None:
+        """Test case for get_transaction_receipt
+
+        Get transaction receipt
+        """
+        pass
+
     def test_read_call_function(self) -> None:
         """Test case for read_call_function
 

@@ -38,12 +38,17 @@ class TestApiKey(unittest.TestCase):
         if include_optional:
             return ApiKey(
                 id = '44fcead0-7053-4831-a53a-df7fb90d440f',
-                last_seen = '2021-07-01T00:00Z'
+                last_seen = '2021-07-01T00:00Z',
+                callback_handler = fireblocks.models.callback_handler.CallbackHandler(
+                    url = 'https://example.com/callback-handler', 
+                    public_key = '-----BEGIN PUBLIC KEY-----
+... truncated ...
+-----END PUBLIC KEY-----', 
+                    cert_public_key_hash = '', )
             )
         else:
             return ApiKey(
                 id = '44fcead0-7053-4831-a53a-df7fb90d440f',
-                last_seen = '2021-07-01T00:00Z',
         )
         """
 

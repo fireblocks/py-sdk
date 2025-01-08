@@ -40,12 +40,12 @@ class TestAssetPriceForbiddenErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetPriceForbiddenErrorResponse(
                 message = 'Tenant is not allowed to update asset',
-                code = '3002'
+                code = 3002
             )
         else:
             return AssetPriceForbiddenErrorResponse(
                 message = 'Tenant is not allowed to update asset',
-                code = '3002',
+                code = 3002,
         )
         """
 

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,10 +27,20 @@ class PublicKeyInformation(BaseModel):
     """
     PublicKeyInformation
     """ # noqa: E501
-    algorithm: Optional[StrictStr] = None
-    derivation_path: Optional[List[Union[StrictFloat, StrictInt]]] = Field(default=None, alias="derivationPath")
-    public_key: Optional[StrictStr] = Field(default=None, alias="publicKey")
+    algorithm: Optional[StrictStr] = Field(default=None, description="Elliptic Curve")
+    derivation_path: Optional[List[StrictInt]] = Field(default=None, description="BIP44 derivation path", alias="derivationPath")
+    public_key: Optional[StrictStr] = Field(default=None, description="Compressed/Uncompressed public key value in hex representation", alias="publicKey")
     __properties: ClassVar[List[str]] = ["algorithm", "derivationPath", "publicKey"]
+
+    @field_validator('algorithm')
+    def algorithm_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MPC_ECDSA_SECP256K1', 'MPC_ECDSA_SECP256R1', 'MPC_EDDSA_ED25519']):
+            raise ValueError("must be one of enum values ('MPC_ECDSA_SECP256K1', 'MPC_ECDSA_SECP256R1', 'MPC_EDDSA_ED25519')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

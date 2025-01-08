@@ -40,7 +40,13 @@ class TestApiKeysPaginatedResponse(unittest.TestCase):
                 data = [
                     fireblocks.models.api_key.ApiKey(
                         id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        last_seen = '2021-07-01T00:00Z', )
+                        last_seen = '2021-07-01T00:00Z', 
+                        callback_handler = fireblocks.models.callback_handler.CallbackHandler(
+                            url = 'https://example.com/callback-handler', 
+                            public_key = '-----BEGIN PUBLIC KEY-----
+... truncated ...
+-----END PUBLIC KEY-----', 
+                            cert_public_key_hash = '', ), )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
@@ -49,7 +55,13 @@ class TestApiKeysPaginatedResponse(unittest.TestCase):
                 data = [
                     fireblocks.models.api_key.ApiKey(
                         id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        last_seen = '2021-07-01T00:00Z', )
+                        last_seen = '2021-07-01T00:00Z', 
+                        callback_handler = fireblocks.models.callback_handler.CallbackHandler(
+                            url = 'https://example.com/callback-handler', 
+                            public_key = '-----BEGIN PUBLIC KEY-----
+... truncated ...
+-----END PUBLIC KEY-----', 
+                            cert_public_key_hash = '', ), )
                     ],
         )
         """

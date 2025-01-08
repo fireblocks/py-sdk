@@ -38,12 +38,12 @@ class TestAssetForbiddenErrorResponse(unittest.TestCase):
         if include_optional:
             return AssetForbiddenErrorResponse(
                 message = 'Asset creation quota reached',
-                code = '3006'
+                code = 3006
             )
         else:
             return AssetForbiddenErrorResponse(
                 message = 'Asset creation quota reached',
-                code = '3006',
+                code = 3006,
         )
         """
 

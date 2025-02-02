@@ -18,18 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetExchangeAccountsCredentialsPublicKeyResponse(BaseModel):
+class AmlRegistrationResultFullPayload(BaseModel):
     """
-    GetExchangeAccountsCredentialsPublicKeyResponse
+    AmlRegistrationResultFullPayload
     """ # noqa: E501
-    public_key: StrictStr = Field(description="Public key string", alias="publicKey")
-    tenant_id: StrictStr = Field(description="Tenant identifier", alias="tenantId")
-    __properties: ClassVar[List[str]] = ["publicKey", "tenantId"]
+    provider: Optional[StrictStr] = None
+    success: Optional[StrictBool] = None
+    timestamp: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["provider", "success", "timestamp"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +50,7 @@ class GetExchangeAccountsCredentialsPublicKeyResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetExchangeAccountsCredentialsPublicKeyResponse from a JSON string"""
+        """Create an instance of AmlRegistrationResultFullPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,7 +75,7 @@ class GetExchangeAccountsCredentialsPublicKeyResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetExchangeAccountsCredentialsPublicKeyResponse from a dict"""
+        """Create an instance of AmlRegistrationResultFullPayload from a dict"""
         if obj is None:
             return None
 
@@ -82,8 +83,9 @@ class GetExchangeAccountsCredentialsPublicKeyResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "publicKey": obj.get("publicKey"),
-            "tenantId": obj.get("tenantId")
+            "provider": obj.get("provider"),
+            "success": obj.get("success"),
+            "timestamp": obj.get("timestamp")
         })
         return _obj
 

@@ -18,29 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.exchange_type import ExchangeType
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CollectionOwnershipResponse(BaseModel):
+class AddExchangeAccountRequest(BaseModel):
     """
-    CollectionOwnershipResponse
+    AddExchangeAccountRequest
     """ # noqa: E501
-    id: StrictStr = Field(description="Fireblocks collection id")
-    name: Optional[StrictStr] = Field(default=None, description="Collection name")
-    symbol: Optional[StrictStr] = Field(default=None, description="Collection symbol")
-    standard: Optional[StrictStr] = Field(default=None, description="Collection contract standard")
-    blockchain_descriptor: StrictStr = Field(description="Collection's blockchain", alias="blockchainDescriptor")
-    contract_address: Optional[StrictStr] = Field(default=None, description="Collection contract standard", alias="contractAddress")
-    __properties: ClassVar[List[str]] = ["id", "name", "symbol", "standard", "blockchainDescriptor", "contractAddress"]
-
-    @field_validator('blockchain_descriptor')
-    def blockchain_descriptor_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'BASECHAIN_ETH_TEST5', 'ETHERLINK', 'ETHERLINK_TEST', 'MANTLE', 'MANTLE_TEST', 'GUN_GUNZILLA_TEST', 'ETH_SONEIUM', 'SONEIUM_MINATO_TEST', 'IOTX_IOTEX']):
-            raise ValueError("must be one of enum values ('ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'BASECHAIN_ETH_TEST5', 'ETHERLINK', 'ETHERLINK_TEST', 'MANTLE', 'MANTLE_TEST', 'GUN_GUNZILLA_TEST', 'ETH_SONEIUM', 'SONEIUM_MINATO_TEST', 'IOTX_IOTEX')")
-        return value
+    exchange_type: ExchangeType = Field(alias="exchangeType")
+    name: StrictStr = Field(description="Display name of the exchange account")
+    creds: Optional[StrictStr] = Field(default=None, description="Encrypted credentials")
+    key: Optional[StrictStr] = Field(default=None, description="Api key of the exchange")
+    main_account_id: Optional[StrictStr] = Field(default=None, description="Optional - main account id of the exchange", alias="mainAccountId")
+    __properties: ClassVar[List[str]] = ["exchangeType", "name", "creds", "key", "mainAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -60,7 +53,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a JSON string"""
+        """Create an instance of AddExchangeAccountRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,7 +78,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a dict"""
+        """Create an instance of AddExchangeAccountRequest from a dict"""
         if obj is None:
             return None
 
@@ -93,12 +86,11 @@ class CollectionOwnershipResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
+            "exchangeType": obj.get("exchangeType"),
             "name": obj.get("name"),
-            "symbol": obj.get("symbol"),
-            "standard": obj.get("standard"),
-            "blockchainDescriptor": obj.get("blockchainDescriptor"),
-            "contractAddress": obj.get("contractAddress")
+            "creds": obj.get("creds"),
+            "key": obj.get("key"),
+            "mainAccountId": obj.get("mainAccountId")
         })
         return _obj
 

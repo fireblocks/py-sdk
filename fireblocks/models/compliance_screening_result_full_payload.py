@@ -18,28 +18,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CollectionOwnershipResponse(BaseModel):
+class ComplianceScreeningResultFullPayload(BaseModel):
     """
-    CollectionOwnershipResponse
+    ComplianceScreeningResultFullPayload
     """ # noqa: E501
-    id: StrictStr = Field(description="Fireblocks collection id")
-    name: Optional[StrictStr] = Field(default=None, description="Collection name")
-    symbol: Optional[StrictStr] = Field(default=None, description="Collection symbol")
-    standard: Optional[StrictStr] = Field(default=None, description="Collection contract standard")
-    blockchain_descriptor: StrictStr = Field(description="Collection's blockchain", alias="blockchainDescriptor")
-    contract_address: Optional[StrictStr] = Field(default=None, description="Collection contract standard", alias="contractAddress")
-    __properties: ClassVar[List[str]] = ["id", "name", "symbol", "standard", "blockchainDescriptor", "contractAddress"]
+    provider: Optional[StrictStr] = None
+    payload: Optional[Dict[str, Any]] = Field(default=None, description="The payload of the screening result. The payload is a JSON object that contains the screening result. The payload is different for each screening provider. ")
+    bypass_reason: Optional[StrictStr] = Field(default=None, alias="bypassReason")
+    screening_status: Optional[StrictStr] = Field(default=None, alias="screeningStatus")
+    timestamp: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties: ClassVar[List[str]] = ["provider", "payload", "bypassReason", "screeningStatus", "timestamp"]
 
-    @field_validator('blockchain_descriptor')
-    def blockchain_descriptor_validate_enum(cls, value):
+    @field_validator('screening_status')
+    def screening_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'BASECHAIN_ETH_TEST5', 'ETHERLINK', 'ETHERLINK_TEST', 'MANTLE', 'MANTLE_TEST', 'GUN_GUNZILLA_TEST', 'ETH_SONEIUM', 'SONEIUM_MINATO_TEST', 'IOTX_IOTEX']):
-            raise ValueError("must be one of enum values ('ETH', 'ETH_TEST3', 'ETH_TEST5', 'ETH_TEST6', 'POLYGON', 'POLYGON_TEST_MUMBAI', 'AMOY_POLYGON_TEST', 'XTZ', 'XTZ_TEST', 'BASECHAIN_ETH', 'BASECHAIN_ETH_TEST3', 'BASECHAIN_ETH_TEST5', 'ETHERLINK', 'ETHERLINK_TEST', 'MANTLE', 'MANTLE_TEST', 'GUN_GUNZILLA_TEST', 'ETH_SONEIUM', 'SONEIUM_MINATO_TEST', 'IOTX_IOTEX')")
+        if value is None:
+            return value
+
+        if value not in set(['COMPLETED', 'PENDING', 'BYPASSED', 'FAILED', 'FROZEN']):
+            raise ValueError("must be one of enum values ('COMPLETED', 'PENDING', 'BYPASSED', 'FAILED', 'FROZEN')")
         return value
 
     model_config = ConfigDict(
@@ -60,7 +62,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a JSON string"""
+        """Create an instance of ComplianceScreeningResultFullPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,7 +87,7 @@ class CollectionOwnershipResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CollectionOwnershipResponse from a dict"""
+        """Create an instance of ComplianceScreeningResultFullPayload from a dict"""
         if obj is None:
             return None
 
@@ -93,12 +95,11 @@ class CollectionOwnershipResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "symbol": obj.get("symbol"),
-            "standard": obj.get("standard"),
-            "blockchainDescriptor": obj.get("blockchainDescriptor"),
-            "contractAddress": obj.get("contractAddress")
+            "provider": obj.get("provider"),
+            "payload": obj.get("payload"),
+            "bypassReason": obj.get("bypassReason"),
+            "screeningStatus": obj.get("screeningStatus"),
+            "timestamp": obj.get("timestamp")
         })
         return _obj
 

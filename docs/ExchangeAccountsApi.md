@@ -4,12 +4,91 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_exchange_account**](ExchangeAccountsApi.md#add_exchange_account) | **POST** /exchange_accounts | Add an exchange account
 [**convert_assets**](ExchangeAccountsApi.md#convert_assets) | **POST** /exchange_accounts/{exchangeAccountId}/convert | Convert exchange account funds from the source asset to the destination asset.
 [**get_exchange_account**](ExchangeAccountsApi.md#get_exchange_account) | **GET** /exchange_accounts/{exchangeAccountId} | Find a specific exchange account
 [**get_exchange_account_asset**](ExchangeAccountsApi.md#get_exchange_account_asset) | **GET** /exchange_accounts/{exchangeAccountId}/{assetId} | Find an asset for an exchange account
+[**get_exchange_accounts_credentials_public_key**](ExchangeAccountsApi.md#get_exchange_accounts_credentials_public_key) | **GET** /exchange_accounts/credentials_public_key | Get public key to encrypt exchange credentials
 [**get_paged_exchange_accounts**](ExchangeAccountsApi.md#get_paged_exchange_accounts) | **GET** /exchange_accounts/paged | Pagination list exchange accounts
 [**internal_transfer**](ExchangeAccountsApi.md#internal_transfer) | **POST** /exchange_accounts/{exchangeAccountId}/internal_transfer | Internal transfer for exchange accounts
 
+
+# **add_exchange_account**
+> AddExchangeAccountResponse add_exchange_account(add_exchange_account_request, idempotency_key=idempotency_key)
+
+Add an exchange account
+
+Add an exchange account to exchanges.
+
+### Example
+
+
+```python
+from fireblocks.models.add_exchange_account_request import AddExchangeAccountRequest
+from fireblocks.models.add_exchange_account_response import AddExchangeAccountResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    add_exchange_account_request = fireblocks.AddExchangeAccountRequest() # AddExchangeAccountRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Add an exchange account
+        api_response = fireblocks.exchange_accounts.add_exchange_account(add_exchange_account_request, idempotency_key=idempotency_key).result()
+        print("The response of ExchangeAccountsApi->add_exchange_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ExchangeAccountsApi->add_exchange_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **add_exchange_account_request** | [**AddExchangeAccountRequest**](AddExchangeAccountRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**AddExchangeAccountResponse**](AddExchangeAccountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | An Exchange Account identifier object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **convert_assets**
 > ConvertAssetsResponse convert_assets(exchange_account_id, idempotency_key=idempotency_key, convert_assets_request=convert_assets_request)
@@ -236,6 +315,76 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | An ExchangeAccountAsset object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_exchange_accounts_credentials_public_key**
+> GetExchangeAccountsCredentialsPublicKeyResponse get_exchange_accounts_credentials_public_key()
+
+Get public key to encrypt exchange credentials
+
+Return public key
+
+### Example
+
+
+```python
+from fireblocks.models.get_exchange_accounts_credentials_public_key_response import GetExchangeAccountsCredentialsPublicKeyResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get public key to encrypt exchange credentials
+        api_response = fireblocks.exchange_accounts.get_exchange_accounts_credentials_public_key().result()
+        print("The response of ExchangeAccountsApi->get_exchange_accounts_credentials_public_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ExchangeAccountsApi->get_exchange_accounts_credentials_public_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetExchangeAccountsCredentialsPublicKeyResponse**](GetExchangeAccountsCredentialsPublicKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | public key as string |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

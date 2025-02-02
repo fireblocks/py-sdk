@@ -1,5 +1,6 @@
 # ExchangeType
 
+Exchange account's type
 
 ## Properties
 

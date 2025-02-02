@@ -40,7 +40,7 @@ class TestExchangeAccountsPaged(unittest.TestCase):
                 exchange_account = [
                     fireblocks.models.exchange_account.ExchangeAccount(
                         id = '', 
-                        type = 'BINANCE', 
+                        type = 'INDEPENDENT_RESERVE', 
                         name = '', 
                         status = '', 
                         assets = [

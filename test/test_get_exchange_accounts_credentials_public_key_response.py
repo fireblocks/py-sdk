@@ -41,11 +41,13 @@ class TestGetExchangeAccountsCredentialsPublicKeyResponse(unittest.TestCase):
         model = GetExchangeAccountsCredentialsPublicKeyResponse()
         if include_optional:
             return GetExchangeAccountsCredentialsPublicKeyResponse(
-                public_key = ''
+                public_key = '',
+                tenant_id = ''
             )
         else:
             return GetExchangeAccountsCredentialsPublicKeyResponse(
                 public_key = '',
+                tenant_id = '',
         )
         """
 

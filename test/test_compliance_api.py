@@ -48,6 +48,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_screening_full_details(self) -> None:
+        """Test case for get_screening_full_details
+
+        Provides all the compliance details for the given screened transaction.
+        """
+        pass
+
     def test_get_screening_policy(self) -> None:
         """Test case for get_screening_policy
 

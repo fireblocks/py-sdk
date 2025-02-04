@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **public_key** | **str** | Public key string | 
+**tenant_id** | **str** | Tenant identifier | 
 
 ## Example
 

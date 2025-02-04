@@ -38,7 +38,7 @@ class TestExchangeAccount(unittest.TestCase):
         if include_optional:
             return ExchangeAccount(
                 id = '',
-                type = 'BINANCE',
+                type = 'INDEPENDENT_RESERVE',
                 name = '',
                 status = '',
                 assets = [

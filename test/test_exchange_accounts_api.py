@@ -27,6 +27,13 @@ class TestExchangeAccountsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_add_exchange_account(self) -> None:
+        """Test case for add_exchange_account
+
+        Add an exchange account
+        """
+        pass
+
     def test_convert_assets(self) -> None:
         """Test case for convert_assets
 
@@ -45,6 +52,13 @@ class TestExchangeAccountsApi(unittest.TestCase):
         """Test case for get_exchange_account_asset
 
         Find an asset for an exchange account
+        """
+        pass
+
+    def test_get_exchange_accounts_credentials_public_key(self) -> None:
+        """Test case for get_exchange_accounts_credentials_public_key
+
+        Get public key to encrypt exchange credentials
         """
         pass
 

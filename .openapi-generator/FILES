@@ -18,8 +18,11 @@ docs/AddCollateralRequestBody.md
 docs/AddContractAssetRequest.md
 docs/AddCosignerRequest.md
 docs/AddCosignerResponse.md
+docs/AddExchangeAccountRequest.md
+docs/AddExchangeAccountResponse.md
 docs/AdditionalInfo.md
 docs/AmlRegistrationResult.md
+docs/AmlRegistrationResultFullPayload.md
 docs/AmlScreeningResult.md
 docs/AmountAggregationTimePeriodMethod.md
 docs/AmountAndChainDescriptor.md
@@ -83,8 +86,10 @@ docs/CollectionTokenMetadataDto.md
 docs/CollectionType.md
 docs/ComplianceApi.md
 docs/ComplianceResult.md
+docs/ComplianceResultFullPayload.md
 docs/ComplianceScreeningConfigurationApi.md
 docs/ComplianceScreeningResult.md
+docs/ComplianceScreeningResultFullPayload.md
 docs/ConfigChangeRequestStatus.md
 docs/ConfigConversionOperationSnapshot.md
 docs/ConfigDisbursementOperationSnapshot.md
@@ -619,8 +624,11 @@ fireblocks/models/add_collateral_request_body.py
 fireblocks/models/add_contract_asset_request.py
 fireblocks/models/add_cosigner_request.py
 fireblocks/models/add_cosigner_response.py
+fireblocks/models/add_exchange_account_request.py
+fireblocks/models/add_exchange_account_response.py
 fireblocks/models/additional_info.py
 fireblocks/models/aml_registration_result.py
+fireblocks/models/aml_registration_result_full_payload.py
 fireblocks/models/aml_screening_result.py
 fireblocks/models/amount_aggregation_time_period_method.py
 fireblocks/models/amount_and_chain_descriptor.py
@@ -679,7 +687,9 @@ fireblocks/models/collection_token_metadata_attribute_dto.py
 fireblocks/models/collection_token_metadata_dto.py
 fireblocks/models/collection_type.py
 fireblocks/models/compliance_result.py
+fireblocks/models/compliance_result_full_payload.py
 fireblocks/models/compliance_screening_result.py
+fireblocks/models/compliance_screening_result_full_payload.py
 fireblocks/models/config_change_request_status.py
 fireblocks/models/config_conversion_operation_snapshot.py
 fireblocks/models/config_disbursement_operation_snapshot.py
@@ -1148,8 +1158,11 @@ test/test_add_collateral_request_body.py
 test/test_add_contract_asset_request.py
 test/test_add_cosigner_request.py
 test/test_add_cosigner_response.py
+test/test_add_exchange_account_request.py
+test/test_add_exchange_account_response.py
 test/test_additional_info.py
 test/test_aml_registration_result.py
+test/test_aml_registration_result_full_payload.py
 test/test_aml_screening_result.py
 test/test_amount_aggregation_time_period_method.py
 test/test_amount_and_chain_descriptor.py
@@ -1214,8 +1227,10 @@ test/test_collection_token_metadata_dto.py
 test/test_collection_type.py
 test/test_compliance_api.py
 test/test_compliance_result.py
+test/test_compliance_result_full_payload.py
 test/test_compliance_screening_configuration_api.py
 test/test_compliance_screening_result.py
+test/test_compliance_screening_result_full_payload.py
 test/test_config_change_request_status.py
 test/test_config_conversion_operation_snapshot.py
 test/test_config_disbursement_operation_snapshot.py

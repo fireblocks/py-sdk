@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "6.0.0"
+__version__ = "7.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -107,8 +107,13 @@ from fireblocks.models.add_collateral_request_body import AddCollateralRequestBo
 from fireblocks.models.add_contract_asset_request import AddContractAssetRequest
 from fireblocks.models.add_cosigner_request import AddCosignerRequest
 from fireblocks.models.add_cosigner_response import AddCosignerResponse
+from fireblocks.models.add_exchange_account_request import AddExchangeAccountRequest
+from fireblocks.models.add_exchange_account_response import AddExchangeAccountResponse
 from fireblocks.models.additional_info import AdditionalInfo
 from fireblocks.models.aml_registration_result import AmlRegistrationResult
+from fireblocks.models.aml_registration_result_full_payload import (
+    AmlRegistrationResultFullPayload,
+)
 from fireblocks.models.aml_screening_result import AmlScreeningResult
 from fireblocks.models.amount_aggregation_time_period_method import (
     AmountAggregationTimePeriodMethod,
@@ -180,7 +185,11 @@ from fireblocks.models.collection_token_metadata_attribute_dto import (
 from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
 from fireblocks.models.collection_type import CollectionType
 from fireblocks.models.compliance_result import ComplianceResult
+from fireblocks.models.compliance_result_full_payload import ComplianceResultFullPayload
 from fireblocks.models.compliance_screening_result import ComplianceScreeningResult
+from fireblocks.models.compliance_screening_result_full_payload import (
+    ComplianceScreeningResultFullPayload,
+)
 from fireblocks.models.config_change_request_status import ConfigChangeRequestStatus
 from fireblocks.models.config_conversion_operation_snapshot import (
     ConfigConversionOperationSnapshot,

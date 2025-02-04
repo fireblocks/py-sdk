@@ -37,7 +37,7 @@ class AuthorizationGroups(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA']):
+        if set(value.values()) - set(['PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA']):
             raise ValueError("must be one of enum values ('PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA')")
         return value
 

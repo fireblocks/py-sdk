@@ -18,26 +18,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.notification_attempt import NotificationAttempt
-from fireblocks.models.notification_status import NotificationStatus
-from fireblocks.models.webhook_event import WebhookEvent
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Notification(BaseModel):
+class NotificationAttempt(BaseModel):
     """
-    Notification
+    NotificationAttempt
     """ # noqa: E501
-    id: StrictStr = Field(description="The id of the Notification")
-    created_at: StrictInt = Field(description="The creation date of the notification in milliseconds", alias="createdAt")
-    updated_at: StrictInt = Field(description="The date when the notification was updated in milliseconds", alias="updatedAt")
-    status: NotificationStatus
-    event_type: WebhookEvent = Field(alias="eventType")
-    resource_id: Optional[StrictStr] = Field(default=None, description="The resource id of the event which the Notification is listen to", alias="resourceId")
-    attempts: List[NotificationAttempt] = Field(description="The attempts related to Notification")
-    __properties: ClassVar[List[str]] = ["id", "createdAt", "updatedAt", "status", "eventType", "resourceId", "attempts"]
+    sent_time: StrictInt = Field(description="The time when the attempt was sent in milliseconds.", alias="sentTime")
+    duration: StrictInt = Field(description="The duration of the attempt in milliseconds.")
+    response_code: Optional[StrictInt] = Field(default=None, description="The response code of the attempt, when missing refer to failureReason.", alias="responseCode")
+    failure_reason: Optional[StrictStr] = Field(default=None, description="The request failure reason in case responseCode is missing.", alias="failureReason")
+    __properties: ClassVar[List[str]] = ["sentTime", "duration", "responseCode", "failureReason"]
+
+    @field_validator('failure_reason')
+    def failure_reason_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['TIMED_OUT', 'NO_RESPONSE']):
+            raise ValueError("must be one of enum values ('TIMED_OUT', 'NO_RESPONSE')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +61,7 @@ class Notification(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Notification from a JSON string"""
+        """Create an instance of NotificationAttempt from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,23 +82,11 @@ class Notification(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in attempts (list)
-        _items = []
-        if self.attempts:
-            for _item in self.attempts:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['attempts'] = _items
-        # set to None if resource_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.resource_id is None and "resource_id" in self.model_fields_set:
-            _dict['resourceId'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Notification from a dict"""
+        """Create an instance of NotificationAttempt from a dict"""
         if obj is None:
             return None
 
@@ -102,13 +94,10 @@ class Notification(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "createdAt": obj.get("createdAt"),
-            "updatedAt": obj.get("updatedAt"),
-            "status": obj.get("status"),
-            "eventType": obj.get("eventType"),
-            "resourceId": obj.get("resourceId"),
-            "attempts": [NotificationAttempt.from_dict(_item) for _item in obj["attempts"]] if obj.get("attempts") is not None else None
+            "sentTime": obj.get("sentTime"),
+            "duration": obj.get("duration"),
+            "responseCode": obj.get("responseCode"),
+            "failureReason": obj.get("failureReason")
         })
         return _obj
 

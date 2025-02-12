@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "7.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -477,6 +477,7 @@ from fireblocks.models.network_record import NetworkRecord
 from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
+from fireblocks.models.notification_attempt import NotificationAttempt
 from fireblocks.models.notification_paginated_response import (
     NotificationPaginatedResponse,
 )

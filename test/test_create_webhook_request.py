@@ -45,7 +45,6 @@ class TestCreateWebhookRequest(unittest.TestCase):
         else:
             return CreateWebhookRequest(
                 url = 'https://example.com/webhook',
-                description = 'This webhook is used for transactions notifications',
                 events = ["transaction.created","transaction.status.updated"],
         )
         """

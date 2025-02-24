@@ -49,7 +49,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
+from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -171,8 +171,8 @@ def test_get_tokenization(fireblocks_instance):
 def test_get_transactions(fireblocks_instance):
     assert isinstance(fireblocks_instance.transactions, TransactionsApi)
 
-def test_get_travel_rule_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.travel_rule_beta, TravelRuleBetaApi)
+def test_get_travel_rule(fireblocks_instance):
+    assert isinstance(fireblocks_instance.travel_rule, TravelRuleApi)
 
 def test_get_user_groups_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.user_groups_beta, UserGroupsBetaApi)

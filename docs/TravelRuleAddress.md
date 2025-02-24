@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**street** | **str** | Street address | 
-**city** | **str** | City | 
-**state** | **str** | State or province | 
-**postal_code** | **str** | Postal or ZIP code | 
+**street** | **str** | Street address | [optional] 
+**city** | **str** | City | [optional] 
+**state** | **str** | State or province | [optional] 
+**postal_code** | **str** | Postal or ZIP code | [optional] 
 
 ## Example
 

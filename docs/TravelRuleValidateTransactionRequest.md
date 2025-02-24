@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transaction_asset** | **str** | Transaction asset symbol BTC,ETH) | 
+**transaction_asset** | **str** | Transaction asset symbol (BTC,ETH) | 
 **destination** | **str** | Transaction destination address | 
 **transaction_amount** | **str** | Transaction amount in the transaction asset | 
+**transaction_asset_decimals** | **float** | Number of decimals in the transaction asset. This is used to convert the transaction amount to the smallest unit of the asset | [optional] 
 **originator_vas_pdid** | **str** | This is the identifier assigned to your VASP | 
 **originator_equals_beneficiary** | **bool** | \&quot;True\&quot; if the originator and beneficiary is the same person and you therefore do not need to collect any information. \&quot;False\&quot; if it is a third-party transfer. | 
 **travel_rule_behavior** | **bool** | This will also check if the transaction is a TRAVEL_RULE in the beneficiary VASP&#39;s jurisdiction | [optional] 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 **beneficiary_vas_pname** | **str** | Beneficiary VASP name | [optional] 
 **beneficiary_name** | **str** | Beneficiary  name | [optional] 
 **beneficiary_account_number** | **str** | Beneficiary  name | [optional] 
-**beneficiary_address** | [**TravelRuleAddress**](TravelRuleAddress.md) | Beneficiary  name | [optional] 
+**beneficiary_address** | [**TravelRuleAddress**](TravelRuleAddress.md) |  | [optional] 
 
 ## Example
 

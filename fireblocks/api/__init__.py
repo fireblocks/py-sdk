@@ -34,7 +34,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
+from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi

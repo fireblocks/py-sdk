@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "7.0.1"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -53,7 +53,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
+from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -780,12 +780,31 @@ from fireblocks.models.travel_rule_address import TravelRuleAddress
 from fireblocks.models.travel_rule_create_transaction_request import (
     TravelRuleCreateTransactionRequest,
 )
+from fireblocks.models.travel_rule_date_and_place_of_birth import (
+    TravelRuleDateAndPlaceOfBirth,
+)
+from fireblocks.models.travel_rule_geographic_address import TravelRuleGeographicAddress
 from fireblocks.models.travel_rule_get_all_vasps_response import (
     TravelRuleGetAllVASPsResponse,
 )
 from fireblocks.models.travel_rule_issuer import TravelRuleIssuer
 from fireblocks.models.travel_rule_issuers import TravelRuleIssuers
+from fireblocks.models.travel_rule_legal_person import TravelRuleLegalPerson
+from fireblocks.models.travel_rule_legal_person_name_identifier import (
+    TravelRuleLegalPersonNameIdentifier,
+)
+from fireblocks.models.travel_rule_national_identification import (
+    TravelRuleNationalIdentification,
+)
+from fireblocks.models.travel_rule_natural_name_identifier import (
+    TravelRuleNaturalNameIdentifier,
+)
+from fireblocks.models.travel_rule_natural_person import TravelRuleNaturalPerson
+from fireblocks.models.travel_rule_natural_person_name_identifier import (
+    TravelRuleNaturalPersonNameIdentifier,
+)
 from fireblocks.models.travel_rule_ownership_proof import TravelRuleOwnershipProof
+from fireblocks.models.travel_rule_person import TravelRulePerson
 from fireblocks.models.travel_rule_pii_ivms import TravelRulePiiIVMS
 from fireblocks.models.travel_rule_policy_rule_response import (
     TravelRulePolicyRuleResponse,
@@ -797,9 +816,35 @@ from fireblocks.models.travel_rule_update_vasp_details import (
     TravelRuleUpdateVASPDetails,
 )
 from fireblocks.models.travel_rule_vasp import TravelRuleVASP
+from fireblocks.models.travel_rule_validate_date_and_place_of_birth import (
+    TravelRuleValidateDateAndPlaceOfBirth,
+)
 from fireblocks.models.travel_rule_validate_full_transaction_request import (
     TravelRuleValidateFullTransactionRequest,
 )
+from fireblocks.models.travel_rule_validate_geographic_address import (
+    TravelRuleValidateGeographicAddress,
+)
+from fireblocks.models.travel_rule_validate_legal_person import (
+    TravelRuleValidateLegalPerson,
+)
+from fireblocks.models.travel_rule_validate_legal_person_name_identifier import (
+    TravelRuleValidateLegalPersonNameIdentifier,
+)
+from fireblocks.models.travel_rule_validate_national_identification import (
+    TravelRuleValidateNationalIdentification,
+)
+from fireblocks.models.travel_rule_validate_natural_name_identifier import (
+    TravelRuleValidateNaturalNameIdentifier,
+)
+from fireblocks.models.travel_rule_validate_natural_person import (
+    TravelRuleValidateNaturalPerson,
+)
+from fireblocks.models.travel_rule_validate_natural_person_name_identifier import (
+    TravelRuleValidateNaturalPersonNameIdentifier,
+)
+from fireblocks.models.travel_rule_validate_person import TravelRuleValidatePerson
+from fireblocks.models.travel_rule_validate_pii_ivms import TravelRuleValidatePiiIVMS
 from fireblocks.models.travel_rule_validate_transaction_request import (
     TravelRuleValidateTransactionRequest,
 )

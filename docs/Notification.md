@@ -6,13 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The id of the Notification | 
-**created_at** | **datetime** | The creation date of the notification | 
-**updated_at** | **datetime** | The date when the notification was updated | 
+**created_at** | **int** | The creation date of the notification in milliseconds | 
+**updated_at** | **int** | The date when the notification was updated in milliseconds | 
 **status** | [**NotificationStatus**](NotificationStatus.md) |  | 
 **event_type** | [**WebhookEvent**](WebhookEvent.md) |  | 
-**event_version** | **float** | The event version of the Notification | 
 **resource_id** | **str** | The resource id of the event which the Notification is listen to | [optional] 
-**attempts** | **List[str]** | The attempts related to Notification | [optional] [default to []]
+**attempts** | [**List[NotificationAttempt]**](NotificationAttempt.md) | The attempts related to Notification | [default to []]
 
 ## Example
 

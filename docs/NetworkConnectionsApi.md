@@ -757,7 +757,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_network_ids**
-> SearchNetworkIdsResponse search_network_ids(search=search, exclude_self=exclude_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size)
+> SearchNetworkIdsResponse search_network_ids(search=search, exclude_self=exclude_self, only_self=only_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size)
 
 Search network IDs, both local IDs and discoverable remote IDs
 
@@ -790,13 +790,14 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     search = 'search_example' # str | Search string - displayName networkId. Optional (optional)
     exclude_self = True # bool | Exclude your networkIds. Optional, default false (optional)
+    only_self = True # bool | Include just your networkIds. Optional, default false (optional)
     exclude_connected = True # bool | Exclude connected networkIds. Optional, default false (optional)
     page_cursor = 'page_cursor_example' # str | ID of the record after which to fetch $limit records (optional)
     page_size = 50 # float | Number of records to fetch. By default, it is 50 (optional) (default to 50)
 
     try:
         # Search network IDs, both local IDs and discoverable remote IDs
-        api_response = fireblocks.network_connections.search_network_ids(search=search, exclude_self=exclude_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size).result()
+        api_response = fireblocks.network_connections.search_network_ids(search=search, exclude_self=exclude_self, only_self=only_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size).result()
         print("The response of NetworkConnectionsApi->search_network_ids:\n")
         pprint(api_response)
     except Exception as e:
@@ -812,6 +813,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **search** | **str**| Search string - displayName networkId. Optional | [optional] 
  **exclude_self** | **bool**| Exclude your networkIds. Optional, default false | [optional] 
+ **only_self** | **bool**| Include just your networkIds. Optional, default false | [optional] 
  **exclude_connected** | **bool**| Exclude connected networkIds. Optional, default false | [optional] 
  **page_cursor** | **str**| ID of the record after which to fetch $limit records | [optional] 
  **page_size** | **float**| Number of records to fetch. By default, it is 50 | [optional] [default to 50]

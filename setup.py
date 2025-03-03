@@ -26,7 +26,7 @@ NAME = "fireblocks"
 VERSION = "7.1.0"
 PYTHON_REQUIRES = ">=3.8"
 REQUIRES = [
-    "urllib3 >= 1.25.3, < 2.1.0",
+    "urllib3 >= 1.25.3",
     "python-dateutil",
     "pydantic >= 2",
     "typing-extensions >= 4.7.1",

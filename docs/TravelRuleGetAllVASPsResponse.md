@@ -5,9 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[TravelRuleVASP]**](TravelRuleVASP.md) | An array of VASP objects, referencing the TravelRuleVASP schema. | 
-**total** | **int** | The total number of VASPs. | [optional] 
-**next** | **str** | The URL for the next page of results. | [optional] 
+**vasps** | [**List[TravelRuleVASP]**](TravelRuleVASP.md) |  | 
 
 ## Example
 

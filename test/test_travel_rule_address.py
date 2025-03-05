@@ -44,6 +44,10 @@ class TestTravelRuleAddress(unittest.TestCase):
             )
         else:
             return TravelRuleAddress(
+                street = '1234 Example St',
+                city = 'New York',
+                state = 'NY',
+                postal_code = '10001',
         )
         """
 

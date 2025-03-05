@@ -42,17 +42,14 @@ class TestNotificationPaginatedResponse(unittest.TestCase):
                 data = [
                     fireblocks.models.notification.Notification(
                         id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        created_at = 1625126400000, 
-                        updated_at = 1625126400000, 
+                        created_at = '2021-07-01T00:00Z', 
+                        updated_at = '2021-07-01T00:00Z', 
                         status = 'COMPLETED', 
                         event_type = 'transaction.created', 
+                        event_version = 1, 
                         resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
                         attempts = [
-                            fireblocks.models.notification_attempt.NotificationAttempt(
-                                sent_time = 1625126400000, 
-                                duration = 130, 
-                                response_code = 200, 
-                                failure_reason = 'TIMED_OUT', )
+                            ''
                             ], )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
@@ -62,17 +59,14 @@ class TestNotificationPaginatedResponse(unittest.TestCase):
                 data = [
                     fireblocks.models.notification.Notification(
                         id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        created_at = 1625126400000, 
-                        updated_at = 1625126400000, 
+                        created_at = '2021-07-01T00:00Z', 
+                        updated_at = '2021-07-01T00:00Z', 
                         status = 'COMPLETED', 
                         event_type = 'transaction.created', 
+                        event_version = 1, 
                         resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
                         attempts = [
-                            fireblocks.models.notification_attempt.NotificationAttempt(
-                                sent_time = 1625126400000, 
-                                duration = 130, 
-                                response_code = 200, 
-                                failure_reason = 'TIMED_OUT', )
+                            ''
                             ], )
                     ],
         )

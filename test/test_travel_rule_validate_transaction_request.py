@@ -42,7 +42,6 @@ class TestTravelRuleValidateTransactionRequest(unittest.TestCase):
                 transaction_asset = 'BTC',
                 destination = 'bc1qxy2kgdygjrsqtzq2n0yrf1234p83kkfjhx0wlh',
                 transaction_amount = '10',
-                transaction_asset_decimals = 8,
                 originator_vas_pdid = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2',
                 originator_equals_beneficiary = False,
                 travel_rule_behavior = True,

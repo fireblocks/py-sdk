@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -35,20 +35,6 @@ class TravelRuleValidateTransactionResponse(BaseModel):
     beneficiary_vas_pname: StrictStr = Field(description="\"beneficiaryVASPname\" will tell you the name of the VASP that has been identified as the owner of the wallet address. This name is used in a subsequent call to get its DID.", alias="beneficiaryVASPname")
     warnings: List[StrictStr] = Field(description="\"errors/warnings\" will tell you what information about the beneficiary you need to collect from the sender.")
     __properties: ClassVar[List[str]] = ["isValid", "type", "beneficiaryAddressType", "addressSource", "beneficiaryVASPdid", "beneficiaryVASPname", "warnings"]
-
-    @field_validator('beneficiary_address_type')
-    def beneficiary_address_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['UNKNOWN', 'HOSTED', 'UNHOSTED']):
-            raise ValueError("must be one of enum values ('UNKNOWN', 'HOSTED', 'UNHOSTED')")
-        return value
-
-    @field_validator('address_source')
-    def address_source_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['UNKNOWN', 'ADDRESS_HASH', 'ADDRESS_GRAPH', 'CHAINALYSIS', 'ELLIPTIC', 'CRYSTAL']):
-            raise ValueError("must be one of enum values ('UNKNOWN', 'ADDRESS_HASH', 'ADDRESS_GRAPH', 'CHAINALYSIS', 'ELLIPTIC', 'CRYSTAL')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

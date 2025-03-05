@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
 from fireblocks.models.travel_rule_vasp import TravelRuleVASP
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +28,8 @@ class TravelRuleGetAllVASPsResponse(BaseModel):
     """
     TravelRuleGetAllVASPsResponse
     """ # noqa: E501
-    data: List[TravelRuleVASP] = Field(description="An array of VASP objects, referencing the TravelRuleVASP schema.")
-    total: Optional[StrictInt] = Field(default=None, description="The total number of VASPs.")
-    next: Optional[StrictStr] = Field(default=None, description="The URL for the next page of results.")
-    __properties: ClassVar[List[str]] = ["data", "total", "next"]
+    vasps: List[TravelRuleVASP]
+    __properties: ClassVar[List[str]] = ["vasps"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,18 +70,13 @@ class TravelRuleGetAllVASPsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in vasps (list)
         _items = []
-        if self.data:
-            for _item in self.data:
+        if self.vasps:
+            for _item in self.vasps:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['data'] = _items
-        # set to None if next (nullable) is None
-        # and model_fields_set contains the field
-        if self.next is None and "next" in self.model_fields_set:
-            _dict['next'] = None
-
+            _dict['vasps'] = _items
         return _dict
 
     @classmethod
@@ -96,9 +89,7 @@ class TravelRuleGetAllVASPsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": [TravelRuleVASP.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
-            "total": obj.get("total"),
-            "next": obj.get("next")
+            "vasps": [TravelRuleVASP.from_dict(_item) for _item in obj["vasps"]] if obj.get("vasps") is not None else None
         })
         return _obj
 

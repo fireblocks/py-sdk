@@ -42,17 +42,11 @@ class TestWebhook(unittest.TestCase):
                 description = 'This webhook is used for transactions notifications',
                 events = ["transaction.created","transaction.status.updated"],
                 status = 'ENABLED',
-                created_at = 1625126400000,
-                updated_at = 1625126400000
+                created_at = '2021-09-01T12:00Z',
+                updated_at = '2021-09-05T15:00Z'
             )
         else:
             return Webhook(
-                id = '123e4567-e89b-12d3-a456-426614174000',
-                url = 'https://example.com/webhook',
-                events = ["transaction.created","transaction.status.updated"],
-                status = 'ENABLED',
-                created_at = 1625126400000,
-                updated_at = 1625126400000,
         )
         """
 

@@ -30,7 +30,7 @@ class CreateWebhookRequest(BaseModel):
     CreateWebhookRequest
     """ # noqa: E501
     url: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The url of the webhook where notifications will be sent. URL must be valid, unique and https.")
-    description: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="description of the webhook. should not contain special characters.")
+    description: Annotated[str, Field(min_length=1, strict=True)] = Field(description="description of the webhook. should not contain special characters.")
     events: List[WebhookEvent] = Field(description="event types the webhook will subscribe to")
     enabled: Optional[StrictBool] = Field(default=True, description="The status of the webhook. If false, the webhook will not receive notifications.")
     __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled"]

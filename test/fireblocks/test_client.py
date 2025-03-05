@@ -33,6 +33,7 @@ from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
+from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.job_management_api import JobManagementApi
@@ -49,7 +50,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_api import TravelRuleApi
+from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -123,6 +124,9 @@ def test_get_external_wallets(fireblocks_instance):
 def test_get_fiat_accounts(fireblocks_instance):
     assert isinstance(fireblocks_instance.fiat_accounts, FiatAccountsApi)
 
+def test_get_fiat_accounts(fireblocks_instance):
+    assert isinstance(fireblocks_instance.fiat_accounts, FiatAccountsApi)
+
 def test_get_gas_stations(fireblocks_instance):
     assert isinstance(fireblocks_instance.gas_stations, GasStationsApi)
 
@@ -171,8 +175,8 @@ def test_get_tokenization(fireblocks_instance):
 def test_get_transactions(fireblocks_instance):
     assert isinstance(fireblocks_instance.transactions, TransactionsApi)
 
-def test_get_travel_rule(fireblocks_instance):
-    assert isinstance(fireblocks_instance.travel_rule, TravelRuleApi)
+def test_get_travel_rule_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.travel_rule_beta, TravelRuleBetaApi)
 
 def test_get_user_groups_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.user_groups_beta, UserGroupsBetaApi)

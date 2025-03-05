@@ -33,6 +33,7 @@ from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
+from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.job_management_api import JobManagementApi
@@ -49,7 +50,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_api import TravelRuleApi
+from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -86,6 +87,7 @@ class Fireblocks:
         self._exchange_accounts = None
         self._external_wallets = None
         self._fiat_accounts = None
+        self._fiat_accounts = None
         self._gas_stations = None
         self._internal_wallets = None
         self._job_management = None
@@ -102,7 +104,7 @@ class Fireblocks:
         self._staking = None
         self._tokenization = None
         self._transactions = None
-        self._travel_rule = None
+        self._travel_rule_beta = None
         self._user_groups_beta = None
         self._users = None
         self._vaults = None
@@ -226,6 +228,12 @@ class Fireblocks:
         return self._fiat_accounts
 
     @property
+    def fiat_accounts(self) -> FiatAccountsApi:
+        if self._fiat_accounts is None:
+            self._fiat_accounts = FiatAccountsApi(self._api_client)
+        return self._fiat_accounts
+
+    @property
     def gas_stations(self) -> GasStationsApi:
         if self._gas_stations is None:
             self._gas_stations = GasStationsApi(self._api_client)
@@ -322,10 +330,10 @@ class Fireblocks:
         return self._transactions
 
     @property
-    def travel_rule(self) -> TravelRuleApi:
-        if self._travel_rule is None:
-            self._travel_rule = TravelRuleApi(self._api_client)
-        return self._travel_rule
+    def travel_rule_beta(self) -> TravelRuleBetaApi:
+        if self._travel_rule_beta is None:
+            self._travel_rule_beta = TravelRuleBetaApi(self._api_client)
+        return self._travel_rule_beta
 
     @property
     def user_groups_beta(self) -> UserGroupsBetaApi:

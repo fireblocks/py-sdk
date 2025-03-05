@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,10 +27,10 @@ class TravelRuleAddress(BaseModel):
     """
     TravelRuleAddress
     """ # noqa: E501
-    street: Optional[StrictStr] = Field(default=None, description="Street address")
-    city: Optional[StrictStr] = Field(default=None, description="City")
-    state: Optional[StrictStr] = Field(default=None, description="State or province")
-    postal_code: Optional[StrictStr] = Field(default=None, description="Postal or ZIP code", alias="postalCode")
+    street: StrictStr = Field(description="Street address")
+    city: StrictStr = Field(description="City")
+    state: StrictStr = Field(description="State or province")
+    postal_code: StrictStr = Field(description="Postal or ZIP code", alias="postalCode")
     __properties: ClassVar[List[str]] = ["street", "city", "state", "postalCode"]
 
     model_config = ConfigDict(

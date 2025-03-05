@@ -44,8 +44,8 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                         description = 'This webhook is used for transactions notifications', 
                         events = ["transaction.created","transaction.status.updated"], 
                         status = 'ENABLED', 
-                        created_at = 1625126400000, 
-                        updated_at = 1625126400000, )
+                        created_at = '2021-09-01T12:00Z', 
+                        updated_at = '2021-09-05T15:00Z', )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
@@ -58,8 +58,8 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                         description = 'This webhook is used for transactions notifications', 
                         events = ["transaction.created","transaction.status.updated"], 
                         status = 'ENABLED', 
-                        created_at = 1625126400000, 
-                        updated_at = 1625126400000, )
+                        created_at = '2021-09-01T12:00Z', 
+                        updated_at = '2021-09-05T15:00Z', )
                     ],
         )
         """

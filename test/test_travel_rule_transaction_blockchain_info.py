@@ -39,9 +39,9 @@ class TestTravelRuleTransactionBlockchainInfo(unittest.TestCase):
         model = TravelRuleTransactionBlockchainInfo()
         if include_optional:
             return TravelRuleTransactionBlockchainInfo(
-                tx_hash = '6.685730843558756E+76',
-                origin = '8.41132469470587E+47',
-                destination = '8.41132469470587E+47'
+                tx_hash = '',
+                origin = '',
+                destination = ''
             )
         else:
             return TravelRuleTransactionBlockchainInfo(

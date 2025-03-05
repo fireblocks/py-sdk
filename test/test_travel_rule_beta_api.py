@@ -15,14 +15,14 @@
 
 import unittest
 
-from fireblocks.api.travel_rule_api import TravelRuleApi
+from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
 
 
-class TestTravelRuleApi(unittest.TestCase):
-    """TravelRuleApi unit test stubs"""
+class TestTravelRuleBetaApi(unittest.TestCase):
+    """TravelRuleBetaApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = TravelRuleApi()
+        self.api = TravelRuleBetaApi()
 
     def tearDown(self) -> None:
         pass
@@ -66,6 +66,13 @@ class TestTravelRuleApi(unittest.TestCase):
         """Test case for validate_full_travel_rule_transaction
 
         Validate Full Travel Rule Transaction
+        """
+        pass
+
+    def test_validate_travel_rule_transaction(self) -> None:
+        """Test case for validate_travel_rule_transaction
+
+        Validate Travel Rule Transaction
         """
         pass
 

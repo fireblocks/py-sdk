@@ -1,14 +1,19 @@
 # TravelRulePiiIVMS
 
-Personal identifiable information related to the transaction
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**originator_persons** | [**List[TravelRulePerson]**](TravelRulePerson.md) | Information about the originator of the transaction | [optional] 
-**beneficiary_persons** | [**List[TravelRulePerson]**](TravelRulePerson.md) | Information about the beneficiary of the transaction | [optional] 
-**account_number** | **List[str]** | Beneficiary account number. The value must be encrypted. | [optional] 
+**full_name** | **str** |  | [optional] 
+**date_of_birth** | **str** |  | [optional] 
+**place_of_birth** | **str** |  | [optional] 
+**address** | **str** |  | [optional] 
+**identification_number** | **str** |  | [optional] 
+**nationality** | **str** |  | [optional] 
+**country_of_residence** | **str** |  | [optional] 
+**tax_identification_number** | **str** |  | [optional] 
+**customer_number** | **str** |  | [optional] 
 
 ## Example
 

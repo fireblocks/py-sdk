@@ -18,23 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class TravelRuleOwnershipProof(BaseModel):
     """
-    Ownership proof related to the originator of the transaction.
+    TravelRuleOwnershipProof
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="The type of ownership proof. Example values: - `eip-191`: Ethereum signature proof - `eip-712`: Ethereum typed data signature proof - `bip-137`: Bitcoin signature proof - `microtransfer`: Microtransaction (Satoshi test) - `screenshot`: Uploaded screenshot of the wallet - `self-declaration`: Checkbox attestation of ownership")
-    proof: Optional[StrictStr] = Field(default=None, description="The cryptographic signature, transaction hash, or other proof depending on the type. Examples: - For `eip-191`: `0x3dd4a17a...ce4a2bcd1b` - For `microtransfer`: The transaction hash `H3V8GXBy39Dz...tr3TSTkY=`")
-    attestation: Optional[StrictStr] = Field(default=None, description="A human-readable statement of wallet ownership. Required for signature proofs and self-declarations. Examples: - `I certify that ETH account 0x896B...0b9b belongs to me.` - `I hereby declare that the blockchain address 0xa437bEed902AF9338B7DEB23848e195d85019510 is under my control.`")
-    address: Optional[StrictStr] = Field(default=None, description="The wallet address being verified. Examples: - For Ethereum: `0x896B...0b9b` - For Bitcoin: `1442...dxhsQ`")
-    wallet_provider: Optional[StrictStr] = Field(default=None, description="The wallet provider or method used for verification. Examples: - For Metamask: `Metamask` - For manual signature: `manual`")
-    url: Optional[StrictStr] = Field(default=None, description="The URL for the uploaded screenshot (for `screenshot` proof types only). Example: `https://example.com/uploaded_image.png`")
-    confirmed: Optional[StrictBool] = Field(default=None, description="Whether the user confirmed ownership of the wallet (for `self-declaration` proofs). Example: `true`")
-    __properties: ClassVar[List[str]] = ["type", "proof", "attestation", "address", "wallet_provider", "url", "confirmed"]
+    type: Optional[StrictStr] = Field(default=None, description="Type of ownership proof")
+    proof: Optional[StrictStr] = Field(default=None, description="Identification number")
+    __properties: ClassVar[List[str]] = ["type", "proof"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,12 +83,7 @@ class TravelRuleOwnershipProof(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "proof": obj.get("proof"),
-            "attestation": obj.get("attestation"),
-            "address": obj.get("address"),
-            "wallet_provider": obj.get("wallet_provider"),
-            "url": obj.get("url"),
-            "confirmed": obj.get("confirmed")
+            "proof": obj.get("proof")
         })
         return _obj
 

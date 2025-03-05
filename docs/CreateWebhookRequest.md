@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **str** | The url of the webhook where notifications will be sent. URL must be valid, unique and https. | 
-**description** | **str** | description of the webhook. should not contain special characters. | [optional] 
+**description** | **str** | description of the webhook. should not contain special characters. | 
 **events** | [**List[WebhookEvent]**](WebhookEvent.md) | event types the webhook will subscribe to | 
 **enabled** | **bool** | The status of the webhook. If false, the webhook will not receive notifications. | [optional] [default to True]
 

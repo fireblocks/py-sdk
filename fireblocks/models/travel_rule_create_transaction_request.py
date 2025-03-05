@@ -30,27 +30,20 @@ class TravelRuleCreateTransactionRequest(BaseModel):
     """
     TravelRuleCreateTransactionRequest
     """ # noqa: E501
-    originator_vas_pdid: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the exchange (VASP) that is sending the virtual assets. This identifier is unique to the exchange and is generated when the exchange's account is  created in the Notabene network.", alias="originatorVASPdid")
-    beneficiary_vas_pdid: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the exchange (VASP) that is receiving the virtual assets. This identifier is unique to the exchange and is generated when the exchange's account is  created in the Notabene network.", alias="beneficiaryVASPdid")
-    originator_vas_pname: Optional[StrictStr] = Field(default=None, description="The name of the VASP acting as the transaction originator.", alias="originatorVASPname")
-    beneficiary_vas_pname: Optional[StrictStr] = Field(default=None, description="The name of the VASP acting as the transaction beneficiary.", alias="beneficiaryVASPname")
-    beneficiary_vas_pwebsite: Optional[StrictStr] = Field(default=None, description="The website of the VASP acting as the transaction beneficiary.", alias="beneficiaryVASPwebsite")
-    transaction_blockchain_info: Optional[TravelRuleTransactionBlockchainInfo] = Field(default=None, alias="transactionBlockchainInfo")
-    originator: TravelRulePiiIVMS
-    beneficiary: TravelRulePiiIVMS
-    encrypted: Optional[StrictStr] = Field(default=None, description="Encrypted data related to the transaction.")
-    protocol: Optional[StrictStr] = Field(default=None, description="The protocol used to perform the travel rule.")
-    skip_beneficiary_data_validation: Optional[StrictBool] = Field(default=None, description="Whether to skip validation of beneficiary data.", alias="skipBeneficiaryDataValidation")
-    travel_rule_behavior: Optional[StrictBool] = Field(default=None, description="Whether to check if the transaction complies with the travel rule in the beneficiary VASP's jurisdiction.", alias="travelRuleBehavior")
-    originator_ref: Optional[StrictStr] = Field(default=None, description="A reference ID related to the originator of the transaction.", alias="originatorRef")
-    beneficiary_ref: Optional[StrictStr] = Field(default=None, description="A reference ID related to the beneficiary of the transaction.", alias="beneficiaryRef")
-    travel_rule_behavior_ref: Optional[StrictStr] = Field(default=None, description="A reference ID related to the travel rule behavior.", alias="travelRuleBehaviorRef")
-    originator_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, alias="originatorProof")
-    beneficiary_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, alias="beneficiaryProof")
-    beneficiary_did: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the person at the receiving exchange (VASP).  This identifier is generated when the customer is registered in the Notabene network,  or automatically created based on the `beneficiaryRef`.  - If neither `beneficiaryRef` nor `beneficiaryDid` is provided in the `txCreate` payload,    a new random DID is generated for every transaction.", alias="beneficiaryDid")
-    originator_did: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the person at the exchange (VASP) who is requesting the withdrawal. This identifier is generated when the customer is registered in the Notabene network or automatically created based on the `originatorRef`.  - If neither `originatorRef` nor `originatorDid` is provided in the `txCreate` payload,    a new random DID is generated for every transaction.", alias="originatorDid")
-    is_non_custodial: Optional[StrictBool] = Field(default=None, description="Indicates if the transaction involves a non-custodial wallet.", alias="isNonCustodial")
-    __properties: ClassVar[List[str]] = ["originatorVASPdid", "beneficiaryVASPdid", "originatorVASPname", "beneficiaryVASPname", "beneficiaryVASPwebsite", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorRef", "beneficiaryRef", "travelRuleBehaviorRef", "originatorProof", "beneficiaryProof", "beneficiaryDid", "originatorDid", "isNonCustodial"]
+    originator_vas_pdid: Optional[StrictStr] = Field(default=None, description="The VASP ID of the transaction originator", alias="originatorVASPdid")
+    beneficiary_vas_pdid: Optional[StrictStr] = Field(default=None, description="The VASP ID of the transaction beneficiary", alias="beneficiaryVASPdid")
+    beneficiary_vas_pname: Optional[StrictStr] = Field(default=None, description="The name of the VASP acting as the beneficiary", alias="beneficiaryVASPname")
+    transaction_blockchain_info: Optional[TravelRuleTransactionBlockchainInfo] = Field(default=None, description="Information about the blockchain transaction", alias="transactionBlockchainInfo")
+    originator: TravelRulePiiIVMS = Field(description="Information about the originator of the transaction")
+    beneficiary: TravelRulePiiIVMS = Field(description="Information about the beneficiary of the transaction")
+    encrypted: Optional[StrictStr] = Field(default=None, description="Encrypted data related to the transaction")
+    protocol: Optional[StrictStr] = Field(default=None, description="The protocol used to perform the travel rule")
+    skip_beneficiary_data_validation: Optional[StrictBool] = Field(default=None, description="Whether to skip validation of beneficiary data", alias="skipBeneficiaryDataValidation")
+    travel_rule_behavior: Optional[StrictBool] = Field(default=None, description="Whether to check if the transaction is a TRAVEL_RULE in the beneficiary VASP's jurisdiction", alias="travelRuleBehavior")
+    originator_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, description="Ownership proof related to the originator of the transaction", alias="originatorProof")
+    beneficiary_proof: Optional[TravelRuleOwnershipProof] = Field(default=None, description="Ownership proof related to the beneficiary of the transaction", alias="beneficiaryProof")
+    pii: Optional[TravelRulePiiIVMS] = Field(default=None, description="Personal identifiable information related to the transaction")
+    __properties: ClassVar[List[str]] = ["originatorVASPdid", "beneficiaryVASPdid", "beneficiaryVASPname", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorProof", "beneficiaryProof", "pii"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,6 +99,9 @@ class TravelRuleCreateTransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of beneficiary_proof
         if self.beneficiary_proof:
             _dict['beneficiaryProof'] = self.beneficiary_proof.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pii
+        if self.pii:
+            _dict['pii'] = self.pii.to_dict()
         return _dict
 
     @classmethod
@@ -120,9 +116,7 @@ class TravelRuleCreateTransactionRequest(BaseModel):
         _obj = cls.model_validate({
             "originatorVASPdid": obj.get("originatorVASPdid"),
             "beneficiaryVASPdid": obj.get("beneficiaryVASPdid"),
-            "originatorVASPname": obj.get("originatorVASPname"),
             "beneficiaryVASPname": obj.get("beneficiaryVASPname"),
-            "beneficiaryVASPwebsite": obj.get("beneficiaryVASPwebsite"),
             "transactionBlockchainInfo": TravelRuleTransactionBlockchainInfo.from_dict(obj["transactionBlockchainInfo"]) if obj.get("transactionBlockchainInfo") is not None else None,
             "originator": TravelRulePiiIVMS.from_dict(obj["originator"]) if obj.get("originator") is not None else None,
             "beneficiary": TravelRulePiiIVMS.from_dict(obj["beneficiary"]) if obj.get("beneficiary") is not None else None,
@@ -130,14 +124,9 @@ class TravelRuleCreateTransactionRequest(BaseModel):
             "protocol": obj.get("protocol"),
             "skipBeneficiaryDataValidation": obj.get("skipBeneficiaryDataValidation"),
             "travelRuleBehavior": obj.get("travelRuleBehavior"),
-            "originatorRef": obj.get("originatorRef"),
-            "beneficiaryRef": obj.get("beneficiaryRef"),
-            "travelRuleBehaviorRef": obj.get("travelRuleBehaviorRef"),
             "originatorProof": TravelRuleOwnershipProof.from_dict(obj["originatorProof"]) if obj.get("originatorProof") is not None else None,
             "beneficiaryProof": TravelRuleOwnershipProof.from_dict(obj["beneficiaryProof"]) if obj.get("beneficiaryProof") is not None else None,
-            "beneficiaryDid": obj.get("beneficiaryDid"),
-            "originatorDid": obj.get("originatorDid"),
-            "isNonCustodial": obj.get("isNonCustodial")
+            "pii": TravelRulePiiIVMS.from_dict(obj["pii"]) if obj.get("pii") is not None else None
         })
         return _obj
 

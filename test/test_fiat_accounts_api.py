@@ -41,13 +41,6 @@ class TestFiatAccountsApi(unittest.TestCase):
         """
         pass
 
-    def test_get_fiat_accounts(self) -> None:
-        """Test case for get_fiat_accounts
-
-        List fiat accounts
-        """
-        pass
-
     def test_redeem_funds_to_linked_dda(self) -> None:
         """Test case for redeem_funds_to_linked_dda
 

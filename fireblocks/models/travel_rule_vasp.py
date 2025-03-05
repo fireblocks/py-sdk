@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from fireblocks.models.travel_rule_issuers import TravelRuleIssuers
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,51 +28,51 @@ class TravelRuleVASP(BaseModel):
     """
     TravelRuleVASP
     """ # noqa: E501
-    did: StrictStr = Field(description="The Decentralized Identifier (DID) of the VASP.")
-    name: StrictStr = Field(description="The name of the VASP.")
-    verification_status: StrictStr = Field(description="The current verification status of the VASP.", alias="verificationStatus")
-    address_line1: StrictStr = Field(description="The first line of the VASP's address.", alias="addressLine1")
-    address_line2: Optional[StrictStr] = Field(default=None, description="The second line of the VASP's address (if applicable).", alias="addressLine2")
-    city: StrictStr = Field(description="The city where the VASP is located.")
-    country: StrictStr = Field(description="The country where the VASP is registered (ISO-3166 Alpha-2 code).")
-    email_domains: StrictStr = Field(description="Comma-separated list of email domains associated with the VASP.", alias="emailDomains")
-    website: StrictStr = Field(description="The official website of the VASP.")
-    logo: Optional[StrictStr] = Field(default=None, description="URL to the logo of the VASP.")
-    legal_structure: StrictStr = Field(description="The legal structure of the VASP (e.g., Corporation, LLC).", alias="legalStructure")
-    legal_name: StrictStr = Field(description="The legal name of the VASP.", alias="legalName")
-    year_founded: StrictStr = Field(description="The year the VASP was founded.", alias="yearFounded")
-    incorporation_country: StrictStr = Field(description="The country where the VASP is incorporated (ISO-3166 Alpha-2 code).", alias="incorporationCountry")
-    is_regulated: StrictStr = Field(description="Indicates whether the VASP is regulated.", alias="isRegulated")
-    other_names: Optional[StrictStr] = Field(default=None, description="Other names the VASP is known by.", alias="otherNames")
-    identification_type: Optional[StrictStr] = Field(default=None, description="The type of identification used by the VASP.", alias="identificationType")
-    identification_country: Optional[StrictStr] = Field(default=None, description="The country of identification for the VASP (ISO-3166 Alpha-2 code).", alias="identificationCountry")
-    business_number: Optional[StrictStr] = Field(default=None, description="The business registration number of the VASP.", alias="businessNumber")
-    regulatory_authorities: Optional[StrictStr] = Field(default=None, description="The regulatory authorities overseeing the VASP.", alias="regulatoryAuthorities")
-    jurisdictions: StrictStr = Field(description="The jurisdictions where the VASP operates.")
-    street: Optional[StrictStr] = Field(default=None, description="The street name where the VASP is located.")
-    number: Optional[StrictStr] = Field(default=None, description="The building number of the VASP's address.")
-    unit: Optional[StrictStr] = Field(default=None, description="The unit or suite number of the VASP's address.")
-    post_code: Optional[StrictStr] = Field(default=None, description="The postal code of the VASP's location.", alias="postCode")
-    state: Optional[StrictStr] = Field(default=None, description="The state or region where the VASP is located.")
-    certificates: Optional[StrictStr] = Field(default=None, description="Certificates or licenses held by the VASP.")
-    description: Optional[StrictStr] = Field(default=None, description="A brief description of the VASP.")
-    travel_rule_openvasp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for OpenVASP.", alias="travelRule_OPENVASP")
-    travel_rule_sygna: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Sygna.", alias="travelRule_SYGNA")
-    travel_rule_trisa: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRISA.", alias="travelRule_TRISA")
-    travel_rule_trlight: StrictStr = Field(description="Travel rule compliance status for TRLight.", alias="travelRule_TRLIGHT")
-    travel_rule_email: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for EMAIL.", alias="travelRule_EMAIL")
-    travel_rule_trp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRP.", alias="travelRule_TRP")
-    travel_rule_shyft: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Shyft.", alias="travelRule_SHYFT")
-    travel_rule_ustravelrulewg: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for US Travel Rule WG.", alias="travelRule_USTRAVELRULEWG")
-    created_at: StrictStr = Field(description="Timestamp when the VASP record was created.", alias="createdAt")
-    created_by: Optional[StrictStr] = Field(default=None, description="User or system that created the VASP record.", alias="createdBy")
-    updated_at: Optional[StrictStr] = Field(default=None, description="Timestamp of the last update to the VASP record.", alias="updatedAt")
-    updated_by: Optional[StrictStr] = Field(default=None, description="User or system that last updated the VASP record.", alias="updatedBy")
-    last_sent_date: Optional[StrictStr] = Field(default=None, description="The last date a transaction was sent by the VASP.", alias="lastSentDate")
-    last_received_date: Optional[StrictStr] = Field(default=None, description="The last date a transaction was received by the VASP.", alias="lastReceivedDate")
-    documents: Optional[StrictStr] = Field(default=None, description="Documents associated with the VASP.")
-    has_admin: StrictBool = Field(description="Indicates if the VASP has an admin.", alias="hasAdmin")
-    is_notifiable: StrictBool = Field(description="Indicates if the VASP is notifiable for compliance reasons.", alias="isNotifiable")
+    did: StrictStr
+    name: StrictStr
+    verification_status: StrictStr = Field(alias="verificationStatus")
+    address_line1: StrictStr = Field(alias="addressLine1")
+    address_line2: StrictStr = Field(alias="addressLine2")
+    city: StrictStr
+    country: StrictStr
+    email_domains: StrictStr = Field(alias="emailDomains")
+    website: StrictStr
+    logo: StrictStr
+    legal_structure: StrictStr = Field(alias="legalStructure")
+    legal_name: StrictStr = Field(alias="legalName")
+    year_founded: StrictStr = Field(alias="yearFounded")
+    incorporation_country: StrictStr = Field(alias="incorporationCountry")
+    is_regulated: StrictStr = Field(alias="isRegulated")
+    other_names: StrictStr = Field(alias="otherNames")
+    identification_type: StrictStr = Field(alias="identificationType")
+    identification_country: StrictStr = Field(alias="identificationCountry")
+    business_number: StrictStr = Field(alias="businessNumber")
+    regulatory_authorities: StrictStr = Field(alias="regulatoryAuthorities")
+    jurisdictions: StrictStr
+    street: StrictStr
+    number: StrictStr
+    unit: StrictStr
+    post_code: StrictStr = Field(alias="postCode")
+    state: StrictStr
+    certificates: StrictStr
+    description: StrictStr
+    travel_rule_openvasp: StrictStr = Field(alias="travelRule_OPENVASP")
+    travel_rule_sygna: StrictStr = Field(alias="travelRule_SYGNA")
+    travel_rule_trisa: StrictStr = Field(alias="travelRule_TRISA")
+    travel_rule_trlight: StrictStr = Field(alias="travelRule_TRLIGHT")
+    travel_rule_email: StrictStr = Field(alias="travelRule_EMAIL")
+    travel_rule_trp: StrictStr = Field(alias="travelRule_TRP")
+    travel_rule_shyft: StrictStr = Field(alias="travelRule_SHYFT")
+    travel_rule_ustravelrulewg: StrictStr = Field(alias="travelRule_USTRAVELRULEWG")
+    created_at: StrictStr = Field(alias="createdAt")
+    created_by: StrictStr = Field(alias="createdBy")
+    updated_at: StrictStr = Field(alias="updatedAt")
+    updated_by: StrictStr = Field(alias="updatedBy")
+    last_sent_date: StrictStr = Field(alias="lastSentDate")
+    last_received_date: StrictStr = Field(alias="lastReceivedDate")
+    documents: StrictStr
+    has_admin: StrictBool = Field(alias="hasAdmin")
+    is_notifiable: StrictBool = Field(alias="isNotifiable")
     issuers: TravelRuleIssuers
     __properties: ClassVar[List[str]] = ["did", "name", "verificationStatus", "addressLine1", "addressLine2", "city", "country", "emailDomains", "website", "logo", "legalStructure", "legalName", "yearFounded", "incorporationCountry", "isRegulated", "otherNames", "identificationType", "identificationCountry", "businessNumber", "regulatoryAuthorities", "jurisdictions", "street", "number", "unit", "postCode", "state", "certificates", "description", "travelRule_OPENVASP", "travelRule_SYGNA", "travelRule_TRISA", "travelRule_TRLIGHT", "travelRule_EMAIL", "travelRule_TRP", "travelRule_SHYFT", "travelRule_USTRAVELRULEWG", "createdAt", "createdBy", "updatedAt", "updatedBy", "lastSentDate", "lastReceivedDate", "documents", "hasAdmin", "isNotifiable", "issuers"]
 

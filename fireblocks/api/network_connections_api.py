@@ -1343,7 +1343,6 @@ class NetworkConnectionsApi:
         self,
         search: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Search string - displayName networkId. Optional")] = None,
         exclude_self: Annotated[Optional[StrictBool], Field(description="Exclude your networkIds. Optional, default false")] = None,
-        only_self: Annotated[Optional[StrictBool], Field(description="Include just your networkIds. Optional, default false")] = None,
         exclude_connected: Annotated[Optional[StrictBool], Field(description="Exclude connected networkIds. Optional, default false")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="ID of the record after which to fetch $limit records")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=50, strict=True, ge=1)], Annotated[int, Field(le=50, strict=True, ge=1)]]], Field(description="Number of records to fetch. By default, it is 50")] = None,
@@ -1368,8 +1367,6 @@ class NetworkConnectionsApi:
         :type search: str
         :param exclude_self: Exclude your networkIds. Optional, default false
         :type exclude_self: bool
-        :param only_self: Include just your networkIds. Optional, default false
-        :type only_self: bool
         :param exclude_connected: Exclude connected networkIds. Optional, default false
         :type exclude_connected: bool
         :param page_cursor: ID of the record after which to fetch $limit records
@@ -1402,7 +1399,6 @@ class NetworkConnectionsApi:
         _param = self._search_network_ids_serialize(
             search=search,
             exclude_self=exclude_self,
-            only_self=only_self,
             exclude_connected=exclude_connected,
             page_cursor=page_cursor,
             page_size=page_size,
@@ -1427,7 +1423,6 @@ class NetworkConnectionsApi:
         self,
         search,
         exclude_self,
-        only_self,
         exclude_connected,
         page_cursor,
         page_size,
@@ -1458,10 +1453,6 @@ class NetworkConnectionsApi:
         if exclude_self is not None:
             
             _query_params.append(('excludeSelf', exclude_self))
-            
-        if only_self is not None:
-            
-            _query_params.append(('onlySelf', only_self))
             
         if exclude_connected is not None:
             

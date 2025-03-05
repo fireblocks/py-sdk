@@ -18,7 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
@@ -29,20 +30,23 @@ class Webhook(BaseModel):
     """
     Webhook
     """ # noqa: E501
-    id: StrictStr = Field(description="The id of the webhook")
-    url: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The url of the webhook where notifications will be sent. Must be a valid URL and https.")
+    id: Optional[StrictStr] = Field(default=None, description="The id of the webhook")
+    url: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="The url of the webhook where notifications will be sent. Must be a valid URL and https.")
     description: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="description of the webhook of what it is used for")
-    events: List[WebhookEvent] = Field(description="The events that the webhook will be subscribed to")
-    status: StrictStr = Field(description="The status of the webhook")
-    created_at: StrictInt = Field(description="The date and time the webhook was created in milliseconds", alias="createdAt")
-    updated_at: StrictInt = Field(description="The date and time the webhook was last updated in milliseconds", alias="updatedAt")
+    events: Optional[List[WebhookEvent]] = Field(default=None, description="The events that the webhook will be subscribed to")
+    status: Optional[StrictStr] = Field(default=None, description="The status of the webhook")
+    created_at: Optional[datetime] = Field(default=None, description="The date and time the webhook was created", alias="createdAt")
+    updated_at: Optional[datetime] = Field(default=None, description="The date and time the webhook was last updated", alias="updatedAt")
     __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['DISABLED', 'ENABLED', 'SUSPENDED']):
-            raise ValueError("must be one of enum values ('DISABLED', 'ENABLED', 'SUSPENDED')")
+        if value is None:
+            return value
+
+        if value not in set(['DISABLED', 'ENABLED']):
+            raise ValueError("must be one of enum values ('DISABLED', 'ENABLED')")
         return value
 
     model_config = ConfigDict(

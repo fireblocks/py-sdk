@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The id of the webhook | 
-**url** | **str** | The url of the webhook where notifications will be sent. Must be a valid URL and https. | 
+**id** | **str** | The id of the webhook | [optional] 
+**url** | **str** | The url of the webhook where notifications will be sent. Must be a valid URL and https. | [optional] 
 **description** | **str** | description of the webhook of what it is used for | [optional] 
-**events** | [**List[WebhookEvent]**](WebhookEvent.md) | The events that the webhook will be subscribed to | 
-**status** | **str** | The status of the webhook | 
-**created_at** | **int** | The date and time the webhook was created in milliseconds | 
-**updated_at** | **int** | The date and time the webhook was last updated in milliseconds | 
+**events** | [**List[WebhookEvent]**](WebhookEvent.md) | The events that the webhook will be subscribed to | [optional] 
+**status** | **str** | The status of the webhook | [optional] 
+**created_at** | **datetime** | The date and time the webhook was created | [optional] 
+**updated_at** | **datetime** | The date and time the webhook was last updated | [optional] 
 
 ## Example
 

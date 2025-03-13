@@ -73,9 +73,9 @@ class ScreeningOperationExecutionOutput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in verdicts (list)
         _items = []
         if self.verdicts:
-            for _item in self.verdicts:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_verdicts in self.verdicts:
+                if _item_verdicts:
+                    _items.append(_item_verdicts.to_dict())
             _dict['verdicts'] = _items
         return _dict
 

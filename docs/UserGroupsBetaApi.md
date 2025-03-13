@@ -16,7 +16,12 @@ Method | HTTP request | Description
 
 Create user group
 
-Create a new user group.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+Create a new user group.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+- Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 
@@ -93,7 +98,12 @@ No authorization required
 
 Delete user group
 
-Delete a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+Delete a user group by ID.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+- Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 
@@ -163,7 +173,12 @@ No authorization required
 
 Get user group
 
-Get a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+Get a user group by ID.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+- Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 
@@ -237,7 +252,12 @@ No authorization required
 
 List user groups
 
-Get all user groups in your workspace. </br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+Get all user groups in your workspace. </br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+- Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 
@@ -307,7 +327,12 @@ No authorization required
 
 Update user group
 
-Update a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+Update a user group by ID.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+- Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 

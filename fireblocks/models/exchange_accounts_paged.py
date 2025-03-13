@@ -77,9 +77,9 @@ class ExchangeAccountsPaged(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in exchange_account (list)
         _items = []
         if self.exchange_account:
-            for _item in self.exchange_account:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_exchange_account in self.exchange_account:
+                if _item_exchange_account:
+                    _items.append(_item_exchange_account.to_dict())
             _dict['ExchangeAccount'] = _items
         # override the default output from pydantic by calling `to_dict()` of paging
         if self.paging:

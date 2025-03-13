@@ -75,9 +75,9 @@ class PaginatedAssetWalletResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in asset_wallets (list)
         _items = []
         if self.asset_wallets:
-            for _item in self.asset_wallets:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_asset_wallets in self.asset_wallets:
+                if _item_asset_wallets:
+                    _items.append(_item_asset_wallets.to_dict())
             _dict['assetWallets'] = _items
         # override the default output from pydantic by calling `to_dict()` of paging
         if self.paging:

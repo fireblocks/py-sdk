@@ -75,16 +75,16 @@ class TravelRuleValidatePiiIVMS(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in originator_persons (list)
         _items = []
         if self.originator_persons:
-            for _item in self.originator_persons:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_originator_persons in self.originator_persons:
+                if _item_originator_persons:
+                    _items.append(_item_originator_persons.to_dict())
             _dict['originatorPersons'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in beneficiary_persons (list)
         _items = []
         if self.beneficiary_persons:
-            for _item in self.beneficiary_persons:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_beneficiary_persons in self.beneficiary_persons:
+                if _item_beneficiary_persons:
+                    _items.append(_item_beneficiary_persons.to_dict())
             _dict['beneficiaryPersons'] = _items
         return _dict
 

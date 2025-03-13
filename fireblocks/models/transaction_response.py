@@ -150,9 +150,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in destinations (list)
         _items = []
         if self.destinations:
-            for _item in self.destinations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_destinations in self.destinations:
+                if _item_destinations:
+                    _items.append(_item_destinations.to_dict())
             _dict['destinations'] = _items
         # override the default output from pydantic by calling `to_dict()` of contract_call_decoded_data
         if self.contract_call_decoded_data:
@@ -166,9 +166,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in network_records (list)
         _items = []
         if self.network_records:
-            for _item in self.network_records:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_network_records in self.network_records:
+                if _item_network_records:
+                    _items.append(_item_network_records.to_dict())
             _dict['networkRecords'] = _items
         # override the default output from pydantic by calling `to_dict()` of authorization_info
         if self.authorization_info:
@@ -182,9 +182,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in signed_messages (list)
         _items = []
         if self.signed_messages:
-            for _item in self.signed_messages:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_signed_messages in self.signed_messages:
+                if _item_signed_messages:
+                    _items.append(_item_signed_messages.to_dict())
             _dict['signedMessages'] = _items
         # override the default output from pydantic by calling `to_dict()` of block_info
         if self.block_info:

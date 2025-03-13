@@ -194,7 +194,11 @@ No authorization required
 
 Bulk creation of new vault accounts
 
-Create multiple vault accounts by running an async job. </br> **Note**: - These endpoints are currently in beta and might be subject to changes. - We limit accounts to 10k per operation and 200k per customer during beta testing. 
+Create multiple vault accounts by running an async job. </br>
+**Note**:
+- These endpoints are currently in beta and might be subject to changes.
+- We limit accounts to 10k per operation and 200k per customer during beta testing.
+
 
 ### Example
 
@@ -510,7 +514,8 @@ No authorization required
 
 List asset wallets (Paginated)
 
-Gets all asset wallets at all of the vault accounts in your workspace. An asset wallet is an asset at a vault account. This method allows fast traversal of all account balances. 
+Gets all asset wallets at all of the vault accounts in your workspace. An asset wallet is an asset at a vault account. This method allows fast traversal of all account balances.
+
 
 ### Example
 
@@ -539,7 +544,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     total_amount_larger_than = 3.4 # float | When specified, only asset wallets with total balance larger than this amount are returned. (optional)
     asset_id = 'asset_id_example' # str | When specified, only asset wallets cross vault accounts that have this asset ID are returned. (optional)
-    order_by = 'DESC' # str |  (optional) (default to 'DESC')
+    order_by = DESC # str |  (optional) (default to DESC)
     before = 'before_example' # str | Fetches the next paginated response before this element. This element is a cursor and is returned at the response of the previous page. (optional)
     after = 'after_example' # str | Fetches the next paginated response after this element. This element is a cursor and is returned at the response of the previous page. (optional)
     limit = 200 # float | The maximum number of asset wallets in a single response. The default is 200 and the maximum is 1000. (optional) (default to 200)
@@ -562,7 +567,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **total_amount_larger_than** | **float**| When specified, only asset wallets with total balance larger than this amount are returned. | [optional] 
  **asset_id** | **str**| When specified, only asset wallets cross vault accounts that have this asset ID are returned. | [optional] 
- **order_by** | **str**|  | [optional] [default to &#39;DESC&#39;]
+ **order_by** | **str**|  | [optional] [default to DESC]
  **before** | **str**| Fetches the next paginated response before this element. This element is a cursor and is returned at the response of the previous page. | [optional] 
  **after** | **str**| Fetches the next paginated response after this element. This element is a cursor and is returned at the response of the previous page. | [optional] 
  **limit** | **float**| The maximum number of asset wallets in a single response. The default is 200 and the maximum is 1000. | [optional] [default to 200]
@@ -702,7 +707,7 @@ with Fireblocks(configuration) as fireblocks:
     name_suffix = 'name_suffix_example' # str |  (optional)
     min_amount_threshold = 3.4 # float | Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. (optional)
     asset_id = 'asset_id_example' # str |  (optional)
-    order_by = 'DESC' # str |  (optional) (default to 'DESC')
+    order_by = DESC # str |  (optional) (default to DESC)
     before = 'before_example' # str |  (optional)
     after = 'after_example' # str |  (optional)
     limit = 200 # float |  (optional) (default to 200)
@@ -727,7 +732,7 @@ Name | Type | Description  | Notes
  **name_suffix** | **str**|  | [optional] 
  **min_amount_threshold** | **float**| Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. | [optional] 
  **asset_id** | **str**|  | [optional] 
- **order_by** | **str**|  | [optional] [default to &#39;DESC&#39;]
+ **order_by** | **str**|  | [optional] [default to DESC]
  **before** | **str**|  | [optional] 
  **after** | **str**|  | [optional] 
  **limit** | **float**|  | [optional] [default to 200]

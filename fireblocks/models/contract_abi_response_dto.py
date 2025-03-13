@@ -74,16 +74,16 @@ class ContractAbiResponseDto(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in abi (list)
         _items = []
         if self.abi:
-            for _item in self.abi:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_abi in self.abi:
+                if _item_abi:
+                    _items.append(_item_abi.to_dict())
             _dict['abi'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in implementation_abi (list)
         _items = []
         if self.implementation_abi:
-            for _item in self.implementation_abi:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_implementation_abi in self.implementation_abi:
+                if _item_implementation_abi:
+                    _items.append(_item_implementation_abi.to_dict())
             _dict['implementationAbi'] = _items
         return _dict
 

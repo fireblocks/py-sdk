@@ -19,7 +19,9 @@ Method | HTTP request | Description
 
 Create new webhook
 
-Creates a new webhook, which will be triggered on the specified events **Note:** These endpoints are currently in beta and might be subject to changes. 
+Creates a new webhook, which will be triggered on the specified events
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -96,7 +98,9 @@ No authorization required
 
 Delete webhook
 
-Delete a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Delete a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -170,7 +174,9 @@ No authorization required
 
 Get notification by id
 
-Get notification by id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get notification by id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -248,7 +254,9 @@ No authorization required
 
 Get all notifications by webhook id
 
-Get all notifications by webhook id (paginated) **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get all notifications by webhook id (paginated)
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -278,7 +286,7 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     webhook_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | 
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 100 # float | Maximum number of items in the page (optional) (default to 100)
     created_start_date = '2024-09-24T09:14:38.356Z' # str | sort by start date (optional)
@@ -304,7 +312,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **webhook_id** | **str**|  | 
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 100]
  **created_start_date** | **str**| sort by start date | [optional] 
@@ -340,7 +348,9 @@ No authorization required
 
 Get webhook by id
 
-Retrieve a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Retrieve a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -414,7 +424,9 @@ No authorization required
 
 Get all webhooks
 
-Get all webhooks (paginated) **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get all webhooks (paginated)
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -441,7 +453,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 10 # float | Maximum number of items in the page (optional) (default to 10)
 
@@ -461,7 +473,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 10]
 
@@ -492,7 +504,9 @@ No authorization required
 
 Resend notification by id
 
-Resend notification by ID **Note:** These endpoints are currently in beta and might be subject to changes. 
+Resend notification by ID
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -566,7 +580,9 @@ No authorization required
 
 Update webhook
 
-Update a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Update a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 

@@ -39,7 +39,7 @@ class TransactionRequest(BaseModel):
     """
     TransactionRequest
     """ # noqa: E501
-    operation: Optional[TransactionOperation] = None
+    operation: Optional[TransactionOperation] = TransactionOperation.TRANSFER
     note: Optional[StrictStr] = Field(default=None, description="Custom note, not sent to the blockchain, to describe the transaction at your Fireblocks workspace.")
     external_tx_id: Optional[StrictStr] = Field(default=None, description="An optional but highly recommended parameter. Fireblocks will reject future transactions with same ID.  You should set this to a unique ID representing the transaction, to avoid submitting the same transaction twice. This helps with cases where submitting the transaction responds with an error code due to Internet interruptions, but the transaction was actually sent and processed. To validate whether a transaction has been processed, [Find a specific transaction by external transaction ID](https://developers.fireblocks.com/reference/get_transactions-external-tx-id-externaltxid). There is no specific format required for this parameter.", alias="externalTxId")
     asset_id: Optional[StrictStr] = Field(default=None, description="The ID of the asset to transfer, for `TRANSFER`, `MINT` or `BURN` operations. [See the list of supported assets and their IDs on Fireblocks.](https://developers.fireblocks.com/reference/get_supported-assets)", alias="assetId")
@@ -126,9 +126,9 @@ class TransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in destinations (list)
         _items = []
         if self.destinations:
-            for _item in self.destinations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_destinations in self.destinations:
+                if _item_destinations:
+                    _items.append(_item_destinations.to_dict())
             _dict['destinations'] = _items
         # override the default output from pydantic by calling `to_dict()` of amount
         if self.amount:
@@ -169,7 +169,7 @@ class TransactionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "operation": obj.get("operation"),
+            "operation": obj.get("operation") if obj.get("operation") is not None else TransactionOperation.TRANSFER,
             "note": obj.get("note"),
             "externalTxId": obj.get("externalTxId"),
             "assetId": obj.get("assetId"),

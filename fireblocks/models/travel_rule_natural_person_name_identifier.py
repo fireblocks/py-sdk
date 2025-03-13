@@ -75,23 +75,23 @@ class TravelRuleNaturalPersonNameIdentifier(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in name_identifier (list)
         _items = []
         if self.name_identifier:
-            for _item in self.name_identifier:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_name_identifier in self.name_identifier:
+                if _item_name_identifier:
+                    _items.append(_item_name_identifier.to_dict())
             _dict['nameIdentifier'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in local_name_identifier (list)
         _items = []
         if self.local_name_identifier:
-            for _item in self.local_name_identifier:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_local_name_identifier in self.local_name_identifier:
+                if _item_local_name_identifier:
+                    _items.append(_item_local_name_identifier.to_dict())
             _dict['localNameIdentifier'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in phonetic_name_identifier (list)
         _items = []
         if self.phonetic_name_identifier:
-            for _item in self.phonetic_name_identifier:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_phonetic_name_identifier in self.phonetic_name_identifier:
+                if _item_phonetic_name_identifier:
+                    _items.append(_item_phonetic_name_identifier.to_dict())
             _dict['phoneticNameIdentifier'] = _items
         return _dict
 

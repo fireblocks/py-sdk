@@ -76,30 +76,30 @@ class DelegationSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in active (list)
         _items = []
         if self.active:
-            for _item in self.active:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_active in self.active:
+                if _item_active:
+                    _items.append(_item_active.to_dict())
             _dict['active'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in inactive (list)
         _items = []
         if self.inactive:
-            for _item in self.inactive:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_inactive in self.inactive:
+                if _item_inactive:
+                    _items.append(_item_inactive.to_dict())
             _dict['inactive'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in rewards_amount (list)
         _items = []
         if self.rewards_amount:
-            for _item in self.rewards_amount:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_rewards_amount in self.rewards_amount:
+                if _item_rewards_amount:
+                    _items.append(_item_rewards_amount.to_dict())
             _dict['rewardsAmount'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in total_staked (list)
         _items = []
         if self.total_staked:
-            for _item in self.total_staked:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_total_staked in self.total_staked:
+                if _item_total_staked:
+                    _items.append(_item_total_staked.to_dict())
             _dict['totalStaked'] = _items
         return _dict
 

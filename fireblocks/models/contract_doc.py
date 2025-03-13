@@ -77,9 +77,9 @@ class ContractDoc(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in methods (dict)
         _field_dict = {}
         if self.methods:
-            for _key in self.methods:
-                if self.methods[_key]:
-                    _field_dict[_key] = self.methods[_key].to_dict()
+            for _key_methods in self.methods:
+                if self.methods[_key_methods]:
+                    _field_dict[_key_methods] = self.methods[_key_methods].to_dict()
             _dict['methods'] = _field_dict
         return _dict
 

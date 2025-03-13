@@ -76,9 +76,9 @@ class NetworkIdResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in routing_policy (dict)
         _field_dict = {}
         if self.routing_policy:
-            for _key in self.routing_policy:
-                if self.routing_policy[_key]:
-                    _field_dict[_key] = self.routing_policy[_key].to_dict()
+            for _key_routing_policy in self.routing_policy:
+                if self.routing_policy[_key_routing_policy]:
+                    _field_dict[_key_routing_policy] = self.routing_policy[_key_routing_policy].to_dict()
             _dict['routingPolicy'] = _field_dict
         return _dict
 

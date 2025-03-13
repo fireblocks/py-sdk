@@ -81,9 +81,9 @@ class Notification(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in attempts (list)
         _items = []
         if self.attempts:
-            for _item in self.attempts:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_attempts in self.attempts:
+                if _item_attempts:
+                    _items.append(_item_attempts.to_dict())
             _dict['attempts'] = _items
         # set to None if resource_id (nullable) is None
         # and model_fields_set contains the field

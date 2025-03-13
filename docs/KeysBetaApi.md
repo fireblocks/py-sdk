@@ -13,7 +13,9 @@ Method | HTTP request | Description
 
 Get list of mpc keys
 
-Returns a list of MPC signing keys of the workspace. For each key, the list of players associated with it is attached. **Note:**  This endpoint is currently in beta and might be subject to changes.
+Returns a list of MPC signing keys of the workspace. For each key, the list of players associated with it is attached.
+**Note:** 
+This endpoint is currently in beta and might be subject to changes.
 
 ### Example
 
@@ -83,7 +85,9 @@ No authorization required
 
 Get list of mpc keys by `userId`
 
-Returns a list of MPC signing keys of a specific user. For each key, the list of players associated with it is attached. **Note:** This endpoint is currently in beta and might be subject to changes.
+Returns a list of MPC signing keys of a specific user. For each key, the list of players associated with it is attached.
+**Note:**
+This endpoint is currently in beta and might be subject to changes.
 
 ### Example
 

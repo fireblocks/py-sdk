@@ -24,7 +24,8 @@ Method | HTTP request | Description
 
 Approve staking terms of service
 
-Approve the terms of service of the staking provider. This must be called before performing a staking action for the first time with this provider.
+Approve the terms of service of the staking provider.
+This must be called before performing a staking action for the first time with this provider.
 
 ### Example
 

@@ -12,7 +12,12 @@ Method | HTTP request | Description
 
 Bulk creation of wallets
 
-Create multiple wallets for a given vault account by running an async job. </br> **Note**: - These endpoints are currently in beta and might be subject to changes. - We limit accounts to 10k per operation and 200k per customer during beta testing. - Currently, we are only supporting EVM wallets. 
+Create multiple wallets for a given vault account by running an async job. </br>
+**Note**:
+- These endpoints are currently in beta and might be subject to changes.
+- We limit accounts to 10k per operation and 200k per customer during beta testing.
+- Currently, we are only supporting EVM wallets.
+
 
 ### Example
 

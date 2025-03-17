@@ -79,9 +79,9 @@ class ParameterWithValue(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in components (list)
         _items = []
         if self.components:
-            for _item in self.components:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_components in self.components:
+                if _item_components:
+                    _items.append(_item_components.to_dict())
             _dict['components'] = _items
         # override the default output from pydantic by calling `to_dict()` of function_value
         if self.function_value:

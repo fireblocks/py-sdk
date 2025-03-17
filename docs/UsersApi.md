@@ -12,7 +12,10 @@ Method | HTTP request | Description
 
 List users
 
-List all users for the workspace.  Please note that this endpoint is available only for API keys with Admin permissions. 
+List all users for the workspace.
+
+Please note that this endpoint is available only for API keys with Admin permissions.
+
 
 ### Example
 

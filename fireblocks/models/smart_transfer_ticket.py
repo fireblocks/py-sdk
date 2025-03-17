@@ -129,9 +129,9 @@ class SmartTransferTicket(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in terms (list)
         _items = []
         if self.terms:
-            for _item in self.terms:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_terms in self.terms:
+                if _item_terms:
+                    _items.append(_item_terms.to_dict())
             _dict['terms'] = _items
         return _dict
 

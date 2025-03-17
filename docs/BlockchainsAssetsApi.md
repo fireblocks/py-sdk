@@ -84,7 +84,14 @@ No authorization required
 
 Register an asset
 
-Register a new asset to a workspace and return the newly created asset's details. Currently supported chains are: - EVM based chains - Stellar - Algorand - TRON - NEAR - Solana 
+Register a new asset to a workspace and return the newly created asset's details. Currently supported chains are:
+- EVM based chains
+- Stellar
+- Algorand
+- TRON
+- NEAR
+- Solana
+
 
 ### Example
 
@@ -166,7 +173,8 @@ No authorization required
 
 Set asset price
 
-Set asset price for the given asset id. Returns the asset price response. 
+Set asset price for the given asset id. Returns the asset price response.
+
 
 ### Example
 

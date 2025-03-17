@@ -75,16 +75,16 @@ class ExchangeSettlementTransactionsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in to_exchange (list)
         _items = []
         if self.to_exchange:
-            for _item in self.to_exchange:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_to_exchange in self.to_exchange:
+                if _item_to_exchange:
+                    _items.append(_item_to_exchange.to_dict())
             _dict['toExchange'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in to_collateral (list)
         _items = []
         if self.to_collateral:
-            for _item in self.to_collateral:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_to_collateral in self.to_collateral:
+                if _item_to_collateral:
+                    _items.append(_item_to_collateral.to_dict())
             _dict['toCollateral'] = _items
         return _dict
 

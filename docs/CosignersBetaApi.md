@@ -98,7 +98,9 @@ No authorization required
 
 Get API key
 
-Get an API key by ID **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get an API key by ID
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -202,7 +204,7 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     cosigner_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | The unique identifier of the cosigner
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 10 # float | Maximum number of items in the page (optional) (default to 10)
 
@@ -223,7 +225,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cosigner_id** | **str**| The unique identifier of the cosigner | 
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 10]
 
@@ -254,7 +256,9 @@ No authorization required
 
 Get cosigner
 
-Get a cosigner by ID **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get a cosigner by ID
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -328,7 +332,9 @@ No authorization required
 
 Get all cosigners
 
-Get all workspace cosigners (paginated) **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get all workspace cosigners (paginated)
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -355,7 +361,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 10 # float | Maximum number of items in the page (optional) (default to 10)
 
@@ -375,7 +381,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 10]
 
@@ -565,7 +571,9 @@ No authorization required
 
 Rename cosigner
 
-Rename a cosigner by ID **Note:** These endpoints are currently in beta and might be subject to changes. 
+Rename a cosigner by ID
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 

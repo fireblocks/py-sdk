@@ -88,9 +88,9 @@ class ContractDeployRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in constructor_parameters (list)
         _items = []
         if self.constructor_parameters:
-            for _item in self.constructor_parameters:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_constructor_parameters in self.constructor_parameters:
+                if _item_constructor_parameters:
+                    _items.append(_item_constructor_parameters.to_dict())
             _dict['constructorParameters'] = _items
         return _dict
 

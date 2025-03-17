@@ -15,7 +15,9 @@ Method | HTTP request | Description
 
 Create a new Web3 connection.
 
-Initiate a new Web3 connection.  * Note: After this succeeds, make a request to `PUT /v1/connections/wc/{id}` (below) to approve or reject the new Web3 connection.
+Initiate a new Web3 connection.
+
+* Note: After this succeeds, make a request to `PUT /v1/connections/wc/{id}` (below) to approve or reject the new Web3 connection.
 
 ### Example
 
@@ -121,9 +123,9 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    order = 'ASC' # str | List order; ascending or descending. (optional) (default to 'ASC')
+    order = ASC # str | List order; ascending or descending. (optional) (default to ASC)
     filter = fireblocks.GetFilterParameter() # GetFilterParameter | Parsed filter object (optional)
-    sort = 'createdAt' # str | Property to sort Web3 connections by. (optional) (default to 'createdAt')
+    sort = createdAt # str | Property to sort Web3 connections by. (optional) (default to createdAt)
     page_size = 10 # float | Amount of results to return in the next page. (optional) (default to 10)
     next = 'next_example' # str | Cursor to the next page (optional)
 
@@ -143,9 +145,9 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order** | **str**| List order; ascending or descending. | [optional] [default to &#39;ASC&#39;]
+ **order** | **str**| List order; ascending or descending. | [optional] [default to ASC]
  **filter** | [**GetFilterParameter**](.md)| Parsed filter object | [optional] 
- **sort** | **str**| Property to sort Web3 connections by. | [optional] [default to &#39;createdAt&#39;]
+ **sort** | **str**| Property to sort Web3 connections by. | [optional] [default to createdAt]
  **page_size** | **float**| Amount of results to return in the next page. | [optional] [default to 10]
  **next** | **str**| Cursor to the next page | [optional] 
 
@@ -248,7 +250,10 @@ No authorization required
 
 Respond to a pending Web3 connection request.
 
-Submit a response to *approve* or *reject* an initiated Web3 connection. * Note: This call is used to complete your `POST /v1/connections/wc/` request.  After this succeeds, your new Web3 connection is created and functioning.
+Submit a response to *approve* or *reject* an initiated Web3 connection.
+* Note: This call is used to complete your `POST /v1/connections/wc/` request.
+
+After this succeeds, your new Web3 connection is created and functioning.
 
 ### Example
 

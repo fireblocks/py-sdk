@@ -337,7 +337,8 @@ No authorization required
 
 Estimate transaction fee
 
-Estimates the transaction fee for a transaction request. * Note: Supports all Fireblocks assets except ZCash (ZEC).
+Estimates the transaction fee for a transaction request.
+* Note: Supports all Fireblocks assets except ZCash (ZEC).
 
 ### Example
 
@@ -740,7 +741,11 @@ No authorization required
 
 rescan array of transactions
 
-rescan transaction by running an async job. </br> **Note**: - These endpoints are currently in beta and might be subject to changes. - We limit the amount of the transaction to 16 per request. 
+rescan transaction by running an async job. </br>
+**Note**:
+- These endpoints are currently in beta and might be subject to changes.
+- We limit the amount of the transaction to 16 per request.
+
 
 ### Example
 

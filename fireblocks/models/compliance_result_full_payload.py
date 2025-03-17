@@ -88,30 +88,30 @@ class ComplianceResultFullPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in aml (list)
         _items = []
         if self.aml:
-            for _item in self.aml:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_aml in self.aml:
+                if _item_aml:
+                    _items.append(_item_aml.to_dict())
             _dict['aml'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in tr (list)
         _items = []
         if self.tr:
-            for _item in self.tr:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_tr in self.tr:
+                if _item_tr:
+                    _items.append(_item_tr.to_dict())
             _dict['tr'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in aml_list (list)
         _items = []
         if self.aml_list:
-            for _item in self.aml_list:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_aml_list in self.aml_list:
+                if _item_aml_list:
+                    _items.append(_item_aml_list.to_dict())
             _dict['amlList'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in aml_registration (list)
         _items = []
         if self.aml_registration:
-            for _item in self.aml_registration:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_aml_registration in self.aml_registration:
+                if _item_aml_registration:
+                    _items.append(_item_aml_registration.to_dict())
             _dict['amlRegistration'] = _items
         return _dict
 

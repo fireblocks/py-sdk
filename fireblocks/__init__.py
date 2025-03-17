@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.0"
+__version__ = "8.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi

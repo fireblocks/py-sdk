@@ -19,10 +19,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import List, Optional
+from typing import List, Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_internal_wallet_asset_request import CreateInternalWalletAssetRequest
 from fireblocks.models.create_wallet_request import CreateWalletRequest
+from fireblocks.models.paginated_assets_response import PaginatedAssetsResponse
 from fireblocks.models.set_customer_ref_id_request import SetCustomerRefIdRequest
 from fireblocks.models.unmanaged_wallet import UnmanagedWallet
 from fireblocks.models.wallet_asset import WalletAsset
@@ -66,7 +67,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[UnmanagedWallet]]:
         """Create an internal wallet
 
-        Creates a new internal wallet with the requested name.
+        Creates a new internal wallet with the requested name.  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -216,7 +217,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[WalletAsset]]:
         """Add an asset to an internal wallet
 
-        Adds an asset to an existing internal wallet.
+        Adds an asset to an existing internal wallet.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks    Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -377,7 +378,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[None]]:
         """Delete an internal wallet
 
-        Deletes an internal wallet by ID.
+        Deletes an internal wallet by ID. Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet to delete (required)
         :type wallet_id: str
@@ -505,9 +506,9 @@ class InternalWalletsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[None]]:
-        """Delete a whitelisted address from an internal wallet
+        """Delete a whitelisted address
 
-        Deletes a whitelisted address (for an asset) from an internal wallet.
+        Deletes a whitelisted address (for an asset) from an internal wallet.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -641,9 +642,9 @@ class InternalWalletsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[UnmanagedWallet]]:
-        """Get assets for internal wallet
+        """Get an asset from an internal wallet
 
-        Returns all assets in an internal wallet by ID.
+        Returns information for an asset in an internal wallet.  This endpoint will be deprecated after 6 months. </br>As part of the depreciation process this endpoint will no longer return balances, only addresses. </br>Until it is deprecated, this endpoint will behave the same way.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param wallet_id: The ID of the wallet to return (required)
         :type wallet_id: str
@@ -773,7 +774,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[WalletAsset]]:
         """Get an asset from an internal wallet
 
-        Returns information for an asset in an internal wallet.
+        Returns information for an asset in an internal wallet.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -891,6 +892,153 @@ class InternalWalletsApi:
 
 
     @validate_call
+    def get_internal_wallet_assets_paginated(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="The ID of the internal wallet to return assets for")],
+        page_size: Optional[Union[Annotated[float, Field(le=200, strict=True, ge=1)], Annotated[int, Field(le=200, strict=True, ge=1)]]] = None,
+        page_cursor: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[PaginatedAssetsResponse]]:
+        """List assets in an internal wallet (Paginated)
+
+        Returns a paginated response of assets in an internal wallet.  This is a new paginated endpoint that gets all the assets from the wallet container with balances. </br>This endpoint returns a limited amount of results with a quick response time.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param wallet_id: The ID of the internal wallet to return assets for (required)
+        :type wallet_id: str
+        :param page_size:
+        :type page_size: float
+        :param page_cursor:
+        :type page_cursor: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_internal_wallet_assets_paginated", param_name="wallet_id", param_value=wallet_id)
+
+        _param = self._get_internal_wallet_assets_paginated_serialize(
+            wallet_id=wallet_id,
+            page_size=page_size,
+            page_cursor=page_cursor,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedAssetsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_internal_wallet_assets_paginated_serialize(
+        self,
+        wallet_id,
+        page_size,
+        page_cursor,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        # process the query parameters
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/internal_wallets/{walletId}/assets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_internal_wallets(
         self,
         _request_timeout: Union[
@@ -908,7 +1056,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[List[UnmanagedWallet]]]:
         """List internal wallets
 
-        Gets a list of internal wallets.  **Note**: BTC-based assets belonging to whitelisted addresses cannot be retrieved between 00:00 UTC and 00:01 UTC daily due to third-party provider, Blockchair, being unavailable for this 60 second period. Please wait until the next minute to retrieve BTC-based assets. 
+        Gets a list of internal wallets.   **Note**: - BTC-based assets belonging to whitelisted addresses cannot be   retrieved between 00:00 UTC and 00:01 UTC daily due to third-party   provider, Blockchain, being unavailable for this 60 second period.   </br>Please wait until the next minute to retrieve BTC-based assets. - The list of assets returned will NOT include the balances anymore.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1032,7 +1180,7 @@ class InternalWalletsApi:
     ) -> Future[ApiResponse[None]]:
         """Set an AML/KYT customer reference ID for an internal wallet
 
-        Sets an AML/KYT customer reference ID for the specific internal wallet.
+        Sets an AML/KYT customer reference ID for the specific internal wallet.  Internal Wallets are whitelisted wallets that belong to you outside of Fireblocks.    - You can see the balance of the Internal Wallet via Fireblocks   - You cannot initiate transactions from Internal Wallets through Fireblocks  Learn more about Whitelisted Internal Addresses [here](https://developers.fireblocks.com/docs/whitelist-addresses#internal-wallets)  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The wallet ID (required)
         :type wallet_id: str

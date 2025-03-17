@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **long_description** | **str** | A full description of the contract template. May contain   to break the lines | [optional] 
 **bytecode** | **str** | The compiled artifact of this smart contract. Used for deployment of this contract template | 
 **sourcecode** | **str** | The source code of the contract. Optional. | [optional] 
-**type** | **str** | The type of the contract template | [optional] 
+**type** | **str** | The type of the contract template | 
 **docs** | [**ContractDoc**](ContractDoc.md) | A &#x60;natspec&#x60; compliant documentation json. Can be retrieved from the output json after compilation | [optional] 
 **abi** | [**List[AbiFunction]**](AbiFunction.md) | The abi of the contract template. Necessary for displaying and for after deployment encoding | 
 **attributes** | [**ContractAttributes**](ContractAttributes.md) | The attributes related to this contract template. It will be displayed in the tokenization page | [optional] 

@@ -297,6 +297,7 @@ docs/PaginatedAddressResponse.md
 docs/PaginatedAddressResponsePaging.md
 docs/PaginatedAssetWalletResponse.md
 docs/PaginatedAssetWalletResponsePaging.md
+docs/PaginatedAssetsResponse.md
 docs/Paging.md
 docs/PairApiKeyRequest.md
 docs/PairApiKeyResponse.md
@@ -898,6 +899,7 @@ fireblocks/models/paginated_address_response.py
 fireblocks/models/paginated_address_response_paging.py
 fireblocks/models/paginated_asset_wallet_response.py
 fireblocks/models/paginated_asset_wallet_response_paging.py
+fireblocks/models/paginated_assets_response.py
 fireblocks/models/paging.py
 fireblocks/models/pair_api_key_request.py
 fireblocks/models/pair_api_key_response.py
@@ -1478,6 +1480,7 @@ test/test_paginated_address_response.py
 test/test_paginated_address_response_paging.py
 test/test_paginated_asset_wallet_response.py
 test/test_paginated_asset_wallet_response_paging.py
+test/test_paginated_assets_response.py
 test/test_paging.py
 test/test_pair_api_key_request.py
 test/test_pair_api_key_response.py

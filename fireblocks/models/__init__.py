@@ -284,6 +284,7 @@ from fireblocks.models.paginated_address_response import PaginatedAddressRespons
 from fireblocks.models.paginated_address_response_paging import PaginatedAddressResponsePaging
 from fireblocks.models.paginated_asset_wallet_response import PaginatedAssetWalletResponse
 from fireblocks.models.paginated_asset_wallet_response_paging import PaginatedAssetWalletResponsePaging
+from fireblocks.models.paginated_assets_response import PaginatedAssetsResponse
 from fireblocks.models.paging import Paging
 from fireblocks.models.pair_api_key_request import PairApiKeyRequest
 from fireblocks.models.pair_api_key_response import PairApiKeyResponse

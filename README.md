@@ -318,9 +318,10 @@ Class | Method | HTTP request | Description
 *InternalWalletsApi* | [**create_internal_wallet**](docs/InternalWalletsApi.md#create_internal_wallet) | **POST** /internal_wallets | Create an internal wallet
 *InternalWalletsApi* | [**create_internal_wallet_asset**](docs/InternalWalletsApi.md#create_internal_wallet_asset) | **POST** /internal_wallets/{walletId}/{assetId} | Add an asset to an internal wallet
 *InternalWalletsApi* | [**delete_internal_wallet**](docs/InternalWalletsApi.md#delete_internal_wallet) | **DELETE** /internal_wallets/{walletId} | Delete an internal wallet
-*InternalWalletsApi* | [**delete_internal_wallet_asset**](docs/InternalWalletsApi.md#delete_internal_wallet_asset) | **DELETE** /internal_wallets/{walletId}/{assetId} | Delete a whitelisted address from an internal wallet
-*InternalWalletsApi* | [**get_internal_wallet**](docs/InternalWalletsApi.md#get_internal_wallet) | **GET** /internal_wallets/{walletId} | Get assets for internal wallet
+*InternalWalletsApi* | [**delete_internal_wallet_asset**](docs/InternalWalletsApi.md#delete_internal_wallet_asset) | **DELETE** /internal_wallets/{walletId}/{assetId} | Delete a whitelisted address
+*InternalWalletsApi* | [**get_internal_wallet**](docs/InternalWalletsApi.md#get_internal_wallet) | **GET** /internal_wallets/{walletId} | Get an asset from an internal wallet
 *InternalWalletsApi* | [**get_internal_wallet_asset**](docs/InternalWalletsApi.md#get_internal_wallet_asset) | **GET** /internal_wallets/{walletId}/{assetId} | Get an asset from an internal wallet
+*InternalWalletsApi* | [**get_internal_wallet_assets_paginated**](docs/InternalWalletsApi.md#get_internal_wallet_assets_paginated) | **GET** /internal_wallets/{walletId}/assets | List assets in an internal wallet (Paginated)
 *InternalWalletsApi* | [**get_internal_wallets**](docs/InternalWalletsApi.md#get_internal_wallets) | **GET** /internal_wallets | List internal wallets
 *InternalWalletsApi* | [**set_customer_ref_id_for_internal_wallet**](docs/InternalWalletsApi.md#set_customer_ref_id_for_internal_wallet) | **POST** /internal_wallets/{walletId}/set_customer_ref_id | Set an AML/KYT customer reference ID for an internal wallet
 *JobManagementApi* | [**cancel_job**](docs/JobManagementApi.md#cancel_job) | **POST** /batch/{jobId}/cancel | Cancel a running job
@@ -439,13 +440,12 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**set_transaction_confirmation_threshold**](docs/TransactionsApi.md#set_transaction_confirmation_threshold) | **POST** /transactions/{txId}/set_confirmation_threshold | Set confirmation threshold by transaction ID
 *TransactionsApi* | [**unfreeze_transaction**](docs/TransactionsApi.md#unfreeze_transaction) | **POST** /transactions/{txId}/unfreeze | Unfreeze a transaction
 *TransactionsApi* | [**validate_address**](docs/TransactionsApi.md#validate_address) | **GET** /transactions/validate_address/{assetId}/{address} | Validate destination address
-*TravelRuleBetaApi* | [**get_vasp_for_vault**](docs/TravelRuleBetaApi.md#get_vasp_for_vault) | **GET** /screening/travel_rule/vault/{vaultAccountId}/vasp | Get assigned VASP to vault
-*TravelRuleBetaApi* | [**get_vaspby_did**](docs/TravelRuleBetaApi.md#get_vaspby_did) | **GET** /screening/travel_rule/vasp/{did} | Get VASP details
-*TravelRuleBetaApi* | [**get_vasps**](docs/TravelRuleBetaApi.md#get_vasps) | **GET** /screening/travel_rule/vasp | Get All VASPs
-*TravelRuleBetaApi* | [**set_vasp_for_vault**](docs/TravelRuleBetaApi.md#set_vasp_for_vault) | **POST** /screening/travel_rule/vault/{vaultAccountId}/vasp | Assign VASP to vault
-*TravelRuleBetaApi* | [**update_vasp**](docs/TravelRuleBetaApi.md#update_vasp) | **PUT** /screening/travel_rule/vasp/update | Add jsonDidKey to VASP details
-*TravelRuleBetaApi* | [**validate_full_travel_rule_transaction**](docs/TravelRuleBetaApi.md#validate_full_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
-*TravelRuleBetaApi* | [**validate_travel_rule_transaction**](docs/TravelRuleBetaApi.md#validate_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate | Validate Travel Rule Transaction
+*TravelRuleApi* | [**get_vasp_for_vault**](docs/TravelRuleApi.md#get_vasp_for_vault) | **GET** /screening/travel_rule/vault/{vaultAccountId}/vasp | Get assigned VASP to vault
+*TravelRuleApi* | [**get_vaspby_did**](docs/TravelRuleApi.md#get_vaspby_did) | **GET** /screening/travel_rule/vasp/{did} | Get VASP details
+*TravelRuleApi* | [**get_vasps**](docs/TravelRuleApi.md#get_vasps) | **GET** /screening/travel_rule/vasp | Get All VASPs
+*TravelRuleApi* | [**set_vasp_for_vault**](docs/TravelRuleApi.md#set_vasp_for_vault) | **POST** /screening/travel_rule/vault/{vaultAccountId}/vasp | Assign VASP to vault
+*TravelRuleApi* | [**update_vasp**](docs/TravelRuleApi.md#update_vasp) | **PUT** /screening/travel_rule/vasp/update | Add jsonDidKey to VASP details
+*TravelRuleApi* | [**validate_full_travel_rule_transaction**](docs/TravelRuleApi.md#validate_full_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
 *UserGroupsBetaApi* | [**create_user_group**](docs/UserGroupsBetaApi.md#create_user_group) | **POST** /management/user_groups | Create user group
 *UserGroupsBetaApi* | [**delete_user_group**](docs/UserGroupsBetaApi.md#delete_user_group) | **DELETE** /management/user_groups/{groupId} | Delete user group
 *UserGroupsBetaApi* | [**get_user_group**](docs/UserGroupsBetaApi.md#get_user_group) | **GET** /management/user_groups/{groupId} | Get user group
@@ -489,6 +489,7 @@ Class | Method | HTTP request | Description
 *WebhooksV2BetaApi* | [**get_notifications**](docs/WebhooksV2BetaApi.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
 *WebhooksV2BetaApi* | [**get_webhook**](docs/WebhooksV2BetaApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
 *WebhooksV2BetaApi* | [**get_webhooks**](docs/WebhooksV2BetaApi.md#get_webhooks) | **GET** /webhooks | Get all webhooks
+*WebhooksV2BetaApi* | [**resend_notification_by_id**](docs/WebhooksV2BetaApi.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
 *WebhooksV2BetaApi* | [**update_webhook**](docs/WebhooksV2BetaApi.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
 *WorkspaceStatusBetaApi* | [**get_workspace_status**](docs/WorkspaceStatusBetaApi.md#get_workspace_status) | **GET** /management/workspace_status | Returns current workspace status
 *WhitelistIpAddressesApi* | [**get_whitelist_ip_addresses**](docs/WhitelistIpAddressesApi.md#get_whitelist_ip_addresses) | **GET** /management/api_users/{userId}/whitelist_ip_addresses | Gets whitelisted ip addresses
@@ -754,6 +755,7 @@ Class | Method | HTTP request | Description
  - [NoneNetworkRoutingDest](docs/NoneNetworkRoutingDest.md)
  - [NotFoundException](docs/NotFoundException.md)
  - [Notification](docs/Notification.md)
+ - [NotificationAttempt](docs/NotificationAttempt.md)
  - [NotificationPaginatedResponse](docs/NotificationPaginatedResponse.md)
  - [NotificationStatus](docs/NotificationStatus.md)
  - [NotificationWithData](docs/NotificationWithData.md)
@@ -764,6 +766,7 @@ Class | Method | HTTP request | Description
  - [PaginatedAddressResponsePaging](docs/PaginatedAddressResponsePaging.md)
  - [PaginatedAssetWalletResponse](docs/PaginatedAssetWalletResponse.md)
  - [PaginatedAssetWalletResponsePaging](docs/PaginatedAssetWalletResponsePaging.md)
+ - [PaginatedAssetsResponse](docs/PaginatedAssetsResponse.md)
  - [Paging](docs/Paging.md)
  - [PairApiKeyRequest](docs/PairApiKeyRequest.md)
  - [PairApiKeyResponse](docs/PairApiKeyResponse.md)
@@ -950,16 +953,35 @@ Class | Method | HTTP request | Description
  - [TransferValidationFailure](docs/TransferValidationFailure.md)
  - [TravelRuleAddress](docs/TravelRuleAddress.md)
  - [TravelRuleCreateTransactionRequest](docs/TravelRuleCreateTransactionRequest.md)
+ - [TravelRuleDateAndPlaceOfBirth](docs/TravelRuleDateAndPlaceOfBirth.md)
+ - [TravelRuleGeographicAddress](docs/TravelRuleGeographicAddress.md)
  - [TravelRuleGetAllVASPsResponse](docs/TravelRuleGetAllVASPsResponse.md)
  - [TravelRuleIssuer](docs/TravelRuleIssuer.md)
  - [TravelRuleIssuers](docs/TravelRuleIssuers.md)
+ - [TravelRuleLegalPerson](docs/TravelRuleLegalPerson.md)
+ - [TravelRuleLegalPersonNameIdentifier](docs/TravelRuleLegalPersonNameIdentifier.md)
+ - [TravelRuleNationalIdentification](docs/TravelRuleNationalIdentification.md)
+ - [TravelRuleNaturalNameIdentifier](docs/TravelRuleNaturalNameIdentifier.md)
+ - [TravelRuleNaturalPerson](docs/TravelRuleNaturalPerson.md)
+ - [TravelRuleNaturalPersonNameIdentifier](docs/TravelRuleNaturalPersonNameIdentifier.md)
  - [TravelRuleOwnershipProof](docs/TravelRuleOwnershipProof.md)
+ - [TravelRulePerson](docs/TravelRulePerson.md)
  - [TravelRulePiiIVMS](docs/TravelRulePiiIVMS.md)
  - [TravelRulePolicyRuleResponse](docs/TravelRulePolicyRuleResponse.md)
  - [TravelRuleTransactionBlockchainInfo](docs/TravelRuleTransactionBlockchainInfo.md)
  - [TravelRuleUpdateVASPDetails](docs/TravelRuleUpdateVASPDetails.md)
  - [TravelRuleVASP](docs/TravelRuleVASP.md)
+ - [TravelRuleValidateDateAndPlaceOfBirth](docs/TravelRuleValidateDateAndPlaceOfBirth.md)
  - [TravelRuleValidateFullTransactionRequest](docs/TravelRuleValidateFullTransactionRequest.md)
+ - [TravelRuleValidateGeographicAddress](docs/TravelRuleValidateGeographicAddress.md)
+ - [TravelRuleValidateLegalPerson](docs/TravelRuleValidateLegalPerson.md)
+ - [TravelRuleValidateLegalPersonNameIdentifier](docs/TravelRuleValidateLegalPersonNameIdentifier.md)
+ - [TravelRuleValidateNationalIdentification](docs/TravelRuleValidateNationalIdentification.md)
+ - [TravelRuleValidateNaturalNameIdentifier](docs/TravelRuleValidateNaturalNameIdentifier.md)
+ - [TravelRuleValidateNaturalPerson](docs/TravelRuleValidateNaturalPerson.md)
+ - [TravelRuleValidateNaturalPersonNameIdentifier](docs/TravelRuleValidateNaturalPersonNameIdentifier.md)
+ - [TravelRuleValidatePerson](docs/TravelRuleValidatePerson.md)
+ - [TravelRuleValidatePiiIVMS](docs/TravelRuleValidatePiiIVMS.md)
  - [TravelRuleValidateTransactionRequest](docs/TravelRuleValidateTransactionRequest.md)
  - [TravelRuleValidateTransactionResponse](docs/TravelRuleValidateTransactionResponse.md)
  - [TravelRuleVaspForVault](docs/TravelRuleVaspForVault.md)

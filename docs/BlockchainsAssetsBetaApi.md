@@ -15,7 +15,11 @@ Method | HTTP request | Description
 
 Get an asset
 
-Returns an asset by ID or legacyID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. 
+Returns an asset by ID or legacyID.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+
 
 ### Example
 
@@ -93,7 +97,11 @@ No authorization required
 
 Get an blockchain
 
-Returns an blockchain by ID or legacyID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. 
+Returns an blockchain by ID or legacyID.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+
 
 ### Example
 
@@ -169,7 +177,11 @@ No authorization required
 
 List assets
 
-Returns all asset type supported by Fireblocks.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. 
+Returns all asset type supported by Fireblocks.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+
 
 ### Example
 
@@ -259,7 +271,11 @@ No authorization required
 
 List blockchains
 
-Returns all blockchains supported by Fireblocks.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. 
+Returns all blockchains supported by Fireblocks.</br>
+
+**Note**:
+- This endpoint is now in Beta, disabled for general availability at this time.
+
 
 ### Example
 

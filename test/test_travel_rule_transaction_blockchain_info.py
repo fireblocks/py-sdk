@@ -31,7 +31,7 @@ class TestTravelRuleTransactionBlockchainInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TravelRuleTransactionBlockchainInfo:
         """Test TravelRuleTransactionBlockchainInfo
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `TravelRuleTransactionBlockchainInfo`
@@ -39,9 +39,9 @@ class TestTravelRuleTransactionBlockchainInfo(unittest.TestCase):
         model = TravelRuleTransactionBlockchainInfo()
         if include_optional:
             return TravelRuleTransactionBlockchainInfo(
-                tx_hash = '',
-                origin = '',
-                destination = ''
+                tx_hash = '6.685730843558756E+76',
+                origin = '8.41132469470587E+47',
+                destination = '8.41132469470587E+47'
             )
         else:
             return TravelRuleTransactionBlockchainInfo(

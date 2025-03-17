@@ -29,7 +29,7 @@ class TestTravelRuleAddress(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TravelRuleAddress:
         """Test TravelRuleAddress
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `TravelRuleAddress`
@@ -44,10 +44,6 @@ class TestTravelRuleAddress(unittest.TestCase):
             )
         else:
             return TravelRuleAddress(
-                street = '1234 Example St',
-                city = 'New York',
-                state = 'NY',
-                postal_code = '10001',
         )
         """
 

@@ -31,7 +31,7 @@ class TestTravelRuleValidateTransactionRequest(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TravelRuleValidateTransactionRequest:
         """Test TravelRuleValidateTransactionRequest
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `TravelRuleValidateTransactionRequest`
@@ -42,6 +42,7 @@ class TestTravelRuleValidateTransactionRequest(unittest.TestCase):
                 transaction_asset = 'BTC',
                 destination = 'bc1qxy2kgdygjrsqtzq2n0yrf1234p83kkfjhx0wlh',
                 transaction_amount = '10',
+                transaction_asset_decimals = 8,
                 originator_vas_pdid = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2',
                 originator_equals_beneficiary = False,
                 travel_rule_behavior = True,

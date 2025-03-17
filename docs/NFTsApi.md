@@ -21,7 +21,8 @@ Method | HTTP request | Description
 
 List token data by ID
 
-Returns the requested token data. 
+Returns the requested token data.
+
 
 ### Example
 
@@ -94,7 +95,8 @@ No authorization required
 
 List tokens by IDs
 
-Returns the requested tokens data. 
+Returns the requested tokens data.
+
 
 ### Example
 
@@ -125,7 +127,7 @@ with Fireblocks(configuration) as fireblocks:
     page_cursor = 'page_cursor_example' # str | Page cursor to fetch (optional)
     page_size = 3.4 # float | Items per page (max 100) (optional)
     sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
-    order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
+    order = ASC # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to ASC)
 
     try:
         # List tokens by IDs
@@ -147,7 +149,7 @@ Name | Type | Description  | Notes
  **page_cursor** | **str**| Page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page (max 100) | [optional] 
  **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
- **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
+ **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to ASC]
 
 ### Return type
 
@@ -175,7 +177,8 @@ No authorization required
 
 List all owned tokens (paginated)
 
-Returns all tokens and their data in your workspace. 
+Returns all tokens and their data in your workspace.
+
 
 ### Example
 
@@ -206,14 +209,14 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_ids = 'vault_account_ids_example' # str | A comma separated list of Vault Account IDs. Up to 100 are allowed in a single request.  This field will be ignored when walletType=END_USER_WALLET or ncwId is provided. (optional)
     ncw_id = 'ncw_id_example' # str | Tenant's Non-Custodial Wallet ID (optional)
     ncw_account_ids = 'ncw_account_ids_example' # str | A comma separated list of Non-Custodial account IDs. Up to 100 are allowed in a single request. This field will be ignored when walletType=VAULT_ACCOUNT or ncwId is not provided. (optional)
-    wallet_type = 'VAULT_ACCOUNT' # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to 'VAULT_ACCOUNT')
+    wallet_type = VAULT_ACCOUNT # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to VAULT_ACCOUNT)
     ids = 'ids_example' # str | A comma separated list of NFT IDs. Up to 100 are allowed in a single request. (optional)
     collection_ids = 'collection_ids_example' # str | A comma separated list of collection IDs. Up to 100 are allowed in a single request. (optional)
     page_cursor = 'page_cursor_example' # str | Page cursor to fetch (optional)
     page_size = 3.4 # float | Items per page (max 100) (optional)
     sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
-    order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
-    status = 'LISTED' # str | Token ownership status (optional) (default to 'LISTED')
+    order = ASC # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to ASC)
+    status = LISTED # str | Token ownership status (optional) (default to LISTED)
     search = 'search_example' # str | Search owned tokens and their collections. Possible criteria for search:  token name and id within the contract/collection, collection name, blockchain descriptor and name. (optional)
     spam = 'spam_example' # str | Token ownership spam status. (optional)
 
@@ -237,14 +240,14 @@ Name | Type | Description  | Notes
  **vault_account_ids** | **str**| A comma separated list of Vault Account IDs. Up to 100 are allowed in a single request.  This field will be ignored when walletType&#x3D;END_USER_WALLET or ncwId is provided. | [optional] 
  **ncw_id** | **str**| Tenant&#39;s Non-Custodial Wallet ID | [optional] 
  **ncw_account_ids** | **str**| A comma separated list of Non-Custodial account IDs. Up to 100 are allowed in a single request. This field will be ignored when walletType&#x3D;VAULT_ACCOUNT or ncwId is not provided. | [optional] 
- **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to &#39;VAULT_ACCOUNT&#39;]
+ **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to VAULT_ACCOUNT]
  **ids** | **str**| A comma separated list of NFT IDs. Up to 100 are allowed in a single request. | [optional] 
  **collection_ids** | **str**| A comma separated list of collection IDs. Up to 100 are allowed in a single request. | [optional] 
  **page_cursor** | **str**| Page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page (max 100) | [optional] 
  **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
- **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
- **status** | **str**| Token ownership status | [optional] [default to &#39;LISTED&#39;]
+ **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to ASC]
+ **status** | **str**| Token ownership status | [optional] [default to LISTED]
  **search** | **str**| Search owned tokens and their collections. Possible criteria for search:  token name and id within the contract/collection, collection name, blockchain descriptor and name. | [optional] 
  **spam** | **str**| Token ownership spam status. | [optional] 
 
@@ -274,7 +277,8 @@ No authorization required
 
 List owned collections (paginated)
 
-Returns all collections in your workspace 
+Returns all collections in your workspace
+
 
 ### Example
 
@@ -302,13 +306,13 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     ncw_id = 'ncw_id_example' # str | Tenant's Non-Custodial Wallet ID (optional)
-    wallet_type = 'VAULT_ACCOUNT' # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to 'VAULT_ACCOUNT')
+    wallet_type = VAULT_ACCOUNT # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to VAULT_ACCOUNT)
     search = 'search_example' # str | Search owned collections. Possible criteria for search: collection name, collection contract address. (optional)
     page_cursor = 'page_cursor_example' # str | Page cursor to fetch (optional)
     page_size = 3.4 # float | Items per page (max 100) (optional)
     sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
-    order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
-    status = 'LISTED' # str | Token ownership status (optional) (default to 'LISTED')
+    order = ASC # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to ASC)
+    status = LISTED # str | Token ownership status (optional) (default to LISTED)
 
     try:
         # List owned collections (paginated)
@@ -327,13 +331,13 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ncw_id** | **str**| Tenant&#39;s Non-Custodial Wallet ID | [optional] 
- **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to &#39;VAULT_ACCOUNT&#39;]
+ **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to VAULT_ACCOUNT]
  **search** | **str**| Search owned collections. Possible criteria for search: collection name, collection contract address. | [optional] 
  **page_cursor** | **str**| Page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page (max 100) | [optional] 
  **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
- **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
- **status** | **str**| Token ownership status | [optional] [default to &#39;LISTED&#39;]
+ **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to ASC]
+ **status** | **str**| Token ownership status | [optional] [default to LISTED]
 
 ### Return type
 
@@ -361,7 +365,8 @@ No authorization required
 
 List all distinct owned tokens (paginated)
 
-Returns all owned distinct tokens (for your tenant) and their data in your workspace. 
+Returns all owned distinct tokens (for your tenant) and their data in your workspace.
+
 
 ### Example
 
@@ -389,12 +394,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     ncw_id = 'ncw_id_example' # str | Tenant's Non-Custodial Wallet ID (optional)
-    wallet_type = 'VAULT_ACCOUNT' # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to 'VAULT_ACCOUNT')
+    wallet_type = VAULT_ACCOUNT # str | Wallet type, it can be `VAULT_ACCOUNT` or `END_USER_WALLET` (optional) (default to VAULT_ACCOUNT)
     page_cursor = 'page_cursor_example' # str | Page cursor to fetch (optional)
     page_size = 3.4 # float | Items per page (max 100) (optional)
     sort = ['sort_example'] # List[str] | Sort by param, it can be one param or a list of params separated by comma (optional)
-    order = 'ASC' # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to 'ASC')
-    status = 'LISTED' # str | Token ownership status (optional) (default to 'LISTED')
+    order = ASC # str | Order direction, it can be `ASC` for ascending or `DESC` for descending (optional) (default to ASC)
+    status = LISTED # str | Token ownership status (optional) (default to LISTED)
     search = 'search_example' # str | Search owned tokens by token name (optional)
     spam = 'spam_example' # str | Token ownership spam status. (optional)
 
@@ -415,12 +420,12 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ncw_id** | **str**| Tenant&#39;s Non-Custodial Wallet ID | [optional] 
- **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to &#39;VAULT_ACCOUNT&#39;]
+ **wallet_type** | **str**| Wallet type, it can be &#x60;VAULT_ACCOUNT&#x60; or &#x60;END_USER_WALLET&#x60; | [optional] [default to VAULT_ACCOUNT]
  **page_cursor** | **str**| Page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page (max 100) | [optional] 
  **sort** | [**List[str]**](str.md)| Sort by param, it can be one param or a list of params separated by comma | [optional] 
- **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to &#39;ASC&#39;]
- **status** | **str**| Token ownership status | [optional] [default to &#39;LISTED&#39;]
+ **order** | **str**| Order direction, it can be &#x60;ASC&#x60; for ascending or &#x60;DESC&#x60; for descending | [optional] [default to ASC]
+ **status** | **str**| Token ownership status | [optional] [default to LISTED]
  **search** | **str**| Search owned tokens by token name | [optional] 
  **spam** | **str**| Token ownership spam status. | [optional] 
 
@@ -450,7 +455,8 @@ No authorization required
 
 Refresh token metadata
 
-Updates the latest token metadata. 
+Updates the latest token metadata.
+
 
 ### Example
 
@@ -521,7 +527,8 @@ No authorization required
 
 Refresh vault account tokens
 
-Updates all tokens and balances per blockchain and vault account. 
+Updates all tokens and balances per blockchain and vault account.
+
 
 ### Example
 
@@ -594,7 +601,8 @@ No authorization required
 
 Update token ownership status
 
-Updates token status for a tenant, in all tenant vaults. 
+Updates token status for a tenant, in all tenant vaults.
+
 
 ### Example
 

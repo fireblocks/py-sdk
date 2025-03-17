@@ -51,14 +51,14 @@ class TestInternalWalletsApi(unittest.TestCase):
     def test_delete_internal_wallet_asset(self) -> None:
         """Test case for delete_internal_wallet_asset
 
-        Delete a whitelisted address from an internal wallet
+        Delete a whitelisted address
         """
         pass
 
     def test_get_internal_wallet(self) -> None:
         """Test case for get_internal_wallet
 
-        Get assets for internal wallet
+        Get an asset from an internal wallet
         """
         pass
 
@@ -66,6 +66,13 @@ class TestInternalWalletsApi(unittest.TestCase):
         """Test case for get_internal_wallet_asset
 
         Get an asset from an internal wallet
+        """
+        pass
+
+    def test_get_internal_wallet_assets_paginated(self) -> None:
+        """Test case for get_internal_wallet_assets_paginated
+
+        List assets in an internal wallet (Paginated)
         """
         pass
 

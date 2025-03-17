@@ -18,9 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.notification_attempt import NotificationAttempt
 from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.webhook_event import WebhookEvent
 from typing import Optional, Set
@@ -31,15 +31,14 @@ class NotificationWithData(BaseModel):
     NotificationWithData
     """ # noqa: E501
     id: StrictStr
-    created_at: datetime = Field(description="The creation date of the notification", alias="createdAt")
-    updated_at: datetime = Field(description="The date when the notification was updated", alias="updatedAt")
+    created_at: StrictInt = Field(description="The creation date of the notification in milliseconds", alias="createdAt")
+    updated_at: StrictInt = Field(description="The date when the notification was updated in milliseconds", alias="updatedAt")
     status: NotificationStatus
     event_type: WebhookEvent = Field(alias="eventType")
-    event_version: Union[StrictFloat, StrictInt] = Field(description="The event version which the Notification is listen to", alias="eventVersion")
     resource_id: Optional[StrictStr] = Field(default=None, description="The resource id of the event which the Notification is listen to", alias="resourceId")
-    attempts: List[StrictStr] = Field(description="The attempts related to Notification")
+    attempts: List[NotificationAttempt] = Field(description="The attempts related to Notification")
     data: Optional[Dict[str, Any]] = Field(default=None, description="notification data")
-    __properties: ClassVar[List[str]] = ["id", "createdAt", "updatedAt", "status", "eventType", "eventVersion", "resourceId", "attempts", "data"]
+    __properties: ClassVar[List[str]] = ["id", "createdAt", "updatedAt", "status", "eventType", "resourceId", "attempts", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +79,13 @@ class NotificationWithData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in attempts (list)
+        _items = []
+        if self.attempts:
+            for _item_attempts in self.attempts:
+                if _item_attempts:
+                    _items.append(_item_attempts.to_dict())
+            _dict['attempts'] = _items
         # set to None if resource_id (nullable) is None
         # and model_fields_set contains the field
         if self.resource_id is None and "resource_id" in self.model_fields_set:
@@ -102,9 +108,8 @@ class NotificationWithData(BaseModel):
             "updatedAt": obj.get("updatedAt"),
             "status": obj.get("status"),
             "eventType": obj.get("eventType"),
-            "eventVersion": obj.get("eventVersion"),
             "resourceId": obj.get("resourceId"),
-            "attempts": obj.get("attempts"),
+            "attempts": [NotificationAttempt.from_dict(_item) for _item in obj["attempts"]] if obj.get("attempts") is not None else None,
             "data": obj.get("data")
         })
         return _obj

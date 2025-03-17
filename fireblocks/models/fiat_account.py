@@ -78,9 +78,9 @@ class FiatAccount(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in assets (list)
         _items = []
         if self.assets:
-            for _item in self.assets:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_assets in self.assets:
+                if _item_assets:
+                    _items.append(_item_assets.to_dict())
             _dict['assets'] = _items
         # set to None if address (nullable) is None
         # and model_fields_set contains the field

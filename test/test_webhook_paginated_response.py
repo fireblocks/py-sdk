@@ -29,7 +29,7 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> WebhookPaginatedResponse:
         """Test WebhookPaginatedResponse
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `WebhookPaginatedResponse`
@@ -44,8 +44,8 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                         description = 'This webhook is used for transactions notifications', 
                         events = ["transaction.created","transaction.status.updated"], 
                         status = 'ENABLED', 
-                        created_at = '2021-09-01T12:00Z', 
-                        updated_at = '2021-09-05T15:00Z', )
+                        created_at = 1625126400000, 
+                        updated_at = 1625126400000, )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
@@ -58,8 +58,8 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                         description = 'This webhook is used for transactions notifications', 
                         events = ["transaction.created","transaction.status.updated"], 
                         status = 'ENABLED', 
-                        created_at = '2021-09-01T12:00Z', 
-                        updated_at = '2021-09-05T15:00Z', )
+                        created_at = 1625126400000, 
+                        updated_at = 1625126400000, )
                     ],
         )
         """

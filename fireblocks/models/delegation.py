@@ -94,9 +94,9 @@ class Delegation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in related_transactions (list)
         _items = []
         if self.related_transactions:
-            for _item in self.related_transactions:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_related_transactions in self.related_transactions:
+                if _item_related_transactions:
+                    _items.append(_item_related_transactions.to_dict())
             _dict['relatedTransactions'] = _items
         # override the default output from pydantic by calling `to_dict()` of blockchain_position_info
         if self.blockchain_position_info:
@@ -104,9 +104,9 @@ class Delegation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in related_requests (list)
         _items = []
         if self.related_requests:
-            for _item in self.related_requests:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_related_requests in self.related_requests:
+                if _item_related_requests:
+                    _items.append(_item_related_requests.to_dict())
             _dict['relatedRequests'] = _items
         return _dict
 

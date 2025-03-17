@@ -95,16 +95,16 @@ class AbiFunction(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in inputs (list)
         _items = []
         if self.inputs:
-            for _item in self.inputs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_inputs in self.inputs:
+                if _item_inputs:
+                    _items.append(_item_inputs.to_dict())
             _dict['inputs'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in outputs (list)
         _items = []
         if self.outputs:
-            for _item in self.outputs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_outputs in self.outputs:
+                if _item_outputs:
+                    _items.append(_item_outputs.to_dict())
             _dict['outputs'] = _items
         return _dict
 

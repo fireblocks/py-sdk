@@ -74,9 +74,9 @@ class EVMTokenCreateParamsDto(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in deploy_function_params (list)
         _items = []
         if self.deploy_function_params:
-            for _item in self.deploy_function_params:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_deploy_function_params in self.deploy_function_params:
+                if _item_deploy_function_params:
+                    _items.append(_item_deploy_function_params.to_dict())
             _dict['deployFunctionParams'] = _items
         return _dict
 

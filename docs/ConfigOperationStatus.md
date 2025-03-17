@@ -1,10 +1,15 @@
 # ConfigOperationStatus
 
 
-## Properties
+## Enum
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `PENDING` (value: `'PENDING'`)
+
+* `VALIDATION_IN_PROGRESS` (value: `'VALIDATION_IN_PROGRESS'`)
+
+* `READY_FOR_EXECUTION` (value: `'READY_FOR_EXECUTION'`)
+
+* `VALIDATION_FAILED` (value: `'VALIDATION_FAILED'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -83,16 +83,16 @@ class ExchangeAccount(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in assets (list)
         _items = []
         if self.assets:
-            for _item in self.assets:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_assets in self.assets:
+                if _item_assets:
+                    _items.append(_item_assets.to_dict())
             _dict['assets'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in trading_accounts (list)
         _items = []
         if self.trading_accounts:
-            for _item in self.trading_accounts:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_trading_accounts in self.trading_accounts:
+                if _item_trading_accounts:
+                    _items.append(_item_trading_accounts.to_dict())
             _dict['tradingAccounts'] = _items
         return _dict
 

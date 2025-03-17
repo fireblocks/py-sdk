@@ -37,8 +37,9 @@ class AuthorizationGroups(BaseModel):
         if value is None:
             return value
 
-        if set(value.values()) - set(['PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA']):
-            raise ValueError("must be one of enum values ('PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA')")
+        for i in value.values():
+            if i not in set(['PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA']):
+                raise ValueError("dict values must be one of enum values ('PENDING_AUTHORIZATION', 'APPROVED', 'REJECTED', 'NA')")
         return value
 
     model_config = ConfigDict(

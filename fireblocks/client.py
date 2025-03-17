@@ -49,7 +49,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
-from fireblocks.api.travel_rule_beta_api import TravelRuleBetaApi
+from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -102,7 +102,7 @@ class Fireblocks:
         self._staking = None
         self._tokenization = None
         self._transactions = None
-        self._travel_rule_beta = None
+        self._travel_rule = None
         self._user_groups_beta = None
         self._users = None
         self._vaults = None
@@ -322,10 +322,10 @@ class Fireblocks:
         return self._transactions
 
     @property
-    def travel_rule_beta(self) -> TravelRuleBetaApi:
-        if self._travel_rule_beta is None:
-            self._travel_rule_beta = TravelRuleBetaApi(self._api_client)
-        return self._travel_rule_beta
+    def travel_rule(self) -> TravelRuleApi:
+        if self._travel_rule is None:
+            self._travel_rule = TravelRuleApi(self._api_client)
+        return self._travel_rule
 
     @property
     def user_groups_beta(self) -> UserGroupsBetaApi:

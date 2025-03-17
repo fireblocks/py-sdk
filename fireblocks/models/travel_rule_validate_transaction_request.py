@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.travel_rule_address import TravelRuleAddress
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,9 +28,10 @@ class TravelRuleValidateTransactionRequest(BaseModel):
     """
     TravelRuleValidateTransactionRequest
     """ # noqa: E501
-    transaction_asset: StrictStr = Field(description="Transaction asset symbol BTC,ETH)", alias="transactionAsset")
+    transaction_asset: StrictStr = Field(description="Transaction asset symbol (BTC,ETH)", alias="transactionAsset")
     destination: StrictStr = Field(description="Transaction destination address")
     transaction_amount: StrictStr = Field(description="Transaction amount in the transaction asset", alias="transactionAmount")
+    transaction_asset_decimals: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Number of decimals in the transaction asset. This is used to convert the transaction amount to the smallest unit of the asset", alias="transactionAssetDecimals")
     originator_vas_pdid: StrictStr = Field(description="This is the identifier assigned to your VASP", alias="originatorVASPdid")
     originator_equals_beneficiary: StrictBool = Field(description="\"True\" if the originator and beneficiary is the same person and you therefore do not need to collect any information. \"False\" if it is a third-party transfer.", alias="originatorEqualsBeneficiary")
     travel_rule_behavior: Optional[StrictBool] = Field(default=None, description="This will also check if the transaction is a TRAVEL_RULE in the beneficiary VASP's jurisdiction", alias="travelRuleBehavior")
@@ -38,8 +39,8 @@ class TravelRuleValidateTransactionRequest(BaseModel):
     beneficiary_vas_pname: Optional[StrictStr] = Field(default=None, description="Beneficiary VASP name", alias="beneficiaryVASPname")
     beneficiary_name: Optional[StrictStr] = Field(default=None, description="Beneficiary  name", alias="beneficiaryName")
     beneficiary_account_number: Optional[StrictStr] = Field(default=None, description="Beneficiary  name", alias="beneficiaryAccountNumber")
-    beneficiary_address: Optional[TravelRuleAddress] = Field(default=None, description="Beneficiary  name", alias="beneficiaryAddress")
-    __properties: ClassVar[List[str]] = ["transactionAsset", "destination", "transactionAmount", "originatorVASPdid", "originatorEqualsBeneficiary", "travelRuleBehavior", "beneficiaryVASPdid", "beneficiaryVASPname", "beneficiaryName", "beneficiaryAccountNumber", "beneficiaryAddress"]
+    beneficiary_address: Optional[TravelRuleAddress] = Field(default=None, alias="beneficiaryAddress")
+    __properties: ClassVar[List[str]] = ["transactionAsset", "destination", "transactionAmount", "transactionAssetDecimals", "originatorVASPdid", "originatorEqualsBeneficiary", "travelRuleBehavior", "beneficiaryVASPdid", "beneficiaryVASPname", "beneficiaryName", "beneficiaryAccountNumber", "beneficiaryAddress"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +99,7 @@ class TravelRuleValidateTransactionRequest(BaseModel):
             "transactionAsset": obj.get("transactionAsset"),
             "destination": obj.get("destination"),
             "transactionAmount": obj.get("transactionAmount"),
+            "transactionAssetDecimals": obj.get("transactionAssetDecimals"),
             "originatorVASPdid": obj.get("originatorVASPdid"),
             "originatorEqualsBeneficiary": obj.get("originatorEqualsBeneficiary"),
             "travelRuleBehavior": obj.get("travelRuleBehavior"),

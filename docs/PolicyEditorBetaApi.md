@@ -16,7 +16,10 @@ Method | HTTP request | Description
 
 Get the active policy and its validation
 
-Returns the active policy and its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+Returns the active policy and its validation. </br>
+**Note:** These endpoints are currently in beta and might be subject to changes.
+If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
 
 ### Example
 
@@ -86,7 +89,10 @@ No authorization required
 
 Get the active draft
 
-Returns the active draft and its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+Returns the active draft and its validation. </br>
+**Note:** These endpoints are currently in beta and might be subject to changes.
+If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
 
 ### Example
 
@@ -156,7 +162,10 @@ No authorization required
 
 Send publish request for a certain draft id
 
-Send publish request of certain draft id and returns the response. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+Send publish request of certain draft id and returns the response. </br>
+**Note:** These endpoints are currently in beta and might be subject to changes.
+If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
 
 ### Example
 
@@ -233,7 +242,10 @@ No authorization required
 
 Send publish request for a set of policy rules
 
-Send publish request of set of policy rules and returns the response. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+Send publish request of set of policy rules and returns the response. </br>
+**Note:** These endpoints are currently in beta and might be subject to changes.
+If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
 
 ### Example
 
@@ -310,7 +322,10 @@ No authorization required
 
 Update the draft with a new set of rules
 
-Update the draft and return its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+Update the draft and return its validation. </br>
+**Note:** These endpoints are currently in beta and might be subject to changes.
+If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
 
 ### Example
 

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_notifications**](WebhooksV2BetaApi.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
 [**get_webhook**](WebhooksV2BetaApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
 [**get_webhooks**](WebhooksV2BetaApi.md#get_webhooks) | **GET** /webhooks | Get all webhooks
+[**resend_notification_by_id**](WebhooksV2BetaApi.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
 [**update_webhook**](WebhooksV2BetaApi.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
 
 
@@ -18,7 +19,9 @@ Method | HTTP request | Description
 
 Create new webhook
 
-Creates a new webhook, which will be triggered on the specified events **Note:** These endpoints are currently in beta and might be subject to changes. 
+Creates a new webhook, which will be triggered on the specified events
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -95,7 +98,9 @@ No authorization required
 
 Delete webhook
 
-Delete a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Delete a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -169,7 +174,9 @@ No authorization required
 
 Get notification by id
 
-Get notification by id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get notification by id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -238,6 +245,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -246,7 +254,9 @@ No authorization required
 
 Get all notifications by webhook id
 
-Get all notifications by webhook id (paginated) **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get all notifications by webhook id (paginated)
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -276,7 +286,7 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     webhook_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | 
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 100 # float | Maximum number of items in the page (optional) (default to 100)
     created_start_date = '2024-09-24T09:14:38.356Z' # str | sort by start date (optional)
@@ -302,7 +312,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **webhook_id** | **str**|  | 
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 100]
  **created_start_date** | **str**| sort by start date | [optional] 
@@ -329,6 +339,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A paginated response containing NotificationExternalDTO objects |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -337,7 +348,9 @@ No authorization required
 
 Get webhook by id
 
-Retrieve a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Retrieve a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -411,7 +424,9 @@ No authorization required
 
 Get all webhooks
 
-Get all webhooks (paginated) **Note:** These endpoints are currently in beta and might be subject to changes. 
+Get all webhooks (paginated)
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 
@@ -438,7 +453,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    order = 'DESC' # str | ASC / DESC ordering (default DESC) (optional) (default to 'DESC')
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 10 # float | Maximum number of items in the page (optional) (default to 10)
 
@@ -458,7 +473,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to &#39;DESC&#39;]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 10]
 
@@ -484,12 +499,90 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **resend_notification_by_id**
+> resend_notification_by_id(webhook_id, notification_id, idempotency_key=idempotency_key)
+
+Resend notification by id
+
+Resend notification by ID
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_id = 'webhook_id_example' # str | The ID of the webhook
+    notification_id = 'notification_id_example' # str | The ID of the notification
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Resend notification by id
+        fireblocks.webhooks_v2_beta.resend_notification_by_id(webhook_id, notification_id, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling WebhooksV2BetaApi->resend_notification_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **str**| The ID of the webhook | 
+ **notification_id** | **str**| The ID of the notification | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Resend notification request was accepted and is being processed |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_webhook**
 > Webhook update_webhook(webhook_id, update_webhook_request)
 
 Update webhook
 
-Update a webhook by its id **Note:** These endpoints are currently in beta and might be subject to changes. 
+Update a webhook by its id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
 
 ### Example
 

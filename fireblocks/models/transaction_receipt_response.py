@@ -86,9 +86,9 @@ class TransactionReceiptResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in logs (list)
         _items = []
         if self.logs:
-            for _item in self.logs:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_logs in self.logs:
+                if _item_logs:
+                    _items.append(_item_logs.to_dict())
             _dict['logs'] = _items
         # set to None if contract_address (nullable) is None
         # and model_fields_set contains the field

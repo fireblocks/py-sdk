@@ -74,9 +74,9 @@ class SmartTransferStatisticOutflow(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in coins (list)
         _items = []
         if self.coins:
-            for _item in self.coins:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_coins in self.coins:
+                if _item_coins:
+                    _items.append(_item_coins.to_dict())
             _dict['coins'] = _items
         return _dict
 

@@ -25,11 +25,11 @@ from typing_extensions import Self
 
 class TravelRuleTransactionBlockchainInfo(BaseModel):
     """
-    TravelRuleTransactionBlockchainInfo
+    Information about the blockchain transaction.
     """ # noqa: E501
-    tx_hash: Optional[StrictStr] = Field(default=None, alias="txHash")
-    origin: Optional[StrictStr] = None
-    destination: Optional[StrictStr] = None
+    tx_hash: Optional[StrictStr] = Field(default=None, description="The hash of the transaction", alias="txHash")
+    origin: Optional[StrictStr] = Field(default=None, description="The origin address of the transaction")
+    destination: Optional[StrictStr] = Field(default=None, description="The destination address of the transaction")
     __properties: ClassVar[List[str]] = ["txHash", "origin", "destination"]
 
     model_config = ConfigDict(

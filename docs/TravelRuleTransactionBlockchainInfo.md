@@ -1,13 +1,14 @@
 # TravelRuleTransactionBlockchainInfo
 
+Information about the blockchain transaction.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tx_hash** | **str** |  | [optional] 
-**origin** | **str** |  | [optional] 
-**destination** | **str** |  | [optional] 
+**tx_hash** | **str** | The hash of the transaction | [optional] 
+**origin** | **str** | The origin address of the transaction | [optional] 
+**destination** | **str** | The destination address of the transaction | [optional] 
 
 ## Example
 

@@ -29,7 +29,7 @@ class TestContractUploadRequest(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ContractUploadRequest:
         """Test ContractUploadRequest
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `ContractUploadRequest`
@@ -71,6 +71,7 @@ class TestContractUploadRequest(unittest.TestCase):
                 name = 'My Contract',
                 description = 'an ERC20 implementation',
                 bytecode = '',
+                type = 'FUNGIBLE_TOKEN',
                 abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
         )
         """

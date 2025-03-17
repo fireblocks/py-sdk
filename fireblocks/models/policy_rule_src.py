@@ -74,10 +74,10 @@ class PolicyRuleSrc(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in ids (list of list)
         _items = []
         if self.ids:
-            for _item in self.ids:
-                if _item:
+            for _item_ids in self.ids:
+                if _item_ids:
                     _items.append(
-                         [_inner_item.to_dict() for _inner_item in _item if _inner_item is not None]
+                         [_inner_item.to_dict() for _inner_item in _item_ids if _inner_item is not None]
                     )
             _dict['ids'] = _items
         return _dict

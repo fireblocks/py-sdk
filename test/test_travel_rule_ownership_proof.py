@@ -29,7 +29,7 @@ class TestTravelRuleOwnershipProof(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TravelRuleOwnershipProof:
         """Test TravelRuleOwnershipProof
-        include_option is a boolean, when False only required
+        include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
         # uncomment below to create an instance of `TravelRuleOwnershipProof`
@@ -37,8 +37,13 @@ class TestTravelRuleOwnershipProof(unittest.TestCase):
         model = TravelRuleOwnershipProof()
         if include_optional:
             return TravelRuleOwnershipProof(
-                type = 'passport',
-                proof = '123456789'
+                type = 'eip-191',
+                proof = '0x3dd4a17a...ce4a2bcd1b',
+                attestation = 'I certify that ETH account 0x896B...0b9b belongs to me.',
+                address = '0x896B...0b9b',
+                wallet_provider = 'Metamask',
+                url = 'https://example.com/uploaded_image.png',
+                confirmed = True
             )
         else:
             return TravelRuleOwnershipProof(

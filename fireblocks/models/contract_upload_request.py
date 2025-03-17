@@ -35,7 +35,7 @@ class ContractUploadRequest(BaseModel):
     long_description: Optional[StrictStr] = Field(default=None, description="A full description of the contract template. May contain   to break the lines", alias="longDescription")
     bytecode: StrictStr = Field(description="The compiled artifact of this smart contract. Used for deployment of this contract template")
     sourcecode: Optional[StrictStr] = Field(default=None, description="The source code of the contract. Optional.")
-    type: Optional[StrictStr] = Field(default=None, description="The type of the contract template")
+    type: StrictStr = Field(description="The type of the contract template")
     docs: Optional[ContractDoc] = Field(default=None, description="A `natspec` compliant documentation json. Can be retrieved from the output json after compilation")
     abi: List[AbiFunction] = Field(description="The abi of the contract template. Necessary for displaying and for after deployment encoding")
     attributes: Optional[ContractAttributes] = Field(default=None, description="The attributes related to this contract template. It will be displayed in the tokenization page")
@@ -44,9 +44,6 @@ class ContractUploadRequest(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['FUNGIBLE_TOKEN', 'NON_FUNGIBLE_TOKEN', 'NON_TOKEN', 'TOKEN_EXTENSION', 'TOKEN_UTILITY']):
             raise ValueError("must be one of enum values ('FUNGIBLE_TOKEN', 'NON_FUNGIBLE_TOKEN', 'NON_TOKEN', 'TOKEN_EXTENSION', 'TOKEN_UTILITY')")
         return value

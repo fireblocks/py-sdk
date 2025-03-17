@@ -318,9 +318,10 @@ Class | Method | HTTP request | Description
 *InternalWalletsApi* | [**create_internal_wallet**](docs/InternalWalletsApi.md#create_internal_wallet) | **POST** /internal_wallets | Create an internal wallet
 *InternalWalletsApi* | [**create_internal_wallet_asset**](docs/InternalWalletsApi.md#create_internal_wallet_asset) | **POST** /internal_wallets/{walletId}/{assetId} | Add an asset to an internal wallet
 *InternalWalletsApi* | [**delete_internal_wallet**](docs/InternalWalletsApi.md#delete_internal_wallet) | **DELETE** /internal_wallets/{walletId} | Delete an internal wallet
-*InternalWalletsApi* | [**delete_internal_wallet_asset**](docs/InternalWalletsApi.md#delete_internal_wallet_asset) | **DELETE** /internal_wallets/{walletId}/{assetId} | Delete a whitelisted address from an internal wallet
-*InternalWalletsApi* | [**get_internal_wallet**](docs/InternalWalletsApi.md#get_internal_wallet) | **GET** /internal_wallets/{walletId} | Get assets for internal wallet
+*InternalWalletsApi* | [**delete_internal_wallet_asset**](docs/InternalWalletsApi.md#delete_internal_wallet_asset) | **DELETE** /internal_wallets/{walletId}/{assetId} | Delete a whitelisted address
+*InternalWalletsApi* | [**get_internal_wallet**](docs/InternalWalletsApi.md#get_internal_wallet) | **GET** /internal_wallets/{walletId} | Get an asset from an internal wallet
 *InternalWalletsApi* | [**get_internal_wallet_asset**](docs/InternalWalletsApi.md#get_internal_wallet_asset) | **GET** /internal_wallets/{walletId}/{assetId} | Get an asset from an internal wallet
+*InternalWalletsApi* | [**get_internal_wallet_assets_paginated**](docs/InternalWalletsApi.md#get_internal_wallet_assets_paginated) | **GET** /internal_wallets/{walletId}/assets | List assets in an internal wallet (Paginated)
 *InternalWalletsApi* | [**get_internal_wallets**](docs/InternalWalletsApi.md#get_internal_wallets) | **GET** /internal_wallets | List internal wallets
 *InternalWalletsApi* | [**set_customer_ref_id_for_internal_wallet**](docs/InternalWalletsApi.md#set_customer_ref_id_for_internal_wallet) | **POST** /internal_wallets/{walletId}/set_customer_ref_id | Set an AML/KYT customer reference ID for an internal wallet
 *JobManagementApi* | [**cancel_job**](docs/JobManagementApi.md#cancel_job) | **POST** /batch/{jobId}/cancel | Cancel a running job
@@ -765,6 +766,7 @@ Class | Method | HTTP request | Description
  - [PaginatedAddressResponsePaging](docs/PaginatedAddressResponsePaging.md)
  - [PaginatedAssetWalletResponse](docs/PaginatedAssetWalletResponse.md)
  - [PaginatedAssetWalletResponsePaging](docs/PaginatedAssetWalletResponsePaging.md)
+ - [PaginatedAssetsResponse](docs/PaginatedAssetsResponse.md)
  - [Paging](docs/Paging.md)
  - [PairApiKeyRequest](docs/PairApiKeyRequest.md)
  - [PairApiKeyResponse](docs/PairApiKeyResponse.md)

@@ -496,6 +496,7 @@ from fireblocks.models.paginated_asset_wallet_response import (
 from fireblocks.models.paginated_asset_wallet_response_paging import (
     PaginatedAssetWalletResponsePaging,
 )
+from fireblocks.models.paginated_assets_response import PaginatedAssetsResponse
 from fireblocks.models.paging import Paging
 from fireblocks.models.pair_api_key_request import PairApiKeyRequest
 from fireblocks.models.pair_api_key_response import PairApiKeyResponse

@@ -71,6 +71,7 @@ class TestContractUploadRequest(unittest.TestCase):
                 name = 'My Contract',
                 description = 'an ERC20 implementation',
                 bytecode = '',
+                type = 'FUNGIBLE_TOKEN',
                 abi = [{"inputs":[{"internalType":"address","name":"implementation","type":"address"},{"internalType":"bytes","name":"_data","type":"bytes"}],"stateMutability":"payable","type":"constructor"}],
         )
         """

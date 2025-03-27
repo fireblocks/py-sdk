@@ -37,7 +37,7 @@ class TestBlockchainMetadata(unittest.TestCase):
         model = BlockchainMetadata()
         if include_optional:
             return BlockchainMetadata(
-                scope = 'Global',
+                scope = 'GLOBAL',
                 deprecated = False,
                 media = [
                     fireblocks.models.blockchain_media.BlockchainMedia(
@@ -52,7 +52,7 @@ class TestBlockchainMetadata(unittest.TestCase):
             )
         else:
             return BlockchainMetadata(
-                scope = 'Global',
+                scope = 'GLOBAL',
                 deprecated = False,
         )
         """

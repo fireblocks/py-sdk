@@ -27,10 +27,38 @@ class TestBlockchainsAssetsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_get_asset(self) -> None:
+        """Test case for get_asset
+
+        Get an asset
+        """
+        pass
+
+    def test_get_blockchain(self) -> None:
+        """Test case for get_blockchain
+
+        Get an blockchain
+        """
+        pass
+
     def test_get_supported_assets(self) -> None:
         """Test case for get_supported_assets
 
-        List all asset types supported by Fireblocks
+        List all asset types supported by Fireblocks - legacy endpoint
+        """
+        pass
+
+    def test_list_assets(self) -> None:
+        """Test case for list_assets
+
+        List assets
+        """
+        pass
+
+    def test_list_blockchains(self) -> None:
+        """Test case for list_blockchains
+
+        List blockchains
         """
         pass
 

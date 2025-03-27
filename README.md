@@ -237,13 +237,13 @@ Class | Method | HTTP request | Description
 *ApiUserApi* | [**get_api_users**](docs/ApiUserApi.md#get_api_users) | **GET** /management/api_users | Get Api users
 *AssetsApi* | [**create_assets_bulk**](docs/AssetsApi.md#create_assets_bulk) | **POST** /vault/assets/bulk | Bulk creation of wallets
 *AuditLogsApi* | [**get_audit_logs**](docs/AuditLogsApi.md#get_audit_logs) | **GET** /management/audit_logs | Get audit logs
-*BlockchainsAssetsApi* | [**get_supported_assets**](docs/BlockchainsAssetsApi.md#get_supported_assets) | **GET** /supported_assets | List all asset types supported by Fireblocks
+*BlockchainsAssetsApi* | [**get_asset**](docs/BlockchainsAssetsApi.md#get_asset) | **GET** /assets/{id} | Get an asset
+*BlockchainsAssetsApi* | [**get_blockchain**](docs/BlockchainsAssetsApi.md#get_blockchain) | **GET** /blockchains/{id} | Get an blockchain
+*BlockchainsAssetsApi* | [**get_supported_assets**](docs/BlockchainsAssetsApi.md#get_supported_assets) | **GET** /supported_assets | List all asset types supported by Fireblocks - legacy endpoint
+*BlockchainsAssetsApi* | [**list_assets**](docs/BlockchainsAssetsApi.md#list_assets) | **GET** /assets | List assets
+*BlockchainsAssetsApi* | [**list_blockchains**](docs/BlockchainsAssetsApi.md#list_blockchains) | **GET** /blockchains | List blockchains
 *BlockchainsAssetsApi* | [**register_new_asset**](docs/BlockchainsAssetsApi.md#register_new_asset) | **POST** /assets | Register an asset
 *BlockchainsAssetsApi* | [**set_asset_price**](docs/BlockchainsAssetsApi.md#set_asset_price) | **POST** /assets/prices/{id} | Set asset price
-*BlockchainsAssetsBetaApi* | [**get_asset_by_id**](docs/BlockchainsAssetsBetaApi.md#get_asset_by_id) | **GET** /assets/{id} | Get an asset
-*BlockchainsAssetsBetaApi* | [**get_blockchain_by_id**](docs/BlockchainsAssetsBetaApi.md#get_blockchain_by_id) | **GET** /blockchains/{id} | Get an blockchain
-*BlockchainsAssetsBetaApi* | [**list_assets**](docs/BlockchainsAssetsBetaApi.md#list_assets) | **GET** /assets | List assets
-*BlockchainsAssetsBetaApi* | [**list_blockchains**](docs/BlockchainsAssetsBetaApi.md#list_blockchains) | **GET** /blockchains | List blockchains
 *ComplianceApi* | [**get_aml_post_screening_policy**](docs/ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 *ComplianceApi* | [**get_aml_screening_policy**](docs/ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
 *ComplianceApi* | [**get_post_screening_policy**](docs/ComplianceApi.md#get_post_screening_policy) | **GET** /screening/travel_rule/post_screening_policy | Travel Rule - View Post-Screening Policy
@@ -524,26 +524,27 @@ Class | Method | HTTP request | Description
  - [AmountInfo](docs/AmountInfo.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeysPaginatedResponse](docs/ApiKeysPaginatedResponse.md)
+ - [Asset](docs/Asset.md)
  - [AssetAlreadyExistHttpError](docs/AssetAlreadyExistHttpError.md)
  - [AssetAmount](docs/AssetAmount.md)
  - [AssetBadRequestErrorResponse](docs/AssetBadRequestErrorResponse.md)
- - [AssetClassBeta](docs/AssetClassBeta.md)
+ - [AssetClass](docs/AssetClass.md)
  - [AssetConflictErrorResponse](docs/AssetConflictErrorResponse.md)
+ - [AssetDetailsMetadata](docs/AssetDetailsMetadata.md)
+ - [AssetDetailsOnchain](docs/AssetDetailsOnchain.md)
  - [AssetForbiddenErrorResponse](docs/AssetForbiddenErrorResponse.md)
  - [AssetInternalServerErrorResponse](docs/AssetInternalServerErrorResponse.md)
  - [AssetMedia](docs/AssetMedia.md)
  - [AssetMediaAttributes](docs/AssetMediaAttributes.md)
  - [AssetMetadata](docs/AssetMetadata.md)
- - [AssetMetadataBeta](docs/AssetMetadataBeta.md)
  - [AssetMetadataDto](docs/AssetMetadataDto.md)
  - [AssetNotFoundErrorResponse](docs/AssetNotFoundErrorResponse.md)
  - [AssetOnchain](docs/AssetOnchain.md)
- - [AssetOnchainBeta](docs/AssetOnchainBeta.md)
  - [AssetPriceForbiddenErrorResponse](docs/AssetPriceForbiddenErrorResponse.md)
  - [AssetPriceNotFoundErrorResponse](docs/AssetPriceNotFoundErrorResponse.md)
  - [AssetPriceResponse](docs/AssetPriceResponse.md)
  - [AssetResponse](docs/AssetResponse.md)
- - [AssetResponseBeta](docs/AssetResponseBeta.md)
+ - [AssetScope](docs/AssetScope.md)
  - [AssetTypeResponse](docs/AssetTypeResponse.md)
  - [AssetWallet](docs/AssetWallet.md)
  - [AuditLogData](docs/AuditLogData.md)

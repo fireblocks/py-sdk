@@ -20,24 +20,24 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.asset_class_beta import AssetClassBeta
-from fireblocks.models.asset_metadata_beta import AssetMetadataBeta
-from fireblocks.models.asset_onchain_beta import AssetOnchainBeta
+from fireblocks.models.asset_class import AssetClass
+from fireblocks.models.asset_details_metadata import AssetDetailsMetadata
+from fireblocks.models.asset_details_onchain import AssetDetailsOnchain
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AssetResponseBeta(BaseModel):
+class Asset(BaseModel):
     """
-    AssetResponseBeta
+    Asset
     """ # noqa: E501
     id: StrictStr = Field(description="The ID of the asset")
     legacy_id: StrictStr = Field(description="The Legacy ID of the asset", alias="legacyId")
     blockchain_id: Optional[StrictStr] = Field(default=None, description="The ID of the asset's blockchain", alias="blockchainId")
-    display_name: Optional[StrictStr] = Field(default=None, description="Asset's display name", alias="displayName")
-    display_symbol: Optional[StrictStr] = Field(default=None, description="Asset's display symbol", alias="displaySymbol")
-    asset_class: AssetClassBeta = Field(alias="assetClass")
-    onchain: Optional[AssetOnchainBeta] = None
-    metadata: AssetMetadataBeta
+    display_name: StrictStr = Field(description="Asset's display name", alias="displayName")
+    display_symbol: StrictStr = Field(description="Asset's display symbol", alias="displaySymbol")
+    asset_class: AssetClass = Field(alias="assetClass")
+    onchain: Optional[AssetDetailsOnchain] = None
+    metadata: AssetDetailsMetadata
     __properties: ClassVar[List[str]] = ["id", "legacyId", "blockchainId", "displayName", "displaySymbol", "assetClass", "onchain", "metadata"]
 
     model_config = ConfigDict(
@@ -58,7 +58,7 @@ class AssetResponseBeta(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetResponseBeta from a JSON string"""
+        """Create an instance of Asset from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,7 +89,7 @@ class AssetResponseBeta(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetResponseBeta from a dict"""
+        """Create an instance of Asset from a dict"""
         if obj is None:
             return None
 
@@ -103,8 +103,8 @@ class AssetResponseBeta(BaseModel):
             "displayName": obj.get("displayName"),
             "displaySymbol": obj.get("displaySymbol"),
             "assetClass": obj.get("assetClass"),
-            "onchain": AssetOnchainBeta.from_dict(obj["onchain"]) if obj.get("onchain") is not None else None,
-            "metadata": AssetMetadataBeta.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
+            "onchain": AssetDetailsOnchain.from_dict(obj["onchain"]) if obj.get("onchain") is not None else None,
+            "metadata": AssetDetailsMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

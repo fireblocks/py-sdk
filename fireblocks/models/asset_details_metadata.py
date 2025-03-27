@@ -18,21 +18,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.asset_media import AssetMedia
+from fireblocks.models.asset_scope import AssetScope
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AssetOnchainBeta(BaseModel):
+class AssetDetailsMetadata(BaseModel):
     """
-    AssetOnchainBeta
+    AssetDetailsMetadata
     """ # noqa: E501
-    symbol: StrictStr = Field(description="The asset symbol")
-    name: StrictStr = Field(description="The asset name")
-    address: Optional[StrictStr] = Field(default=None, description="The asset address")
-    decimals: Union[StrictFloat, StrictInt] = Field(description="Number of decimals")
-    standards: Optional[List[StrictStr]] = Field(default=None, description="Supported standards")
-    __properties: ClassVar[List[str]] = ["symbol", "name", "address", "decimals", "standards"]
+    scope: AssetScope
+    deprecated: StrictBool = Field(description="Is asset deprecated")
+    deprecation_referral_id: Optional[StrictStr] = Field(default=None, description="New asset ID replacement", alias="deprecationReferralId")
+    website: Optional[StrictStr] = Field(default=None, description="Vendor’s website")
+    media: Optional[List[AssetMedia]] = Field(default=None, description="Asset’s media")
+    __properties: ClassVar[List[str]] = ["scope", "deprecated", "deprecationReferralId", "website", "media"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +54,7 @@ class AssetOnchainBeta(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetOnchainBeta from a JSON string"""
+        """Create an instance of AssetDetailsMetadata from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,11 +75,18 @@ class AssetOnchainBeta(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in media (list)
+        _items = []
+        if self.media:
+            for _item_media in self.media:
+                if _item_media:
+                    _items.append(_item_media.to_dict())
+            _dict['media'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetOnchainBeta from a dict"""
+        """Create an instance of AssetDetailsMetadata from a dict"""
         if obj is None:
             return None
 
@@ -85,11 +94,11 @@ class AssetOnchainBeta(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "symbol": obj.get("symbol"),
-            "name": obj.get("name"),
-            "address": obj.get("address"),
-            "decimals": obj.get("decimals"),
-            "standards": obj.get("standards")
+            "scope": obj.get("scope"),
+            "deprecated": obj.get("deprecated"),
+            "deprecationReferralId": obj.get("deprecationReferralId"),
+            "website": obj.get("website"),
+            "media": [AssetMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None
         })
         return _obj
 

@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.asset_scope import AssetScope
 from fireblocks.models.blockchain_explorer import BlockchainExplorer
 from fireblocks.models.blockchain_media import BlockchainMedia
 from typing import Optional, Set
@@ -29,18 +30,11 @@ class BlockchainMetadata(BaseModel):
     """
     BlockchainMetadata
     """ # noqa: E501
-    scope: StrictStr = Field(description="Is blockchain listed on all workspaces? Global or Local")
+    scope: AssetScope
     deprecated: StrictBool = Field(description="Is blockchain deprecated")
     media: Optional[List[BlockchainMedia]] = Field(default=None, description="Blockchain’s media")
     explorer: Optional[BlockchainExplorer] = None
     __properties: ClassVar[List[str]] = ["scope", "deprecated", "media", "explorer"]
-
-    @field_validator('scope')
-    def scope_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['Global', 'Local']):
-            raise ValueError("must be one of enum values ('Global', 'Local')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

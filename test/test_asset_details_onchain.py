@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.asset_onchain_beta import AssetOnchainBeta
+from fireblocks.models.asset_details_onchain import AssetDetailsOnchain
 
 
-class TestAssetOnchainBeta(unittest.TestCase):
-    """AssetOnchainBeta unit test stubs"""
+class TestAssetDetailsOnchain(unittest.TestCase):
+    """AssetDetailsOnchain unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,32 +27,32 @@ class TestAssetOnchainBeta(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AssetOnchainBeta:
-        """Test AssetOnchainBeta
+    def make_instance(self, include_optional) -> AssetDetailsOnchain:
+        """Test AssetDetailsOnchain
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AssetOnchainBeta`
+        # uncomment below to create an instance of `AssetDetailsOnchain`
         """
-        model = AssetOnchainBeta()
+        model = AssetDetailsOnchain()
         if include_optional:
-            return AssetOnchainBeta(
-                symbol = 'TST3',
-                name = 'Test 3',
-                address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991',
-                decimals = 18,
+            return AssetDetailsOnchain(
+                symbol = 'USDT',
+                name = 'Tether USD',
+                address = '1.2488751460129641E+48',
+                decimals = 6,
                 standards = ["ERC20"]
             )
         else:
-            return AssetOnchainBeta(
-                symbol = 'TST3',
-                name = 'Test 3',
-                decimals = 18,
+            return AssetDetailsOnchain(
+                symbol = 'USDT',
+                name = 'Tether USD',
+                decimals = 6,
         )
         """
 
-    def testAssetOnchainBeta(self):
-        """Test AssetOnchainBeta"""
+    def testAssetDetailsOnchain(self):
+        """Test AssetDetailsOnchain"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

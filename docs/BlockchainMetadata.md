@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**scope** | **str** | Is blockchain listed on all workspaces? Global or Local | 
+**scope** | [**AssetScope**](AssetScope.md) |  | 
 **deprecated** | **bool** | Is blockchain deprecated | 
 **media** | [**List[BlockchainMedia]**](BlockchainMedia.md) | Blockchain’s media | [optional] 
 **explorer** | [**BlockchainExplorer**](BlockchainExplorer.md) |  | [optional] 

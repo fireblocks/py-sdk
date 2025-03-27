@@ -38,24 +38,23 @@ class TestListAssetsResponse(unittest.TestCase):
         if include_optional:
             return ListAssetsResponse(
                 data = [
-                    fireblocks.models.asset_response_beta.AssetResponseBeta(
+                    fireblocks.models.asset.Asset(
                         id = '9f9f7062-df90-4fc0-8697-96685184358d', 
-                        legacy_id = 'TST3', 
+                        legacy_id = 'USDT_ERC20', 
                         blockchain_id = 'e85208ff-3b15-44e9-af14-0ed0280b2a15', 
-                        display_name = 'Test 3', 
-                        display_symbol = 'TST3', 
+                        display_name = 'Tether USD', 
+                        display_symbol = 'USDT', 
                         asset_class = 'FT', 
-                        onchain = fireblocks.models.asset_onchain_beta.AssetOnchainBeta(
-                            symbol = 'TST3', 
-                            name = 'Test 3', 
-                            address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991', 
-                            decimals = 18, 
+                        onchain = fireblocks.models.asset_details_onchain.AssetDetailsOnchain(
+                            symbol = 'USDT', 
+                            name = 'Tether USD', 
+                            address = '1.2488751460129641E+48', 
+                            decimals = 6, 
                             standards = ["ERC20"], ), 
-                        metadata = fireblocks.models.asset_metadata_beta.AssetMetadataBeta(
-                            scope = 'Global', 
+                        metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
+                            scope = 'GLOBAL', 
                             deprecated = False, 
                             deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
-                            verified = True, 
                             website = 'https://example.org', 
                             media = [
                                 fireblocks.models.asset_media.AssetMedia(
@@ -70,24 +69,23 @@ class TestListAssetsResponse(unittest.TestCase):
         else:
             return ListAssetsResponse(
                 data = [
-                    fireblocks.models.asset_response_beta.AssetResponseBeta(
+                    fireblocks.models.asset.Asset(
                         id = '9f9f7062-df90-4fc0-8697-96685184358d', 
-                        legacy_id = 'TST3', 
+                        legacy_id = 'USDT_ERC20', 
                         blockchain_id = 'e85208ff-3b15-44e9-af14-0ed0280b2a15', 
-                        display_name = 'Test 3', 
-                        display_symbol = 'TST3', 
+                        display_name = 'Tether USD', 
+                        display_symbol = 'USDT', 
                         asset_class = 'FT', 
-                        onchain = fireblocks.models.asset_onchain_beta.AssetOnchainBeta(
-                            symbol = 'TST3', 
-                            name = 'Test 3', 
-                            address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991', 
-                            decimals = 18, 
+                        onchain = fireblocks.models.asset_details_onchain.AssetDetailsOnchain(
+                            symbol = 'USDT', 
+                            name = 'Tether USD', 
+                            address = '1.2488751460129641E+48', 
+                            decimals = 6, 
                             standards = ["ERC20"], ), 
-                        metadata = fireblocks.models.asset_metadata_beta.AssetMetadataBeta(
-                            scope = 'Global', 
+                        metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
+                            scope = 'GLOBAL', 
                             deprecated = False, 
                             deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
-                            verified = True, 
                             website = 'https://example.org', 
                             media = [
                                 fireblocks.models.asset_media.AssetMedia(

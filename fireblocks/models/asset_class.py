@@ -19,9 +19,9 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class AssetClassBeta(str, Enum):
+class AssetClass(str, Enum):
     """
-    AssetClassBeta
+    AssetClass
     """
 
     """
@@ -35,7 +35,7 @@ class AssetClassBeta(str, Enum):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AssetClassBeta from a JSON string"""
+        """Create an instance of AssetClass from a JSON string"""
         return cls(json.loads(json_str))
 
 

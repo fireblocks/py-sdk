@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.asset_class_beta import AssetClassBeta
+from fireblocks.models.asset_class import AssetClass
 
 
-class TestAssetClassBeta(unittest.TestCase):
-    """AssetClassBeta unit test stubs"""
+class TestAssetClass(unittest.TestCase):
+    """AssetClass unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,9 +27,9 @@ class TestAssetClassBeta(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testAssetClassBeta(self):
-        """Test AssetClassBeta"""
-        # inst = AssetClassBeta()
+    def testAssetClass(self):
+        """Test AssetClass"""
+        # inst = AssetClass()
 
 
 if __name__ == "__main__":

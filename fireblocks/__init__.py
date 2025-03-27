@@ -15,14 +15,13 @@
 """  # noqa: E501
 
 
-__version__ = "8.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.assets_api import AssetsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
-from fireblocks.api.blockchains_assets_beta_api import BlockchainsAssetsBetaApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
@@ -122,13 +121,16 @@ from fireblocks.models.amount_and_chain_descriptor import AmountAndChainDescript
 from fireblocks.models.amount_info import AmountInfo
 from fireblocks.models.api_key import ApiKey
 from fireblocks.models.api_keys_paginated_response import ApiKeysPaginatedResponse
+from fireblocks.models.asset import Asset
 from fireblocks.models.asset_already_exist_http_error import AssetAlreadyExistHttpError
 from fireblocks.models.asset_amount import AssetAmount
 from fireblocks.models.asset_bad_request_error_response import (
     AssetBadRequestErrorResponse,
 )
-from fireblocks.models.asset_class_beta import AssetClassBeta
+from fireblocks.models.asset_class import AssetClass
 from fireblocks.models.asset_conflict_error_response import AssetConflictErrorResponse
+from fireblocks.models.asset_details_metadata import AssetDetailsMetadata
+from fireblocks.models.asset_details_onchain import AssetDetailsOnchain
 from fireblocks.models.asset_forbidden_error_response import AssetForbiddenErrorResponse
 from fireblocks.models.asset_internal_server_error_response import (
     AssetInternalServerErrorResponse,
@@ -136,11 +138,9 @@ from fireblocks.models.asset_internal_server_error_response import (
 from fireblocks.models.asset_media import AssetMedia
 from fireblocks.models.asset_media_attributes import AssetMediaAttributes
 from fireblocks.models.asset_metadata import AssetMetadata
-from fireblocks.models.asset_metadata_beta import AssetMetadataBeta
 from fireblocks.models.asset_metadata_dto import AssetMetadataDto
 from fireblocks.models.asset_not_found_error_response import AssetNotFoundErrorResponse
 from fireblocks.models.asset_onchain import AssetOnchain
-from fireblocks.models.asset_onchain_beta import AssetOnchainBeta
 from fireblocks.models.asset_price_forbidden_error_response import (
     AssetPriceForbiddenErrorResponse,
 )
@@ -149,7 +149,7 @@ from fireblocks.models.asset_price_not_found_error_response import (
 )
 from fireblocks.models.asset_price_response import AssetPriceResponse
 from fireblocks.models.asset_response import AssetResponse
-from fireblocks.models.asset_response_beta import AssetResponseBeta
+from fireblocks.models.asset_scope import AssetScope
 from fireblocks.models.asset_type_response import AssetTypeResponse
 from fireblocks.models.asset_wallet import AssetWallet
 from fireblocks.models.audit_log_data import AuditLogData

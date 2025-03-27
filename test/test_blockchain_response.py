@@ -38,8 +38,8 @@ class TestBlockchainResponse(unittest.TestCase):
         if include_optional:
             return BlockchainResponse(
                 id = '9f9f7062-df90-4fc0-8697-96685184357b',
-                legacy_id = 'TST3',
-                display_name = 'Test 3',
+                legacy_id = 'ETH',
+                display_name = 'Ethereum',
                 native_asset_id = '9f9f7062-df90-4fc0-8697-96685184356a',
                 onchain = fireblocks.models.blockchain_onchain.BlockchainOnchain(
                     protocol = 'EVM', 
@@ -47,7 +47,7 @@ class TestBlockchainResponse(unittest.TestCase):
                     test = False, 
                     signing_algo = 'ECDSA_SECP256K1', ),
                 metadata = fireblocks.models.blockchain_metadata.BlockchainMetadata(
-                    scope = 'Global', 
+                    scope = 'GLOBAL', 
                     deprecated = False, 
                     media = [
                         fireblocks.models.blockchain_media.BlockchainMedia(
@@ -63,8 +63,8 @@ class TestBlockchainResponse(unittest.TestCase):
         else:
             return BlockchainResponse(
                 id = '9f9f7062-df90-4fc0-8697-96685184357b',
-                legacy_id = 'TST3',
-                display_name = 'Test 3',
+                legacy_id = 'ETH',
+                display_name = 'Ethereum',
                 native_asset_id = '9f9f7062-df90-4fc0-8697-96685184356a',
                 onchain = fireblocks.models.blockchain_onchain.BlockchainOnchain(
                     protocol = 'EVM', 
@@ -72,7 +72,7 @@ class TestBlockchainResponse(unittest.TestCase):
                     test = False, 
                     signing_algo = 'ECDSA_SECP256K1', ),
                 metadata = fireblocks.models.blockchain_metadata.BlockchainMetadata(
-                    scope = 'Global', 
+                    scope = 'GLOBAL', 
                     deprecated = False, 
                     media = [
                         fireblocks.models.blockchain_media.BlockchainMedia(

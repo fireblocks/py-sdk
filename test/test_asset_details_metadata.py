@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.asset_metadata_beta import AssetMetadataBeta
+from fireblocks.models.asset_details_metadata import AssetDetailsMetadata
 
 
-class TestAssetMetadataBeta(unittest.TestCase):
-    """AssetMetadataBeta unit test stubs"""
+class TestAssetDetailsMetadata(unittest.TestCase):
+    """AssetDetailsMetadata unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,20 +27,19 @@ class TestAssetMetadataBeta(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AssetMetadataBeta:
-        """Test AssetMetadataBeta
+    def make_instance(self, include_optional) -> AssetDetailsMetadata:
+        """Test AssetDetailsMetadata
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AssetMetadataBeta`
+        # uncomment below to create an instance of `AssetDetailsMetadata`
         """
-        model = AssetMetadataBeta()
+        model = AssetDetailsMetadata()
         if include_optional:
-            return AssetMetadataBeta(
-                scope = 'Global',
+            return AssetDetailsMetadata(
+                scope = 'GLOBAL',
                 deprecated = False,
                 deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d',
-                verified = True,
                 website = 'https://example.org',
                 media = [
                     fireblocks.models.asset_media.AssetMedia(
@@ -51,15 +50,14 @@ class TestAssetMetadataBeta(unittest.TestCase):
                     ]
             )
         else:
-            return AssetMetadataBeta(
-                scope = 'Global',
+            return AssetDetailsMetadata(
+                scope = 'GLOBAL',
                 deprecated = False,
-                verified = True,
         )
         """
 
-    def testAssetMetadataBeta(self):
-        """Test AssetMetadataBeta"""
+    def testAssetDetailsMetadata(self):
+        """Test AssetDetailsMetadata"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -18,30 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.asset_media import AssetMedia
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AssetMetadataBeta(BaseModel):
+class AssetDetailsOnchain(BaseModel):
     """
-    AssetMetadataBeta
+    AssetDetailsOnchain
     """ # noqa: E501
-    scope: StrictStr = Field(description="The scope of the asset")
-    deprecated: StrictBool = Field(description="Is asset deprecated")
-    deprecation_referral_id: Optional[StrictStr] = Field(default=None, description="New asset ID replacement", alias="deprecationReferralId")
-    verified: StrictBool = Field(description="Is asset verified by Fireblocks")
-    website: Optional[StrictStr] = Field(default=None, description="Vendor’s website")
-    media: Optional[List[AssetMedia]] = Field(default=None, description="Asset’s media")
-    __properties: ClassVar[List[str]] = ["scope", "deprecated", "deprecationReferralId", "verified", "website", "media"]
-
-    @field_validator('scope')
-    def scope_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['Global', 'Local']):
-            raise ValueError("must be one of enum values ('Global', 'Local')")
-        return value
+    symbol: StrictStr = Field(description="The asset symbol")
+    name: StrictStr = Field(description="The asset name")
+    address: Optional[StrictStr] = Field(default=None, description="The asset address")
+    decimals: Union[StrictFloat, StrictInt] = Field(description="Number of decimals")
+    standards: Optional[List[StrictStr]] = Field(default=None, description="Supported standards")
+    __properties: ClassVar[List[str]] = ["symbol", "name", "address", "decimals", "standards"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -61,7 +52,7 @@ class AssetMetadataBeta(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AssetMetadataBeta from a JSON string"""
+        """Create an instance of AssetDetailsOnchain from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,18 +73,11 @@ class AssetMetadataBeta(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in media (list)
-        _items = []
-        if self.media:
-            for _item_media in self.media:
-                if _item_media:
-                    _items.append(_item_media.to_dict())
-            _dict['media'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AssetMetadataBeta from a dict"""
+        """Create an instance of AssetDetailsOnchain from a dict"""
         if obj is None:
             return None
 
@@ -101,12 +85,11 @@ class AssetMetadataBeta(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "scope": obj.get("scope"),
-            "deprecated": obj.get("deprecated"),
-            "deprecationReferralId": obj.get("deprecationReferralId"),
-            "verified": obj.get("verified"),
-            "website": obj.get("website"),
-            "media": [AssetMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None
+            "symbol": obj.get("symbol"),
+            "name": obj.get("name"),
+            "address": obj.get("address"),
+            "decimals": obj.get("decimals"),
+            "standards": obj.get("standards")
         })
         return _obj
 

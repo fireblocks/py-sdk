@@ -15,11 +15,11 @@
 
 import unittest
 
-from fireblocks.models.asset_response_beta import AssetResponseBeta
+from fireblocks.models.asset import Asset
 
 
-class TestAssetResponseBeta(unittest.TestCase):
-    """AssetResponseBeta unit test stubs"""
+class TestAsset(unittest.TestCase):
+    """Asset unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,33 +27,32 @@ class TestAssetResponseBeta(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AssetResponseBeta:
-        """Test AssetResponseBeta
+    def make_instance(self, include_optional) -> Asset:
+        """Test Asset
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AssetResponseBeta`
+        # uncomment below to create an instance of `Asset`
         """
-        model = AssetResponseBeta()
+        model = Asset()
         if include_optional:
-            return AssetResponseBeta(
+            return Asset(
                 id = '9f9f7062-df90-4fc0-8697-96685184358d',
-                legacy_id = 'TST3',
+                legacy_id = 'USDT_ERC20',
                 blockchain_id = 'e85208ff-3b15-44e9-af14-0ed0280b2a15',
-                display_name = 'Test 3',
-                display_symbol = 'TST3',
+                display_name = 'Tether USD',
+                display_symbol = 'USDT',
                 asset_class = 'FT',
-                onchain = fireblocks.models.asset_onchain_beta.AssetOnchainBeta(
-                    symbol = 'TST3', 
-                    name = 'Test 3', 
-                    address = '0xe7A9as1oa38bc4da0248s179E30aa94CcF453991', 
-                    decimals = 18, 
+                onchain = fireblocks.models.asset_details_onchain.AssetDetailsOnchain(
+                    symbol = 'USDT', 
+                    name = 'Tether USD', 
+                    address = '1.2488751460129641E+48', 
+                    decimals = 6, 
                     standards = ["ERC20"], ),
-                metadata = fireblocks.models.asset_metadata_beta.AssetMetadataBeta(
-                    scope = 'Global', 
+                metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
+                    scope = 'GLOBAL', 
                     deprecated = False, 
                     deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
-                    verified = True, 
                     website = 'https://example.org', 
                     media = [
                         fireblocks.models.asset_media.AssetMedia(
@@ -64,15 +63,16 @@ class TestAssetResponseBeta(unittest.TestCase):
                         ], )
             )
         else:
-            return AssetResponseBeta(
+            return Asset(
                 id = '9f9f7062-df90-4fc0-8697-96685184358d',
-                legacy_id = 'TST3',
+                legacy_id = 'USDT_ERC20',
+                display_name = 'Tether USD',
+                display_symbol = 'USDT',
                 asset_class = 'FT',
-                metadata = fireblocks.models.asset_metadata_beta.AssetMetadataBeta(
-                    scope = 'Global', 
+                metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
+                    scope = 'GLOBAL', 
                     deprecated = False, 
                     deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
-                    verified = True, 
                     website = 'https://example.org', 
                     media = [
                         fireblocks.models.asset_media.AssetMedia(
@@ -84,8 +84,8 @@ class TestAssetResponseBeta(unittest.TestCase):
         )
         """
 
-    def testAssetResponseBeta(self):
-        """Test AssetResponseBeta"""
+    def testAsset(self):
+        """Test Asset"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

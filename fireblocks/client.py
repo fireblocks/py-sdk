@@ -18,7 +18,6 @@ from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.assets_api import AssetsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
-from fireblocks.api.blockchains_assets_beta_api import BlockchainsAssetsBetaApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
@@ -73,7 +72,6 @@ class Fireblocks:
         self._assets = None
         self._audit_logs = None
         self._blockchains_assets = None
-        self._blockchains_assets_beta = None
         self._compliance = None
         self._compliance_screening_configuration = None
         self._console_user = None
@@ -144,12 +142,6 @@ class Fireblocks:
         if self._blockchains_assets is None:
             self._blockchains_assets = BlockchainsAssetsApi(self._api_client)
         return self._blockchains_assets
-
-    @property
-    def blockchains_assets_beta(self) -> BlockchainsAssetsBetaApi:
-        if self._blockchains_assets_beta is None:
-            self._blockchains_assets_beta = BlockchainsAssetsBetaApi(self._api_client)
-        return self._blockchains_assets_beta
 
     @property
     def compliance(self) -> ComplianceApi:

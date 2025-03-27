@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.asset_response_beta import AssetResponseBeta
+from fireblocks.models.asset import Asset
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class ListAssetsResponse(BaseModel):
     """
     ListAssetsResponse
     """ # noqa: E501
-    data: List[AssetResponseBeta] = Field(description="The data of the current page")
+    data: List[Asset] = Field(description="The data of the current page")
     next: Optional[StrictStr] = Field(description="Cursor to the next page")
     __properties: ClassVar[List[str]] = ["data", "next"]
 
@@ -95,7 +95,7 @@ class ListAssetsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": [AssetResponseBeta.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "data": [Asset.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
             "next": obj.get("next")
         })
         return _obj

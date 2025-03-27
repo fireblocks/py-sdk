@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List[AssetResponseBeta]**](AssetResponseBeta.md) | The data of the current page | 
+**data** | [**List[Asset]**](Asset.md) | The data of the current page | 
 **next** | **str** | Cursor to the next page | 
 
 ## Example

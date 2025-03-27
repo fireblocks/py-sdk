@@ -1,17 +1,12 @@
-# AssetClassBeta
+# AssetScope
 
+The scope of the asset
 
 ## Enum
 
-* `NATIVE` (value: `'NATIVE'`)
+* `GLOBAL` (value: `'GLOBAL'`)
 
-* `FT` (value: `'FT'`)
-
-* `FIAT` (value: `'FIAT'`)
-
-* `NFT` (value: `'NFT'`)
-
-* `SFT` (value: `'SFT'`)
+* `LOCAL` (value: `'LOCAL'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

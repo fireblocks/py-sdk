@@ -8,12 +8,15 @@ Method | HTTP request | Description
 [**create_new_collection**](TokenizationApi.md#create_new_collection) | **POST** /tokenization/collections | Create a new collection
 [**fetch_collection_token_details**](TokenizationApi.md#fetch_collection_token_details) | **GET** /tokenization/collections/{id}/tokens/{tokenId} | Get collection token details
 [**get_collection_by_id**](TokenizationApi.md#get_collection_by_id) | **GET** /tokenization/collections/{id} | Get a collection by id
+[**get_deployable_address**](TokenizationApi.md#get_deployable_address) | **POST** /tokenization/multichain/deterministic_address | Get deterministic address for contract deployment
 [**get_linked_collections**](TokenizationApi.md#get_linked_collections) | **GET** /tokenization/collections | Get collections
 [**get_linked_token**](TokenizationApi.md#get_linked_token) | **GET** /tokenization/tokens/{id} | Return a linked token
 [**get_linked_tokens**](TokenizationApi.md#get_linked_tokens) | **GET** /tokenization/tokens | List all linked tokens
 [**issue_new_token**](TokenizationApi.md#issue_new_token) | **POST** /tokenization/tokens | Issue a new token
+[**issue_token_multi_chain**](TokenizationApi.md#issue_token_multi_chain) | **POST** /tokenization/multichain/tokens | Issue a token on one or more blockchains
 [**link**](TokenizationApi.md#link) | **POST** /tokenization/tokens/link | Link a contract
 [**mint_collection_token**](TokenizationApi.md#mint_collection_token) | **POST** /tokenization/collections/{id}/tokens/mint | Mint tokens
+[**re_issue_token_multi_chain**](TokenizationApi.md#re_issue_token_multi_chain) | **POST** /tokenization/multichain/token/{tokenLinkId} | Reissue a multichain token
 [**unlink**](TokenizationApi.md#unlink) | **DELETE** /tokenization/tokens/{id} | Unlink a token
 [**unlink_collection**](TokenizationApi.md#unlink_collection) | **DELETE** /tokenization/collections/{id} | Delete a collection link
 
@@ -320,6 +323,85 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Collection fetched successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_deployable_address**
+> DeployableAddressResponseDto get_deployable_address(get_deployable_address_request_dto, idempotency_key=idempotency_key)
+
+Get deterministic address for contract deployment
+
+Get a deterministic address for contract deployment. The address is derived from the contract's bytecode and  provided salt. This endpoint is used to get the address of a contract that will be deployed in the future.
+
+### Example
+
+
+```python
+from fireblocks.models.deployable_address_response_dto import DeployableAddressResponseDto
+from fireblocks.models.get_deployable_address_request_dto import GetDeployableAddressRequestDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    get_deployable_address_request_dto = fireblocks.GetDeployableAddressRequestDto() # GetDeployableAddressRequestDto | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Get deterministic address for contract deployment
+        api_response = fireblocks.tokenization.get_deployable_address(get_deployable_address_request_dto, idempotency_key=idempotency_key).result()
+        print("The response of TokenizationApi->get_deployable_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_deployable_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **get_deployable_address_request_dto** | [**GetDeployableAddressRequestDto**](GetDeployableAddressRequestDto.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**DeployableAddressResponseDto**](DeployableAddressResponseDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Deterministic address for contract deployment |  -  |
+**400** | Invalid parameters or template has no bytecode |  -  |
+**409** | Address is already taken |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -631,6 +713,84 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **issue_token_multi_chain**
+> List[TokenLinkDto] issue_token_multi_chain(create_multichain_token_request_dto, idempotency_key=idempotency_key)
+
+Issue a token on one or more blockchains
+
+Facilitates the creation of a new token on one or more blockchains.
+
+### Example
+
+
+```python
+from fireblocks.models.create_multichain_token_request_dto import CreateMultichainTokenRequestDto
+from fireblocks.models.token_link_dto import TokenLinkDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_multichain_token_request_dto = fireblocks.CreateMultichainTokenRequestDto() # CreateMultichainTokenRequestDto | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Issue a token on one or more blockchains
+        api_response = fireblocks.tokenization.issue_token_multi_chain(create_multichain_token_request_dto, idempotency_key=idempotency_key).result()
+        print("The response of TokenizationApi->issue_token_multi_chain:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->issue_token_multi_chain: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_multichain_token_request_dto** | [**CreateMultichainTokenRequestDto**](CreateMultichainTokenRequestDto.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**List[TokenLinkDto]**](TokenLinkDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Tokens were created successfully |  -  |
+**400** | Invalid input. |  -  |
+**409** | Address is already taken. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **link**
 > TokenLinkDto link(token_link_request_dto, idempotency_key=idempotency_key)
 
@@ -786,6 +946,88 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Tokens minted successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **re_issue_token_multi_chain**
+> List[TokenLinkDto] re_issue_token_multi_chain(token_link_id, reissue_multichain_token_request_dto, idempotency_key=idempotency_key)
+
+Reissue a multichain token
+
+Reissue a multichain token. This endpoint allows you to reissue a token on one or more blockchains. The token must be initially issued using the issueTokenMultiChain endpoint.
+
+### Example
+
+
+```python
+from fireblocks.models.reissue_multichain_token_request_dto import ReissueMultichainTokenRequestDto
+from fireblocks.models.token_link_dto import TokenLinkDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    token_link_id = 'token_link_id_example' # str | The ID of the token link
+    reissue_multichain_token_request_dto = fireblocks.ReissueMultichainTokenRequestDto() # ReissueMultichainTokenRequestDto | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Reissue a multichain token
+        api_response = fireblocks.tokenization.re_issue_token_multi_chain(token_link_id, reissue_multichain_token_request_dto, idempotency_key=idempotency_key).result()
+        print("The response of TokenizationApi->re_issue_token_multi_chain:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->re_issue_token_multi_chain: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token_link_id** | **str**| The ID of the token link | 
+ **reissue_multichain_token_request_dto** | [**ReissueMultichainTokenRequestDto**](ReissueMultichainTokenRequestDto.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**List[TokenLinkDto]**](TokenLinkDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Successfully reissued multichain token |  -  |
+**400** | Invalid input |  -  |
+**404** | Deployed contract not found |  -  |
+**409** | Address is already taken |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

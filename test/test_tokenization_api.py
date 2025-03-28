@@ -55,6 +55,13 @@ class TestTokenizationApi(unittest.TestCase):
         """
         pass
 
+    def test_get_deployable_address(self) -> None:
+        """Test case for get_deployable_address
+
+        Get deterministic address for contract deployment
+        """
+        pass
+
     def test_get_linked_collections(self) -> None:
         """Test case for get_linked_collections
 
@@ -83,6 +90,13 @@ class TestTokenizationApi(unittest.TestCase):
         """
         pass
 
+    def test_issue_token_multi_chain(self) -> None:
+        """Test case for issue_token_multi_chain
+
+        Issue a token on one or more blockchains
+        """
+        pass
+
     def test_link(self) -> None:
         """Test case for link
 
@@ -94,6 +108,13 @@ class TestTokenizationApi(unittest.TestCase):
         """Test case for mint_collection_token
 
         Mint tokens
+        """
+        pass
+
+    def test_re_issue_token_multi_chain(self) -> None:
+        """Test case for re_issue_token_multi_chain
+
+        Reissue a multichain token
         """
         pass
 

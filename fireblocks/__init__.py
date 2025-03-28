@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "9.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -109,6 +109,7 @@ from fireblocks.models.add_cosigner_response import AddCosignerResponse
 from fireblocks.models.add_exchange_account_request import AddExchangeAccountRequest
 from fireblocks.models.add_exchange_account_response import AddExchangeAccountResponse
 from fireblocks.models.additional_info import AdditionalInfo
+from fireblocks.models.address_not_available_error import AddressNotAvailableError
 from fireblocks.models.aml_registration_result import AmlRegistrationResult
 from fireblocks.models.aml_registration_result_full_payload import (
     AmlRegistrationResultFullPayload,
@@ -264,6 +265,12 @@ from fireblocks.models.create_internal_transfer_request import (
 from fireblocks.models.create_internal_wallet_asset_request import (
     CreateInternalWalletAssetRequest,
 )
+from fireblocks.models.create_multichain_token_request_dto import (
+    CreateMultichainTokenRequestDto,
+)
+from fireblocks.models.create_multichain_token_request_dto_create_params import (
+    CreateMultichainTokenRequestDtoCreateParams,
+)
 from fireblocks.models.create_multiple_accounts_request import (
     CreateMultipleAccountsRequest,
 )
@@ -305,6 +312,12 @@ from fireblocks.models.delete_network_connection_response import (
     DeleteNetworkConnectionResponse,
 )
 from fireblocks.models.delete_network_id_response import DeleteNetworkIdResponse
+from fireblocks.models.deployable_address_response_dto import (
+    DeployableAddressResponseDto,
+)
+from fireblocks.models.deployed_contract_not_found_error import (
+    DeployedContractNotFoundError,
+)
 from fireblocks.models.deployed_contract_response_dto import DeployedContractResponseDto
 from fireblocks.models.deployed_contracts_paginated_response import (
     DeployedContractsPaginatedResponse,
@@ -414,6 +427,9 @@ from fireblocks.models.get_api_users_response import GetAPIUsersResponse
 from fireblocks.models.get_audit_logs_response import GetAuditLogsResponse
 from fireblocks.models.get_connections_response import GetConnectionsResponse
 from fireblocks.models.get_console_users_response import GetConsoleUsersResponse
+from fireblocks.models.get_deployable_address_request_dto import (
+    GetDeployableAddressRequestDto,
+)
 from fireblocks.models.get_exchange_accounts_credentials_public_key_response import (
     GetExchangeAccountsCredentialsPublicKeyResponse,
 )
@@ -442,6 +458,7 @@ from fireblocks.models.http_contract_does_not_exist_error import (
 )
 from fireblocks.models.instruction_amount import InstructionAmount
 from fireblocks.models.internal_transfer_response import InternalTransferResponse
+from fireblocks.models.invalid_paramater_value_error import InvalidParamaterValueError
 from fireblocks.models.job import Job
 from fireblocks.models.job_created import JobCreated
 from fireblocks.models.lean_abi_function import LeanAbiFunction
@@ -557,6 +574,9 @@ from fireblocks.models.redeem_funds_to_linked_dda_response import (
     RedeemFundsToLinkedDDAResponse,
 )
 from fireblocks.models.register_new_asset_request import RegisterNewAssetRequest
+from fireblocks.models.reissue_multichain_token_request_dto import (
+    ReissueMultichainTokenRequestDto,
+)
 from fireblocks.models.related_request import RelatedRequest
 from fireblocks.models.related_transaction import RelatedTransaction
 from fireblocks.models.remove_collateral_request_body import RemoveCollateralRequestBody
@@ -712,6 +732,9 @@ from fireblocks.models.token_info_not_found_error_response import (
 from fireblocks.models.token_link_dto import TokenLinkDto
 from fireblocks.models.token_link_dto_token_metadata import TokenLinkDtoTokenMetadata
 from fireblocks.models.token_link_exists_http_error import TokenLinkExistsHttpError
+from fireblocks.models.token_link_not_multichain_compatible_http_error import (
+    TokenLinkNotMultichainCompatibleHttpError,
+)
 from fireblocks.models.token_link_request_dto import TokenLinkRequestDto
 from fireblocks.models.token_ownership_response import TokenOwnershipResponse
 from fireblocks.models.token_ownership_spam_update_payload import (

@@ -39,7 +39,7 @@ class PolicyRule(BaseModel):
     """ # noqa: E501
     operator: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"operators\")  | Defines users who can initiate the type of transaction to which the rule applies. options are * \"*\" - All users are allowed * Specific User id")
     operators: Optional[PolicyRuleOperators] = None
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Defines the type of transaction to which the rule applies.   * TRANSFER - Default. Transfers funds from one account to another   * CONTRACT_CALL - Calls a smart contract, mainly for DeFi operations.   * APPROVE - Allows a smart contract to withdraw from a designated wallet.   * MINT - Perform a mint operation (increase supply) on a supported token   * BURN - Perform a burn operation (reduce supply) on a supported token   * SUPPLY - Use for DeFi to lend assets   * REDEEM - Use for DeFi to get lending back   * STAKE - Allows you to allocate and lock certain assets for earning staking rewards.   * RAW - An off-chain message with no predefined format, use it to sign any message with your private key.   * TYPED_MESSAGE - An off-chain message type that follows a predefined format, used to sign specific messages that are not actual transactions. ", alias="transactionType")
+    transaction_type: Optional[StrictStr] = Field(default=None, description="Defines the type of transaction to which the rule applies.   * TRANSFER - Default. Transfers funds from one account to another   * CONTRACT_CALL - Calls a smart contract, mainly for DeFi operations.   * APPROVE - Allows a smart contract to withdraw from a designated wallet.   * MINT - Perform a mint operation (increase supply) on a supported token   * BURN - Perform a burn operation (reduce supply) on a supported token   * SUPPLY - Use for DeFi to lend assets   * REDEEM - Use for DeFi to get lending back   * STAKE - Allows you to allocate and lock certain assets for earning staking rewards.   * RAW - An off-chain message with no predefined format, use it to sign any message with your private key.   * TYPED_MESSAGE - An off-chain message type that follows a predefined format, used to sign specific messages that are not actual transactions.   * PROGRAM_CALL - In Solana refers to invoking on-chain programs (smart contracts) to execute transactions and interact with the blockchain. ", alias="transactionType")
     designated_signer: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"designatedSigners\") Id representing the user who signs transactions that match a specific rule", alias="designatedSigner")
     designated_signers: Optional[PolicyRuleDesignatedSigners] = Field(default=None, alias="designatedSigners")
     type: StrictStr = Field(description="Policy rule type")
@@ -74,8 +74,8 @@ class PolicyRule(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE']):
-            raise ValueError("must be one of enum values ('TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE')")
+        if value not in set(['TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE', 'PROGRAM_CALL']):
+            raise ValueError("must be one of enum values ('TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE', 'PROGRAM_CALL')")
         return value
 
     @field_validator('type')

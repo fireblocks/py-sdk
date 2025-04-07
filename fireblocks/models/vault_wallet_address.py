@@ -46,8 +46,8 @@ class VaultWalletAddress(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['SEGWIT', 'LEGACY']):
-            raise ValueError("must be one of enum values ('SEGWIT', 'LEGACY')")
+        if value not in set(['SEGWIT', 'LEGACY', 'BASE', 'PAYMENT']):
+            raise ValueError("must be one of enum values ('SEGWIT', 'LEGACY', 'BASE', 'PAYMENT')")
         return value
 
     model_config = ConfigDict(

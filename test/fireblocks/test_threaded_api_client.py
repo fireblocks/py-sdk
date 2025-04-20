@@ -195,3 +195,18 @@ def test_api_response_returns_with_unknown_model_when_deserialize_failed_upon_su
     response = api_client_instance.call_api(method="GET", url="https://api_endpoint.example.com/data", _response_types_map=_response_types_map).result()
     assert isinstance(response, ApiResponse)
     assert isinstance(response.data, UnknownBaseModel)
+
+def test_api_response_returns_list_of_unknown_models_when_deserialize_failed(setup_mocks, mock_rest_client, mocker):
+    api_client_instance = ThreadedApiClient(full_configuration)
+    mock_rest_client.request.return_value = RESTResponse(MockSuccess200Response())
+    mock_rest_client.request.return_value.data = b'[{"key": "value1"}, {"key": "value2"}]'  # Mock list response
+    _response_types_map = {
+        '200': "GetAuditLogsResponse",
+        'default': "ErrorSchema",
+    }
+    mocker.patch.object(api_client_instance, 'deserialize', return_value='mocked_value', side_effect=Exception('Mocked exception'))
+
+    response = api_client_instance.call_api(method="GET", url="https://api_endpoint.example.com/data", _response_types_map=_response_types_map).result()
+    assert isinstance(response, ApiResponse)
+    assert isinstance(response.data, list)
+    assert all(isinstance(item, UnknownBaseModel) for item in response.data)

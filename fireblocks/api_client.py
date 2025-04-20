@@ -328,8 +328,17 @@ class ApiClient:
                             f"Failed to deserialize response of type {response_type}: {e}"
                         )
                         data = json.loads(response_text)
-                        model = create_unknown_model(data)
-                        return_data = model.parse_obj(data)
+                        if isinstance(data, dict):
+                            return_data = create_unknown_model(data).parse_obj(data)
+                        elif isinstance(data, list):
+                            return_data = [
+                                create_unknown_model(item).parse_obj(item)
+                                for item in data
+                            ]
+                        else:
+                            raise TypeError(
+                                "Data must be a dictionary or a list of dictionaries"
+                            )
         finally:
             if not 200 <= response_data.status <= 299:
                 raise ApiException.from_response(

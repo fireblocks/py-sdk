@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.one_time_address import OneTimeAddress
 from fireblocks.models.transfer_peer_path_sub_type import TransferPeerPathSubType
@@ -36,7 +36,8 @@ class DestinationTransferPeerPath(BaseModel):
     name: Optional[StrictStr] = None
     wallet_id: Optional[StrictStr] = Field(default=None, alias="walletId")
     one_time_address: Optional[OneTimeAddress] = Field(default=None, alias="oneTimeAddress")
-    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "oneTimeAddress"]
+    is_collateral: Optional[StrictBool] = Field(default=None, description="indicate if the destination is collateral account", alias="isCollateral")
+    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "oneTimeAddress", "isCollateral"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,7 +98,8 @@ class DestinationTransferPeerPath(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "walletId": obj.get("walletId"),
-            "oneTimeAddress": OneTimeAddress.from_dict(obj["oneTimeAddress"]) if obj.get("oneTimeAddress") is not None else None
+            "oneTimeAddress": OneTimeAddress.from_dict(obj["oneTimeAddress"]) if obj.get("oneTimeAddress") is not None else None,
+            "isCollateral": obj.get("isCollateral")
         })
         return _obj
 

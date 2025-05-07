@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **wallet_id** | **str** |  | [optional] 
 **one_time_address** | [**OneTimeAddress**](OneTimeAddress.md) |  | [optional] 
+**is_collateral** | **bool** | indicate if the destination is collateral account | [optional] 
 
 ## Example
 

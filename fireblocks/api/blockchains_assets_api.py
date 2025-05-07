@@ -450,6 +450,7 @@ class BlockchainsAssetsApi:
         symbol: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Assets onchain symbol")] = None,
         scope: Annotated[Optional[AssetScope], Field(description="Scope of the assets")] = None,
         deprecated: Annotated[Optional[StrictBool], Field(description="Are assets deprecated")] = None,
+        ids: Annotated[Optional[List[StrictStr]], Field(description="A list of asset IDs (max 100)")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Next page cursor to fetch")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=1000, strict=True, ge=100)], Annotated[int, Field(le=1000, strict=True, ge=100)]]], Field(description="Items per page")] = None,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
@@ -480,6 +481,8 @@ class BlockchainsAssetsApi:
         :type scope: AssetScope
         :param deprecated: Are assets deprecated
         :type deprecated: bool
+        :param ids: A list of asset IDs (max 100)
+        :type ids: List[str]
         :param page_cursor: Next page cursor to fetch
         :type page_cursor: str
         :param page_size: Items per page
@@ -515,6 +518,7 @@ class BlockchainsAssetsApi:
             symbol=symbol,
             scope=scope,
             deprecated=deprecated,
+            ids=ids,
             page_cursor=page_cursor,
             page_size=page_size,
             idempotency_key=idempotency_key,
@@ -543,6 +547,7 @@ class BlockchainsAssetsApi:
         symbol,
         scope,
         deprecated,
+        ids,
         page_cursor,
         page_size,
         idempotency_key,
@@ -555,6 +560,7 @@ class BlockchainsAssetsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'ids': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -587,6 +593,10 @@ class BlockchainsAssetsApi:
         if deprecated is not None:
             
             _query_params.append(('deprecated', deprecated))
+            
+        if ids is not None:
+            
+            _query_params.append(('ids', ids))
             
         if page_cursor is not None:
             
@@ -640,6 +650,7 @@ class BlockchainsAssetsApi:
         protocol: Annotated[Optional[StrictStr], Field(description="Blockchain protocol")] = None,
         deprecated: Annotated[Optional[StrictBool], Field(description="Is blockchain deprecated")] = None,
         test: Annotated[Optional[StrictBool], Field(description="Is test blockchain")] = None,
+        ids: Annotated[Optional[List[StrictStr]], Field(description="A list of blockchain IDs (max 100)")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to fetch")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=500, strict=True, ge=1)], Annotated[int, Field(le=500, strict=True, ge=1)]]], Field(description="Items per page (max 500)")] = None,
         _request_timeout: Union[
@@ -665,6 +676,8 @@ class BlockchainsAssetsApi:
         :type deprecated: bool
         :param test: Is test blockchain
         :type test: bool
+        :param ids: A list of blockchain IDs (max 100)
+        :type ids: List[str]
         :param page_cursor: Page cursor to fetch
         :type page_cursor: str
         :param page_size: Items per page (max 500)
@@ -696,6 +709,7 @@ class BlockchainsAssetsApi:
             protocol=protocol,
             deprecated=deprecated,
             test=test,
+            ids=ids,
             page_cursor=page_cursor,
             page_size=page_size,
             _request_auth=_request_auth,
@@ -721,6 +735,7 @@ class BlockchainsAssetsApi:
         protocol,
         deprecated,
         test,
+        ids,
         page_cursor,
         page_size,
         _request_auth,
@@ -732,6 +747,7 @@ class BlockchainsAssetsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'ids': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -756,6 +772,10 @@ class BlockchainsAssetsApi:
         if test is not None:
             
             _query_params.append(('test', test))
+            
+        if ids is not None:
+            
+            _query_params.append(('ids', ids))
             
         if page_cursor is not None:
             

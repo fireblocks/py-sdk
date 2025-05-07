@@ -76,6 +76,13 @@ class TestWebhooksV2BetaApi(unittest.TestCase):
         """
         pass
 
+    def test_resend_notifications_by_resource_id(self) -> None:
+        """Test case for resend_notifications_by_resource_id
+
+        Resend notifications by resource Id
+        """
+        pass
+
     def test_update_webhook(self) -> None:
         """Test case for update_webhook
 

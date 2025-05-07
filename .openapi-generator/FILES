@@ -21,6 +21,7 @@ docs/AddCosignerResponse.md
 docs/AddExchangeAccountRequest.md
 docs/AddExchangeAccountResponse.md
 docs/AdditionalInfo.md
+docs/AddressNotAvailableError.md
 docs/AmlRegistrationResult.md
 docs/AmlRegistrationResultFullPayload.md
 docs/AmlScreeningResult.md
@@ -141,7 +142,11 @@ docs/CreateConversionConfigOperationRequest.md
 docs/CreateDisbursementConfigOperationRequest.md
 docs/CreateInternalTransferRequest.md
 docs/CreateInternalWalletAssetRequest.md
+docs/CreateMultichainTokenRequest.md
+docs/CreateMultichainTokenRequestCreateParams.md
 docs/CreateMultipleAccountsRequest.md
+docs/CreateMultipleDepositAddressesJobStatus.md
+docs/CreateMultipleDepositAddressesRequest.md
 docs/CreateNcwConnectionRequest.md
 docs/CreateNetworkIdRequest.md
 docs/CreatePayoutRequest.md
@@ -166,6 +171,8 @@ docs/Delegation.md
 docs/DelegationSummary.md
 docs/DeleteNetworkConnectionResponse.md
 docs/DeleteNetworkIdResponse.md
+docs/DeployableAddressResponse.md
+docs/DeployedContractNotFoundError.md
 docs/DeployedContractResponseDto.md
 docs/DeployedContractsApi.md
 docs/DeployedContractsPaginatedResponse.md
@@ -235,6 +242,7 @@ docs/GetAPIUsersResponse.md
 docs/GetAuditLogsResponse.md
 docs/GetConnectionsResponse.md
 docs/GetConsoleUsersResponse.md
+docs/GetDeployableAddressRequest.md
 docs/GetExchangeAccountsCredentialsPublicKeyResponse.md
 docs/GetFilterParameter.md
 docs/GetLinkedCollectionsPaginatedResponse.md
@@ -252,6 +260,7 @@ docs/HttpContractDoesNotExistError.md
 docs/InstructionAmount.md
 docs/InternalTransferResponse.md
 docs/InternalWalletsApi.md
+docs/InvalidParamaterValueError.md
 docs/Job.md
 docs/JobCreated.md
 docs/JobManagementApi.md
@@ -281,6 +290,7 @@ docs/NetworkId.md
 docs/NetworkIdResponse.md
 docs/NetworkIdRoutingPolicyValue.md
 docs/NetworkRecord.md
+docs/NewAddress.md
 docs/NoneNetworkRoutingDest.md
 docs/NotFoundException.md
 docs/Notification.md
@@ -350,12 +360,14 @@ docs/ReadAbiFunction.md
 docs/ReadCallFunctionDto.md
 docs/RedeemFundsToLinkedDDAResponse.md
 docs/RegisterNewAssetRequest.md
+docs/ReissueMultichainTokenRequest.md
 docs/RelatedRequest.md
 docs/RelatedTransaction.md
 docs/RemoveCollateralRequestBody.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
 docs/RescanTransaction.md
+docs/ResendNotificationsByResourceIdRequest.md
 docs/ResendTransactionWebhooksRequest.md
 docs/ResendWebhooksByTransactionIdResponse.md
 docs/ResendWebhooksResponse.md
@@ -450,6 +462,7 @@ docs/TokenInfoNotFoundErrorResponse.md
 docs/TokenLinkDto.md
 docs/TokenLinkDtoTokenMetadata.md
 docs/TokenLinkExistsHttpError.md
+docs/TokenLinkNotMultichainCompatibleHttpError.md
 docs/TokenLinkRequestDto.md
 docs/TokenOwnershipResponse.md
 docs/TokenOwnershipSpamUpdatePayload.md
@@ -647,6 +660,7 @@ fireblocks/models/add_cosigner_response.py
 fireblocks/models/add_exchange_account_request.py
 fireblocks/models/add_exchange_account_response.py
 fireblocks/models/additional_info.py
+fireblocks/models/address_not_available_error.py
 fireblocks/models/aml_registration_result.py
 fireblocks/models/aml_registration_result_full_payload.py
 fireblocks/models/aml_screening_result.py
@@ -757,7 +771,11 @@ fireblocks/models/create_conversion_config_operation_request.py
 fireblocks/models/create_disbursement_config_operation_request.py
 fireblocks/models/create_internal_transfer_request.py
 fireblocks/models/create_internal_wallet_asset_request.py
+fireblocks/models/create_multichain_token_request.py
+fireblocks/models/create_multichain_token_request_create_params.py
 fireblocks/models/create_multiple_accounts_request.py
+fireblocks/models/create_multiple_deposit_addresses_job_status.py
+fireblocks/models/create_multiple_deposit_addresses_request.py
 fireblocks/models/create_ncw_connection_request.py
 fireblocks/models/create_network_id_request.py
 fireblocks/models/create_payout_request.py
@@ -782,6 +800,8 @@ fireblocks/models/delegation.py
 fireblocks/models/delegation_summary.py
 fireblocks/models/delete_network_connection_response.py
 fireblocks/models/delete_network_id_response.py
+fireblocks/models/deployable_address_response.py
+fireblocks/models/deployed_contract_not_found_error.py
 fireblocks/models/deployed_contract_response_dto.py
 fireblocks/models/deployed_contracts_paginated_response.py
 fireblocks/models/deposit_funds_from_linked_dda_response.py
@@ -845,6 +865,7 @@ fireblocks/models/get_api_users_response.py
 fireblocks/models/get_audit_logs_response.py
 fireblocks/models/get_connections_response.py
 fireblocks/models/get_console_users_response.py
+fireblocks/models/get_deployable_address_request.py
 fireblocks/models/get_exchange_accounts_credentials_public_key_response.py
 fireblocks/models/get_filter_parameter.py
 fireblocks/models/get_linked_collections_paginated_response.py
@@ -861,6 +882,7 @@ fireblocks/models/get_workspace_status_response.py
 fireblocks/models/http_contract_does_not_exist_error.py
 fireblocks/models/instruction_amount.py
 fireblocks/models/internal_transfer_response.py
+fireblocks/models/invalid_paramater_value_error.py
 fireblocks/models/job.py
 fireblocks/models/job_created.py
 fireblocks/models/lean_abi_function.py
@@ -885,6 +907,7 @@ fireblocks/models/network_id.py
 fireblocks/models/network_id_response.py
 fireblocks/models/network_id_routing_policy_value.py
 fireblocks/models/network_record.py
+fireblocks/models/new_address.py
 fireblocks/models/none_network_routing_dest.py
 fireblocks/models/not_found_exception.py
 fireblocks/models/notification.py
@@ -950,12 +973,14 @@ fireblocks/models/read_abi_function.py
 fireblocks/models/read_call_function_dto.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
 fireblocks/models/register_new_asset_request.py
+fireblocks/models/reissue_multichain_token_request.py
 fireblocks/models/related_request.py
 fireblocks/models/related_transaction.py
 fireblocks/models/remove_collateral_request_body.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
 fireblocks/models/rescan_transaction.py
+fireblocks/models/resend_notifications_by_resource_id_request.py
 fireblocks/models/resend_transaction_webhooks_request.py
 fireblocks/models/resend_webhooks_by_transaction_id_response.py
 fireblocks/models/resend_webhooks_response.py
@@ -1047,6 +1072,7 @@ fireblocks/models/token_info_not_found_error_response.py
 fireblocks/models/token_link_dto.py
 fireblocks/models/token_link_dto_token_metadata.py
 fireblocks/models/token_link_exists_http_error.py
+fireblocks/models/token_link_not_multichain_compatible_http_error.py
 fireblocks/models/token_link_request_dto.py
 fireblocks/models/token_ownership_response.py
 fireblocks/models/token_ownership_spam_update_payload.py
@@ -1203,6 +1229,7 @@ test/test_add_cosigner_response.py
 test/test_add_exchange_account_request.py
 test/test_add_exchange_account_response.py
 test/test_additional_info.py
+test/test_address_not_available_error.py
 test/test_aml_registration_result.py
 test/test_aml_registration_result_full_payload.py
 test/test_aml_screening_result.py
@@ -1324,7 +1351,11 @@ test/test_create_conversion_config_operation_request.py
 test/test_create_disbursement_config_operation_request.py
 test/test_create_internal_transfer_request.py
 test/test_create_internal_wallet_asset_request.py
+test/test_create_multichain_token_request.py
+test/test_create_multichain_token_request_create_params.py
 test/test_create_multiple_accounts_request.py
+test/test_create_multiple_deposit_addresses_job_status.py
+test/test_create_multiple_deposit_addresses_request.py
 test/test_create_ncw_connection_request.py
 test/test_create_network_id_request.py
 test/test_create_payout_request.py
@@ -1349,6 +1380,8 @@ test/test_delegation.py
 test/test_delegation_summary.py
 test/test_delete_network_connection_response.py
 test/test_delete_network_id_response.py
+test/test_deployable_address_response.py
+test/test_deployed_contract_not_found_error.py
 test/test_deployed_contract_response_dto.py
 test/test_deployed_contracts_api.py
 test/test_deployed_contracts_paginated_response.py
@@ -1418,6 +1451,7 @@ test/test_get_api_users_response.py
 test/test_get_audit_logs_response.py
 test/test_get_connections_response.py
 test/test_get_console_users_response.py
+test/test_get_deployable_address_request.py
 test/test_get_exchange_accounts_credentials_public_key_response.py
 test/test_get_filter_parameter.py
 test/test_get_linked_collections_paginated_response.py
@@ -1435,6 +1469,7 @@ test/test_http_contract_does_not_exist_error.py
 test/test_instruction_amount.py
 test/test_internal_transfer_response.py
 test/test_internal_wallets_api.py
+test/test_invalid_paramater_value_error.py
 test/test_job.py
 test/test_job_created.py
 test/test_job_management_api.py
@@ -1463,6 +1498,7 @@ test/test_network_id.py
 test/test_network_id_response.py
 test/test_network_id_routing_policy_value.py
 test/test_network_record.py
+test/test_new_address.py
 test/test_nfts_api.py
 test/test_none_network_routing_dest.py
 test/test_not_found_exception.py
@@ -1533,12 +1569,14 @@ test/test_read_abi_function.py
 test/test_read_call_function_dto.py
 test/test_redeem_funds_to_linked_dda_response.py
 test/test_register_new_asset_request.py
+test/test_reissue_multichain_token_request.py
 test/test_related_request.py
 test/test_related_transaction.py
 test/test_remove_collateral_request_body.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
 test/test_rescan_transaction.py
+test/test_resend_notifications_by_resource_id_request.py
 test/test_resend_transaction_webhooks_request.py
 test/test_resend_webhooks_by_transaction_id_response.py
 test/test_resend_webhooks_response.py
@@ -1633,6 +1671,7 @@ test/test_token_info_not_found_error_response.py
 test/test_token_link_dto.py
 test/test_token_link_dto_token_metadata.py
 test/test_token_link_exists_http_error.py
+test/test_token_link_not_multichain_compatible_http_error.py
 test/test_token_link_request_dto.py
 test/test_token_ownership_response.py
 test/test_token_ownership_spam_update_payload.py

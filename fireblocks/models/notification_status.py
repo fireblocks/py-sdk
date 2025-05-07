@@ -30,6 +30,7 @@ class NotificationStatus(str, Enum):
     COMPLETED = 'COMPLETED'
     FAILED = 'FAILED'
     IN_PROGRESS = 'IN_PROGRESS'
+    ON_HOLD = 'ON_HOLD'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

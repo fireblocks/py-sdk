@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **wallet_id** | **str** |  | [optional] 
+**is_collateral** | **bool** | indicate if the source is collateral account | [optional] 
 
 ## Example
 

@@ -44,7 +44,8 @@ class TestDestinationTransferPeerPath(unittest.TestCase):
                 wallet_id = '',
                 one_time_address = fireblocks.models.one_time_address.OneTimeAddress(
                     address = '', 
-                    tag = '', )
+                    tag = '', ),
+                is_collateral = True
             )
         else:
             return DestinationTransferPeerPath(

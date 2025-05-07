@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.transfer_peer_path_sub_type import TransferPeerPathSubType
 from fireblocks.models.transfer_peer_path_type import TransferPeerPathType
@@ -34,7 +34,8 @@ class SourceTransferPeerPath(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     wallet_id: Optional[StrictStr] = Field(default=None, alias="walletId")
-    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId"]
+    is_collateral: Optional[StrictBool] = Field(default=None, description="indicate if the source is collateral account", alias="isCollateral")
+    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "isCollateral"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +92,8 @@ class SourceTransferPeerPath(BaseModel):
             "subType": obj.get("subType"),
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "walletId": obj.get("walletId")
+            "walletId": obj.get("walletId"),
+            "isCollateral": obj.get("isCollateral")
         })
         return _obj
 

@@ -250,7 +250,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_assets**
-> ListAssetsResponse list_assets(blockchain_id=blockchain_id, asset_class=asset_class, symbol=symbol, scope=scope, deprecated=deprecated, page_cursor=page_cursor, page_size=page_size, idempotency_key=idempotency_key)
+> ListAssetsResponse list_assets(blockchain_id=blockchain_id, asset_class=asset_class, symbol=symbol, scope=scope, deprecated=deprecated, ids=ids, page_cursor=page_cursor, page_size=page_size, idempotency_key=idempotency_key)
 
 List assets
 
@@ -292,13 +292,14 @@ with Fireblocks(configuration) as fireblocks:
     symbol = 'ETH' # str | Assets onchain symbol (optional)
     scope = fireblocks.AssetScope() # AssetScope | Scope of the assets (optional)
     deprecated = false # bool | Are assets deprecated (optional)
+    ids = ['[\"3ed32525-70df-45c8-bae3-e69ab56dc095\",\"3a3b5f06-61e7-44f0-9962-4425b55795ff\",\"SHANI5_B75VRLGX_MUPA\"]'] # List[str] | A list of asset IDs (max 100) (optional)
     page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Next page cursor to fetch (optional)
     page_size = 500 # float | Items per page (optional) (default to 500)
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # List assets
-        api_response = fireblocks.blockchains_assets.list_assets(blockchain_id=blockchain_id, asset_class=asset_class, symbol=symbol, scope=scope, deprecated=deprecated, page_cursor=page_cursor, page_size=page_size, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.blockchains_assets.list_assets(blockchain_id=blockchain_id, asset_class=asset_class, symbol=symbol, scope=scope, deprecated=deprecated, ids=ids, page_cursor=page_cursor, page_size=page_size, idempotency_key=idempotency_key).result()
         print("The response of BlockchainsAssetsApi->list_assets:\n")
         pprint(api_response)
     except Exception as e:
@@ -317,6 +318,7 @@ Name | Type | Description  | Notes
  **symbol** | **str**| Assets onchain symbol | [optional] 
  **scope** | [**AssetScope**](.md)| Scope of the assets | [optional] 
  **deprecated** | **bool**| Are assets deprecated | [optional] 
+ **ids** | [**List[str]**](str.md)| A list of asset IDs (max 100) | [optional] 
  **page_cursor** | **str**| Next page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page | [optional] [default to 500]
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
@@ -345,7 +347,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_blockchains**
-> ListBlockchainsResponse list_blockchains(protocol=protocol, deprecated=deprecated, test=test, page_cursor=page_cursor, page_size=page_size)
+> ListBlockchainsResponse list_blockchains(protocol=protocol, deprecated=deprecated, test=test, ids=ids, page_cursor=page_cursor, page_size=page_size)
 
 List blockchains
 
@@ -380,12 +382,13 @@ with Fireblocks(configuration) as fireblocks:
     protocol = 'SOL' # str | Blockchain protocol (optional)
     deprecated = false # bool | Is blockchain deprecated (optional)
     test = false # bool | Is test blockchain (optional)
+    ids = ['[\"3ed32525-70df-45c8-bae3-e69ab56dc095\",\"3a3b5f06-61e7-44f0-9962-4425b55795ff\",\"MANTRA\"]'] # List[str] | A list of blockchain IDs (max 100) (optional)
     page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to fetch (optional)
     page_size = 500 # float | Items per page (max 500) (optional) (default to 500)
 
     try:
         # List blockchains
-        api_response = fireblocks.blockchains_assets.list_blockchains(protocol=protocol, deprecated=deprecated, test=test, page_cursor=page_cursor, page_size=page_size).result()
+        api_response = fireblocks.blockchains_assets.list_blockchains(protocol=protocol, deprecated=deprecated, test=test, ids=ids, page_cursor=page_cursor, page_size=page_size).result()
         print("The response of BlockchainsAssetsApi->list_blockchains:\n")
         pprint(api_response)
     except Exception as e:
@@ -402,6 +405,7 @@ Name | Type | Description  | Notes
  **protocol** | **str**| Blockchain protocol | [optional] 
  **deprecated** | **bool**| Is blockchain deprecated | [optional] 
  **test** | **bool**| Is test blockchain | [optional] 
+ **ids** | [**List[str]**](str.md)| A list of blockchain IDs (max 100) | [optional] 
  **page_cursor** | **str**| Page cursor to fetch | [optional] 
  **page_size** | **float**| Items per page (max 500) | [optional] [default to 500]
 

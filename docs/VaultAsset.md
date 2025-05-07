@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **frozen** | **str** | The cumulative frozen balance | [optional] 
 **locked_amount** | **str** | Funds in outgoing transactions that are not yet published to the network | [optional] 
 **staked** | **str** | Staked balance | [optional] 
-**total_staked_cpu** | **float** | Deprecated | [optional] 
+**total_staked_cpu** | **str** | Deprecated | [optional] 
 **total_staked_network** | **str** | Deprecated | [optional] 
 **self_staked_cpu** | **str** | Deprecated | [optional] 
 **self_staked_network** | **str** | Deprecated | [optional] 

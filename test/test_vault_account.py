@@ -49,7 +49,7 @@ class TestVaultAccount(unittest.TestCase):
                         frozen = '', 
                         locked_amount = '', 
                         staked = '', 
-                        total_staked_cpu = 1.337, 
+                        total_staked_cpu = '', 
                         total_staked_network = '', 
                         self_staked_cpu = '', 
                         self_staked_network = '', 

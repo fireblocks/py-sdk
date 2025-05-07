@@ -46,7 +46,7 @@ class TestAsset(unittest.TestCase):
                 onchain = fireblocks.models.asset_details_onchain.AssetDetailsOnchain(
                     symbol = 'USDT', 
                     name = 'Tether USD', 
-                    address = '1.2488751460129641E+48', 
+                    address = '0xdAC17F958D2ee523a2206206994597C13D831ec7', 
                     decimals = 6, 
                     standards = ["ERC20"], ),
                 metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(

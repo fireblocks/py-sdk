@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.rewards_info import RewardsInfo
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,7 +36,7 @@ class VaultAsset(BaseModel):
     frozen: Optional[StrictStr] = Field(default=None, description="The cumulative frozen balance")
     locked_amount: Optional[StrictStr] = Field(default=None, description="Funds in outgoing transactions that are not yet published to the network", alias="lockedAmount")
     staked: Optional[StrictStr] = Field(default=None, description="Staked balance")
-    total_staked_cpu: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Deprecated", alias="totalStakedCPU")
+    total_staked_cpu: Optional[StrictStr] = Field(default=None, description="Deprecated", alias="totalStakedCPU")
     total_staked_network: Optional[StrictStr] = Field(default=None, description="Deprecated", alias="totalStakedNetwork")
     self_staked_cpu: Optional[StrictStr] = Field(default=None, description="Deprecated", alias="selfStakedCPU")
     self_staked_network: Optional[StrictStr] = Field(default=None, description="Deprecated", alias="selfStakedNetwork")

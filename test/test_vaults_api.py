@@ -48,6 +48,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_create_multiple_deposit_addresses(self) -> None:
+        """Test case for create_multiple_deposit_addresses
+
+        Bulk creation of new deposit addresses
+        """
+        pass
+
     def test_create_vault_account(self) -> None:
         """Test case for create_vault_account
 
@@ -73,6 +80,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for get_asset_wallets
 
         List asset wallets (Paginated)
+        """
+        pass
+
+    def test_get_create_multiple_deposit_addresses_job_status(self) -> None:
+        """Test case for get_create_multiple_deposit_addresses_job_status
+
+        Get job status of bulk creation of new deposit addresses
         """
         pass
 

@@ -47,7 +47,8 @@ class TestAddCollateralRequestBody(unittest.TestCase):
                         sub_type = 'BINANCE', 
                         id = '', 
                         name = '', 
-                        wallet_id = '', ), 
+                        wallet_id = '', 
+                        is_collateral = True, ), 
                     destination = fireblocks.models.destination_transfer_peer_path.DestinationTransferPeerPath(
                         type = 'VAULT_ACCOUNT', 
                         id = '', 
@@ -55,7 +56,8 @@ class TestAddCollateralRequestBody(unittest.TestCase):
                         wallet_id = '', 
                         one_time_address = fireblocks.models.one_time_address.OneTimeAddress(
                             address = '', 
-                            tag = '', ), ), 
+                            tag = '', ), 
+                        is_collateral = True, ), 
                     destinations = [
                         fireblocks.models.transaction_request_destination.TransactionRequestDestination(
                             amount = '', )

@@ -41,7 +41,8 @@ class TestSourceTransferPeerPath(unittest.TestCase):
                 sub_type = 'BINANCE',
                 id = '',
                 name = '',
-                wallet_id = ''
+                wallet_id = '',
+                is_collateral = True
             )
         else:
             return SourceTransferPeerPath(

@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contract_id** | **str** | The id of the contract template that will be used to create the token | 
 **deploy_function_params** | [**List[ParameterWithValue]**](ParameterWithValue.md) | The deploy function parameters and values of the contract template | [optional] 
-**symbol** | **str** | The symbol of the token | 
-**name** | **str** | The name of the token | 
+**symbol** | **str** | The symbol for the token, typically an abbreviated representation. | 
+**name** | **str** | The name of the token or asset being created. | 
 **issuer_address** | **str** | The address of the issuer of this token. Will be part of the identifier of this token on chain. | 
+**decimals** | **int** | The number of decimal places the token supports (e.g., 9 for typical Solana tokens). | 
 
 ## Example
 

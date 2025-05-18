@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.abi_function import AbiFunction
+from fireblocks.models.contract_abi_response_dto_abi_inner import ContractAbiResponseDtoAbiInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class ContractAbiResponseDto(BaseModel):
     """
     ContractAbiResponseDto
     """ # noqa: E501
-    abi: List[AbiFunction] = Field(description="The abi of the contract")
+    abi: List[ContractAbiResponseDtoAbiInner] = Field(description="The abi of the contract")
     implementation_abi: Optional[List[AbiFunction]] = Field(default=None, description="The abi of the implementation contract if exists. Relevant only for proxy patterns", alias="implementationAbi")
     __properties: ClassVar[List[str]] = ["abi", "implementationAbi"]
 
@@ -97,7 +98,7 @@ class ContractAbiResponseDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "abi": [AbiFunction.from_dict(_item) for _item in obj["abi"]] if obj.get("abi") is not None else None,
+            "abi": [ContractAbiResponseDtoAbiInner.from_dict(_item) for _item in obj["abi"]] if obj.get("abi") is not None else None,
             "implementationAbi": [AbiFunction.from_dict(_item) for _item in obj["implementationAbi"]] if obj.get("implementationAbi") is not None else None
         })
         return _obj

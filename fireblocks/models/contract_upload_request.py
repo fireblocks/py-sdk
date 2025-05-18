@@ -39,13 +39,24 @@ class ContractUploadRequest(BaseModel):
     docs: Optional[ContractDoc] = Field(default=None, description="A `natspec` compliant documentation json. Can be retrieved from the output json after compilation")
     abi: List[AbiFunction] = Field(description="The abi of the contract template. Necessary for displaying and for after deployment encoding")
     attributes: Optional[ContractAttributes] = Field(default=None, description="The attributes related to this contract template. It will be displayed in the tokenization page")
-    __properties: ClassVar[List[str]] = ["name", "description", "longDescription", "bytecode", "sourcecode", "type", "docs", "abi", "attributes"]
+    protocol: Optional[StrictStr] = Field(default=None, description="The protocol that the template will be used for")
+    __properties: ClassVar[List[str]] = ["name", "description", "longDescription", "bytecode", "sourcecode", "type", "docs", "abi", "attributes", "protocol"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['FUNGIBLE_TOKEN', 'NON_FUNGIBLE_TOKEN', 'NON_TOKEN', 'TOKEN_EXTENSION', 'TOKEN_UTILITY']):
             raise ValueError("must be one of enum values ('FUNGIBLE_TOKEN', 'NON_FUNGIBLE_TOKEN', 'NON_TOKEN', 'TOKEN_EXTENSION', 'TOKEN_UTILITY')")
+        return value
+
+    @field_validator('protocol')
+    def protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['ETH', 'SOL']):
+            raise ValueError("must be one of enum values ('ETH', 'SOL')")
         return value
 
     model_config = ConfigDict(
@@ -120,7 +131,8 @@ class ContractUploadRequest(BaseModel):
             "type": obj.get("type"),
             "docs": ContractDoc.from_dict(obj["docs"]) if obj.get("docs") is not None else None,
             "abi": [AbiFunction.from_dict(_item) for _item in obj["abi"]] if obj.get("abi") is not None else None,
-            "attributes": ContractAttributes.from_dict(obj["attributes"]) if obj.get("attributes") is not None else None
+            "attributes": ContractAttributes.from_dict(obj["attributes"]) if obj.get("attributes") is not None else None,
+            "protocol": obj.get("protocol")
         })
         return _obj
 

@@ -64,7 +64,8 @@ class TestContractUploadRequest(unittest.TestCase):
                     auditor = fireblocks.models.auditor_data.AuditorData(
                         name = '', 
                         image_url = '', 
-                        link = '', ), )
+                        link = '', ), ),
+                protocol = 'ETH'
             )
         else:
             return ContractUploadRequest(

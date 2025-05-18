@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**abi_function** | [**ReadAbiFunction**](ReadAbiFunction.md) |  | 
+**abi_function** | [**ReadCallFunctionDtoAbiFunction**](ReadCallFunctionDtoAbiFunction.md) |  | 
 
 ## Example
 

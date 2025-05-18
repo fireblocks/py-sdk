@@ -337,7 +337,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_signing_keys_list**
-> GetSigningKeyResponseDto get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available)
+> GetSigningKeyResponseDto get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available, is_assigned=is_assigned)
 
 Get list of signing keys
 
@@ -381,10 +381,11 @@ with Fireblocks(configuration) as fireblocks:
     algorithm = 'ECDSA_SECP256K1' # str | Return only keys with a specific algorithm (optional)
     enabled = True # bool | Return keys that have been proof of ownership (optional)
     available = True # bool | Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set (optional)
+    is_assigned = True # bool | Return keys that are assigned to a vault account (optional)
 
     try:
         # Get list of signing keys
-        api_response = fireblocks.key_link_beta.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available).result()
+        api_response = fireblocks.key_link_beta.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available, is_assigned=is_assigned).result()
         print("The response of KeyLinkBetaApi->get_signing_keys_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -407,6 +408,7 @@ Name | Type | Description  | Notes
  **algorithm** | **str**| Return only keys with a specific algorithm | [optional] 
  **enabled** | **bool**| Return keys that have been proof of ownership | [optional] 
  **available** | **bool**| Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set | [optional] 
+ **is_assigned** | **bool**| Return keys that are assigned to a vault account | [optional] 
 
 ### Return type
 

@@ -101,6 +101,7 @@ docs/ConfigTransferOperationSnapshot.md
 docs/ConsoleUser.md
 docs/ConsoleUserApi.md
 docs/ContractAbiResponseDto.md
+docs/ContractAbiResponseDtoAbiInner.md
 docs/ContractAttributes.md
 docs/ContractDeployRequest.md
 docs/ContractDeployResponse.md
@@ -238,6 +239,8 @@ docs/GasStationConfiguration.md
 docs/GasStationConfigurationResponse.md
 docs/GasStationPropertiesResponse.md
 docs/GasStationsApi.md
+docs/GasslessStandardConfigurations.md
+docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md
 docs/GetAPIUsersResponse.md
 docs/GetAuditLogsResponse.md
 docs/GetConnectionsResponse.md
@@ -257,6 +260,7 @@ docs/GetValidationKeyResponseDto.md
 docs/GetWhitelistIpAddressesResponse.md
 docs/GetWorkspaceStatusResponse.md
 docs/HttpContractDoesNotExistError.md
+docs/IdlType.md
 docs/InstructionAmount.md
 docs/InternalTransferResponse.md
 docs/InternalWalletsApi.md
@@ -278,6 +282,7 @@ docs/ModifySigningKeyAgentIdDto.md
 docs/ModifySigningKeyDto.md
 docs/ModifyValidationKeyDto.md
 docs/MpcKey.md
+docs/MultichainDeploymentMetadata.md
 docs/NFTsApi.md
 docs/NetworkChannel.md
 docs/NetworkConnection.md
@@ -358,6 +363,7 @@ docs/PublishDraftRequest.md
 docs/PublishResult.md
 docs/ReadAbiFunction.md
 docs/ReadCallFunctionDto.md
+docs/ReadCallFunctionDtoAbiFunction.md
 docs/RedeemFundsToLinkedDDAResponse.md
 docs/RegisterNewAssetRequest.md
 docs/ReissueMultichainTokenRequest.md
@@ -375,6 +381,8 @@ docs/ResetDeviceApi.md
 docs/RespondToConnectionRequest.md
 docs/RewardInfo.md
 docs/RewardsInfo.md
+docs/SOLAccount.md
+docs/SOLAccountWithValue.md
 docs/ScreeningConfigurationsRequest.md
 docs/ScreeningOperationExecution.md
 docs/ScreeningOperationExecutionOutput.md
@@ -437,7 +445,13 @@ docs/SmartTransferTicketTermResponse.md
 docs/SmartTransferUpdateTicketTerm.md
 docs/SmartTransferUserGroups.md
 docs/SmartTransferUserGroupsResponse.md
+docs/SolParameter.md
+docs/SolParameterWithValue.md
 docs/SolanaBlockchainData.md
+docs/SolanaConfig.md
+docs/SolanaInstruction.md
+docs/SolanaInstructionWithValue.md
+docs/SolanaSimpleCreateParams.md
 docs/SourceTransferPeerPath.md
 docs/SourceTransferPeerPathResponse.md
 docs/SpamOwnershipResponse.md
@@ -588,6 +602,7 @@ docs/WorkflowExecutionOperation.md
 docs/WorkspaceStatusBetaApi.md
 docs/WriteAbiFunction.md
 docs/WriteCallFunctionDto.md
+docs/WriteCallFunctionDtoAbiFunction.md
 docs/WriteCallFunctionResponseDto.md
 fireblocks/__init__.py
 fireblocks/additional_options.py
@@ -734,6 +749,7 @@ fireblocks/models/config_operation_status.py
 fireblocks/models/config_transfer_operation_snapshot.py
 fireblocks/models/console_user.py
 fireblocks/models/contract_abi_response_dto.py
+fireblocks/models/contract_abi_response_dto_abi_inner.py
 fireblocks/models/contract_attributes.py
 fireblocks/models/contract_deploy_request.py
 fireblocks/models/contract_deploy_response.py
@@ -861,6 +877,8 @@ fireblocks/models/funds.py
 fireblocks/models/gas_station_configuration.py
 fireblocks/models/gas_station_configuration_response.py
 fireblocks/models/gas_station_properties_response.py
+fireblocks/models/gassless_standard_configurations.py
+fireblocks/models/gassless_standard_configurations_gasless_standard_configurations_value.py
 fireblocks/models/get_api_users_response.py
 fireblocks/models/get_audit_logs_response.py
 fireblocks/models/get_connections_response.py
@@ -880,6 +898,7 @@ fireblocks/models/get_validation_key_response_dto.py
 fireblocks/models/get_whitelist_ip_addresses_response.py
 fireblocks/models/get_workspace_status_response.py
 fireblocks/models/http_contract_does_not_exist_error.py
+fireblocks/models/idl_type.py
 fireblocks/models/instruction_amount.py
 fireblocks/models/internal_transfer_response.py
 fireblocks/models/invalid_paramater_value_error.py
@@ -897,6 +916,7 @@ fireblocks/models/modify_signing_key_agent_id_dto.py
 fireblocks/models/modify_signing_key_dto.py
 fireblocks/models/modify_validation_key_dto.py
 fireblocks/models/mpc_key.py
+fireblocks/models/multichain_deployment_metadata.py
 fireblocks/models/network_channel.py
 fireblocks/models/network_connection.py
 fireblocks/models/network_connection_response.py
@@ -971,6 +991,7 @@ fireblocks/models/publish_draft_request.py
 fireblocks/models/publish_result.py
 fireblocks/models/read_abi_function.py
 fireblocks/models/read_call_function_dto.py
+fireblocks/models/read_call_function_dto_abi_function.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
 fireblocks/models/register_new_asset_request.py
 fireblocks/models/reissue_multichain_token_request.py
@@ -1048,7 +1069,15 @@ fireblocks/models/smart_transfer_ticket_term_response.py
 fireblocks/models/smart_transfer_update_ticket_term.py
 fireblocks/models/smart_transfer_user_groups.py
 fireblocks/models/smart_transfer_user_groups_response.py
+fireblocks/models/sol_account.py
+fireblocks/models/sol_account_with_value.py
+fireblocks/models/sol_parameter.py
+fireblocks/models/sol_parameter_with_value.py
 fireblocks/models/solana_blockchain_data.py
+fireblocks/models/solana_config.py
+fireblocks/models/solana_instruction.py
+fireblocks/models/solana_instruction_with_value.py
+fireblocks/models/solana_simple_create_params.py
 fireblocks/models/source_transfer_peer_path.py
 fireblocks/models/source_transfer_peer_path_response.py
 fireblocks/models/spam_ownership_response.py
@@ -1187,6 +1216,7 @@ fireblocks/models/workflow_configuration_id.py
 fireblocks/models/workflow_execution_operation.py
 fireblocks/models/write_abi_function.py
 fireblocks/models/write_call_function_dto.py
+fireblocks/models/write_call_function_dto_abi_function.py
 fireblocks/models/write_call_function_response_dto.py
 fireblocks/py.typed
 fireblocks/rest.py
@@ -1310,6 +1340,7 @@ test/test_config_transfer_operation_snapshot.py
 test/test_console_user.py
 test/test_console_user_api.py
 test/test_contract_abi_response_dto.py
+test/test_contract_abi_response_dto_abi_inner.py
 test/test_contract_attributes.py
 test/test_contract_deploy_request.py
 test/test_contract_deploy_response.py
@@ -1447,6 +1478,8 @@ test/test_gas_station_configuration.py
 test/test_gas_station_configuration_response.py
 test/test_gas_station_properties_response.py
 test/test_gas_stations_api.py
+test/test_gassless_standard_configurations.py
+test/test_gassless_standard_configurations_gasless_standard_configurations_value.py
 test/test_get_api_users_response.py
 test/test_get_audit_logs_response.py
 test/test_get_connections_response.py
@@ -1466,6 +1499,7 @@ test/test_get_validation_key_response_dto.py
 test/test_get_whitelist_ip_addresses_response.py
 test/test_get_workspace_status_response.py
 test/test_http_contract_does_not_exist_error.py
+test/test_idl_type.py
 test/test_instruction_amount.py
 test/test_internal_transfer_response.py
 test/test_internal_wallets_api.py
@@ -1487,6 +1521,7 @@ test/test_modify_signing_key_agent_id_dto.py
 test/test_modify_signing_key_dto.py
 test/test_modify_validation_key_dto.py
 test/test_mpc_key.py
+test/test_multichain_deployment_metadata.py
 test/test_network_channel.py
 test/test_network_connection.py
 test/test_network_connection_response.py
@@ -1567,6 +1602,7 @@ test/test_publish_draft_request.py
 test/test_publish_result.py
 test/test_read_abi_function.py
 test/test_read_call_function_dto.py
+test/test_read_call_function_dto_abi_function.py
 test/test_redeem_funds_to_linked_dda_response.py
 test/test_register_new_asset_request.py
 test/test_reissue_multichain_token_request.py
@@ -1646,7 +1682,15 @@ test/test_smart_transfer_ticket_term_response.py
 test/test_smart_transfer_update_ticket_term.py
 test/test_smart_transfer_user_groups.py
 test/test_smart_transfer_user_groups_response.py
+test/test_sol_account.py
+test/test_sol_account_with_value.py
+test/test_sol_parameter.py
+test/test_sol_parameter_with_value.py
 test/test_solana_blockchain_data.py
+test/test_solana_config.py
+test/test_solana_instruction.py
+test/test_solana_instruction_with_value.py
+test/test_solana_simple_create_params.py
 test/test_source_transfer_peer_path.py
 test/test_source_transfer_peer_path_response.py
 test/test_spam_ownership_response.py
@@ -1797,5 +1841,6 @@ test/test_workflow_execution_operation.py
 test/test_workspace_status_beta_api.py
 test/test_write_abi_function.py
 test/test_write_call_function_dto.py
+test/test_write_call_function_dto_abi_function.py
 test/test_write_call_function_response_dto.py
 tox.ini

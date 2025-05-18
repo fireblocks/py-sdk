@@ -41,7 +41,41 @@ class TestDeployedContractResponseDto(unittest.TestCase):
                 contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66',
                 contract_template_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d',
                 vault_account_id = '0',
-                blockchain_id = ''
+                blockchain_id = '',
+                base_asset_id = 'ETH_TEST5',
+                gasless_config = fireblocks.models.gassless_standard_configurations.GasslessStandardConfigurations(
+                    gasless_standard_configurations = {
+                        'key' : fireblocks.models.gassless_standard_configurations_gasless_standard_configurations_value.GasslessStandardConfigurations_gaslessStandardConfigurations_value(
+                            last_on_chain_check = '2024-09-09T04:17:46.918Z', 
+                            forwarder_addresses = [
+                                '0x2E7B54631e18E9eEcc2eb5219249cc8388586f66'
+                                ], )
+                        }, ),
+                multichain_deployment_metadata = fireblocks.models.multichain_deployment_metadata.MultichainDeploymentMetadata(
+                    id = '', 
+                    address = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e', 
+                    template_id = '0e4f5a3b-924e-7bb9-8e5b-c748270feb38', 
+                    deployment_salt = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', 
+                    init_params = [
+                        fireblocks.models.parameter_with_value.ParameterWithValue(
+                            name = '_name', 
+                            description = 'The name of the token', 
+                            internal_type = 'string', 
+                            type = 'string', 
+                            components = [
+                                fireblocks.models.parameter.Parameter(
+                                    name = '_name', 
+                                    description = 'The name of the token', 
+                                    internal_type = 'string', 
+                                    type = 'string', )
+                                ], 
+                            value = 'true', 
+                            function_value = null, )
+                        ], 
+                    encoded_init_params = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', ),
+                solana_config = fireblocks.models.solana_config.SolanaConfig(
+                    extensions = ["metadataPointer","transferHook"], 
+                    type = 'TOKEN2022', )
             )
         else:
             return DeployedContractResponseDto(

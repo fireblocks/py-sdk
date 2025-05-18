@@ -20,6 +20,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.gassless_standard_configurations import GasslessStandardConfigurations
+from fireblocks.models.multichain_deployment_metadata import MultichainDeploymentMetadata
+from fireblocks.models.solana_config import SolanaConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +35,11 @@ class DeployedContractResponseDto(BaseModel):
     contract_template_id: StrictStr = Field(description="The contract template identifier", alias="contractTemplateId")
     vault_account_id: Optional[StrictStr] = Field(default=None, description="The vault account id this contract was deploy from", alias="vaultAccountId")
     blockchain_id: StrictStr = Field(alias="blockchainId")
-    __properties: ClassVar[List[str]] = ["id", "contractAddress", "contractTemplateId", "vaultAccountId", "blockchainId"]
+    base_asset_id: Optional[StrictStr] = Field(default=None, description="The blockchain base assetId", alias="baseAssetId")
+    gasless_config: Optional[GasslessStandardConfigurations] = Field(default=None, alias="gaslessConfig")
+    multichain_deployment_metadata: Optional[MultichainDeploymentMetadata] = Field(default=None, alias="multichainDeploymentMetadata")
+    solana_config: Optional[SolanaConfig] = Field(default=None, alias="solanaConfig")
+    __properties: ClassVar[List[str]] = ["id", "contractAddress", "contractTemplateId", "vaultAccountId", "blockchainId", "baseAssetId", "gaslessConfig", "multichainDeploymentMetadata", "solanaConfig"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +80,15 @@ class DeployedContractResponseDto(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of gasless_config
+        if self.gasless_config:
+            _dict['gaslessConfig'] = self.gasless_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of multichain_deployment_metadata
+        if self.multichain_deployment_metadata:
+            _dict['multichainDeploymentMetadata'] = self.multichain_deployment_metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of solana_config
+        if self.solana_config:
+            _dict['solanaConfig'] = self.solana_config.to_dict()
         return _dict
 
     @classmethod
@@ -89,7 +105,11 @@ class DeployedContractResponseDto(BaseModel):
             "contractAddress": obj.get("contractAddress"),
             "contractTemplateId": obj.get("contractTemplateId"),
             "vaultAccountId": obj.get("vaultAccountId"),
-            "blockchainId": obj.get("blockchainId")
+            "blockchainId": obj.get("blockchainId"),
+            "baseAssetId": obj.get("baseAssetId"),
+            "gaslessConfig": GasslessStandardConfigurations.from_dict(obj["gaslessConfig"]) if obj.get("gaslessConfig") is not None else None,
+            "multichainDeploymentMetadata": MultichainDeploymentMetadata.from_dict(obj["multichainDeploymentMetadata"]) if obj.get("multichainDeploymentMetadata") is not None else None,
+            "solanaConfig": SolanaConfig.from_dict(obj["solanaConfig"]) if obj.get("solanaConfig") is not None else None
         })
         return _obj
 

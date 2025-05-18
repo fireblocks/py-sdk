@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.write_abi_function import WriteAbiFunction
+from fireblocks.models.write_call_function_dto_abi_function import WriteCallFunctionDtoAbiFunction
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class WriteCallFunctionDto(BaseModel):
     WriteCallFunctionDto
     """ # noqa: E501
     vault_account_id: StrictStr = Field(description="The vault account id this contract was deploy from", alias="vaultAccountId")
-    abi_function: WriteAbiFunction = Field(alias="abiFunction")
+    abi_function: WriteCallFunctionDtoAbiFunction = Field(alias="abiFunction")
     amount: Optional[StrictStr] = Field(default=None, description="Amount in base asset. Being used in payable functions")
     fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
     fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
@@ -103,7 +103,7 @@ class WriteCallFunctionDto(BaseModel):
 
         _obj = cls.model_validate({
             "vaultAccountId": obj.get("vaultAccountId"),
-            "abiFunction": WriteAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None,
+            "abiFunction": WriteCallFunctionDtoAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None,
             "amount": obj.get("amount"),
             "feeLevel": obj.get("feeLevel"),
             "fee": obj.get("fee"),

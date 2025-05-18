@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.read_abi_function import ReadAbiFunction
+from fireblocks.models.read_call_function_dto_abi_function import ReadCallFunctionDtoAbiFunction
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class ReadCallFunctionDto(BaseModel):
     """
     ReadCallFunctionDto
     """ # noqa: E501
-    abi_function: ReadAbiFunction = Field(alias="abiFunction")
+    abi_function: ReadCallFunctionDtoAbiFunction = Field(alias="abiFunction")
     __properties: ClassVar[List[str]] = ["abiFunction"]
 
     model_config = ConfigDict(
@@ -85,7 +85,7 @@ class ReadCallFunctionDto(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "abiFunction": ReadAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None
+            "abiFunction": ReadCallFunctionDtoAbiFunction.from_dict(obj["abiFunction"]) if obj.get("abiFunction") is not None else None
         })
         return _obj
 

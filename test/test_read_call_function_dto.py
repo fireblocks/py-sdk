@@ -37,65 +37,11 @@ class TestReadCallFunctionDto(unittest.TestCase):
         model = ReadCallFunctionDto()
         if include_optional:
             return ReadCallFunctionDto(
-                abi_function = fireblocks.models.read_abi_function.ReadAbiFunction(
-                    state_mutability = 'pure', 
-                    outputs = [
-                        fireblocks.models.parameter.Parameter(
-                            name = '_name', 
-                            description = 'The name of the token', 
-                            internal_type = 'string', 
-                            type = 'string', 
-                            components = [
-                                fireblocks.models.parameter.Parameter(
-                                    name = '_name', 
-                                    description = 'The name of the token', 
-                                    internal_type = 'string', 
-                                    type = 'string', )
-                                ], )
-                        ], 
-                    name = '', 
-                    type = '', 
-                    inputs = [
-                        fireblocks.models.parameter_with_value.ParameterWithValue(
-                            name = '_name', 
-                            description = 'The name of the token', 
-                            internal_type = 'string', 
-                            type = 'string', 
-                            value = 'true', 
-                            function_value = null, )
-                        ], 
-                    description = '', )
+                abi_function = None
             )
         else:
             return ReadCallFunctionDto(
-                abi_function = fireblocks.models.read_abi_function.ReadAbiFunction(
-                    state_mutability = 'pure', 
-                    outputs = [
-                        fireblocks.models.parameter.Parameter(
-                            name = '_name', 
-                            description = 'The name of the token', 
-                            internal_type = 'string', 
-                            type = 'string', 
-                            components = [
-                                fireblocks.models.parameter.Parameter(
-                                    name = '_name', 
-                                    description = 'The name of the token', 
-                                    internal_type = 'string', 
-                                    type = 'string', )
-                                ], )
-                        ], 
-                    name = '', 
-                    type = '', 
-                    inputs = [
-                        fireblocks.models.parameter_with_value.ParameterWithValue(
-                            name = '_name', 
-                            description = 'The name of the token', 
-                            internal_type = 'string', 
-                            type = 'string', 
-                            value = 'true', 
-                            function_value = null, )
-                        ], 
-                    description = '', ),
+                abi_function = None,
         )
         """
 

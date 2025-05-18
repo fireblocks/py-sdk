@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**abi** | [**List[AbiFunction]**](AbiFunction.md) | The abi of the contract | 
+**abi** | [**List[ContractAbiResponseDtoAbiInner]**](ContractAbiResponseDtoAbiInner.md) | The abi of the contract | 
 **implementation_abi** | [**List[AbiFunction]**](AbiFunction.md) | The abi of the implementation contract if exists. Relevant only for proxy patterns | [optional] 
 
 ## Example

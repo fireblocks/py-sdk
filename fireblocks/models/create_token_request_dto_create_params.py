@@ -19,12 +19,13 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from fireblocks.models.evm_token_create_params_dto import EVMTokenCreateParamsDto
+from fireblocks.models.solana_simple_create_params import SolanaSimpleCreateParams
 from fireblocks.models.stellar_ripple_create_params_dto import StellarRippleCreateParamsDto
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-CREATETOKENREQUESTDTOCREATEPARAMS_ONE_OF_SCHEMAS = ["EVMTokenCreateParamsDto", "StellarRippleCreateParamsDto"]
+CREATETOKENREQUESTDTOCREATEPARAMS_ONE_OF_SCHEMAS = ["EVMTokenCreateParamsDto", "SolanaSimpleCreateParams", "StellarRippleCreateParamsDto"]
 
 class CreateTokenRequestDtoCreateParams(BaseModel):
     """
@@ -34,8 +35,10 @@ class CreateTokenRequestDtoCreateParams(BaseModel):
     oneof_schema_1_validator: Optional[EVMTokenCreateParamsDto] = None
     # data type: StellarRippleCreateParamsDto
     oneof_schema_2_validator: Optional[StellarRippleCreateParamsDto] = None
-    actual_instance: Optional[Union[EVMTokenCreateParamsDto, StellarRippleCreateParamsDto]] = None
-    one_of_schemas: Set[str] = { "EVMTokenCreateParamsDto", "StellarRippleCreateParamsDto" }
+    # data type: SolanaSimpleCreateParams
+    oneof_schema_3_validator: Optional[SolanaSimpleCreateParams] = None
+    actual_instance: Optional[Union[EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto]] = None
+    one_of_schemas: Set[str] = { "EVMTokenCreateParamsDto", "SolanaSimpleCreateParams", "StellarRippleCreateParamsDto" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -68,12 +71,17 @@ class CreateTokenRequestDtoCreateParams(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `StellarRippleCreateParamsDto`")
         else:
             match += 1
+        # validate data type: SolanaSimpleCreateParams
+        if not isinstance(v, SolanaSimpleCreateParams):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `SolanaSimpleCreateParams`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -100,13 +108,19 @@ class CreateTokenRequestDtoCreateParams(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into SolanaSimpleCreateParams
+        try:
+            instance.actual_instance = SolanaSimpleCreateParams.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateTokenRequestDtoCreateParams with oneOf schemas: EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +134,7 @@ class CreateTokenRequestDtoCreateParams(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], EVMTokenCreateParamsDto, StellarRippleCreateParamsDto]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], EVMTokenCreateParamsDto, SolanaSimpleCreateParams, StellarRippleCreateParamsDto]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

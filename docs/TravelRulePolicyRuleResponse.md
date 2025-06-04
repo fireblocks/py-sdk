@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **base_asset** | **str** |  | [optional] 
 **amount** | **float** |  | [optional] 
 **amount_usd** | **float** |  | [optional] 
-**network_protocol** | **str** |  | [optional] 
+**network_protocol** | **str** | The network protocol of the token | [optional] 
 **operation** | **str** |  | [optional] 
 **action** | **str** |  | 
 

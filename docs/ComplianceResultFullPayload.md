@@ -6,11 +6,11 @@ The result of the Compliance AML/Travel Rule screening.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**aml** | [**List[ComplianceScreeningResultFullPayload]**](ComplianceScreeningResultFullPayload.md) | The end result of the AML screening. | [optional] 
-**tr** | [**List[ComplianceScreeningResultFullPayload]**](ComplianceScreeningResultFullPayload.md) | The result of the Travel Rule screening. | [optional] 
+**aml** | [**ComplianceScreeningResultFullPayload**](ComplianceScreeningResultFullPayload.md) |  | [optional] 
+**tr** | [**ComplianceScreeningResultFullPayload**](ComplianceScreeningResultFullPayload.md) |  | [optional] 
 **aml_list** | [**List[ComplianceScreeningResultFullPayload]**](ComplianceScreeningResultFullPayload.md) | The list of all results of the AML screening. | [optional] 
-**status** | **str** | Status of compliance result screening. | [optional] 
-**aml_registration** | [**List[AmlRegistrationResultFullPayload]**](AmlRegistrationResultFullPayload.md) | The results of the AML address registration. | [optional] 
+**status** | [**ComplianceResultStatusesEnum**](ComplianceResultStatusesEnum.md) |  | [optional] 
+**aml_registration** | [**AmlRegistrationResultFullPayload**](AmlRegistrationResultFullPayload.md) |  | [optional] 
 
 ## Example
 

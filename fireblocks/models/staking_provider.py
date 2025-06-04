@@ -30,6 +30,7 @@ class StakingProvider(str, Enum):
     KILN = 'kiln'
     FIGMENT = 'figment'
     LIDO = 'lido'
+    P2P = 'p2p'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

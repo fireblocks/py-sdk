@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**issue_token_multi_chain**](TokenizationApi.md#issue_token_multi_chain) | **POST** /tokenization/multichain/tokens | Issue a token on one or more blockchains
 [**link**](TokenizationApi.md#link) | **POST** /tokenization/tokens/link | Link a contract
 [**mint_collection_token**](TokenizationApi.md#mint_collection_token) | **POST** /tokenization/collections/{id}/tokens/mint | Mint tokens
-[**re_issue_token_multi_chain**](TokenizationApi.md#re_issue_token_multi_chain) | **POST** /tokenization/multichain/token/{tokenLinkId} | Reissue a multichain token
+[**re_issue_token_multi_chain**](TokenizationApi.md#re_issue_token_multi_chain) | **POST** /tokenization/multichain/reissue/token/{tokenLinkId} | Reissue a multichain token
 [**unlink**](TokenizationApi.md#unlink) | **DELETE** /tokenization/tokens/{id} | Unlink a token
 [**unlink_collection**](TokenizationApi.md#unlink_collection) | **DELETE** /tokenization/collections/{id} | Delete a collection link
 

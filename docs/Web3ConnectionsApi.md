@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> CreateConnectionResponse create(create_connection_request, idempotency_key=idempotency_key)
+> CreateConnectionResponse create(create_connection_request, idempotency_key=idempotency_key, x_end_user_wallet_id=x_end_user_wallet_id)
 
 Create a new Web3 connection.
 
@@ -47,10 +47,11 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     create_connection_request = fireblocks.CreateConnectionRequest() # CreateConnectionRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
 
     try:
         # Create a new Web3 connection.
-        api_response = fireblocks.web3_connections.create(create_connection_request, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.web3_connections.create(create_connection_request, idempotency_key=idempotency_key, x_end_user_wallet_id=x_end_user_wallet_id).result()
         print("The response of Web3ConnectionsApi->create:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **create_connection_request** | [**CreateConnectionRequest**](CreateConnectionRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
 
 ### Return type
 
@@ -91,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get**
-> GetConnectionsResponse get(order=order, filter=filter, sort=sort, page_size=page_size, next=next)
+> GetConnectionsResponse get(x_end_user_wallet_id=x_end_user_wallet_id, order=order, filter=filter, sort=sort, page_size=page_size, next=next)
 
 List all open Web3 connections.
 
@@ -123,6 +125,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
     order = ASC # str | List order; ascending or descending. (optional) (default to ASC)
     filter = fireblocks.GetFilterParameter() # GetFilterParameter | Parsed filter object (optional)
     sort = createdAt # str | Property to sort Web3 connections by. (optional) (default to createdAt)
@@ -131,7 +134,7 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # List all open Web3 connections.
-        api_response = fireblocks.web3_connections.get(order=order, filter=filter, sort=sort, page_size=page_size, next=next).result()
+        api_response = fireblocks.web3_connections.get(x_end_user_wallet_id=x_end_user_wallet_id, order=order, filter=filter, sort=sort, page_size=page_size, next=next).result()
         print("The response of Web3ConnectionsApi->get:\n")
         pprint(api_response)
     except Exception as e:
@@ -145,6 +148,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
  **order** | **str**| List order; ascending or descending. | [optional] [default to ASC]
  **filter** | [**GetFilterParameter**](.md)| Parsed filter object | [optional] 
  **sort** | **str**| Property to sort Web3 connections by. | [optional] [default to createdAt]
@@ -175,7 +179,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **remove**
-> remove(id)
+> remove(id, x_end_user_wallet_id=x_end_user_wallet_id)
 
 Remove an existing Web3 connection.
 
@@ -205,10 +209,11 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     id = 'id_example' # str | The ID of the existing Web3 connection to remove.
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
 
     try:
         # Remove an existing Web3 connection.
-        fireblocks.web3_connections.remove(id).result()
+        fireblocks.web3_connections.remove(id, x_end_user_wallet_id=x_end_user_wallet_id).result()
     except Exception as e:
         print("Exception when calling Web3ConnectionsApi->remove: %s\n" % e)
 ```
@@ -221,6 +226,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The ID of the existing Web3 connection to remove. | 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
 
 ### Return type
 
@@ -246,7 +252,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submit**
-> submit(id, respond_to_connection_request, idempotency_key=idempotency_key)
+> submit(id, respond_to_connection_request, idempotency_key=idempotency_key, x_end_user_wallet_id=x_end_user_wallet_id)
 
 Respond to a pending Web3 connection request.
 
@@ -282,10 +288,11 @@ with Fireblocks(configuration) as fireblocks:
     id = 'id_example' # str | The ID of the initiated Web3 connection to approve.
     respond_to_connection_request = fireblocks.RespondToConnectionRequest() # RespondToConnectionRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
 
     try:
         # Respond to a pending Web3 connection request.
-        fireblocks.web3_connections.submit(id, respond_to_connection_request, idempotency_key=idempotency_key).result()
+        fireblocks.web3_connections.submit(id, respond_to_connection_request, idempotency_key=idempotency_key, x_end_user_wallet_id=x_end_user_wallet_id).result()
     except Exception as e:
         print("Exception when calling Web3ConnectionsApi->submit: %s\n" % e)
 ```
@@ -300,6 +307,7 @@ Name | Type | Description  | Notes
  **id** | **str**| The ID of the initiated Web3 connection to approve. | 
  **respond_to_connection_request** | [**RespondToConnectionRequest**](RespondToConnectionRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
 
 ### Return type
 

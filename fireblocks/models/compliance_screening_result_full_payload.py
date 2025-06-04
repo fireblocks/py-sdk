@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class ComplianceScreeningResultFullPayload(BaseModel):
     """
-    ComplianceScreeningResultFullPayload
+    The result of the Travel Rule screening.
     """ # noqa: E501
     provider: Optional[StrictStr] = None
     payload: Optional[Dict[str, Any]] = Field(default=None, description="The payload of the screening result. The payload is a JSON object that contains the screening result. The payload is different for each screening provider. ")

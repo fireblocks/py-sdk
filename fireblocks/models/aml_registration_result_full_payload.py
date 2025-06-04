@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class AmlRegistrationResultFullPayload(BaseModel):
     """
-    AmlRegistrationResultFullPayload
+    The results of the AML address registration.
     """ # noqa: E501
     provider: Optional[StrictStr] = None
     success: Optional[StrictBool] = None

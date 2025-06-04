@@ -21,6 +21,17 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Optional, Union
 from typing_extensions import Annotated
+from fireblocks.models.embedded_wallet import EmbeddedWallet
+from fireblocks.models.embedded_wallet_account import EmbeddedWalletAccount
+from fireblocks.models.embedded_wallet_address_details import EmbeddedWalletAddressDetails
+from fireblocks.models.embedded_wallet_asset_balance import EmbeddedWalletAssetBalance
+from fireblocks.models.embedded_wallet_asset_response import EmbeddedWalletAssetResponse
+from fireblocks.models.embedded_wallet_device import EmbeddedWalletDevice
+from fireblocks.models.embedded_wallet_device_key_setup_response import EmbeddedWalletDeviceKeySetupResponse
+from fireblocks.models.embedded_wallet_latest_backup_response import EmbeddedWalletLatestBackupResponse
+from fireblocks.models.embedded_wallet_paginated_addresses_response import EmbeddedWalletPaginatedAddressesResponse
+from fireblocks.models.embedded_wallet_paginated_assets_response import EmbeddedWalletPaginatedAssetsResponse
+from fireblocks.models.embedded_wallet_paginated_wallets_response import EmbeddedWalletPaginatedWalletsResponse
 from fireblocks.models.public_key_information import PublicKeyInformation
 
 from fireblocks.api_client import ApiClient, RequestSerialized
@@ -43,8 +54,1574 @@ class EmbeddedWalletsApi:
 
 
     @validate_call
-    def get_public_key_info_for_address_ncw(
+    def add_embedded_wallet_asset(
         self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAddressDetails]]:
+        """Add asset to account
+
+        Get the addresses of a specific asset, under a specific account, under a specific Non Custodial Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="add_embedded_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="add_embedded_wallet_asset", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="add_embedded_wallet_asset", param_name="asset_id", param_value=asset_id)
+
+        _param = self._add_embedded_wallet_asset_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "EmbeddedWalletAddressDetails",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _add_embedded_wallet_asset_serialize(
+        self,
+        wallet_id,
+        account_id,
+        asset_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_embedded_wallet(
+        self,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWallet]]:
+        """Create a new wallet
+
+        Create new Non Custodial Wallet
+
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._create_embedded_wallet_serialize(
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "EmbeddedWallet",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _create_embedded_wallet_serialize(
+        self,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ncw/wallets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_embedded_wallet_account(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAccount]]:
+        """Create a new account
+
+        Create a new account under a specific Non Custodial Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="create_embedded_wallet_account", param_name="wallet_id", param_value=wallet_id)
+
+        _param = self._create_embedded_wallet_account_serialize(
+            wallet_id=wallet_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "EmbeddedWalletAccount",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _create_embedded_wallet_account_serialize(
+        self,
+        wallet_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/ncw/wallets/{walletId}/accounts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWallet]]:
+        """Get a wallet
+
+        Get a wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet", param_name="wallet_id", param_value=wallet_id)
+
+        _param = self._get_embedded_wallet_serialize(
+            wallet_id=wallet_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWallet",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_serialize(
+        self,
+        wallet_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_account(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="WalletId")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAccount]]:
+        """Get a account
+
+        Get a specific account under a specific Non Custodial Wallet
+
+        :param wallet_id: WalletId (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_account", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_account", param_name="account_id", param_value=account_id)
+
+        _param = self._get_embedded_wallet_account_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletAccount",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_account_serialize(
+        self,
+        wallet_id,
+        account_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_addresses(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor to the next page")] = None,
+        page_size: Annotated[Optional[Union[Annotated[float, Field(le=100, strict=True, ge=1)], Annotated[int, Field(le=100, strict=True, ge=1)]]], Field(description="Items per page")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Sort by address")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="Is the order ascending or descending")] = None,
+        enabled: Annotated[Optional[StrictBool], Field(description="Enabled")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletPaginatedAddressesResponse]]:
+        """Retrieve asset addresses
+
+        Get the addresses of a specific asset, under a specific account, under a specific Non Custodial Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param page_cursor: Cursor to the next page
+        :type page_cursor: str
+        :param page_size: Items per page
+        :type page_size: float
+        :param sort: Sort by address
+        :type sort: str
+        :param order: Is the order ascending or descending
+        :type order: str
+        :param enabled: Enabled
+        :type enabled: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_addresses", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_addresses", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_addresses", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_embedded_wallet_addresses_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort=sort,
+            order=order,
+            enabled=enabled,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletPaginatedAddressesResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_addresses_serialize(
+        self,
+        wallet_id,
+        account_id,
+        asset_id,
+        page_cursor,
+        page_size,
+        sort,
+        order,
+        enabled,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort is not None:
+            
+            _query_params.append(('sort', sort))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        if enabled is not None:
+            
+            _query_params.append(('enabled', enabled))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}/addresses',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_asset(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAssetResponse]]:
+        """Retrieve asset
+
+        Get asset under a specific account, under a specific Non Custodial Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_asset", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_asset", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_asset", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_embedded_wallet_asset_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletAssetResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_asset_serialize(
+        self,
+        wallet_id,
+        account_id,
+        asset_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_asset_balance(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAssetBalance]]:
+        """Retrieve asset balance
+
+        Get balance for specific asset, under a specific account
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_asset_balance", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_asset_balance", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_asset_balance", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_embedded_wallet_asset_balance_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletAssetBalance",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_asset_balance_serialize(
+        self,
+        wallet_id,
+        account_id,
+        asset_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}/balance',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_device(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        device_id: Annotated[StrictStr, Field(description="Device Id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletDevice]]:
+        """Get Embedded Wallet Device
+
+        Get specific device for a specific s Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param device_id: Device Id (required)
+        :type device_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_device", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_device", param_name="device_id", param_value=device_id)
+
+        _param = self._get_embedded_wallet_device_serialize(
+            wallet_id=wallet_id,
+            device_id=device_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletDevice",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_device_serialize(
+        self,
+        wallet_id,
+        device_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if device_id is not None:
+            _path_params['deviceId'] = device_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/devices/{deviceId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_device_setup_state(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        device_id: Annotated[StrictStr, Field(description="Device Id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletDeviceKeySetupResponse]]:
+        """Get device key setup state
+
+        Get the state of the specific device setup key under a specific Non Custodial Wallet
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param device_id: Device Id (required)
+        :type device_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_device_setup_state", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_device_setup_state", param_name="device_id", param_value=device_id)
+
+        _param = self._get_embedded_wallet_device_setup_state_serialize(
+            wallet_id=wallet_id,
+            device_id=device_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletDeviceKeySetupResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_device_setup_state_serialize(
+        self,
+        wallet_id,
+        device_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if device_id is not None:
+            _path_params['deviceId'] = device_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/devices/{deviceId}/setup_status',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_latest_backup(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletLatestBackupResponse]]:
+        """Get wallet Latest Backup details
+
+        Get wallet Latest Backup details, including the deviceId, and backup time
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_embedded_wallet_latest_backup", param_name="wallet_id", param_value=wallet_id)
+
+        _param = self._get_embedded_wallet_latest_backup_serialize(
+            wallet_id=wallet_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletLatestBackupResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_latest_backup_serialize(
+        self,
+        wallet_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/{walletId}/backup/latest',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_public_key_info_for_address(
+        self,
+        x_end_user_wallet_id: Annotated[StrictStr, Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")],
         wallet_id: Annotated[StrictStr, Field(description="The ID of the Non-Custodial wallet")],
         account_id: Annotated[StrictStr, Field(description="The ID of the account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
@@ -68,6 +1645,8 @@ class EmbeddedWalletsApi:
 
         Gets the public key of an asset associated with a specific account within a Non-Custodial Wallet
 
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (required)
+        :type x_end_user_wallet_id: str
         :param wallet_id: The ID of the Non-Custodial wallet (required)
         :type wallet_id: str
         :param account_id: The ID of the account (required)
@@ -102,11 +1681,13 @@ class EmbeddedWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="wallet_id", param_value=wallet_id)
-        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="account_id", param_value=account_id)
-        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="asset_id", param_value=asset_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_public_key_info_for_address", param_name="x_end_user_wallet_id", param_value=x_end_user_wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_public_key_info_for_address", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_public_key_info_for_address", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="get_embedded_wallet_public_key_info_for_address", param_name="asset_id", param_value=asset_id)
 
-        _param = self._get_public_key_info_for_address_ncw_serialize(
+        _param = self._get_embedded_wallet_public_key_info_for_address_serialize(
+            x_end_user_wallet_id=x_end_user_wallet_id,
             wallet_id=wallet_id,
             account_id=account_id,
             asset_id=asset_id,
@@ -130,8 +1711,9 @@ class EmbeddedWalletsApi:
             _response_types_map=_response_types_map,
         )
 
-    def _get_public_key_info_for_address_ncw_serialize(
+    def _get_embedded_wallet_public_key_info_for_address_serialize(
         self,
+        x_end_user_wallet_id,
         wallet_id,
         account_id,
         asset_id,
@@ -175,6 +1757,8 @@ class EmbeddedWalletsApi:
             _query_params.append(('compressed', compressed))
             
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
 
@@ -194,7 +1778,321 @@ class EmbeddedWalletsApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/ncw/{walletId}/accounts/{accountId}/{assetId}/{change}/{addressIndex}/public_key_info',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}/{change}/{addressIndex}/public_key_info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallet_supported_assets(
+        self,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Next page cursor to fetch")] = None,
+        page_size: Annotated[Optional[Union[Annotated[float, Field(le=400, strict=True)], Annotated[int, Field(le=400, strict=True)]]], Field(description="Items per page")] = None,
+        only_base_assets: Annotated[Optional[StrictBool], Field(description="Only base assets")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletPaginatedAssetsResponse]]:
+        """Retrieve supported assets
+
+        Get all the available supported assets for the Non-Custodial Wallet
+
+        :param page_cursor: Next page cursor to fetch
+        :type page_cursor: str
+        :param page_size: Items per page
+        :type page_size: float
+        :param only_base_assets: Only base assets
+        :type only_base_assets: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_embedded_wallet_supported_assets_serialize(
+            page_cursor=page_cursor,
+            page_size=page_size,
+            only_base_assets=only_base_assets,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletPaginatedAssetsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallet_supported_assets_serialize(
+        self,
+        page_cursor,
+        page_size,
+        only_base_assets,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if only_base_assets is not None:
+            
+            _query_params.append(('onlyBaseAssets', only_base_assets))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets/supported_assets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_embedded_wallets(
+        self,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Next page cursor to fetch")] = None,
+        page_size: Annotated[Optional[Union[Annotated[float, Field(le=400, strict=True)], Annotated[int, Field(le=400, strict=True)]]], Field(description="Items per page")] = None,
+        sort: Annotated[Optional[StrictStr], Field(description="Field(s) to use for sorting")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="Is the order ascending or descending")] = None,
+        enabled: Annotated[Optional[StrictBool], Field(description="Enabled Wallets")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletPaginatedWalletsResponse]]:
+        """List wallets
+
+        Get all Non Custodial Wallets
+
+        :param page_cursor: Next page cursor to fetch
+        :type page_cursor: str
+        :param page_size: Items per page
+        :type page_size: float
+        :param sort: Field(s) to use for sorting
+        :type sort: str
+        :param order: Is the order ascending or descending
+        :type order: str
+        :param enabled: Enabled Wallets
+        :type enabled: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_embedded_wallets_serialize(
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort=sort,
+            order=order,
+            enabled=enabled,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletPaginatedWalletsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_embedded_wallets_serialize(
+        self,
+        page_cursor,
+        page_size,
+        sort,
+        order,
+        enabled,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort is not None:
+            
+            _query_params.append(('sort', sort))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        if enabled is not None:
+            
+            _query_params.append(('enabled', enabled))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/wallets',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -213,10 +2111,11 @@ class EmbeddedWalletsApi:
     @validate_call
     def get_public_key_info_ncw(
         self,
+        x_end_user_wallet_id: Annotated[StrictStr, Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")],
         wallet_id: Annotated[StrictStr, Field(description="The ID of the Non-Custodial wallet")],
         derivation_path: Annotated[StrictStr, Field(description="An array of integers (passed as JSON stringified array) representing the full BIP44 derivation path of the requested public key.  The first element must always be 44. ")],
         algorithm: Annotated[StrictStr, Field(description="Elliptic Curve")],
-        compressed: Optional[StrictBool] = None,
+        compressed: Annotated[Optional[StrictBool], Field(description="Compressed/Uncompressed public key format")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -234,13 +2133,15 @@ class EmbeddedWalletsApi:
 
         Gets the public key information based on derivation path and signing algorithm within a Non-Custodial Wallet
 
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (required)
+        :type x_end_user_wallet_id: str
         :param wallet_id: The ID of the Non-Custodial wallet (required)
         :type wallet_id: str
         :param derivation_path: An array of integers (passed as JSON stringified array) representing the full BIP44 derivation path of the requested public key.  The first element must always be 44.  (required)
         :type derivation_path: str
         :param algorithm: Elliptic Curve (required)
         :type algorithm: str
-        :param compressed:
+        :param compressed: Compressed/Uncompressed public key format
         :type compressed: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -264,11 +2165,13 @@ class EmbeddedWalletsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
+        validate_not_empty_string(function_name="get_public_key_info_ncw", param_name="x_end_user_wallet_id", param_value=x_end_user_wallet_id)
         validate_not_empty_string(function_name="get_public_key_info_ncw", param_name="wallet_id", param_value=wallet_id)
         validate_not_empty_string(function_name="get_public_key_info_ncw", param_name="derivation_path", param_value=derivation_path)
         validate_not_empty_string(function_name="get_public_key_info_ncw", param_name="algorithm", param_value=algorithm)
 
         _param = self._get_public_key_info_ncw_serialize(
+            x_end_user_wallet_id=x_end_user_wallet_id,
             wallet_id=wallet_id,
             derivation_path=derivation_path,
             algorithm=algorithm,
@@ -292,6 +2195,7 @@ class EmbeddedWalletsApi:
 
     def _get_public_key_info_ncw_serialize(
         self,
+        x_end_user_wallet_id,
         wallet_id,
         derivation_path,
         algorithm,
@@ -333,6 +2237,8 @@ class EmbeddedWalletsApi:
             _query_params.append(('compressed', compressed))
             
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
 
@@ -352,7 +2258,159 @@ class EmbeddedWalletsApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/ncw/{walletId}/public_key_info',
+            resource_path='/ncw/wallets/{walletId}/public_key_info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def refresh_embedded_wallet_asset_balance(
+        self,
+        wallet_id: Annotated[StrictStr, Field(description="Wallet Id")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[EmbeddedWalletAssetBalance]]:
+        """Refresh asset balance
+
+        Refresh the balance of an asset in a specific account
+
+        :param wallet_id: Wallet Id (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="refresh_embedded_wallet_asset_balance", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="refresh_embedded_wallet_asset_balance", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="refresh_embedded_wallet_asset_balance", param_name="asset_id", param_value=asset_id)
+
+        _param = self._refresh_embedded_wallet_asset_balance_serialize(
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "EmbeddedWalletAssetBalance",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _refresh_embedded_wallet_asset_balance_serialize(
+        self,
+        wallet_id,
+        account_id,
+        asset_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}/balance',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

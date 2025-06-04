@@ -990,6 +990,7 @@ class NFTsApi:
     def refresh_nft_metadata(
         self,
         id: Annotated[StrictStr, Field(description="NFT ID")],
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -1010,6 +1011,8 @@ class NFTsApi:
 
         :param id: NFT ID (required)
         :type id: str
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1038,6 +1041,7 @@ class NFTsApi:
 
         _param = self._refresh_nft_metadata_serialize(
             id=id,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1058,6 +1062,7 @@ class NFTsApi:
     def _refresh_nft_metadata_serialize(
         self,
         id,
+        x_end_user_wallet_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -1084,6 +1089,8 @@ class NFTsApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
@@ -1259,6 +1266,7 @@ class NFTsApi:
         self,
         id: Annotated[StrictStr, Field(description="NFT ID")],
         update_token_ownership_status_dto: UpdateTokenOwnershipStatusDto,
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -1281,6 +1289,8 @@ class NFTsApi:
         :type id: str
         :param update_token_ownership_status_dto: (required)
         :type update_token_ownership_status_dto: UpdateTokenOwnershipStatusDto
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1310,6 +1320,7 @@ class NFTsApi:
         _param = self._update_token_ownership_status_serialize(
             id=id,
             update_token_ownership_status_dto=update_token_ownership_status_dto,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1331,6 +1342,7 @@ class NFTsApi:
         self,
         id,
         update_token_ownership_status_dto,
+        x_end_user_wallet_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -1357,6 +1369,8 @@ class NFTsApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
@@ -1406,6 +1420,7 @@ class NFTsApi:
     def update_tokens_ownership_spam(
         self,
         token_ownership_spam_update_payload: List[TokenOwnershipSpamUpdatePayload],
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -1426,6 +1441,8 @@ class NFTsApi:
 
         :param token_ownership_spam_update_payload: (required)
         :type token_ownership_spam_update_payload: List[TokenOwnershipSpamUpdatePayload]
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1453,6 +1470,7 @@ class NFTsApi:
 
         _param = self._update_tokens_ownership_spam_serialize(
             token_ownership_spam_update_payload=token_ownership_spam_update_payload,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1475,6 +1493,7 @@ class NFTsApi:
     def _update_tokens_ownership_spam_serialize(
         self,
         token_ownership_spam_update_payload,
+        x_end_user_wallet_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -1500,6 +1519,8 @@ class NFTsApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
@@ -1549,6 +1570,7 @@ class NFTsApi:
     def update_tokens_ownership_status(
         self,
         token_ownership_status_update_payload: List[TokenOwnershipStatusUpdatePayload],
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -1569,6 +1591,8 @@ class NFTsApi:
 
         :param token_ownership_status_update_payload: (required)
         :type token_ownership_status_update_payload: List[TokenOwnershipStatusUpdatePayload]
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1596,6 +1620,7 @@ class NFTsApi:
 
         _param = self._update_tokens_ownership_status_serialize(
             token_ownership_status_update_payload=token_ownership_status_update_payload,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1618,6 +1643,7 @@ class NFTsApi:
     def _update_tokens_ownership_status_serialize(
         self,
         token_ownership_status_update_payload,
+        x_end_user_wallet_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -1643,6 +1669,8 @@ class NFTsApi:
         # process the path parameters
         # process the query parameters
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters

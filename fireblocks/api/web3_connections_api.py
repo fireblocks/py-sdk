@@ -51,6 +51,7 @@ class Web3ConnectionsApi:
         self,
         create_connection_request: CreateConnectionRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -72,6 +73,8 @@ class Web3ConnectionsApi:
         :type create_connection_request: CreateConnectionRequest
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -98,6 +101,7 @@ class Web3ConnectionsApi:
         _param = self._create_serialize(
             create_connection_request=create_connection_request,
             idempotency_key=idempotency_key,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -120,6 +124,7 @@ class Web3ConnectionsApi:
         self,
         create_connection_request,
         idempotency_key,
+        x_end_user_wallet_id,
         _request_auth,
         _content_type,
         _headers,
@@ -145,6 +150,8 @@ class Web3ConnectionsApi:
         # process the header parameters
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
         if create_connection_request is not None:
@@ -198,6 +205,7 @@ class Web3ConnectionsApi:
     @validate_call
     def get(
         self,
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         order: Annotated[Optional[StrictStr], Field(description="List order; ascending or descending.")] = None,
         filter: Annotated[Optional[GetFilterParameter], Field(description="Parsed filter object")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Property to sort Web3 connections by.")] = None,
@@ -220,6 +228,8 @@ class Web3ConnectionsApi:
 
         Get open Web3 connections.
 
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param order: List order; ascending or descending.
         :type order: str
         :param filter: Parsed filter object
@@ -254,6 +264,7 @@ class Web3ConnectionsApi:
 
 
         _param = self._get_serialize(
+            x_end_user_wallet_id=x_end_user_wallet_id,
             order=order,
             filter=filter,
             sort=sort,
@@ -279,6 +290,7 @@ class Web3ConnectionsApi:
 
     def _get_serialize(
         self,
+        x_end_user_wallet_id,
         order,
         filter,
         sort,
@@ -327,6 +339,8 @@ class Web3ConnectionsApi:
             _query_params.append(('next', next))
             
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
 
@@ -366,6 +380,7 @@ class Web3ConnectionsApi:
     def remove(
         self,
         id: Annotated[StrictStr, Field(description="The ID of the existing Web3 connection to remove.")],
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -385,6 +400,8 @@ class Web3ConnectionsApi:
 
         :param id: The ID of the existing Web3 connection to remove. (required)
         :type id: str
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -411,6 +428,7 @@ class Web3ConnectionsApi:
 
         _param = self._remove_serialize(
             id=id,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -432,6 +450,7 @@ class Web3ConnectionsApi:
     def _remove_serialize(
         self,
         id,
+        x_end_user_wallet_id,
         _request_auth,
         _content_type,
         _headers,
@@ -457,6 +476,8 @@ class Web3ConnectionsApi:
             _path_params['id'] = id
         # process the query parameters
         # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
 
@@ -491,6 +512,7 @@ class Web3ConnectionsApi:
         id: Annotated[StrictStr, Field(description="The ID of the initiated Web3 connection to approve.")],
         respond_to_connection_request: RespondToConnectionRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        x_end_user_wallet_id: Annotated[Optional[StrictStr], Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -514,6 +536,8 @@ class Web3ConnectionsApi:
         :type respond_to_connection_request: RespondToConnectionRequest
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+        :type x_end_user_wallet_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -542,6 +566,7 @@ class Web3ConnectionsApi:
             id=id,
             respond_to_connection_request=respond_to_connection_request,
             idempotency_key=idempotency_key,
+            x_end_user_wallet_id=x_end_user_wallet_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -566,6 +591,7 @@ class Web3ConnectionsApi:
         id,
         respond_to_connection_request,
         idempotency_key,
+        x_end_user_wallet_id,
         _request_auth,
         _content_type,
         _headers,
@@ -593,6 +619,8 @@ class Web3ConnectionsApi:
         # process the header parameters
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
         # process the form parameters
         # process the body parameter
         if respond_to_connection_request is not None:

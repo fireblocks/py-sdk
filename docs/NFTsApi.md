@@ -451,7 +451,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **refresh_nft_metadata**
-> refresh_nft_metadata(id, idempotency_key=idempotency_key)
+> refresh_nft_metadata(id, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key)
 
 Refresh token metadata
 
@@ -482,11 +482,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     id = 'NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd' # str | NFT ID
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Refresh token metadata
-        fireblocks.nfts.refresh_nft_metadata(id, idempotency_key=idempotency_key).result()
+        fireblocks.nfts.refresh_nft_metadata(id, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling NFTsApi->refresh_nft_metadata: %s\n" % e)
 ```
@@ -499,6 +500,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| NFT ID | 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -597,7 +599,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_token_ownership_status**
-> update_token_ownership_status(id, update_token_ownership_status_dto, idempotency_key=idempotency_key)
+> update_token_ownership_status(id, update_token_ownership_status_dto, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key)
 
 Update token ownership status
 
@@ -630,11 +632,12 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     id = 'NFT-abcdefabcdefabcdefabcdefabcdefabcdefabcd' # str | NFT ID
     update_token_ownership_status_dto = fireblocks.UpdateTokenOwnershipStatusDto() # UpdateTokenOwnershipStatusDto | 
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Update token ownership status
-        fireblocks.nfts.update_token_ownership_status(id, update_token_ownership_status_dto, idempotency_key=idempotency_key).result()
+        fireblocks.nfts.update_token_ownership_status(id, update_token_ownership_status_dto, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling NFTsApi->update_token_ownership_status: %s\n" % e)
 ```
@@ -648,6 +651,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| NFT ID | 
  **update_token_ownership_status_dto** | [**UpdateTokenOwnershipStatusDto**](UpdateTokenOwnershipStatusDto.md)|  | 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -672,7 +676,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_tokens_ownership_spam**
-> update_tokens_ownership_spam(token_ownership_spam_update_payload, idempotency_key=idempotency_key)
+> update_tokens_ownership_spam(token_ownership_spam_update_payload, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key)
 
 Update tokens ownership spam property
 
@@ -703,11 +707,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     token_ownership_spam_update_payload = [fireblocks.TokenOwnershipSpamUpdatePayload()] # List[TokenOwnershipSpamUpdatePayload] | 
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Update tokens ownership spam property
-        fireblocks.nfts.update_tokens_ownership_spam(token_ownership_spam_update_payload, idempotency_key=idempotency_key).result()
+        fireblocks.nfts.update_tokens_ownership_spam(token_ownership_spam_update_payload, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling NFTsApi->update_tokens_ownership_spam: %s\n" % e)
 ```
@@ -720,6 +725,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_ownership_spam_update_payload** | [**List[TokenOwnershipSpamUpdatePayload]**](TokenOwnershipSpamUpdatePayload.md)|  | 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -746,7 +752,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_tokens_ownership_status**
-> update_tokens_ownership_status(token_ownership_status_update_payload, idempotency_key=idempotency_key)
+> update_tokens_ownership_status(token_ownership_status_update_payload, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key)
 
 Update tokens ownership status
 
@@ -777,11 +783,12 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     token_ownership_status_update_payload = [fireblocks.TokenOwnershipStatusUpdatePayload()] # List[TokenOwnershipStatusUpdatePayload] | 
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (optional)
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Update tokens ownership status
-        fireblocks.nfts.update_tokens_ownership_status(token_ownership_status_update_payload, idempotency_key=idempotency_key).result()
+        fireblocks.nfts.update_tokens_ownership_status(token_ownership_status_update_payload, x_end_user_wallet_id=x_end_user_wallet_id, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling NFTsApi->update_tokens_ownership_status: %s\n" % e)
 ```
@@ -794,6 +801,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_ownership_status_update_payload** | [**List[TokenOwnershipStatusUpdatePayload]**](TokenOwnershipStatusUpdatePayload.md)|  | 
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | [optional] 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type

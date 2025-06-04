@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.aml_registration_result_full_payload import AmlRegistrationResultFullPayload
+from fireblocks.models.compliance_result_statuses_enum import ComplianceResultStatusesEnum
 from fireblocks.models.compliance_screening_result_full_payload import ComplianceScreeningResultFullPayload
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,22 +30,12 @@ class ComplianceResultFullPayload(BaseModel):
     """
     The result of the Compliance AML/Travel Rule screening.
     """ # noqa: E501
-    aml: Optional[List[ComplianceScreeningResultFullPayload]] = Field(default=None, description="The end result of the AML screening.")
-    tr: Optional[List[ComplianceScreeningResultFullPayload]] = Field(default=None, description="The result of the Travel Rule screening.")
+    aml: Optional[ComplianceScreeningResultFullPayload] = None
+    tr: Optional[ComplianceScreeningResultFullPayload] = None
     aml_list: Optional[List[ComplianceScreeningResultFullPayload]] = Field(default=None, description="The list of all results of the AML screening.", alias="amlList")
-    status: Optional[StrictStr] = Field(default=None, description="Status of compliance result screening.")
-    aml_registration: Optional[List[AmlRegistrationResultFullPayload]] = Field(default=None, description="The results of the AML address registration.", alias="amlRegistration")
+    status: Optional[ComplianceResultStatusesEnum] = None
+    aml_registration: Optional[AmlRegistrationResultFullPayload] = Field(default=None, alias="amlRegistration")
     __properties: ClassVar[List[str]] = ["aml", "tr", "amlList", "status", "amlRegistration"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['Started', 'NetworkConnectionAddressResolve', 'ScreeningPrepare', 'AMLStarted', 'AMLCompleted', 'AMLFailed', 'AMLInBackground', 'TRPreconditionChecks', 'TRStarted', 'TRCompleted', 'TRFailed', 'Completed', 'IncomingStarted', 'IncomingScreeningPrepare', 'IncomingWaitForFirstConfirmation', 'AMLIncomingStarted', 'AMLIncomingCompleted', 'AMLIncomingFailed', 'AMLIncomingInBackground', 'TRIncomingStarted', 'TRIncomingCompleted', 'TRIncomingFailed', 'IncomingCompleted']):
-            raise ValueError("must be one of enum values ('Started', 'NetworkConnectionAddressResolve', 'ScreeningPrepare', 'AMLStarted', 'AMLCompleted', 'AMLFailed', 'AMLInBackground', 'TRPreconditionChecks', 'TRStarted', 'TRCompleted', 'TRFailed', 'Completed', 'IncomingStarted', 'IncomingScreeningPrepare', 'IncomingWaitForFirstConfirmation', 'AMLIncomingStarted', 'AMLIncomingCompleted', 'AMLIncomingFailed', 'AMLIncomingInBackground', 'TRIncomingStarted', 'TRIncomingCompleted', 'TRIncomingFailed', 'IncomingCompleted')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,20 +76,12 @@ class ComplianceResultFullPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in aml (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of aml
         if self.aml:
-            for _item_aml in self.aml:
-                if _item_aml:
-                    _items.append(_item_aml.to_dict())
-            _dict['aml'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in tr (list)
-        _items = []
+            _dict['aml'] = self.aml.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tr
         if self.tr:
-            for _item_tr in self.tr:
-                if _item_tr:
-                    _items.append(_item_tr.to_dict())
-            _dict['tr'] = _items
+            _dict['tr'] = self.tr.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in aml_list (list)
         _items = []
         if self.aml_list:
@@ -106,13 +89,9 @@ class ComplianceResultFullPayload(BaseModel):
                 if _item_aml_list:
                     _items.append(_item_aml_list.to_dict())
             _dict['amlList'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in aml_registration (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of aml_registration
         if self.aml_registration:
-            for _item_aml_registration in self.aml_registration:
-                if _item_aml_registration:
-                    _items.append(_item_aml_registration.to_dict())
-            _dict['amlRegistration'] = _items
+            _dict['amlRegistration'] = self.aml_registration.to_dict()
         return _dict
 
     @classmethod
@@ -125,11 +104,11 @@ class ComplianceResultFullPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "aml": [ComplianceScreeningResultFullPayload.from_dict(_item) for _item in obj["aml"]] if obj.get("aml") is not None else None,
-            "tr": [ComplianceScreeningResultFullPayload.from_dict(_item) for _item in obj["tr"]] if obj.get("tr") is not None else None,
+            "aml": ComplianceScreeningResultFullPayload.from_dict(obj["aml"]) if obj.get("aml") is not None else None,
+            "tr": ComplianceScreeningResultFullPayload.from_dict(obj["tr"]) if obj.get("tr") is not None else None,
             "amlList": [ComplianceScreeningResultFullPayload.from_dict(_item) for _item in obj["amlList"]] if obj.get("amlList") is not None else None,
             "status": obj.get("status"),
-            "amlRegistration": [AmlRegistrationResultFullPayload.from_dict(_item) for _item in obj["amlRegistration"]] if obj.get("amlRegistration") is not None else None
+            "amlRegistration": AmlRegistrationResultFullPayload.from_dict(obj["amlRegistration"]) if obj.get("amlRegistration") is not None else None
         })
         return _obj
 

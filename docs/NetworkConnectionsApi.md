@@ -103,7 +103,6 @@ No authorization required
 Creates a new network connection
 
 Initiates a new network connection.
-
 **Note:** This API call is subject to Flexible Routing Schemes.
 
 Your routing policy defines how your transactions are routed.
@@ -568,7 +567,6 @@ No authorization required
 List network connections
 
 Returns all network connections.
-
 **Note:** This API call is subject to Flexible Routing Schemes.
 
 Your routing policy defines how your transactions are routed.

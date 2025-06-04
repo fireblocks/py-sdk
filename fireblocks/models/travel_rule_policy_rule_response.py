@@ -38,7 +38,7 @@ class TravelRulePolicyRuleResponse(BaseModel):
     base_asset: Optional[StrictStr] = Field(default=None, alias="baseAsset")
     amount: Optional[Union[StrictFloat, StrictInt]] = None
     amount_usd: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="amountUSD")
-    network_protocol: Optional[StrictStr] = Field(default=None, alias="networkProtocol")
+    network_protocol: Optional[StrictStr] = Field(default=None, description="The network protocol of the token", alias="networkProtocol")
     operation: Optional[StrictStr] = None
     action: StrictStr
     __properties: ClassVar[List[str]] = ["sourceType", "sourceSubType", "destType", "destSubType", "destAddress", "sourceId", "destId", "asset", "baseAsset", "amount", "amountUSD", "networkProtocol", "operation", "action"]

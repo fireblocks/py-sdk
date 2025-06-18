@@ -105,7 +105,11 @@ class TestTransactionResponse(unittest.TestCase):
                 fee_info = fireblocks.models.fee_info.FeeInfo(
                     network_fee = '', 
                     service_fee = '', 
-                    gas_price = '', ),
+                    gas_price = '', 
+                    paid_by_relay = True, 
+                    relay_type = 'LOCAL', 
+                    relay_id = '1', 
+                    relay_name = 'Tenant Name', ),
                 fee_currency = '',
                 network_records = [
                     fireblocks.models.network_record.NetworkRecord(
@@ -159,7 +163,7 @@ class TestTransactionResponse(unittest.TestCase):
                 aml_screening_result = fireblocks.models.aml_screening_result.AmlScreeningResult(
                     provider = '', 
                     payload = fireblocks.models.payload.payload(), ),
-                compliance_result = fireblocks.models.compliance_result.ComplianceResult(
+                compliance_results = fireblocks.models.compliance_results.ComplianceResults(
                     aml = [
                         fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
                             provider = '', 

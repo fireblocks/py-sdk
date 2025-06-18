@@ -1,4 +1,4 @@
-# ComplianceResult
+# ComplianceResults
 
 The result of the Compliance AML/Travel Rule screening.
 
@@ -15,19 +15,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from fireblocks.models.compliance_result import ComplianceResult
+from fireblocks.models.compliance_results import ComplianceResults
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of ComplianceResult from a JSON string
-compliance_result_instance = ComplianceResult.from_json(json)
+# create an instance of ComplianceResults from a JSON string
+compliance_results_instance = ComplianceResults.from_json(json)
 # print the JSON string representation of the object
-print(ComplianceResult.to_json())
+print(ComplianceResults.to_json())
 
 # convert the object into a dict
-compliance_result_dict = compliance_result_instance.to_dict()
-# create an instance of ComplianceResult from a dict
-compliance_result_from_dict = ComplianceResult.from_dict(compliance_result_dict)
+compliance_results_dict = compliance_results_instance.to_dict()
+# create an instance of ComplianceResults from a dict
+compliance_results_from_dict = ComplianceResults.from_dict(compliance_results_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

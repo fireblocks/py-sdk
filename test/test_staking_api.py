@@ -90,6 +90,13 @@ class TestStakingApi(unittest.TestCase):
         """
         pass
 
+    def test_merge_stake_accounts(self) -> None:
+        """Test case for merge_stake_accounts
+
+        Execute a Merge operation on SOL/SOL_TEST stake accounts
+        """
+        pass
+
     def test_split(self) -> None:
         """Test case for split
 

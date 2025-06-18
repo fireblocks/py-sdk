@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.compliance_result import ComplianceResult
+from fireblocks.models.compliance_results import ComplianceResults
 
 
-class TestComplianceResult(unittest.TestCase):
-    """ComplianceResult unit test stubs"""
+class TestComplianceResults(unittest.TestCase):
+    """ComplianceResults unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,16 +27,16 @@ class TestComplianceResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ComplianceResult:
-        """Test ComplianceResult
+    def make_instance(self, include_optional) -> ComplianceResults:
+        """Test ComplianceResults
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ComplianceResult`
+        # uncomment below to create an instance of `ComplianceResults`
         """
-        model = ComplianceResult()
+        model = ComplianceResults()
         if include_optional:
-            return ComplianceResult(
+            return ComplianceResults(
                 aml = [
                     fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
                         provider = '', 
@@ -70,12 +70,12 @@ class TestComplianceResult(unittest.TestCase):
                     ]
             )
         else:
-            return ComplianceResult(
+            return ComplianceResults(
         )
         """
 
-    def testComplianceResult(self):
-        """Test ComplianceResult"""
+    def testComplianceResults(self):
+        """Test ComplianceResults"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

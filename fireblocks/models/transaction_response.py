@@ -24,7 +24,7 @@ from fireblocks.models.aml_screening_result import AmlScreeningResult
 from fireblocks.models.amount_info import AmountInfo
 from fireblocks.models.authorization_info import AuthorizationInfo
 from fireblocks.models.block_info import BlockInfo
-from fireblocks.models.compliance_result import ComplianceResult
+from fireblocks.models.compliance_results import ComplianceResults
 from fireblocks.models.destination_transfer_peer_path_response import DestinationTransferPeerPathResponse
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
@@ -73,7 +73,7 @@ class TransactionResponse(BaseModel):
     exchange_tx_id: Optional[StrictStr] = Field(default=None, description="If the transaction originated from an exchange, this is the ID of this transaction at the exchange.", alias="exchangeTxId")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
     aml_screening_result: Optional[AmlScreeningResult] = Field(default=None, alias="amlScreeningResult")
-    compliance_result: Optional[ComplianceResult] = Field(default=None, alias="complianceResult")
+    compliance_results: Optional[ComplianceResults] = Field(default=None, alias="complianceResults")
     extra_parameters: Optional[Dict[str, Any]] = Field(default=None, description="Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/get_vault-accounts-vaultaccountid-assetid-unspent-inputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. ", alias="extraParameters")
     signed_messages: Optional[List[SignedMessage]] = Field(default=None, alias="signedMessages")
     num_of_confirmations: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of confirmations of the transaction. The number will increase until the transaction will be considered completed according to the confirmation policy.", alias="numOfConfirmations")
@@ -90,7 +90,7 @@ class TransactionResponse(BaseModel):
     fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Deprecated - please use the `feeInfo` field for accuracy.")
     network_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fee paid to the network. Deprecated - please use the `feeInfo` field for accuracy.", alias="networkFee")
     error_description: Optional[StrictStr] = Field(default=None, description="The transaction's revert reason. This field will be returned when  `subStatus` =  'SMART_CONTRACT_EXECUTION_FAILED'.", alias="errorDescription")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "amlScreeningResult", "complianceResult", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription"]
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "amlScreeningResult", "complianceResults", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -176,9 +176,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aml_screening_result
         if self.aml_screening_result:
             _dict['amlScreeningResult'] = self.aml_screening_result.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of compliance_result
-        if self.compliance_result:
-            _dict['complianceResult'] = self.compliance_result.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of compliance_results
+        if self.compliance_results:
+            _dict['complianceResults'] = self.compliance_results.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in signed_messages (list)
         _items = []
         if self.signed_messages:
@@ -243,7 +243,7 @@ class TransactionResponse(BaseModel):
             "exchangeTxId": obj.get("exchangeTxId"),
             "customerRefId": obj.get("customerRefId"),
             "amlScreeningResult": AmlScreeningResult.from_dict(obj["amlScreeningResult"]) if obj.get("amlScreeningResult") is not None else None,
-            "complianceResult": ComplianceResult.from_dict(obj["complianceResult"]) if obj.get("complianceResult") is not None else None,
+            "complianceResults": ComplianceResults.from_dict(obj["complianceResults"]) if obj.get("complianceResults") is not None else None,
             "extraParameters": obj.get("extraParameters"),
             "signedMessages": [SignedMessage.from_dict(_item) for _item in obj["signedMessages"]] if obj.get("signedMessages") is not None else None,
             "numOfConfirmations": obj.get("numOfConfirmations"),

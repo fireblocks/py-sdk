@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_providers**](StakingApi.md#get_providers) | **GET** /staking/providers | List staking providers details
 [**get_summary**](StakingApi.md#get_summary) | **GET** /staking/positions/summary | Get staking summary details
 [**get_summary_by_vault**](StakingApi.md#get_summary_by_vault) | **GET** /staking/positions/summary/vaults | Get staking summary details by vault
+[**merge_stake_accounts**](StakingApi.md#merge_stake_accounts) | **POST** /staking/chains/{chainDescriptor}/merge | Execute a Merge operation on SOL/SOL_TEST stake accounts
 [**split**](StakingApi.md#split) | **POST** /staking/chains/{chainDescriptor}/split | Execute a Split operation on SOL/SOL_TEST stake account
 [**stake**](StakingApi.md#stake) | **POST** /staking/chains/{chainDescriptor}/stake | Initiate Stake Operation
 [**unstake**](StakingApi.md#unstake) | **POST** /staking/chains/{chainDescriptor}/unstake | Execute an Unstake operation
@@ -668,6 +669,85 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A summary for each vault were returned successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **merge_stake_accounts**
+> MergeStakeAccountsResponse merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key)
+
+Execute a Merge operation on SOL/SOL_TEST stake accounts
+
+Perform a Solana Merge of two active stake accounts into one.
+
+### Example
+
+
+```python
+from fireblocks.models.merge_stake_accounts_request import MergeStakeAccountsRequest
+from fireblocks.models.merge_stake_accounts_response import MergeStakeAccountsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    chain_descriptor = 'SOL' # str | The protocol identifier (e.g. \"SOL\"/\"SOL_TEST\") to use
+    merge_stake_accounts_request = fireblocks.MergeStakeAccountsRequest() # MergeStakeAccountsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Execute a Merge operation on SOL/SOL_TEST stake accounts
+        api_response = fireblocks.staking.merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key).result()
+        print("The response of StakingApi->merge_stake_accounts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StakingApi->merge_stake_accounts: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chain_descriptor** | **str**| The protocol identifier (e.g. \&quot;SOL\&quot;/\&quot;SOL_TEST\&quot;) to use | 
+ **merge_stake_accounts_request** | [**MergeStakeAccountsRequest**](MergeStakeAccountsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**MergeStakeAccountsResponse**](MergeStakeAccountsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Merge action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

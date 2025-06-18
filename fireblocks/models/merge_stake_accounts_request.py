@@ -18,33 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.fee_level import FeeLevel
 from typing import Optional, Set
 from typing_extensions import Self
 
-class FeeInfo(BaseModel):
+class MergeStakeAccountsRequest(BaseModel):
     """
-    Details of the transaction's fee.
+    MergeStakeAccountsRequest
     """ # noqa: E501
-    network_fee: Optional[StrictStr] = Field(default=None, description="The fee paid to the network", alias="networkFee")
-    service_fee: Optional[StrictStr] = Field(default=None, description="The total fee deducted by the exchange from the actual requested amount (serviceFee = amount - netAmount)", alias="serviceFee")
-    gas_price: Optional[StrictStr] = Field(default=None, alias="gasPrice")
-    paid_by_relay: Optional[StrictBool] = Field(default=None, description="Wether the fee was paid by the relay or not", alias="paidByRelay")
-    relay_type: Optional[StrictStr] = Field(default=None, description="Wether the relay is the same tenant (LOCAL) or another tenant (THIRD_PARTY)", alias="relayType")
-    relay_id: Optional[StrictStr] = Field(default=None, description="The vault account ID of the relay", alias="relayId")
-    relay_name: Optional[StrictStr] = Field(default=None, description="The name of the tenant, only for THIRD_PARTY relays", alias="relayName")
-    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "paidByRelay", "relayType", "relayId", "relayName"]
-
-    @field_validator('relay_type')
-    def relay_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['LOCAL', 'THIRD_PARTY']):
-            raise ValueError("must be one of enum values ('LOCAL', 'THIRD_PARTY')")
-        return value
+    source_id: StrictStr = Field(description="Id of the source position to merge from", alias="sourceId")
+    destination_id: StrictStr = Field(description="Id of the destination position to merge into", alias="destinationId")
+    fee: Optional[StrictStr] = Field(default=None, description="Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required.")
+    fee_level: Optional[FeeLevel] = Field(default=None, alias="feeLevel")
+    tx_note: Optional[StrictStr] = Field(default=None, description="The note to associate with the transactions.", alias="txNote")
+    __properties: ClassVar[List[str]] = ["sourceId", "destinationId", "fee", "feeLevel", "txNote"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +53,7 @@ class FeeInfo(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeeInfo from a JSON string"""
+        """Create an instance of MergeStakeAccountsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,7 +78,7 @@ class FeeInfo(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeeInfo from a dict"""
+        """Create an instance of MergeStakeAccountsRequest from a dict"""
         if obj is None:
             return None
 
@@ -97,13 +86,11 @@ class FeeInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "networkFee": obj.get("networkFee"),
-            "serviceFee": obj.get("serviceFee"),
-            "gasPrice": obj.get("gasPrice"),
-            "paidByRelay": obj.get("paidByRelay"),
-            "relayType": obj.get("relayType"),
-            "relayId": obj.get("relayId"),
-            "relayName": obj.get("relayName")
+            "sourceId": obj.get("sourceId"),
+            "destinationId": obj.get("destinationId"),
+            "fee": obj.get("fee"),
+            "feeLevel": obj.get("feeLevel"),
+            "txNote": obj.get("txNote")
         })
         return _obj
 

@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "10.2.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -185,11 +185,11 @@ from fireblocks.models.collection_token_metadata_attribute_dto import (
 )
 from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
 from fireblocks.models.collection_type import CollectionType
-from fireblocks.models.compliance_result import ComplianceResult
 from fireblocks.models.compliance_result_full_payload import ComplianceResultFullPayload
 from fireblocks.models.compliance_result_statuses_enum import (
     ComplianceResultStatusesEnum,
 )
+from fireblocks.models.compliance_results import ComplianceResults
 from fireblocks.models.compliance_screening_result import ComplianceScreeningResult
 from fireblocks.models.compliance_screening_result_full_payload import (
     ComplianceScreeningResultFullPayload,
@@ -522,6 +522,8 @@ from fireblocks.models.list_owned_collections_response import (
 )
 from fireblocks.models.list_owned_tokens_response import ListOwnedTokensResponse
 from fireblocks.models.media_entity_response import MediaEntityResponse
+from fireblocks.models.merge_stake_accounts_request import MergeStakeAccountsRequest
+from fireblocks.models.merge_stake_accounts_response import MergeStakeAccountsResponse
 from fireblocks.models.modify_signing_key_agent_id_dto import ModifySigningKeyAgentIdDto
 from fireblocks.models.modify_signing_key_dto import ModifySigningKeyDto
 from fireblocks.models.modify_validation_key_dto import ModifyValidationKeyDto

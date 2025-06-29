@@ -1237,9 +1237,9 @@ class StakingApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[MergeStakeAccountsResponse]]:
-        """Execute a Merge operation on SOL/SOL_TEST stake accounts
+        """Merge Solana on stake accounts
 
-        Perform a Solana Merge of two active stake accounts into one.
+        Perform a Solana Merge of two active stake accounts into one.  Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param chain_descriptor: The protocol identifier (e.g. \"SOL\"/\"SOL_TEST\") to use (required)
         :type chain_descriptor: str

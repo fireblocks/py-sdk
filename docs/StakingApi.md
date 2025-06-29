@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**get_providers**](StakingApi.md#get_providers) | **GET** /staking/providers | List staking providers details
 [**get_summary**](StakingApi.md#get_summary) | **GET** /staking/positions/summary | Get staking summary details
 [**get_summary_by_vault**](StakingApi.md#get_summary_by_vault) | **GET** /staking/positions/summary/vaults | Get staking summary details by vault
-[**merge_stake_accounts**](StakingApi.md#merge_stake_accounts) | **POST** /staking/chains/{chainDescriptor}/merge | Execute a Merge operation on SOL/SOL_TEST stake accounts
+[**merge_stake_accounts**](StakingApi.md#merge_stake_accounts) | **POST** /staking/chains/{chainDescriptor}/merge | Merge Solana on stake accounts
 [**split**](StakingApi.md#split) | **POST** /staking/chains/{chainDescriptor}/split | Execute a Split operation on SOL/SOL_TEST stake account
 [**stake**](StakingApi.md#stake) | **POST** /staking/chains/{chainDescriptor}/stake | Initiate Stake Operation
 [**unstake**](StakingApi.md#unstake) | **POST** /staking/chains/{chainDescriptor}/unstake | Execute an Unstake operation
@@ -676,9 +676,11 @@ No authorization required
 # **merge_stake_accounts**
 > MergeStakeAccountsResponse merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key)
 
-Execute a Merge operation on SOL/SOL_TEST stake accounts
+Merge Solana on stake accounts
 
 Perform a Solana Merge of two active stake accounts into one.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -711,7 +713,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Execute a Merge operation on SOL/SOL_TEST stake accounts
+        # Merge Solana on stake accounts
         api_response = fireblocks.staking.merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key).result()
         print("The response of StakingApi->merge_stake_accounts:\n")
         pprint(api_response)

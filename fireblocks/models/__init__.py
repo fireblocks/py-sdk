@@ -305,6 +305,8 @@ from fireblocks.models.network_id_response import NetworkIdResponse
 from fireblocks.models.network_id_routing_policy_value import NetworkIdRoutingPolicyValue
 from fireblocks.models.network_record import NetworkRecord
 from fireblocks.models.new_address import NewAddress
+from fireblocks.models.non_wallet_quote_fee import NonWalletQuoteFee
+from fireblocks.models.non_wallet_quote_response import NonWalletQuoteResponse
 from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
@@ -363,9 +365,14 @@ from fireblocks.models.policy_status import PolicyStatus
 from fireblocks.models.policy_validation import PolicyValidation
 from fireblocks.models.pre_screening import PreScreening
 from fireblocks.models.provider import Provider
+from fireblocks.models.provider_additional_data import ProviderAdditionalData
+from fireblocks.models.provider_category_enum import ProviderCategoryEnum
 from fireblocks.models.public_key_information import PublicKeyInformation
 from fireblocks.models.publish_draft_request import PublishDraftRequest
 from fireblocks.models.publish_result import PublishResult
+from fireblocks.models.quote_fee import QuoteFee
+from fireblocks.models.quote_request import QuoteRequest
+from fireblocks.models.quote_response import QuoteResponse
 from fireblocks.models.read_abi_function import ReadAbiFunction
 from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
 from fireblocks.models.read_call_function_dto_abi_function import ReadCallFunctionDtoAbiFunction
@@ -467,6 +474,15 @@ from fireblocks.models.stake_response import StakeResponse
 from fireblocks.models.staking_provider import StakingProvider
 from fireblocks.models.status import Status
 from fireblocks.models.stellar_ripple_create_params_dto import StellarRippleCreateParamsDto
+from fireblocks.models.swap_flow_error import SwapFlowError
+from fireblocks.models.swap_operation import SwapOperation
+from fireblocks.models.swap_operation_request import SwapOperationRequest
+from fireblocks.models.swap_operations_paginated_response import SwapOperationsPaginatedResponse
+from fireblocks.models.swap_provider import SwapProvider
+from fireblocks.models.swap_provider_protocols_enum import SwapProviderProtocolsEnum
+from fireblocks.models.swap_providers_paginated_response import SwapProvidersPaginatedResponse
+from fireblocks.models.swap_required_action import SwapRequiredAction
+from fireblocks.models.swap_required_actions_enum import SwapRequiredActionsEnum
 from fireblocks.models.system_message_info import SystemMessageInfo
 from fireblocks.models.task import Task
 from fireblocks.models.templates_paginated_response import TemplatesPaginatedResponse
@@ -584,6 +600,7 @@ from fireblocks.models.vendor_dto import VendorDto
 from fireblocks.models.version import Version
 from fireblocks.models.wallet_asset import WalletAsset
 from fireblocks.models.wallet_asset_additional_info import WalletAssetAdditionalInfo
+from fireblocks.models.wallet_quote_response import WalletQuoteResponse
 from fireblocks.models.webhook import Webhook
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_paginated_response import WebhookPaginatedResponse

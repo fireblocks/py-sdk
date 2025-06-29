@@ -46,6 +46,7 @@ from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
+from fireblocks.api.swap_beta_api import SwapBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
@@ -160,6 +161,9 @@ def test_get_smart_transfer(fireblocks_instance):
 
 def test_get_staking(fireblocks_instance):
     assert isinstance(fireblocks_instance.staking, StakingApi)
+
+def test_get_swap_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.swap_beta, SwapBetaApi)
 
 def test_get_tokenization(fireblocks_instance):
     assert isinstance(fireblocks_instance.tokenization, TokenizationApi)

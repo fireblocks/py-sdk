@@ -27,6 +27,13 @@ class TestContractInteractionsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_decode_contract_data(self) -> None:
+        """Test case for decode_contract_data
+
+        Decode a function call data, error, or event log
+        """
+        pass
+
     def test_get_deployed_contract_abi(self) -> None:
         """Test case for get_deployed_contract_abi
 

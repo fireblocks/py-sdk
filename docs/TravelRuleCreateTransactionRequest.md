@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **beneficiary** | [**TravelRulePiiIVMS**](TravelRulePiiIVMS.md) |  | 
 **encrypted** | **str** | Encrypted data related to the transaction. | [optional] 
 **protocol** | **str** | The protocol used to perform the travel rule. | [optional] 
+**target_protocol** | **str** | The target protocol for GTR (Global Travel Rule) transfers. | [optional] 
 **skip_beneficiary_data_validation** | **bool** | Whether to skip validation of beneficiary data. | [optional] 
 **travel_rule_behavior** | **bool** | Whether to check if the transaction complies with the travel rule in the beneficiary VASP&#39;s jurisdiction. | [optional] 
 **originator_ref** | **str** | A reference ID related to the originator of the transaction. | [optional] 

@@ -41,7 +41,7 @@ class TestSwapProvidersPaginatedResponse(unittest.TestCase):
             return SwapProvidersPaginatedResponse(
                 data = [
                     fireblocks.models.swap_provider.SwapProvider(
-                        id = 'UNISWAP', 
+                        id = '3e2efee1-0d69-4276-a6e6-711531185e4f', 
                         name = 'Uniswap', 
                         protocols = ["UNISWAP_CLASSIC","UNISWAPX"], 
                         category = 'DEX', 
@@ -55,7 +55,7 @@ class TestSwapProvidersPaginatedResponse(unittest.TestCase):
             return SwapProvidersPaginatedResponse(
                 data = [
                     fireblocks.models.swap_provider.SwapProvider(
-                        id = 'UNISWAP', 
+                        id = '3e2efee1-0d69-4276-a6e6-711531185e4f', 
                         name = 'Uniswap', 
                         protocols = ["UNISWAP_CLASSIC","UNISWAPX"], 
                         category = 'DEX', 

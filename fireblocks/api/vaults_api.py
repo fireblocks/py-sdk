@@ -27,6 +27,7 @@ from fireblocks.models.create_assets_request import CreateAssetsRequest
 from fireblocks.models.create_multiple_accounts_request import CreateMultipleAccountsRequest
 from fireblocks.models.create_multiple_deposit_addresses_job_status import CreateMultipleDepositAddressesJobStatus
 from fireblocks.models.create_multiple_deposit_addresses_request import CreateMultipleDepositAddressesRequest
+from fireblocks.models.create_multiple_vault_accounts_job_status import CreateMultipleVaultAccountsJobStatus
 from fireblocks.models.create_vault_account_request import CreateVaultAccountRequest
 from fireblocks.models.create_vault_asset_response import CreateVaultAssetResponse
 from fireblocks.models.get_max_spendable_amount_response import GetMaxSpendableAmountResponse
@@ -43,6 +44,7 @@ from fireblocks.models.update_vault_account_asset_address_request import UpdateV
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
 from fireblocks.models.vault_account import VaultAccount
 from fireblocks.models.vault_accounts_paged_response import VaultAccountsPagedResponse
+from fireblocks.models.vault_accounts_tag_attachments_request import VaultAccountsTagAttachmentsRequest
 from fireblocks.models.vault_action_status import VaultActionStatus
 from fireblocks.models.vault_asset import VaultAsset
 
@@ -194,6 +196,146 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/vault/accounts/{vaultAccountId}/{assetId}/activate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def attach_tags_to_vault_accounts(
+        self,
+        vault_accounts_tag_attachments_request: VaultAccountsTagAttachmentsRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[None]]:
+        """Attach tags to a vault accounts
+
+        Attach one or more tags to the requested vault accounts.
+
+        :param vault_accounts_tag_attachments_request: (required)
+        :type vault_accounts_tag_attachments_request: VaultAccountsTagAttachmentsRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._attach_tags_to_vault_accounts_serialize(
+            vault_accounts_tag_attachments_request=vault_accounts_tag_attachments_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _attach_tags_to_vault_accounts_serialize(
+        self,
+        vault_accounts_tag_attachments_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if vault_accounts_tag_attachments_request is not None:
+            _body_params = vault_accounts_tag_attachments_request
+
+
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/attached_tags/attach',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -381,7 +523,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[JobCreated]]:
         """Bulk creation of new vault accounts
 
-        Create multiple vault accounts by running an async job. </br> **Note**: - These endpoints are currently in beta and might be subject to changes. - We limit accounts to 10k per operation and 200k per customer during beta testing. 
+        Create multiple vault accounts by running an async job. </br> **Note**: - These endpoints are currently in beta and might be subject to changes. - We limit accounts to 10k per operation and 200k per customer during beta testing. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor. 
 
         :param create_multiple_accounts_request: (required)
         :type create_multiple_accounts_request: CreateMultipleAccountsRequest
@@ -529,7 +671,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[JobCreated]]:
         """Bulk creation of new deposit addresses
 
-        Create multiple deposit address by running an async job. </br> **Note**: - We limit accounts to 10k per operation. 
+        Create multiple deposit address by running an async job. </br> **Note**: - We limit accounts to 10k per operation. Endpoint Permission: Admin, Non-Signing Admin. 
 
         :param create_multiple_deposit_addresses_request: (required)
         :type create_multiple_deposit_addresses_request: CreateMultipleDepositAddressesRequest
@@ -1134,6 +1276,146 @@ class VaultsApi:
 
 
     @validate_call
+    def detach_tags_from_vault_accounts(
+        self,
+        vault_accounts_tag_attachments_request: VaultAccountsTagAttachmentsRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[None]]:
+        """Detach tags from a vault accounts
+
+        Detach one or more tags from the requested vault account.
+
+        :param vault_accounts_tag_attachments_request: (required)
+        :type vault_accounts_tag_attachments_request: VaultAccountsTagAttachmentsRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._detach_tags_from_vault_accounts_serialize(
+            vault_accounts_tag_attachments_request=vault_accounts_tag_attachments_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _detach_tags_from_vault_accounts_serialize(
+        self,
+        vault_accounts_tag_attachments_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if vault_accounts_tag_attachments_request is not None:
+            _body_params = vault_accounts_tag_attachments_request
+
+
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/attached_tags/detach',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_asset_wallets(
         self,
         total_amount_larger_than: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="When specified, only asset wallets with total balance larger than this amount are returned.")] = None,
@@ -1326,7 +1608,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateMultipleDepositAddressesJobStatus]]:
         """Get job status of bulk creation of new deposit addresses
 
-        Returns the status of bulk creation of new deposit addresses job and the result or error
+        Returns the status of bulk creation of new deposit addresses job and the result or error Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer. 
 
         :param job_id: The ID of the job to create addresses (required)
         :type job_id: str
@@ -1421,6 +1703,135 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/accounts/addresses/bulk/{jobId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_create_multiple_vault_accounts_job_status(
+        self,
+        job_id: Annotated[StrictStr, Field(description="The ID of the job to create addresses")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[CreateMultipleVaultAccountsJobStatus]]:
+        """Get job status of bulk creation of new vault accounts
+
+        Returns the status of bulk creation of new vault accounts job and the result or error Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer. 
+
+        :param job_id: The ID of the job to create addresses (required)
+        :type job_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_create_multiple_vault_accounts_job_status", param_name="job_id", param_value=job_id)
+
+        _param = self._get_create_multiple_vault_accounts_job_status_serialize(
+            job_id=job_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateMultipleVaultAccountsJobStatus",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_create_multiple_vault_accounts_job_status_serialize(
+        self,
+        job_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if job_id is not None:
+            _path_params['jobId'] = job_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/bulk/{jobId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1593,6 +2004,7 @@ class VaultsApi:
         before: Optional[StrictStr] = None,
         after: Optional[StrictStr] = None,
         limit: Optional[Union[Annotated[float, Field(le=500, strict=True, ge=1)], Annotated[int, Field(le=500, strict=True, ge=1)]]] = None,
+        tag_ids: Annotated[Optional[Annotated[List[StrictStr], Field(max_length=100)]], Field(description="List of tag IDs to filter vault accounts.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1626,6 +2038,8 @@ class VaultsApi:
         :type after: str
         :param limit:
         :type limit: float
+        :param tag_ids: List of tag IDs to filter vault accounts.
+        :type tag_ids: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1658,6 +2072,7 @@ class VaultsApi:
             before=before,
             after=after,
             limit=limit,
+            tag_ids=tag_ids,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1684,6 +2099,7 @@ class VaultsApi:
         before,
         after,
         limit,
+        tag_ids,
         _request_auth,
         _content_type,
         _headers,
@@ -1693,6 +2109,7 @@ class VaultsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'tagIds': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1737,6 +2154,10 @@ class VaultsApi:
         if limit is not None:
             
             _query_params.append(('limit', limit))
+            
+        if tag_ids is not None:
+            
+            _query_params.append(('tagIds', tag_ids))
             
         # process the header parameters
         # process the form parameters

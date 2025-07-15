@@ -47,6 +47,7 @@ from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.swap_beta_api import SwapBetaApi
+from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
@@ -100,6 +101,7 @@ class Fireblocks:
         self._smart_transfer = None
         self._staking = None
         self._swap_beta = None
+        self._tags = None
         self._tokenization = None
         self._transactions = None
         self._travel_rule = None
@@ -308,6 +310,12 @@ class Fireblocks:
         if self._swap_beta is None:
             self._swap_beta = SwapBetaApi(self._api_client)
         return self._swap_beta
+
+    @property
+    def tags(self) -> TagsApi:
+        if self._tags is None:
+            self._tags = TagsApi(self._api_client)
+        return self._tags
 
     @property
     def tokenization(self) -> TokenizationApi:

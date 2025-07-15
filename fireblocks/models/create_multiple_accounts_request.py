@@ -27,9 +27,12 @@ class CreateMultipleAccountsRequest(BaseModel):
     """
     CreateMultipleAccountsRequest
     """ # noqa: E501
-    count: Optional[StrictInt] = Field(default=None, description="Count")
-    asset_ids: Optional[List[StrictStr]] = Field(default=None, description="Array of asset IDs", alias="assetIds")
-    __properties: ClassVar[List[str]] = ["count", "assetIds"]
+    count: StrictInt = Field(description="Count")
+    base_asset_ids: List[StrictStr] = Field(description="Array of base asset IDs", alias="baseAssetIds")
+    names: Optional[List[StrictStr]] = Field(default=None, description="Names to assign to vault accounts. if vaultAccountNamesStartingIndex or prefix is used it'll fail")
+    vault_account_names_starting_index: Optional[StrictInt] = Field(default=None, description="Copy vault accounts names starting from this index. If names array is used it'll fail", alias="vaultAccountNamesStartingIndex")
+    prefix: Optional[StrictStr] = Field(default=None, description="When copying from existing vault accounts (vaultAccountNamesStartingIndex) then adding a prefix to the names. If names array is used it'll fail")
+    __properties: ClassVar[List[str]] = ["count", "baseAssetIds", "names", "vaultAccountNamesStartingIndex", "prefix"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +86,10 @@ class CreateMultipleAccountsRequest(BaseModel):
 
         _obj = cls.model_validate({
             "count": obj.get("count"),
-            "assetIds": obj.get("assetIds")
+            "baseAssetIds": obj.get("baseAssetIds"),
+            "names": obj.get("names"),
+            "vaultAccountNamesStartingIndex": obj.get("vaultAccountNamesStartingIndex"),
+            "prefix": obj.get("prefix")
         })
         return _obj
 

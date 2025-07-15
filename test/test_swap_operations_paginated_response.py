@@ -43,7 +43,7 @@ class TestSwapOperationsPaginatedResponse(unittest.TestCase):
                     fireblocks.models.swap_operation.SwapOperation(
                         id = '51cfb2c1-126d-4ff6-8512-ffba48f4b296', 
                         account_id = '1', 
-                        provider_id = 'UNISWAP', 
+                        provider_id = '3e2efee1-0d69-4276-a6e6-711531185e4f', 
                         category = 'DEX', 
                         protocol = 'UNISWAP_CLASSIC', 
                         status = 'CREATED', 
@@ -73,7 +73,7 @@ class TestSwapOperationsPaginatedResponse(unittest.TestCase):
                     fireblocks.models.swap_operation.SwapOperation(
                         id = '51cfb2c1-126d-4ff6-8512-ffba48f4b296', 
                         account_id = '1', 
-                        provider_id = 'UNISWAP', 
+                        provider_id = '3e2efee1-0d69-4276-a6e6-711531185e4f', 
                         category = 'DEX', 
                         protocol = 'UNISWAP_CLASSIC', 
                         status = 'CREATED', 

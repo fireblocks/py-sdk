@@ -37,7 +37,7 @@ class TestSwapProvider(unittest.TestCase):
         model = SwapProvider()
         if include_optional:
             return SwapProvider(
-                id = 'UNISWAP',
+                id = '3e2efee1-0d69-4276-a6e6-711531185e4f',
                 name = 'Uniswap',
                 protocols = ["UNISWAP_CLASSIC","UNISWAPX"],
                 category = 'DEX',
@@ -47,7 +47,7 @@ class TestSwapProvider(unittest.TestCase):
             )
         else:
             return SwapProvider(
-                id = 'UNISWAP',
+                id = '3e2efee1-0d69-4276-a6e6-711531185e4f',
                 name = 'Uniswap',
                 protocols = ["UNISWAP_CLASSIC","UNISWAPX"],
                 category = 'DEX',

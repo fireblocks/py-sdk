@@ -29,7 +29,7 @@ class SwapProvider(BaseModel):
     """
     SwapProvider
     """ # noqa: E501
-    id: StrictStr = Field(description="The ID of the provider")
+    id: StrictStr = Field(description="The uuid that identifies the provider")
     name: StrictStr = Field(description="Name of the provider")
     protocols: List[SwapProviderProtocolsEnum] = Field(description="List of supported protocols. Protocols are specific per provider")
     category: ProviderCategoryEnum

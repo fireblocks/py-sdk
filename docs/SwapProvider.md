@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the provider | 
+**id** | **str** | The uuid that identifies the provider | 
 **name** | **str** | Name of the provider | 
 **protocols** | [**List[SwapProviderProtocolsEnum]**](SwapProviderProtocolsEnum.md) | List of supported protocols. Protocols are specific per provider | 
 **category** | [**ProviderCategoryEnum**](ProviderCategoryEnum.md) |  | 

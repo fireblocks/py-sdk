@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "10.4.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -51,6 +51,7 @@ from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.swap_beta_api import SwapBetaApi
+from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
@@ -141,7 +142,10 @@ from fireblocks.models.asset_media import AssetMedia
 from fireblocks.models.asset_media_attributes import AssetMediaAttributes
 from fireblocks.models.asset_metadata import AssetMetadata
 from fireblocks.models.asset_metadata_dto import AssetMetadataDto
+from fireblocks.models.asset_metadata_request import AssetMetadataRequest
 from fireblocks.models.asset_not_found_error_response import AssetNotFoundErrorResponse
+from fireblocks.models.asset_note import AssetNote
+from fireblocks.models.asset_note_request import AssetNoteRequest
 from fireblocks.models.asset_onchain import AssetOnchain
 from fireblocks.models.asset_price_forbidden_error_response import (
     AssetPriceForbiddenErrorResponse,
@@ -214,6 +218,17 @@ from fireblocks.models.contract_abi_response_dto_abi_inner import (
     ContractAbiResponseDtoAbiInner,
 )
 from fireblocks.models.contract_attributes import ContractAttributes
+from fireblocks.models.contract_data_decode_data_type import ContractDataDecodeDataType
+from fireblocks.models.contract_data_decode_error import ContractDataDecodeError
+from fireblocks.models.contract_data_decode_request import ContractDataDecodeRequest
+from fireblocks.models.contract_data_decode_request_data import (
+    ContractDataDecodeRequestData,
+)
+from fireblocks.models.contract_data_decode_response_params import (
+    ContractDataDecodeResponseParams,
+)
+from fireblocks.models.contract_data_decoded_response import ContractDataDecodedResponse
+from fireblocks.models.contract_data_log_data_param import ContractDataLogDataParam
 from fireblocks.models.contract_deploy_request import ContractDeployRequest
 from fireblocks.models.contract_deploy_response import ContractDeployResponse
 from fireblocks.models.contract_doc import ContractDoc
@@ -287,6 +302,9 @@ from fireblocks.models.create_multiple_deposit_addresses_job_status import (
 from fireblocks.models.create_multiple_deposit_addresses_request import (
     CreateMultipleDepositAddressesRequest,
 )
+from fireblocks.models.create_multiple_vault_accounts_job_status import (
+    CreateMultipleVaultAccountsJobStatus,
+)
 from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionRequest
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
@@ -294,6 +312,7 @@ from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
 from fireblocks.models.create_signing_key_dto_proof_of_ownership import (
     CreateSigningKeyDtoProofOfOwnership,
 )
+from fireblocks.models.create_tag_request import CreateTagRequest
 from fireblocks.models.create_token_request_dto import CreateTokenRequestDto
 from fireblocks.models.create_token_request_dto_create_params import (
     CreateTokenRequestDtoCreateParams,
@@ -810,6 +829,8 @@ from fireblocks.models.swap_providers_paginated_response import (
 from fireblocks.models.swap_required_action import SwapRequiredAction
 from fireblocks.models.swap_required_actions_enum import SwapRequiredActionsEnum
 from fireblocks.models.system_message_info import SystemMessageInfo
+from fireblocks.models.tag import Tag
+from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.models.task import Task
 from fireblocks.models.templates_paginated_response import TemplatesPaginatedResponse
 from fireblocks.models.third_party_routing import ThirdPartyRouting
@@ -972,12 +993,16 @@ from fireblocks.models.unmanaged_wallet import UnmanagedWallet
 from fireblocks.models.unspent_input import UnspentInput
 from fireblocks.models.unspent_inputs_response import UnspentInputsResponse
 from fireblocks.models.unstake_request import UnstakeRequest
+from fireblocks.models.update_asset_user_metadata_request import (
+    UpdateAssetUserMetadataRequest,
+)
 from fireblocks.models.update_callback_handler_request import (
     UpdateCallbackHandlerRequest,
 )
 from fireblocks.models.update_callback_handler_response import (
     UpdateCallbackHandlerResponse,
 )
+from fireblocks.models.update_tag_request import UpdateTagRequest
 from fireblocks.models.update_token_ownership_status_dto import (
     UpdateTokenOwnershipStatusDto,
 )
@@ -1004,6 +1029,9 @@ from fireblocks.models.vault_account import VaultAccount
 from fireblocks.models.vault_accounts_paged_response import VaultAccountsPagedResponse
 from fireblocks.models.vault_accounts_paged_response_paging import (
     VaultAccountsPagedResponsePaging,
+)
+from fireblocks.models.vault_accounts_tag_attachments_request import (
+    VaultAccountsTagAttachmentsRequest,
 )
 from fireblocks.models.vault_action_status import VaultActionStatus
 from fireblocks.models.vault_asset import VaultAsset

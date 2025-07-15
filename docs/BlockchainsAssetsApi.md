@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**list_blockchains**](BlockchainsAssetsApi.md#list_blockchains) | **GET** /blockchains | List blockchains
 [**register_new_asset**](BlockchainsAssetsApi.md#register_new_asset) | **POST** /assets | Register an asset
 [**set_asset_price**](BlockchainsAssetsApi.md#set_asset_price) | **POST** /assets/prices/{id} | Set asset price
+[**update_asset_user_metadata**](BlockchainsAssetsApi.md#update_asset_user_metadata) | **PATCH** /assets/{id} | Update the user’s metadata for an asset
 
 
 # **get_asset**
@@ -599,6 +600,89 @@ No authorization required
 **200** | Asset price has been set successfully. |  -  |
 **403** | - Tenant is not allowed to set rate. Error code: 1002.  |  -  |
 **404** | - Currency not found. Error code 1001  |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_asset_user_metadata**
+> Asset update_asset_user_metadata(id, idempotency_key=idempotency_key, update_asset_user_metadata_request=update_asset_user_metadata_request)
+
+Update the user’s metadata for an asset
+
+Update the user’s metadata for an asset.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, NCW Admin, Signer, Editor.
+
+### Example
+
+
+```python
+from fireblocks.models.asset import Asset
+from fireblocks.models.update_asset_user_metadata_request import UpdateAssetUserMetadataRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'ETH' # str | The ID or legacyId of the asset
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+    update_asset_user_metadata_request = fireblocks.UpdateAssetUserMetadataRequest() # UpdateAssetUserMetadataRequest |  (optional)
+
+    try:
+        # Update the user’s metadata for an asset
+        api_response = fireblocks.blockchains_assets.update_asset_user_metadata(id, idempotency_key=idempotency_key, update_asset_user_metadata_request=update_asset_user_metadata_request).result()
+        print("The response of BlockchainsAssetsApi->update_asset_user_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling BlockchainsAssetsApi->update_asset_user_metadata: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The ID or legacyId of the asset | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+ **update_asset_user_metadata_request** | [**UpdateAssetUserMetadataRequest**](UpdateAssetUserMetadataRequest.md)|  | [optional] 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Updated asset user metadata |  * X-Request-ID -  <br>  |
+**404** | - Asset with specified ID or legacy ID is not found. Error code 1504  |  -  |
+**500** | Error occurred while updating asset user metadata |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

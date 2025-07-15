@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.travel_rule_ownership_proof import TravelRuleOwnershipProof
 from fireblocks.models.travel_rule_pii_ivms import TravelRulePiiIVMS
@@ -40,6 +40,7 @@ class TravelRuleCreateTransactionRequest(BaseModel):
     beneficiary: TravelRulePiiIVMS
     encrypted: Optional[StrictStr] = Field(default=None, description="Encrypted data related to the transaction.")
     protocol: Optional[StrictStr] = Field(default=None, description="The protocol used to perform the travel rule.")
+    target_protocol: Optional[StrictStr] = Field(default=None, description="The target protocol for GTR (Global Travel Rule) transfers.", alias="targetProtocol")
     skip_beneficiary_data_validation: Optional[StrictBool] = Field(default=None, description="Whether to skip validation of beneficiary data.", alias="skipBeneficiaryDataValidation")
     travel_rule_behavior: Optional[StrictBool] = Field(default=None, description="Whether to check if the transaction complies with the travel rule in the beneficiary VASP's jurisdiction.", alias="travelRuleBehavior")
     originator_ref: Optional[StrictStr] = Field(default=None, description="A reference ID related to the originator of the transaction.", alias="originatorRef")
@@ -50,7 +51,17 @@ class TravelRuleCreateTransactionRequest(BaseModel):
     beneficiary_did: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the person at the receiving exchange (VASP).  This identifier is generated when the customer is registered in the Notabene network,  or automatically created based on the `beneficiaryRef`.  - If neither `beneficiaryRef` nor `beneficiaryDid` is provided in the `txCreate` payload,    a new random DID is generated for every transaction.", alias="beneficiaryDid")
     originator_did: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) of the person at the exchange (VASP) who is requesting the withdrawal. This identifier is generated when the customer is registered in the Notabene network or automatically created based on the `originatorRef`.  - If neither `originatorRef` nor `originatorDid` is provided in the `txCreate` payload,    a new random DID is generated for every transaction.", alias="originatorDid")
     is_non_custodial: Optional[StrictBool] = Field(default=None, description="Indicates if the transaction involves a non-custodial wallet.", alias="isNonCustodial")
-    __properties: ClassVar[List[str]] = ["originatorVASPdid", "beneficiaryVASPdid", "originatorVASPname", "beneficiaryVASPname", "beneficiaryVASPwebsite", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorRef", "beneficiaryRef", "travelRuleBehaviorRef", "originatorProof", "beneficiaryProof", "beneficiaryDid", "originatorDid", "isNonCustodial"]
+    __properties: ClassVar[List[str]] = ["originatorVASPdid", "beneficiaryVASPdid", "originatorVASPname", "beneficiaryVASPname", "beneficiaryVASPwebsite", "transactionBlockchainInfo", "originator", "beneficiary", "encrypted", "protocol", "targetProtocol", "skipBeneficiaryDataValidation", "travelRuleBehavior", "originatorRef", "beneficiaryRef", "travelRuleBehaviorRef", "originatorProof", "beneficiaryProof", "beneficiaryDid", "originatorDid", "isNonCustodial"]
+
+    @field_validator('protocol')
+    def protocol_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['IVMS101', 'TRLight', 'TRP', 'OpenVASP', 'GTR']):
+            raise ValueError("must be one of enum values ('IVMS101', 'TRLight', 'TRP', 'OpenVASP', 'GTR')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,6 +139,7 @@ class TravelRuleCreateTransactionRequest(BaseModel):
             "beneficiary": TravelRulePiiIVMS.from_dict(obj["beneficiary"]) if obj.get("beneficiary") is not None else None,
             "encrypted": obj.get("encrypted"),
             "protocol": obj.get("protocol"),
+            "targetProtocol": obj.get("targetProtocol"),
             "skipBeneficiaryDataValidation": obj.get("skipBeneficiaryDataValidation"),
             "travelRuleBehavior": obj.get("travelRuleBehavior"),
             "originatorRef": obj.get("originatorRef"),

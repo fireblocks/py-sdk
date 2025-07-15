@@ -76,6 +76,13 @@ class TestBlockchainsAssetsApi(unittest.TestCase):
         """
         pass
 
+    def test_update_asset_user_metadata(self) -> None:
+        """Test case for update_asset_user_metadata
+
+        Update the user’s metadata for an asset
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

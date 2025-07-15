@@ -5,14 +5,17 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**activate_asset_for_vault_account**](VaultsApi.md#activate_asset_for_vault_account) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/activate | Activate a wallet in a vault account
+[**attach_tags_to_vault_accounts**](VaultsApi.md#attach_tags_to_vault_accounts) | **POST** /vault/accounts/attached_tags/attach | Attach tags to a vault accounts
 [**create_legacy_address**](VaultsApi.md#create_legacy_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/create_legacy | Convert a segwit address to legacy format
 [**create_multiple_accounts**](VaultsApi.md#create_multiple_accounts) | **POST** /vault/accounts/bulk | Bulk creation of new vault accounts
 [**create_multiple_deposit_addresses**](VaultsApi.md#create_multiple_deposit_addresses) | **POST** /vault/accounts/addresses/bulk | Bulk creation of new deposit addresses
 [**create_vault_account**](VaultsApi.md#create_vault_account) | **POST** /vault/accounts | Create a new vault account
 [**create_vault_account_asset**](VaultsApi.md#create_vault_account_asset) | **POST** /vault/accounts/{vaultAccountId}/{assetId} | Create a new wallet
 [**create_vault_account_asset_address**](VaultsApi.md#create_vault_account_asset_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses | Create new asset deposit address
+[**detach_tags_from_vault_accounts**](VaultsApi.md#detach_tags_from_vault_accounts) | **POST** /vault/accounts/attached_tags/detach | Detach tags from a vault accounts
 [**get_asset_wallets**](VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | List asset wallets (Paginated)
 [**get_create_multiple_deposit_addresses_job_status**](VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get job status of bulk creation of new deposit addresses
+[**get_create_multiple_vault_accounts_job_status**](VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
 [**get_max_spendable_amount**](VaultsApi.md#get_max_spendable_amount) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_spendable_amount | Get the maximum spendable amount in a single transaction.
 [**get_paged_vault_accounts**](VaultsApi.md#get_paged_vault_accounts) | **GET** /vault/accounts_paged | List vault accounts (Paginated)
 [**get_public_key_info**](VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key information
@@ -111,6 +114,78 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **attach_tags_to_vault_accounts**
+> attach_tags_to_vault_accounts(vault_accounts_tag_attachments_request, idempotency_key=idempotency_key)
+
+Attach tags to a vault accounts
+
+Attach one or more tags to the requested vault accounts.
+
+### Example
+
+
+```python
+from fireblocks.models.vault_accounts_tag_attachments_request import VaultAccountsTagAttachmentsRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_accounts_tag_attachments_request = fireblocks.VaultAccountsTagAttachmentsRequest() # VaultAccountsTagAttachmentsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Attach tags to a vault accounts
+        fireblocks.vaults.attach_tags_to_vault_accounts(vault_accounts_tag_attachments_request, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling VaultsApi->attach_tags_to_vault_accounts: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_accounts_tag_attachments_request** | [**VaultAccountsTagAttachmentsRequest**](VaultAccountsTagAttachmentsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Tags were attached successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_legacy_address**
 > CreateAddressResponse create_legacy_address(vault_account_id, asset_id, address_id, idempotency_key=idempotency_key)
 
@@ -200,6 +275,7 @@ Create multiple vault accounts by running an async job. </br>
 **Note**:
 - These endpoints are currently in beta and might be subject to changes.
 - We limit accounts to 10k per operation and 200k per customer during beta testing.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 
 ### Example
@@ -280,6 +356,7 @@ Bulk creation of new deposit addresses
 Create multiple deposit address by running an async job. </br>
 **Note**:
 - We limit accounts to 10k per operation.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 
 ### Example
@@ -591,6 +668,78 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **detach_tags_from_vault_accounts**
+> detach_tags_from_vault_accounts(vault_accounts_tag_attachments_request, idempotency_key=idempotency_key)
+
+Detach tags from a vault accounts
+
+Detach one or more tags from the requested vault account.
+
+### Example
+
+
+```python
+from fireblocks.models.vault_accounts_tag_attachments_request import VaultAccountsTagAttachmentsRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_accounts_tag_attachments_request = fireblocks.VaultAccountsTagAttachmentsRequest() # VaultAccountsTagAttachmentsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Detach tags from a vault accounts
+        fireblocks.vaults.detach_tags_from_vault_accounts(vault_accounts_tag_attachments_request, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling VaultsApi->detach_tags_from_vault_accounts: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_accounts_tag_attachments_request** | [**VaultAccountsTagAttachmentsRequest**](VaultAccountsTagAttachmentsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Tags were detached successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_asset_wallets**
 > PaginatedAssetWalletResponse get_asset_wallets(total_amount_larger_than=total_amount_larger_than, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit)
 
@@ -681,6 +830,8 @@ No authorization required
 Get job status of bulk creation of new deposit addresses
 
 Returns the status of bulk creation of new deposit addresses job and the result or error
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
 
 ### Example
 
@@ -730,6 +881,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateMultipleDepositAddressesJobStatus**](CreateMultipleDepositAddressesJobStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A Job with status |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_create_multiple_vault_accounts_job_status**
+> CreateMultipleVaultAccountsJobStatus get_create_multiple_vault_accounts_job_status(job_id)
+
+Get job status of bulk creation of new vault accounts
+
+Returns the status of bulk creation of new vault accounts job and the result or error
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+
+### Example
+
+
+```python
+from fireblocks.models.create_multiple_vault_accounts_job_status import CreateMultipleVaultAccountsJobStatus
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    job_id = '019681b4-107d-7243-942d-4c3c30e36fae' # str | The ID of the job to create addresses
+
+    try:
+        # Get job status of bulk creation of new vault accounts
+        api_response = fireblocks.vaults.get_create_multiple_vault_accounts_job_status(job_id).result()
+        print("The response of VaultsApi->get_create_multiple_vault_accounts_job_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->get_create_multiple_vault_accounts_job_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **job_id** | **str**| The ID of the job to create addresses | 
+
+### Return type
+
+[**CreateMultipleVaultAccountsJobStatus**](CreateMultipleVaultAccountsJobStatus.md)
 
 ### Authorization
 
@@ -828,7 +1055,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_paged_vault_accounts**
-> VaultAccountsPagedResponse get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit)
+> VaultAccountsPagedResponse get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit, tag_ids=tag_ids)
 
 List vault accounts (Paginated)
 
@@ -867,10 +1094,11 @@ with Fireblocks(configuration) as fireblocks:
     before = 'before_example' # str |  (optional)
     after = 'after_example' # str |  (optional)
     limit = 200 # float |  (optional) (default to 200)
+    tag_ids = ['tag_ids_example'] # List[str] | List of tag IDs to filter vault accounts. (optional)
 
     try:
         # List vault accounts (Paginated)
-        api_response = fireblocks.vaults.get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit).result()
+        api_response = fireblocks.vaults.get_paged_vault_accounts(name_prefix=name_prefix, name_suffix=name_suffix, min_amount_threshold=min_amount_threshold, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit, tag_ids=tag_ids).result()
         print("The response of VaultsApi->get_paged_vault_accounts:\n")
         pprint(api_response)
     except Exception as e:
@@ -892,6 +1120,7 @@ Name | Type | Description  | Notes
  **before** | **str**|  | [optional] 
  **after** | **str**|  | [optional] 
  **limit** | **float**|  | [optional] [default to 200]
+ **tag_ids** | [**List[str]**](str.md)| List of tag IDs to filter vault accounts. | [optional] 
 
 ### Return type
 

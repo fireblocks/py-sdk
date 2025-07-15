@@ -51,6 +51,7 @@ class TestAsset(unittest.TestCase):
                     standards = ["ERC20"], ),
                 metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
                     scope = 'GLOBAL', 
+                    verified = False, 
                     deprecated = False, 
                     deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
                     website = 'https://example.org', 
@@ -60,7 +61,12 @@ class TestAsset(unittest.TestCase):
                             type = 'image/svg+xml', 
                             attributes = fireblocks.models.asset_media_attributes.AssetMedia_attributes(
                                 monochrome = True, ), )
-                        ], )
+                        ], 
+                    note = fireblocks.models.asset_note.AssetNote(
+                        text = 'Pay attention to gas fees', 
+                        user_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
+                        user_name = 'Test test', 
+                        updated_at = '2025-06-08T19:42:49Z', ), )
             )
         else:
             return Asset(
@@ -71,6 +77,7 @@ class TestAsset(unittest.TestCase):
                 asset_class = 'FT',
                 metadata = fireblocks.models.asset_details_metadata.AssetDetailsMetadata(
                     scope = 'GLOBAL', 
+                    verified = False, 
                     deprecated = False, 
                     deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
                     website = 'https://example.org', 
@@ -80,7 +87,12 @@ class TestAsset(unittest.TestCase):
                             type = 'image/svg+xml', 
                             attributes = fireblocks.models.asset_media_attributes.AssetMedia_attributes(
                                 monochrome = True, ), )
-                        ], ),
+                        ], 
+                    note = fireblocks.models.asset_note.AssetNote(
+                        text = 'Pay attention to gas fees', 
+                        user_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
+                        user_name = 'Test test', 
+                        updated_at = '2025-06-08T19:42:49Z', ), ),
         )
         """
 

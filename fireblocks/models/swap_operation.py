@@ -34,7 +34,7 @@ class SwapOperation(BaseModel):
     """ # noqa: E501
     id: StrictStr = Field(description="The id of the swap operation")
     account_id: StrictStr = Field(description="The id of the vault account or account id", alias="accountId")
-    provider_id: StrictStr = Field(description="The ID of the provider", alias="providerId")
+    provider_id: StrictStr = Field(description="The uuid that identifies the provider", alias="providerId")
     category: ProviderCategoryEnum
     protocol: SwapProviderProtocolsEnum
     status: StrictStr = Field(description="**CREATED** – The swap request has been created but not yet started. **PENDING_USER_ACTION** – Awaiting a user action (e.g. signature or approval). **PENDING_PROVIDER_ACTION** – Awaiting the provider to process the request. **PROCESSING** – The swap is actively being executed on‐chain. **COMPLETED** – The swap has finished successfully. **CANCELED** – The swap was cancelled by user or provider before completion. **FAILED** – The swap attempted but encountered an error.")

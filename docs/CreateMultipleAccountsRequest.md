@@ -5,8 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | Count | [optional] 
-**asset_ids** | **List[str]** | Array of asset IDs | [optional] 
+**count** | **int** | Count | 
+**base_asset_ids** | **List[str]** | Array of base asset IDs | 
+**names** | **List[str]** | Names to assign to vault accounts. if vaultAccountNamesStartingIndex or prefix is used it&#39;ll fail | [optional] 
+**vault_account_names_starting_index** | **int** | Copy vault accounts names starting from this index. If names array is used it&#39;ll fail | [optional] 
+**prefix** | **str** | When copying from existing vault accounts (vaultAccountNamesStartingIndex) then adding a prefix to the names. If names array is used it&#39;ll fail | [optional] 
 
 ## Example
 

@@ -6,10 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scope** | [**AssetScope**](AssetScope.md) |  | 
+**verified** | **bool** | Is asset verified by Fireblocks | 
 **deprecated** | **bool** | Is asset deprecated | 
 **deprecation_referral_id** | **str** | New asset ID replacement | [optional] 
 **website** | **str** | Vendor’s website | [optional] 
 **media** | [**List[AssetMedia]**](AssetMedia.md) | Asset’s media | [optional] 
+**note** | [**AssetNote**](AssetNote.md) |  | [optional] 
 
 ## Example
 

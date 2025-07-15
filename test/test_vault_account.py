@@ -62,7 +62,13 @@ class TestVaultAccount(unittest.TestCase):
                     ],
                 hidden_on_ui = True,
                 customer_ref_id = '',
-                auto_fuel = True
+                auto_fuel = True,
+                tags = [
+                    fireblocks.models.tag.Tag(
+                        id = 'df4c0987-30da-4976-8dcf-bc2dd41ae331', 
+                        label = 'VIP', 
+                        description = 'Tag for VIP customers', )
+                    ]
             )
         else:
             return VaultAccount(

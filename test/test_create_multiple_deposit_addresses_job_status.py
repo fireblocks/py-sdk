@@ -42,7 +42,7 @@ class TestCreateMultipleDepositAddressesJobStatus(unittest.TestCase):
         if include_optional:
             return CreateMultipleDepositAddressesJobStatus(
                 status = 'Success',
-                addresses = [{"address":"addr_test1qp07k5kdwdfx4rpfqud8ry65acxgtgfgrxw0t35cwvl4uasjneqjdc868eqlex5p2f0nyekyyk4ze5xuanvj50ysrj3qqxqhsn","index":0,"descriptio":"Address one"}],
+                addresses = [{"address":"addr_test1qp07k5kdwdfx4rpfqud8ry65acxgtgfgrxw0t35cwvl4uasjneqjdc868eqlex5p2f0nyekyyk4ze5xuanvj50ysrj3qqxqhsn","index":0,"description":"Address one"}],
                 error_message = 'Asset not supported'
             )
         else:

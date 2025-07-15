@@ -30,6 +30,7 @@ class ChainDescriptor(str, Enum):
     ETH = 'ETH'
     SOL = 'SOL'
     MATIC = 'MATIC'
+    ETH_TEST_HOODI = 'ETH_TEST_HOODI'
     ETH_TEST6 = 'ETH_TEST6'
     SOL_TEST = 'SOL_TEST'
 

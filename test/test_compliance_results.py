@@ -37,22 +37,18 @@ class TestComplianceResults(unittest.TestCase):
         model = ComplianceResults()
         if include_optional:
             return ComplianceResults(
-                aml = [
-                    fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                        provider = '', 
-                        payload = fireblocks.models.payload.payload(), 
-                        bypass_reason = '', 
-                        screening_status = 'COMPLETED', 
-                        timestamp = 1.337, )
-                    ],
-                tr = [
-                    fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                        provider = '', 
-                        payload = fireblocks.models.payload.payload(), 
-                        bypass_reason = '', 
-                        screening_status = 'COMPLETED', 
-                        timestamp = 1.337, )
-                    ],
+                aml = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
+                    provider = '', 
+                    payload = fireblocks.models.payload.payload(), 
+                    bypass_reason = '', 
+                    screening_status = 'COMPLETED', 
+                    timestamp = 1.337, ),
+                tr = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
+                    provider = '', 
+                    payload = fireblocks.models.payload.payload(), 
+                    bypass_reason = '', 
+                    screening_status = 'COMPLETED', 
+                    timestamp = 1.337, ),
                 aml_list = [
                     fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
                         provider = '', 
@@ -62,12 +58,10 @@ class TestComplianceResults(unittest.TestCase):
                         timestamp = 1.337, )
                     ],
                 status = 'Started',
-                aml_registration = [
-                    fireblocks.models.aml_registration_result.AmlRegistrationResult(
-                        provider = '', 
-                        success = True, 
-                        timestamp = 1.337, )
-                    ]
+                aml_registration = fireblocks.models.aml_registration_result.AmlRegistrationResult(
+                    provider = '', 
+                    success = True, 
+                    timestamp = 1.337, )
             )
         else:
             return ComplianceResults(

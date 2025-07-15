@@ -34,6 +34,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_attach_tags_to_vault_accounts(self) -> None:
+        """Test case for attach_tags_to_vault_accounts
+
+        Attach tags to a vault accounts
+        """
+        pass
+
     def test_create_legacy_address(self) -> None:
         """Test case for create_legacy_address
 
@@ -76,6 +83,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_detach_tags_from_vault_accounts(self) -> None:
+        """Test case for detach_tags_from_vault_accounts
+
+        Detach tags from a vault accounts
+        """
+        pass
+
     def test_get_asset_wallets(self) -> None:
         """Test case for get_asset_wallets
 
@@ -87,6 +101,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for get_create_multiple_deposit_addresses_job_status
 
         Get job status of bulk creation of new deposit addresses
+        """
+        pass
+
+    def test_get_create_multiple_vault_accounts_job_status(self) -> None:
+        """Test case for get_create_multiple_vault_accounts_job_status
+
+        Get job status of bulk creation of new vault accounts
         """
         pass
 

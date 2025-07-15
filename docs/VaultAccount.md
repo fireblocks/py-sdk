@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **hidden_on_ui** | **bool** |  | [optional] 
 **customer_ref_id** | **str** |  | [optional] 
 **auto_fuel** | **bool** |  | [optional] 
+**tags** | [**List[Tag]**](Tag.md) | List of tags attached to the vault account | [optional] 
 
 ## Example
 

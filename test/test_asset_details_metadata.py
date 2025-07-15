@@ -38,6 +38,7 @@ class TestAssetDetailsMetadata(unittest.TestCase):
         if include_optional:
             return AssetDetailsMetadata(
                 scope = 'GLOBAL',
+                verified = False,
                 deprecated = False,
                 deprecation_referral_id = '056776ab-9efa-4219-9820-9ece0cc4d90d',
                 website = 'https://example.org',
@@ -47,11 +48,17 @@ class TestAssetDetailsMetadata(unittest.TestCase):
                         type = 'image/svg+xml', 
                         attributes = fireblocks.models.asset_media_attributes.AssetMedia_attributes(
                             monochrome = True, ), )
-                    ]
+                    ],
+                note = fireblocks.models.asset_note.AssetNote(
+                    text = 'Pay attention to gas fees', 
+                    user_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
+                    user_name = 'Test test', 
+                    updated_at = '2025-06-08T19:42:49Z', )
             )
         else:
             return AssetDetailsMetadata(
                 scope = 'GLOBAL',
+                verified = False,
                 deprecated = False,
         )
         """

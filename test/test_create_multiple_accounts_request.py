@@ -39,13 +39,16 @@ class TestCreateMultipleAccountsRequest(unittest.TestCase):
         model = CreateMultipleAccountsRequest()
         if include_optional:
             return CreateMultipleAccountsRequest(
-                count = 56,
-                asset_ids = [
-                    ''
-                    ]
+                count = 1000,
+                base_asset_ids = ["BTC","ETH","SOL"],
+                names = ["first va","client 65502e71-ecdf-48da-a074-c1753befc7fb"],
+                vault_account_names_starting_index = 0,
+                prefix = 'Copied from: '
             )
         else:
             return CreateMultipleAccountsRequest(
+                count = 1000,
+                base_asset_ids = ["BTC","ETH","SOL"],
         )
         """
 

@@ -63,8 +63,8 @@ class TravelRuleValidateFullTransactionRequest(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['TRLight', 'TRP', 'OpenVASP']):
-            raise ValueError("must be one of enum values ('TRLight', 'TRP', 'OpenVASP')")
+        if value not in set(['TRLight', 'TRP', 'OpenVASP', 'GTR']):
+            raise ValueError("must be one of enum values ('TRLight', 'TRP', 'OpenVASP', 'GTR')")
         return value
 
     model_config = ConfigDict(

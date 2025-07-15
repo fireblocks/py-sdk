@@ -176,6 +176,7 @@ class TestTravelRuleCreateTransactionRequest(unittest.TestCase):
                         ], ),
                 encrypted = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
                 protocol = 'IVMS101',
+                target_protocol = 'GTR',
                 skip_beneficiary_data_validation = False,
                 travel_rule_behavior = True,
                 originator_ref = 'ORG123456',

@@ -164,32 +164,26 @@ class TestTransactionResponse(unittest.TestCase):
                     provider = '', 
                     payload = fireblocks.models.payload.payload(), ),
                 compliance_results = fireblocks.models.compliance_results.ComplianceResults(
-                    aml = [
-                        fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                            provider = '', 
-                            payload = fireblocks.models.payload.payload(), 
-                            bypass_reason = '', 
-                            screening_status = 'COMPLETED', 
-                            timestamp = 1.337, )
-                        ], 
-                    tr = [
-                        fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                            provider = '', 
-                            payload = fireblocks.models.payload.payload(), 
-                            bypass_reason = '', 
-                            screening_status = 'COMPLETED', 
-                            timestamp = 1.337, )
-                        ], 
+                    aml = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
+                        provider = '', 
+                        payload = fireblocks.models.payload.payload(), 
+                        bypass_reason = '', 
+                        screening_status = 'COMPLETED', 
+                        timestamp = 1.337, ), 
+                    tr = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
+                        provider = '', 
+                        payload = fireblocks.models.payload.payload(), 
+                        bypass_reason = '', 
+                        screening_status = 'COMPLETED', 
+                        timestamp = 1.337, ), 
                     aml_list = [
                         
                         ], 
                     status = 'Started', 
-                    aml_registration = [
-                        fireblocks.models.aml_registration_result.AmlRegistrationResult(
-                            provider = '', 
-                            success = True, 
-                            timestamp = 1.337, )
-                        ], ),
+                    aml_registration = fireblocks.models.aml_registration_result.AmlRegistrationResult(
+                        provider = '', 
+                        success = True, 
+                        timestamp = 1.337, ), ),
                 extra_parameters = None,
                 signed_messages = [
                     fireblocks.models.signed_message.SignedMessage(

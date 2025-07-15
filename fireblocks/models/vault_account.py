@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.tag import Tag
 from fireblocks.models.vault_asset import VaultAsset
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +35,8 @@ class VaultAccount(BaseModel):
     hidden_on_ui: Optional[StrictBool] = Field(default=None, alias="hiddenOnUI")
     customer_ref_id: Optional[StrictStr] = Field(default=None, alias="customerRefId")
     auto_fuel: Optional[StrictBool] = Field(default=None, alias="autoFuel")
-    __properties: ClassVar[List[str]] = ["id", "name", "assets", "hiddenOnUI", "customerRefId", "autoFuel"]
+    tags: Optional[List[Tag]] = Field(default=None, description="List of tags attached to the vault account")
+    __properties: ClassVar[List[str]] = ["id", "name", "assets", "hiddenOnUI", "customerRefId", "autoFuel", "tags"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +84,13 @@ class VaultAccount(BaseModel):
                 if _item_assets:
                     _items.append(_item_assets.to_dict())
             _dict['assets'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item_tags in self.tags:
+                if _item_tags:
+                    _items.append(_item_tags.to_dict())
+            _dict['tags'] = _items
         return _dict
 
     @classmethod
@@ -99,7 +108,8 @@ class VaultAccount(BaseModel):
             "assets": [VaultAsset.from_dict(_item) for _item in obj["assets"]] if obj.get("assets") is not None else None,
             "hiddenOnUI": obj.get("hiddenOnUI"),
             "customerRefId": obj.get("customerRefId"),
-            "autoFuel": obj.get("autoFuel")
+            "autoFuel": obj.get("autoFuel"),
+            "tags": [Tag.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None
         })
         return _obj
 

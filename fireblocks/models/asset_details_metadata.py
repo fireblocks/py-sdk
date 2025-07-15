@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.asset_media import AssetMedia
+from fireblocks.models.asset_note import AssetNote
 from fireblocks.models.asset_scope import AssetScope
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,11 +31,13 @@ class AssetDetailsMetadata(BaseModel):
     AssetDetailsMetadata
     """ # noqa: E501
     scope: AssetScope
+    verified: StrictBool = Field(description="Is asset verified by Fireblocks")
     deprecated: StrictBool = Field(description="Is asset deprecated")
     deprecation_referral_id: Optional[StrictStr] = Field(default=None, description="New asset ID replacement", alias="deprecationReferralId")
     website: Optional[StrictStr] = Field(default=None, description="Vendor’s website")
     media: Optional[List[AssetMedia]] = Field(default=None, description="Asset’s media")
-    __properties: ClassVar[List[str]] = ["scope", "deprecated", "deprecationReferralId", "website", "media"]
+    note: Optional[AssetNote] = None
+    __properties: ClassVar[List[str]] = ["scope", "verified", "deprecated", "deprecationReferralId", "website", "media", "note"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +85,9 @@ class AssetDetailsMetadata(BaseModel):
                 if _item_media:
                     _items.append(_item_media.to_dict())
             _dict['media'] = _items
+        # override the default output from pydantic by calling `to_dict()` of note
+        if self.note:
+            _dict['note'] = self.note.to_dict()
         return _dict
 
     @classmethod
@@ -95,10 +101,12 @@ class AssetDetailsMetadata(BaseModel):
 
         _obj = cls.model_validate({
             "scope": obj.get("scope"),
+            "verified": obj.get("verified"),
             "deprecated": obj.get("deprecated"),
             "deprecationReferralId": obj.get("deprecationReferralId"),
             "website": obj.get("website"),
-            "media": [AssetMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None
+            "media": [AssetMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None,
+            "note": AssetNote.from_dict(obj["note"]) if obj.get("note") is not None else None
         })
         return _obj
 

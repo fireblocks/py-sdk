@@ -333,6 +333,7 @@ docs/NoneNetworkRoutingDest.md
 docs/NotFoundException.md
 docs/Notification.md
 docs/NotificationAttempt.md
+docs/NotificationAttemptsPaginatedResponse.md
 docs/NotificationPaginatedResponse.md
 docs/NotificationStatus.md
 docs/NotificationWithData.md
@@ -1022,6 +1023,7 @@ fireblocks/models/none_network_routing_dest.py
 fireblocks/models/not_found_exception.py
 fireblocks/models/notification.py
 fireblocks/models/notification_attempt.py
+fireblocks/models/notification_attempts_paginated_response.py
 fireblocks/models/notification_paginated_response.py
 fireblocks/models/notification_status.py
 fireblocks/models/notification_with_data.py
@@ -1682,6 +1684,7 @@ test/test_none_network_routing_dest.py
 test/test_not_found_exception.py
 test/test_notification.py
 test/test_notification_attempt.py
+test/test_notification_attempts_paginated_response.py
 test/test_notification_paginated_response.py
 test/test_notification_status.py
 test/test_notification_with_data.py

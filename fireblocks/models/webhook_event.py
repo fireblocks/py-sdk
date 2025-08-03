@@ -37,14 +37,19 @@ class WebhookEvent(str, Enum):
     CONTRACT_WALLET_DOT_ASSET_DOT_ADDED = 'contract_wallet.asset.added'
     CONTRACT_WALLET_DOT_ASSET_DOT_REMOVED = 'contract_wallet.asset.removed'
     VAULT_ACCOUNT_DOT_CREATED = 'vault_account.created'
-    VAULT_ACCOUNT_DOT_ASSET_DOT_LISTED = 'vault_account.asset.listed'
+    VAULT_ACCOUNT_DOT_ASSET_DOT_ADDED = 'vault_account.asset.added'
     VAULT_ACCOUNT_DOT_ASSET_DOT_BALANCE_UPDATED = 'vault_account.asset.balance_updated'
     EMBEDDED_WALLET_DOT_STATUS_DOT_UPDATED = 'embedded_wallet.status.updated'
     EMBEDDED_WALLET_DOT_CREATED = 'embedded_wallet.created'
     EMBEDDED_WALLET_DOT_ASSET_DOT_BALANCE_UPDATED = 'embedded_wallet.asset.balance_updated'
-    EMBEDDED_WALLET_DOT_ASSET_DOT_LISTED = 'embedded_wallet.asset.listed'
+    EMBEDDED_WALLET_DOT_ASSET_DOT_ADDED = 'embedded_wallet.asset.added'
     EMBEDDED_WALLET_DOT_ACCOUNT_DOT_CREATED = 'embedded_wallet.account.created'
     EMBEDDED_WALLET_DOT_DEVICE_DOT_ADDED = 'embedded_wallet.device.added'
+    ONCHAIN_DATA_DOT_UPDATED = 'onchain_data.updated'
+    CONNECTION_DOT_ADDED = 'connection.added'
+    CONNECTION_DOT_REMOVED = 'connection.removed'
+    CONNECTION_DOT_REQUEST_DOT_WAITING_PEER_APPROVAL = 'connection.request.waiting_peer_approval'
+    CONNECTION_DOT_REQUEST_DOT_REJECTED_BY_PEER = 'connection.request.rejected_by_peer'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

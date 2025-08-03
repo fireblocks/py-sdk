@@ -323,6 +323,7 @@ from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
 from fireblocks.models.notification_attempt import NotificationAttempt
+from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
 from fireblocks.models.notification_paginated_response import NotificationPaginatedResponse
 from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.notification_with_data import NotificationWithData

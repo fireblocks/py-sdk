@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_webhook**](WebhooksV2BetaApi.md#create_webhook) | **POST** /webhooks | Create new webhook
 [**delete_webhook**](WebhooksV2BetaApi.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
 [**get_notification**](WebhooksV2BetaApi.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
+[**get_notification_attempts**](WebhooksV2BetaApi.md#get_notification_attempts) | **GET** /webhooks/{webhookId}/notifications/{notificationId}/attempts | Get notification attempts
 [**get_notifications**](WebhooksV2BetaApi.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
 [**get_webhook**](WebhooksV2BetaApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
 [**get_webhooks**](WebhooksV2BetaApi.md#get_webhooks) | **GET** /webhooks | Get all webhooks
@@ -231,6 +232,88 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NotificationWithData**](NotificationWithData.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_notification_attempts**
+> NotificationAttemptsPaginatedResponse get_notification_attempts(webhook_id, notification_id, page_cursor=page_cursor, page_size=page_size)
+
+Get notification attempts
+
+Get notification attempts by notification id
+**Note:** These endpoints are currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_id = 'webhook_id_example' # str | The ID of the webhook to fetch
+    notification_id = 'notification_id_example' # str | The ID of the notification to fetch
+    page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
+    page_size = 10 # float | Maximum number of items in the page (optional) (default to 10)
+
+    try:
+        # Get notification attempts
+        api_response = fireblocks.webhooks_v2_beta.get_notification_attempts(webhook_id, notification_id, page_cursor=page_cursor, page_size=page_size).result()
+        print("The response of WebhooksV2BetaApi->get_notification_attempts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2BetaApi->get_notification_attempts: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **str**| The ID of the webhook to fetch | 
+ **notification_id** | **str**| The ID of the notification to fetch | 
+ **page_cursor** | **str**| Cursor of the required page | [optional] 
+ **page_size** | **float**| Maximum number of items in the page | [optional] [default to 10]
+
+### Return type
+
+[**NotificationAttemptsPaginatedResponse**](NotificationAttemptsPaginatedResponse.md)
 
 ### Authorization
 

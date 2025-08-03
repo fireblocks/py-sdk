@@ -48,6 +48,13 @@ class TestWebhooksV2BetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_notification_attempts(self) -> None:
+        """Test case for get_notification_attempts
+
+        Get notification attempts
+        """
+        pass
+
     def test_get_notifications(self) -> None:
         """Test case for get_notifications
 

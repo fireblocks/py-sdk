@@ -237,6 +237,7 @@ from fireblocks.models.embedded_wallet_set_up_status import EmbeddedWalletSetUpS
 from fireblocks.models.error_response import ErrorResponse
 from fireblocks.models.error_response_error import ErrorResponseError
 from fireblocks.models.error_schema import ErrorSchema
+from fireblocks.models.estimated_fee_details import EstimatedFeeDetails
 from fireblocks.models.estimated_network_fee_response import EstimatedNetworkFeeResponse
 from fireblocks.models.estimated_transaction_fee_response import EstimatedTransactionFeeResponse
 from fireblocks.models.exchange_account import ExchangeAccount
@@ -252,6 +253,9 @@ from fireblocks.models.execution_operation_status import ExecutionOperationStatu
 from fireblocks.models.execution_screening_operation import ExecutionScreeningOperation
 from fireblocks.models.execution_transfer_operation import ExecutionTransferOperation
 from fireblocks.models.external_wallet_asset import ExternalWalletAsset
+from fireblocks.models.fee_breakdown import FeeBreakdown
+from fireblocks.models.fee_breakdown_one_of import FeeBreakdownOneOf
+from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_level import FeeLevel
 from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
@@ -323,6 +327,7 @@ from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
 from fireblocks.models.notification_attempt import NotificationAttempt
+from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
 from fireblocks.models.notification_paginated_response import NotificationPaginatedResponse
 from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.notification_with_data import NotificationWithData
@@ -397,6 +402,9 @@ from fireblocks.models.remove_collateral_request_body import RemoveCollateralReq
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
 from fireblocks.models.rescan_transaction import RescanTransaction
+from fireblocks.models.resend_failed_notifications_job_status_response import ResendFailedNotificationsJobStatusResponse
+from fireblocks.models.resend_failed_notifications_request import ResendFailedNotificationsRequest
+from fireblocks.models.resend_failed_notifications_response import ResendFailedNotificationsResponse
 from fireblocks.models.resend_notifications_by_resource_id_request import ResendNotificationsByResourceIdRequest
 from fireblocks.models.resend_transaction_webhooks_request import ResendTransactionWebhooksRequest
 from fireblocks.models.resend_webhooks_by_transaction_id_response import ResendWebhooksByTransactionIdResponse

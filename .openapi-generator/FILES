@@ -237,6 +237,7 @@ docs/EmbeddedWalletsApi.md
 docs/ErrorResponse.md
 docs/ErrorResponseError.md
 docs/ErrorSchema.md
+docs/EstimatedFeeDetails.md
 docs/EstimatedNetworkFeeResponse.md
 docs/EstimatedTransactionFeeResponse.md
 docs/ExchangeAccount.md
@@ -254,6 +255,9 @@ docs/ExecutionScreeningOperation.md
 docs/ExecutionTransferOperation.md
 docs/ExternalWalletAsset.md
 docs/ExternalWalletsApi.md
+docs/FeeBreakdown.md
+docs/FeeBreakdownOneOf.md
+docs/FeeBreakdownOneOf1.md
 docs/FeeInfo.md
 docs/FeeLevel.md
 docs/FetchAbiRequestDto.md
@@ -333,6 +337,7 @@ docs/NoneNetworkRoutingDest.md
 docs/NotFoundException.md
 docs/Notification.md
 docs/NotificationAttempt.md
+docs/NotificationAttemptsPaginatedResponse.md
 docs/NotificationPaginatedResponse.md
 docs/NotificationStatus.md
 docs/NotificationWithData.md
@@ -411,6 +416,9 @@ docs/RemoveCollateralRequestBody.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
 docs/RescanTransaction.md
+docs/ResendFailedNotificationsJobStatusResponse.md
+docs/ResendFailedNotificationsRequest.md
+docs/ResendFailedNotificationsResponse.md
 docs/ResendNotificationsByResourceIdRequest.md
 docs/ResendTransactionWebhooksRequest.md
 docs/ResendWebhooksByTransactionIdResponse.md
@@ -648,7 +656,7 @@ docs/Webhook.md
 docs/WebhookEvent.md
 docs/WebhookPaginatedResponse.md
 docs/WebhooksApi.md
-docs/WebhooksV2BetaApi.md
+docs/WebhooksV2Api.md
 docs/WhitelistIpAddressesApi.md
 docs/WithdrawRequest.md
 docs/WorkflowConfigStatus.md
@@ -702,7 +710,7 @@ fireblocks/api/users_api.py
 fireblocks/api/vaults_api.py
 fireblocks/api/web3_connections_api.py
 fireblocks/api/webhooks_api.py
-fireblocks/api/webhooks_v2_beta_api.py
+fireblocks/api/webhooks_v2_api.py
 fireblocks/api/whitelist_ip_addresses_api.py
 fireblocks/api/workspace_status_beta_api.py
 fireblocks/api_client.py
@@ -935,6 +943,7 @@ fireblocks/models/embedded_wallet_set_up_status.py
 fireblocks/models/error_response.py
 fireblocks/models/error_response_error.py
 fireblocks/models/error_schema.py
+fireblocks/models/estimated_fee_details.py
 fireblocks/models/estimated_network_fee_response.py
 fireblocks/models/estimated_transaction_fee_response.py
 fireblocks/models/evm_token_create_params_dto.py
@@ -951,6 +960,9 @@ fireblocks/models/execution_operation_status.py
 fireblocks/models/execution_screening_operation.py
 fireblocks/models/execution_transfer_operation.py
 fireblocks/models/external_wallet_asset.py
+fireblocks/models/fee_breakdown.py
+fireblocks/models/fee_breakdown_one_of.py
+fireblocks/models/fee_breakdown_one_of1.py
 fireblocks/models/fee_info.py
 fireblocks/models/fee_level.py
 fireblocks/models/fetch_abi_request_dto.py
@@ -1022,6 +1034,7 @@ fireblocks/models/none_network_routing_dest.py
 fireblocks/models/not_found_exception.py
 fireblocks/models/notification.py
 fireblocks/models/notification_attempt.py
+fireblocks/models/notification_attempts_paginated_response.py
 fireblocks/models/notification_paginated_response.py
 fireblocks/models/notification_status.py
 fireblocks/models/notification_with_data.py
@@ -1096,6 +1109,9 @@ fireblocks/models/remove_collateral_request_body.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
 fireblocks/models/rescan_transaction.py
+fireblocks/models/resend_failed_notifications_job_status_response.py
+fireblocks/models/resend_failed_notifications_request.py
+fireblocks/models/resend_failed_notifications_response.py
 fireblocks/models/resend_notifications_by_resource_id_request.py
 fireblocks/models/resend_transaction_webhooks_request.py
 fireblocks/models/resend_webhooks_by_transaction_id_response.py
@@ -1585,6 +1601,7 @@ test/test_embedded_wallets_api.py
 test/test_error_response.py
 test/test_error_response_error.py
 test/test_error_schema.py
+test/test_estimated_fee_details.py
 test/test_estimated_network_fee_response.py
 test/test_estimated_transaction_fee_response.py
 test/test_evm_token_create_params_dto.py
@@ -1603,6 +1620,9 @@ test/test_execution_screening_operation.py
 test/test_execution_transfer_operation.py
 test/test_external_wallet_asset.py
 test/test_external_wallets_api.py
+test/test_fee_breakdown.py
+test/test_fee_breakdown_one_of.py
+test/test_fee_breakdown_one_of1.py
 test/test_fee_info.py
 test/test_fee_level.py
 test/test_fetch_abi_request_dto.py
@@ -1682,6 +1702,7 @@ test/test_none_network_routing_dest.py
 test/test_not_found_exception.py
 test/test_notification.py
 test/test_notification_attempt.py
+test/test_notification_attempts_paginated_response.py
 test/test_notification_paginated_response.py
 test/test_notification_status.py
 test/test_notification_with_data.py
@@ -1760,6 +1781,9 @@ test/test_remove_collateral_request_body.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
 test/test_rescan_transaction.py
+test/test_resend_failed_notifications_job_status_response.py
+test/test_resend_failed_notifications_request.py
+test/test_resend_failed_notifications_response.py
 test/test_resend_notifications_by_resource_id_request.py
 test/test_resend_transaction_webhooks_request.py
 test/test_resend_webhooks_by_transaction_id_response.py
@@ -1997,7 +2021,7 @@ test/test_webhook.py
 test/test_webhook_event.py
 test/test_webhook_paginated_response.py
 test/test_webhooks_api.py
-test/test_webhooks_v2_beta_api.py
+test/test_webhooks_v2_api.py
 test/test_whitelist_ip_addresses_api.py
 test/test_withdraw_request.py
 test/test_workflow_config_status.py

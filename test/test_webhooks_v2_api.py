@@ -15,14 +15,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
+from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 
 
-class TestWebhooksV2BetaApi(unittest.TestCase):
-    """WebhooksV2BetaApi unit test stubs"""
+class TestWebhooksV2Api(unittest.TestCase):
+    """WebhooksV2Api unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = WebhooksV2BetaApi()
+        self.api = WebhooksV2Api()
 
     def tearDown(self) -> None:
         pass
@@ -48,10 +48,24 @@ class TestWebhooksV2BetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_notification_attempts(self) -> None:
+        """Test case for get_notification_attempts
+
+        Get notification attempts
+        """
+        pass
+
     def test_get_notifications(self) -> None:
         """Test case for get_notifications
 
         Get all notifications by webhook id
+        """
+        pass
+
+    def test_get_resend_job_status(self) -> None:
+        """Test case for get_resend_job_status
+
+        Get resend job status
         """
         pass
 
@@ -66,6 +80,13 @@ class TestWebhooksV2BetaApi(unittest.TestCase):
         """Test case for get_webhooks
 
         Get all webhooks
+        """
+        pass
+
+    def test_resend_failed_notifications(self) -> None:
+        """Test case for resend_failed_notifications
+
+        Resend failed notifications
         """
         pass
 

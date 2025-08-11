@@ -41,7 +41,7 @@ from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
-from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
+from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 

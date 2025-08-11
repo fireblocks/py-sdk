@@ -56,7 +56,7 @@ from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
-from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
+from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
@@ -193,8 +193,8 @@ def test_get_web3_connections(fireblocks_instance):
 def test_get_webhooks(fireblocks_instance):
     assert isinstance(fireblocks_instance.webhooks, WebhooksApi)
 
-def test_get_webhooks_v2_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.webhooks_v2_beta, WebhooksV2BetaApi)
+def test_get_webhooks_v2(fireblocks_instance):
+    assert isinstance(fireblocks_instance.webhooks_v2, WebhooksV2Api)
 
 def test_get_workspace_status_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.workspace_status_beta, WorkspaceStatusBetaApi)

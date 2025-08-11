@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.destination_transfer_peer_path import DestinationTransferPeerPath
 from typing import Optional, Set
@@ -30,7 +30,9 @@ class TransactionRequestDestination(BaseModel):
     """ # noqa: E501
     amount: Optional[StrictStr] = None
     destination: Optional[DestinationTransferPeerPath] = None
-    __properties: ClassVar[List[str]] = ["amount", "destination"]
+    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for travel rule linking functionality to associate transactions with existing travel rule messages.", alias="travelRuleMessageId")
+    customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
+    __properties: ClassVar[List[str]] = ["amount", "destination", "travelRuleMessageId", "customerRefId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +89,9 @@ class TransactionRequestDestination(BaseModel):
 
         _obj = cls.model_validate({
             "amount": obj.get("amount"),
-            "destination": DestinationTransferPeerPath.from_dict(obj["destination"]) if obj.get("destination") is not None else None
+            "destination": DestinationTransferPeerPath.from_dict(obj["destination"]) if obj.get("destination") is not None else None,
+            "travelRuleMessageId": obj.get("travelRuleMessageId"),
+            "customerRefId": obj.get("customerRefId")
         })
         return _obj
 

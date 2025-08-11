@@ -65,7 +65,11 @@ class TestEstimatedTransactionFeeResponse(unittest.TestCase):
                     base_fee = 1.337, 
                     priority_fee = 1.337, 
                     max_fee_per_gas_delta = '', 
-                    l1_fee = '', )
+                    l1_fee = '', ),
+                fee_details = fireblocks.models.estimated_fee_details.EstimatedFeeDetails(
+                    low = null, 
+                    medium = null, 
+                    high = null, )
             )
         else:
             return EstimatedTransactionFeeResponse(

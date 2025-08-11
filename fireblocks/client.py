@@ -56,7 +56,7 @@ from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
-from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
+from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
@@ -110,7 +110,7 @@ class Fireblocks:
         self._vaults = None
         self._web3_connections = None
         self._webhooks = None
-        self._webhooks_v2_beta = None
+        self._webhooks_v2 = None
         self._workspace_status_beta = None
         self._whitelist_ip_addresses = None
 
@@ -366,10 +366,10 @@ class Fireblocks:
         return self._webhooks
 
     @property
-    def webhooks_v2_beta(self) -> WebhooksV2BetaApi:
-        if self._webhooks_v2_beta is None:
-            self._webhooks_v2_beta = WebhooksV2BetaApi(self._api_client)
-        return self._webhooks_v2_beta
+    def webhooks_v2(self) -> WebhooksV2Api:
+        if self._webhooks_v2 is None:
+            self._webhooks_v2 = WebhooksV2Api(self._api_client)
+        return self._webhooks_v2
 
     @property
     def workspace_status_beta(self) -> WorkspaceStatusBetaApi:

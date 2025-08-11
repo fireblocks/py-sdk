@@ -18,22 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.estimated_fee_details import EstimatedFeeDetails
-from fireblocks.models.transaction_fee import TransactionFee
+from fireblocks.models.fee_breakdown import FeeBreakdown
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EstimatedTransactionFeeResponse(BaseModel):
+class EstimatedFeeDetails(BaseModel):
     """
-    EstimatedTransactionFeeResponse
+    Optional detailed fee breakdown for high/medium/low estimates
     """ # noqa: E501
-    low: TransactionFee
-    medium: TransactionFee
-    high: TransactionFee
-    fee_details: Optional[EstimatedFeeDetails] = Field(default=None, alias="feeDetails")
-    __properties: ClassVar[List[str]] = ["low", "medium", "high", "feeDetails"]
+    low: Optional[FeeBreakdown] = None
+    medium: Optional[FeeBreakdown] = None
+    high: Optional[FeeBreakdown] = None
+    __properties: ClassVar[List[str]] = ["low", "medium", "high"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class EstimatedTransactionFeeResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EstimatedTransactionFeeResponse from a JSON string"""
+        """Create an instance of EstimatedFeeDetails from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,14 +81,11 @@ class EstimatedTransactionFeeResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of high
         if self.high:
             _dict['high'] = self.high.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fee_details
-        if self.fee_details:
-            _dict['feeDetails'] = self.fee_details.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EstimatedTransactionFeeResponse from a dict"""
+        """Create an instance of EstimatedFeeDetails from a dict"""
         if obj is None:
             return None
 
@@ -98,10 +93,9 @@ class EstimatedTransactionFeeResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "low": TransactionFee.from_dict(obj["low"]) if obj.get("low") is not None else None,
-            "medium": TransactionFee.from_dict(obj["medium"]) if obj.get("medium") is not None else None,
-            "high": TransactionFee.from_dict(obj["high"]) if obj.get("high") is not None else None,
-            "feeDetails": EstimatedFeeDetails.from_dict(obj["feeDetails"]) if obj.get("feeDetails") is not None else None
+            "low": FeeBreakdown.from_dict(obj["low"]) if obj.get("low") is not None else None,
+            "medium": FeeBreakdown.from_dict(obj["medium"]) if obj.get("medium") is not None else None,
+            "high": FeeBreakdown.from_dict(obj["high"]) if obj.get("high") is not None else None
         })
         return _obj
 

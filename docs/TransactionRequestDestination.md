@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** |  | [optional] 
 **destination** | [**DestinationTransferPeerPath**](DestinationTransferPeerPath.md) |  | [optional] 
+**travel_rule_message_id** | **str** | The ID of the travel rule message from any travel rule provider. Used for travel rule linking functionality to associate transactions with existing travel rule messages. | [optional] 
+**customer_ref_id** | **str** | The ID for AML providers to associate the owner of funds with transactions. | [optional] 
 
 ## Example
 

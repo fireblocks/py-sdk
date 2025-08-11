@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.notification_attempt import NotificationAttempt
 from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.webhook_event import WebhookEvent
 from typing import Optional, Set
@@ -36,8 +35,7 @@ class Notification(BaseModel):
     status: NotificationStatus
     event_type: WebhookEvent = Field(alias="eventType")
     resource_id: Optional[StrictStr] = Field(default=None, description="The resource id of the event which the Notification is listen to", alias="resourceId")
-    attempts: List[NotificationAttempt] = Field(description="The attempts related to Notification")
-    __properties: ClassVar[List[str]] = ["id", "createdAt", "updatedAt", "status", "eventType", "resourceId", "attempts"]
+    __properties: ClassVar[List[str]] = ["id", "createdAt", "updatedAt", "status", "eventType", "resourceId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,13 +76,6 @@ class Notification(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in attempts (list)
-        _items = []
-        if self.attempts:
-            for _item_attempts in self.attempts:
-                if _item_attempts:
-                    _items.append(_item_attempts.to_dict())
-            _dict['attempts'] = _items
         # set to None if resource_id (nullable) is None
         # and model_fields_set contains the field
         if self.resource_id is None and "resource_id" in self.model_fields_set:
@@ -107,8 +98,7 @@ class Notification(BaseModel):
             "updatedAt": obj.get("updatedAt"),
             "status": obj.get("status"),
             "eventType": obj.get("eventType"),
-            "resourceId": obj.get("resourceId"),
-            "attempts": [NotificationAttempt.from_dict(_item) for _item in obj["attempts"]] if obj.get("attempts") is not None else None
+            "resourceId": obj.get("resourceId")
         })
         return _obj
 

@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "11.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -60,7 +60,7 @@ from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
-from fireblocks.api.webhooks_v2_beta_api import WebhooksV2BetaApi
+from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
@@ -448,6 +448,7 @@ from fireblocks.models.embedded_wallet_set_up_status import EmbeddedWalletSetUpS
 from fireblocks.models.error_response import ErrorResponse
 from fireblocks.models.error_response_error import ErrorResponseError
 from fireblocks.models.error_schema import ErrorSchema
+from fireblocks.models.estimated_fee_details import EstimatedFeeDetails
 from fireblocks.models.estimated_network_fee_response import EstimatedNetworkFeeResponse
 from fireblocks.models.estimated_transaction_fee_response import (
     EstimatedTransactionFeeResponse,
@@ -471,6 +472,9 @@ from fireblocks.models.execution_operation_status import ExecutionOperationStatu
 from fireblocks.models.execution_screening_operation import ExecutionScreeningOperation
 from fireblocks.models.execution_transfer_operation import ExecutionTransferOperation
 from fireblocks.models.external_wallet_asset import ExternalWalletAsset
+from fireblocks.models.fee_breakdown import FeeBreakdown
+from fireblocks.models.fee_breakdown_one_of import FeeBreakdownOneOf
+from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_level import FeeLevel
 from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
@@ -572,6 +576,9 @@ from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
 from fireblocks.models.notification_attempt import NotificationAttempt
+from fireblocks.models.notification_attempts_paginated_response import (
+    NotificationAttemptsPaginatedResponse,
+)
 from fireblocks.models.notification_paginated_response import (
     NotificationPaginatedResponse,
 )
@@ -668,6 +675,15 @@ from fireblocks.models.remove_collateral_request_body import RemoveCollateralReq
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
 from fireblocks.models.rescan_transaction import RescanTransaction
+from fireblocks.models.resend_failed_notifications_job_status_response import (
+    ResendFailedNotificationsJobStatusResponse,
+)
+from fireblocks.models.resend_failed_notifications_request import (
+    ResendFailedNotificationsRequest,
+)
+from fireblocks.models.resend_failed_notifications_response import (
+    ResendFailedNotificationsResponse,
+)
 from fireblocks.models.resend_notifications_by_resource_id_request import (
     ResendNotificationsByResourceIdRequest,
 )

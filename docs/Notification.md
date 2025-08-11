@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **status** | [**NotificationStatus**](NotificationStatus.md) |  | 
 **event_type** | [**WebhookEvent**](WebhookEvent.md) |  | 
 **resource_id** | **str** | The resource id of the event which the Notification is listen to | [optional] 
-**attempts** | [**List[NotificationAttempt]**](NotificationAttempt.md) | The attempts related to Notification | [default to []]
 
 ## Example
 

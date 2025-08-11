@@ -18,22 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.estimated_fee_details import EstimatedFeeDetails
-from fireblocks.models.transaction_fee import TransactionFee
+from fireblocks.models.notification_attempt import NotificationAttempt
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EstimatedTransactionFeeResponse(BaseModel):
+class NotificationAttemptsPaginatedResponse(BaseModel):
     """
-    EstimatedTransactionFeeResponse
+    NotificationAttemptsPaginatedResponse
     """ # noqa: E501
-    low: TransactionFee
-    medium: TransactionFee
-    high: TransactionFee
-    fee_details: Optional[EstimatedFeeDetails] = Field(default=None, alias="feeDetails")
-    __properties: ClassVar[List[str]] = ["low", "medium", "high", "feeDetails"]
+    data: List[NotificationAttempt] = Field(description="The data of the current page")
+    next: Optional[StrictStr] = Field(default=None, description="The ID of the next page")
+    __properties: ClassVar[List[str]] = ["data", "next"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +50,7 @@ class EstimatedTransactionFeeResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EstimatedTransactionFeeResponse from a JSON string"""
+        """Create an instance of NotificationAttemptsPaginatedResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,23 +71,23 @@ class EstimatedTransactionFeeResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of low
-        if self.low:
-            _dict['low'] = self.low.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of medium
-        if self.medium:
-            _dict['medium'] = self.medium.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of high
-        if self.high:
-            _dict['high'] = self.high.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fee_details
-        if self.fee_details:
-            _dict['feeDetails'] = self.fee_details.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
+        if self.data:
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
+        # set to None if next (nullable) is None
+        # and model_fields_set contains the field
+        if self.next is None and "next" in self.model_fields_set:
+            _dict['next'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EstimatedTransactionFeeResponse from a dict"""
+        """Create an instance of NotificationAttemptsPaginatedResponse from a dict"""
         if obj is None:
             return None
 
@@ -98,10 +95,8 @@ class EstimatedTransactionFeeResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "low": TransactionFee.from_dict(obj["low"]) if obj.get("low") is not None else None,
-            "medium": TransactionFee.from_dict(obj["medium"]) if obj.get("medium") is not None else None,
-            "high": TransactionFee.from_dict(obj["high"]) if obj.get("high") is not None else None,
-            "feeDetails": EstimatedFeeDetails.from_dict(obj["feeDetails"]) if obj.get("feeDetails") is not None else None
+            "data": [NotificationAttempt.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "next": obj.get("next")
         })
         return _obj
 

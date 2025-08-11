@@ -46,14 +46,7 @@ class TestNotificationPaginatedResponse(unittest.TestCase):
                         updated_at = 1625126400000, 
                         status = 'COMPLETED', 
                         event_type = 'transaction.created', 
-                        resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        attempts = [
-                            fireblocks.models.notification_attempt.NotificationAttempt(
-                                sent_time = 1625126400000, 
-                                duration = 130, 
-                                response_code = 200, 
-                                failure_reason = 'TIMED_OUT', )
-                            ], )
+                        resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
@@ -66,14 +59,7 @@ class TestNotificationPaginatedResponse(unittest.TestCase):
                         updated_at = 1625126400000, 
                         status = 'COMPLETED', 
                         event_type = 'transaction.created', 
-                        resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', 
-                        attempts = [
-                            fireblocks.models.notification_attempt.NotificationAttempt(
-                                sent_time = 1625126400000, 
-                                duration = 130, 
-                                response_code = 200, 
-                                failure_reason = 'TIMED_OUT', )
-                            ], )
+                        resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', )
                     ],
         )
         """

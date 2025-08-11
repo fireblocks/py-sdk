@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **low** | [**TransactionFee**](TransactionFee.md) |  | 
 **medium** | [**TransactionFee**](TransactionFee.md) |  | 
 **high** | [**TransactionFee**](TransactionFee.md) |  | 
+**fee_details** | [**EstimatedFeeDetails**](EstimatedFeeDetails.md) |  | [optional] 
 
 ## Example
 

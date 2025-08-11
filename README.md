@@ -519,15 +519,18 @@ Class | Method | HTTP request | Description
 *Web3ConnectionsApi* | [**submit**](docs/Web3ConnectionsApi.md#submit) | **PUT** /connections/wc/{id} | Respond to a pending Web3 connection request.
 *WebhooksApi* | [**resend_transaction_webhooks**](docs/WebhooksApi.md#resend_transaction_webhooks) | **POST** /webhooks/resend/{txId} | Resend failed webhooks for a transaction by ID
 *WebhooksApi* | [**resend_webhooks**](docs/WebhooksApi.md#resend_webhooks) | **POST** /webhooks/resend | Resend failed webhooks
-*WebhooksV2BetaApi* | [**create_webhook**](docs/WebhooksV2BetaApi.md#create_webhook) | **POST** /webhooks | Create new webhook
-*WebhooksV2BetaApi* | [**delete_webhook**](docs/WebhooksV2BetaApi.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
-*WebhooksV2BetaApi* | [**get_notification**](docs/WebhooksV2BetaApi.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
-*WebhooksV2BetaApi* | [**get_notifications**](docs/WebhooksV2BetaApi.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
-*WebhooksV2BetaApi* | [**get_webhook**](docs/WebhooksV2BetaApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
-*WebhooksV2BetaApi* | [**get_webhooks**](docs/WebhooksV2BetaApi.md#get_webhooks) | **GET** /webhooks | Get all webhooks
-*WebhooksV2BetaApi* | [**resend_notification_by_id**](docs/WebhooksV2BetaApi.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
-*WebhooksV2BetaApi* | [**resend_notifications_by_resource_id**](docs/WebhooksV2BetaApi.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
-*WebhooksV2BetaApi* | [**update_webhook**](docs/WebhooksV2BetaApi.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
+*WebhooksV2Api* | [**create_webhook**](docs/WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create new webhook
+*WebhooksV2Api* | [**delete_webhook**](docs/WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
+*WebhooksV2Api* | [**get_notification**](docs/WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
+*WebhooksV2Api* | [**get_notification_attempts**](docs/WebhooksV2Api.md#get_notification_attempts) | **GET** /webhooks/{webhookId}/notifications/{notificationId}/attempts | Get notification attempts
+*WebhooksV2Api* | [**get_notifications**](docs/WebhooksV2Api.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
+*WebhooksV2Api* | [**get_resend_job_status**](docs/WebhooksV2Api.md#get_resend_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_failed/jobs/{jobId} | Get resend job status
+*WebhooksV2Api* | [**get_webhook**](docs/WebhooksV2Api.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
+*WebhooksV2Api* | [**get_webhooks**](docs/WebhooksV2Api.md#get_webhooks) | **GET** /webhooks | Get all webhooks
+*WebhooksV2Api* | [**resend_failed_notifications**](docs/WebhooksV2Api.md#resend_failed_notifications) | **POST** /webhooks/{webhookId}/notifications/resend_failed | Resend failed notifications
+*WebhooksV2Api* | [**resend_notification_by_id**](docs/WebhooksV2Api.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
+*WebhooksV2Api* | [**resend_notifications_by_resource_id**](docs/WebhooksV2Api.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
+*WebhooksV2Api* | [**update_webhook**](docs/WebhooksV2Api.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
 *WorkspaceStatusBetaApi* | [**get_workspace_status**](docs/WorkspaceStatusBetaApi.md#get_workspace_status) | **GET** /management/workspace_status | Returns current workspace status
 *WhitelistIpAddressesApi* | [**get_whitelist_ip_addresses**](docs/WhitelistIpAddressesApi.md#get_whitelist_ip_addresses) | **GET** /management/api_users/{userId}/whitelist_ip_addresses | Gets whitelisted ip addresses
 
@@ -756,6 +759,7 @@ Class | Method | HTTP request | Description
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ErrorResponseError](docs/ErrorResponseError.md)
  - [ErrorSchema](docs/ErrorSchema.md)
+ - [EstimatedFeeDetails](docs/EstimatedFeeDetails.md)
  - [EstimatedNetworkFeeResponse](docs/EstimatedNetworkFeeResponse.md)
  - [EstimatedTransactionFeeResponse](docs/EstimatedTransactionFeeResponse.md)
  - [ExchangeAccount](docs/ExchangeAccount.md)
@@ -771,6 +775,9 @@ Class | Method | HTTP request | Description
  - [ExecutionScreeningOperation](docs/ExecutionScreeningOperation.md)
  - [ExecutionTransferOperation](docs/ExecutionTransferOperation.md)
  - [ExternalWalletAsset](docs/ExternalWalletAsset.md)
+ - [FeeBreakdown](docs/FeeBreakdown.md)
+ - [FeeBreakdownOneOf](docs/FeeBreakdownOneOf.md)
+ - [FeeBreakdownOneOf1](docs/FeeBreakdownOneOf1.md)
  - [FeeInfo](docs/FeeInfo.md)
  - [FeeLevel](docs/FeeLevel.md)
  - [FetchAbiRequestDto](docs/FetchAbiRequestDto.md)
@@ -842,6 +849,7 @@ Class | Method | HTTP request | Description
  - [NotFoundException](docs/NotFoundException.md)
  - [Notification](docs/Notification.md)
  - [NotificationAttempt](docs/NotificationAttempt.md)
+ - [NotificationAttemptsPaginatedResponse](docs/NotificationAttemptsPaginatedResponse.md)
  - [NotificationPaginatedResponse](docs/NotificationPaginatedResponse.md)
  - [NotificationStatus](docs/NotificationStatus.md)
  - [NotificationWithData](docs/NotificationWithData.md)
@@ -916,6 +924,9 @@ Class | Method | HTTP request | Description
  - [RenameCosigner](docs/RenameCosigner.md)
  - [RenameVaultAccountResponse](docs/RenameVaultAccountResponse.md)
  - [RescanTransaction](docs/RescanTransaction.md)
+ - [ResendFailedNotificationsJobStatusResponse](docs/ResendFailedNotificationsJobStatusResponse.md)
+ - [ResendFailedNotificationsRequest](docs/ResendFailedNotificationsRequest.md)
+ - [ResendFailedNotificationsResponse](docs/ResendFailedNotificationsResponse.md)
  - [ResendNotificationsByResourceIdRequest](docs/ResendNotificationsByResourceIdRequest.md)
  - [ResendTransactionWebhooksRequest](docs/ResendTransactionWebhooksRequest.md)
  - [ResendWebhooksByTransactionIdResponse](docs/ResendWebhooksByTransactionIdResponse.md)

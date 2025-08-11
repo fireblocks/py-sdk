@@ -49,7 +49,9 @@ class TestTransactionRequestDestination(unittest.TestCase):
                     one_time_address = fireblocks.models.one_time_address.OneTimeAddress(
                         address = '', 
                         tag = '', ), 
-                    is_collateral = True, )
+                    is_collateral = True, ),
+                travel_rule_message_id = 'trm_12345678-1234-1234-1234-123456789012',
+                customer_ref_id = 'abcdef'
             )
         else:
             return TransactionRequestDestination(

@@ -70,7 +70,9 @@ class TestTransactionRequest(unittest.TestCase):
                             one_time_address = fireblocks.models.one_time_address.OneTimeAddress(
                                 address = '', 
                                 tag = '', ), 
-                            is_collateral = True, ), )
+                            is_collateral = True, ), 
+                        travel_rule_message_id = 'trm_12345678-1234-1234-1234-123456789012', 
+                        customer_ref_id = 'abcdef', )
                     ],
                 amount = None,
                 treat_as_gross_amount = False,
@@ -188,6 +190,7 @@ class TestTransactionRequest(unittest.TestCase):
                     beneficiary_did = 'did:key:z6Mkf67890Zghijkl67890', 
                     originator_did = 'did:key:z6Mkf12345Zabcdef12345', 
                     is_non_custodial = True, ),
+                travel_rule_message_id = 'trm_12345678-1234-1234-1234-123456789012',
                 auto_staking = True,
                 network_staking = None,
                 cpu_staking = None,

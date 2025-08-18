@@ -15,11 +15,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.fee_info import FeeInfo
+from fireblocks.models.set_layer_zero_dvn_config_response import (
+    SetLayerZeroDvnConfigResponse,
+)
 
 
-class TestFeeInfo(unittest.TestCase):
-    """FeeInfo unit test stubs"""
+class TestSetLayerZeroDvnConfigResponse(unittest.TestCase):
+    """SetLayerZeroDvnConfigResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,32 +29,30 @@ class TestFeeInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> FeeInfo:
-        """Test FeeInfo
+    def make_instance(self, include_optional) -> SetLayerZeroDvnConfigResponse:
+        """Test SetLayerZeroDvnConfigResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `FeeInfo`
+        # uncomment below to create an instance of `SetLayerZeroDvnConfigResponse`
         """
-        model = FeeInfo()
+        model = SetLayerZeroDvnConfigResponse()
         if include_optional:
-            return FeeInfo(
-                network_fee = '',
-                service_fee = '',
-                gas_price = '',
-                paid_by_relay = True,
-                relay_type = 'LOCAL',
-                relay_id = '1',
-                relay_name = 'Tenant Name',
-                fee_usd = '0.0013'
+            return SetLayerZeroDvnConfigResponse(
+                txn_ids = [
+                    ''
+                    ]
             )
         else:
-            return FeeInfo(
+            return SetLayerZeroDvnConfigResponse(
+                txn_ids = [
+                    ''
+                    ],
         )
         """
 
-    def testFeeInfo(self):
-        """Test FeeInfo"""
+    def testSetLayerZeroDvnConfigResponse(self):
+        """Test SetLayerZeroDvnConfigResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

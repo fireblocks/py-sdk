@@ -34,7 +34,8 @@ class FeeInfo(BaseModel):
     relay_type: Optional[StrictStr] = Field(default=None, description="Wether the relay is the same tenant (LOCAL) or another tenant (THIRD_PARTY)", alias="relayType")
     relay_id: Optional[StrictStr] = Field(default=None, description="The vault account ID of the relay", alias="relayId")
     relay_name: Optional[StrictStr] = Field(default=None, description="The name of the tenant, only for THIRD_PARTY relays", alias="relayName")
-    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "paidByRelay", "relayType", "relayId", "relayName"]
+    fee_usd: Optional[StrictStr] = Field(default=None, description="The USD value of the fee", alias="feeUSD")
+    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "paidByRelay", "relayType", "relayId", "relayName", "feeUSD"]
 
     @field_validator('relay_type')
     def relay_type_validate_enum(cls, value):
@@ -103,7 +104,8 @@ class FeeInfo(BaseModel):
             "paidByRelay": obj.get("paidByRelay"),
             "relayType": obj.get("relayType"),
             "relayId": obj.get("relayId"),
-            "relayName": obj.get("relayName")
+            "relayName": obj.get("relayName"),
+            "feeUSD": obj.get("feeUSD")
         })
         return _obj
 

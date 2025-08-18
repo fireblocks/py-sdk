@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.fee_info import FeeInfo
+from fireblocks.models.adapter_processing_result import AdapterProcessingResult
 
 
-class TestFeeInfo(unittest.TestCase):
-    """FeeInfo unit test stubs"""
+class TestAdapterProcessingResult(unittest.TestCase):
+    """AdapterProcessingResult unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,32 +27,28 @@ class TestFeeInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> FeeInfo:
-        """Test FeeInfo
+    def make_instance(self, include_optional) -> AdapterProcessingResult:
+        """Test AdapterProcessingResult
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `FeeInfo`
+        # uncomment below to create an instance of `AdapterProcessingResult`
         """
-        model = FeeInfo()
+        model = AdapterProcessingResult()
         if include_optional:
-            return FeeInfo(
-                network_fee = '',
-                service_fee = '',
-                gas_price = '',
-                paid_by_relay = True,
-                relay_type = 'LOCAL',
-                relay_id = '1',
-                relay_name = 'Tenant Name',
-                fee_usd = '0.0013'
+            return AdapterProcessingResult(
+                input_token_link_id = '',
+                adapter_link_id = ''
             )
         else:
-            return FeeInfo(
+            return AdapterProcessingResult(
+                input_token_link_id = '',
+                adapter_link_id = '',
         )
         """
 
-    def testFeeInfo(self):
-        """Test FeeInfo"""
+    def testAdapterProcessingResult(self):
+        """Test AdapterProcessingResult"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

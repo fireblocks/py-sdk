@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "0.0.0"
+__version__ = "11.2.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi

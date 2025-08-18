@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "11.1.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -82,6 +82,7 @@ from fireblocks.models.api_user import APIUser
 from fireblocks.models.abi_function import AbiFunction
 from fireblocks.models.account import Account
 from fireblocks.models.account_type import AccountType
+from fireblocks.models.adapter_processing_result import AdapterProcessingResult
 from fireblocks.models.add_abi_request_dto import AddAbiRequestDto
 from fireblocks.models.add_asset_to_external_wallet_request import (
     AddAssetToExternalWalletRequest,
@@ -176,6 +177,15 @@ from fireblocks.models.callback_handler_request import CallbackHandlerRequest
 from fireblocks.models.cancel_transaction_response import CancelTransactionResponse
 from fireblocks.models.chain_descriptor import ChainDescriptor
 from fireblocks.models.chain_info_response import ChainInfoResponse
+from fireblocks.models.channel_dvn_config_with_confirmations import (
+    ChannelDvnConfigWithConfirmations,
+)
+from fireblocks.models.channel_dvn_config_with_confirmations_receive_config import (
+    ChannelDvnConfigWithConfirmationsReceiveConfig,
+)
+from fireblocks.models.channel_dvn_config_with_confirmations_send_config import (
+    ChannelDvnConfigWithConfirmationsSendConfig,
+)
 from fireblocks.models.claim_rewards_request import ClaimRewardsRequest
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
@@ -344,6 +354,9 @@ from fireblocks.models.delete_network_connection_response import (
     DeleteNetworkConnectionResponse,
 )
 from fireblocks.models.delete_network_id_response import DeleteNetworkIdResponse
+from fireblocks.models.deploy_layer_zero_adapters_request import (
+    DeployLayerZeroAdaptersRequest,
+)
 from fireblocks.models.deployable_address_response import DeployableAddressResponse
 from fireblocks.models.deployed_contract_not_found_error import (
     DeployedContractNotFoundError,
@@ -407,6 +420,8 @@ from fireblocks.models.draft_review_and_validation_response import (
 )
 from fireblocks.models.drop_transaction_request import DropTransactionRequest
 from fireblocks.models.drop_transaction_response import DropTransactionResponse
+from fireblocks.models.dvn_config import DvnConfig
+from fireblocks.models.dvn_config_with_confirmations import DvnConfigWithConfirmations
 from fireblocks.models.evm_token_create_params_dto import EVMTokenCreateParamsDto
 from fireblocks.models.edit_gas_station_configuration_response import (
     EditGasStationConfigurationResponse,
@@ -506,6 +521,10 @@ from fireblocks.models.get_exchange_accounts_credentials_public_key_response imp
     GetExchangeAccountsCredentialsPublicKeyResponse,
 )
 from fireblocks.models.get_filter_parameter import GetFilterParameter
+from fireblocks.models.get_layer_zero_dvn_config_response import (
+    GetLayerZeroDvnConfigResponse,
+)
+from fireblocks.models.get_layer_zero_peers_response import GetLayerZeroPeersResponse
 from fireblocks.models.get_linked_collections_paginated_response import (
     GetLinkedCollectionsPaginatedResponse,
 )
@@ -534,6 +553,9 @@ from fireblocks.models.internal_transfer_response import InternalTransferRespons
 from fireblocks.models.invalid_paramater_value_error import InvalidParamaterValueError
 from fireblocks.models.job import Job
 from fireblocks.models.job_created import JobCreated
+from fireblocks.models.layer_zero_adapter_create_params import (
+    LayerZeroAdapterCreateParams,
+)
 from fireblocks.models.lean_abi_function import LeanAbiFunction
 from fireblocks.models.lean_contract_dto import LeanContractDto
 from fireblocks.models.lean_deployed_contract_response_dto import (
@@ -616,6 +638,7 @@ from fireblocks.models.payout_instruction_state import PayoutInstructionState
 from fireblocks.models.payout_response import PayoutResponse
 from fireblocks.models.payout_state import PayoutState
 from fireblocks.models.payout_status import PayoutStatus
+from fireblocks.models.peer_adapter_info import PeerAdapterInfo
 from fireblocks.models.players import Players
 from fireblocks.models.policy_and_validation_response import PolicyAndValidationResponse
 from fireblocks.models.policy_check_result import PolicyCheckResult
@@ -672,6 +695,21 @@ from fireblocks.models.reissue_multichain_token_request import (
 from fireblocks.models.related_request import RelatedRequest
 from fireblocks.models.related_transaction import RelatedTransaction
 from fireblocks.models.remove_collateral_request_body import RemoveCollateralRequestBody
+from fireblocks.models.remove_layer_zero_adapter_failed_result import (
+    RemoveLayerZeroAdapterFailedResult,
+)
+from fireblocks.models.remove_layer_zero_adapters_request import (
+    RemoveLayerZeroAdaptersRequest,
+)
+from fireblocks.models.remove_layer_zero_adapters_response import (
+    RemoveLayerZeroAdaptersResponse,
+)
+from fireblocks.models.remove_layer_zero_peers_request import (
+    RemoveLayerZeroPeersRequest,
+)
+from fireblocks.models.remove_layer_zero_peers_response import (
+    RemoveLayerZeroPeersResponse,
+)
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
 from fireblocks.models.rescan_transaction import RescanTransaction
@@ -739,6 +777,14 @@ from fireblocks.models.set_customer_ref_id_for_address_request import (
     SetCustomerRefIdForAddressRequest,
 )
 from fireblocks.models.set_customer_ref_id_request import SetCustomerRefIdRequest
+from fireblocks.models.set_layer_zero_dvn_config_request import (
+    SetLayerZeroDvnConfigRequest,
+)
+from fireblocks.models.set_layer_zero_dvn_config_response import (
+    SetLayerZeroDvnConfigResponse,
+)
+from fireblocks.models.set_layer_zero_peers_request import SetLayerZeroPeersRequest
+from fireblocks.models.set_layer_zero_peers_response import SetLayerZeroPeersResponse
 from fireblocks.models.set_network_id_discoverability_request import (
     SetNetworkIdDiscoverabilityRequest,
 )
@@ -1036,6 +1082,9 @@ from fireblocks.models.user_role import UserRole
 from fireblocks.models.user_status import UserStatus
 from fireblocks.models.user_type import UserType
 from fireblocks.models.validate_address_response import ValidateAddressResponse
+from fireblocks.models.validate_layer_zero_channel_response import (
+    ValidateLayerZeroChannelResponse,
+)
 from fireblocks.models.validated_transactions_for_rescan import (
     ValidatedTransactionsForRescan,
 )

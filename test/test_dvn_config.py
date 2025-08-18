@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.fee_info import FeeInfo
+from fireblocks.models.dvn_config import DvnConfig
 
 
-class TestFeeInfo(unittest.TestCase):
-    """FeeInfo unit test stubs"""
+class TestDvnConfig(unittest.TestCase):
+    """DvnConfig unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,32 +27,29 @@ class TestFeeInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> FeeInfo:
-        """Test FeeInfo
+    def make_instance(self, include_optional) -> DvnConfig:
+        """Test DvnConfig
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `FeeInfo`
+        # uncomment below to create an instance of `DvnConfig`
         """
-        model = FeeInfo()
+        model = DvnConfig()
         if include_optional:
-            return FeeInfo(
-                network_fee = '',
-                service_fee = '',
-                gas_price = '',
-                paid_by_relay = True,
-                relay_type = 'LOCAL',
-                relay_id = '1',
-                relay_name = 'Tenant Name',
-                fee_usd = '0.0013'
+            return DvnConfig(
+                dvn_addresses = [1.0284746938594775E54,2.5101940177441514E50],
+                optional_dvn_addresses = [1.334824162533763E54],
+                optional_threshold = 2
             )
         else:
-            return FeeInfo(
+            return DvnConfig(
+                dvn_addresses = [1.0284746938594775E54,2.5101940177441514E50],
+                optional_threshold = 2,
         )
         """
 
-    def testFeeInfo(self):
-        """Test FeeInfo"""
+    def testDvnConfig(self):
+        """Test DvnConfig"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

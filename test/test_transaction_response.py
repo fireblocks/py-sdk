@@ -109,7 +109,8 @@ class TestTransactionResponse(unittest.TestCase):
                     paid_by_relay = True, 
                     relay_type = 'LOCAL', 
                     relay_id = '1', 
-                    relay_name = 'Tenant Name', ),
+                    relay_name = 'Tenant Name', 
+                    fee_usd = '0.0013', ),
                 fee_currency = '',
                 network_records = [
                     fireblocks.models.network_record.NetworkRecord(

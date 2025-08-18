@@ -41,6 +41,20 @@ class TestTokenizationApi(unittest.TestCase):
         """
         pass
 
+    def test_deactivate_and_unlink_adapters(self) -> None:
+        """Test case for deactivate_and_unlink_adapters
+
+        Remove LayerZero adapters
+        """
+        pass
+
+    def test_deploy_and_link_adapters(self) -> None:
+        """Test case for deploy_and_link_adapters
+
+        Deploy LayerZero adapters
+        """
+        pass
+
     def test_fetch_collection_token_details(self) -> None:
         """Test case for fetch_collection_token_details
 
@@ -59,6 +73,20 @@ class TestTokenizationApi(unittest.TestCase):
         """Test case for get_deployable_address
 
         Get deterministic address for contract deployment
+        """
+        pass
+
+    def test_get_layer_zero_dvn_config(self) -> None:
+        """Test case for get_layer_zero_dvn_config
+
+        Get LayerZero DVN configuration
+        """
+        pass
+
+    def test_get_layer_zero_peers(self) -> None:
+        """Test case for get_layer_zero_peers
+
+        Get LayerZero peers
         """
         pass
 
@@ -118,6 +146,27 @@ class TestTokenizationApi(unittest.TestCase):
         """
         pass
 
+    def test_remove_layer_zero_peers(self) -> None:
+        """Test case for remove_layer_zero_peers
+
+        Remove LayerZero peers
+        """
+        pass
+
+    def test_set_layer_zero_dvn_config(self) -> None:
+        """Test case for set_layer_zero_dvn_config
+
+        Set LayerZero DVN configuration
+        """
+        pass
+
+    def test_set_layer_zero_peers(self) -> None:
+        """Test case for set_layer_zero_peers
+
+        Set LayerZero peers
+        """
+        pass
+
     def test_unlink(self) -> None:
         """Test case for unlink
 
@@ -129,6 +178,13 @@ class TestTokenizationApi(unittest.TestCase):
         """Test case for unlink_collection
 
         Delete a collection link
+        """
+        pass
+
+    def test_validate_layer_zero_channel_config(self) -> None:
+        """Test case for validate_layer_zero_channel_config
+
+        Validate LayerZero channel configuration
         """
         pass
 

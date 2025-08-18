@@ -6,6 +6,7 @@ docs/APIUser.md
 docs/AbiFunction.md
 docs/Account.md
 docs/AccountType.md
+docs/AdapterProcessingResult.md
 docs/AddAbiRequestDto.md
 docs/AddAssetToExternalWalletRequest.md
 docs/AddAssetToExternalWalletRequestOneOf.md
@@ -76,6 +77,9 @@ docs/CallbackHandlerRequest.md
 docs/CancelTransactionResponse.md
 docs/ChainDescriptor.md
 docs/ChainInfoResponse.md
+docs/ChannelDvnConfigWithConfirmations.md
+docs/ChannelDvnConfigWithConfirmationsReceiveConfig.md
+docs/ChannelDvnConfigWithConfirmationsSendConfig.md
 docs/ClaimRewardsRequest.md
 docs/CollectionBurnRequestDto.md
 docs/CollectionBurnResponseDto.md
@@ -185,6 +189,7 @@ docs/Delegation.md
 docs/DelegationSummary.md
 docs/DeleteNetworkConnectionResponse.md
 docs/DeleteNetworkIdResponse.md
+docs/DeployLayerZeroAdaptersRequest.md
 docs/DeployableAddressResponse.md
 docs/DeployedContractNotFoundError.md
 docs/DeployedContractResponseDto.md
@@ -215,6 +220,8 @@ docs/DraftResponse.md
 docs/DraftReviewAndValidationResponse.md
 docs/DropTransactionRequest.md
 docs/DropTransactionResponse.md
+docs/DvnConfig.md
+docs/DvnConfigWithConfirmations.md
 docs/EVMTokenCreateParamsDto.md
 docs/EditGasStationConfigurationResponse.md
 docs/EmbeddedWallet.md
@@ -281,6 +288,8 @@ docs/GetConsoleUsersResponse.md
 docs/GetDeployableAddressRequest.md
 docs/GetExchangeAccountsCredentialsPublicKeyResponse.md
 docs/GetFilterParameter.md
+docs/GetLayerZeroDvnConfigResponse.md
+docs/GetLayerZeroPeersResponse.md
 docs/GetLinkedCollectionsPaginatedResponse.md
 docs/GetMaxSpendableAmountResponse.md
 docs/GetMpcKeysResponse.md
@@ -303,6 +312,7 @@ docs/JobCreated.md
 docs/JobManagementApi.md
 docs/KeyLinkBetaApi.md
 docs/KeysBetaApi.md
+docs/LayerZeroAdapterCreateParams.md
 docs/LeanAbiFunction.md
 docs/LeanContractDto.md
 docs/LeanDeployedContractResponseDto.md
@@ -370,6 +380,7 @@ docs/PayoutInstructionState.md
 docs/PayoutResponse.md
 docs/PayoutState.md
 docs/PayoutStatus.md
+docs/PeerAdapterInfo.md
 docs/Players.md
 docs/PolicyAndValidationResponse.md
 docs/PolicyCheckResult.md
@@ -413,6 +424,11 @@ docs/ReissueMultichainTokenRequest.md
 docs/RelatedRequest.md
 docs/RelatedTransaction.md
 docs/RemoveCollateralRequestBody.md
+docs/RemoveLayerZeroAdapterFailedResult.md
+docs/RemoveLayerZeroAdaptersRequest.md
+docs/RemoveLayerZeroAdaptersResponse.md
+docs/RemoveLayerZeroPeersRequest.md
+docs/RemoveLayerZeroPeersResponse.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
 docs/RescanTransaction.md
@@ -451,6 +467,10 @@ docs/SetConfirmationsThresholdRequest.md
 docs/SetConfirmationsThresholdResponse.md
 docs/SetCustomerRefIdForAddressRequest.md
 docs/SetCustomerRefIdRequest.md
+docs/SetLayerZeroDvnConfigRequest.md
+docs/SetLayerZeroDvnConfigResponse.md
+docs/SetLayerZeroPeersRequest.md
+docs/SetLayerZeroPeersResponse.md
 docs/SetNetworkIdDiscoverabilityRequest.md
 docs/SetNetworkIdNameRequest.md
 docs/SetNetworkIdResponse.md
@@ -635,6 +655,7 @@ docs/UserStatus.md
 docs/UserType.md
 docs/UsersApi.md
 docs/ValidateAddressResponse.md
+docs/ValidateLayerZeroChannelResponse.md
 docs/ValidatedTransactionsForRescan.md
 docs/ValidationKeyDto.md
 docs/Validator.md
@@ -725,6 +746,7 @@ fireblocks/models/__init__.py
 fireblocks/models/abi_function.py
 fireblocks/models/account.py
 fireblocks/models/account_type.py
+fireblocks/models/adapter_processing_result.py
 fireblocks/models/add_abi_request_dto.py
 fireblocks/models/add_asset_to_external_wallet_request.py
 fireblocks/models/add_asset_to_external_wallet_request_one_of.py
@@ -792,6 +814,9 @@ fireblocks/models/callback_handler_request.py
 fireblocks/models/cancel_transaction_response.py
 fireblocks/models/chain_descriptor.py
 fireblocks/models/chain_info_response.py
+fireblocks/models/channel_dvn_config_with_confirmations.py
+fireblocks/models/channel_dvn_config_with_confirmations_receive_config.py
+fireblocks/models/channel_dvn_config_with_confirmations_send_config.py
 fireblocks/models/claim_rewards_request.py
 fireblocks/models/collection_burn_request_dto.py
 fireblocks/models/collection_burn_response_dto.py
@@ -894,6 +919,7 @@ fireblocks/models/delegation.py
 fireblocks/models/delegation_summary.py
 fireblocks/models/delete_network_connection_response.py
 fireblocks/models/delete_network_id_response.py
+fireblocks/models/deploy_layer_zero_adapters_request.py
 fireblocks/models/deployable_address_response.py
 fireblocks/models/deployed_contract_not_found_error.py
 fireblocks/models/deployed_contract_response_dto.py
@@ -923,6 +949,8 @@ fireblocks/models/draft_response.py
 fireblocks/models/draft_review_and_validation_response.py
 fireblocks/models/drop_transaction_request.py
 fireblocks/models/drop_transaction_response.py
+fireblocks/models/dvn_config.py
+fireblocks/models/dvn_config_with_confirmations.py
 fireblocks/models/edit_gas_station_configuration_response.py
 fireblocks/models/embedded_wallet.py
 fireblocks/models/embedded_wallet_account.py
@@ -984,6 +1012,8 @@ fireblocks/models/get_console_users_response.py
 fireblocks/models/get_deployable_address_request.py
 fireblocks/models/get_exchange_accounts_credentials_public_key_response.py
 fireblocks/models/get_filter_parameter.py
+fireblocks/models/get_layer_zero_dvn_config_response.py
+fireblocks/models/get_layer_zero_peers_response.py
 fireblocks/models/get_linked_collections_paginated_response.py
 fireblocks/models/get_max_spendable_amount_response.py
 fireblocks/models/get_mpc_keys_response.py
@@ -1002,6 +1032,7 @@ fireblocks/models/internal_transfer_response.py
 fireblocks/models/invalid_paramater_value_error.py
 fireblocks/models/job.py
 fireblocks/models/job_created.py
+fireblocks/models/layer_zero_adapter_create_params.py
 fireblocks/models/lean_abi_function.py
 fireblocks/models/lean_contract_dto.py
 fireblocks/models/lean_deployed_contract_response_dto.py
@@ -1064,6 +1095,7 @@ fireblocks/models/payout_instruction_state.py
 fireblocks/models/payout_response.py
 fireblocks/models/payout_state.py
 fireblocks/models/payout_status.py
+fireblocks/models/peer_adapter_info.py
 fireblocks/models/players.py
 fireblocks/models/policy_and_validation_response.py
 fireblocks/models/policy_check_result.py
@@ -1106,6 +1138,11 @@ fireblocks/models/reissue_multichain_token_request.py
 fireblocks/models/related_request.py
 fireblocks/models/related_transaction.py
 fireblocks/models/remove_collateral_request_body.py
+fireblocks/models/remove_layer_zero_adapter_failed_result.py
+fireblocks/models/remove_layer_zero_adapters_request.py
+fireblocks/models/remove_layer_zero_adapters_response.py
+fireblocks/models/remove_layer_zero_peers_request.py
+fireblocks/models/remove_layer_zero_peers_response.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
 fireblocks/models/rescan_transaction.py
@@ -1141,6 +1178,10 @@ fireblocks/models/set_confirmations_threshold_request.py
 fireblocks/models/set_confirmations_threshold_response.py
 fireblocks/models/set_customer_ref_id_for_address_request.py
 fireblocks/models/set_customer_ref_id_request.py
+fireblocks/models/set_layer_zero_dvn_config_request.py
+fireblocks/models/set_layer_zero_dvn_config_response.py
+fireblocks/models/set_layer_zero_peers_request.py
+fireblocks/models/set_layer_zero_peers_response.py
 fireblocks/models/set_network_id_discoverability_request.py
 fireblocks/models/set_network_id_name_request.py
 fireblocks/models/set_network_id_response.py
@@ -1318,6 +1359,7 @@ fireblocks/models/user_role.py
 fireblocks/models/user_status.py
 fireblocks/models/user_type.py
 fireblocks/models/validate_address_response.py
+fireblocks/models/validate_layer_zero_channel_response.py
 fireblocks/models/validated_transactions_for_rescan.py
 fireblocks/models/validation_key_dto.py
 fireblocks/models/validator.py
@@ -1370,6 +1412,7 @@ test/fireblocks/test_validation_utils.py
 test/test_abi_function.py
 test/test_account.py
 test/test_account_type.py
+test/test_adapter_processing_result.py
 test/test_add_abi_request_dto.py
 test/test_add_asset_to_external_wallet_request.py
 test/test_add_asset_to_external_wallet_request_one_of.py
@@ -1441,6 +1484,9 @@ test/test_callback_handler_request.py
 test/test_cancel_transaction_response.py
 test/test_chain_descriptor.py
 test/test_chain_info_response.py
+test/test_channel_dvn_config_with_confirmations.py
+test/test_channel_dvn_config_with_confirmations_receive_config.py
+test/test_channel_dvn_config_with_confirmations_send_config.py
 test/test_claim_rewards_request.py
 test/test_collection_burn_request_dto.py
 test/test_collection_burn_response_dto.py
@@ -1550,6 +1596,7 @@ test/test_delegation.py
 test/test_delegation_summary.py
 test/test_delete_network_connection_response.py
 test/test_delete_network_id_response.py
+test/test_deploy_layer_zero_adapters_request.py
 test/test_deployable_address_response.py
 test/test_deployed_contract_not_found_error.py
 test/test_deployed_contract_response_dto.py
@@ -1580,6 +1627,8 @@ test/test_draft_response.py
 test/test_draft_review_and_validation_response.py
 test/test_drop_transaction_request.py
 test/test_drop_transaction_response.py
+test/test_dvn_config.py
+test/test_dvn_config_with_confirmations.py
 test/test_edit_gas_station_configuration_response.py
 test/test_embedded_wallet.py
 test/test_embedded_wallet_account.py
@@ -1646,6 +1695,8 @@ test/test_get_console_users_response.py
 test/test_get_deployable_address_request.py
 test/test_get_exchange_accounts_credentials_public_key_response.py
 test/test_get_filter_parameter.py
+test/test_get_layer_zero_dvn_config_response.py
+test/test_get_layer_zero_peers_response.py
 test/test_get_linked_collections_paginated_response.py
 test/test_get_max_spendable_amount_response.py
 test/test_get_mpc_keys_response.py
@@ -1668,6 +1719,7 @@ test/test_job_created.py
 test/test_job_management_api.py
 test/test_key_link_beta_api.py
 test/test_keys_beta_api.py
+test/test_layer_zero_adapter_create_params.py
 test/test_lean_abi_function.py
 test/test_lean_contract_dto.py
 test/test_lean_deployed_contract_response_dto.py
@@ -1735,6 +1787,7 @@ test/test_payout_instruction_state.py
 test/test_payout_response.py
 test/test_payout_state.py
 test/test_payout_status.py
+test/test_peer_adapter_info.py
 test/test_players.py
 test/test_policy_and_validation_response.py
 test/test_policy_check_result.py
@@ -1778,6 +1831,11 @@ test/test_reissue_multichain_token_request.py
 test/test_related_request.py
 test/test_related_transaction.py
 test/test_remove_collateral_request_body.py
+test/test_remove_layer_zero_adapter_failed_result.py
+test/test_remove_layer_zero_adapters_request.py
+test/test_remove_layer_zero_adapters_response.py
+test/test_remove_layer_zero_peers_request.py
+test/test_remove_layer_zero_peers_response.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
 test/test_rescan_transaction.py
@@ -1814,6 +1872,10 @@ test/test_set_confirmations_threshold_request.py
 test/test_set_confirmations_threshold_response.py
 test/test_set_customer_ref_id_for_address_request.py
 test/test_set_customer_ref_id_request.py
+test/test_set_layer_zero_dvn_config_request.py
+test/test_set_layer_zero_dvn_config_response.py
+test/test_set_layer_zero_peers_request.py
+test/test_set_layer_zero_peers_response.py
 test/test_set_network_id_discoverability_request.py
 test/test_set_network_id_name_request.py
 test/test_set_network_id_response.py
@@ -2000,6 +2062,7 @@ test/test_user_status.py
 test/test_user_type.py
 test/test_users_api.py
 test/test_validate_address_response.py
+test/test_validate_layer_zero_channel_response.py
 test/test_validated_transactions_for_rescan.py
 test/test_validation_key_dto.py
 test/test_validator.py

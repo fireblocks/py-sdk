@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **relay_type** | **str** | Wether the relay is the same tenant (LOCAL) or another tenant (THIRD_PARTY) | [optional] 
 **relay_id** | **str** | The vault account ID of the relay | [optional] 
 **relay_name** | **str** | The name of the tenant, only for THIRD_PARTY relays | [optional] 
+**fee_usd** | **str** | The USD value of the fee | [optional] 
 
 ## Example
 

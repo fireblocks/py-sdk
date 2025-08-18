@@ -444,9 +444,13 @@ Class | Method | HTTP request | Description
 *TagsApi* | [**update_tag**](docs/TagsApi.md#update_tag) | **PATCH** /tags/{tagId} | Update a tag
 *TokenizationApi* | [**burn_collection_token**](docs/TokenizationApi.md#burn_collection_token) | **POST** /tokenization/collections/{id}/tokens/burn | Burn tokens
 *TokenizationApi* | [**create_new_collection**](docs/TokenizationApi.md#create_new_collection) | **POST** /tokenization/collections | Create a new collection
+*TokenizationApi* | [**deactivate_and_unlink_adapters**](docs/TokenizationApi.md#deactivate_and_unlink_adapters) | **DELETE** /tokenization/multichain/bridge/layerzero | Remove LayerZero adapters
+*TokenizationApi* | [**deploy_and_link_adapters**](docs/TokenizationApi.md#deploy_and_link_adapters) | **POST** /tokenization/multichain/bridge/layerzero | Deploy LayerZero adapters
 *TokenizationApi* | [**fetch_collection_token_details**](docs/TokenizationApi.md#fetch_collection_token_details) | **GET** /tokenization/collections/{id}/tokens/{tokenId} | Get collection token details
 *TokenizationApi* | [**get_collection_by_id**](docs/TokenizationApi.md#get_collection_by_id) | **GET** /tokenization/collections/{id} | Get a collection by id
 *TokenizationApi* | [**get_deployable_address**](docs/TokenizationApi.md#get_deployable_address) | **POST** /tokenization/multichain/deterministic_address | Get deterministic address for contract deployment
+*TokenizationApi* | [**get_layer_zero_dvn_config**](docs/TokenizationApi.md#get_layer_zero_dvn_config) | **GET** /tokenization/multichain/bridge/layerzero/config/{adapterTokenLinkId}/dvns | Get LayerZero DVN configuration
+*TokenizationApi* | [**get_layer_zero_peers**](docs/TokenizationApi.md#get_layer_zero_peers) | **GET** /tokenization/multichain/bridge/layerzero/config/{adapterTokenLinkId}/peers | Get LayerZero peers
 *TokenizationApi* | [**get_linked_collections**](docs/TokenizationApi.md#get_linked_collections) | **GET** /tokenization/collections | Get collections
 *TokenizationApi* | [**get_linked_token**](docs/TokenizationApi.md#get_linked_token) | **GET** /tokenization/tokens/{id} | Return a linked token
 *TokenizationApi* | [**get_linked_tokens**](docs/TokenizationApi.md#get_linked_tokens) | **GET** /tokenization/tokens | List all linked tokens
@@ -455,8 +459,12 @@ Class | Method | HTTP request | Description
 *TokenizationApi* | [**link**](docs/TokenizationApi.md#link) | **POST** /tokenization/tokens/link | Link a contract
 *TokenizationApi* | [**mint_collection_token**](docs/TokenizationApi.md#mint_collection_token) | **POST** /tokenization/collections/{id}/tokens/mint | Mint tokens
 *TokenizationApi* | [**re_issue_token_multi_chain**](docs/TokenizationApi.md#re_issue_token_multi_chain) | **POST** /tokenization/multichain/reissue/token/{tokenLinkId} | Reissue a multichain token
+*TokenizationApi* | [**remove_layer_zero_peers**](docs/TokenizationApi.md#remove_layer_zero_peers) | **DELETE** /tokenization/multichain/bridge/layerzero/config/peers | Remove LayerZero peers
+*TokenizationApi* | [**set_layer_zero_dvn_config**](docs/TokenizationApi.md#set_layer_zero_dvn_config) | **POST** /tokenization/multichain/bridge/layerzero/config/dvns | Set LayerZero DVN configuration
+*TokenizationApi* | [**set_layer_zero_peers**](docs/TokenizationApi.md#set_layer_zero_peers) | **POST** /tokenization/multichain/bridge/layerzero/config/peers | Set LayerZero peers
 *TokenizationApi* | [**unlink**](docs/TokenizationApi.md#unlink) | **DELETE** /tokenization/tokens/{id} | Unlink a token
 *TokenizationApi* | [**unlink_collection**](docs/TokenizationApi.md#unlink_collection) | **DELETE** /tokenization/collections/{id} | Delete a collection link
+*TokenizationApi* | [**validate_layer_zero_channel_config**](docs/TokenizationApi.md#validate_layer_zero_channel_config) | **GET** /tokenization/multichain/bridge/layerzero/validate | Validate LayerZero channel configuration
 *TransactionsApi* | [**cancel_transaction**](docs/TransactionsApi.md#cancel_transaction) | **POST** /transactions/{txId}/cancel | Cancel a transaction
 *TransactionsApi* | [**create_transaction**](docs/TransactionsApi.md#create_transaction) | **POST** /transactions | Create a new transaction
 *TransactionsApi* | [**drop_transaction**](docs/TransactionsApi.md#drop_transaction) | **POST** /transactions/{txId}/drop | Drop ETH transaction by ID
@@ -541,6 +549,7 @@ Class | Method | HTTP request | Description
  - [AbiFunction](docs/AbiFunction.md)
  - [Account](docs/Account.md)
  - [AccountType](docs/AccountType.md)
+ - [AdapterProcessingResult](docs/AdapterProcessingResult.md)
  - [AddAbiRequestDto](docs/AddAbiRequestDto.md)
  - [AddAssetToExternalWalletRequest](docs/AddAssetToExternalWalletRequest.md)
  - [AddAssetToExternalWalletRequestOneOf](docs/AddAssetToExternalWalletRequestOneOf.md)
@@ -607,6 +616,9 @@ Class | Method | HTTP request | Description
  - [CancelTransactionResponse](docs/CancelTransactionResponse.md)
  - [ChainDescriptor](docs/ChainDescriptor.md)
  - [ChainInfoResponse](docs/ChainInfoResponse.md)
+ - [ChannelDvnConfigWithConfirmations](docs/ChannelDvnConfigWithConfirmations.md)
+ - [ChannelDvnConfigWithConfirmationsReceiveConfig](docs/ChannelDvnConfigWithConfirmationsReceiveConfig.md)
+ - [ChannelDvnConfigWithConfirmationsSendConfig](docs/ChannelDvnConfigWithConfirmationsSendConfig.md)
  - [ClaimRewardsRequest](docs/ClaimRewardsRequest.md)
  - [CollectionBurnRequestDto](docs/CollectionBurnRequestDto.md)
  - [CollectionBurnResponseDto](docs/CollectionBurnResponseDto.md)
@@ -709,6 +721,7 @@ Class | Method | HTTP request | Description
  - [DelegationSummary](docs/DelegationSummary.md)
  - [DeleteNetworkConnectionResponse](docs/DeleteNetworkConnectionResponse.md)
  - [DeleteNetworkIdResponse](docs/DeleteNetworkIdResponse.md)
+ - [DeployLayerZeroAdaptersRequest](docs/DeployLayerZeroAdaptersRequest.md)
  - [DeployableAddressResponse](docs/DeployableAddressResponse.md)
  - [DeployedContractNotFoundError](docs/DeployedContractNotFoundError.md)
  - [DeployedContractResponseDto](docs/DeployedContractResponseDto.md)
@@ -738,6 +751,8 @@ Class | Method | HTTP request | Description
  - [DraftReviewAndValidationResponse](docs/DraftReviewAndValidationResponse.md)
  - [DropTransactionRequest](docs/DropTransactionRequest.md)
  - [DropTransactionResponse](docs/DropTransactionResponse.md)
+ - [DvnConfig](docs/DvnConfig.md)
+ - [DvnConfigWithConfirmations](docs/DvnConfigWithConfirmations.md)
  - [EVMTokenCreateParamsDto](docs/EVMTokenCreateParamsDto.md)
  - [EditGasStationConfigurationResponse](docs/EditGasStationConfigurationResponse.md)
  - [EmbeddedWallet](docs/EmbeddedWallet.md)
@@ -799,6 +814,8 @@ Class | Method | HTTP request | Description
  - [GetDeployableAddressRequest](docs/GetDeployableAddressRequest.md)
  - [GetExchangeAccountsCredentialsPublicKeyResponse](docs/GetExchangeAccountsCredentialsPublicKeyResponse.md)
  - [GetFilterParameter](docs/GetFilterParameter.md)
+ - [GetLayerZeroDvnConfigResponse](docs/GetLayerZeroDvnConfigResponse.md)
+ - [GetLayerZeroPeersResponse](docs/GetLayerZeroPeersResponse.md)
  - [GetLinkedCollectionsPaginatedResponse](docs/GetLinkedCollectionsPaginatedResponse.md)
  - [GetMaxSpendableAmountResponse](docs/GetMaxSpendableAmountResponse.md)
  - [GetMpcKeysResponse](docs/GetMpcKeysResponse.md)
@@ -817,6 +834,7 @@ Class | Method | HTTP request | Description
  - [InvalidParamaterValueError](docs/InvalidParamaterValueError.md)
  - [Job](docs/Job.md)
  - [JobCreated](docs/JobCreated.md)
+ - [LayerZeroAdapterCreateParams](docs/LayerZeroAdapterCreateParams.md)
  - [LeanAbiFunction](docs/LeanAbiFunction.md)
  - [LeanContractDto](docs/LeanContractDto.md)
  - [LeanDeployedContractResponseDto](docs/LeanDeployedContractResponseDto.md)
@@ -879,6 +897,7 @@ Class | Method | HTTP request | Description
  - [PayoutResponse](docs/PayoutResponse.md)
  - [PayoutState](docs/PayoutState.md)
  - [PayoutStatus](docs/PayoutStatus.md)
+ - [PeerAdapterInfo](docs/PeerAdapterInfo.md)
  - [Players](docs/Players.md)
  - [PolicyAndValidationResponse](docs/PolicyAndValidationResponse.md)
  - [PolicyCheckResult](docs/PolicyCheckResult.md)
@@ -921,6 +940,11 @@ Class | Method | HTTP request | Description
  - [RelatedRequest](docs/RelatedRequest.md)
  - [RelatedTransaction](docs/RelatedTransaction.md)
  - [RemoveCollateralRequestBody](docs/RemoveCollateralRequestBody.md)
+ - [RemoveLayerZeroAdapterFailedResult](docs/RemoveLayerZeroAdapterFailedResult.md)
+ - [RemoveLayerZeroAdaptersRequest](docs/RemoveLayerZeroAdaptersRequest.md)
+ - [RemoveLayerZeroAdaptersResponse](docs/RemoveLayerZeroAdaptersResponse.md)
+ - [RemoveLayerZeroPeersRequest](docs/RemoveLayerZeroPeersRequest.md)
+ - [RemoveLayerZeroPeersResponse](docs/RemoveLayerZeroPeersResponse.md)
  - [RenameCosigner](docs/RenameCosigner.md)
  - [RenameVaultAccountResponse](docs/RenameVaultAccountResponse.md)
  - [RescanTransaction](docs/RescanTransaction.md)
@@ -958,6 +982,10 @@ Class | Method | HTTP request | Description
  - [SetConfirmationsThresholdResponse](docs/SetConfirmationsThresholdResponse.md)
  - [SetCustomerRefIdForAddressRequest](docs/SetCustomerRefIdForAddressRequest.md)
  - [SetCustomerRefIdRequest](docs/SetCustomerRefIdRequest.md)
+ - [SetLayerZeroDvnConfigRequest](docs/SetLayerZeroDvnConfigRequest.md)
+ - [SetLayerZeroDvnConfigResponse](docs/SetLayerZeroDvnConfigResponse.md)
+ - [SetLayerZeroPeersRequest](docs/SetLayerZeroPeersRequest.md)
+ - [SetLayerZeroPeersResponse](docs/SetLayerZeroPeersResponse.md)
  - [SetNetworkIdDiscoverabilityRequest](docs/SetNetworkIdDiscoverabilityRequest.md)
  - [SetNetworkIdNameRequest](docs/SetNetworkIdNameRequest.md)
  - [SetNetworkIdResponse](docs/SetNetworkIdResponse.md)
@@ -1133,6 +1161,7 @@ Class | Method | HTTP request | Description
  - [UserStatus](docs/UserStatus.md)
  - [UserType](docs/UserType.md)
  - [ValidateAddressResponse](docs/ValidateAddressResponse.md)
+ - [ValidateLayerZeroChannelResponse](docs/ValidateLayerZeroChannelResponse.md)
  - [ValidatedTransactionsForRescan](docs/ValidatedTransactionsForRescan.md)
  - [ValidationKeyDto](docs/ValidationKeyDto.md)
  - [Validator](docs/Validator.md)

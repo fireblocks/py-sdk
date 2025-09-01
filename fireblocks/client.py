@@ -42,6 +42,7 @@ from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
+from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
@@ -96,6 +97,7 @@ class Fireblocks:
         self._ota_beta = None
         self._off_exchanges = None
         self._payments_payout = None
+        self._policy_editor_v2_beta = None
         self._policy_editor_beta = None
         self._reset_device = None
         self._smart_transfer = None
@@ -280,6 +282,12 @@ class Fireblocks:
         if self._payments_payout is None:
             self._payments_payout = PaymentsPayoutApi(self._api_client)
         return self._payments_payout
+
+    @property
+    def policy_editor_v2_beta(self) -> PolicyEditorV2BetaApi:
+        if self._policy_editor_v2_beta is None:
+            self._policy_editor_v2_beta = PolicyEditorV2BetaApi(self._api_client)
+        return self._policy_editor_v2_beta
 
     @property
     def policy_editor_beta(self) -> PolicyEditorBetaApi:

@@ -39,14 +39,14 @@ class TestAddAssetToExternalWalletRequest(unittest.TestCase):
         model = AddAssetToExternalWalletRequest()
         if include_optional:
             return AddAssetToExternalWalletRequest(
-                address = '',
-                tag = '',
-                additional_info = fireblocks.models.add_asset_to_external_wallet_request_one_of_1_additional_info.AddAssetToExternalWalletRequest_oneOf_1_additionalInfo()
+                address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+                tag = '12345',
+                additional_info = fireblocks.models.additional_info_request_additional_info.AdditionalInfoRequest_additionalInfo()
             )
         else:
             return AddAssetToExternalWalletRequest(
-                address = '',
-                additional_info = fireblocks.models.add_asset_to_external_wallet_request_one_of_1_additional_info.AddAssetToExternalWalletRequest_oneOf_1_additionalInfo(),
+                address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+                additional_info = fireblocks.models.additional_info_request_additional_info.AdditionalInfoRequest_additionalInfo(),
         )
         """
 

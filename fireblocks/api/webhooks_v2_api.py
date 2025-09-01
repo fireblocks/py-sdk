@@ -18,12 +18,13 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, field_validator
-from typing import Optional, Union
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import List, Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_webhook_request import CreateWebhookRequest
 from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
 from fireblocks.models.notification_paginated_response import NotificationPaginatedResponse
+from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.notification_with_data import NotificationWithData
 from fireblocks.models.resend_failed_notifications_job_status_response import ResendFailedNotificationsJobStatusResponse
 from fireblocks.models.resend_failed_notifications_request import ResendFailedNotificationsRequest
@@ -31,6 +32,7 @@ from fireblocks.models.resend_failed_notifications_response import ResendFailedN
 from fireblocks.models.resend_notifications_by_resource_id_request import ResendNotificationsByResourceIdRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
 from fireblocks.models.webhook import Webhook
+from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_paginated_response import WebhookPaginatedResponse
 
 from fireblocks.api_client import ApiClient, RequestSerialized
@@ -638,6 +640,11 @@ class WebhooksV2Api:
         sort_by: Annotated[Optional[StrictStr], Field(description="Sort by field")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor of the required page")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=100, strict=True, ge=1)], Annotated[int, Field(le=100, strict=True, ge=1)]]], Field(description="Maximum number of items in the page")] = None,
+        start_time: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Start time in milliseconds since epoch to filter by notifications created after this time (default 31 days ago)")] = None,
+        end_time: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="End time in milliseconds since epoch to filter by notifications created before this time (default current time)")] = None,
+        statuses: Annotated[Optional[List[NotificationStatus]], Field(description="List of notification statuses to filter by")] = None,
+        events: Annotated[Optional[List[WebhookEvent]], Field(description="List of webhook event types to filter by")] = None,
+        resource_id: Annotated[Optional[StrictStr], Field(description="Resource ID to filter by")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -665,6 +672,16 @@ class WebhooksV2Api:
         :type page_cursor: str
         :param page_size: Maximum number of items in the page
         :type page_size: float
+        :param start_time: Start time in milliseconds since epoch to filter by notifications created after this time (default 31 days ago)
+        :type start_time: float
+        :param end_time: End time in milliseconds since epoch to filter by notifications created before this time (default current time)
+        :type end_time: float
+        :param statuses: List of notification statuses to filter by
+        :type statuses: List[NotificationStatus]
+        :param events: List of webhook event types to filter by
+        :type events: List[WebhookEvent]
+        :param resource_id: Resource ID to filter by
+        :type resource_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -695,6 +712,11 @@ class WebhooksV2Api:
             sort_by=sort_by,
             page_cursor=page_cursor,
             page_size=page_size,
+            start_time=start_time,
+            end_time=end_time,
+            statuses=statuses,
+            events=events,
+            resource_id=resource_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -719,6 +741,11 @@ class WebhooksV2Api:
         sort_by,
         page_cursor,
         page_size,
+        start_time,
+        end_time,
+        statuses,
+        events,
+        resource_id,
         _request_auth,
         _content_type,
         _headers,
@@ -728,6 +755,8 @@ class WebhooksV2Api:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'statuses': 'multi',
+            'events': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -758,6 +787,26 @@ class WebhooksV2Api:
         if page_size is not None:
             
             _query_params.append(('pageSize', page_size))
+            
+        if start_time is not None:
+            
+            _query_params.append(('startTime', start_time))
+            
+        if end_time is not None:
+            
+            _query_params.append(('endTime', end_time))
+            
+        if statuses is not None:
+            
+            _query_params.append(('statuses', statuses))
+            
+        if events is not None:
+            
+            _query_params.append(('events', events))
+            
+        if resource_id is not None:
+            
+            _query_params.append(('resourceId', resource_id))
             
         # process the header parameters
         # process the form parameters

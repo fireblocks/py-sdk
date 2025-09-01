@@ -48,6 +48,7 @@ class TestNotificationPaginatedResponse(unittest.TestCase):
                         event_type = 'transaction.created', 
                         resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f', )
                     ],
+                total = 100,
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
         else:

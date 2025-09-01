@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.notification import Notification
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +29,9 @@ class NotificationPaginatedResponse(BaseModel):
     NotificationPaginatedResponse
     """ # noqa: E501
     data: List[Notification] = Field(description="The data of the current page")
+    total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total number of notifications after all filters applied (not returned when 'pageCursor' parameter is used)")
     next: Optional[StrictStr] = Field(default=None, description="The ID of the next page")
-    __properties: ClassVar[List[str]] = ["data", "next"]
+    __properties: ClassVar[List[str]] = ["data", "total", "next"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +79,11 @@ class NotificationPaginatedResponse(BaseModel):
                 if _item_data:
                     _items.append(_item_data.to_dict())
             _dict['data'] = _items
+        # set to None if total (nullable) is None
+        # and model_fields_set contains the field
+        if self.total is None and "total" in self.model_fields_set:
+            _dict['total'] = None
+
         # set to None if next (nullable) is None
         # and model_fields_set contains the field
         if self.next is None and "next" in self.model_fields_set:
@@ -96,6 +102,7 @@ class NotificationPaginatedResponse(BaseModel):
 
         _obj = cls.model_validate({
             "data": [Notification.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "total": obj.get("total"),
             "next": obj.get("next")
         })
         return _obj

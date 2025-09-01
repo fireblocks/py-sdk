@@ -20,18 +20,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.policy_type import PolicyType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PolicyMetadata(BaseModel):
     """
-    Policy related metadata
+    Policy metadata
     """ # noqa: E501
-    edited_by: Optional[StrictStr] = Field(default=None, description="The user id of the user who last edited the policy", alias="editedBy")
+    edited_by: Optional[StrictStr] = Field(default=None, description="The user ID of the user who last edited the policy", alias="editedBy")
     edited_at: Optional[StrictStr] = Field(default=None, description="The timestamp of the last edit of the policy", alias="editedAt")
-    published_by: Optional[StrictStr] = Field(default=None, description="The user id of the user who last published the policy", alias="publishedBy")
+    published_by: Optional[StrictStr] = Field(default=None, description="The user ID of the user who last published the policy", alias="publishedBy")
     published_at: Optional[StrictStr] = Field(default=None, description="The timestamp of the last publish of the policy", alias="publishedAt")
-    __properties: ClassVar[List[str]] = ["editedBy", "editedAt", "publishedBy", "publishedAt"]
+    policy_type: PolicyType = Field(alias="policyType")
+    __properties: ClassVar[List[str]] = ["editedBy", "editedAt", "publishedBy", "publishedAt", "policyType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +89,8 @@ class PolicyMetadata(BaseModel):
             "editedBy": obj.get("editedBy"),
             "editedAt": obj.get("editedAt"),
             "publishedBy": obj.get("publishedBy"),
-            "publishedAt": obj.get("publishedAt")
+            "publishedAt": obj.get("publishedAt"),
+            "policyType": obj.get("policyType")
         })
         return _obj
 

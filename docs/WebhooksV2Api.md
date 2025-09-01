@@ -336,7 +336,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_notifications**
-> NotificationPaginatedResponse get_notifications(webhook_id, order=order, sort_by=sort_by, page_cursor=page_cursor, page_size=page_size)
+> NotificationPaginatedResponse get_notifications(webhook_id, order=order, sort_by=sort_by, page_cursor=page_cursor, page_size=page_size, start_time=start_time, end_time=end_time, statuses=statuses, events=events, resource_id=resource_id)
 
 Get all notifications by webhook id
 
@@ -348,6 +348,8 @@ Get all notifications by webhook id (paginated)
 
 ```python
 from fireblocks.models.notification_paginated_response import NotificationPaginatedResponse
+from fireblocks.models.notification_status import NotificationStatus
+from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -373,10 +375,15 @@ with Fireblocks(configuration) as fireblocks:
     sort_by = updatedAt # str | Sort by field (optional) (default to updatedAt)
     page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
     page_size = 100 # float | Maximum number of items in the page (optional) (default to 100)
+    start_time = 1625097600000 # float | Start time in milliseconds since epoch to filter by notifications created after this time (default 31 days ago) (optional)
+    end_time = 1625017600000 # float | End time in milliseconds since epoch to filter by notifications created before this time (default current time) (optional)
+    statuses = [fireblocks.NotificationStatus()] # List[NotificationStatus] | List of notification statuses to filter by (optional)
+    events = [fireblocks.WebhookEvent()] # List[WebhookEvent] | List of webhook event types to filter by (optional)
+    resource_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | Resource ID to filter by (optional)
 
     try:
         # Get all notifications by webhook id
-        api_response = fireblocks.webhooks_v2.get_notifications(webhook_id, order=order, sort_by=sort_by, page_cursor=page_cursor, page_size=page_size).result()
+        api_response = fireblocks.webhooks_v2.get_notifications(webhook_id, order=order, sort_by=sort_by, page_cursor=page_cursor, page_size=page_size, start_time=start_time, end_time=end_time, statuses=statuses, events=events, resource_id=resource_id).result()
         print("The response of WebhooksV2Api->get_notifications:\n")
         pprint(api_response)
     except Exception as e:
@@ -395,6 +402,11 @@ Name | Type | Description  | Notes
  **sort_by** | **str**| Sort by field | [optional] [default to updatedAt]
  **page_cursor** | **str**| Cursor of the required page | [optional] 
  **page_size** | **float**| Maximum number of items in the page | [optional] [default to 100]
+ **start_time** | **float**| Start time in milliseconds since epoch to filter by notifications created after this time (default 31 days ago) | [optional] 
+ **end_time** | **float**| End time in milliseconds since epoch to filter by notifications created before this time (default current time) | [optional] 
+ **statuses** | [**List[NotificationStatus]**](NotificationStatus.md)| List of notification statuses to filter by | [optional] 
+ **events** | [**List[WebhookEvent]**](WebhookEvent.md)| List of webhook event types to filter by | [optional] 
+ **resource_id** | **str**| Resource ID to filter by | [optional] 
 
 ### Return type
 

@@ -69,6 +69,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_set_aml_verdict(self) -> None:
+        """Test case for set_aml_verdict
+
+        Set AML Verdict for Manual Screening Verdict.
+        """
+        pass
+
     def test_update_aml_screening_configuration(self) -> None:
         """Test case for update_aml_screening_configuration
 

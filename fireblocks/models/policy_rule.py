@@ -20,100 +20,56 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from fireblocks.models.policy_rule_amount import PolicyRuleAmount
-from fireblocks.models.policy_rule_amount_aggregation import PolicyRuleAmountAggregation
-from fireblocks.models.policy_rule_authorization_groups import PolicyRuleAuthorizationGroups
-from fireblocks.models.policy_rule_designated_signers import PolicyRuleDesignatedSigners
-from fireblocks.models.policy_rule_dst import PolicyRuleDst
-from fireblocks.models.policy_rule_operators import PolicyRuleOperators
-from fireblocks.models.policy_rule_raw_message_signing import PolicyRuleRawMessageSigning
-from fireblocks.models.policy_rule_src import PolicyRuleSrc
-from fireblocks.models.policy_src_or_dest_sub_type import PolicySrcOrDestSubType
-from fireblocks.models.policy_src_or_dest_type import PolicySrcOrDestType
+from fireblocks.models.account_config import AccountConfig
+from fireblocks.models.amount_over_time_config import AmountOverTimeConfig
+from fireblocks.models.amount_range import AmountRange
+from fireblocks.models.asset_config import AssetConfig
+from fireblocks.models.contract_method_pattern import ContractMethodPattern
+from fireblocks.models.derivation_path_config import DerivationPathConfig
+from fireblocks.models.destination_config import DestinationConfig
+from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
+from fireblocks.models.policy_type import PolicyType
+from fireblocks.models.program_call_config import ProgramCallConfig
+from fireblocks.models.screening_metadata_config import ScreeningMetadataConfig
+from fireblocks.models.verdict_config import VerdictConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PolicyRule(BaseModel):
     """
-    Policy rule which is enforced on transactions
+    V2 Policy rule which is enforced on transactions
     """ # noqa: E501
-    operator: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"operators\")  | Defines users who can initiate the type of transaction to which the rule applies. options are * \"*\" - All users are allowed * Specific User id")
-    operators: Optional[PolicyRuleOperators] = None
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Defines the type of transaction to which the rule applies.   * TRANSFER - Default. Transfers funds from one account to another   * CONTRACT_CALL - Calls a smart contract, mainly for DeFi operations.   * APPROVE - Allows a smart contract to withdraw from a designated wallet.   * MINT - Perform a mint operation (increase supply) on a supported token   * BURN - Perform a burn operation (reduce supply) on a supported token   * SUPPLY - Use for DeFi to lend assets   * REDEEM - Use for DeFi to get lending back   * STAKE - Allows you to allocate and lock certain assets for earning staking rewards.   * RAW - An off-chain message with no predefined format, use it to sign any message with your private key.   * TYPED_MESSAGE - An off-chain message type that follows a predefined format, used to sign specific messages that are not actual transactions.   * PROGRAM_CALL - In Solana refers to invoking on-chain programs (smart contracts) to execute transactions and interact with the blockchain. ", alias="transactionType")
-    designated_signer: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"designatedSigners\") Id representing the user who signs transactions that match a specific rule", alias="designatedSigner")
-    designated_signers: Optional[PolicyRuleDesignatedSigners] = Field(default=None, alias="designatedSigners")
-    type: StrictStr = Field(description="Policy rule type")
-    action: StrictStr = Field(description="Defines what occurs when a transaction meets the rule's criteria * ALLOW - The transaction goes through and can be signed without requiring additional approvals * BLOCK - The transaction is automatically blocked * 2-TIER - Only these users or user groups can approve             If any of them reject the transaction before the required approval threshold is met, the transaction doesn't go through            The list of entities are set is \"authorizationGroups\" field ")
-    asset: StrictStr = Field(description="Defines the type of asset being transacted, options are * \"*\" - All assets * Specific asset ")
-    src_type: Optional[PolicySrcOrDestType] = Field(default=None, description="(deprecated - replaced by \"src\") source account type", alias="srcType")
-    src_sub_type: Optional[PolicySrcOrDestSubType] = Field(default=None, description="(deprecated - replaced by \"src\") source sub account type", alias="srcSubType")
-    src_id: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"src\") source account id", alias="srcId")
-    src: Optional[PolicyRuleSrc] = None
-    dst_type: Optional[PolicySrcOrDestType] = Field(default=None, description="(deprecated - replaced by \"dst\") destination account type", alias="dstType")
-    dst_sub_type: Optional[PolicySrcOrDestSubType] = Field(default=None, description="(deprecated - replaced by \"dst\") destination sub account type", alias="dstSubType")
-    dst_id: Optional[StrictStr] = Field(default=None, description="(deprecated - replaced by \"dst\") destination account id", alias="dstId")
-    dst: Optional[PolicyRuleDst] = None
-    dst_address_type: Optional[StrictStr] = Field(default=None, description="Defines whether the destination to which you are sending funds must be whitelisted, to allow one-time transfers to non-whitelisted external addresses, or both. By default, you can only transfer to an external address after it’s whitelisted.   * WHITELISTED - Can only be sent to whitelisted addresses.   * ONE_TIME - Can only be sent to non-whitelisted external addresses.   * \"*\" - can be sent to whitelisted addresses or non-whitelisted external ", alias="dstAddressType")
-    amount_currency: StrictStr = Field(description="* USD - Limits the amount of any asset users can transfer based on the USD equivalent of the asset. * EUR - Limits the amount of any asset users can transfer based on the EURO equivalent of the asset. * NATIVE - Limits the amount of an asset a user can transfer when using a specific asset. ", alias="amountCurrency")
-    amount_scope: StrictStr = Field(description="* SINGLE_TX - limit applies to a single transaction * TIMEFRAME - limit applies to all transactions within the defined time period ", alias="amountScope")
-    amount: PolicyRuleAmount
-    period_sec: Union[StrictFloat, StrictInt] = Field(description="Time period in seconds applied by the amountScope field to accumulate transferred amounts in transactions that match the rule, until the total exceeds the value you specify under Minimum. When the specified amount is reached within that period, whether by one or many transactions, further transactions in that period either fail or require more approvals. ", alias="periodSec")
-    authorizers: Optional[List[StrictStr]] = Field(default=None, description="(deprecated - replaced by \"authorizationGroups\") Allowed entities which can approves a transaction")
-    authorizers_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="(deprecated - replaced by \"authorizationGroups\") Min amount of entities which are needed to approve a transaction", alias="authorizersCount")
-    authorization_groups: Optional[PolicyRuleAuthorizationGroups] = Field(default=None, alias="authorizationGroups")
-    amount_aggregation: Optional[PolicyRuleAmountAggregation] = Field(default=None, alias="amountAggregation")
-    raw_message_signing: Optional[PolicyRuleRawMessageSigning] = Field(default=None, alias="rawMessageSigning")
-    apply_for_approve: Optional[StrictBool] = Field(default=None, description="Applying this rule over APPROVE type transactions (can only be enabled when rule's transaction type is TRANSFER)", alias="applyForApprove")
-    apply_for_typed_message: Optional[StrictBool] = Field(default=None, description="Applying this rule over TYPED_MESSAGE type transactions (can only be enabled when rule's transaction type is CONTRACT_CALL)", alias="applyForTypedMessage")
-    external_descriptor: Optional[StrictStr] = Field(default=None, description="A unique id identifying the rule", alias="externalDescriptor")
-    __properties: ClassVar[List[str]] = ["operator", "operators", "transactionType", "designatedSigner", "designatedSigners", "type", "action", "asset", "srcType", "srcSubType", "srcId", "src", "dstType", "dstSubType", "dstId", "dst", "dstAddressType", "amountCurrency", "amountScope", "amount", "periodSec", "authorizers", "authorizersCount", "authorizationGroups", "amountAggregation", "rawMessageSigning", "applyForApprove", "applyForTypedMessage", "externalDescriptor"]
+    name: StrictStr = Field(description="Name of the policy rule")
+    id: StrictStr = Field(description="Unique identifier for the policy rule")
+    policy_engine_version: StrictStr = Field(description="Policy engine version", alias="policyEngineVersion")
+    type: PolicyType
+    sub_type: Optional[PolicyType] = Field(default=None, alias="subType")
+    initiator: InitiatorConfigPattern
+    asset: AssetConfig
+    source: AccountConfig
+    destination: Optional[DestinationConfig] = None
+    account: Optional[AccountConfig] = None
+    verdict: VerdictConfig
+    amount_over_time: Optional[AmountOverTimeConfig] = Field(default=None, alias="amountOverTime")
+    amount: Optional[AmountRange] = None
+    external_descriptor: Optional[StrictStr] = Field(default=None, description="External descriptor for the rule", alias="externalDescriptor")
+    method: Optional[ContractMethodPattern] = None
+    is_global_policy: Optional[StrictBool] = Field(default=None, description="Whether this is a global policy", alias="isGlobalPolicy")
+    program_call: Optional[ProgramCallConfig] = Field(default=None, alias="programCall")
+    screening_metadata: Optional[ScreeningMetadataConfig] = Field(default=None, alias="screeningMetadata")
+    quote_asset: Optional[AssetConfig] = Field(default=None, alias="quoteAsset")
+    base_asset: Optional[AssetConfig] = Field(default=None, alias="baseAsset")
+    quote_amount: Optional[AmountRange] = Field(default=None, alias="quoteAmount")
+    base_amount: Optional[AmountRange] = Field(default=None, alias="baseAmount")
+    derivation_path: Optional[DerivationPathConfig] = Field(default=None, alias="derivationPath")
+    index: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Index for the policy rule")
+    __properties: ClassVar[List[str]] = ["name", "id", "policyEngineVersion", "type", "subType", "initiator", "asset", "source", "destination", "account", "verdict", "amountOverTime", "amount", "externalDescriptor", "method", "isGlobalPolicy", "programCall", "screeningMetadata", "quoteAsset", "baseAsset", "quoteAmount", "baseAmount", "derivationPath", "index"]
 
-    @field_validator('transaction_type')
-    def transaction_type_validate_enum(cls, value):
+    @field_validator('policy_engine_version')
+    def policy_engine_version_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE', 'PROGRAM_CALL']):
-            raise ValueError("must be one of enum values ('TRANSFER', 'CONTRACT_CALL', 'APPROVE', 'MINT', 'BURN', 'SUPPLY', 'REDEEM', 'STAKE', 'RAW', 'TYPED_MESSAGE', 'PROGRAM_CALL')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['TRANSFER']):
-            raise ValueError("must be one of enum values ('TRANSFER')")
-        return value
-
-    @field_validator('action')
-    def action_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['ALLOW', 'BLOCK', '2-TIER']):
-            raise ValueError("must be one of enum values ('ALLOW', 'BLOCK', '2-TIER')")
-        return value
-
-    @field_validator('dst_address_type')
-    def dst_address_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['WHITELISTED', 'ONE_TIME', '*']):
-            raise ValueError("must be one of enum values ('WHITELISTED', 'ONE_TIME', '*')")
-        return value
-
-    @field_validator('amount_currency')
-    def amount_currency_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['USD', 'EUR', 'NATIVE']):
-            raise ValueError("must be one of enum values ('USD', 'EUR', 'NATIVE')")
-        return value
-
-    @field_validator('amount_scope')
-    def amount_scope_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['SINGLE_TX', 'TIMEFRAME']):
-            raise ValueError("must be one of enum values ('SINGLE_TX', 'TIMEFRAME')")
+        if value not in set(['v2']):
+            raise ValueError("must be one of enum values ('v2')")
         return value
 
     model_config = ConfigDict(
@@ -155,30 +111,54 @@ class PolicyRule(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of operators
-        if self.operators:
-            _dict['operators'] = self.operators.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of designated_signers
-        if self.designated_signers:
-            _dict['designatedSigners'] = self.designated_signers.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of src
-        if self.src:
-            _dict['src'] = self.src.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of dst
-        if self.dst:
-            _dict['dst'] = self.dst.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of initiator
+        if self.initiator:
+            _dict['initiator'] = self.initiator.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict['source'] = self.source.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of destination
+        if self.destination:
+            _dict['destination'] = self.destination.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of account
+        if self.account:
+            _dict['account'] = self.account.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of verdict
+        if self.verdict:
+            _dict['verdict'] = self.verdict.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of amount_over_time
+        if self.amount_over_time:
+            _dict['amountOverTime'] = self.amount_over_time.to_dict()
         # override the default output from pydantic by calling `to_dict()` of amount
         if self.amount:
             _dict['amount'] = self.amount.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of authorization_groups
-        if self.authorization_groups:
-            _dict['authorizationGroups'] = self.authorization_groups.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of amount_aggregation
-        if self.amount_aggregation:
-            _dict['amountAggregation'] = self.amount_aggregation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw_message_signing
-        if self.raw_message_signing:
-            _dict['rawMessageSigning'] = self.raw_message_signing.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of method
+        if self.method:
+            _dict['method'] = self.method.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of program_call
+        if self.program_call:
+            _dict['programCall'] = self.program_call.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of screening_metadata
+        if self.screening_metadata:
+            _dict['screeningMetadata'] = self.screening_metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of quote_asset
+        if self.quote_asset:
+            _dict['quoteAsset'] = self.quote_asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of base_asset
+        if self.base_asset:
+            _dict['baseAsset'] = self.base_asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of quote_amount
+        if self.quote_amount:
+            _dict['quoteAmount'] = self.quote_amount.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of base_amount
+        if self.base_amount:
+            _dict['baseAmount'] = self.base_amount.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of derivation_path
+        if self.derivation_path:
+            _dict['derivationPath'] = self.derivation_path.to_dict()
         return _dict
 
     @classmethod
@@ -191,35 +171,30 @@ class PolicyRule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "operator": obj.get("operator"),
-            "operators": PolicyRuleOperators.from_dict(obj["operators"]) if obj.get("operators") is not None else None,
-            "transactionType": obj.get("transactionType"),
-            "designatedSigner": obj.get("designatedSigner"),
-            "designatedSigners": PolicyRuleDesignatedSigners.from_dict(obj["designatedSigners"]) if obj.get("designatedSigners") is not None else None,
+            "name": obj.get("name"),
+            "id": obj.get("id"),
+            "policyEngineVersion": obj.get("policyEngineVersion"),
             "type": obj.get("type"),
-            "action": obj.get("action"),
-            "asset": obj.get("asset"),
-            "srcType": obj.get("srcType"),
-            "srcSubType": obj.get("srcSubType"),
-            "srcId": obj.get("srcId"),
-            "src": PolicyRuleSrc.from_dict(obj["src"]) if obj.get("src") is not None else None,
-            "dstType": obj.get("dstType"),
-            "dstSubType": obj.get("dstSubType"),
-            "dstId": obj.get("dstId"),
-            "dst": PolicyRuleDst.from_dict(obj["dst"]) if obj.get("dst") is not None else None,
-            "dstAddressType": obj.get("dstAddressType"),
-            "amountCurrency": obj.get("amountCurrency"),
-            "amountScope": obj.get("amountScope"),
-            "amount": PolicyRuleAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
-            "periodSec": obj.get("periodSec"),
-            "authorizers": obj.get("authorizers"),
-            "authorizersCount": obj.get("authorizersCount"),
-            "authorizationGroups": PolicyRuleAuthorizationGroups.from_dict(obj["authorizationGroups"]) if obj.get("authorizationGroups") is not None else None,
-            "amountAggregation": PolicyRuleAmountAggregation.from_dict(obj["amountAggregation"]) if obj.get("amountAggregation") is not None else None,
-            "rawMessageSigning": PolicyRuleRawMessageSigning.from_dict(obj["rawMessageSigning"]) if obj.get("rawMessageSigning") is not None else None,
-            "applyForApprove": obj.get("applyForApprove"),
-            "applyForTypedMessage": obj.get("applyForTypedMessage"),
-            "externalDescriptor": obj.get("externalDescriptor")
+            "subType": obj.get("subType"),
+            "initiator": InitiatorConfigPattern.from_dict(obj["initiator"]) if obj.get("initiator") is not None else None,
+            "asset": AssetConfig.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
+            "source": AccountConfig.from_dict(obj["source"]) if obj.get("source") is not None else None,
+            "destination": DestinationConfig.from_dict(obj["destination"]) if obj.get("destination") is not None else None,
+            "account": AccountConfig.from_dict(obj["account"]) if obj.get("account") is not None else None,
+            "verdict": VerdictConfig.from_dict(obj["verdict"]) if obj.get("verdict") is not None else None,
+            "amountOverTime": AmountOverTimeConfig.from_dict(obj["amountOverTime"]) if obj.get("amountOverTime") is not None else None,
+            "amount": AmountRange.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "externalDescriptor": obj.get("externalDescriptor"),
+            "method": ContractMethodPattern.from_dict(obj["method"]) if obj.get("method") is not None else None,
+            "isGlobalPolicy": obj.get("isGlobalPolicy"),
+            "programCall": ProgramCallConfig.from_dict(obj["programCall"]) if obj.get("programCall") is not None else None,
+            "screeningMetadata": ScreeningMetadataConfig.from_dict(obj["screeningMetadata"]) if obj.get("screeningMetadata") is not None else None,
+            "quoteAsset": AssetConfig.from_dict(obj["quoteAsset"]) if obj.get("quoteAsset") is not None else None,
+            "baseAsset": AssetConfig.from_dict(obj["baseAsset"]) if obj.get("baseAsset") is not None else None,
+            "quoteAmount": AmountRange.from_dict(obj["quoteAmount"]) if obj.get("quoteAmount") is not None else None,
+            "baseAmount": AmountRange.from_dict(obj["baseAmount"]) if obj.get("baseAmount") is not None else None,
+            "derivationPath": DerivationPathConfig.from_dict(obj["derivationPath"]) if obj.get("derivationPath") is not None else None,
+            "index": obj.get("index")
         })
         return _obj
 

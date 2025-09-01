@@ -27,22 +27,22 @@ class TestPolicyEditorBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_get_active_policy(self) -> None:
-        """Test case for get_active_policy
+    def test_get_active_policy_legacy(self) -> None:
+        """Test case for get_active_policy_legacy
 
         Get the active policy and its validation
         """
         pass
 
-    def test_get_draft(self) -> None:
-        """Test case for get_draft
+    def test_get_draft_legacy(self) -> None:
+        """Test case for get_draft_legacy
 
         Get the active draft
         """
         pass
 
-    def test_publish_draft(self) -> None:
-        """Test case for publish_draft
+    def test_publish_draft_legacy(self) -> None:
+        """Test case for publish_draft_legacy
 
         Send publish request for a certain draft id
         """
@@ -55,8 +55,8 @@ class TestPolicyEditorBetaApi(unittest.TestCase):
         """
         pass
 
-    def test_update_draft(self) -> None:
-        """Test case for update_draft
+    def test_update_draft_legacy(self) -> None:
+        """Test case for update_draft_legacy
 
         Update the draft with a new set of rules
         """

@@ -37,93 +37,145 @@ class TestPolicyRule(unittest.TestCase):
         model = PolicyRule()
         if include_optional:
             return PolicyRule(
-                operator = '',
-                operators = fireblocks.models.policy_rule_operators.PolicyRule_operators(
-                    wildcard = '*', 
-                    users = [
-                        ''
-                        ], 
-                    users_groups = [
-                        ''
-                        ], 
-                    services = [
-                        ''
-                        ], ),
-                transaction_type = 'TRANSFER',
-                designated_signer = '',
-                designated_signers = fireblocks.models.policy_rule_designated_signers.PolicyRule_designatedSigners(
-                    users = [
-                        ''
-                        ], 
-                    users_groups = [
-                        ''
-                        ], ),
+                name = 'High Value Transfer Policy',
+                id = 'policy_rule_001',
+                policy_engine_version = 'v2',
                 type = 'TRANSFER',
-                action = 'ALLOW',
-                asset = '',
-                src_type = 'EXCHANGE',
-                src_sub_type = 'EXTERNAL',
-                src_id = '',
-                src = fireblocks.models.policy_rule_src.PolicyRule_src(
+                sub_type = 'TRANSFER',
+                initiator = None,
+                asset = fireblocks.models.asset_config.AssetConfig(
+                    nft_transfer = False, 
+                    asset_types = ["FUNGIBLE","NFT","*"], 
+                    operator = 'INCLUDES', ),
+                source = fireblocks.models.account_config.AccountConfig(
+                    type = 'VAULT', 
+                    sub_type = [
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = 'VAULT', 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
                     ids = [
-                        [
-                            null
-                            ]
-                        ], ),
-                dst_type = 'EXCHANGE',
-                dst_sub_type = 'EXTERNAL',
-                dst_id = '',
-                dst = fireblocks.models.policy_rule_dst.PolicyRule_dst(
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = , 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
+                    operator = 'INCLUDES', 
+                    match_from = 'ACCOUNT', ),
+                destination = {"type":["EXTERNAL"],"operator":"INCLUDES","addressType":"WHITELISTED"},
+                account = fireblocks.models.account_config.AccountConfig(
+                    type = 'VAULT', 
+                    sub_type = [
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = 'VAULT', 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
                     ids = [
-                        [
-                            null
-                            ]
-                        ], ),
-                dst_address_type = 'WHITELISTED',
-                amount_currency = 'USD',
-                amount_scope = 'SINGLE_TX',
-                amount = None,
-                period_sec = 1.337,
-                authorizers = [
-                    ''
-                    ],
-                authorizers_count = 1.337,
-                authorization_groups = fireblocks.models.policy_rule_authorization_groups.PolicyRule_authorizationGroups(
-                    logic = 'AND', 
-                    allow_operator_as_authorizer = True, 
-                    groups = [
-                        fireblocks.models.policy_rule_authorization_groups_groups_inner.PolicyRule_authorizationGroups_groups_inner(
-                            users = [
-                                ''
-                                ], 
-                            users_groups = [
-                                ''
-                                ], 
-                            th = 1.337, )
-                        ], ),
-                amount_aggregation = fireblocks.models.policy_rule_amount_aggregation.PolicyRule_amountAggregation(
-                    operators = 'PER_SINGLE_MATCH', 
-                    src_transfer_peers = 'PER_SINGLE_MATCH', 
-                    dst_transfer_peers = 'PER_SINGLE_MATCH', ),
-                raw_message_signing = fireblocks.models.policy_rule_raw_message_signing.PolicyRule_rawMessageSigning(
-                    algorithm = '', 
-                    derivation_path = fireblocks.models.policy_rule_raw_message_signing_derivation_path.PolicyRule_rawMessageSigning_derivationPath(
-                        path = [
-                            1.337
-                            ], ), ),
-                apply_for_approve = True,
-                apply_for_typed_message = True,
-                external_descriptor = ''
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = , 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
+                    operator = 'INCLUDES', 
+                    match_from = 'ACCOUNT', ),
+                verdict = fireblocks.models.verdict_config.VerdictConfig(
+                    action = 'ALLOW', 
+                    approvers = fireblocks.models.approvers_config.ApproversConfig(
+                        can_initiator_approve = False, 
+                        operator = 'AND', 
+                        allow_operator_as_authorizer = False, 
+                        approval_groups = [{"threshold":2,"users":["user1","user2"]}], ), 
+                    designated_signers = fireblocks.models.designated_signers_config.DesignatedSignersConfig(
+                        type = 'SINGLE', 
+                        users = ["user1","user2"], 
+                        groups = ["group1","group2"], ), ),
+                amount_over_time = fireblocks.models.amount_over_time_config.AmountOverTimeConfig(
+                    range = fireblocks.models.amount_over_time_config_range.AmountOverTimeConfig_range(
+                        min = '100', 
+                        max = '10000', ), 
+                    currency = 'USD', 
+                    time_period = fireblocks.models.time_period_config.TimePeriodConfig(
+                        seconds = '86400', 
+                        initiator = 'PER_SINGLE_MATCH', 
+                        source = 'PER_SINGLE_MATCH', 
+                        destination = 'PER_SINGLE_MATCH', ), ),
+                amount = {"min":"100","max":"10000","currency":"USD"},
+                external_descriptor = 'High value transfer policy for institutional clients',
+                method = None,
+                is_global_policy = False,
+                program_call = fireblocks.models.program_call_config.ProgramCallConfig(
+                    allowed_solana_program_calls = 'WHITELISTED', ),
+                screening_metadata = fireblocks.models.screening_metadata_config.ScreeningMetadataConfig(
+                    direction = 'OUTBOUND', 
+                    provider = 'CHAINALYSIS', 
+                    risk_rating = 'MEDIUM', 
+                    risk_score = '0.8', 
+                    exposure_type = 'DIRECT', 
+                    category = [
+                        ''
+                        ], 
+                    name = [
+                        ''
+                        ], 
+                    category_id = [
+                        ''
+                        ], 
+                    status = 'COMPLETED', 
+                    source_address = '0x123...', 
+                    dest_address = '0x456...', ),
+                quote_asset = fireblocks.models.asset_config.AssetConfig(
+                    nft_transfer = False, 
+                    asset_types = ["FUNGIBLE","NFT","*"], 
+                    operator = 'INCLUDES', ),
+                base_asset = fireblocks.models.asset_config.AssetConfig(
+                    nft_transfer = False, 
+                    asset_types = ["FUNGIBLE","NFT","*"], 
+                    operator = 'INCLUDES', ),
+                quote_amount = {"min":"100","max":"10000","currency":"USD"},
+                base_amount = {"min":"100","max":"10000","currency":"USD"},
+                derivation_path = {"path":[44,0,0,0,0],"partial":false},
+                index = 1
             )
         else:
             return PolicyRule(
+                name = 'High Value Transfer Policy',
+                id = 'policy_rule_001',
+                policy_engine_version = 'v2',
                 type = 'TRANSFER',
-                action = 'ALLOW',
-                asset = '',
-                amount_currency = 'USD',
-                amount_scope = 'SINGLE_TX',
-                amount = None,
-                period_sec = 1.337,
+                initiator = None,
+                asset = fireblocks.models.asset_config.AssetConfig(
+                    nft_transfer = False, 
+                    asset_types = ["FUNGIBLE","NFT","*"], 
+                    operator = 'INCLUDES', ),
+                source = fireblocks.models.account_config.AccountConfig(
+                    type = 'VAULT', 
+                    sub_type = [
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = 'VAULT', 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
+                    ids = [
+                        fireblocks.models.account_identifier.AccountIdentifier(
+                            type = , 
+                            id = 'account123', 
+                            address = '0x123...', )
+                        ], 
+                    operator = 'INCLUDES', 
+                    match_from = 'ACCOUNT', ),
+                verdict = fireblocks.models.verdict_config.VerdictConfig(
+                    action = 'ALLOW', 
+                    approvers = fireblocks.models.approvers_config.ApproversConfig(
+                        can_initiator_approve = False, 
+                        operator = 'AND', 
+                        allow_operator_as_authorizer = False, 
+                        approval_groups = [{"threshold":2,"users":["user1","user2"]}], ), 
+                    designated_signers = fireblocks.models.designated_signers_config.DesignatedSignersConfig(
+                        type = 'SINGLE', 
+                        users = ["user1","user2"], 
+                        groups = ["group1","group2"], ), ),
         )
         """
 

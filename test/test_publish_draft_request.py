@@ -37,10 +37,17 @@ class TestPublishDraftRequest(unittest.TestCase):
         model = PublishDraftRequest()
         if include_optional:
             return PublishDraftRequest(
-                draft_id = ''
+                policy_types = [
+                    'TRANSFER'
+                    ],
+                draft_id = 'draft-123'
             )
         else:
             return PublishDraftRequest(
+                policy_types = [
+                    'TRANSFER'
+                    ],
+                draft_id = 'draft-123',
         )
         """
 

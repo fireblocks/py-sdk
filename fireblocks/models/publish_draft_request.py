@@ -19,16 +19,18 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
+from fireblocks.models.policy_type import PolicyType
 from typing import Optional, Set
 from typing_extensions import Self
 
 class PublishDraftRequest(BaseModel):
     """
-    PublishDraftRequest
+    Request schema for publishing draft with policy types and draft ID
     """ # noqa: E501
-    draft_id: Optional[StrictStr] = Field(default=None, description="draft unique identifier", alias="draftId")
-    __properties: ClassVar[List[str]] = ["draftId"]
+    policy_types: List[PolicyType] = Field(alias="policyTypes")
+    draft_id: StrictStr = Field(description="The ID of the draft to publish", alias="draftId")
+    __properties: ClassVar[List[str]] = ["policyTypes", "draftId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,6 +83,7 @@ class PublishDraftRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "policyTypes": obj.get("policyTypes"),
             "draftId": obj.get("draftId")
         })
         return _obj

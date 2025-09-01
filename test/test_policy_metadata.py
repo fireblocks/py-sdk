@@ -37,13 +37,15 @@ class TestPolicyMetadata(unittest.TestCase):
         model = PolicyMetadata()
         if include_optional:
             return PolicyMetadata(
-                edited_by = '',
-                edited_at = '',
-                published_by = '',
-                published_at = ''
+                edited_by = 'user123',
+                edited_at = '2024-01-15T10:30:00Z',
+                published_by = 'user456',
+                published_at = '2024-01-15T11:00:00Z',
+                policy_type = 'TRANSFER'
             )
         else:
             return PolicyMetadata(
+                policy_type = 'TRANSFER',
         )
         """
 

@@ -21,11 +21,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from fireblocks.models.draft_review_and_validation_response import DraftReviewAndValidationResponse
-from fireblocks.models.policy_and_validation_response import PolicyAndValidationResponse
-from fireblocks.models.policy_rules import PolicyRules
-from fireblocks.models.publish_draft_request import PublishDraftRequest
-from fireblocks.models.publish_result import PublishResult
+from fireblocks.models.legacy_draft_review_and_validation_response import LegacyDraftReviewAndValidationResponse
+from fireblocks.models.legacy_policy_and_validation_response import LegacyPolicyAndValidationResponse
+from fireblocks.models.legacy_policy_rules import LegacyPolicyRules
+from fireblocks.models.legacy_publish_draft_request import LegacyPublishDraftRequest
+from fireblocks.models.legacy_publish_result import LegacyPublishResult
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -47,7 +47,7 @@ class PolicyEditorBetaApi:
 
 
     @validate_call
-    def get_active_policy(
+    def get_active_policy_legacy(
         self,
         _request_timeout: Union[
             None,
@@ -61,10 +61,10 @@ class PolicyEditorBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[PolicyAndValidationResponse]]:
+    ) -> Future[ApiResponse[LegacyPolicyAndValidationResponse]]:
         """Get the active policy and its validation
 
-        Returns the active policy and its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Legacy Endpoint – Returns the active policy and its validation. </br> **Note:**  - This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `getActivePolicy` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br> If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -89,7 +89,7 @@ class PolicyEditorBetaApi:
         """ # noqa: E501
 
 
-        _param = self._get_active_policy_serialize(
+        _param = self._get_active_policy_legacy_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -97,7 +97,7 @@ class PolicyEditorBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PolicyAndValidationResponse",
+            '200': "LegacyPolicyAndValidationResponse",
             'default': "ErrorSchema",
         }
 
@@ -107,7 +107,7 @@ class PolicyEditorBetaApi:
             _response_types_map=_response_types_map,
         )
 
-    def _get_active_policy_serialize(
+    def _get_active_policy_legacy_serialize(
         self,
         _request_auth,
         _content_type,
@@ -168,7 +168,7 @@ class PolicyEditorBetaApi:
 
 
     @validate_call
-    def get_draft(
+    def get_draft_legacy(
         self,
         _request_timeout: Union[
             None,
@@ -182,10 +182,10 @@ class PolicyEditorBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[DraftReviewAndValidationResponse]]:
+    ) -> Future[ApiResponse[LegacyDraftReviewAndValidationResponse]]:
         """Get the active draft
 
-        Returns the active draft and its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Legacy Endpoint – Returns the active draft and its validation. </br> **Note:**  - This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `getDraft` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br> If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -210,7 +210,7 @@ class PolicyEditorBetaApi:
         """ # noqa: E501
 
 
-        _param = self._get_draft_serialize(
+        _param = self._get_draft_legacy_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -218,7 +218,7 @@ class PolicyEditorBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DraftReviewAndValidationResponse",
+            '200': "LegacyDraftReviewAndValidationResponse",
             'default': "ErrorSchema",
         }
 
@@ -228,7 +228,7 @@ class PolicyEditorBetaApi:
             _response_types_map=_response_types_map,
         )
 
-    def _get_draft_serialize(
+    def _get_draft_legacy_serialize(
         self,
         _request_auth,
         _content_type,
@@ -289,9 +289,9 @@ class PolicyEditorBetaApi:
 
 
     @validate_call
-    def publish_draft(
+    def publish_draft_legacy(
         self,
-        publish_draft_request: PublishDraftRequest,
+        legacy_publish_draft_request: LegacyPublishDraftRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -305,13 +305,13 @@ class PolicyEditorBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[PublishResult]]:
+    ) -> Future[ApiResponse[LegacyPublishResult]]:
         """Send publish request for a certain draft id
 
-        Send publish request of certain draft id and returns the response. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Legacy Endpoint – Send publish request of certain draft id and returns the response. </br> **Note:**  - This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `publishDraft` endpoint under policy/paths provides improved functionality and better performance.</br> - These endpoints are currently in beta and might be subject to changes.</br> If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
-        :param publish_draft_request: (required)
-        :type publish_draft_request: PublishDraftRequest
+        :param legacy_publish_draft_request: (required)
+        :type legacy_publish_draft_request: LegacyPublishDraftRequest
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -337,8 +337,8 @@ class PolicyEditorBetaApi:
         """ # noqa: E501
 
 
-        _param = self._publish_draft_serialize(
-            publish_draft_request=publish_draft_request,
+        _param = self._publish_draft_legacy_serialize(
+            legacy_publish_draft_request=legacy_publish_draft_request,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -347,7 +347,7 @@ class PolicyEditorBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "PublishResult",
+            '201': "LegacyPublishResult",
             'default': "ErrorSchema",
         }
 
@@ -357,9 +357,9 @@ class PolicyEditorBetaApi:
             _response_types_map=_response_types_map,
         )
 
-    def _publish_draft_serialize(
+    def _publish_draft_legacy_serialize(
         self,
-        publish_draft_request,
+        legacy_publish_draft_request,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -388,8 +388,8 @@ class PolicyEditorBetaApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
-        if publish_draft_request is not None:
-            _body_params = publish_draft_request
+        if legacy_publish_draft_request is not None:
+            _body_params = legacy_publish_draft_request
 
 
         # set the HTTP header `Accept`
@@ -439,7 +439,7 @@ class PolicyEditorBetaApi:
     @validate_call
     def publish_policy_rules(
         self,
-        policy_rules: PolicyRules,
+        legacy_policy_rules: LegacyPolicyRules,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -453,13 +453,13 @@ class PolicyEditorBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[PublishResult]]:
+    ) -> Future[ApiResponse[LegacyPublishResult]]:
         """Send publish request for a set of policy rules
 
         Send publish request of set of policy rules and returns the response. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
-        :param policy_rules: (required)
-        :type policy_rules: PolicyRules
+        :param legacy_policy_rules: (required)
+        :type legacy_policy_rules: LegacyPolicyRules
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -486,7 +486,7 @@ class PolicyEditorBetaApi:
 
 
         _param = self._publish_policy_rules_serialize(
-            policy_rules=policy_rules,
+            legacy_policy_rules=legacy_policy_rules,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -495,7 +495,7 @@ class PolicyEditorBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "PublishResult",
+            '201': "LegacyPublishResult",
             'default': "ErrorSchema",
         }
 
@@ -507,7 +507,7 @@ class PolicyEditorBetaApi:
 
     def _publish_policy_rules_serialize(
         self,
-        policy_rules,
+        legacy_policy_rules,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -536,8 +536,8 @@ class PolicyEditorBetaApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
-        if policy_rules is not None:
-            _body_params = policy_rules
+        if legacy_policy_rules is not None:
+            _body_params = legacy_policy_rules
 
 
         # set the HTTP header `Accept`
@@ -585,9 +585,9 @@ class PolicyEditorBetaApi:
 
 
     @validate_call
-    def update_draft(
+    def update_draft_legacy(
         self,
-        policy_rules: PolicyRules,
+        legacy_policy_rules: LegacyPolicyRules,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -601,13 +601,13 @@ class PolicyEditorBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[DraftReviewAndValidationResponse]]:
+    ) -> Future[ApiResponse[LegacyDraftReviewAndValidationResponse]]:
         """Update the draft with a new set of rules
 
-        Update the draft and return its validation. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Legacy Endpoint – Update the draft and return its validation. </br> **Note:**  - This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `updateDraft` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br> If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
-        :param policy_rules: (required)
-        :type policy_rules: PolicyRules
+        :param legacy_policy_rules: (required)
+        :type legacy_policy_rules: LegacyPolicyRules
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -633,8 +633,8 @@ class PolicyEditorBetaApi:
         """ # noqa: E501
 
 
-        _param = self._update_draft_serialize(
-            policy_rules=policy_rules,
+        _param = self._update_draft_legacy_serialize(
+            legacy_policy_rules=legacy_policy_rules,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -643,7 +643,7 @@ class PolicyEditorBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DraftReviewAndValidationResponse",
+            '200': "LegacyDraftReviewAndValidationResponse",
             'default': "ErrorSchema",
         }
 
@@ -653,9 +653,9 @@ class PolicyEditorBetaApi:
             _response_types_map=_response_types_map,
         )
 
-    def _update_draft_serialize(
+    def _update_draft_legacy_serialize(
         self,
-        policy_rules,
+        legacy_policy_rules,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -684,8 +684,8 @@ class PolicyEditorBetaApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
-        if policy_rules is not None:
-            _body_params = policy_rules
+        if legacy_policy_rules is not None:
+            _body_params = legacy_policy_rules
 
 
         # set the HTTP header `Accept`

@@ -4,20 +4,21 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_active_policy**](PolicyEditorBetaApi.md#get_active_policy) | **GET** /tap/active_policy | Get the active policy and its validation
-[**get_draft**](PolicyEditorBetaApi.md#get_draft) | **GET** /tap/draft | Get the active draft
-[**publish_draft**](PolicyEditorBetaApi.md#publish_draft) | **POST** /tap/draft | Send publish request for a certain draft id
+[**get_active_policy_legacy**](PolicyEditorBetaApi.md#get_active_policy_legacy) | **GET** /tap/active_policy | Get the active policy and its validation
+[**get_draft_legacy**](PolicyEditorBetaApi.md#get_draft_legacy) | **GET** /tap/draft | Get the active draft
+[**publish_draft_legacy**](PolicyEditorBetaApi.md#publish_draft_legacy) | **POST** /tap/draft | Send publish request for a certain draft id
 [**publish_policy_rules**](PolicyEditorBetaApi.md#publish_policy_rules) | **POST** /tap/publish | Send publish request for a set of policy rules
-[**update_draft**](PolicyEditorBetaApi.md#update_draft) | **PUT** /tap/draft | Update the draft with a new set of rules
+[**update_draft_legacy**](PolicyEditorBetaApi.md#update_draft_legacy) | **PUT** /tap/draft | Update the draft with a new set of rules
 
 
-# **get_active_policy**
-> PolicyAndValidationResponse get_active_policy()
+# **get_active_policy_legacy**
+> LegacyPolicyAndValidationResponse get_active_policy_legacy()
 
 Get the active policy and its validation
 
-Returns the active policy and its validation. </br>
-**Note:** These endpoints are currently in beta and might be subject to changes.
+Legacy Endpoint – Returns the active policy and its validation. </br>
+**Note:** 
+- This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `getActivePolicy` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br>
 If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 
@@ -25,7 +26,7 @@ If you want to participate and learn more about the Fireblocks TAP, please conta
 
 
 ```python
-from fireblocks.models.policy_and_validation_response import PolicyAndValidationResponse
+from fireblocks.models.legacy_policy_and_validation_response import LegacyPolicyAndValidationResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -49,11 +50,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get the active policy and its validation
-        api_response = fireblocks.policy_editor_beta.get_active_policy().result()
-        print("The response of PolicyEditorBetaApi->get_active_policy:\n")
+        api_response = fireblocks.policy_editor_beta.get_active_policy_legacy().result()
+        print("The response of PolicyEditorBetaApi->get_active_policy_legacy:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorBetaApi->get_active_policy: %s\n" % e)
+        print("Exception when calling PolicyEditorBetaApi->get_active_policy_legacy: %s\n" % e)
 ```
 
 
@@ -64,7 +65,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**PolicyAndValidationResponse**](PolicyAndValidationResponse.md)
+[**LegacyPolicyAndValidationResponse**](LegacyPolicyAndValidationResponse.md)
 
 ### Authorization
 
@@ -84,13 +85,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_draft**
-> DraftReviewAndValidationResponse get_draft()
+# **get_draft_legacy**
+> LegacyDraftReviewAndValidationResponse get_draft_legacy()
 
 Get the active draft
 
-Returns the active draft and its validation. </br>
-**Note:** These endpoints are currently in beta and might be subject to changes.
+Legacy Endpoint – Returns the active draft and its validation. </br>
+**Note:** 
+- This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `getDraft` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br>
 If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 
@@ -98,7 +100,7 @@ If you want to participate and learn more about the Fireblocks TAP, please conta
 
 
 ```python
-from fireblocks.models.draft_review_and_validation_response import DraftReviewAndValidationResponse
+from fireblocks.models.legacy_draft_review_and_validation_response import LegacyDraftReviewAndValidationResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -122,11 +124,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get the active draft
-        api_response = fireblocks.policy_editor_beta.get_draft().result()
-        print("The response of PolicyEditorBetaApi->get_draft:\n")
+        api_response = fireblocks.policy_editor_beta.get_draft_legacy().result()
+        print("The response of PolicyEditorBetaApi->get_draft_legacy:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorBetaApi->get_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorBetaApi->get_draft_legacy: %s\n" % e)
 ```
 
 
@@ -137,7 +139,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**DraftReviewAndValidationResponse**](DraftReviewAndValidationResponse.md)
+[**LegacyDraftReviewAndValidationResponse**](LegacyDraftReviewAndValidationResponse.md)
 
 ### Authorization
 
@@ -157,13 +159,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **publish_draft**
-> PublishResult publish_draft(publish_draft_request, idempotency_key=idempotency_key)
+# **publish_draft_legacy**
+> LegacyPublishResult publish_draft_legacy(legacy_publish_draft_request, idempotency_key=idempotency_key)
 
 Send publish request for a certain draft id
 
-Send publish request of certain draft id and returns the response. </br>
-**Note:** These endpoints are currently in beta and might be subject to changes.
+Legacy Endpoint – Send publish request of certain draft id and returns the response. </br>
+**Note:** 
+- This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `publishDraft` endpoint under policy/paths provides improved functionality and better performance.</br> - These endpoints are currently in beta and might be subject to changes.</br>
 If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 
@@ -171,8 +174,8 @@ If you want to participate and learn more about the Fireblocks TAP, please conta
 
 
 ```python
-from fireblocks.models.publish_draft_request import PublishDraftRequest
-from fireblocks.models.publish_result import PublishResult
+from fireblocks.models.legacy_publish_draft_request import LegacyPublishDraftRequest
+from fireblocks.models.legacy_publish_result import LegacyPublishResult
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -193,16 +196,16 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    publish_draft_request = fireblocks.PublishDraftRequest() # PublishDraftRequest | 
+    legacy_publish_draft_request = fireblocks.LegacyPublishDraftRequest() # LegacyPublishDraftRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Send publish request for a certain draft id
-        api_response = fireblocks.policy_editor_beta.publish_draft(publish_draft_request, idempotency_key=idempotency_key).result()
-        print("The response of PolicyEditorBetaApi->publish_draft:\n")
+        api_response = fireblocks.policy_editor_beta.publish_draft_legacy(legacy_publish_draft_request, idempotency_key=idempotency_key).result()
+        print("The response of PolicyEditorBetaApi->publish_draft_legacy:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorBetaApi->publish_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorBetaApi->publish_draft_legacy: %s\n" % e)
 ```
 
 
@@ -212,12 +215,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **publish_draft_request** | [**PublishDraftRequest**](PublishDraftRequest.md)|  | 
+ **legacy_publish_draft_request** | [**LegacyPublishDraftRequest**](LegacyPublishDraftRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**PublishResult**](PublishResult.md)
+[**LegacyPublishResult**](LegacyPublishResult.md)
 
 ### Authorization
 
@@ -238,7 +241,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **publish_policy_rules**
-> PublishResult publish_policy_rules(policy_rules, idempotency_key=idempotency_key)
+> LegacyPublishResult publish_policy_rules(legacy_policy_rules, idempotency_key=idempotency_key)
 
 Send publish request for a set of policy rules
 
@@ -251,8 +254,8 @@ If you want to participate and learn more about the Fireblocks TAP, please conta
 
 
 ```python
-from fireblocks.models.policy_rules import PolicyRules
-from fireblocks.models.publish_result import PublishResult
+from fireblocks.models.legacy_policy_rules import LegacyPolicyRules
+from fireblocks.models.legacy_publish_result import LegacyPublishResult
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -273,12 +276,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    policy_rules = fireblocks.PolicyRules() # PolicyRules | 
+    legacy_policy_rules = fireblocks.LegacyPolicyRules() # LegacyPolicyRules | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Send publish request for a set of policy rules
-        api_response = fireblocks.policy_editor_beta.publish_policy_rules(policy_rules, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.policy_editor_beta.publish_policy_rules(legacy_policy_rules, idempotency_key=idempotency_key).result()
         print("The response of PolicyEditorBetaApi->publish_policy_rules:\n")
         pprint(api_response)
     except Exception as e:
@@ -292,12 +295,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy_rules** | [**PolicyRules**](PolicyRules.md)|  | 
+ **legacy_policy_rules** | [**LegacyPolicyRules**](LegacyPolicyRules.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**PublishResult**](PublishResult.md)
+[**LegacyPublishResult**](LegacyPublishResult.md)
 
 ### Authorization
 
@@ -317,13 +320,14 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_draft**
-> DraftReviewAndValidationResponse update_draft(policy_rules, idempotency_key=idempotency_key)
+# **update_draft_legacy**
+> LegacyDraftReviewAndValidationResponse update_draft_legacy(legacy_policy_rules, idempotency_key=idempotency_key)
 
 Update the draft with a new set of rules
 
-Update the draft and return its validation. </br>
-**Note:** These endpoints are currently in beta and might be subject to changes.
+Legacy Endpoint – Update the draft and return its validation. </br>
+**Note:** 
+- This endpoint will remain available for the foreseeable future and is not deprecated.</br> - The `updateDraft` endpoint under policy/paths provides policy type-specific operations and improved functionality.</br> - These endpoints are currently in beta and might be subject to changes.</br>
 If you want to participate and learn more about the Fireblocks TAP, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 
@@ -331,8 +335,8 @@ If you want to participate and learn more about the Fireblocks TAP, please conta
 
 
 ```python
-from fireblocks.models.draft_review_and_validation_response import DraftReviewAndValidationResponse
-from fireblocks.models.policy_rules import PolicyRules
+from fireblocks.models.legacy_draft_review_and_validation_response import LegacyDraftReviewAndValidationResponse
+from fireblocks.models.legacy_policy_rules import LegacyPolicyRules
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -353,16 +357,16 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    policy_rules = fireblocks.PolicyRules() # PolicyRules | 
+    legacy_policy_rules = fireblocks.LegacyPolicyRules() # LegacyPolicyRules | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Update the draft with a new set of rules
-        api_response = fireblocks.policy_editor_beta.update_draft(policy_rules, idempotency_key=idempotency_key).result()
-        print("The response of PolicyEditorBetaApi->update_draft:\n")
+        api_response = fireblocks.policy_editor_beta.update_draft_legacy(legacy_policy_rules, idempotency_key=idempotency_key).result()
+        print("The response of PolicyEditorBetaApi->update_draft_legacy:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorBetaApi->update_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorBetaApi->update_draft_legacy: %s\n" % e)
 ```
 
 
@@ -372,12 +376,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy_rules** | [**PolicyRules**](PolicyRules.md)|  | 
+ **legacy_policy_rules** | [**LegacyPolicyRules**](LegacyPolicyRules.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**DraftReviewAndValidationResponse**](DraftReviewAndValidationResponse.md)
+[**LegacyDraftReviewAndValidationResponse**](LegacyDraftReviewAndValidationResponse.md)
 
 ### Authorization
 

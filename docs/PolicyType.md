@@ -1,0 +1,49 @@
+# PolicyType
+
+Policy type enumeration
+
+## Enum
+
+* `TRANSFER` (value: `'TRANSFER'`)
+
+* `STAKE` (value: `'STAKE'`)
+
+* `CONTRACT_CALL` (value: `'CONTRACT_CALL'`)
+
+* `TYPED_MESSAGE` (value: `'TYPED_MESSAGE'`)
+
+* `APPROVE` (value: `'APPROVE'`)
+
+* `MINT` (value: `'MINT'`)
+
+* `BURN` (value: `'BURN'`)
+
+* `RAW` (value: `'RAW'`)
+
+* `COMPLIANCE` (value: `'COMPLIANCE'`)
+
+* `DEPLOYMENT` (value: `'DEPLOYMENT'`)
+
+* `PROGRAM_CALL` (value: `'PROGRAM_CALL'`)
+
+* `DAPP_CONNECTION` (value: `'DAPP_CONNECTION'`)
+
+* `UPGRADE` (value: `'UPGRADE'`)
+
+* `ORDER` (value: `'ORDER'`)
+
+* `AML_CHAINALYSIS_V2_SCREENING` (value: `'AML_CHAINALYSIS_V2_SCREENING'`)
+
+* `AML_CHAINALYSIS_V2_POST_SCREENING` (value: `'AML_CHAINALYSIS_V2_POST_SCREENING'`)
+
+* `AML_ELLIPTIC_HOLISTIC_SCREENING` (value: `'AML_ELLIPTIC_HOLISTIC_SCREENING'`)
+
+* `AML_ELLIPTIC_HOLISTIC_POST_SCREENING` (value: `'AML_ELLIPTIC_HOLISTIC_POST_SCREENING'`)
+
+* `TR_NOTABENE_SCREENING` (value: `'TR_NOTABENE_SCREENING'`)
+
+* `TR_NOTABENE_POST_SCREENING` (value: `'TR_NOTABENE_POST_SCREENING'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -1,15 +1,16 @@
 # PolicyMetadata
 
-Policy related metadata
+Policy metadata
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**edited_by** | **str** | The user id of the user who last edited the policy | [optional] 
+**edited_by** | **str** | The user ID of the user who last edited the policy | [optional] 
 **edited_at** | **str** | The timestamp of the last edit of the policy | [optional] 
-**published_by** | **str** | The user id of the user who last published the policy | [optional] 
+**published_by** | **str** | The user ID of the user who last published the policy | [optional] 
 **published_at** | **str** | The timestamp of the last publish of the policy | [optional] 
+**policy_type** | [**PolicyType**](PolicyType.md) |  | 
 
 ## Example
 

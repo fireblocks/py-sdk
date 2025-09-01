@@ -1,11 +1,13 @@
 # PublishDraftRequest
 
+Request schema for publishing draft with policy types and draft ID
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**draft_id** | **str** | draft unique identifier | [optional] 
+**policy_types** | [**List[PolicyType]**](PolicyType.md) |  | 
+**draft_id** | **str** | The ID of the draft to publish | 
 
 ## Example
 

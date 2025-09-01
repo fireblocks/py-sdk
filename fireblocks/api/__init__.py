@@ -27,6 +27,7 @@ from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
+from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi

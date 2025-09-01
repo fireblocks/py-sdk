@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from fireblocks.models.add_asset_to_external_wallet_request_one_of import AddAssetToExternalWalletRequestOneOf
-from fireblocks.models.add_asset_to_external_wallet_request_one_of1 import AddAssetToExternalWalletRequestOneOf1
+from fireblocks.models.additional_info_request import AdditionalInfoRequest
+from fireblocks.models.basic_address_request import BasicAddressRequest
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-ADDASSETTOEXTERNALWALLETREQUEST_ONE_OF_SCHEMAS = ["AddAssetToExternalWalletRequestOneOf", "AddAssetToExternalWalletRequestOneOf1"]
+ADDASSETTOEXTERNALWALLETREQUEST_ONE_OF_SCHEMAS = ["AdditionalInfoRequest", "BasicAddressRequest"]
 
 class AddAssetToExternalWalletRequest(BaseModel):
     """
-    AddAssetToExternalWalletRequest
+    Request schema for adding an asset to an external wallet
     """
-    # data type: AddAssetToExternalWalletRequestOneOf
-    oneof_schema_1_validator: Optional[AddAssetToExternalWalletRequestOneOf] = None
-    # data type: AddAssetToExternalWalletRequestOneOf1
-    oneof_schema_2_validator: Optional[AddAssetToExternalWalletRequestOneOf1] = None
-    actual_instance: Optional[Union[AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1]] = None
-    one_of_schemas: Set[str] = { "AddAssetToExternalWalletRequestOneOf", "AddAssetToExternalWalletRequestOneOf1" }
+    # data type: BasicAddressRequest
+    oneof_schema_1_validator: Optional[BasicAddressRequest] = None
+    # data type: AdditionalInfoRequest
+    oneof_schema_2_validator: Optional[AdditionalInfoRequest] = None
+    actual_instance: Optional[Union[AdditionalInfoRequest, BasicAddressRequest]] = None
+    one_of_schemas: Set[str] = { "AdditionalInfoRequest", "BasicAddressRequest" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class AddAssetToExternalWalletRequest(BaseModel):
         instance = AddAssetToExternalWalletRequest.model_construct()
         error_messages = []
         match = 0
-        # validate data type: AddAssetToExternalWalletRequestOneOf
-        if not isinstance(v, AddAssetToExternalWalletRequestOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AddAssetToExternalWalletRequestOneOf`")
+        # validate data type: BasicAddressRequest
+        if not isinstance(v, BasicAddressRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `BasicAddressRequest`")
         else:
             match += 1
-        # validate data type: AddAssetToExternalWalletRequestOneOf1
-        if not isinstance(v, AddAssetToExternalWalletRequestOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AddAssetToExternalWalletRequestOneOf1`")
+        # validate data type: AdditionalInfoRequest
+        if not isinstance(v, AdditionalInfoRequest):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AdditionalInfoRequest`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in AddAssetToExternalWalletRequest with oneOf schemas: AdditionalInfoRequest, BasicAddressRequest. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in AddAssetToExternalWalletRequest with oneOf schemas: AdditionalInfoRequest, BasicAddressRequest. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class AddAssetToExternalWalletRequest(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into AddAssetToExternalWalletRequestOneOf
+        # deserialize data into BasicAddressRequest
         try:
-            instance.actual_instance = AddAssetToExternalWalletRequestOneOf.from_json(json_str)
+            instance.actual_instance = BasicAddressRequest.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into AddAssetToExternalWalletRequestOneOf1
+        # deserialize data into AdditionalInfoRequest
         try:
-            instance.actual_instance = AddAssetToExternalWalletRequestOneOf1.from_json(json_str)
+            instance.actual_instance = AdditionalInfoRequest.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AdditionalInfoRequest, BasicAddressRequest. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into AddAssetToExternalWalletRequest with oneOf schemas: AdditionalInfoRequest, BasicAddressRequest. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class AddAssetToExternalWalletRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AddAssetToExternalWalletRequestOneOf, AddAssetToExternalWalletRequestOneOf1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AdditionalInfoRequest, BasicAddressRequest]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

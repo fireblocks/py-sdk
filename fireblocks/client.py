@@ -22,6 +22,7 @@ from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
 )
+from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
@@ -47,9 +48,9 @@ from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
-from fireblocks.api.swap_beta_api import SwapBetaApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
+from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
@@ -77,6 +78,7 @@ class Fireblocks:
         self._blockchains_assets = None
         self._compliance = None
         self._compliance_screening_configuration = None
+        self._connected_accounts_beta = None
         self._console_user = None
         self._contract_interactions = None
         self._contract_templates = None
@@ -102,9 +104,9 @@ class Fireblocks:
         self._reset_device = None
         self._smart_transfer = None
         self._staking = None
-        self._swap_beta = None
         self._tags = None
         self._tokenization = None
+        self._trading_beta = None
         self._transactions = None
         self._travel_rule = None
         self._user_groups_beta = None
@@ -162,6 +164,12 @@ class Fireblocks:
                 ComplianceScreeningConfigurationApi(self._api_client)
             )
         return self._compliance_screening_configuration
+
+    @property
+    def connected_accounts_beta(self) -> ConnectedAccountsBetaApi:
+        if self._connected_accounts_beta is None:
+            self._connected_accounts_beta = ConnectedAccountsBetaApi(self._api_client)
+        return self._connected_accounts_beta
 
     @property
     def console_user(self) -> ConsoleUserApi:
@@ -314,12 +322,6 @@ class Fireblocks:
         return self._staking
 
     @property
-    def swap_beta(self) -> SwapBetaApi:
-        if self._swap_beta is None:
-            self._swap_beta = SwapBetaApi(self._api_client)
-        return self._swap_beta
-
-    @property
     def tags(self) -> TagsApi:
         if self._tags is None:
             self._tags = TagsApi(self._api_client)
@@ -330,6 +332,12 @@ class Fireblocks:
         if self._tokenization is None:
             self._tokenization = TokenizationApi(self._api_client)
         return self._tokenization
+
+    @property
+    def trading_beta(self) -> TradingBetaApi:
+        if self._trading_beta is None:
+            self._trading_beta = TradingBetaApi(self._api_client)
+        return self._trading_beta
 
     @property
     def transactions(self) -> TransactionsApi:

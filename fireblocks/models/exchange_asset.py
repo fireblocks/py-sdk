@@ -33,7 +33,11 @@ class ExchangeAsset(BaseModel):
     total: Optional[StrictStr] = None
     available: Optional[StrictStr] = None
     credit: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "total", "available", "credit"]
+    asset_id: Optional[StrictStr] = Field(default=None, description="The id of the asset", alias="assetId")
+    provider_symbol: Optional[StrictStr] = Field(default=None, description="The provider symbol of the asset", alias="providerSymbol")
+    asset_symbol: Optional[StrictStr] = Field(default=None, description="The asset symbol of the asset", alias="assetSymbol")
+    asset_legacy_id: Optional[StrictStr] = Field(default=None, description="The asset legacy id of the asset", alias="assetLegacyId")
+    __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "total", "available", "credit", "assetId", "providerSymbol", "assetSymbol", "assetLegacyId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +95,11 @@ class ExchangeAsset(BaseModel):
             "lockedAmount": obj.get("lockedAmount"),
             "total": obj.get("total"),
             "available": obj.get("available"),
-            "credit": obj.get("credit")
+            "credit": obj.get("credit"),
+            "assetId": obj.get("assetId"),
+            "providerSymbol": obj.get("providerSymbol"),
+            "assetSymbol": obj.get("assetSymbol"),
+            "assetLegacyId": obj.get("assetLegacyId")
         })
         return _obj
 

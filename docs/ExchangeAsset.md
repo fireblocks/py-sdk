@@ -11,6 +11,10 @@ Name | Type | Description | Notes
 **total** | **str** |  | [optional] 
 **available** | **str** |  | [optional] 
 **credit** | **str** |  | [optional] 
+**asset_id** | **str** | The id of the asset | [optional] 
+**provider_symbol** | **str** | The provider symbol of the asset | [optional] 
+**asset_symbol** | **str** | The asset symbol of the asset | [optional] 
+**asset_legacy_id** | **str** | The asset legacy id of the asset | [optional] 
 
 ## Example
 

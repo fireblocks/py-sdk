@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **website** | **str** | Vendor’s website | [optional] 
 **media** | [**List[AssetMedia]**](AssetMedia.md) | Asset’s media | [optional] 
 **note** | [**AssetNote**](AssetNote.md) |  | [optional] 
+**features** | [**List[AssetFeature]**](AssetFeature.md) | Asset features | [optional] 
 
 ## Example
 

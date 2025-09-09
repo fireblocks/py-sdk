@@ -53,7 +53,10 @@ class TestAssetDetailsMetadata(unittest.TestCase):
                     text = 'Pay attention to gas fees', 
                     user_id = '056776ab-9efa-4219-9820-9ece0cc4d90d', 
                     user_name = 'Test test', 
-                    updated_at = '2025-06-08T19:42:49Z', )
+                    updated_at = '2025-06-08T19:42:49Z', ),
+                features = [
+                    'STABLECOIN'
+                    ]
             )
         else:
             return AssetDetailsMetadata(

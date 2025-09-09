@@ -1279,7 +1279,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[ResendFailedNotificationsResponse]]:
         """Resend failed notifications
 
-        Resend all failed notifications for a webhook in the last 24 hours  Endpoint Permission: Owner, Admin, Non-Signing Admin. 
+        Resend all failed notifications for a webhook in the last 24 hours  Endpoint Permission: Owner, Admin, Non-Signing Admin, Editor, Signer. 
 
         :param webhook_id: The ID of the webhook (required)
         :type webhook_id: str
@@ -1436,7 +1436,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[None]]:
         """Resend notification by id
 
-        Resend notification by ID  Endpoint Permission: Owner, Admin, Non-Signing Admin. 
+        Resend notification by ID  Endpoint Permission: Owner, Admin, Non-Signing Admin, Editor, Signer. 
 
         :param webhook_id: The ID of the webhook (required)
         :type webhook_id: str
@@ -1580,7 +1580,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[None]]:
         """Resend notifications by resource Id
 
-        Resend notifications by resource Id  Endpoint Permission: Owner, Admin, Non-Signing Admin. 
+        Resend notifications by resource Id  Endpoint Permission: Owner, Admin, Non-Signing Admin, Editor, Signer. 
 
         :param webhook_id: The ID of the webhook (required)
         :type webhook_id: str

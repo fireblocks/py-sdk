@@ -46,7 +46,11 @@ class TestExchangeTradingAccount(unittest.TestCase):
                         locked_amount = '', 
                         total = '', 
                         available = '', 
-                        credit = '', )
+                        credit = '', 
+                        asset_id = '2306088f-97ed-4293-8d28-8ab627f272d7', 
+                        provider_symbol = 'BTC', 
+                        asset_symbol = 'BTC', 
+                        asset_legacy_id = 'BTC', )
                     ]
             )
         else:

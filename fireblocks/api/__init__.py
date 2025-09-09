@@ -7,6 +7,7 @@ from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
+from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
@@ -32,9 +33,9 @@ from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
-from fireblocks.api.swap_beta_api import SwapBetaApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
+from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi

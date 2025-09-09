@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.asset_feature import AssetFeature
 from fireblocks.models.asset_media import AssetMedia
 from fireblocks.models.asset_note import AssetNote
 from fireblocks.models.asset_scope import AssetScope
@@ -37,7 +38,8 @@ class AssetDetailsMetadata(BaseModel):
     website: Optional[StrictStr] = Field(default=None, description="Vendor’s website")
     media: Optional[List[AssetMedia]] = Field(default=None, description="Asset’s media")
     note: Optional[AssetNote] = None
-    __properties: ClassVar[List[str]] = ["scope", "verified", "deprecated", "deprecationReferralId", "website", "media", "note"]
+    features: Optional[List[AssetFeature]] = Field(default=None, description="Asset features")
+    __properties: ClassVar[List[str]] = ["scope", "verified", "deprecated", "deprecationReferralId", "website", "media", "note", "features"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -106,7 +108,8 @@ class AssetDetailsMetadata(BaseModel):
             "deprecationReferralId": obj.get("deprecationReferralId"),
             "website": obj.get("website"),
             "media": [AssetMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None,
-            "note": AssetNote.from_dict(obj["note"]) if obj.get("note") is not None else None
+            "note": AssetNote.from_dict(obj["note"]) if obj.get("note") is not None else None,
+            "features": obj.get("features")
         })
         return _obj
 

@@ -22,6 +22,7 @@ from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
+from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
@@ -47,9 +48,9 @@ from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
-from fireblocks.api.swap_beta_api import SwapBetaApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
+from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
@@ -91,6 +92,9 @@ def test_get_compliance(fireblocks_instance):
 
 def test_get_compliance_screening_configuration(fireblocks_instance):
     assert isinstance(fireblocks_instance.compliance_screening_configuration, ComplianceScreeningConfigurationApi)
+
+def test_get_connected_accounts_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.connected_accounts_beta, ConnectedAccountsBetaApi)
 
 def test_get_console_user(fireblocks_instance):
     assert isinstance(fireblocks_instance.console_user, ConsoleUserApi)
@@ -167,14 +171,14 @@ def test_get_smart_transfer(fireblocks_instance):
 def test_get_staking(fireblocks_instance):
     assert isinstance(fireblocks_instance.staking, StakingApi)
 
-def test_get_swap_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.swap_beta, SwapBetaApi)
-
 def test_get_tags(fireblocks_instance):
     assert isinstance(fireblocks_instance.tags, TagsApi)
 
 def test_get_tokenization(fireblocks_instance):
     assert isinstance(fireblocks_instance.tokenization, TokenizationApi)
+
+def test_get_trading_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.trading_beta, TradingBetaApi)
 
 def test_get_transactions(fireblocks_instance):
     assert isinstance(fireblocks_instance.transactions, TransactionsApi)

@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "12.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -26,6 +26,7 @@ from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
 )
+from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
@@ -51,9 +52,9 @@ from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
-from fireblocks.api.swap_beta_api import SwapBetaApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
+from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
@@ -82,9 +83,16 @@ from fireblocks.base_path import BasePath
 from fireblocks.models.api_user import APIUser
 from fireblocks.models.aba_payment_info import AbaPaymentInfo
 from fireblocks.models.abi_function import AbiFunction
+from fireblocks.models.access_type import AccessType
 from fireblocks.models.account import Account
+from fireblocks.models.account_access import AccountAccess
+from fireblocks.models.account_base import AccountBase
+from fireblocks.models.account_based_access_provider import AccountBasedAccessProvider
 from fireblocks.models.account_config import AccountConfig
+from fireblocks.models.account_holder_details import AccountHolderDetails
 from fireblocks.models.account_identifier import AccountIdentifier
+from fireblocks.models.account_provider_id import AccountProviderID
+from fireblocks.models.account_reference import AccountReference
 from fireblocks.models.account_type import AccountType
 from fireblocks.models.account_type2 import AccountType2
 from fireblocks.models.ach_payment_info import AchPaymentInfo
@@ -134,6 +142,7 @@ from fireblocks.models.asset_config import AssetConfig
 from fireblocks.models.asset_conflict_error_response import AssetConflictErrorResponse
 from fireblocks.models.asset_details_metadata import AssetDetailsMetadata
 from fireblocks.models.asset_details_onchain import AssetDetailsOnchain
+from fireblocks.models.asset_feature import AssetFeature
 from fireblocks.models.asset_forbidden_error_response import AssetForbiddenErrorResponse
 from fireblocks.models.asset_internal_server_error_response import (
     AssetInternalServerErrorResponse,
@@ -163,6 +172,7 @@ from fireblocks.models.audit_log_data import AuditLogData
 from fireblocks.models.auditor_data import AuditorData
 from fireblocks.models.authorization_groups import AuthorizationGroups
 from fireblocks.models.authorization_info import AuthorizationInfo
+from fireblocks.models.base_provider import BaseProvider
 from fireblocks.models.basic_address_request import BasicAddressRequest
 from fireblocks.models.block_info import BlockInfo
 from fireblocks.models.blockchain_explorer import BlockchainExplorer
@@ -173,9 +183,13 @@ from fireblocks.models.blockchain_not_found_error_response import (
 )
 from fireblocks.models.blockchain_onchain import BlockchainOnchain
 from fireblocks.models.blockchain_response import BlockchainResponse
+from fireblocks.models.blockchain_transfer import BlockchainTransfer
+from fireblocks.models.bps_fee import BpsFee
+from fireblocks.models.business_identification import BusinessIdentification
 from fireblocks.models.callback_handler import CallbackHandler
 from fireblocks.models.callback_handler_request import CallbackHandlerRequest
 from fireblocks.models.cancel_transaction_response import CancelTransactionResponse
+from fireblocks.models.capability import Capability
 from fireblocks.models.chain_descriptor import ChainDescriptor
 from fireblocks.models.chain_info_response import ChainInfoResponse
 from fireblocks.models.channel_dvn_config_with_confirmations import (
@@ -201,6 +215,7 @@ from fireblocks.models.collection_token_metadata_attribute_dto import (
 )
 from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
 from fireblocks.models.collection_type import CollectionType
+from fireblocks.models.committed_quote_type import CommittedQuoteType
 from fireblocks.models.compliance_result_full_payload import ComplianceResultFullPayload
 from fireblocks.models.compliance_result_statuses_enum import (
     ComplianceResultStatusesEnum,
@@ -222,6 +237,35 @@ from fireblocks.models.config_operation_snapshot import ConfigOperationSnapshot
 from fireblocks.models.config_operation_status import ConfigOperationStatus
 from fireblocks.models.config_transfer_operation_snapshot import (
     ConfigTransferOperationSnapshot,
+)
+from fireblocks.models.connected_account import ConnectedAccount
+from fireblocks.models.connected_account_approval_status import (
+    ConnectedAccountApprovalStatus,
+)
+from fireblocks.models.connected_account_asset_type import ConnectedAccountAssetType
+from fireblocks.models.connected_account_balances import ConnectedAccountBalances
+from fireblocks.models.connected_account_balances_response import (
+    ConnectedAccountBalancesResponse,
+)
+from fireblocks.models.connected_account_capability import ConnectedAccountCapability
+from fireblocks.models.connected_account_manifest import ConnectedAccountManifest
+from fireblocks.models.connected_account_rate_response import (
+    ConnectedAccountRateResponse,
+)
+from fireblocks.models.connected_account_total_balance import (
+    ConnectedAccountTotalBalance,
+)
+from fireblocks.models.connected_account_trading_pair import ConnectedAccountTradingPair
+from fireblocks.models.connected_account_trading_pair_supported_type import (
+    ConnectedAccountTradingPairSupportedType,
+)
+from fireblocks.models.connected_account_trading_pairs_response import (
+    ConnectedAccountTradingPairsResponse,
+)
+from fireblocks.models.connected_accounts_response import ConnectedAccountsResponse
+from fireblocks.models.connected_single_account import ConnectedSingleAccount
+from fireblocks.models.connected_single_account_response import (
+    ConnectedSingleAccountResponse,
 )
 from fireblocks.models.console_user import ConsoleUser
 from fireblocks.models.contract_abi_response_dto import ContractAbiResponseDto
@@ -320,7 +364,10 @@ from fireblocks.models.create_multiple_vault_accounts_job_status import (
 )
 from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionRequest
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
+from fireblocks.models.create_order_request import CreateOrderRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
+from fireblocks.models.create_quote import CreateQuote
+from fireblocks.models.create_quote_scope_inner import CreateQuoteScopeInner
 from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
 from fireblocks.models.create_signing_key_dto_proof_of_ownership import (
     CreateSigningKeyDtoProofOfOwnership,
@@ -350,6 +397,7 @@ from fireblocks.models.create_workflow_execution_request_params_inner import (
     CreateWorkflowExecutionRequestParamsInner,
 )
 from fireblocks.models.custom_routing_dest import CustomRoutingDest
+from fireblocks.models.dvp_settlement import DVPSettlement
 from fireblocks.models.default_network_routing_dest import DefaultNetworkRoutingDest
 from fireblocks.models.delegation import Delegation
 from fireblocks.models.delegation_summary import DelegationSummary
@@ -379,6 +427,8 @@ from fireblocks.models.destination_transfer_peer_path import DestinationTransfer
 from fireblocks.models.destination_transfer_peer_path_response import (
     DestinationTransferPeerPathResponse,
 )
+from fireblocks.models.direct_access import DirectAccess
+from fireblocks.models.direct_access_provider import DirectAccessProvider
 from fireblocks.models.disbursement_amount_instruction import (
     DisbursementAmountInstruction,
 )
@@ -466,6 +516,7 @@ from fireblocks.models.embedded_wallet_paginated_wallets_response import (
     EmbeddedWalletPaginatedWalletsResponse,
 )
 from fireblocks.models.embedded_wallet_set_up_status import EmbeddedWalletSetUpStatus
+from fireblocks.models.error_codes import ErrorCodes
 from fireblocks.models.error_response import ErrorResponse
 from fireblocks.models.error_response_error import ErrorResponseError
 from fireblocks.models.error_schema import ErrorSchema
@@ -490,9 +541,22 @@ from fireblocks.models.execution_disbursement_operation import (
     ExecutionDisbursementOperation,
 )
 from fireblocks.models.execution_operation_status import ExecutionOperationStatus
+from fireblocks.models.execution_request_base_details import ExecutionRequestBaseDetails
+from fireblocks.models.execution_request_details import ExecutionRequestDetails
+from fireblocks.models.execution_response_base_details import (
+    ExecutionResponseBaseDetails,
+)
+from fireblocks.models.execution_response_details import ExecutionResponseDetails
 from fireblocks.models.execution_screening_operation import ExecutionScreeningOperation
+from fireblocks.models.execution_step import ExecutionStep
+from fireblocks.models.execution_step_details import ExecutionStepDetails
+from fireblocks.models.execution_step_error import ExecutionStepError
+from fireblocks.models.execution_step_status_enum import ExecutionStepStatusEnum
+from fireblocks.models.execution_step_type import ExecutionStepType
 from fireblocks.models.execution_transfer_operation import ExecutionTransferOperation
+from fireblocks.models.external_account import ExternalAccount
 from fireblocks.models.external_wallet_asset import ExternalWalletAsset
+from fireblocks.models.fee import Fee
 from fireblocks.models.fee_breakdown import FeeBreakdown
 from fireblocks.models.fee_breakdown_one_of import FeeBreakdownOneOf
 from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
@@ -502,6 +566,8 @@ from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
 from fireblocks.models.fiat_account import FiatAccount
 from fireblocks.models.fiat_account_type import FiatAccountType
 from fireblocks.models.fiat_asset import FiatAsset
+from fireblocks.models.fiat_transfer import FiatTransfer
+from fireblocks.models.fixed_fee import FixedFee
 from fireblocks.models.freeze_transaction_response import FreezeTransactionResponse
 from fireblocks.models.function_doc import FunctionDoc
 from fireblocks.models.funds import Funds
@@ -539,6 +605,7 @@ from fireblocks.models.get_max_spendable_amount_response import (
 )
 from fireblocks.models.get_mpc_keys_response import GetMpcKeysResponse
 from fireblocks.models.get_nfts_response import GetNFTsResponse
+from fireblocks.models.get_orders_response import GetOrdersResponse
 from fireblocks.models.get_ota_status_response import GetOtaStatusResponse
 from fireblocks.models.get_ownership_tokens_response import GetOwnershipTokensResponse
 from fireblocks.models.get_signing_key_response_dto import GetSigningKeyResponseDto
@@ -554,10 +621,13 @@ from fireblocks.models.http_contract_does_not_exist_error import (
     HttpContractDoesNotExistError,
 )
 from fireblocks.models.iban_payment_info import IbanPaymentInfo
+from fireblocks.models.identification import Identification
 from fireblocks.models.idl_type import IdlType
+from fireblocks.models.indicative_quote_type import IndicativeQuoteType
 from fireblocks.models.initiator_config import InitiatorConfig
 from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
 from fireblocks.models.instruction_amount import InstructionAmount
+from fireblocks.models.internal_reference import InternalReference
 from fireblocks.models.internal_transfer_response import InternalTransferResponse
 from fireblocks.models.invalid_paramater_value_error import InvalidParamaterValueError
 from fireblocks.models.job import Job
@@ -623,12 +693,26 @@ from fireblocks.models.legacy_publish_result import LegacyPublishResult
 from fireblocks.models.legacy_src_or_dest_attributes_inner import (
     LegacySrcOrDestAttributesInner,
 )
+from fireblocks.models.limit_execution_request_details import (
+    LimitExecutionRequestDetails,
+)
+from fireblocks.models.limit_execution_response_details import (
+    LimitExecutionResponseDetails,
+)
 from fireblocks.models.list_assets_response import ListAssetsResponse
 from fireblocks.models.list_blockchains_response import ListBlockchainsResponse
 from fireblocks.models.list_owned_collections_response import (
     ListOwnedCollectionsResponse,
 )
 from fireblocks.models.list_owned_tokens_response import ListOwnedTokensResponse
+from fireblocks.models.manifest import Manifest
+from fireblocks.models.market_execution_request_details import (
+    MarketExecutionRequestDetails,
+)
+from fireblocks.models.market_execution_response_details import (
+    MarketExecutionResponseDetails,
+)
+from fireblocks.models.market_requote_request_details import MarketRequoteRequestDetails
 from fireblocks.models.media_entity_response import MediaEntityResponse
 from fireblocks.models.merge_stake_accounts_request import MergeStakeAccountsRequest
 from fireblocks.models.merge_stake_accounts_response import MergeStakeAccountsResponse
@@ -655,8 +739,6 @@ from fireblocks.models.network_id_routing_policy_value import (
 )
 from fireblocks.models.network_record import NetworkRecord
 from fireblocks.models.new_address import NewAddress
-from fireblocks.models.non_wallet_quote_fee import NonWalletQuoteFee
-from fireblocks.models.non_wallet_quote_response import NonWalletQuoteResponse
 from fireblocks.models.none_network_routing_dest import NoneNetworkRoutingDest
 from fireblocks.models.not_found_exception import NotFoundException
 from fireblocks.models.notification import Notification
@@ -671,7 +753,11 @@ from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.notification_with_data import NotificationWithData
 from fireblocks.models.one_time_address import OneTimeAddress
 from fireblocks.models.one_time_address_account import OneTimeAddressAccount
+from fireblocks.models.one_time_address_reference import OneTimeAddressReference
 from fireblocks.models.operation_execution_failure import OperationExecutionFailure
+from fireblocks.models.order_details import OrderDetails
+from fireblocks.models.order_status import OrderStatus
+from fireblocks.models.order_summary import OrderSummary
 from fireblocks.models.paginated_address_response import PaginatedAddressResponse
 from fireblocks.models.paginated_address_response_paging import (
     PaginatedAddressResponsePaging,
@@ -688,12 +774,15 @@ from fireblocks.models.pair_api_key_request import PairApiKeyRequest
 from fireblocks.models.pair_api_key_response import PairApiKeyResponse
 from fireblocks.models.parameter import Parameter
 from fireblocks.models.parameter_with_value import ParameterWithValue
+from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
+from fireblocks.models.participants_identification import ParticipantsIdentification
 from fireblocks.models.payee_account import PayeeAccount
 from fireblocks.models.payee_account_response import PayeeAccountResponse
 from fireblocks.models.payee_account_type import PayeeAccountType
 from fireblocks.models.payment_account import PaymentAccount
 from fireblocks.models.payment_account_response import PaymentAccountResponse
 from fireblocks.models.payment_account_type import PaymentAccountType
+from fireblocks.models.payment_instructions import PaymentInstructions
 from fireblocks.models.payout_init_method import PayoutInitMethod
 from fireblocks.models.payout_instruction import PayoutInstruction
 from fireblocks.models.payout_instruction_response import PayoutInstructionResponse
@@ -702,7 +791,13 @@ from fireblocks.models.payout_response import PayoutResponse
 from fireblocks.models.payout_state import PayoutState
 from fireblocks.models.payout_status import PayoutStatus
 from fireblocks.models.peer_adapter_info import PeerAdapterInfo
+from fireblocks.models.peer_type import PeerType
+from fireblocks.models.personal_identification import PersonalIdentification
+from fireblocks.models.personal_identification_full_name import (
+    PersonalIdentificationFullName,
+)
 from fireblocks.models.pix_payment_info import PixPaymentInfo
+from fireblocks.models.platform_account import PlatformAccount
 from fireblocks.models.players import Players
 from fireblocks.models.policy_and_validation_response import PolicyAndValidationResponse
 from fireblocks.models.policy_check_result import PolicyCheckResult
@@ -715,17 +810,37 @@ from fireblocks.models.policy_rule_error import PolicyRuleError
 from fireblocks.models.policy_status import PolicyStatus
 from fireblocks.models.policy_type import PolicyType
 from fireblocks.models.policy_validation import PolicyValidation
+from fireblocks.models.post_order_settlement import PostOrderSettlement
+from fireblocks.models.postal_address import PostalAddress
 from fireblocks.models.pre_screening import PreScreening
+from fireblocks.models.prefunded_settlement import PrefundedSettlement
 from fireblocks.models.program_call_config import ProgramCallConfig
 from fireblocks.models.provider import Provider
-from fireblocks.models.provider_additional_data import ProviderAdditionalData
-from fireblocks.models.provider_category_enum import ProviderCategoryEnum
+from fireblocks.models.provider_id import ProviderID
+from fireblocks.models.providers_list_response import ProvidersListResponse
 from fireblocks.models.public_key_information import PublicKeyInformation
 from fireblocks.models.publish_draft_request import PublishDraftRequest
 from fireblocks.models.publish_result import PublishResult
-from fireblocks.models.quote_fee import QuoteFee
-from fireblocks.models.quote_request import QuoteRequest
-from fireblocks.models.quote_response import QuoteResponse
+from fireblocks.models.quote import Quote
+from fireblocks.models.quote_execution_request_details import (
+    QuoteExecutionRequestDetails,
+)
+from fireblocks.models.quote_execution_response_details import (
+    QuoteExecutionResponseDetails,
+)
+from fireblocks.models.quote_execution_with_requote_request_details import (
+    QuoteExecutionWithRequoteRequestDetails,
+)
+from fireblocks.models.quote_execution_with_requote_request_details_all_of_re_quote import (
+    QuoteExecutionWithRequoteRequestDetailsAllOfReQuote,
+)
+from fireblocks.models.quote_execution_with_requote_response_details import (
+    QuoteExecutionWithRequoteResponseDetails,
+)
+from fireblocks.models.quote_execution_with_requote_response_details_all_of_re_quote import (
+    QuoteExecutionWithRequoteResponseDetailsAllOfReQuote,
+)
+from fireblocks.models.quotes_response import QuotesResponse
 from fireblocks.models.read_abi_function import ReadAbiFunction
 from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
 from fireblocks.models.read_call_function_dto_abi_function import (
@@ -779,6 +894,7 @@ from fireblocks.models.resend_webhooks_by_transaction_id_response import (
 )
 from fireblocks.models.resend_webhooks_response import ResendWebhooksResponse
 from fireblocks.models.respond_to_connection_request import RespondToConnectionRequest
+from fireblocks.models.retry_requote_request_details import RetryRequoteRequestDetails
 from fireblocks.models.reward_info import RewardInfo
 from fireblocks.models.rewards_info import RewardsInfo
 from fireblocks.models.sol_account import SOLAccount
@@ -846,8 +962,10 @@ from fireblocks.models.set_ota_status_response import SetOtaStatusResponse
 from fireblocks.models.set_ota_status_response_one_of import SetOtaStatusResponseOneOf
 from fireblocks.models.set_routing_policy_request import SetRoutingPolicyRequest
 from fireblocks.models.set_routing_policy_response import SetRoutingPolicyResponse
+from fireblocks.models.settlement import Settlement
 from fireblocks.models.settlement_request_body import SettlementRequestBody
 from fireblocks.models.settlement_response import SettlementResponse
+from fireblocks.models.settlement_source_account import SettlementSourceAccount
 from fireblocks.models.signed_message import SignedMessage
 from fireblocks.models.signed_message_signature import SignedMessageSignature
 from fireblocks.models.signing_key_dto import SigningKeyDto
@@ -926,25 +1044,13 @@ from fireblocks.models.status import Status
 from fireblocks.models.stellar_ripple_create_params_dto import (
     StellarRippleCreateParamsDto,
 )
-from fireblocks.models.swap_flow_error import SwapFlowError
-from fireblocks.models.swap_operation import SwapOperation
-from fireblocks.models.swap_operation_request import SwapOperationRequest
-from fireblocks.models.swap_operations_paginated_response import (
-    SwapOperationsPaginatedResponse,
-)
-from fireblocks.models.swap_provider import SwapProvider
-from fireblocks.models.swap_provider_protocols_enum import SwapProviderProtocolsEnum
-from fireblocks.models.swap_providers_paginated_response import (
-    SwapProvidersPaginatedResponse,
-)
-from fireblocks.models.swap_required_action import SwapRequiredAction
-from fireblocks.models.swap_required_actions_enum import SwapRequiredActionsEnum
 from fireblocks.models.system_message_info import SystemMessageInfo
 from fireblocks.models.tag import Tag
 from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.models.task import Task
 from fireblocks.models.templates_paginated_response import TemplatesPaginatedResponse
 from fireblocks.models.third_party_routing import ThirdPartyRouting
+from fireblocks.models.time_in_force import TimeInForce
 from fireblocks.models.time_period_config import TimePeriodConfig
 from fireblocks.models.time_period_match_type import TimePeriodMatchType
 from fireblocks.models.to_collateral_transaction import ToCollateralTransaction
@@ -970,6 +1076,9 @@ from fireblocks.models.token_ownership_status_update_payload import (
 from fireblocks.models.token_response import TokenResponse
 from fireblocks.models.tokens_paginated_response import TokensPaginatedResponse
 from fireblocks.models.trading_account_type import TradingAccountType
+from fireblocks.models.trading_error_response import TradingErrorResponse
+from fireblocks.models.trading_error_response_error import TradingErrorResponseError
+from fireblocks.models.trading_provider import TradingProvider
 from fireblocks.models.transaction import Transaction
 from fireblocks.models.transaction_fee import TransactionFee
 from fireblocks.models.transaction_operation import TransactionOperation
@@ -1023,6 +1132,8 @@ from fireblocks.models.transfer_operation_preview_output import (
 from fireblocks.models.transfer_operation_type import TransferOperationType
 from fireblocks.models.transfer_peer_path_sub_type import TransferPeerPathSubType
 from fireblocks.models.transfer_peer_path_type import TransferPeerPathType
+from fireblocks.models.transfer_rail import TransferRail
+from fireblocks.models.transfer_receipt import TransferReceipt
 from fireblocks.models.transfer_validation_failure import TransferValidationFailure
 from fireblocks.models.travel_rule_address import TravelRuleAddress
 from fireblocks.models.travel_rule_create_transaction_request import (
@@ -1159,7 +1270,6 @@ from fireblocks.models.verdict_config import VerdictConfig
 from fireblocks.models.version import Version
 from fireblocks.models.wallet_asset import WalletAsset
 from fireblocks.models.wallet_asset_additional_info import WalletAssetAdditionalInfo
-from fireblocks.models.wallet_quote_response import WalletQuoteResponse
 from fireblocks.models.webhook import Webhook
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_paginated_response import WebhookPaginatedResponse

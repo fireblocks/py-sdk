@@ -45,6 +45,7 @@ class TestTransactionResponse(unittest.TestCase):
                 operation = 'TRANSFER',
                 note = '',
                 asset_id = '',
+                asset_type = 'ERC20',
                 source = fireblocks.models.source_transfer_peer_path_response.SourceTransferPeerPathResponse(
                     type = 'VAULT_ACCOUNT', 
                     sub_type = '', 
@@ -63,8 +64,6 @@ class TestTransactionResponse(unittest.TestCase):
                     trading_account = '', ),
                 destinations = [
                     fireblocks.models.transaction_response_destination.TransactionResponseDestination(
-                        destination_address = null, 
-                        destination_address_description = null, 
                         amount = '', 
                         amount_usd = '', 
                         aml_screening_result = fireblocks.models.aml_screening_result.AmlScreeningResult(
@@ -106,6 +105,8 @@ class TestTransactionResponse(unittest.TestCase):
                     network_fee = '', 
                     service_fee = '', 
                     gas_price = '', 
+                    l1network_fee = '0.003955', 
+                    l2network_fee = '0.0005', 
                     paid_by_relay = True, 
                     relay_type = 'LOCAL', 
                     relay_id = '1', 
@@ -135,9 +136,7 @@ class TestTransactionResponse(unittest.TestCase):
                         is_dropped = True, 
                         type = '', 
                         destination_address = '', 
-                        source_address = '', 
                         amount_usd = '', 
-                        index = 1.337, 
                         reward_info = fireblocks.models.reward_info.RewardInfo(
                             src_rewards = '', 
                             dest_rewards = '', ), )
@@ -166,15 +165,15 @@ class TestTransactionResponse(unittest.TestCase):
                     payload = fireblocks.models.payload.payload(), ),
                 compliance_results = fireblocks.models.compliance_results.ComplianceResults(
                     aml = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                        provider = '', 
+                        provider = 'CHAINALYSIS', 
                         payload = fireblocks.models.payload.payload(), 
-                        bypass_reason = '', 
+                        bypass_reason = 'MANUAL', 
                         screening_status = 'COMPLETED', 
                         timestamp = 1.337, ), 
                     tr = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                        provider = '', 
+                        provider = 'CHAINALYSIS', 
                         payload = fireblocks.models.payload.payload(), 
-                        bypass_reason = '', 
+                        bypass_reason = 'MANUAL', 
                         screening_status = 'COMPLETED', 
                         timestamp = 1.337, ), 
                     aml_list = [
@@ -185,6 +184,11 @@ class TestTransactionResponse(unittest.TestCase):
                         provider = '', 
                         success = True, 
                         timestamp = 1.337, ), ),
+                not_broadcast_by_fireblocks = False,
+                dapp_url = 'https://app.uniswap.org',
+                gas_limit = '21000',
+                blockchain_index = '1.1.1',
+                paid_rent = '0.00203928',
                 extra_parameters = None,
                 signed_messages = [
                     fireblocks.models.signed_message.SignedMessage(
@@ -208,6 +212,8 @@ class TestTransactionResponse(unittest.TestCase):
                 reward_info = fireblocks.models.reward_info.RewardInfo(
                     src_rewards = '', 
                     dest_rewards = '', ),
+                fee_payer_info = fireblocks.models.fee_payer_info.FeePayerInfo(
+                    fee_payer_account_id = '123', ),
                 system_messages = fireblocks.models.system_message_info.SystemMessageInfo(
                     type = 'WARN', 
                     message = 'Slow transaction processing. Outgoing transactions might be stuck.', ),
@@ -219,7 +225,10 @@ class TestTransactionResponse(unittest.TestCase):
                 service_fee = 1.337,
                 fee = 1.337,
                 network_fee = 1.337,
-                error_description = ''
+                error_description = '',
+                replaced_tx_hash = '',
+                nonce = '11228',
+                blockchain_info = {"evmTransferType":"NATIVE"}
             )
         else:
             return TransactionResponse(

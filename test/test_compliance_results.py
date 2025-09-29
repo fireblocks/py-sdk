@@ -38,22 +38,22 @@ class TestComplianceResults(unittest.TestCase):
         if include_optional:
             return ComplianceResults(
                 aml = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                    provider = '', 
+                    provider = 'CHAINALYSIS', 
                     payload = fireblocks.models.payload.payload(), 
-                    bypass_reason = '', 
+                    bypass_reason = 'MANUAL', 
                     screening_status = 'COMPLETED', 
                     timestamp = 1.337, ),
                 tr = fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                    provider = '', 
+                    provider = 'CHAINALYSIS', 
                     payload = fireblocks.models.payload.payload(), 
-                    bypass_reason = '', 
+                    bypass_reason = 'MANUAL', 
                     screening_status = 'COMPLETED', 
                     timestamp = 1.337, ),
                 aml_list = [
                     fireblocks.models.compliance_screening_result.ComplianceScreeningResult(
-                        provider = '', 
+                        provider = 'CHAINALYSIS', 
                         payload = fireblocks.models.payload.payload(), 
-                        bypass_reason = '', 
+                        bypass_reason = 'MANUAL', 
                         screening_status = 'COMPLETED', 
                         timestamp = 1.337, )
                     ],

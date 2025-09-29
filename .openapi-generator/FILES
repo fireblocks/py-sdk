@@ -301,8 +301,6 @@ docs/EstimatedNetworkFeeResponse.md
 docs/EstimatedTransactionFeeResponse.md
 docs/ExchangeAccount.md
 docs/ExchangeAccountsApi.md
-docs/ExchangeAccountsPaged.md
-docs/ExchangeAccountsPagedPaging.md
 docs/ExchangeAsset.md
 docs/ExchangeSettlementTransactionsResponse.md
 docs/ExchangeTradingAccount.md
@@ -330,6 +328,7 @@ docs/FeeBreakdownOneOf.md
 docs/FeeBreakdownOneOf1.md
 docs/FeeInfo.md
 docs/FeeLevel.md
+docs/FeePayerInfo.md
 docs/FetchAbiRequestDto.md
 docs/FiatAccount.md
 docs/FiatAccountType.md
@@ -362,6 +361,8 @@ docs/GetNFTsResponse.md
 docs/GetOrdersResponse.md
 docs/GetOtaStatusResponse.md
 docs/GetOwnershipTokensResponse.md
+docs/GetPagedExchangeAccountsResponse.md
+docs/GetPagedExchangeAccountsResponsePaging.md
 docs/GetSigningKeyResponseDto.md
 docs/GetTransactionOperation.md
 docs/GetValidationKeyResponseDto.md
@@ -1153,8 +1154,6 @@ fireblocks/models/estimated_network_fee_response.py
 fireblocks/models/estimated_transaction_fee_response.py
 fireblocks/models/evm_token_create_params_dto.py
 fireblocks/models/exchange_account.py
-fireblocks/models/exchange_accounts_paged.py
-fireblocks/models/exchange_accounts_paged_paging.py
 fireblocks/models/exchange_asset.py
 fireblocks/models/exchange_settlement_transactions_response.py
 fireblocks/models/exchange_trading_account.py
@@ -1181,6 +1180,7 @@ fireblocks/models/fee_breakdown_one_of.py
 fireblocks/models/fee_breakdown_one_of1.py
 fireblocks/models/fee_info.py
 fireblocks/models/fee_level.py
+fireblocks/models/fee_payer_info.py
 fireblocks/models/fetch_abi_request_dto.py
 fireblocks/models/fiat_account.py
 fireblocks/models/fiat_account_type.py
@@ -1211,6 +1211,8 @@ fireblocks/models/get_nfts_response.py
 fireblocks/models/get_orders_response.py
 fireblocks/models/get_ota_status_response.py
 fireblocks/models/get_ownership_tokens_response.py
+fireblocks/models/get_paged_exchange_accounts_response.py
+fireblocks/models/get_paged_exchange_accounts_response_paging.py
 fireblocks/models/get_signing_key_response_dto.py
 fireblocks/models/get_transaction_operation.py
 fireblocks/models/get_validation_key_response_dto.py
@@ -1956,8 +1958,6 @@ test/test_estimated_transaction_fee_response.py
 test/test_evm_token_create_params_dto.py
 test/test_exchange_account.py
 test/test_exchange_accounts_api.py
-test/test_exchange_accounts_paged.py
-test/test_exchange_accounts_paged_paging.py
 test/test_exchange_asset.py
 test/test_exchange_settlement_transactions_response.py
 test/test_exchange_trading_account.py
@@ -1985,6 +1985,7 @@ test/test_fee_breakdown_one_of.py
 test/test_fee_breakdown_one_of1.py
 test/test_fee_info.py
 test/test_fee_level.py
+test/test_fee_payer_info.py
 test/test_fetch_abi_request_dto.py
 test/test_fiat_account.py
 test/test_fiat_account_type.py
@@ -2017,6 +2018,8 @@ test/test_get_nfts_response.py
 test/test_get_orders_response.py
 test/test_get_ota_status_response.py
 test/test_get_ownership_tokens_response.py
+test/test_get_paged_exchange_accounts_response.py
+test/test_get_paged_exchange_accounts_response_paging.py
 test/test_get_signing_key_response_dto.py
 test/test_get_transaction_operation.py
 test/test_get_validation_key_response_dto.py

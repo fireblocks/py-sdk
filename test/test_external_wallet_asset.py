@@ -40,8 +40,8 @@ class TestExternalWalletAsset(unittest.TestCase):
                 id = '',
                 status = 'WAITING_FOR_APPROVAL',
                 address = '',
-                balance = '',
-                locked_amount = '',
+                balance = 1.337,
+                locked_amount = 1.337,
                 tag = '',
                 activation_time = '',
                 additional_info = [

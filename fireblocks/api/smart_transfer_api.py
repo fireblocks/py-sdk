@@ -1959,6 +1959,8 @@ class SmartTransferApi:
         external_ref_id: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True, max_length=64)]], Field(description="External ref. ID that workspace can use to identify ticket outside of Fireblocks system.")] = None,
         after: Annotated[Optional[StrictStr], Field(description="ID of the record after which to fetch $limit records")] = None,
         limit: Annotated[Optional[Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]]], Field(description="Number of records to fetch. By default, it is 100")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sort by field")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1996,6 +1998,10 @@ class SmartTransferApi:
         :type after: str
         :param limit: Number of records to fetch. By default, it is 100
         :type limit: float
+        :param sort_by: Sort by field
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2030,6 +2036,8 @@ class SmartTransferApi:
             external_ref_id=external_ref_id,
             after=after,
             limit=limit,
+            sort_by=sort_by,
+            order=order,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2059,6 +2067,8 @@ class SmartTransferApi:
         external_ref_id,
         after,
         limit,
+        sort_by,
+        order,
         _request_auth,
         _content_type,
         _headers,
@@ -2139,6 +2149,14 @@ class SmartTransferApi:
         if limit is not None:
             
             _query_params.append(('limit', limit))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
             
         # process the header parameters
         # process the form parameters

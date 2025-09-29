@@ -30,14 +30,12 @@ class TransactionResponseDestination(BaseModel):
     """
     TransactionResponseDestination
     """ # noqa: E501
-    destination_address: Optional[Any] = Field(default=None, description="Address where the asset was transferred.", alias="destinationAddress")
-    destination_address_description: Optional[Any] = Field(default=None, description="Description of the address.", alias="destinationAddressDescription")
     amount: Optional[StrictStr] = Field(default=None, description="The amount to be sent to this destination.")
     amount_usd: Optional[StrictStr] = Field(default=None, description="The USD value of the requested amount.", alias="amountUSD")
     aml_screening_result: Optional[AmlScreeningResult] = Field(default=None, alias="amlScreeningResult")
     destination: Optional[DestinationTransferPeerPathResponse] = None
     authorization_info: Optional[AuthorizationInfo] = Field(default=None, alias="authorizationInfo")
-    __properties: ClassVar[List[str]] = ["destinationAddress", "destinationAddressDescription", "amount", "amountUSD", "amlScreeningResult", "destination", "authorizationInfo"]
+    __properties: ClassVar[List[str]] = ["amount", "amountUSD", "amlScreeningResult", "destination", "authorizationInfo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,16 +85,6 @@ class TransactionResponseDestination(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of authorization_info
         if self.authorization_info:
             _dict['authorizationInfo'] = self.authorization_info.to_dict()
-        # set to None if destination_address (nullable) is None
-        # and model_fields_set contains the field
-        if self.destination_address is None and "destination_address" in self.model_fields_set:
-            _dict['destinationAddress'] = None
-
-        # set to None if destination_address_description (nullable) is None
-        # and model_fields_set contains the field
-        if self.destination_address_description is None and "destination_address_description" in self.model_fields_set:
-            _dict['destinationAddressDescription'] = None
-
         return _dict
 
     @classmethod
@@ -109,8 +97,6 @@ class TransactionResponseDestination(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "destinationAddress": obj.get("destinationAddress"),
-            "destinationAddressDescription": obj.get("destinationAddressDescription"),
             "amount": obj.get("amount"),
             "amountUSD": obj.get("amountUSD"),
             "amlScreeningResult": AmlScreeningResult.from_dict(obj["amlScreeningResult"]) if obj.get("amlScreeningResult") is not None else None,

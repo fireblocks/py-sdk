@@ -30,12 +30,14 @@ class FeeInfo(BaseModel):
     network_fee: Optional[StrictStr] = Field(default=None, description="The fee paid to the network", alias="networkFee")
     service_fee: Optional[StrictStr] = Field(default=None, description="The total fee deducted by the exchange from the actual requested amount (serviceFee = amount - netAmount)", alias="serviceFee")
     gas_price: Optional[StrictStr] = Field(default=None, alias="gasPrice")
+    l1network_fee: Optional[StrictStr] = Field(default=None, description="Layer 1 network fee for Layer 2 blockchain transactions", alias="L1networkFee")
+    l2network_fee: Optional[StrictStr] = Field(default=None, description="Layer 2 network fee (gas price component for Layer 2 transactions)", alias="L2networkFee")
     paid_by_relay: Optional[StrictBool] = Field(default=None, description="Wether the fee was paid by the relay or not", alias="paidByRelay")
     relay_type: Optional[StrictStr] = Field(default=None, description="Wether the relay is the same tenant (LOCAL) or another tenant (THIRD_PARTY)", alias="relayType")
     relay_id: Optional[StrictStr] = Field(default=None, description="The vault account ID of the relay", alias="relayId")
     relay_name: Optional[StrictStr] = Field(default=None, description="The name of the tenant, only for THIRD_PARTY relays", alias="relayName")
     fee_usd: Optional[StrictStr] = Field(default=None, description="The USD value of the fee", alias="feeUSD")
-    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "paidByRelay", "relayType", "relayId", "relayName", "feeUSD"]
+    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "L1networkFee", "L2networkFee", "paidByRelay", "relayType", "relayId", "relayName", "feeUSD"]
 
     @field_validator('relay_type')
     def relay_type_validate_enum(cls, value):
@@ -101,6 +103,8 @@ class FeeInfo(BaseModel):
             "networkFee": obj.get("networkFee"),
             "serviceFee": obj.get("serviceFee"),
             "gasPrice": obj.get("gasPrice"),
+            "L1networkFee": obj.get("L1networkFee"),
+            "L2networkFee": obj.get("L2networkFee"),
             "paidByRelay": obj.get("paidByRelay"),
             "relayType": obj.get("relayType"),
             "relayId": obj.get("relayId"),

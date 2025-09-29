@@ -1037,7 +1037,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_tickets**
-> SmartTransferTicketFilteredResponse search_tickets(q=q, statuses=statuses, network_id=network_id, created_by_me=created_by_me, expires_after=expires_after, expires_before=expires_before, type=type, external_ref_id=external_ref_id, after=after, limit=limit)
+> SmartTransferTicketFilteredResponse search_tickets(q=q, statuses=statuses, network_id=network_id, created_by_me=created_by_me, expires_after=expires_after, expires_before=expires_before, type=type, external_ref_id=external_ref_id, after=after, limit=limit, sort_by=sort_by, order=order)
 
 Find Ticket
 
@@ -1078,10 +1078,12 @@ with Fireblocks(configuration) as fireblocks:
     external_ref_id = 'external_ref_id_example' # str | External ref. ID that workspace can use to identify ticket outside of Fireblocks system. (optional)
     after = 'after_example' # str | ID of the record after which to fetch $limit records (optional)
     limit = 3.4 # float | Number of records to fetch. By default, it is 100 (optional)
+    sort_by = createdAt # str | Sort by field (optional) (default to createdAt)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
 
     try:
         # Find Ticket
-        api_response = fireblocks.smart_transfer.search_tickets(q=q, statuses=statuses, network_id=network_id, created_by_me=created_by_me, expires_after=expires_after, expires_before=expires_before, type=type, external_ref_id=external_ref_id, after=after, limit=limit).result()
+        api_response = fireblocks.smart_transfer.search_tickets(q=q, statuses=statuses, network_id=network_id, created_by_me=created_by_me, expires_after=expires_after, expires_before=expires_before, type=type, external_ref_id=external_ref_id, after=after, limit=limit, sort_by=sort_by, order=order).result()
         print("The response of SmartTransferApi->search_tickets:\n")
         pprint(api_response)
     except Exception as e:
@@ -1105,6 +1107,8 @@ Name | Type | Description  | Notes
  **external_ref_id** | **str**| External ref. ID that workspace can use to identify ticket outside of Fireblocks system. | [optional] 
  **after** | **str**| ID of the record after which to fetch $limit records | [optional] 
  **limit** | **float**| Number of records to fetch. By default, it is 100 | [optional] 
+ **sort_by** | **str**| Sort by field | [optional] [default to createdAt]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
 
 ### Return type
 

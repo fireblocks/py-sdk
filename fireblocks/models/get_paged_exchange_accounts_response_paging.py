@@ -20,20 +20,16 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.exchange_account import ExchangeAccount
-from fireblocks.models.exchange_accounts_paged_paging import ExchangeAccountsPagedPaging
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ExchangeAccountsPaged(BaseModel):
+class GetPagedExchangeAccountsResponsePaging(BaseModel):
     """
-    ExchangeAccountsPaged
+    GetPagedExchangeAccountsResponsePaging
     """ # noqa: E501
-    exchange_account: Optional[List[ExchangeAccount]] = Field(default=None, alias="ExchangeAccount")
-    paging: Optional[ExchangeAccountsPagedPaging] = None
-    prev_url: Optional[StrictStr] = Field(default=None, alias="prevUrl")
-    next_url: Optional[StrictStr] = Field(default=None, alias="nextUrl")
-    __properties: ClassVar[List[str]] = ["ExchangeAccount", "paging", "prevUrl", "nextUrl"]
+    after: Optional[StrictStr] = Field(default=None, description="Query value to the after page")
+    before: Optional[StrictStr] = Field(default=None, description="Query value to the before page")
+    __properties: ClassVar[List[str]] = ["after", "before"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +49,7 @@ class ExchangeAccountsPaged(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExchangeAccountsPaged from a JSON string"""
+        """Create an instance of GetPagedExchangeAccountsResponsePaging from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +70,11 @@ class ExchangeAccountsPaged(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in exchange_account (list)
-        _items = []
-        if self.exchange_account:
-            for _item_exchange_account in self.exchange_account:
-                if _item_exchange_account:
-                    _items.append(_item_exchange_account.to_dict())
-            _dict['ExchangeAccount'] = _items
-        # override the default output from pydantic by calling `to_dict()` of paging
-        if self.paging:
-            _dict['paging'] = self.paging.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExchangeAccountsPaged from a dict"""
+        """Create an instance of GetPagedExchangeAccountsResponsePaging from a dict"""
         if obj is None:
             return None
 
@@ -96,10 +82,8 @@ class ExchangeAccountsPaged(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "ExchangeAccount": [ExchangeAccount.from_dict(_item) for _item in obj["ExchangeAccount"]] if obj.get("ExchangeAccount") is not None else None,
-            "paging": ExchangeAccountsPagedPaging.from_dict(obj["paging"]) if obj.get("paging") is not None else None,
-            "prevUrl": obj.get("prevUrl"),
-            "nextUrl": obj.get("nextUrl")
+            "after": obj.get("after"),
+            "before": obj.get("before")
         })
         return _obj
 

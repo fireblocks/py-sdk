@@ -18,26 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from fireblocks.models.config_change_request_status import ConfigChangeRequestStatus
-from fireblocks.models.wallet_asset_additional_info import WalletAssetAdditionalInfo
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ExternalWalletAsset(BaseModel):
+class FeePayerInfo(BaseModel):
     """
-    ExternalWalletAsset
+    FeePayerInfo
     """ # noqa: E501
-    id: Optional[StrictStr] = None
-    status: Optional[ConfigChangeRequestStatus] = None
-    address: Optional[StrictStr] = None
-    balance: Optional[Union[StrictFloat, StrictInt]] = None
-    locked_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="lockedAmount")
-    tag: Optional[StrictStr] = None
-    activation_time: Optional[StrictStr] = Field(default=None, alias="activationTime")
-    additional_info: Optional[List[WalletAssetAdditionalInfo]] = Field(default=None, alias="additionalInfo")
-    __properties: ClassVar[List[str]] = ["id", "status", "address", "balance", "lockedAmount", "tag", "activationTime", "additionalInfo"]
+    fee_payer_account_id: Optional[StrictStr] = Field(default=None, description="The account ID of the fee payer", alias="feePayerAccountId")
+    __properties: ClassVar[List[str]] = ["feePayerAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +48,7 @@ class ExternalWalletAsset(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExternalWalletAsset from a JSON string"""
+        """Create an instance of FeePayerInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,18 +69,11 @@ class ExternalWalletAsset(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in additional_info (list)
-        _items = []
-        if self.additional_info:
-            for _item_additional_info in self.additional_info:
-                if _item_additional_info:
-                    _items.append(_item_additional_info.to_dict())
-            _dict['additionalInfo'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExternalWalletAsset from a dict"""
+        """Create an instance of FeePayerInfo from a dict"""
         if obj is None:
             return None
 
@@ -97,14 +81,7 @@ class ExternalWalletAsset(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "status": obj.get("status"),
-            "address": obj.get("address"),
-            "balance": obj.get("balance"),
-            "lockedAmount": obj.get("lockedAmount"),
-            "tag": obj.get("tag"),
-            "activationTime": obj.get("activationTime"),
-            "additionalInfo": [WalletAssetAdditionalInfo.from_dict(_item) for _item in obj["additionalInfo"]] if obj.get("additionalInfo") is not None else None
+            "feePayerAccountId": obj.get("feePayerAccountId")
         })
         return _obj
 

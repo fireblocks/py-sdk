@@ -31,6 +31,8 @@
 
 * `MULTI_DESTINATION` (value: `'MULTI_DESTINATION'`)
 
+* `OEC_PARTNER` (value: `'OEC_PARTNER'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

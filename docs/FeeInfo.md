@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **network_fee** | **str** | The fee paid to the network | [optional] 
 **service_fee** | **str** | The total fee deducted by the exchange from the actual requested amount (serviceFee &#x3D; amount - netAmount) | [optional] 
 **gas_price** | **str** |  | [optional] 
+**l1network_fee** | **str** | Layer 1 network fee for Layer 2 blockchain transactions | [optional] 
+**l2network_fee** | **str** | Layer 2 network fee (gas price component for Layer 2 transactions) | [optional] 
 **paid_by_relay** | **bool** | Wether the fee was paid by the relay or not | [optional] 
 **relay_type** | **str** | Wether the relay is the same tenant (LOCAL) or another tenant (THIRD_PARTY) | [optional] 
 **relay_id** | **str** | The vault account ID of the relay | [optional] 

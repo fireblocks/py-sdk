@@ -39,8 +39,6 @@ class TestTransactionResponseDestination(unittest.TestCase):
         model = TransactionResponseDestination()
         if include_optional:
             return TransactionResponseDestination(
-                destination_address = None,
-                destination_address_description = None,
                 amount = '',
                 amount_usd = '',
                 aml_screening_result = fireblocks.models.aml_screening_result.AmlScreeningResult(

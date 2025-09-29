@@ -27,12 +27,32 @@ class ComplianceScreeningResult(BaseModel):
     """
     ComplianceScreeningResult
     """ # noqa: E501
-    provider: Optional[StrictStr] = None
+    provider: Optional[StrictStr] = Field(default=None, description="Screening provider")
     payload: Optional[Dict[str, Any]] = Field(default=None, description="The payload of the screening result. The payload is a JSON object that contains the screening result. The payload is different for each screening provider. ")
-    bypass_reason: Optional[StrictStr] = Field(default=None, alias="bypassReason")
+    bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason AML screening was bypassed", alias="bypassReason")
     screening_status: Optional[StrictStr] = Field(default=None, alias="screeningStatus")
     timestamp: Optional[Union[StrictFloat, StrictInt]] = None
     __properties: ClassVar[List[str]] = ["provider", "payload", "bypassReason", "screeningStatus", "timestamp"]
+
+    @field_validator('provider')
+    def provider_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['CHAINALYSIS', 'ELLIPTIC', 'CHAINALYSIS_V2', 'ELLIPTIC_HOLISTIC', 'NONE']):
+            raise ValueError("must be one of enum values ('CHAINALYSIS', 'ELLIPTIC', 'CHAINALYSIS_V2', 'ELLIPTIC_HOLISTIC', 'NONE')")
+        return value
+
+    @field_validator('bypass_reason')
+    def bypass_reason_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MANUAL', 'UNSUPPORTED_ASSET', 'BYPASSED_FAILURE', 'UNSUPPORTED_ROUTE', 'PASSED_BY_POLICY', 'TIMED_OUT', 'BAD_CREDENTIALS', 'CONFIGURATION_ERROR', 'DROPPED_BY_BLOCKCHAIN', 'PROCESS_DISMISSED']):
+            raise ValueError("must be one of enum values ('MANUAL', 'UNSUPPORTED_ASSET', 'BYPASSED_FAILURE', 'UNSUPPORTED_ROUTE', 'PASSED_BY_POLICY', 'TIMED_OUT', 'BAD_CREDENTIALS', 'CONFIGURATION_ERROR', 'DROPPED_BY_BLOCKCHAIN', 'PROCESS_DISMISSED')")
+        return value
 
     @field_validator('screening_status')
     def screening_status_validate_enum(cls, value):

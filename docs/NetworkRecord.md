@@ -14,9 +14,7 @@ Name | Type | Description | Notes
 **is_dropped** | **bool** |  | [optional] 
 **type** | **str** |  | [optional] 
 **destination_address** | **str** |  | [optional] 
-**source_address** | **str** |  | [optional] 
 **amount_usd** | **str** |  | [optional] 
-**index** | **float** |  | [optional] 
 **reward_info** | [**RewardInfo**](RewardInfo.md) |  | [optional] 
 
 ## Example

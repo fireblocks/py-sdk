@@ -40,6 +40,8 @@ class TestFeeInfo(unittest.TestCase):
                 network_fee = '',
                 service_fee = '',
                 gas_price = '',
+                l1network_fee = '0.003955',
+                l2network_fee = '0.0005',
                 paid_by_relay = True,
                 relay_type = 'LOCAL',
                 relay_id = '1',

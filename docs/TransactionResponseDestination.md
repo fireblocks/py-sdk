@@ -5,8 +5,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**destination_address** | **object** | Address where the asset was transferred. | [optional] 
-**destination_address_description** | **object** | Description of the address. | [optional] 
 **amount** | **str** | The amount to be sent to this destination. | [optional] 
 **amount_usd** | **str** | The USD value of the requested amount. | [optional] 
 **aml_screening_result** | [**AmlScreeningResult**](AmlScreeningResult.md) |  | [optional] 

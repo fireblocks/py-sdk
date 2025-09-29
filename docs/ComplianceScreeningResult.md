@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**provider** | **str** |  | [optional] 
+**provider** | **str** | Screening provider | [optional] 
 **payload** | **object** | The payload of the screening result. The payload is a JSON object that contains the screening result. The payload is different for each screening provider.  | [optional] 
-**bypass_reason** | **str** |  | [optional] 
+**bypass_reason** | **str** | Reason AML screening was bypassed | [optional] 
 **screening_status** | **str** |  | [optional] 
 **timestamp** | **float** |  | [optional] 
 

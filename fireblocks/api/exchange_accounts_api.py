@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import List, Optional, Union
+from typing import Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.add_exchange_account_request import AddExchangeAccountRequest
 from fireblocks.models.add_exchange_account_response import AddExchangeAccountResponse
@@ -27,9 +27,9 @@ from fireblocks.models.convert_assets_request import ConvertAssetsRequest
 from fireblocks.models.convert_assets_response import ConvertAssetsResponse
 from fireblocks.models.create_internal_transfer_request import CreateInternalTransferRequest
 from fireblocks.models.exchange_account import ExchangeAccount
-from fireblocks.models.exchange_accounts_paged import ExchangeAccountsPaged
 from fireblocks.models.exchange_asset import ExchangeAsset
 from fireblocks.models.get_exchange_accounts_credentials_public_key_response import GetExchangeAccountsCredentialsPublicKeyResponse
+from fireblocks.models.get_paged_exchange_accounts_response import GetPagedExchangeAccountsResponse
 from fireblocks.models.internal_transfer_response import InternalTransferResponse
 
 from fireblocks.api_client import ApiClient, RequestSerialized
@@ -760,7 +760,7 @@ class ExchangeAccountsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[List[ExchangeAccountsPaged]]]:
+    ) -> Future[ApiResponse[GetPagedExchangeAccountsResponse]]:
         """Pagination list exchange accounts
 
         Returns a page include exchange accounts.
@@ -805,7 +805,7 @@ class ExchangeAccountsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[ExchangeAccountsPaged]",
+            '200': "GetPagedExchangeAccountsResponse",
             'default': "ErrorSchema",
         }
 

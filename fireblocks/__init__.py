@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "12.1.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -526,8 +526,6 @@ from fireblocks.models.estimated_transaction_fee_response import (
     EstimatedTransactionFeeResponse,
 )
 from fireblocks.models.exchange_account import ExchangeAccount
-from fireblocks.models.exchange_accounts_paged import ExchangeAccountsPaged
-from fireblocks.models.exchange_accounts_paged_paging import ExchangeAccountsPagedPaging
 from fireblocks.models.exchange_asset import ExchangeAsset
 from fireblocks.models.exchange_settlement_transactions_response import (
     ExchangeSettlementTransactionsResponse,
@@ -562,6 +560,7 @@ from fireblocks.models.fee_breakdown_one_of import FeeBreakdownOneOf
 from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_level import FeeLevel
+from fireblocks.models.fee_payer_info import FeePayerInfo
 from fireblocks.models.fetch_abi_request_dto import FetchAbiRequestDto
 from fireblocks.models.fiat_account import FiatAccount
 from fireblocks.models.fiat_account_type import FiatAccountType
@@ -608,6 +607,12 @@ from fireblocks.models.get_nfts_response import GetNFTsResponse
 from fireblocks.models.get_orders_response import GetOrdersResponse
 from fireblocks.models.get_ota_status_response import GetOtaStatusResponse
 from fireblocks.models.get_ownership_tokens_response import GetOwnershipTokensResponse
+from fireblocks.models.get_paged_exchange_accounts_response import (
+    GetPagedExchangeAccountsResponse,
+)
+from fireblocks.models.get_paged_exchange_accounts_response_paging import (
+    GetPagedExchangeAccountsResponsePaging,
+)
 from fireblocks.models.get_signing_key_response_dto import GetSigningKeyResponseDto
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
 from fireblocks.models.get_validation_key_response_dto import (

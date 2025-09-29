@@ -390,7 +390,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_paged_exchange_accounts**
-> List[ExchangeAccountsPaged] get_paged_exchange_accounts(limit, before=before, after=after)
+> GetPagedExchangeAccountsResponse get_paged_exchange_accounts(limit, before=before, after=after)
 
 Pagination list exchange accounts
 
@@ -400,7 +400,7 @@ Returns a page include exchange accounts.
 
 
 ```python
-from fireblocks.models.exchange_accounts_paged import ExchangeAccountsPaged
+from fireblocks.models.get_paged_exchange_accounts_response import GetPagedExchangeAccountsResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[ExchangeAccountsPaged]**](ExchangeAccountsPaged.md)
+[**GetPagedExchangeAccountsResponse**](GetPagedExchangeAccountsResponse.md)
 
 ### Authorization
 

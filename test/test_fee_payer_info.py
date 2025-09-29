@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.compliance_screening_result import ComplianceScreeningResult
+from fireblocks.models.fee_payer_info import FeePayerInfo
 
 
-class TestComplianceScreeningResult(unittest.TestCase):
-    """ComplianceScreeningResult unit test stubs"""
+class TestFeePayerInfo(unittest.TestCase):
+    """FeePayerInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,29 +27,25 @@ class TestComplianceScreeningResult(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ComplianceScreeningResult:
-        """Test ComplianceScreeningResult
+    def make_instance(self, include_optional) -> FeePayerInfo:
+        """Test FeePayerInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ComplianceScreeningResult`
+        # uncomment below to create an instance of `FeePayerInfo`
         """
-        model = ComplianceScreeningResult()
+        model = FeePayerInfo()
         if include_optional:
-            return ComplianceScreeningResult(
-                provider = 'CHAINALYSIS',
-                payload = None,
-                bypass_reason = 'MANUAL',
-                screening_status = 'COMPLETED',
-                timestamp = 1.337
+            return FeePayerInfo(
+                fee_payer_account_id = '123'
             )
         else:
-            return ComplianceScreeningResult(
+            return FeePayerInfo(
         )
         """
 
-    def testComplianceScreeningResult(self):
-        """Test ComplianceScreeningResult"""
+    def testFeePayerInfo(self):
+        """Test FeePayerInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

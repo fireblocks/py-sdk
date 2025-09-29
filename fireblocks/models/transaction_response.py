@@ -27,6 +27,7 @@ from fireblocks.models.block_info import BlockInfo
 from fireblocks.models.compliance_results import ComplianceResults
 from fireblocks.models.destination_transfer_peer_path_response import DestinationTransferPeerPathResponse
 from fireblocks.models.fee_info import FeeInfo
+from fireblocks.models.fee_payer_info import FeePayerInfo
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
 from fireblocks.models.network_record import NetworkRecord
 from fireblocks.models.reward_info import RewardInfo
@@ -50,6 +51,7 @@ class TransactionResponse(BaseModel):
     operation: Optional[GetTransactionOperation] = None
     note: Optional[StrictStr] = Field(default=None, description="Custom note, not sent to the blockchain, that describes the transaction at your Fireblocks workspace.")
     asset_id: Optional[StrictStr] = Field(default=None, description="The ID of the asset to transfer, for `TRANSFER`, `MINT`, `BURN`, `ENABLE_ASSET`,`STAKE` ,`UNSTAKE` or `WITHDRAW` operations. [See the list of supported assets and their IDs on Fireblocks.](https://developers.fireblocks.com/reference/get_supported-assets)", alias="assetId")
+    asset_type: Optional[StrictStr] = Field(default=None, description="Type classification of the asset", alias="assetType")
     source: Optional[SourceTransferPeerPathResponse] = None
     source_address: Optional[StrictStr] = Field(default=None, description="For account based assets only, the source address of the transaction. **Note:** If the status is `CONFIRMING`, `COMPLETED`, or has been `CONFIRMING`; then moved forward to `FAILED` or `REJECTED`, then this parameter will contain the source address. In any other case, this parameter will be empty.", alias="sourceAddress")
     tag: Optional[StrictStr] = Field(default=None, description="Source address tag for XRP, used as memo for EOS/XLM, or Bank Transfer Description for the fiat provider BLINC (by BCB Group).")
@@ -74,12 +76,18 @@ class TransactionResponse(BaseModel):
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
     aml_screening_result: Optional[AmlScreeningResult] = Field(default=None, alias="amlScreeningResult")
     compliance_results: Optional[ComplianceResults] = Field(default=None, alias="complianceResults")
+    not_broadcast_by_fireblocks: Optional[StrictBool] = Field(default=None, description="Indicates the transaction was not broadcast by Fireblocks", alias="notBroadcastByFireblocks")
+    dapp_url: Optional[StrictStr] = Field(default=None, description="DApp URL for Web3 transactions", alias="dappUrl")
+    gas_limit: Optional[StrictStr] = Field(default=None, description="Gas limit for EVM-based blockchain transactions", alias="gasLimit")
+    blockchain_index: Optional[StrictStr] = Field(default=None, description="Blockchain-specific index or identifier for the transaction", alias="blockchainIndex")
+    paid_rent: Optional[StrictStr] = Field(default=None, description="Solana rent payment amount", alias="paidRent")
     extra_parameters: Optional[Dict[str, Any]] = Field(default=None, description="Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/get_vault-accounts-vaultaccountid-assetid-unspent-inputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. For **exchange compliance (e.g., Binance) and Travel Rule purposes**, include the key `piiData` containing a **custom JSON structure** with Personally Identifiable Information (PII) relevant to the transaction. This data must be fully **encrypted by the sender** before being submitted to the Fireblocks API. The recommended encryption method is **hybrid encryption** using AES-256-GCM for the payload and RSA-OAEP for key exchange, with the recipient exchange’s public key. [development libraries](https://developers.fireblocks.com/docs/a-developers-guide-to-constructing-encrypted-pii-messages-for-binance-via-fireblocks) ", alias="extraParameters")
     signed_messages: Optional[List[SignedMessage]] = Field(default=None, alias="signedMessages")
     num_of_confirmations: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of confirmations of the transaction. The number will increase until the transaction will be considered completed according to the confirmation policy.", alias="numOfConfirmations")
     block_info: Optional[BlockInfo] = Field(default=None, alias="blockInfo")
     index: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="For UTXO based assets this is the vOut, for Ethereum based, this is the index of the event of the contract call.  **Note:** This field is not returned if a transaction uses the `destinations` object with more than one value.")
     reward_info: Optional[RewardInfo] = Field(default=None, alias="rewardInfo")
+    fee_payer_info: Optional[FeePayerInfo] = Field(default=None, alias="feePayerInfo")
     system_messages: Optional[SystemMessageInfo] = Field(default=None, alias="systemMessages")
     address_type: Optional[StrictStr] = Field(default=None, alias="addressType")
     requested_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount requested by the user. Deprecated - please use the `amountInfo` field for accuracy.", alias="requestedAmount")
@@ -90,7 +98,10 @@ class TransactionResponse(BaseModel):
     fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Deprecated - please use the `feeInfo` field for accuracy.")
     network_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The fee paid to the network. Deprecated - please use the `feeInfo` field for accuracy.", alias="networkFee")
     error_description: Optional[StrictStr] = Field(default=None, description="The transaction's revert reason. This field will be returned when  `subStatus` =  'SMART_CONTRACT_EXECUTION_FAILED'.", alias="errorDescription")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "amlScreeningResult", "complianceResults", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription"]
+    replaced_tx_hash: Optional[StrictStr] = Field(default=None, description="if the transaction is a replace by fee (RBF) transaction, this is the hash of the transsaction that was replaced", alias="replacedTxHash")
+    nonce: Optional[StrictStr] = Field(default=None, description="blockchain nonce for the transaction")
+    blockchain_info: Optional[Dict[str, Any]] = Field(default=None, description="A JSON used to store additional data that is blockchain-specific.", alias="blockchainInfo")
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -192,6 +203,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of reward_info
         if self.reward_info:
             _dict['rewardInfo'] = self.reward_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of fee_payer_info
+        if self.fee_payer_info:
+            _dict['feePayerInfo'] = self.fee_payer_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of system_messages
         if self.system_messages:
             _dict['systemMessages'] = self.system_messages.to_dict()
@@ -220,6 +234,7 @@ class TransactionResponse(BaseModel):
             "operation": obj.get("operation"),
             "note": obj.get("note"),
             "assetId": obj.get("assetId"),
+            "assetType": obj.get("assetType"),
             "source": SourceTransferPeerPathResponse.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "sourceAddress": obj.get("sourceAddress"),
             "tag": obj.get("tag"),
@@ -244,12 +259,18 @@ class TransactionResponse(BaseModel):
             "customerRefId": obj.get("customerRefId"),
             "amlScreeningResult": AmlScreeningResult.from_dict(obj["amlScreeningResult"]) if obj.get("amlScreeningResult") is not None else None,
             "complianceResults": ComplianceResults.from_dict(obj["complianceResults"]) if obj.get("complianceResults") is not None else None,
+            "notBroadcastByFireblocks": obj.get("notBroadcastByFireblocks"),
+            "dappUrl": obj.get("dappUrl"),
+            "gasLimit": obj.get("gasLimit"),
+            "blockchainIndex": obj.get("blockchainIndex"),
+            "paidRent": obj.get("paidRent"),
             "extraParameters": obj.get("extraParameters"),
             "signedMessages": [SignedMessage.from_dict(_item) for _item in obj["signedMessages"]] if obj.get("signedMessages") is not None else None,
             "numOfConfirmations": obj.get("numOfConfirmations"),
             "blockInfo": BlockInfo.from_dict(obj["blockInfo"]) if obj.get("blockInfo") is not None else None,
             "index": obj.get("index"),
             "rewardInfo": RewardInfo.from_dict(obj["rewardInfo"]) if obj.get("rewardInfo") is not None else None,
+            "feePayerInfo": FeePayerInfo.from_dict(obj["feePayerInfo"]) if obj.get("feePayerInfo") is not None else None,
             "systemMessages": SystemMessageInfo.from_dict(obj["systemMessages"]) if obj.get("systemMessages") is not None else None,
             "addressType": obj.get("addressType"),
             "requestedAmount": obj.get("requestedAmount"),
@@ -259,7 +280,10 @@ class TransactionResponse(BaseModel):
             "serviceFee": obj.get("serviceFee"),
             "fee": obj.get("fee"),
             "networkFee": obj.get("networkFee"),
-            "errorDescription": obj.get("errorDescription")
+            "errorDescription": obj.get("errorDescription"),
+            "replacedTxHash": obj.get("replacedTxHash"),
+            "nonce": obj.get("nonce"),
+            "blockchainInfo": obj.get("blockchainInfo")
         })
         return _obj
 

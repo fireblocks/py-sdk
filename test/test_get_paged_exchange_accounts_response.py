@@ -15,11 +15,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.exchange_accounts_paged import ExchangeAccountsPaged
+from fireblocks.models.get_paged_exchange_accounts_response import (
+    GetPagedExchangeAccountsResponse,
+)
 
 
-class TestExchangeAccountsPaged(unittest.TestCase):
-    """ExchangeAccountsPaged unit test stubs"""
+class TestGetPagedExchangeAccountsResponse(unittest.TestCase):
+    """GetPagedExchangeAccountsResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,17 +29,17 @@ class TestExchangeAccountsPaged(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ExchangeAccountsPaged:
-        """Test ExchangeAccountsPaged
+    def make_instance(self, include_optional) -> GetPagedExchangeAccountsResponse:
+        """Test GetPagedExchangeAccountsResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ExchangeAccountsPaged`
+        # uncomment below to create an instance of `GetPagedExchangeAccountsResponse`
         """
-        model = ExchangeAccountsPaged()
+        model = GetPagedExchangeAccountsResponse()
         if include_optional:
-            return ExchangeAccountsPaged(
-                exchange_account = [
+            return GetPagedExchangeAccountsResponse(
+                exchanges = [
                     fireblocks.models.exchange_account.ExchangeAccount(
                         id = '', 
                         type = 'INDEPENDENT_RESERVE', 
@@ -64,19 +66,46 @@ class TestExchangeAccountsPaged(unittest.TestCase):
                         is_subaccount = True, 
                         main_account_id = '', )
                     ],
-                paging = fireblocks.models.exchange_accounts_paged_paging.ExchangeAccountsPaged_paging(
+                paging = fireblocks.models.get_paged_exchange_accounts_response_paging.GetPagedExchangeAccountsResponse_paging(
                     after = '', 
                     before = '', ),
                 prev_url = '',
                 next_url = ''
             )
         else:
-            return ExchangeAccountsPaged(
+            return GetPagedExchangeAccountsResponse(
+                exchanges = [
+                    fireblocks.models.exchange_account.ExchangeAccount(
+                        id = '', 
+                        type = 'INDEPENDENT_RESERVE', 
+                        name = '', 
+                        status = '', 
+                        assets = [
+                            fireblocks.models.exchange_asset.ExchangeAsset(
+                                id = '', 
+                                balance = '', 
+                                locked_amount = '', 
+                                total = '', 
+                                available = '', 
+                                credit = '', 
+                                asset_id = '2306088f-97ed-4293-8d28-8ab627f272d7', 
+                                provider_symbol = 'BTC', 
+                                asset_symbol = 'BTC', 
+                                asset_legacy_id = 'BTC', )
+                            ], 
+                        success = True, 
+                        trading_accounts = [
+                            fireblocks.models.exchange_trading_account.ExchangeTradingAccount(
+                                name = '', )
+                            ], 
+                        is_subaccount = True, 
+                        main_account_id = '', )
+                    ],
         )
         """
 
-    def testExchangeAccountsPaged(self):
-        """Test ExchangeAccountsPaged"""
+    def testGetPagedExchangeAccountsResponse(self):
+        """Test GetPagedExchangeAccountsResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

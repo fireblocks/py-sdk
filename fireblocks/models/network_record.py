@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.destination_transfer_peer_path_response import DestinationTransferPeerPathResponse
 from fireblocks.models.reward_info import RewardInfo
 from fireblocks.models.source_transfer_peer_path_response import SourceTransferPeerPathResponse
@@ -39,11 +39,9 @@ class NetworkRecord(BaseModel):
     is_dropped: Optional[StrictBool] = Field(default=None, alias="isDropped")
     type: Optional[StrictStr] = None
     destination_address: Optional[StrictStr] = Field(default=None, alias="destinationAddress")
-    source_address: Optional[StrictStr] = Field(default=None, alias="sourceAddress")
     amount_usd: Optional[StrictStr] = Field(default=None, alias="amountUSD")
-    index: Optional[Union[StrictFloat, StrictInt]] = None
     reward_info: Optional[RewardInfo] = Field(default=None, alias="rewardInfo")
-    __properties: ClassVar[List[str]] = ["source", "destination", "txHash", "networkFee", "assetId", "netAmount", "isDropped", "type", "destinationAddress", "sourceAddress", "amountUSD", "index", "rewardInfo"]
+    __properties: ClassVar[List[str]] = ["source", "destination", "txHash", "networkFee", "assetId", "netAmount", "isDropped", "type", "destinationAddress", "amountUSD", "rewardInfo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -114,9 +112,7 @@ class NetworkRecord(BaseModel):
             "isDropped": obj.get("isDropped"),
             "type": obj.get("type"),
             "destinationAddress": obj.get("destinationAddress"),
-            "sourceAddress": obj.get("sourceAddress"),
             "amountUSD": obj.get("amountUSD"),
-            "index": obj.get("index"),
             "rewardInfo": RewardInfo.from_dict(obj["rewardInfo"]) if obj.get("rewardInfo") is not None else None
         })
         return _obj

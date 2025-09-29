@@ -15,11 +15,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.exchange_accounts_paged_paging import ExchangeAccountsPagedPaging
+from fireblocks.models.get_paged_exchange_accounts_response_paging import (
+    GetPagedExchangeAccountsResponsePaging,
+)
 
 
-class TestExchangeAccountsPagedPaging(unittest.TestCase):
-    """ExchangeAccountsPagedPaging unit test stubs"""
+class TestGetPagedExchangeAccountsResponsePaging(unittest.TestCase):
+    """GetPagedExchangeAccountsResponsePaging unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,26 +29,26 @@ class TestExchangeAccountsPagedPaging(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ExchangeAccountsPagedPaging:
-        """Test ExchangeAccountsPagedPaging
+    def make_instance(self, include_optional) -> GetPagedExchangeAccountsResponsePaging:
+        """Test GetPagedExchangeAccountsResponsePaging
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ExchangeAccountsPagedPaging`
+        # uncomment below to create an instance of `GetPagedExchangeAccountsResponsePaging`
         """
-        model = ExchangeAccountsPagedPaging()
+        model = GetPagedExchangeAccountsResponsePaging()
         if include_optional:
-            return ExchangeAccountsPagedPaging(
+            return GetPagedExchangeAccountsResponsePaging(
                 after = '',
                 before = ''
             )
         else:
-            return ExchangeAccountsPagedPaging(
+            return GetPagedExchangeAccountsResponsePaging(
         )
         """
 
-    def testExchangeAccountsPagedPaging(self):
-        """Test ExchangeAccountsPagedPaging"""
+    def testGetPagedExchangeAccountsResponsePaging(self):
+        """Test GetPagedExchangeAccountsResponsePaging"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

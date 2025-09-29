@@ -58,9 +58,7 @@ class TestNetworkRecord(unittest.TestCase):
                 is_dropped = True,
                 type = '',
                 destination_address = '',
-                source_address = '',
                 amount_usd = '',
-                index = 1.337,
                 reward_info = fireblocks.models.reward_info.RewardInfo(
                     src_rewards = '', 
                     dest_rewards = '', )

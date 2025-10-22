@@ -39,7 +39,8 @@ class TestCollectionBurnRequestDto(unittest.TestCase):
             return CollectionBurnRequestDto(
                 vault_account_id = '0',
                 token_id = '1',
-                amount = '1'
+                amount = '1',
+                external_id = '0192e4f5-924e-7bb9-8e5b-c748270feb38'
             )
         else:
             return CollectionBurnRequestDto(

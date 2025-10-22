@@ -50,6 +50,7 @@ class ComplianceResultStatusesEnum(str, Enum):
     TRINCOMINGCOMPLETED = 'TRIncomingCompleted'
     TRINCOMINGFAILED = 'TRIncomingFailed'
     INCOMINGCOMPLETED = 'IncomingCompleted'
+    UPDATECOMPLETED = 'UpdateCompleted'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -638,6 +638,7 @@ class KeyLinkBetaApi:
         enabled: Annotated[Optional[StrictBool], Field(description="Return keys that have been proof of ownership")] = None,
         available: Annotated[Optional[StrictBool], Field(description="Return keys that are proof of ownership but not assigned. Available filter can be used only when vaultAccountId and enabled filters are not set")] = None,
         is_assigned: Annotated[Optional[StrictBool], Field(description="Return keys that are assigned to a vault account")] = None,
+        key_prefix: Annotated[Optional[StrictStr], Field(description="A case-insensitive prefix filter that matches records where either keyId or signingDeviceKeyID starts with the specified value.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -675,6 +676,8 @@ class KeyLinkBetaApi:
         :type available: bool
         :param is_assigned: Return keys that are assigned to a vault account
         :type is_assigned: bool
+        :param key_prefix: A case-insensitive prefix filter that matches records where either keyId or signingDeviceKeyID starts with the specified value.
+        :type key_prefix: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -709,6 +712,7 @@ class KeyLinkBetaApi:
             enabled=enabled,
             available=available,
             is_assigned=is_assigned,
+            key_prefix=key_prefix,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -738,6 +742,7 @@ class KeyLinkBetaApi:
         enabled,
         available,
         is_assigned,
+        key_prefix,
         _request_auth,
         _content_type,
         _headers,
@@ -799,6 +804,10 @@ class KeyLinkBetaApi:
         if is_assigned is not None:
             
             _query_params.append(('isAssigned', is_assigned))
+            
+        if key_prefix is not None:
+            
+            _query_params.append(('keyPrefix', key_prefix))
             
         # process the header parameters
         # process the form parameters

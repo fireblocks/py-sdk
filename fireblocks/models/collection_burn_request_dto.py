@@ -30,7 +30,8 @@ class CollectionBurnRequestDto(BaseModel):
     vault_account_id: StrictStr = Field(description="The id of the vault account that initiates the burn function", alias="vaultAccountId")
     token_id: StrictStr = Field(description="The token id", alias="tokenId")
     amount: Optional[StrictStr] = Field(default=None, description="For ERC721, amount is optional or should always be 1 and for ERC1155, amount should be 1 or greater")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "tokenId", "amount"]
+    external_id: Optional[StrictStr] = Field(default=None, description="External id that can be used to identify the transaction in your system. The unique identifier of the transaction outside of Fireblocks with max length of 255 characters", alias="externalId")
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "tokenId", "amount", "externalId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +86,8 @@ class CollectionBurnRequestDto(BaseModel):
         _obj = cls.model_validate({
             "vaultAccountId": obj.get("vaultAccountId"),
             "tokenId": obj.get("tokenId"),
-            "amount": obj.get("amount")
+            "amount": obj.get("amount"),
+            "externalId": obj.get("externalId")
         })
         return _obj
 

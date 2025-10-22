@@ -53,7 +53,8 @@ class TestCollectionMintRequestDto(unittest.TestCase):
                             trait_type = 'project_start', 
                             value = '30102000', 
                             display_type = 'date', )
-                        ], )
+                        ], ),
+                external_id = '0192e4f5-924e-7bb9-8e5b-c748270feb38'
             )
         else:
             return CollectionMintRequestDto(

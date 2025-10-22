@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **amount** | **str** | For ERC721, amount is optional or should always be 1 and for ERC1155, amount should be 1 or greater | [optional] 
 **metadata_uri** | **str** | URL of metadata uploaded, skip uploading to IPFS if this field is provided with any value | [optional] 
 **metadata** | [**CollectionTokenMetadataDto**](CollectionTokenMetadataDto.md) | Metadata to upload | [optional] 
+**external_id** | **str** | External id that can be used to identify the transaction in your system. The unique identifier of the transaction outside of Fireblocks with max length of 255 characters | [optional] 
 
 ## Example
 

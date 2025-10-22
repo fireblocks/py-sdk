@@ -34,7 +34,8 @@ class CollectionMintRequestDto(BaseModel):
     amount: Optional[StrictStr] = Field(default=None, description="For ERC721, amount is optional or should always be 1 and for ERC1155, amount should be 1 or greater")
     metadata_uri: Optional[StrictStr] = Field(default=None, description="URL of metadata uploaded, skip uploading to IPFS if this field is provided with any value", alias="metadataURI")
     metadata: Optional[CollectionTokenMetadataDto] = Field(default=None, description="Metadata to upload")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "to", "tokenId", "amount", "metadataURI", "metadata"]
+    external_id: Optional[StrictStr] = Field(default=None, description="External id that can be used to identify the transaction in your system. The unique identifier of the transaction outside of Fireblocks with max length of 255 characters", alias="externalId")
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "to", "tokenId", "amount", "metadataURI", "metadata", "externalId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +96,8 @@ class CollectionMintRequestDto(BaseModel):
             "tokenId": obj.get("tokenId"),
             "amount": obj.get("amount"),
             "metadataURI": obj.get("metadataURI"),
-            "metadata": CollectionTokenMetadataDto.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
+            "metadata": CollectionTokenMetadataDto.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None,
+            "externalId": obj.get("externalId")
         })
         return _obj
 

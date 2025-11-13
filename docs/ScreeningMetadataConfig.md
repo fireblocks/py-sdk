@@ -6,7 +6,7 @@ Screening metadata configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**direction** | **str** | Direction of transaction | 
+**direction** | **str** | Direction of transaction | [optional] 
 **provider** | **str** | Screening provider | [optional] 
 **risk_rating** | **str** | Risk rating threshold | [optional] 
 **risk_score** | **str** | Risk score threshold | [optional] 

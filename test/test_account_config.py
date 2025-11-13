@@ -37,7 +37,9 @@ class TestAccountConfig(unittest.TestCase):
         model = AccountConfig()
         if include_optional:
             return AccountConfig(
-                type = 'VAULT',
+                type = [
+                    'VAULT'
+                    ],
                 sub_type = [
                     fireblocks.models.account_identifier.AccountIdentifier(
                         type = 'VAULT', 
@@ -52,12 +54,15 @@ class TestAccountConfig(unittest.TestCase):
                         sub_type = 'INTERNAL', 
                         address = '0x123...', )
                     ],
+                tags = [
+                    fireblocks.models.policy_tag.PolicyTag(
+                        id = 'tag_001', )
+                    ],
                 operator = 'INCLUDES',
                 match_from = 'ACCOUNT'
             )
         else:
             return AccountConfig(
-                type = 'VAULT',
                 operator = 'INCLUDES',
         )
         """

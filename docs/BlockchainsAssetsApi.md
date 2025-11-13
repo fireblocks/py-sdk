@@ -445,6 +445,7 @@ Register a new asset to a workspace and return the newly created asset's details
 - TRON
 - NEAR
 - Solana
+- Sui
 
 
 ### Example

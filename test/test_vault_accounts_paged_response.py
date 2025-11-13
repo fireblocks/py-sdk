@@ -69,7 +69,10 @@ class TestVaultAccountsPagedResponse(unittest.TestCase):
                             fireblocks.models.tag.Tag(
                                 id = 'df4c0987-30da-4976-8dcf-bc2dd41ae331', 
                                 label = 'VIP', 
-                                description = 'Tag for VIP customers', )
+                                description = 'Tag for VIP customers', 
+                                is_protected = True, 
+                                color = '', 
+                                updated_at = '1719859200', )
                             ], )
                     ],
                 paging = fireblocks.models.vault_accounts_paged_response_paging.VaultAccountsPagedResponse_paging(

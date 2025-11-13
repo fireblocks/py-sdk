@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Indicates that the order should be re-quoted if the original quote is expired, trying to match the original quote. | 
 **count** | **float** | If quote is expired, how many times to re-generate new quotes to try having the order executed as in the original quote. | 
-**slippage_bps** | **float** | Slippage tolerance in basis points (bps) for quote orders - 1 is 0.01% and 10000 is 100% | [optional] [default to 1]
+**slippage_bps** | **float** | Slippage tolerance in basis points (bps) for quote orders - 1 is 0.01% and 10000 is 100% | [optional] 
 
 ## Example
 

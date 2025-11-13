@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **services** | **List[str]** |  | [optional] 
 **fb_admin_groups** | **List[str]** |  | [optional] 
 **exchange** | **List[str]** |  | [optional] 
-**operator** | [**PolicyOperator**](PolicyOperator.md) |  | 
+**operator** | [**PolicyOperator**](PolicyOperator.md) |  | [optional] 
 
 ## Example
 

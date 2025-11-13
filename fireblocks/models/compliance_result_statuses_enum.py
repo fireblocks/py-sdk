@@ -21,12 +21,14 @@ from typing_extensions import Self
 
 class ComplianceResultStatusesEnum(str, Enum):
     """
-    Status of compliance result screening.
+    Status of compliance result screening
     """
 
     """
     allowed enum values
     """
+    UNKNOWN = 'Unknown'
+    STALLED = 'Stalled'
     STARTED = 'Started'
     NETWORKCONNECTIONADDRESSRESOLVE = 'NetworkConnectionAddressResolve'
     SCREENINGPREPARE = 'ScreeningPrepare'
@@ -36,10 +38,26 @@ class ComplianceResultStatusesEnum(str, Enum):
     AMLINBACKGROUND = 'AMLInBackground'
     TRPRECONDITIONCHECKS = 'TRPreconditionChecks'
     TRSTARTED = 'TRStarted'
+    TRLINKSTARTED = 'TRLinkStarted'
+    TRLINKDESTINATIONSTARTED = 'TRLinkDestinationStarted'
+    TRLINKDESTINATIONPRESCREENPOLICY = 'TRLinkDestinationPrescreenPolicy'
+    TRLINKDESTINATIONNOTRMPOLICY = 'TRLinkDestinationNoTRMPolicy'
+    TRLINKDESTINATIONSCREEN = 'TRLinkDestinationScreen'
+    TRLINKDESTINATIONPOSTSCREENPOLICY = 'TRLinkDestinationPostscreenPolicy'
+    TRLINKDESTINATIONCOMPLETED = 'TRLinkDestinationCompleted'
+    TRLINKCOMPLETED = 'TRLinkCompleted'
     TRCOMPLETED = 'TRCompleted'
     TRFAILED = 'TRFailed'
     COMPLETED = 'Completed'
+    REGISTRATIONSTARTED = 'RegistrationStarted'
+    REGISTRATIONWAITFORFIRSTCONFIRMATION = 'RegistrationWaitForFirstConfirmation'
+    AMLREGISTRATIONSTARTED = 'AMLRegistrationStarted'
+    AMLREGISTRATIONCOMPLETED = 'AMLRegistrationCompleted'
+    TRUPDATESTARTED = 'TRUpdateStarted'
+    TRUPDATECOMPLETED = 'TRUpdateCompleted'
+    UPDATECOMPLETED = 'UpdateCompleted'
     INCOMINGSTARTED = 'IncomingStarted'
+    INCOMINGBYORKSL = 'IncomingByorkSL'
     INCOMINGSCREENINGPREPARE = 'IncomingScreeningPrepare'
     INCOMINGWAITFORFIRSTCONFIRMATION = 'IncomingWaitForFirstConfirmation'
     AMLINCOMINGSTARTED = 'AMLIncomingStarted'
@@ -50,7 +68,13 @@ class ComplianceResultStatusesEnum(str, Enum):
     TRINCOMINGCOMPLETED = 'TRIncomingCompleted'
     TRINCOMINGFAILED = 'TRIncomingFailed'
     INCOMINGCOMPLETED = 'IncomingCompleted'
-    UPDATECOMPLETED = 'UpdateCompleted'
+    ADDRESSAMLINITIATED = 'AddressAmlInitiated'
+    ADDRESSAMLADDRESSRESOLVE = 'AddressAmlAddressResolve'
+    ADDRESSAMLPREPARE = 'AddressAmlPrepare'
+    ADDRESSAMLPROCESSING = 'AddressAmlProcessing'
+    ADDRESSAMLSUCCEEDED = 'AddressAmlSucceeded'
+    ADDRESSAMLFAILED = 'AddressAmlFailed'
+    ADDRESSAMLCOMPLETED = 'AddressAmlCompleted'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

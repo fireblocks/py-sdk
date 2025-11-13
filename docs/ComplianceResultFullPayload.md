@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **aml_list** | [**List[ComplianceScreeningResultFullPayload]**](ComplianceScreeningResultFullPayload.md) | The list of all results of the AML screening. | [optional] 
 **status** | [**ComplianceResultStatusesEnum**](ComplianceResultStatusesEnum.md) |  | [optional] 
 **aml_registration** | [**AmlRegistrationResultFullPayload**](AmlRegistrationResultFullPayload.md) |  | [optional] 
+**trlink_registration** | [**TRLinkRegistrationResultFullPayload**](TRLinkRegistrationResultFullPayload.md) |  | [optional] 
+**trlink_destinations** | [**List[TRLinkResultFullPayload]**](TRLinkResultFullPayload.md) | The list of TRLink destination screening results. | [optional] 
 
 ## Example
 

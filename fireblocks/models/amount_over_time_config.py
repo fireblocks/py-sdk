@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.amount_over_time_config_range import AmountOverTimeConfigRange
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
+from fireblocks.models.amount_range_min_max2 import AmountRangeMinMax2
+from fireblocks.models.policy_currency import PolicyCurrency
 from fireblocks.models.time_period_config import TimePeriodConfig
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,20 +30,10 @@ class AmountOverTimeConfig(BaseModel):
     """
     Amount over time configuration
     """ # noqa: E501
-    range: AmountOverTimeConfigRange
-    currency: Optional[StrictStr] = Field(default=None, description="Currency for the amount")
+    range: AmountRangeMinMax2
+    currency: PolicyCurrency
     time_period: TimePeriodConfig = Field(alias="timePeriod")
     __properties: ClassVar[List[str]] = ["range", "currency", "timePeriod"]
-
-    @field_validator('currency')
-    def currency_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NATIVE', 'USD', 'EUR']):
-            raise ValueError("must be one of enum values ('NATIVE', 'USD', 'EUR')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -101,7 +92,7 @@ class AmountOverTimeConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "range": AmountOverTimeConfigRange.from_dict(obj["range"]) if obj.get("range") is not None else None,
+            "range": AmountRangeMinMax2.from_dict(obj["range"]) if obj.get("range") is not None else None,
             "currency": obj.get("currency"),
             "timePeriod": TimePeriodConfig.from_dict(obj["timePeriod"]) if obj.get("timePeriod") is not None else None
         })

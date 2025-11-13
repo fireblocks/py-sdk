@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Order type for quote orders | 
 **quote_id** | **str** | Quote ID for quote orders | 
-**re_quote** | [**QuoteExecutionWithRequoteRequestDetailsAllOfReQuote**](QuoteExecutionWithRequoteRequestDetailsAllOfReQuote.md) |  | [optional] 
+**re_quote** | [**ReQuoteDetailsReQuote**](ReQuoteDetailsReQuote.md) |  | [optional] 
 
 ## Example
 

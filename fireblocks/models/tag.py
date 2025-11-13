@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,10 @@ class Tag(BaseModel):
     id: StrictStr = Field(description="The unique identifier of the tag")
     label: StrictStr = Field(description="The tag label")
     description: Optional[StrictStr] = Field(default=None, description="Description for the tag")
-    __properties: ClassVar[List[str]] = ["id", "label", "description"]
+    is_protected: Optional[StrictBool] = Field(default=None, description="Whether the tag is protected", alias="isProtected")
+    color: Optional[StrictStr] = Field(default=None, description="The color of the tag in hex format")
+    updated_at: Optional[StrictStr] = Field(default=None, description="The date and time the tag was last updated", alias="updatedAt")
+    __properties: ClassVar[List[str]] = ["id", "label", "description", "isProtected", "color", "updatedAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +88,10 @@ class Tag(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "label": obj.get("label"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "isProtected": obj.get("isProtected"),
+            "color": obj.get("color"),
+            "updatedAt": obj.get("updatedAt")
         })
         return _obj
 

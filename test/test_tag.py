@@ -39,7 +39,10 @@ class TestTag(unittest.TestCase):
             return Tag(
                 id = 'df4c0987-30da-4976-8dcf-bc2dd41ae331',
                 label = 'VIP',
-                description = 'Tag for VIP customers'
+                description = 'Tag for VIP customers',
+                is_protected = True,
+                color = '',
+                updated_at = '1719859200'
             )
         else:
             return Tag(

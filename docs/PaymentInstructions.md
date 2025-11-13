@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
-**address** | [**AccountHolderDetails**](AccountHolderDetails.md) |  | 
-**reference_id** | **str** |  | 
+**address** | [**MobileMoneyAddress**](MobileMoneyAddress.md) |  | 
+**reference_id** | **str** |  | [optional] 
 
 ## Example
 

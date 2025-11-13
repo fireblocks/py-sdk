@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.account_identifier import AccountIdentifier
 from fireblocks.models.account_type2 import AccountType2
 from fireblocks.models.policy_operator import PolicyOperator
+from fireblocks.models.policy_tag import PolicyTag
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,13 +31,14 @@ class DestinationConfig(BaseModel):
     """
     Destination configuration for policy rules
     """ # noqa: E501
-    type: AccountType2
+    type: Optional[List[AccountType2]] = Field(default=None, description="Destination account types")
     sub_type: Optional[List[AccountIdentifier]] = Field(default=None, alias="subType")
     ids: Optional[List[AccountIdentifier]] = None
+    tags: Optional[List[PolicyTag]] = Field(default=None, description="Tags for destination matching")
     operator: PolicyOperator
-    match_from: Optional[StrictStr] = Field(default=None, description="Whether to match from account or source", alias="matchFrom")
+    match_from: Optional[StrictStr] = Field(default=None, description="Whether to match from account or source (relevant only for ORDER policy type). If set to ACCOUNT, only matchFrom is allowed and other fields are not required.", alias="matchFrom")
     address_type: StrictStr = Field(description="Type of destination addresses allowed", alias="addressType")
-    __properties: ClassVar[List[str]] = ["type", "subType", "ids", "operator", "matchFrom", "addressType"]
+    __properties: ClassVar[List[str]] = ["type", "subType", "ids", "tags", "operator", "matchFrom", "addressType"]
 
     @field_validator('match_from')
     def match_from_validate_enum(cls, value):
@@ -51,8 +53,8 @@ class DestinationConfig(BaseModel):
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ALL', '*', 'WHITELISTED', 'ONE_TIME', 'OEC_PARTNER']):
-            raise ValueError("must be one of enum values ('ALL', '*', 'WHITELISTED', 'ONE_TIME', 'OEC_PARTNER')")
+        if value not in set(['*', 'WHITELISTED', 'ONE_TIME']):
+            raise ValueError("must be one of enum values ('*', 'WHITELISTED', 'ONE_TIME')")
         return value
 
     model_config = ConfigDict(
@@ -108,6 +110,13 @@ class DestinationConfig(BaseModel):
                 if _item_ids:
                     _items.append(_item_ids.to_dict())
             _dict['ids'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item_tags in self.tags:
+                if _item_tags:
+                    _items.append(_item_tags.to_dict())
+            _dict['tags'] = _items
         return _dict
 
     @classmethod
@@ -123,6 +132,7 @@ class DestinationConfig(BaseModel):
             "type": obj.get("type"),
             "subType": [AccountIdentifier.from_dict(_item) for _item in obj["subType"]] if obj.get("subType") is not None else None,
             "ids": [AccountIdentifier.from_dict(_item) for _item in obj["ids"]] if obj.get("ids") is not None else None,
+            "tags": [PolicyTag.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "operator": obj.get("operator"),
             "matchFrom": obj.get("matchFrom"),
             "addressType": obj.get("addressType")

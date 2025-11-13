@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.quote_execution_with_requote_response_details_all_of_re_quote import QuoteExecutionWithRequoteResponseDetailsAllOfReQuote
+from fireblocks.models.re_quote_details_re_quote import ReQuoteDetailsReQuote
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -38,7 +38,7 @@ class QuoteExecutionWithRequoteResponseDetails(BaseModel):
     base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
     quote_asset_id: StrictStr = Field(description="Target asset identifier", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
-    re_quote: Optional[QuoteExecutionWithRequoteResponseDetailsAllOfReQuote] = Field(default=None, alias="reQuote")
+    re_quote: Optional[ReQuoteDetailsReQuote] = Field(default=None, alias="reQuote")
     __properties: ClassVar[List[str]] = ["type", "quoteId", "quoteAmount", "side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "reQuote"]
 
     @field_validator('type')
@@ -118,7 +118,7 @@ class QuoteExecutionWithRequoteResponseDetails(BaseModel):
             "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),
             "quoteAssetRail": obj.get("quoteAssetRail"),
-            "reQuote": QuoteExecutionWithRequoteResponseDetailsAllOfReQuote.from_dict(obj["reQuote"]) if obj.get("reQuote") is not None else None
+            "reQuote": ReQuoteDetailsReQuote.from_dict(obj["reQuote"]) if obj.get("reQuote") is not None else None
         })
         return _obj
 

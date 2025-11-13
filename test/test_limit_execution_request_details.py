@@ -39,25 +39,25 @@ class TestLimitExecutionRequestDetails(unittest.TestCase):
         model = LimitExecutionRequestDetails()
         if include_optional:
             return LimitExecutionRequestDetails(
+                type = 'LIMIT',
+                time_in_force = 'FOK',
+                limit_price = '',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
                 base_asset_rail = 'BLOCKCHAIN',
                 quote_asset_id = '',
-                quote_asset_rail = 'BLOCKCHAIN',
-                type = 'LIMIT',
-                time_in_force = 'FOK',
-                limit_price = ''
+                quote_asset_rail = 'BLOCKCHAIN'
             )
         else:
             return LimitExecutionRequestDetails(
+                type = 'LIMIT',
+                time_in_force = 'FOK',
+                limit_price = '',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
                 quote_asset_id = '',
-                type = 'LIMIT',
-                time_in_force = 'FOK',
-                limit_price = '',
         )
         """
 

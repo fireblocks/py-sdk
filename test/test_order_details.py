@@ -53,7 +53,7 @@ class TestOrderDetails(unittest.TestCase):
                 settlement = None,
                 participants_identification = {"originator":{"externalReferenceId":"user_123456","entityType":"INDIVIDUAL","participantRelationshipType":"FirstParty","fullName":{"firstName":"John","lastName":"Smith"},"dateOfBirth":"1985-03-15","postalAddress":{"streetName":"Main Street","buildingNumber":"123","postalCode":"10001","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}},"beneficiary":{"externalReferenceId":"user_789012","entityType":"INDIVIDUAL","participantRelationshipType":"ThirdParty","fullName":{"firstName":"Alice","lastName":"Johnson"},"dateOfBirth":"1990-07-22","postalAddress":{"streetName":"Broadway","buildingNumber":"456","postalCode":"10002","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}}},
                 payment_instructions = [
-                    {"type":"IBAN","address":{"accountHolder":{"name":"John Smith","city":"London","country":"GB","subdivision":"ENG","address":"123 King's Road","postalCode":"SW3 4LX"},"iban":"GB82WEST12345698765432"},"referenceId":"PAY_INST_abc123def456"}
+                    null
                     ],
                 created_by = '',
                 customer_internal_reference_id = '',

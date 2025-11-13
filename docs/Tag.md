@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **id** | **str** | The unique identifier of the tag | 
 **label** | **str** | The tag label | 
 **description** | **str** | Description for the tag | [optional] 
+**is_protected** | **bool** | Whether the tag is protected | [optional] 
+**color** | **str** | The color of the tag in hex format | [optional] 
+**updated_at** | **str** | The date and time the tag was last updated | [optional] 
 
 ## Example
 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_asset_id** | **str** | Target asset identifier | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
-**re_quote** | [**QuoteExecutionWithRequoteResponseDetailsAllOfReQuote**](QuoteExecutionWithRequoteResponseDetailsAllOfReQuote.md) |  | [optional] 
+**re_quote** | [**ReQuoteDetailsReQuote**](ReQuoteDetailsReQuote.md) |  | [optional] 
 
 ## Example
 

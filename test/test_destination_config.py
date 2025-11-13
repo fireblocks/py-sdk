@@ -37,7 +37,9 @@ class TestDestinationConfig(unittest.TestCase):
         model = DestinationConfig()
         if include_optional:
             return DestinationConfig(
-                type = 'VAULT',
+                type = [
+                    'VAULT'
+                    ],
                 sub_type = [
                     fireblocks.models.account_identifier.AccountIdentifier(
                         type = 'VAULT', 
@@ -52,13 +54,16 @@ class TestDestinationConfig(unittest.TestCase):
                         sub_type = 'INTERNAL', 
                         address = '0x123...', )
                     ],
+                tags = [
+                    fireblocks.models.policy_tag.PolicyTag(
+                        id = 'tag_001', )
+                    ],
                 operator = 'INCLUDES',
                 match_from = 'ACCOUNT',
                 address_type = 'WHITELISTED'
             )
         else:
             return DestinationConfig(
-                type = 'VAULT',
                 operator = 'INCLUDES',
                 address_type = 'WHITELISTED',
         )

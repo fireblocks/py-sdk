@@ -27,7 +27,7 @@ class ScreeningMetadataConfig(BaseModel):
     """
     Screening metadata configuration
     """ # noqa: E501
-    direction: StrictStr = Field(description="Direction of transaction")
+    direction: Optional[StrictStr] = Field(default=None, description="Direction of transaction")
     provider: Optional[StrictStr] = Field(default=None, description="Screening provider")
     risk_rating: Optional[StrictStr] = Field(default=None, description="Risk rating threshold", alias="riskRating")
     risk_score: Optional[StrictStr] = Field(default=None, description="Risk score threshold", alias="riskScore")
@@ -43,6 +43,9 @@ class ScreeningMetadataConfig(BaseModel):
     @field_validator('direction')
     def direction_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['INBOUND', 'OUTBOUND', 'ANY']):
             raise ValueError("must be one of enum values ('INBOUND', 'OUTBOUND', 'ANY')")
         return value

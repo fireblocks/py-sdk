@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_webhook**](WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create new webhook
 [**delete_webhook**](WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
+[**get_metrics**](WebhooksV2Api.md#get_metrics) | **GET** /webhooks/{webhookId}/metrics/{metricName} | Get webhook metrics
 [**get_notification**](WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
 [**get_notification_attempts**](WebhooksV2Api.md#get_notification_attempts) | **GET** /webhooks/{webhookId}/notifications/{notificationId}/attempts | Get notification attempts
 [**get_notifications**](WebhooksV2Api.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
@@ -171,6 +172,83 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Deleted webhook object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_metrics**
+> WebhookMetric get_metrics(webhook_id, metric_name)
+
+Get webhook metrics
+
+Get webhook metrics by webhook id and metric name
+
+
+### Example
+
+
+```python
+from fireblocks.models.webhook_metric import WebhookMetric
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | 
+    metric_name = 'LAST_ACTIVE_HOUR_ERROR_RATE' # str | Name of the metric to retrieve
+
+    try:
+        # Get webhook metrics
+        api_response = fireblocks.webhooks_v2.get_metrics(webhook_id, metric_name).result()
+        print("The response of WebhooksV2Api->get_metrics:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->get_metrics: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **str**|  | 
+ **metric_name** | **str**| Name of the metric to retrieve | 
+
+### Return type
+
+[**WebhookMetric**](WebhookMetric.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Webhook metrics |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

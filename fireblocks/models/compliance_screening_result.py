@@ -20,39 +20,50 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from fireblocks.models.aml_result import AmlResult
+from fireblocks.models.aml_status_enum import AmlStatusEnum
+from fireblocks.models.screening_risk_level_enum import ScreeningRiskLevelEnum
+from fireblocks.models.screening_verdict_enum import ScreeningVerdictEnum
+from fireblocks.models.travel_rule_prescreening_rule import TravelRulePrescreeningRule
+from fireblocks.models.travel_rule_result import TravelRuleResult
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ComplianceScreeningResult(BaseModel):
     """
-    ComplianceScreeningResult
+    The result of the AML/Travel Rule screening. This unified schema contains all fields that may be returned for both AML and Travel Rule screening results. Not all fields will be present in every response - the actual fields depend on the screening type and provider. 
     """ # noqa: E501
-    provider: Optional[StrictStr] = Field(default=None, description="Screening provider")
-    payload: Optional[Dict[str, Any]] = Field(default=None, description="The payload of the screening result. The payload is a JSON object that contains the screening result. The payload is different for each screening provider. ")
-    bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason AML screening was bypassed", alias="bypassReason")
-    screening_status: Optional[StrictStr] = Field(default=None, alias="screeningStatus")
-    timestamp: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["provider", "payload", "bypassReason", "screeningStatus", "timestamp"]
-
-    @field_validator('provider')
-    def provider_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['CHAINALYSIS', 'ELLIPTIC', 'CHAINALYSIS_V2', 'ELLIPTIC_HOLISTIC', 'NONE']):
-            raise ValueError("must be one of enum values ('CHAINALYSIS', 'ELLIPTIC', 'CHAINALYSIS_V2', 'ELLIPTIC_HOLISTIC', 'NONE')")
-        return value
-
-    @field_validator('bypass_reason')
-    def bypass_reason_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['MANUAL', 'UNSUPPORTED_ASSET', 'BYPASSED_FAILURE', 'UNSUPPORTED_ROUTE', 'PASSED_BY_POLICY', 'TIMED_OUT', 'BAD_CREDENTIALS', 'CONFIGURATION_ERROR', 'DROPPED_BY_BLOCKCHAIN', 'PROCESS_DISMISSED']):
-            raise ValueError("must be one of enum values ('MANUAL', 'UNSUPPORTED_ASSET', 'BYPASSED_FAILURE', 'UNSUPPORTED_ROUTE', 'PASSED_BY_POLICY', 'TIMED_OUT', 'BAD_CREDENTIALS', 'CONFIGURATION_ERROR', 'DROPPED_BY_BLOCKCHAIN', 'PROCESS_DISMISSED')")
-        return value
+    provider: Optional[StrictStr] = Field(default=None, description="The AML/Travel Rule provider name. For AML: ELLIPTIC, CHAINALYSIS, SCORECHAIN, MERKLE_SCIENCE, etc. For Travel Rule: NOTABENE, SYGNA, or any TRLink provider name ")
+    payload: Optional[Dict[str, Any]] = Field(default=None, description="The raw payload of the screening result from the provider. The payload is a JSON object that contains the screening result. The payload structure is different for each screening provider. This field contains the complete, unmodified response from the screening service. ")
+    timestamp: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp in milliseconds when the screening result was generated")
+    screening_status: Optional[StrictStr] = Field(default=None, description="Current status of the screening process", alias="screeningStatus")
+    bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason for bypassing the screening, if applicable. For AML: SANCTIONS_SCREENING_BYPASS, SANCTIONS_RECIPIENT_BYPASS, etc. For Travel Rule: BELOW_THRESHOLD, NO_TRM_AVAILABLE, etc. ", alias="bypassReason")
+    status: Optional[AmlStatusEnum] = None
+    prev_status: Optional[AmlStatusEnum] = Field(default=None, alias="prevStatus")
+    prev_bypass_reason: Optional[StrictStr] = Field(default=None, description="Previous bypass reason before the current bypass reason change", alias="prevBypassReason")
+    verdict: Optional[ScreeningVerdictEnum] = None
+    risk: Optional[ScreeningRiskLevelEnum] = None
+    extended_risk: Optional[ScreeningRiskLevelEnum] = Field(default=None, alias="extendedRisk")
+    external_id: Optional[StrictStr] = Field(default=None, description="External identifier for the screening (provider-specific)", alias="externalId")
+    customer_ref_id: Optional[StrictStr] = Field(default=None, description="Customer-provided reference identifier for tracking", alias="customerRefId")
+    ref_id: Optional[StrictStr] = Field(default=None, description="Internal reference identifier", alias="refId")
+    category: Optional[StrictStr] = Field(default=None, description="Risk category classification. Examples: EXCHANGE, GAMBLING, MIXER, DARKNET_SERVICE, SANCTIONED_ENTITY ")
+    category_id: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Numeric identifier for the risk category", alias="categoryId")
+    dest_address: Optional[StrictStr] = Field(default=None, description="The destination blockchain address associated with the screening", alias="destAddress")
+    dest_tag: Optional[StrictStr] = Field(default=None, description="Destination tag or memo (for chains that support it like XRP, XLM)", alias="destTag")
+    dest_record_id: Optional[StrictStr] = Field(default=None, description="The destination record identifier used by the screening provider", alias="destRecordId")
+    address_resolution_signature: Optional[StrictStr] = Field(default=None, description="Cryptographic signature for address resolution verification", alias="addressResolutionSignature")
+    aml_result: Optional[AmlResult] = Field(default=None, alias="amlResult")
+    result: Optional[TravelRuleResult] = None
+    details_message: Optional[StrictStr] = Field(default=None, description="Additional human-readable details or message about the screening result", alias="detailsMessage")
+    matched_alert: Optional[Dict[str, Any]] = Field(default=None, description="Information about the AML alert that was matched, if any. Contains details about the specific alert that triggered during screening. ", alias="matchedAlert")
+    matched_rule: Optional[Dict[str, Any]] = Field(default=None, description="The matched rule information for this screening result. Contains details about which screening rule was applied and matched. ", alias="matchedRule")
+    matched_prescreening_rule: Optional[TravelRulePrescreeningRule] = Field(default=None, alias="matchedPrescreeningRule")
+    matched_no_trm_screening_rule: Optional[Dict[str, Any]] = Field(default=None, description="Matched no-TRM (Travel Rule Message) screening rule details. Used when TRLink screening detects a missing TRM scenario. ", alias="matchedNoTrmScreeningRule")
+    customer_integration_id: Optional[StrictStr] = Field(default=None, description="Customer integration identifier used by Travel Rule providers", alias="customerIntegrationId")
+    customer_short_name: Optional[StrictStr] = Field(default=None, description="Customer short name registered with Travel Rule providers", alias="customerShortName")
+    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="Travel rule message identifier for linking and tracking across providers", alias="travelRuleMessageId")
+    __properties: ClassVar[List[str]] = ["provider", "payload", "timestamp", "screeningStatus", "bypassReason", "status", "prevStatus", "prevBypassReason", "verdict", "risk", "extendedRisk", "externalId", "customerRefId", "refId", "category", "categoryId", "destAddress", "destTag", "destRecordId", "addressResolutionSignature", "amlResult", "result", "detailsMessage", "matchedAlert", "matchedRule", "matchedPrescreeningRule", "matchedNoTrmScreeningRule", "customerIntegrationId", "customerShortName", "travelRuleMessageId"]
 
     @field_validator('screening_status')
     def screening_status_validate_enum(cls, value):
@@ -103,6 +114,15 @@ class ComplianceScreeningResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of aml_result
+        if self.aml_result:
+            _dict['amlResult'] = self.aml_result.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of result
+        if self.result:
+            _dict['result'] = self.result.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of matched_prescreening_rule
+        if self.matched_prescreening_rule:
+            _dict['matchedPrescreeningRule'] = self.matched_prescreening_rule.to_dict()
         return _dict
 
     @classmethod
@@ -117,9 +137,34 @@ class ComplianceScreeningResult(BaseModel):
         _obj = cls.model_validate({
             "provider": obj.get("provider"),
             "payload": obj.get("payload"),
-            "bypassReason": obj.get("bypassReason"),
+            "timestamp": obj.get("timestamp"),
             "screeningStatus": obj.get("screeningStatus"),
-            "timestamp": obj.get("timestamp")
+            "bypassReason": obj.get("bypassReason"),
+            "status": obj.get("status"),
+            "prevStatus": obj.get("prevStatus"),
+            "prevBypassReason": obj.get("prevBypassReason"),
+            "verdict": obj.get("verdict"),
+            "risk": obj.get("risk"),
+            "extendedRisk": obj.get("extendedRisk"),
+            "externalId": obj.get("externalId"),
+            "customerRefId": obj.get("customerRefId"),
+            "refId": obj.get("refId"),
+            "category": obj.get("category"),
+            "categoryId": obj.get("categoryId"),
+            "destAddress": obj.get("destAddress"),
+            "destTag": obj.get("destTag"),
+            "destRecordId": obj.get("destRecordId"),
+            "addressResolutionSignature": obj.get("addressResolutionSignature"),
+            "amlResult": AmlResult.from_dict(obj["amlResult"]) if obj.get("amlResult") is not None else None,
+            "result": TravelRuleResult.from_dict(obj["result"]) if obj.get("result") is not None else None,
+            "detailsMessage": obj.get("detailsMessage"),
+            "matchedAlert": obj.get("matchedAlert"),
+            "matchedRule": obj.get("matchedRule"),
+            "matchedPrescreeningRule": TravelRulePrescreeningRule.from_dict(obj["matchedPrescreeningRule"]) if obj.get("matchedPrescreeningRule") is not None else None,
+            "matchedNoTrmScreeningRule": obj.get("matchedNoTrmScreeningRule"),
+            "customerIntegrationId": obj.get("customerIntegrationId"),
+            "customerShortName": obj.get("customerShortName"),
+            "travelRuleMessageId": obj.get("travelRuleMessageId")
         })
         return _obj
 

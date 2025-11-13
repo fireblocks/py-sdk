@@ -28,7 +28,7 @@ class ApproversConfig(BaseModel):
     """
     Approvers configuration
     """ # noqa: E501
-    can_initiator_approve: Optional[StrictBool] = Field(default=None, description="Whether initiator can approve", alias="canInitiatorApprove")
+    can_initiator_approve: StrictBool = Field(description="Whether initiator can approve", alias="canInitiatorApprove")
     operator: Optional[StrictStr] = Field(default=None, description="Operator for approval groups")
     allow_operator_as_authorizer: Optional[StrictBool] = Field(default=None, description="Whether operator can be authorizer", alias="allowOperatorAsAuthorizer")
     approval_groups: Optional[List[ApproversConfigApprovalGroupsInner]] = Field(default=None, description="List of approval groups", alias="approvalGroups")

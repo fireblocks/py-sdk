@@ -47,8 +47,8 @@ class TestPolicyRule(unittest.TestCase):
                     nft_transfer = False, 
                     asset_types = ["FUNGIBLE","NFT","*"], 
                     operator = 'INCLUDES', ),
-                source = fireblocks.models.account_config.AccountConfig(
-                    type = 'VAULT', 
+                source = fireblocks.models.source_config.SourceConfig(
+                    type = ["VAULT","UNMANAGED"], 
                     sub_type = [
                         fireblocks.models.account_identifier.AccountIdentifier(
                             type = 'VAULT', 
@@ -57,15 +57,21 @@ class TestPolicyRule(unittest.TestCase):
                         ], 
                     ids = [
                         fireblocks.models.account_identifier.AccountIdentifier(
-                            type = , 
+                            type = 'VAULT', 
                             id = 'account123', 
                             address = '0x123...', )
+                        ], 
+                    tags = [
+                        fireblocks.models.policy_tag.PolicyTag(
+                            id = 'tag_001', )
                         ], 
                     operator = 'INCLUDES', 
                     match_from = 'ACCOUNT', ),
                 destination = {"type":["EXTERNAL"],"operator":"INCLUDES","addressType":"WHITELISTED"},
                 account = fireblocks.models.account_config.AccountConfig(
-                    type = 'VAULT', 
+                    type = [
+                        'VAULT'
+                        ], 
                     sub_type = [
                         fireblocks.models.account_identifier.AccountIdentifier(
                             type = 'VAULT', 
@@ -74,12 +80,17 @@ class TestPolicyRule(unittest.TestCase):
                         ], 
                     ids = [
                         fireblocks.models.account_identifier.AccountIdentifier(
-                            type = , 
+                            type = 'VAULT', 
                             id = 'account123', 
                             address = '0x123...', )
                         ], 
+                    tags = [
+                        fireblocks.models.policy_tag.PolicyTag(
+                            id = 'tag_001', )
+                        ], 
                     operator = 'INCLUDES', 
                     match_from = 'ACCOUNT', ),
+                side = 'BUY',
                 verdict = fireblocks.models.verdict_config.VerdictConfig(
                     action = 'ALLOW', 
                     approvers = fireblocks.models.approvers_config.ApproversConfig(
@@ -92,16 +103,14 @@ class TestPolicyRule(unittest.TestCase):
                         users = ["user1","user2"], 
                         groups = ["group1","group2"], ), ),
                 amount_over_time = fireblocks.models.amount_over_time_config.AmountOverTimeConfig(
-                    range = fireblocks.models.amount_over_time_config_range.AmountOverTimeConfig_range(
-                        min = '100', 
-                        max = '10000', ), 
+                    range = {"min":"100","max":"10000"}, 
                     currency = 'USD', 
                     time_period = fireblocks.models.time_period_config.TimePeriodConfig(
                         seconds = '86400', 
                         initiator = 'PER_SINGLE_MATCH', 
                         source = 'PER_SINGLE_MATCH', 
                         destination = 'PER_SINGLE_MATCH', ), ),
-                amount = {"min":"100","max":"10000","currency":"USD"},
+                amount = {"range":{"min":"100","max":"10000"},"currency":"USD"},
                 external_descriptor = 'High value transfer policy for institutional clients',
                 method = None,
                 is_global_policy = False,
@@ -133,8 +142,13 @@ class TestPolicyRule(unittest.TestCase):
                     nft_transfer = False, 
                     asset_types = ["FUNGIBLE","NFT","*"], 
                     operator = 'INCLUDES', ),
-                quote_amount = {"min":"100","max":"10000","currency":"USD"},
-                base_amount = {"min":"100","max":"10000","currency":"USD"},
+                quote_amount = {"range":{"min":"100","max":"10000"}},
+                base_amount = {"range":{"min":"100","max":"10000"}},
+                d_app_address = fireblocks.models.d_app_address_config.DAppAddressConfig(
+                    global_whitelisted = ["rabby.io","jup.ag"], 
+                    tenant_whitelisted = ["uniswap.com","opensea.io"], 
+                    urls = ["*"], 
+                    operator = 'INCLUDES', ),
                 derivation_path = {"path":[44,0,0,0,0],"partial":false},
                 index = 1
             )
@@ -145,12 +159,8 @@ class TestPolicyRule(unittest.TestCase):
                 policy_engine_version = 'v2',
                 type = 'TRANSFER',
                 initiator = None,
-                asset = fireblocks.models.asset_config.AssetConfig(
-                    nft_transfer = False, 
-                    asset_types = ["FUNGIBLE","NFT","*"], 
-                    operator = 'INCLUDES', ),
-                source = fireblocks.models.account_config.AccountConfig(
-                    type = 'VAULT', 
+                source = fireblocks.models.source_config.SourceConfig(
+                    type = ["VAULT","UNMANAGED"], 
                     sub_type = [
                         fireblocks.models.account_identifier.AccountIdentifier(
                             type = 'VAULT', 
@@ -159,9 +169,13 @@ class TestPolicyRule(unittest.TestCase):
                         ], 
                     ids = [
                         fireblocks.models.account_identifier.AccountIdentifier(
-                            type = , 
+                            type = 'VAULT', 
                             id = 'account123', 
                             address = '0x123...', )
+                        ], 
+                    tags = [
+                        fireblocks.models.policy_tag.PolicyTag(
+                            id = 'tag_001', )
                         ], 
                     operator = 'INCLUDES', 
                     match_from = 'ACCOUNT', ),

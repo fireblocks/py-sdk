@@ -57,7 +57,6 @@ class TestScreeningMetadataConfig(unittest.TestCase):
             )
         else:
             return ScreeningMetadataConfig(
-                direction = 'OUTBOUND',
         )
         """
 

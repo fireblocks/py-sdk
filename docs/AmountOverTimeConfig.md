@@ -6,8 +6,8 @@ Amount over time configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**range** | [**AmountOverTimeConfigRange**](AmountOverTimeConfigRange.md) |  | 
-**currency** | **str** | Currency for the amount | [optional] 
+**range** | [**AmountRangeMinMax2**](AmountRangeMinMax2.md) |  | 
+**currency** | [**PolicyCurrency**](PolicyCurrency.md) |  | 
 **time_period** | [**TimePeriodConfig**](TimePeriodConfig.md) |  | 
 
 ## Example

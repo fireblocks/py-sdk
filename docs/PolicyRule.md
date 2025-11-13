@@ -12,13 +12,14 @@ Name | Type | Description | Notes
 **type** | [**PolicyType**](PolicyType.md) |  | 
 **sub_type** | [**PolicyType**](PolicyType.md) |  | [optional] 
 **initiator** | [**InitiatorConfigPattern**](InitiatorConfigPattern.md) |  | 
-**asset** | [**AssetConfig**](AssetConfig.md) |  | 
-**source** | [**AccountConfig**](AccountConfig.md) |  | 
+**asset** | [**AssetConfig**](AssetConfig.md) |  | [optional] 
+**source** | [**SourceConfig**](SourceConfig.md) |  | 
 **destination** | [**DestinationConfig**](DestinationConfig.md) |  | [optional] 
 **account** | [**AccountConfig**](AccountConfig.md) |  | [optional] 
+**side** | [**OrderSide**](OrderSide.md) |  | [optional] 
 **verdict** | [**VerdictConfig**](VerdictConfig.md) |  | 
 **amount_over_time** | [**AmountOverTimeConfig**](AmountOverTimeConfig.md) |  | [optional] 
-**amount** | [**AmountRange**](AmountRange.md) |  | [optional] 
+**amount** | [**AmountConfig**](AmountConfig.md) |  | [optional] 
 **external_descriptor** | **str** | External descriptor for the rule | [optional] 
 **method** | [**ContractMethodPattern**](ContractMethodPattern.md) |  | [optional] 
 **is_global_policy** | **bool** | Whether this is a global policy | [optional] 
@@ -28,6 +29,7 @@ Name | Type | Description | Notes
 **base_asset** | [**AssetConfig**](AssetConfig.md) |  | [optional] 
 **quote_amount** | [**AmountRange**](AmountRange.md) |  | [optional] 
 **base_amount** | [**AmountRange**](AmountRange.md) |  | [optional] 
+**d_app_address** | [**DAppAddressConfig**](DAppAddressConfig.md) |  | [optional] 
 **derivation_path** | [**DerivationPathConfig**](DerivationPathConfig.md) |  | [optional] 
 **index** | **float** | Index for the policy rule | [optional] 
 

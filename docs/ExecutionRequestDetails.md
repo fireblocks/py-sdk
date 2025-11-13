@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **quote_asset_id** | **str** | Target asset identifier | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_id** | **str** | Quote ID for quote orders | 
-**re_quote** | [**QuoteExecutionWithRequoteRequestDetailsAllOfReQuote**](QuoteExecutionWithRequoteRequestDetailsAllOfReQuote.md) |  | [optional] 
+**re_quote** | [**ReQuoteDetailsReQuote**](ReQuoteDetailsReQuote.md) |  | [optional] 
 
 ## Example
 

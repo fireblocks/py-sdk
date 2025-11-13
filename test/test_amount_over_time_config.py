@@ -37,9 +37,7 @@ class TestAmountOverTimeConfig(unittest.TestCase):
         model = AmountOverTimeConfig()
         if include_optional:
             return AmountOverTimeConfig(
-                range = fireblocks.models.amount_over_time_config_range.AmountOverTimeConfig_range(
-                    min = '100', 
-                    max = '10000', ),
+                range = {"min":"100","max":"10000"},
                 currency = 'USD',
                 time_period = fireblocks.models.time_period_config.TimePeriodConfig(
                     seconds = '86400', 
@@ -49,9 +47,8 @@ class TestAmountOverTimeConfig(unittest.TestCase):
             )
         else:
             return AmountOverTimeConfig(
-                range = fireblocks.models.amount_over_time_config_range.AmountOverTimeConfig_range(
-                    min = '100', 
-                    max = '10000', ),
+                range = {"min":"100","max":"10000"},
+                currency = 'USD',
                 time_period = fireblocks.models.time_period_config.TimePeriodConfig(
                     seconds = '86400', 
                     initiator = 'PER_SINGLE_MATCH', 

@@ -28,29 +28,29 @@ class QuoteExecutionResponseDetails(BaseModel):
     """
     QuoteExecutionResponseDetails
     """ # noqa: E501
+    type: StrictStr = Field(description="Order type for quote orders")
+    quote_id: StrictStr = Field(description="Quote ID for quote orders", alias="quoteId")
+    quote_amount: StrictStr = Field(description="Quote amount for quote orders", alias="quoteAmount")
     side: StrictStr = Field(description="Side of the order")
     base_amount: StrictStr = Field(description="Amount to convert", alias="baseAmount")
     base_asset_id: StrictStr = Field(description="Source asset identifier", alias="baseAssetId")
     base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
     quote_asset_id: StrictStr = Field(description="Target asset identifier", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
-    type: StrictStr = Field(description="Order type for quote orders")
-    quote_id: StrictStr = Field(description="Quote ID for quote orders", alias="quoteId")
-    quote_amount: StrictStr = Field(description="Quote amount for quote orders", alias="quoteAmount")
-    __properties: ClassVar[List[str]] = ["side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "type", "quoteId", "quoteAmount"]
-
-    @field_validator('side')
-    def side_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['BUY', 'SELL']):
-            raise ValueError("must be one of enum values ('BUY', 'SELL')")
-        return value
+    __properties: ClassVar[List[str]] = ["type", "quoteId", "quoteAmount", "side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['QUOTE']):
             raise ValueError("must be one of enum values ('QUOTE')")
+        return value
+
+    @field_validator('side')
+    def side_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['BUY', 'SELL']):
+            raise ValueError("must be one of enum values ('BUY', 'SELL')")
         return value
 
     model_config = ConfigDict(
@@ -104,15 +104,15 @@ class QuoteExecutionResponseDetails(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "type": obj.get("type"),
+            "quoteId": obj.get("quoteId"),
+            "quoteAmount": obj.get("quoteAmount"),
             "side": obj.get("side") if obj.get("side") is not None else 'BUY',
             "baseAmount": obj.get("baseAmount"),
             "baseAssetId": obj.get("baseAssetId"),
             "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),
-            "quoteAssetRail": obj.get("quoteAssetRail"),
-            "type": obj.get("type"),
-            "quoteId": obj.get("quoteId"),
-            "quoteAmount": obj.get("quoteAmount")
+            "quoteAssetRail": obj.get("quoteAssetRail")
         })
         return _obj
 

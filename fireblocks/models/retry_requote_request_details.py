@@ -30,7 +30,7 @@ class RetryRequoteRequestDetails(BaseModel):
     """ # noqa: E501
     type: StrictStr = Field(description="Indicates that the order should be re-quoted if the original quote is expired, trying to match the original quote.")
     count: Union[Annotated[float, Field(le=10, strict=True, ge=1)], Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(description="If quote is expired, how many times to re-generate new quotes to try having the order executed as in the original quote.")
-    slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=1, description="Slippage tolerance in basis points (bps) for quote orders - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
+    slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=None, description="Slippage tolerance in basis points (bps) for quote orders - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
     __properties: ClassVar[List[str]] = ["type", "count", "slippageBps"]
 
     @field_validator('type')
@@ -93,7 +93,7 @@ class RetryRequoteRequestDetails(BaseModel):
         _obj = cls.model_validate({
             "type": obj.get("type"),
             "count": obj.get("count"),
-            "slippageBps": obj.get("slippageBps") if obj.get("slippageBps") is not None else 1
+            "slippageBps": obj.get("slippageBps")
         })
         return _obj
 

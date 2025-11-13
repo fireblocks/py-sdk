@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
-from fireblocks.models.account_holder_details import AccountHolderDetails
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.mobile_money_address import MobileMoneyAddress
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,15 +29,15 @@ class PaymentInstructions(BaseModel):
     PaymentInstructions
     """ # noqa: E501
     type: StrictStr
-    address: AccountHolderDetails
-    reference_id: StrictStr = Field(alias="referenceId")
+    address: MobileMoneyAddress
+    reference_id: Optional[StrictStr] = Field(default=None, alias="referenceId")
     __properties: ClassVar[List[str]] = ["type", "address", "referenceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['IBAN', 'SWIFT', 'ACH', 'US_WIRE', 'SPEI', 'SEPA', 'PIX', 'LOCAL_BANK_TRANSFER_AFRICA', 'MOBILE_MONEY']):
-            raise ValueError("must be one of enum values ('IBAN', 'SWIFT', 'ACH', 'US_WIRE', 'SPEI', 'SEPA', 'PIX', 'LOCAL_BANK_TRANSFER_AFRICA', 'MOBILE_MONEY')")
+        if value not in set(['MOBILE_MONEY']):
+            raise ValueError("must be one of enum values ('MOBILE_MONEY')")
         return value
 
     model_config = ConfigDict(
@@ -95,7 +95,7 @@ class PaymentInstructions(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "address": AccountHolderDetails.from_dict(obj["address"]) if obj.get("address") is not None else None,
+            "address": MobileMoneyAddress.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "referenceId": obj.get("referenceId")
         })
         return _obj

@@ -39,21 +39,21 @@ class TestMarketExecutionRequestDetails(unittest.TestCase):
         model = MarketExecutionRequestDetails()
         if include_optional:
             return MarketExecutionRequestDetails(
+                type = 'MARKET',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
                 base_asset_rail = 'BLOCKCHAIN',
                 quote_asset_id = '',
-                quote_asset_rail = 'BLOCKCHAIN',
-                type = 'MARKET'
+                quote_asset_rail = 'BLOCKCHAIN'
             )
         else:
             return MarketExecutionRequestDetails(
+                type = 'MARKET',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
                 quote_asset_id = '',
-                type = 'MARKET',
         )
         """
 

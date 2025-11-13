@@ -34,10 +34,17 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_attach_or_detach_tags_from_vault_accounts(self) -> None:
+        """Test case for attach_or_detach_tags_from_vault_accounts
+
+        Attach or detach tags from a vault accounts
+        """
+        pass
+
     def test_attach_tags_to_vault_accounts(self) -> None:
         """Test case for attach_tags_to_vault_accounts
 
-        Attach tags to a vault accounts
+        Attach tags to a vault accounts (deprecated)
         """
         pass
 
@@ -86,7 +93,7 @@ class TestVaultsApi(unittest.TestCase):
     def test_detach_tags_from_vault_accounts(self) -> None:
         """Test case for detach_tags_from_vault_accounts
 
-        Detach tags from a vault accounts
+        Detach tags from a vault accounts (deprecated)
         """
         pass
 

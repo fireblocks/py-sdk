@@ -32,6 +32,7 @@ class ExecutionStepType(str, Enum):
     CONTRACT_CALL = 'CONTRACT_CALL'
     EXECUTE = 'EXECUTE'
     SETTLEMENT = 'SETTLEMENT'
+    DELIVERY = 'DELIVERY'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

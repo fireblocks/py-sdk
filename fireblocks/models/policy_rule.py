@@ -21,16 +21,20 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.account_config import AccountConfig
+from fireblocks.models.amount_config import AmountConfig
 from fireblocks.models.amount_over_time_config import AmountOverTimeConfig
 from fireblocks.models.amount_range import AmountRange
 from fireblocks.models.asset_config import AssetConfig
 from fireblocks.models.contract_method_pattern import ContractMethodPattern
+from fireblocks.models.d_app_address_config import DAppAddressConfig
 from fireblocks.models.derivation_path_config import DerivationPathConfig
 from fireblocks.models.destination_config import DestinationConfig
 from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
+from fireblocks.models.order_side import OrderSide
 from fireblocks.models.policy_type import PolicyType
 from fireblocks.models.program_call_config import ProgramCallConfig
 from fireblocks.models.screening_metadata_config import ScreeningMetadataConfig
+from fireblocks.models.source_config import SourceConfig
 from fireblocks.models.verdict_config import VerdictConfig
 from typing import Optional, Set
 from typing_extensions import Self
@@ -45,13 +49,14 @@ class PolicyRule(BaseModel):
     type: PolicyType
     sub_type: Optional[PolicyType] = Field(default=None, alias="subType")
     initiator: InitiatorConfigPattern
-    asset: AssetConfig
-    source: AccountConfig
+    asset: Optional[AssetConfig] = None
+    source: SourceConfig
     destination: Optional[DestinationConfig] = None
     account: Optional[AccountConfig] = None
+    side: Optional[OrderSide] = None
     verdict: VerdictConfig
     amount_over_time: Optional[AmountOverTimeConfig] = Field(default=None, alias="amountOverTime")
-    amount: Optional[AmountRange] = None
+    amount: Optional[AmountConfig] = None
     external_descriptor: Optional[StrictStr] = Field(default=None, description="External descriptor for the rule", alias="externalDescriptor")
     method: Optional[ContractMethodPattern] = None
     is_global_policy: Optional[StrictBool] = Field(default=None, description="Whether this is a global policy", alias="isGlobalPolicy")
@@ -61,9 +66,10 @@ class PolicyRule(BaseModel):
     base_asset: Optional[AssetConfig] = Field(default=None, alias="baseAsset")
     quote_amount: Optional[AmountRange] = Field(default=None, alias="quoteAmount")
     base_amount: Optional[AmountRange] = Field(default=None, alias="baseAmount")
+    d_app_address: Optional[DAppAddressConfig] = Field(default=None, alias="dAppAddress")
     derivation_path: Optional[DerivationPathConfig] = Field(default=None, alias="derivationPath")
     index: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Index for the policy rule")
-    __properties: ClassVar[List[str]] = ["name", "id", "policyEngineVersion", "type", "subType", "initiator", "asset", "source", "destination", "account", "verdict", "amountOverTime", "amount", "externalDescriptor", "method", "isGlobalPolicy", "programCall", "screeningMetadata", "quoteAsset", "baseAsset", "quoteAmount", "baseAmount", "derivationPath", "index"]
+    __properties: ClassVar[List[str]] = ["name", "id", "policyEngineVersion", "type", "subType", "initiator", "asset", "source", "destination", "account", "side", "verdict", "amountOverTime", "amount", "externalDescriptor", "method", "isGlobalPolicy", "programCall", "screeningMetadata", "quoteAsset", "baseAsset", "quoteAmount", "baseAmount", "dAppAddress", "derivationPath", "index"]
 
     @field_validator('policy_engine_version')
     def policy_engine_version_validate_enum(cls, value):
@@ -156,6 +162,9 @@ class PolicyRule(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of base_amount
         if self.base_amount:
             _dict['baseAmount'] = self.base_amount.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of d_app_address
+        if self.d_app_address:
+            _dict['dAppAddress'] = self.d_app_address.to_dict()
         # override the default output from pydantic by calling `to_dict()` of derivation_path
         if self.derivation_path:
             _dict['derivationPath'] = self.derivation_path.to_dict()
@@ -178,12 +187,13 @@ class PolicyRule(BaseModel):
             "subType": obj.get("subType"),
             "initiator": InitiatorConfigPattern.from_dict(obj["initiator"]) if obj.get("initiator") is not None else None,
             "asset": AssetConfig.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
-            "source": AccountConfig.from_dict(obj["source"]) if obj.get("source") is not None else None,
+            "source": SourceConfig.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "destination": DestinationConfig.from_dict(obj["destination"]) if obj.get("destination") is not None else None,
             "account": AccountConfig.from_dict(obj["account"]) if obj.get("account") is not None else None,
+            "side": obj.get("side"),
             "verdict": VerdictConfig.from_dict(obj["verdict"]) if obj.get("verdict") is not None else None,
             "amountOverTime": AmountOverTimeConfig.from_dict(obj["amountOverTime"]) if obj.get("amountOverTime") is not None else None,
-            "amount": AmountRange.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amount": AmountConfig.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "externalDescriptor": obj.get("externalDescriptor"),
             "method": ContractMethodPattern.from_dict(obj["method"]) if obj.get("method") is not None else None,
             "isGlobalPolicy": obj.get("isGlobalPolicy"),
@@ -193,6 +203,7 @@ class PolicyRule(BaseModel):
             "baseAsset": AssetConfig.from_dict(obj["baseAsset"]) if obj.get("baseAsset") is not None else None,
             "quoteAmount": AmountRange.from_dict(obj["quoteAmount"]) if obj.get("quoteAmount") is not None else None,
             "baseAmount": AmountRange.from_dict(obj["baseAmount"]) if obj.get("baseAmount") is not None else None,
+            "dAppAddress": DAppAddressConfig.from_dict(obj["dAppAddress"]) if obj.get("dAppAddress") is not None else None,
             "derivationPath": DerivationPathConfig.from_dict(obj["derivationPath"]) if obj.get("derivationPath") is not None else None,
             "index": obj.get("index")
         })

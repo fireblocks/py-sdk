@@ -44,6 +44,7 @@ class TestApproversConfig(unittest.TestCase):
             )
         else:
             return ApproversConfig(
+                can_initiator_approve = False,
         )
         """
 

@@ -52,7 +52,6 @@ class TestInitiatorConfig(unittest.TestCase):
             )
         else:
             return InitiatorConfig(
-                operator = 'INCLUDES',
         )
         """
 

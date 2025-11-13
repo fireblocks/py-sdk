@@ -37,15 +37,11 @@ class TestAmountRange(unittest.TestCase):
         model = AmountRange()
         if include_optional:
             return AmountRange(
-                min = '100',
-                max = '10000',
-                currency = 'USD'
+                range = {"min":"100","max":"10000"}
             )
         else:
             return AmountRange(
-                min = '100',
-                max = '10000',
-                currency = 'USD',
+                range = {"min":"100","max":"10000"},
         )
         """
 

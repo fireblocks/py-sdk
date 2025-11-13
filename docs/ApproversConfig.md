@@ -6,7 +6,7 @@ Approvers configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**can_initiator_approve** | **bool** | Whether initiator can approve | [optional] 
+**can_initiator_approve** | **bool** | Whether initiator can approve | 
 **operator** | **str** | Operator for approval groups | [optional] 
 **allow_operator_as_authorizer** | **bool** | Whether operator can be authorizer | [optional] 
 **approval_groups** | [**List[ApproversConfigApprovalGroupsInner]**](ApproversConfigApprovalGroupsInner.md) | List of approval groups | [optional] 

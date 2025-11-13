@@ -28,6 +28,7 @@ class OrderStatus(str, Enum):
     allowed enum values
     """
     CREATED = 'CREATED'
+    AWAITING_PAYMENT = 'AWAITING_PAYMENT'
     PENDING_USER_ACTION = 'PENDING_USER_ACTION'
     PROCESSING = 'PROCESSING'
     CANCELED = 'CANCELED'

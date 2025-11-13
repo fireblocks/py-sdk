@@ -637,7 +637,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_transactions**
-> List[TransactionResponse] get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id)
+> List[TransactionResponse] get_transactions(next=next, prev=prev, before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id)
 
 List transaction history
 
@@ -668,6 +668,8 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
+    next = 'next_example' # str | Cursor returned in next-page header that can be used to fetch the next page of results (optional)
+    prev = 'prev_example' # str | Cursor returned in prev-page header that can be used to fetch the previous page of results (optional)
     before = 'before_example' # str | Unix timestamp in milliseconds. Returns only transactions created before the specified date (optional)
     after = 'after_example' # str | Unix timestamp in milliseconds. Returns only transactions created after the specified date (optional)
     status = 'status_example' # str | You can filter by one of the statuses. (optional)
@@ -685,7 +687,7 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # List transaction history
-        api_response = fireblocks.transactions.get_transactions(before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id).result()
+        api_response = fireblocks.transactions.get_transactions(next=next, prev=prev, before=before, after=after, status=status, order_by=order_by, sort=sort, limit=limit, source_type=source_type, source_id=source_id, dest_type=dest_type, dest_id=dest_id, assets=assets, tx_hash=tx_hash, source_wallet_id=source_wallet_id, dest_wallet_id=dest_wallet_id).result()
         print("The response of TransactionsApi->get_transactions:\n")
         pprint(api_response)
     except Exception as e:
@@ -699,6 +701,8 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **next** | **str**| Cursor returned in next-page header that can be used to fetch the next page of results | [optional] 
+ **prev** | **str**| Cursor returned in prev-page header that can be used to fetch the previous page of results | [optional] 
  **before** | **str**| Unix timestamp in milliseconds. Returns only transactions created before the specified date | [optional] 
  **after** | **str**| Unix timestamp in milliseconds. Returns only transactions created after the specified date | [optional] 
  **status** | **str**| You can filter by one of the statuses. | [optional] 

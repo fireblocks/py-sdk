@@ -41,6 +41,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_metrics(self) -> None:
+        """Test case for get_metrics
+
+        Get webhook metrics
+        """
+        pass
+
     def test_get_notification(self) -> None:
         """Test case for get_notification
 

@@ -23,19 +23,21 @@ from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.account_identifier import AccountIdentifier
 from fireblocks.models.account_type2 import AccountType2
 from fireblocks.models.policy_operator import PolicyOperator
+from fireblocks.models.policy_tag import PolicyTag
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AccountConfig(BaseModel):
     """
-    Policy source/destination configuration
+    Policy account configuration
     """ # noqa: E501
-    type: AccountType2
+    type: Optional[List[AccountType2]] = Field(default=None, description="Account types")
     sub_type: Optional[List[AccountIdentifier]] = Field(default=None, alias="subType")
     ids: Optional[List[AccountIdentifier]] = None
+    tags: Optional[List[PolicyTag]] = Field(default=None, description="Tags for account matching")
     operator: PolicyOperator
     match_from: Optional[StrictStr] = Field(default=None, description="Whether to match from account or source", alias="matchFrom")
-    __properties: ClassVar[List[str]] = ["type", "subType", "ids", "operator", "matchFrom"]
+    __properties: ClassVar[List[str]] = ["type", "subType", "ids", "tags", "operator", "matchFrom"]
 
     @field_validator('match_from')
     def match_from_validate_enum(cls, value):
@@ -100,6 +102,13 @@ class AccountConfig(BaseModel):
                 if _item_ids:
                     _items.append(_item_ids.to_dict())
             _dict['ids'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item_tags in self.tags:
+                if _item_tags:
+                    _items.append(_item_tags.to_dict())
+            _dict['tags'] = _items
         return _dict
 
     @classmethod
@@ -115,6 +124,7 @@ class AccountConfig(BaseModel):
             "type": obj.get("type"),
             "subType": [AccountIdentifier.from_dict(_item) for _item in obj["subType"]] if obj.get("subType") is not None else None,
             "ids": [AccountIdentifier.from_dict(_item) for _item in obj["ids"]] if obj.get("ids") is not None else None,
+            "tags": [PolicyTag.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None,
             "operator": obj.get("operator"),
             "matchFrom": obj.get("matchFrom")
         })

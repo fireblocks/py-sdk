@@ -29,29 +29,29 @@ class LimitExecutionRequestDetails(BaseModel):
     """
     LimitExecutionRequestDetails
     """ # noqa: E501
+    type: StrictStr = Field(description="Order type for limit orders")
+    time_in_force: TimeInForce = Field(alias="timeInForce")
+    limit_price: StrictStr = Field(description="Price for limit orders", alias="limitPrice")
     side: StrictStr = Field(description="Side of the order")
     base_amount: StrictStr = Field(description="Amount to convert", alias="baseAmount")
     base_asset_id: StrictStr = Field(description="Source asset identifier", alias="baseAssetId")
     base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
     quote_asset_id: StrictStr = Field(description="Target asset identifier", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
-    type: StrictStr = Field(description="Order type for limit orders")
-    time_in_force: TimeInForce = Field(alias="timeInForce")
-    limit_price: StrictStr = Field(description="Price for limit orders", alias="limitPrice")
-    __properties: ClassVar[List[str]] = ["side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "type", "timeInForce", "limitPrice"]
-
-    @field_validator('side')
-    def side_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['BUY', 'SELL']):
-            raise ValueError("must be one of enum values ('BUY', 'SELL')")
-        return value
+    __properties: ClassVar[List[str]] = ["type", "timeInForce", "limitPrice", "side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['LIMIT']):
             raise ValueError("must be one of enum values ('LIMIT')")
+        return value
+
+    @field_validator('side')
+    def side_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['BUY', 'SELL']):
+            raise ValueError("must be one of enum values ('BUY', 'SELL')")
         return value
 
     model_config = ConfigDict(
@@ -105,15 +105,15 @@ class LimitExecutionRequestDetails(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "type": obj.get("type"),
+            "timeInForce": obj.get("timeInForce"),
+            "limitPrice": obj.get("limitPrice"),
             "side": obj.get("side") if obj.get("side") is not None else 'BUY',
             "baseAmount": obj.get("baseAmount"),
             "baseAssetId": obj.get("baseAssetId"),
             "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),
-            "quoteAssetRail": obj.get("quoteAssetRail"),
-            "type": obj.get("type"),
-            "timeInForce": obj.get("timeInForce"),
-            "limitPrice": obj.get("limitPrice")
+            "quoteAssetRail": obj.get("quoteAssetRail")
         })
         return _obj
 

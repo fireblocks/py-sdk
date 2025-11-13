@@ -37,15 +37,14 @@ class TestPaymentInstructions(unittest.TestCase):
         model = PaymentInstructions()
         if include_optional:
             return PaymentInstructions(
-                type = 'IBAN',
-                address = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
+                type = 'MOBILE_MONEY',
+                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self"},
                 reference_id = ''
             )
         else:
             return PaymentInstructions(
-                type = 'IBAN',
-                address = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
-                reference_id = '',
+                type = 'MOBILE_MONEY',
+                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self"},
         )
         """
 

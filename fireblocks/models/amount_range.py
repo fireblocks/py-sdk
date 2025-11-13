@@ -18,19 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from fireblocks.models.amount_range_min_max2 import AmountRangeMinMax2
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AmountRange(BaseModel):
     """
-    Amount range configuration
+    Amount range with minimum and maximum values
     """ # noqa: E501
-    min: StrictStr = Field(description="Minimum amount")
-    max: StrictStr = Field(description="Maximum amount")
-    currency: StrictStr = Field(description="Currency for the amount")
-    __properties: ClassVar[List[str]] = ["min", "max", "currency"]
+    range: AmountRangeMinMax2
+    __properties: ClassVar[List[str]] = ["range"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +70,9 @@ class AmountRange(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
         return _dict
 
     @classmethod
@@ -83,9 +85,7 @@ class AmountRange(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "min": obj.get("min"),
-            "max": obj.get("max"),
-            "currency": obj.get("currency")
+            "range": AmountRangeMinMax2.from_dict(obj["range"]) if obj.get("range") is not None else None
         })
         return _obj
 

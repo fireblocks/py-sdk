@@ -1,14 +1,15 @@
 # AccountConfig
 
-Policy source/destination configuration
+Policy account configuration
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**AccountType2**](AccountType2.md) |  | 
+**type** | [**List[AccountType2]**](AccountType2.md) | Account types | [optional] 
 **sub_type** | [**List[AccountIdentifier]**](AccountIdentifier.md) |  | [optional] 
 **ids** | [**List[AccountIdentifier]**](AccountIdentifier.md) |  | [optional] 
+**tags** | [**List[PolicyTag]**](PolicyTag.md) | Tags for account matching | [optional] 
 **operator** | [**PolicyOperator**](PolicyOperator.md) |  | 
 **match_from** | **str** | Whether to match from account or source | [optional] 
 

@@ -1,14 +1,12 @@
 # AmountRange
 
-Amount range configuration
+Amount range with minimum and maximum values
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**min** | **str** | Minimum amount | 
-**max** | **str** | Maximum amount | 
-**currency** | **str** | Currency for the amount | 
+**range** | [**AmountRangeMinMax2**](AmountRangeMinMax2.md) |  | 
 
 ## Example
 

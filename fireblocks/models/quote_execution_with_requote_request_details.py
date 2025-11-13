@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.quote_execution_with_requote_request_details_all_of_re_quote import QuoteExecutionWithRequoteRequestDetailsAllOfReQuote
+from fireblocks.models.re_quote_details_re_quote import ReQuoteDetailsReQuote
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +30,7 @@ class QuoteExecutionWithRequoteRequestDetails(BaseModel):
     """ # noqa: E501
     type: StrictStr = Field(description="Order type for quote orders")
     quote_id: StrictStr = Field(description="Quote ID for quote orders", alias="quoteId")
-    re_quote: Optional[QuoteExecutionWithRequoteRequestDetailsAllOfReQuote] = Field(default=None, alias="reQuote")
+    re_quote: Optional[ReQuoteDetailsReQuote] = Field(default=None, alias="reQuote")
     __properties: ClassVar[List[str]] = ["type", "quoteId", "reQuote"]
 
     @field_validator('type')
@@ -96,7 +96,7 @@ class QuoteExecutionWithRequoteRequestDetails(BaseModel):
         _obj = cls.model_validate({
             "type": obj.get("type"),
             "quoteId": obj.get("quoteId"),
-            "reQuote": QuoteExecutionWithRequoteRequestDetailsAllOfReQuote.from_dict(obj["reQuote"]) if obj.get("reQuote") is not None else None
+            "reQuote": ReQuoteDetailsReQuote.from_dict(obj["reQuote"]) if obj.get("reQuote") is not None else None
         })
         return _obj
 

@@ -33,7 +33,7 @@ class InitiatorConfig(BaseModel):
     services: Optional[List[StrictStr]] = None
     fb_admin_groups: Optional[List[StrictStr]] = Field(default=None, alias="fbAdminGroups")
     exchange: Optional[List[StrictStr]] = None
-    operator: PolicyOperator
+    operator: Optional[PolicyOperator] = None
     __properties: ClassVar[List[str]] = ["users", "groups", "services", "fbAdminGroups", "exchange", "operator"]
 
     model_config = ConfigDict(

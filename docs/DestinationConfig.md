@@ -6,11 +6,12 @@ Destination configuration for policy rules
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**AccountType2**](AccountType2.md) |  | 
+**type** | [**List[AccountType2]**](AccountType2.md) | Destination account types | [optional] 
 **sub_type** | [**List[AccountIdentifier]**](AccountIdentifier.md) |  | [optional] 
 **ids** | [**List[AccountIdentifier]**](AccountIdentifier.md) |  | [optional] 
+**tags** | [**List[PolicyTag]**](PolicyTag.md) | Tags for destination matching | [optional] 
 **operator** | [**PolicyOperator**](PolicyOperator.md) |  | 
-**match_from** | **str** | Whether to match from account or source | [optional] 
+**match_from** | **str** | Whether to match from account or source (relevant only for ORDER policy type). If set to ACCOUNT, only matchFrom is allowed and other fields are not required. | [optional] 
 **address_type** | **str** | Type of destination addresses allowed | 
 
 ## Example

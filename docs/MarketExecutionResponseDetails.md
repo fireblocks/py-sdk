@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | **str** | Order type for market orders | 
 **side** | **str** | Side of the order | [default to 'BUY']
 **base_amount** | **str** | Amount to convert | 
 **base_asset_id** | **str** | Source asset identifier | 
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_asset_id** | **str** | Target asset identifier | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
-**type** | **str** | Order type for market orders | 
 
 ## Example
 

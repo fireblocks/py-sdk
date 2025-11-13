@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.aml_registration_result_full_payload import AmlRegistrationResultFullPayload
 from fireblocks.models.compliance_result_statuses_enum import ComplianceResultStatusesEnum
 from fireblocks.models.compliance_screening_result_full_payload import ComplianceScreeningResultFullPayload
+from fireblocks.models.tr_link_registration_result_full_payload import TRLinkRegistrationResultFullPayload
+from fireblocks.models.tr_link_result_full_payload import TRLinkResultFullPayload
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,7 +37,9 @@ class ComplianceResultFullPayload(BaseModel):
     aml_list: Optional[List[ComplianceScreeningResultFullPayload]] = Field(default=None, description="The list of all results of the AML screening.", alias="amlList")
     status: Optional[ComplianceResultStatusesEnum] = None
     aml_registration: Optional[AmlRegistrationResultFullPayload] = Field(default=None, alias="amlRegistration")
-    __properties: ClassVar[List[str]] = ["aml", "tr", "amlList", "status", "amlRegistration"]
+    trlink_registration: Optional[TRLinkRegistrationResultFullPayload] = Field(default=None, alias="trlinkRegistration")
+    trlink_destinations: Optional[List[TRLinkResultFullPayload]] = Field(default=None, description="The list of TRLink destination screening results.", alias="trlinkDestinations")
+    __properties: ClassVar[List[str]] = ["aml", "tr", "amlList", "status", "amlRegistration", "trlinkRegistration", "trlinkDestinations"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,6 +96,16 @@ class ComplianceResultFullPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aml_registration
         if self.aml_registration:
             _dict['amlRegistration'] = self.aml_registration.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of trlink_registration
+        if self.trlink_registration:
+            _dict['trlinkRegistration'] = self.trlink_registration.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in trlink_destinations (list)
+        _items = []
+        if self.trlink_destinations:
+            for _item_trlink_destinations in self.trlink_destinations:
+                if _item_trlink_destinations:
+                    _items.append(_item_trlink_destinations.to_dict())
+            _dict['trlinkDestinations'] = _items
         return _dict
 
     @classmethod
@@ -108,7 +122,9 @@ class ComplianceResultFullPayload(BaseModel):
             "tr": ComplianceScreeningResultFullPayload.from_dict(obj["tr"]) if obj.get("tr") is not None else None,
             "amlList": [ComplianceScreeningResultFullPayload.from_dict(_item) for _item in obj["amlList"]] if obj.get("amlList") is not None else None,
             "status": obj.get("status"),
-            "amlRegistration": AmlRegistrationResultFullPayload.from_dict(obj["amlRegistration"]) if obj.get("amlRegistration") is not None else None
+            "amlRegistration": AmlRegistrationResultFullPayload.from_dict(obj["amlRegistration"]) if obj.get("amlRegistration") is not None else None,
+            "trlinkRegistration": TRLinkRegistrationResultFullPayload.from_dict(obj["trlinkRegistration"]) if obj.get("trlinkRegistration") is not None else None,
+            "trlinkDestinations": [TRLinkResultFullPayload.from_dict(_item) for _item in obj["trlinkDestinations"]] if obj.get("trlinkDestinations") is not None else None
         })
         return _obj
 

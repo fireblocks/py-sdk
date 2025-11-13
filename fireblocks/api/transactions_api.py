@@ -1200,6 +1200,8 @@ class TransactionsApi:
     @validate_call
     def get_transactions(
         self,
+        next: Annotated[Optional[StrictStr], Field(description="Cursor returned in next-page header that can be used to fetch the next page of results")] = None,
+        prev: Annotated[Optional[StrictStr], Field(description="Cursor returned in prev-page header that can be used to fetch the previous page of results")] = None,
         before: Annotated[Optional[StrictStr], Field(description="Unix timestamp in milliseconds. Returns only transactions created before the specified date")] = None,
         after: Annotated[Optional[StrictStr], Field(description="Unix timestamp in milliseconds. Returns only transactions created after the specified date")] = None,
         status: Annotated[Optional[StrictStr], Field(description="You can filter by one of the statuses.")] = None,
@@ -1231,6 +1233,10 @@ class TransactionsApi:
 
         Lists the transaction history for your workspace.
 
+        :param next: Cursor returned in next-page header that can be used to fetch the next page of results
+        :type next: str
+        :param prev: Cursor returned in prev-page header that can be used to fetch the previous page of results
+        :type prev: str
         :param before: Unix timestamp in milliseconds. Returns only transactions created before the specified date
         :type before: str
         :param after: Unix timestamp in milliseconds. Returns only transactions created after the specified date
@@ -1283,6 +1289,8 @@ class TransactionsApi:
 
 
         _param = self._get_transactions_serialize(
+            next=next,
+            prev=prev,
             before=before,
             after=after,
             status=status,
@@ -1316,6 +1324,8 @@ class TransactionsApi:
 
     def _get_transactions_serialize(
         self,
+        next,
+        prev,
         before,
         after,
         status,
@@ -1352,6 +1362,14 @@ class TransactionsApi:
 
         # process the path parameters
         # process the query parameters
+        if next is not None:
+            
+            _query_params.append(('next', next))
+            
+        if prev is not None:
+            
+            _query_params.append(('prev', prev))
+            
         if before is not None:
             
             _query_params.append(('before', before))

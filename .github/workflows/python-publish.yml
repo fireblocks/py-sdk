@@ -4,9 +4,6 @@ on:
   release:
     types: [published]
 
-env:
-  GIT_TERMINAL_PROMPT: 1
-
 jobs:
   bump-version:
     runs-on: ubuntu-latest

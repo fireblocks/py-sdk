@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **fee** | **str** | Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required. | [optional] 
 **fee_level** | [**FeeLevel**](FeeLevel.md) |  | [optional] 
 **tx_note** | **str** | The note to associate with the transactions. | [optional] 
-**amount** | **str** | The number of tokens to unstake.  This optional field is applicable only for liquid staking and allows for a partial unstake of the position.  If not provided, the entire position will be unstaked by default. | [optional] 
+**amount** | **str** | Amount of tokens to unstake. Only supported for liquid staking (Lido) to enable partial unstaking. For other chains, this field is ignored and the entire position will be unstaked. If not provided, the entire position will be unstaked. | [optional] 
 
 ## Example
 

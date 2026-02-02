@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | [**OneTimeAddressPeerType**](OneTimeAddressPeerType.md) |  | 
 **address** | **str** |  | 
 **tag** | **str** |  | [optional] 
 

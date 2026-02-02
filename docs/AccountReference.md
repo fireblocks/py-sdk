@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**PeerType**](PeerType.md) |  | 
+**type** | [**OneTimeAddressPeerType**](OneTimeAddressPeerType.md) |  | 
 **account_id** | **str** |  | 
 **address** | **str** |  | 
 **tag** | **str** |  | [optional] 

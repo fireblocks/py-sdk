@@ -4,15 +4,17 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_whitelist_ip_addresses**](WhitelistIpAddressesApi.md#get_whitelist_ip_addresses) | **GET** /management/api_users/{userId}/whitelist_ip_addresses | Gets whitelisted ip addresses
+[**get_whitelist_ip_addresses**](WhitelistIpAddressesApi.md#get_whitelist_ip_addresses) | **GET** /management/api_users/{userId}/whitelist_ip_addresses | Get whitelisted ip addresses for an API Key
 
 
 # **get_whitelist_ip_addresses**
 > GetWhitelistIpAddressesResponse get_whitelist_ip_addresses(user_id)
 
-Gets whitelisted ip addresses
+Get whitelisted ip addresses for an API Key
 
-Gets whitelisted ip addresses for given Api user.
+Get a list of the whitelisted IP addresses for a specific API Key
+- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -42,7 +44,7 @@ with Fireblocks(configuration) as fireblocks:
     user_id = 'user_id_example' # str | The ID of the api user
 
     try:
-        # Gets whitelisted ip addresses
+        # Get whitelisted ip addresses for an API Key
         api_response = fireblocks.whitelist_ip_addresses.get_whitelist_ip_addresses(user_id).result()
         print("The response of WhitelistIpAddressesApi->get_whitelist_ip_addresses:\n")
         pprint(api_response)

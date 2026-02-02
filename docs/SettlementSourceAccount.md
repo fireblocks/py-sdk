@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | [**ExternalAccountType**](ExternalAccountType.md) |  | 
 **account_id** | **str** |  | 
+**sender_information** | [**ExternalAccountSenderInformation**](ExternalAccountSenderInformation.md) |  | [optional] 
 
 ## Example
 

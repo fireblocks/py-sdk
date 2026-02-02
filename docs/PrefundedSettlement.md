@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | [**PrefundedSettlementType**](PrefundedSettlementType.md) |  | 
 **destination_account** | [**AccountReference**](AccountReference.md) |  | 
 
 ## Example

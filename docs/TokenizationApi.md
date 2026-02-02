@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_linked_collections**](TokenizationApi.md#get_linked_collections) | **GET** /tokenization/collections | Get collections
 [**get_linked_token**](TokenizationApi.md#get_linked_token) | **GET** /tokenization/tokens/{id} | Return a linked token
 [**get_linked_tokens**](TokenizationApi.md#get_linked_tokens) | **GET** /tokenization/tokens | List all linked tokens
+[**get_linked_tokens_count**](TokenizationApi.md#get_linked_tokens_count) | **GET** /tokenization/tokens/count | Get the total count of linked tokens
 [**issue_new_token**](TokenizationApi.md#issue_new_token) | **POST** /tokenization/tokens | Issue a new token
 [**issue_token_multi_chain**](TokenizationApi.md#issue_token_multi_chain) | **POST** /tokenization/multichain/tokens | Issue a token on one or more blockchains
 [**link**](TokenizationApi.md#link) | **POST** /tokenization/tokens/link | Link a contract
@@ -113,7 +114,8 @@ No authorization required
 
 Create a new collection
 
-Create a new collection and link it as a token
+Create a new collection and link it as a token.
+</br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
 
 ### Example
 
@@ -734,7 +736,8 @@ No authorization required
 
 Get collections
 
-Get collections (paginated)
+Get collections (paginated).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -959,12 +962,83 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_linked_tokens_count**
+> LinkedTokensCount get_linked_tokens_count()
+
+Get the total count of linked tokens
+
+Get the total count of linked tokens
+
+### Example
+
+
+```python
+from fireblocks.models.linked_tokens_count import LinkedTokensCount
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get the total count of linked tokens
+        api_response = fireblocks.tokenization.get_linked_tokens_count().result()
+        print("The response of TokenizationApi->get_linked_tokens_count:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_linked_tokens_count: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LinkedTokensCount**](LinkedTokensCount.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Count fetched successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **issue_new_token**
 > TokenLinkDto issue_new_token(create_token_request_dto, idempotency_key=idempotency_key)
 
 Issue a new token
 
 Facilitates the creation of a new token, supporting both EVM-based and Stellar/Ripple platforms. For EVM, it deploys the corresponding contract template to the blockchain and links the token to the workspace. For Stellar/Ripple, it links a newly created token directly to the workspace without deploying a contract. Returns the token link with status "PENDING" until the token is deployed or "SUCCESS" if no deployment is needed.
+</br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
 
 ### Example
 

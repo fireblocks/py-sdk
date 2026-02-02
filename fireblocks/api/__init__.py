@@ -2,7 +2,6 @@
 
 # import apis into api package
 from fireblocks.api.api_user_api import ApiUserApi
-from fireblocks.api.assets_api import AssetsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
@@ -20,19 +19,20 @@ from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
-from fireblocks.api.job_management_api import JobManagementApi
 from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
 from fireblocks.api.keys_beta_api import KeysBetaApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
+from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
+from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_beta_api import TradingBetaApi

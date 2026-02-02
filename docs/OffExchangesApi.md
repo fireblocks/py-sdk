@@ -4,19 +4,21 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_off_exchange**](OffExchangesApi.md#add_off_exchange) | **POST** /off_exchange/add | add collateral
+[**add_off_exchange**](OffExchangesApi.md#add_off_exchange) | **POST** /off_exchange/add | Add Collateral
 [**get_off_exchange_collateral_accounts**](OffExchangesApi.md#get_off_exchange_collateral_accounts) | **GET** /off_exchange/collateral_accounts/{mainExchangeAccountId} | Find a specific collateral exchange account
-[**get_off_exchange_settlement_transactions**](OffExchangesApi.md#get_off_exchange_settlement_transactions) | **GET** /off_exchange/settlements/transactions | get settlements transactions from exchange
-[**remove_off_exchange**](OffExchangesApi.md#remove_off_exchange) | **POST** /off_exchange/remove | remove collateral
-[**settle_off_exchange_trades**](OffExchangesApi.md#settle_off_exchange_trades) | **POST** /off_exchange/settlements/trader | create settlement for a trader
+[**get_off_exchange_settlement_transactions**](OffExchangesApi.md#get_off_exchange_settlement_transactions) | **GET** /off_exchange/settlements/transactions | Get Settlements Transactions
+[**remove_off_exchange**](OffExchangesApi.md#remove_off_exchange) | **POST** /off_exchange/remove | Remove Collateral
+[**settle_off_exchange_trades**](OffExchangesApi.md#settle_off_exchange_trades) | **POST** /off_exchange/settlements/trader | Create Settlement for a Trader
 
 
 # **add_off_exchange**
 > CreateTransactionResponse add_off_exchange(idempotency_key=idempotency_key, add_collateral_request_body=add_collateral_request_body)
 
-add collateral
+Add Collateral
 
-add collateral, create deposit request
+Add collateral and create deposit request.
+Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -48,7 +50,7 @@ with Fireblocks(configuration) as fireblocks:
     add_collateral_request_body = fireblocks.AddCollateralRequestBody() # AddCollateralRequestBody |  (optional)
 
     try:
-        # add collateral
+        # Add Collateral
         api_response = fireblocks.off_exchanges.add_off_exchange(idempotency_key=idempotency_key, add_collateral_request_body=add_collateral_request_body).result()
         print("The response of OffExchangesApi->add_off_exchange:\n")
         pprint(api_response)
@@ -94,6 +96,8 @@ No authorization required
 Find a specific collateral exchange account
 
 Returns a collateral account by mainExchangeAccountId.
+Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -165,9 +169,11 @@ No authorization required
 # **get_off_exchange_settlement_transactions**
 > ExchangeSettlementTransactionsResponse get_off_exchange_settlement_transactions(main_exchange_account_id)
 
-get settlements transactions from exchange
+Get Settlements Transactions
 
-get settlements transactions from exchange
+Get settlements transactions from exchange.
+Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -197,7 +203,7 @@ with Fireblocks(configuration) as fireblocks:
     main_exchange_account_id = 'main_exchange_account_id_example' # str | 
 
     try:
-        # get settlements transactions from exchange
+        # Get Settlements Transactions
         api_response = fireblocks.off_exchanges.get_off_exchange_settlement_transactions(main_exchange_account_id).result()
         print("The response of OffExchangesApi->get_off_exchange_settlement_transactions:\n")
         pprint(api_response)
@@ -239,9 +245,11 @@ No authorization required
 # **remove_off_exchange**
 > CreateTransactionResponse remove_off_exchange(idempotency_key=idempotency_key, remove_collateral_request_body=remove_collateral_request_body)
 
-remove collateral
+Remove Collateral
 
-remove collateral, create withdraw request
+Remove collateral, create withdraw request.
+Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -273,7 +281,7 @@ with Fireblocks(configuration) as fireblocks:
     remove_collateral_request_body = fireblocks.RemoveCollateralRequestBody() # RemoveCollateralRequestBody |  (optional)
 
     try:
-        # remove collateral
+        # Remove Collateral
         api_response = fireblocks.off_exchanges.remove_off_exchange(idempotency_key=idempotency_key, remove_collateral_request_body=remove_collateral_request_body).result()
         print("The response of OffExchangesApi->remove_off_exchange:\n")
         pprint(api_response)
@@ -316,9 +324,11 @@ No authorization required
 # **settle_off_exchange_trades**
 > SettlementResponse settle_off_exchange_trades(idempotency_key=idempotency_key, settlement_request_body=settlement_request_body)
 
-create settlement for a trader
+Create Settlement for a Trader
 
-create settlement for a trader
+Create settlement for a trader.
+Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -350,7 +360,7 @@ with Fireblocks(configuration) as fireblocks:
     settlement_request_body = fireblocks.SettlementRequestBody() # SettlementRequestBody |  (optional)
 
     try:
-        # create settlement for a trader
+        # Create Settlement for a Trader
         api_response = fireblocks.off_exchanges.settle_off_exchange_trades(idempotency_key=idempotency_key, settlement_request_body=settlement_request_body).result()
         print("The response of OffExchangesApi->settle_off_exchange_trades:\n")
         pprint(api_response)

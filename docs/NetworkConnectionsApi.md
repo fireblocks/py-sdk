@@ -4,17 +4,17 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**check_third_party_routing**](NetworkConnectionsApi.md#check_third_party_routing) | **GET** /network_connections/{connectionId}/is_third_party_routing/{assetType} | Retrieve third-party network routing validation by asset type.
-[**create_network_connection**](NetworkConnectionsApi.md#create_network_connection) | **POST** /network_connections | Creates a new network connection
+[**check_third_party_routing**](NetworkConnectionsApi.md#check_third_party_routing) | **GET** /network_connections/{connectionId}/is_third_party_routing/{assetType} | Retrieve third-party network routing validation
+[**create_network_connection**](NetworkConnectionsApi.md#create_network_connection) | **POST** /network_connections | Create a new network connection
 [**create_network_id**](NetworkConnectionsApi.md#create_network_id) | **POST** /network_ids | Creates a new Network ID
 [**delete_network_connection**](NetworkConnectionsApi.md#delete_network_connection) | **DELETE** /network_connections/{connectionId} | Deletes a network connection by ID
 [**delete_network_id**](NetworkConnectionsApi.md#delete_network_id) | **DELETE** /network_ids/{networkId} | Deletes specific network ID.
 [**get_network**](NetworkConnectionsApi.md#get_network) | **GET** /network_connections/{connectionId} | Get a network connection
 [**get_network_connections**](NetworkConnectionsApi.md#get_network_connections) | **GET** /network_connections | List network connections
 [**get_network_id**](NetworkConnectionsApi.md#get_network_id) | **GET** /network_ids/{networkId} | Returns specific network ID.
-[**get_network_ids**](NetworkConnectionsApi.md#get_network_ids) | **GET** /network_ids | Returns all network IDs, both local IDs and discoverable remote IDs
+[**get_network_ids**](NetworkConnectionsApi.md#get_network_ids) | **GET** /network_ids | Get all network IDs
 [**get_routing_policy_asset_groups**](NetworkConnectionsApi.md#get_routing_policy_asset_groups) | **GET** /network_ids/routing_policy_asset_groups | Returns all enabled routing policy asset groups
-[**search_network_ids**](NetworkConnectionsApi.md#search_network_ids) | **GET** /network_ids/search | Search network IDs, both local IDs and discoverable remote IDs
+[**search_network_ids**](NetworkConnectionsApi.md#search_network_ids) | **GET** /network_ids/search | Get both local IDs and discoverable remote IDs
 [**set_network_id_discoverability**](NetworkConnectionsApi.md#set_network_id_discoverability) | **PATCH** /network_ids/{networkId}/set_discoverability | Update network ID&#39;s discoverability.
 [**set_network_id_name**](NetworkConnectionsApi.md#set_network_id_name) | **PATCH** /network_ids/{networkId}/set_name | Update network ID&#39;s name.
 [**set_network_id_routing_policy**](NetworkConnectionsApi.md#set_network_id_routing_policy) | **PATCH** /network_ids/{networkId}/set_routing_policy | Update network id routing policy.
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 # **check_third_party_routing**
 > ThirdPartyRouting check_third_party_routing(connection_id, asset_type)
 
-Retrieve third-party network routing validation by asset type.
+Retrieve third-party network routing validation
 
 The Fireblocks Network allows for flexibility around incoming deposits. A receiver can receive network deposits to locations other than Fireblocks. This endpoint validates whether future transactions are routed to the displayed recipient or to a 3rd party.
 
@@ -57,7 +57,7 @@ with Fireblocks(configuration) as fireblocks:
     asset_type = 'asset_type_example' # str | The destination asset type
 
     try:
-        # Retrieve third-party network routing validation by asset type.
+        # Retrieve third-party network routing validation
         api_response = fireblocks.network_connections.check_third_party_routing(connection_id, asset_type).result()
         print("The response of NetworkConnectionsApi->check_third_party_routing:\n")
         pprint(api_response)
@@ -100,7 +100,7 @@ No authorization required
 # **create_network_connection**
 > NetworkConnectionResponse create_network_connection(idempotency_key=idempotency_key, network_connection=network_connection)
 
-Creates a new network connection
+Create a new network connection
 
 Initiates a new network connection.
 **Note:** This API call is subject to Flexible Routing Schemes.
@@ -152,7 +152,7 @@ with Fireblocks(configuration) as fireblocks:
     network_connection = fireblocks.NetworkConnection() # NetworkConnection |  (optional)
 
     try:
-        # Creates a new network connection
+        # Create a new network connection
         api_response = fireblocks.network_connections.create_network_connection(idempotency_key=idempotency_key, network_connection=network_connection).result()
         print("The response of NetworkConnectionsApi->create_network_connection:\n")
         pprint(api_response)
@@ -198,25 +198,6 @@ No authorization required
 Creates a new Network ID
 
 Creates a new Network ID.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-Supported asset groups for routing police can be found at `/network_ids/routing_policy_asset_groups`
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 
@@ -295,23 +276,6 @@ Deletes a network connection by ID
 
 Deletes an existing network connection specified by its connection ID.
 
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
-
 ### Example
 
 
@@ -385,23 +349,6 @@ No authorization required
 Deletes specific network ID.
 
 Deletes a network by its ID.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 
@@ -477,23 +424,6 @@ Get a network connection
 
 Gets a network connection by ID.
 
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
-
 ### Example
 
 
@@ -567,6 +497,7 @@ No authorization required
 List network connections
 
 Returns all network connections.
+
 **Note:** This API call is subject to Flexible Routing Schemes.
 
 Your routing policy defines how your transactions are routed.
@@ -580,9 +511,6 @@ Default Workspace Presets:
   - Network Profile FIAT → **None**
   - Network Connection Crypto → **Default**
   - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 
@@ -652,24 +580,7 @@ No authorization required
 
 Returns specific network ID.
 
-Retrieves a network by its ID.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
+Returns specific network ID.
 
 ### Example
 
@@ -741,26 +652,9 @@ No authorization required
 # **get_network_ids**
 > List[NetworkIdResponse] get_network_ids()
 
-Returns all network IDs, both local IDs and discoverable remote IDs
+Get all network IDs
 
 Retrieves a list of all local and discoverable remote network IDs.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 
@@ -789,7 +683,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Returns all network IDs, both local IDs and discoverable remote IDs
+        # Get all network IDs
         api_response = fireblocks.network_connections.get_network_ids().result()
         print("The response of NetworkConnectionsApi->get_network_ids:\n")
         pprint(api_response)
@@ -830,10 +724,7 @@ No authorization required
 
 Returns all enabled routing policy asset groups
 
-Retrieves a list of all enabled routing policy asset groups.
-Your routing policy defines how your transactions are routed.
-You can use one or more enabled routing policy asset groups to describe connection or network id routing policy.
-
+Returns all enabled routing policy asset groups
 
 ### Example
 
@@ -900,25 +791,9 @@ No authorization required
 # **search_network_ids**
 > SearchNetworkIdsResponse search_network_ids(search=search, exclude_self=exclude_self, only_self=only_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size)
 
-Search network IDs, both local IDs and discoverable remote IDs
+Get both local IDs and discoverable remote IDs
 
 Retrieves a list of all local and discoverable remote network IDs. Can be filtered.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
 
 
 ### Example
@@ -954,7 +829,7 @@ with Fireblocks(configuration) as fireblocks:
     page_size = 50 # float | Number of records to fetch. By default, it is 50 (optional) (default to 50)
 
     try:
-        # Search network IDs, both local IDs and discoverable remote IDs
+        # Get both local IDs and discoverable remote IDs
         api_response = fireblocks.network_connections.search_network_ids(search=search, exclude_self=exclude_self, only_self=only_self, exclude_connected=exclude_connected, page_cursor=page_cursor, page_size=page_size).result()
         print("The response of NetworkConnectionsApi->search_network_ids:\n")
         pprint(api_response)
@@ -1004,23 +879,6 @@ No authorization required
 Update network ID's discoverability.
 
 Update whether or not the network ID is discoverable by others.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 
@@ -1099,23 +957,6 @@ Update network ID's name.
 
 Updates name of a specified network ID.
 
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
-
 ### Example
 
 
@@ -1193,25 +1034,6 @@ Update network id routing policy.
 
 Updates the routing policy of a specified network ID.
 
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-Supported asset groups for routing police can be found at `/network_ids/routing_policy_asset_groups`
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
-
 ### Example
 
 
@@ -1288,25 +1110,6 @@ No authorization required
 Update network connection routing policy.
 
 Updates an existing network connection's routing policy.
-
-**Note:** This API call is subject to Flexible Routing Schemes.
-
-Your routing policy defines how your transactions are routed.
-You can choose 1 of the 3 different schemes mentioned below for each asset type:
-  - **None**; Defines the profile routing to no destination for that asset type. Incoming transactions to asset types routed to `None` will fail.
-  - **Custom**; Route to an account that you choose. If you remove the account, incoming transactions will fail until you choose another one.
-  - **Default**; Use the routing specified by the network profile the connection is connected to. This scheme is also referred to as "Profile Routing"
-
-Default Workspace Presets:
-  - Network Profile Crypto → **Custom**
-  - Network Profile FIAT → **None**
-  - Network Connection Crypto → **Default**
-  - Network Connection FIAT → **Default**
-
-Supported asset groups for routing police can be found at `/network_ids/routing_policy_asset_groups`
-
-    - **Note**: By default, Custom routing scheme uses (`dstId` = `0`, `dstType` = `VAULT`).
-
 
 ### Example
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **bank_name** | **str** | Name of the bank. | [optional] 
 **bank_account_number** | **str** | The bank account number for the wire transfer. | 
 **routing_number** | **str** | Routing number identifying the bank account. | 
-**bank_address** | **str** | Address of the bank. | [optional] 
+**bank_address** | [**BankAddress**](BankAddress.md) |  | [optional] 
 
 ## Example
 

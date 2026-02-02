@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **fee** | **str** | Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required. | [optional] 
 **fee_level** | [**FeeLevel**](FeeLevel.md) |  | [optional] 
 **tx_note** | **str** | The note to associate with the transactions. | [optional] 
+**amount** | **str** | Amount of tokens to withdraw. Only supported for Cosmos chains to enable partial withdrawals. For other chains, this field is ignored and the entire available amount will be withdrawn. If not provided, the entire available amount will be withdrawn. | [optional] 
 
 ## Example
 

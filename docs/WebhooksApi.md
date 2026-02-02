@@ -4,16 +4,21 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**resend_transaction_webhooks**](WebhooksApi.md#resend_transaction_webhooks) | **POST** /webhooks/resend/{txId} | Resend failed webhooks for a transaction by ID
+[**resend_transaction_webhooks**](WebhooksApi.md#resend_transaction_webhooks) | **POST** /webhooks/resend/{txId} | Resend webhooks for a transaction by ID
 [**resend_webhooks**](WebhooksApi.md#resend_webhooks) | **POST** /webhooks/resend | Resend failed webhooks
 
 
 # **resend_transaction_webhooks**
 > ResendWebhooksByTransactionIdResponse resend_transaction_webhooks(tx_id, resend_transaction_webhooks_request, idempotency_key=idempotency_key)
 
-Resend failed webhooks for a transaction by ID
+Resend webhooks for a transaction by ID
 
-Resends failed webhook notifications for a transaction by ID.
+Resends webhook notifications for a transaction by its unique identifier.
+
+Learn more about Fireblocks Webhooks in the following [guide](https://developers.fireblocks.com/docs/configure-webhooks).
+
+**Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor.
+
 
 ### Example
 
@@ -46,7 +51,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Resend failed webhooks for a transaction by ID
+        # Resend webhooks for a transaction by ID
         api_response = fireblocks.webhooks.resend_transaction_webhooks(tx_id, resend_transaction_webhooks_request, idempotency_key=idempotency_key).result()
         print("The response of WebhooksApi->resend_transaction_webhooks:\n")
         pprint(api_response)
@@ -93,6 +98,10 @@ No authorization required
 Resend failed webhooks
 
 Resends all failed webhook notifications.
+
+Learn more about Fireblocks Webhooks in the following [guide](https://developers.fireblocks.com/docs/configure-webhooks).
+
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 

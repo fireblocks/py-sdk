@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | [**PlatformPeerType**](PlatformPeerType.md) |  | 
 **account_id** | **str** |  | 
 
 ## Example

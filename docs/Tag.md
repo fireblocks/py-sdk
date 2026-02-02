@@ -8,9 +8,10 @@ Name | Type | Description | Notes
 **id** | **str** | The unique identifier of the tag | 
 **label** | **str** | The tag label | 
 **description** | **str** | Description for the tag | [optional] 
-**is_protected** | **bool** | Whether the tag is protected | [optional] 
-**color** | **str** | The color of the tag in hex format | [optional] 
-**updated_at** | **str** | The date and time the tag was last updated | [optional] 
+**color** | **str** | The tag color in hex format | [optional] 
+**is_protected** | **bool** | Indication if the tag is a protected tag | [default to False]
+**updated_at** | **float** | The date and time the tag was last updated | 
+**pending_approval_request** | [**ApprovalRequest**](ApprovalRequest.md) |  | [optional] 
 
 ## Example
 

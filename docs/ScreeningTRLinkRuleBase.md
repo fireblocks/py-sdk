@@ -6,7 +6,7 @@ Base interface for TRLink policy rules
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | **str** | Reference to TrlinkCustomer.id | [optional] 
+**customer_id** | **str** | Reference to TRLinkCustomer.id | [optional] 
 **direction** | [**TravelRuleDirectionEnum**](TravelRuleDirectionEnum.md) |  | [optional] 
 **source_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
 **source_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 

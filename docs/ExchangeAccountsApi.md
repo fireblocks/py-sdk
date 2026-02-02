@@ -5,11 +5,11 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_exchange_account**](ExchangeAccountsApi.md#add_exchange_account) | **POST** /exchange_accounts | Add an exchange account
-[**convert_assets**](ExchangeAccountsApi.md#convert_assets) | **POST** /exchange_accounts/{exchangeAccountId}/convert | Convert exchange account funds from the source asset to the destination asset.
-[**get_exchange_account**](ExchangeAccountsApi.md#get_exchange_account) | **GET** /exchange_accounts/{exchangeAccountId} | Find a specific exchange account
-[**get_exchange_account_asset**](ExchangeAccountsApi.md#get_exchange_account_asset) | **GET** /exchange_accounts/{exchangeAccountId}/{assetId} | Find an asset for an exchange account
+[**convert_assets**](ExchangeAccountsApi.md#convert_assets) | **POST** /exchange_accounts/{exchangeAccountId}/convert | Convert exchange account funds
+[**get_exchange_account**](ExchangeAccountsApi.md#get_exchange_account) | **GET** /exchange_accounts/{exchangeAccountId} | Get a specific exchange account
+[**get_exchange_account_asset**](ExchangeAccountsApi.md#get_exchange_account_asset) | **GET** /exchange_accounts/{exchangeAccountId}/{assetId} | Get an asset for an exchange account
 [**get_exchange_accounts_credentials_public_key**](ExchangeAccountsApi.md#get_exchange_accounts_credentials_public_key) | **GET** /exchange_accounts/credentials_public_key | Get public key to encrypt exchange credentials
-[**get_paged_exchange_accounts**](ExchangeAccountsApi.md#get_paged_exchange_accounts) | **GET** /exchange_accounts/paged | Pagination list exchange accounts
+[**get_paged_exchange_accounts**](ExchangeAccountsApi.md#get_paged_exchange_accounts) | **GET** /exchange_accounts/paged | List connected exchange accounts
 [**internal_transfer**](ExchangeAccountsApi.md#internal_transfer) | **POST** /exchange_accounts/{exchangeAccountId}/internal_transfer | Internal transfer for exchange accounts
 
 
@@ -18,7 +18,12 @@ Method | HTTP request | Description
 
 Add an exchange account
 
-Add an exchange account to exchanges.
+Add an exchange account to exchanges. 
+
+Note: This endpoint currently only supports the following exchanges `INDEPENDENT_RESERVE`,`BIT`, `BITHUMB`, `BITSO`, `CRYPTOCOM`, `BYBIT_V2`, `WHITEBIT`, `HITBTC`, `GEMINI`, `HUOBI`, `GATEIO`, `COINHAKO`, `BULLISH`, `BITGET`, and `LUNO`
+
+To add an exchange account, please use the following [guide](https://developers.fireblocks.com/docs/add-an-exchange-account).
+
 
 ### Example
 
@@ -93,9 +98,11 @@ No authorization required
 # **convert_assets**
 > ConvertAssetsResponse convert_assets(exchange_account_id, idempotency_key=idempotency_key, convert_assets_request=convert_assets_request)
 
-Convert exchange account funds from the source asset to the destination asset.
+Convert exchange account funds
 
 Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
+Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers).
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -128,7 +135,7 @@ with Fireblocks(configuration) as fireblocks:
     convert_assets_request = fireblocks.ConvertAssetsRequest() # ConvertAssetsRequest |  (optional)
 
     try:
-        # Convert exchange account funds from the source asset to the destination asset.
+        # Convert exchange account funds
         api_response = fireblocks.exchange_accounts.convert_assets(exchange_account_id, idempotency_key=idempotency_key, convert_assets_request=convert_assets_request).result()
         print("The response of ExchangeAccountsApi->convert_assets:\n")
         pprint(api_response)
@@ -172,9 +179,10 @@ No authorization required
 # **get_exchange_account**
 > ExchangeAccount get_exchange_account(exchange_account_id)
 
-Find a specific exchange account
+Get a specific exchange account
 
 Returns an exchange account by ID.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -204,7 +212,7 @@ with Fireblocks(configuration) as fireblocks:
     exchange_account_id = 'exchange_account_id_example' # str | The ID of the exchange account to return
 
     try:
-        # Find a specific exchange account
+        # Get a specific exchange account
         api_response = fireblocks.exchange_accounts.get_exchange_account(exchange_account_id).result()
         print("The response of ExchangeAccountsApi->get_exchange_account:\n")
         pprint(api_response)
@@ -246,9 +254,10 @@ No authorization required
 # **get_exchange_account_asset**
 > ExchangeAsset get_exchange_account_asset(exchange_account_id, asset_id)
 
-Find an asset for an exchange account
+Get an asset for an exchange account
 
 Returns an asset for an exchange account.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -279,7 +288,7 @@ with Fireblocks(configuration) as fireblocks:
     asset_id = 'asset_id_example' # str | The ID of the asset to return
 
     try:
-        # Find an asset for an exchange account
+        # Get an asset for an exchange account
         api_response = fireblocks.exchange_accounts.get_exchange_account_asset(exchange_account_id, asset_id).result()
         print("The response of ExchangeAccountsApi->get_exchange_account_asset:\n")
         pprint(api_response)
@@ -392,9 +401,9 @@ No authorization required
 # **get_paged_exchange_accounts**
 > GetPagedExchangeAccountsResponse get_paged_exchange_accounts(limit, before=before, after=after)
 
-Pagination list exchange accounts
+List connected exchange accounts
 
-Returns a page include exchange accounts.
+Returns a list of the connected exchange accounts in your workspace. </br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -426,7 +435,7 @@ with Fireblocks(configuration) as fireblocks:
     after = 'after_example' # str |  (optional)
 
     try:
-        # Pagination list exchange accounts
+        # List connected exchange accounts
         api_response = fireblocks.exchange_accounts.get_paged_exchange_accounts(limit, before=before, after=after).result()
         print("The response of ExchangeAccountsApi->get_paged_exchange_accounts:\n")
         pprint(api_response)
@@ -473,6 +482,8 @@ No authorization required
 Internal transfer for exchange accounts
 
 Transfers funds between trading accounts under the same exchange account.
+Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers).
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

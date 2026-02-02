@@ -5,8 +5,8 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_asset**](BlockchainsAssetsApi.md#get_asset) | **GET** /assets/{id} | Get an asset
-[**get_blockchain**](BlockchainsAssetsApi.md#get_blockchain) | **GET** /blockchains/{id} | Get an blockchain
-[**get_supported_assets**](BlockchainsAssetsApi.md#get_supported_assets) | **GET** /supported_assets | List all asset types supported by Fireblocks - legacy endpoint
+[**get_blockchain**](BlockchainsAssetsApi.md#get_blockchain) | **GET** /blockchains/{id} | Get a Blockchain by ID
+[**get_supported_assets**](BlockchainsAssetsApi.md#get_supported_assets) | **GET** /supported_assets | List assets (Legacy)
 [**list_assets**](BlockchainsAssetsApi.md#list_assets) | **GET** /assets | List assets
 [**list_blockchains**](BlockchainsAssetsApi.md#list_blockchains) | **GET** /blockchains | List blockchains
 [**register_new_asset**](BlockchainsAssetsApi.md#register_new_asset) | **POST** /assets | Register an asset
@@ -100,9 +100,9 @@ No authorization required
 # **get_blockchain**
 > BlockchainResponse get_blockchain(id)
 
-Get an blockchain
+Get a Blockchain by ID
 
-Returns an blockchain by ID or legacyID.
+Returns a blockchain by ID or legacyID.
 
 
 ### Example
@@ -133,7 +133,7 @@ with Fireblocks(configuration) as fireblocks:
     id = 'ETH' # str | The ID or legacyId of the blockchain
 
     try:
-        # Get an blockchain
+        # Get a Blockchain by ID
         api_response = fireblocks.blockchains_assets.get_blockchain(id).result()
         print("The response of BlockchainsAssetsApi->get_blockchain:\n")
         pprint(api_response)
@@ -177,14 +177,13 @@ No authorization required
 # **get_supported_assets**
 > List[AssetTypeResponse] get_supported_assets()
 
-List all asset types supported by Fireblocks - legacy endpoint
+List assets (Legacy)
 
-Legacy Endpoint – Retrieves all assets supported by Fireblocks in your workspace without extended information.</br>
-**Note**:
+**This legacy endpoint has not been deprecated but it should not be used in your operations. Instead, use the new [List assets](https://developers.fireblocks.com/reference/listassets) endpoint for better performance and to retrieve more detailed asset information.**
 
-  - This endpoint will remain available for the foreseeable future and is not deprecated.</br>
-  - The `listAssets` endpoint provides more detailed asset information and improved performance.</br>
-  - We recommend transitioning to the `listAssets` endpoint for better results.
+Retrieves all assets supported by Fireblocks in your workspace.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 
 ### Example
@@ -214,7 +213,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # List all asset types supported by Fireblocks - legacy endpoint
+        # List assets (Legacy)
         api_response = fireblocks.blockchains_assets.get_supported_assets().result()
         print("The response of BlockchainsAssetsApi->get_supported_assets:\n")
         pprint(api_response)
@@ -255,10 +254,9 @@ No authorization required
 
 List assets
 
-Retrieves all assets supported by Fireblocks in your workspace, providing extended information and enhanced performance compared to the legacy `supported_assets` endpoint.</br>
-**Note**:
+Retrieves a paginated list of all assets supported by Fireblocks in your workspace
 
-  - We will continue displaying and supporting the legacy ID (API ID). Since not all Fireblocks services fully support the new Assets UUID, please use only the legacy ID until further notice.</br>
+**Note:** We will continue to support and display the legacy ID (API ID). Since not all Fireblocks services fully support the new Assets UUID, please use only the legacy ID until further notice.
 
 
 ### Example
@@ -352,7 +350,7 @@ No authorization required
 
 List blockchains
 
-Returns all blockchains supported by Fireblocks.
+Returns all blockchains supported by Fireblocks.</br>
 
 
 ### Example
@@ -446,6 +444,7 @@ Register a new asset to a workspace and return the newly created asset's details
 - NEAR
 - Solana
 - Sui
+- TON
 
 
 ### Example

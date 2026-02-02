@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **epoch_elapsed** | **float** | The percentage of time that has elapsed within the current epoch, represented as a decimal value between 0 and 1. | 
 **epoch_duration** | **float** | The total duration in milliseconds of a single epoch. | 
 **additional_info** | [**AdditionalInfo**](AdditionalInfo.md) |  | 
+**last_updated** | **float** | timestamp (in milliseconds) of last update time | 
 
 ## Example
 

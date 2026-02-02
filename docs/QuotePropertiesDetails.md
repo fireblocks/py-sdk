@@ -7,16 +7,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **via** | [**AccessType**](AccessType.md) |  | 
 **id** | **str** |  | 
-**type** | **str** |  | 
 **quote_asset_id** | **str** |  | 
 **base_asset_id** | **str** |  | 
 **base_amount** | **str** |  | 
 **quote_amount** | **str** |  | 
 **price_impact** | **float** |  | [optional] 
 **quote_min_amount** | **str** |  | [optional] 
-**execution_steps** | [**List[ExecutionStepDetails]**](ExecutionStepDetails.md) |  | [optional] 
+**execution_steps** | [**List[QuoteExecutionStep]**](QuoteExecutionStep.md) |  | [optional] 
 **general_fees** | [**List[Fee]**](Fee.md) |  | [optional] 
-**side** | **str** | Side of the order | 
+**side** | [**Side**](Side.md) |  | 
+**expires_at** | **str** | The expiration time of the quote in ISO format. | 
 
 ## Example
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **destination_id** | **str** | Id of the destination position to merge into | 
 **fee** | **str** | Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required. | [optional] 
 **fee_level** | [**FeeLevel**](FeeLevel.md) |  | [optional] 
-**tx_note** | **str** | The note to associate with the transactions. | [optional] 
+**tx_note** | **str** | The note to associate with the merge transaction. | [optional] 
 
 ## Example
 

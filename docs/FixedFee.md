@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount_type** | **str** |  | 
+**amount_type** | [**FixedAmountTypeEnum**](FixedAmountTypeEnum.md) |  | 
 **amount** | **str** | The fixed amount of the fee | 
 
 ## Example

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Order type for market orders | 
+**type** | [**MarketTypeEnum**](MarketTypeEnum.md) |  | 
 
 ## Example
 

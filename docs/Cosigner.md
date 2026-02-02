@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | **str** | The unique identifier of the cosigner | 
 **name** | **str** | The name of the cosigner | [optional] 
 **type** | **str** | The type of the cosigner | [optional] 
-**version** | [**Version**](Version.md) |  | [optional] 
+**version** | [**VersionSummary**](VersionSummary.md) |  | [optional] 
 
 ## Example
 

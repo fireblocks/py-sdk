@@ -6,11 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **external_reference_id** | **str** |  | 
-**entity_type** | **str** |  | 
+**entity_type** | [**PersonalEntityTypeEnum**](PersonalEntityTypeEnum.md) |  | 
 **participant_relationship_type** | [**ParticipantRelationshipType**](ParticipantRelationshipType.md) |  | 
 **full_name** | [**PersonalIdentificationFullName**](PersonalIdentificationFullName.md) |  | 
 **date_of_birth** | **date** |  | 
 **postal_address** | [**PostalAddress**](PostalAddress.md) |  | 
+**email** | **str** |  | [optional] 
+**phone** | **str** | Mobile phone number in E.164 format | [optional] 
 
 ## Example
 

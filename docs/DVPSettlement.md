@@ -6,7 +6,7 @@ Source/Destination accounts for the quote (must have for defi quotes)
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
+**type** | [**DVPSettlementType**](DVPSettlementType.md) |  | 
 **source_account** | [**SettlementSourceAccount**](SettlementSourceAccount.md) |  | 
 **destination_account** | [**AccountReference**](AccountReference.md) |  | 
 

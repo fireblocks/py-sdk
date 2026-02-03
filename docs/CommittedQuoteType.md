@@ -5,8 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Indicates this is a committed quote | 
-**expires_at** | **datetime** | ISO 8601 timestamp of the expiration time of the quote. | 
+**type** | [**CommittedQuoteEnum**](CommittedQuoteEnum.md) |  | 
 
 ## Example
 

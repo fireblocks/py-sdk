@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**side** | **str** | Side of the order | [default to 'BUY']
+**side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount to convert | 
 **base_asset_id** | **str** | Source asset identifier | 
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 

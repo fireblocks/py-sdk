@@ -4,6 +4,8 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_trust_proof_of_address**](TravelRuleApi.md#create_trust_proof_of_address) | **POST** /screening/travel_rule/providers/trust/proof_of_address | Create Trust Network Proof of Address
+[**get_trust_proof_of_address**](TravelRuleApi.md#get_trust_proof_of_address) | **GET** /screening/travel_rule/providers/trust/proof_of_address/{transactionId} | Retrieve Trust Network Proof of Address Signature
 [**get_vasp_for_vault**](TravelRuleApi.md#get_vasp_for_vault) | **GET** /screening/travel_rule/vault/{vaultAccountId}/vasp | Get assigned VASP to vault
 [**get_vaspby_did**](TravelRuleApi.md#get_vaspby_did) | **GET** /screening/travel_rule/vasp/{did} | Get VASP details
 [**get_vasps**](TravelRuleApi.md#get_vasps) | **GET** /screening/travel_rule/vasp | Get All VASPs
@@ -11,6 +13,157 @@ Method | HTTP request | Description
 [**update_vasp**](TravelRuleApi.md#update_vasp) | **PUT** /screening/travel_rule/vasp/update | Add jsonDidKey to VASP details
 [**validate_full_travel_rule_transaction**](TravelRuleApi.md#validate_full_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
 
+
+# **create_trust_proof_of_address**
+> TrustProofOfAddressCreateResponse create_trust_proof_of_address(trust_proof_of_address_request, idempotency_key=idempotency_key)
+
+Create Trust Network Proof of Address
+
+Creates a cryptographic proof of address ownership for TRUST network.
+
+### Example
+
+
+```python
+from fireblocks.models.trust_proof_of_address_create_response import TrustProofOfAddressCreateResponse
+from fireblocks.models.trust_proof_of_address_request import TrustProofOfAddressRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    trust_proof_of_address_request = fireblocks.TrustProofOfAddressRequest() # TrustProofOfAddressRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Create Trust Network Proof of Address
+        api_response = fireblocks.travel_rule.create_trust_proof_of_address(trust_proof_of_address_request, idempotency_key=idempotency_key).result()
+        print("The response of TravelRuleApi->create_trust_proof_of_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TravelRuleApi->create_trust_proof_of_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **trust_proof_of_address_request** | [**TrustProofOfAddressRequest**](TrustProofOfAddressRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**TrustProofOfAddressCreateResponse**](TrustProofOfAddressCreateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Proof of address transaction created successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_trust_proof_of_address**
+> TrustProofOfAddressResponse get_trust_proof_of_address(transaction_id)
+
+Retrieve Trust Network Proof of Address Signature
+
+Retrieves the TRUST-compatible encoded signature for a proof of address transaction. Send this signature directly to TRUST for verification.
+
+### Example
+
+
+```python
+from fireblocks.models.trust_proof_of_address_response import TrustProofOfAddressResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    transaction_id = '550e8400-e29b-41d4-a716-446655440000' # str | Fireblocks transaction ID (UUID format)
+
+    try:
+        # Retrieve Trust Network Proof of Address Signature
+        api_response = fireblocks.travel_rule.get_trust_proof_of_address(transaction_id).result()
+        print("The response of TravelRuleApi->get_trust_proof_of_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TravelRuleApi->get_trust_proof_of_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transaction_id** | **str**| Fireblocks transaction ID (UUID format) | 
+
+### Return type
+
+[**TrustProofOfAddressResponse**](TrustProofOfAddressResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Encoded signature retrieved successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_vasp_for_vault**
 > TravelRuleVaspForVault get_vasp_for_vault(vault_account_id)

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
-**address** | [**MobileMoneyAddress**](MobileMoneyAddress.md) |  | 
+**type** | **str** | The type of destination. Use \&quot;BLOCKCHAIN\&quot; for blockchain address destinations. | 
+**address** | [**EuropeanSEPAAddress**](EuropeanSEPAAddress.md) |  | 
 **reference_id** | **str** |  | [optional] 
 
 ## Example

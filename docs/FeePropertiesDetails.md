@@ -5,9 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fee_type** | **str** | The type of fee, such as ORDER, NETWORK, or SPREAD. ORDER - Fee for executing the order. NETWORK - Fee for network transactions. SPREAD - Fee for the difference between buy and sell prices.  | 
+**fee_type** | [**FeeTypeEnum**](FeeTypeEnum.md) |  | 
 **asset_id** | **str** | The asset identifier for the fee. | 
-**amount_type** | **str** | The type of amount for the fee, either FIXED or BPS (basis points). | 
 
 ## Example
 

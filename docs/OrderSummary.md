@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
 **via** | [**AccessType**](AccessType.md) |  | 
-**side** | **str** | Side of the order | 
+**side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** |  | 
 **quote_amount** | **str** |  | [optional] 
 **base_asset_id** | **str** |  | 

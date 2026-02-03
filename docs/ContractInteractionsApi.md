@@ -5,6 +5,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**decode_contract_data**](ContractInteractionsApi.md#decode_contract_data) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/decode | Decode a function call data, error, or event log
+[**get_contract_address**](ContractInteractionsApi.md#get_contract_address) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/tx_hash/{txHash} | Get contract address by transaction hash
 [**get_deployed_contract_abi**](ContractInteractionsApi.md#get_deployed_contract_abi) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions | Return deployed contract&#39;s ABI
 [**get_transaction_receipt**](ContractInteractionsApi.md#get_transaction_receipt) | **GET** /contract_interactions/base_asset_id/{baseAssetId}/tx_hash/{txHash}/receipt | Get transaction receipt
 [**read_call_function**](ContractInteractionsApi.md#read_call_function) | **POST** /contract_interactions/base_asset_id/{baseAssetId}/contract_address/{contractAddress}/functions/read | Call a read function on a deployed contract
@@ -93,12 +94,91 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_contract_address**
+> ContractAddressResponse get_contract_address(base_asset_id, tx_hash, idempotency_key=idempotency_key)
+
+Get contract address by transaction hash
+
+Retrieve the contract address by blockchain native asset ID and transaction hash
+
+### Example
+
+
+```python
+from fireblocks.models.contract_address_response import ContractAddressResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    base_asset_id = 'ETH_TEST3' # str | The blockchain base assetId
+    tx_hash = '0x3b015ca0518c55d7bff4e3f5aa5d0431705771553ba8a95cf20e34cb597f57f6' # str | The transaction hash
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Get contract address by transaction hash
+        api_response = fireblocks.contract_interactions.get_contract_address(base_asset_id, tx_hash, idempotency_key=idempotency_key).result()
+        print("The response of ContractInteractionsApi->get_contract_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ContractInteractionsApi->get_contract_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **base_asset_id** | **str**| The blockchain base assetId | 
+ **tx_hash** | **str**| The transaction hash | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ContractAddressResponse**](ContractAddressResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Retrieved The Contract Address Successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_deployed_contract_abi**
 > ContractAbiResponseDto get_deployed_contract_abi(contract_address, base_asset_id, idempotency_key=idempotency_key)
 
 Return deployed contract's ABI
 
-Return deployed contract's ABI by blockchain native asset id and contract address
+Return deployed contract's ABI by blockchain native asset id and contract address.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
 ### Example
 
@@ -126,7 +206,7 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     contract_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66' # str | The contract's onchain address
-    base_asset_id = 'base_asset_id_example' # str | 
+    base_asset_id = 'ETH' # str | The blockchain base assetId
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
@@ -146,7 +226,7 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contract_address** | **str**| The contract&#39;s onchain address | 
- **base_asset_id** | **str**|  | 
+ **base_asset_id** | **str**| The blockchain base assetId | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -177,6 +257,8 @@ No authorization required
 Get transaction receipt
 
 Retrieve the transaction receipt by blockchain native asset ID and transaction hash
+> **Note** > This functionality is exclusively available for EVM (Ethereum Virtual Machine) compatible chains. 
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
 ### Example
 

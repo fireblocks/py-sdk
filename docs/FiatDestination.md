@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
-**address** | [**MobileMoneyAddress**](MobileMoneyAddress.md) |  | 
+**address** | [**EuropeanSEPAAddress**](EuropeanSEPAAddress.md) |  | 
 
 ## Example
 

@@ -24,6 +24,8 @@ The instruction set defines: </br>
 <li>the payment account and its account type (vault, exchange, or fiat). </li>
 <li>the account type (vault account, exchange account, whitelisted address, network connection, fiat account, or merchant account), the amount, and the asset of payment for each payee account.</li>
 </ul>
+Learn more about Fireblocks Payments - Payouts in the following [guide](https://developers.fireblocks.com/docs/create-payouts).
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 
 ### Example
@@ -192,6 +194,7 @@ Get the status of a payout instruction set
 **Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only for customers with Payments Engine enabled on their accounts. </br>
 </br>These endpoints are currently in beta and might be subject to changes.</br>
 </br>If you want to learn more about Fireblocks Payments Engine, please contact your Fireblocks Customer Success Manager or email CSM@fireblocks.com. </br>
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 
 ### Example

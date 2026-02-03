@@ -4,16 +4,18 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_api_user**](ApiUserApi.md#create_api_user) | **POST** /management/api_users | Create Api user
-[**get_api_users**](ApiUserApi.md#get_api_users) | **GET** /management/api_users | Get Api users
+[**create_api_user**](ApiUserApi.md#create_api_user) | **POST** /management/api_users | Create API Key
+[**get_api_users**](ApiUserApi.md#get_api_users) | **GET** /management/api_users | Get API Keys
 
 
 # **create_api_user**
 > create_api_user(idempotency_key=idempotency_key, create_api_user=create_api_user)
 
-Create Api user
+Create API Key
 
-Creates Api user in your tenant
+Create a new API key in your workspace.
+Learn more about Fireblocks API Keys management in the following [guide](https://developers.fireblocks.com/docs/manage-api-keys).
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -43,7 +45,7 @@ with Fireblocks(configuration) as fireblocks:
     create_api_user = fireblocks.CreateAPIUser() # CreateAPIUser |  (optional)
 
     try:
-        # Create Api user
+        # Create API Key
         fireblocks.api_user.create_api_user(idempotency_key=idempotency_key, create_api_user=create_api_user).result()
     except Exception as e:
         print("Exception when calling ApiUserApi->create_api_user: %s\n" % e)
@@ -88,9 +90,11 @@ No authorization required
 # **get_api_users**
 > GetAPIUsersResponse get_api_users()
 
-Get Api users
+Get API Keys
 
-Get Api users of your tenant
+List all API keys in your workspace.
+- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -119,7 +123,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Get Api users
+        # Get API Keys
         api_response = fireblocks.api_user.get_api_users().result()
         print("The response of ApiUserApi->get_api_users:\n")
         pprint(api_response)

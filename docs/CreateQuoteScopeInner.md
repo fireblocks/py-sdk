@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **provider_id** | **str** | The ID of the provider associated with the account. | 
-**account_id** | **str** | The ID of the account associated with the provider. | 
+**account_id** | **str** | The ID of the account associated with the provider. | [optional] 
 
 ## Example
 

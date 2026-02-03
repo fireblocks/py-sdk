@@ -4,7 +4,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_webhook**](WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create new webhook
+[**create_webhook**](WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create a new webhook
 [**delete_webhook**](WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
 [**get_metrics**](WebhooksV2Api.md#get_metrics) | **GET** /webhooks/{webhookId}/metrics/{metricName} | Get webhook metrics
 [**get_notification**](WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
@@ -22,11 +22,11 @@ Method | HTTP request | Description
 # **create_webhook**
 > Webhook create_webhook(create_webhook_request, idempotency_key=idempotency_key)
 
-Create new webhook
+Create a new webhook
 
 Creates a new webhook, which will be triggered on the specified events
 
-Endpoint Permission: Owner, Admin, Non-Signing Admin.
+**Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
 
 
 ### Example
@@ -59,7 +59,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Create new webhook
+        # Create a new webhook
         api_response = fireblocks.webhooks_v2.create_webhook(create_webhook_request, idempotency_key=idempotency_key).result()
         print("The response of WebhooksV2Api->create_webhook:\n")
         pprint(api_response)
@@ -665,7 +665,7 @@ No authorization required
 
 Get all webhooks
 
-Get all webhooks (paginated)
+Get all webhooks (paginated).
 
 
 ### Example

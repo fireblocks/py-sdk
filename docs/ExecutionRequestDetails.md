@@ -6,10 +6,8 @@ Order execution details
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Order type for limit orders | 
-**time_in_force** | [**TimeInForce**](TimeInForce.md) |  | 
-**limit_price** | **str** | Price for limit orders | 
-**side** | **str** | Side of the order | [default to 'BUY']
+**type** | [**QuoteTypeEnum**](QuoteTypeEnum.md) |  | 
+**side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount to convert | 
 **base_asset_id** | **str** | Source asset identifier | 
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Indicates this is an indicative quote | 
+**type** | [**IndicativeQuoteEnum**](IndicativeQuoteEnum.md) |  | 
 
 ## Example
 

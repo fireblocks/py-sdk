@@ -12,7 +12,10 @@ Method | HTTP request | Description
 
 Get audit logs
 
-Get all audits
+Get Audit logs for the last Day/Week.
+
+- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

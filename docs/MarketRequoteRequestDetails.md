@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | Indicates that the order should be re-quoted if the original quote is expired. This will lead to a market order. | 
+**type** | [**MarketRequoteTypeEnum**](MarketRequoteTypeEnum.md) |  | 
 
 ## Example
 

@@ -13,7 +13,10 @@ Method | HTTP request | Description
 
 Create console user
 
-Creates console user in your tenant
+Create console users in your workspace
+- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
+Learn more about Fireblocks Users management in the following [guide](https://developers.fireblocks.com/docs/manage-users).
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -90,7 +93,9 @@ No authorization required
 
 Get console users
 
-Get console users for your tenant
+Get console users for your workspace.
+- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
+</br>Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

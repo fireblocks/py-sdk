@@ -10,7 +10,11 @@ Name | Type | Description | Notes
 **blockchain_id** | **str** | The ID of the asset&#39;s blockchain | [optional] 
 **display_name** | **str** | Asset&#39;s display name | 
 **display_symbol** | **str** | Asset&#39;s display symbol | 
+**provider_id** | **str** | The ID of the asset provider | [optional] 
+**pegged_asset_id** | **str** | The ID of the pegged asset | [optional] 
+**assets** | **List[str]** | List of asset IDs for virtual assets | [optional] 
 **asset_class** | [**AssetClass**](AssetClass.md) |  | 
+**decimals** | **float** | Number of decimals for FIAT assets | [optional] 
 **onchain** | [**AssetDetailsOnchain**](AssetDetailsOnchain.md) |  | [optional] 
 **metadata** | [**AssetDetailsMetadata**](AssetDetailsMetadata.md) |  | 
 

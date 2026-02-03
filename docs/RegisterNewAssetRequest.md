@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **blockchain_id** | **str** | Native asset ID of the blockchain | 
-**address** | **str** | Asset address. - EVM-based chains: token contract address - Stellar (XLM): issuer address - Algorand (ALGO): asset ID - TRON (TRX): token contract address - NEAR: token address - Solana: token&#39;s mint account address - Sui: token&#39;s type  | 
+**address** | **str** | Asset address. - EVM-based chains: token contract address - Stellar (XLM): issuer address - Algorand (ALGO): asset ID - TRON (TRX): token contract address - NEAR: token address - Solana: token&#39;s mint account address - Sui: token&#39;s type - TON: token&#39;s address  | 
 **symbol** | **str** | Required for Stellar only, asset code is expected. | [optional] 
 
 ## Example

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | [optional] 
 **receipt** | [**TransferReceipt**](TransferReceipt.md) |  | [optional] 
 **general_fees** | [**List[Fee]**](Fee.md) |  | [optional] 
-**execution_steps** | [**List[ExecutionStep]**](ExecutionStep.md) |  | 
+**execution_steps** | [**List[OrderExecutionStep]**](OrderExecutionStep.md) |  | 
 **execution_response_details** | [**ExecutionResponseDetails**](ExecutionResponseDetails.md) |  | 
 **settlement** | [**Settlement**](Settlement.md) |  | 
 **participants_identification** | [**ParticipantsIdentification**](ParticipantsIdentification.md) |  | [optional] 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **customer_internal_reference_id** | **str** | Internal reference ID for the customer | [optional] 
 **note** | **str** | Optional note for the Order | [optional] 
 **expires_at** | **datetime** |  | [optional] 
+**failure** | [**Failure**](Failure.md) |  | [optional] 
 
 ## Example
 

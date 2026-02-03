@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The ID of the transaction. | [optional] 
 **status** | **str** | The primary status of the transaction. For details, see [Primary transaction statuses.] (https://developers.fireblocks.com/reference/primary-transaction-statuses) | [optional] 
-**system_messages** | [**SystemMessageInfo**](SystemMessageInfo.md) |  | [optional] 
+**system_messages** | [**List[SystemMessageInfo]**](SystemMessageInfo.md) |  | [optional] 
 
 ## Example
 

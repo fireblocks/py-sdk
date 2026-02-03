@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_types** | **List[str]** |  | 
+**asset_types** | [**List[AssetTypeEnum]**](AssetTypeEnum.md) |  | 
 **capabilities** | [**List[Capability]**](Capability.md) |  | 
 
 ## Example

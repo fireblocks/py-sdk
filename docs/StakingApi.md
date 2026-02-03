@@ -4,29 +4,28 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**approve_terms_of_service_by_provider_id**](StakingApi.md#approve_terms_of_service_by_provider_id) | **POST** /staking/providers/{providerId}/approveTermsOfService | Approve staking terms of service
-[**claim_rewards**](StakingApi.md#claim_rewards) | **POST** /staking/chains/{chainDescriptor}/claim_rewards | Execute a Claim Rewards operation
-[**get_all_delegations**](StakingApi.md#get_all_delegations) | **GET** /staking/positions | List staking positions details
-[**get_chain_info**](StakingApi.md#get_chain_info) | **GET** /staking/chains/{chainDescriptor}/chainInfo | Get chain-specific staking summary
-[**get_chains**](StakingApi.md#get_chains) | **GET** /staking/chains | List staking supported chains
-[**get_delegation_by_id**](StakingApi.md#get_delegation_by_id) | **GET** /staking/positions/{id} | Get staking position details
-[**get_providers**](StakingApi.md#get_providers) | **GET** /staking/providers | List staking providers details
-[**get_summary**](StakingApi.md#get_summary) | **GET** /staking/positions/summary | Get staking summary details
-[**get_summary_by_vault**](StakingApi.md#get_summary_by_vault) | **GET** /staking/positions/summary/vaults | Get staking summary details by vault
-[**merge_stake_accounts**](StakingApi.md#merge_stake_accounts) | **POST** /staking/chains/{chainDescriptor}/merge | Merge Solana on stake accounts
-[**split**](StakingApi.md#split) | **POST** /staking/chains/{chainDescriptor}/split | Execute a Split operation on SOL/SOL_TEST stake account
-[**stake**](StakingApi.md#stake) | **POST** /staking/chains/{chainDescriptor}/stake | Initiate Stake Operation
-[**unstake**](StakingApi.md#unstake) | **POST** /staking/chains/{chainDescriptor}/unstake | Execute an Unstake operation
-[**withdraw**](StakingApi.md#withdraw) | **POST** /staking/chains/{chainDescriptor}/withdraw | Execute a Withdraw operation
+[**approve_terms_of_service_by_provider_id**](StakingApi.md#approve_terms_of_service_by_provider_id) | **POST** /staking/providers/{providerId}/approveTermsOfService | Approve provider terms of service
+[**claim_rewards**](StakingApi.md#claim_rewards) | **POST** /staking/chains/{chainDescriptor}/claim_rewards | Claim accrued rewards
+[**get_all_delegations**](StakingApi.md#get_all_delegations) | **GET** /staking/positions | List staking positions
+[**get_chain_info**](StakingApi.md#get_chain_info) | **GET** /staking/chains/{chainDescriptor}/chainInfo | Get chain-level staking parameters
+[**get_chains**](StakingApi.md#get_chains) | **GET** /staking/chains | List supported staking chains
+[**get_delegation_by_id**](StakingApi.md#get_delegation_by_id) | **GET** /staking/positions/{id} | Get position details
+[**get_providers**](StakingApi.md#get_providers) | **GET** /staking/providers | List staking providers
+[**get_summary**](StakingApi.md#get_summary) | **GET** /staking/positions/summary | Get positions summary
+[**get_summary_by_vault**](StakingApi.md#get_summary_by_vault) | **GET** /staking/positions/summary/vaults | Get positions summary by vault
+[**merge_stake_accounts**](StakingApi.md#merge_stake_accounts) | **POST** /staking/chains/{chainDescriptor}/merge | Merge staking positions
+[**split**](StakingApi.md#split) | **POST** /staking/chains/{chainDescriptor}/split | Split a staking position
+[**stake**](StakingApi.md#stake) | **POST** /staking/chains/{chainDescriptor}/stake | Initiate or add to existing stake
+[**unstake**](StakingApi.md#unstake) | **POST** /staking/chains/{chainDescriptor}/unstake | Initiate unstake
+[**withdraw**](StakingApi.md#withdraw) | **POST** /staking/chains/{chainDescriptor}/withdraw | Withdraw staked funds
 
 
 # **approve_terms_of_service_by_provider_id**
 > approve_terms_of_service_by_provider_id(provider_id, idempotency_key=idempotency_key)
 
-Approve staking terms of service
+Approve provider terms of service
 
-Approve the terms of service of the staking provider.
-This must be called before performing a staking action for the first time with this provider.
+Approves the provider's terms of service. Must be called once before performing any staking operation with this provider.
 
 ### Example
 
@@ -52,11 +51,11 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    provider_id = fireblocks.StakingProvider() # StakingProvider | The unique identifier of the staking provider
+    provider_id = fireblocks.StakingProvider() # StakingProvider | Unique identifier of the staking provider.
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Approve staking terms of service
+        # Approve provider terms of service
         fireblocks.staking.approve_terms_of_service_by_provider_id(provider_id, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling StakingApi->approve_terms_of_service_by_provider_id: %s\n" % e)
@@ -69,7 +68,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provider_id** | [**StakingProvider**](.md)| The unique identifier of the staking provider | 
+ **provider_id** | [**StakingProvider**](.md)| Unique identifier of the staking provider. | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
@@ -89,7 +88,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The terms of service have been successfully approved and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Terms of service accepted. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -97,9 +101,9 @@ No authorization required
 # **claim_rewards**
 > claim_rewards(chain_descriptor, claim_rewards_request, idempotency_key=idempotency_key)
 
-Execute a Claim Rewards operation
+Claim accrued rewards
 
-Perform a chain-specific Claim Rewards.
+Claims available staking rewards for the specified chain and vault. Supported chains: Solana and Polygon (Matic). Behavior depends on protocol reward distribution.
 
 ### Example
 
@@ -125,12 +129,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = 'MATIC' # str | The protocol identifier (e.g. \"MATIC\"/\"SOL\") to use
+    chain_descriptor = 'SOL' # str | Protocol identifier for the claim rewards staking operation (e.g., MATIC/SOL).
     claim_rewards_request = fireblocks.ClaimRewardsRequest() # ClaimRewardsRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Execute a Claim Rewards operation
+        # Claim accrued rewards
         fireblocks.staking.claim_rewards(chain_descriptor, claim_rewards_request, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling StakingApi->claim_rewards: %s\n" % e)
@@ -143,7 +147,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | **str**| The protocol identifier (e.g. \&quot;MATIC\&quot;/\&quot;SOL\&quot;) to use | 
+ **chain_descriptor** | **str**| Protocol identifier for the claim rewards staking operation (e.g., MATIC/SOL). | 
  **claim_rewards_request** | [**ClaimRewardsRequest**](ClaimRewardsRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -164,7 +168,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Claim Rewards action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Claim-rewards request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -172,9 +181,10 @@ No authorization required
 # **get_all_delegations**
 > List[Delegation] get_all_delegations(chain_descriptor=chain_descriptor)
 
-List staking positions details
+List staking positions
 
-Return detailed information on all staking positions, including the staked amount, rewards, status and more.
+Returns all staking positions with core details: amounts, rewards, status, chain, and vault.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -202,10 +212,10 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Use \"ETH\" / \"SOL\" / \"MATIC\" / \"STETH_ETH\" in order to obtain information related to the specific blockchain network or retrieve information about all chains that have data available by providing no argument. (optional)
+    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned. (optional)
 
     try:
-        # List staking positions details
+        # List staking positions
         api_response = fireblocks.staking.get_all_delegations(chain_descriptor=chain_descriptor).result()
         print("The response of StakingApi->get_all_delegations:\n")
         pprint(api_response)
@@ -220,7 +230,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | [**ChainDescriptor**](.md)| Use \&quot;ETH\&quot; / \&quot;SOL\&quot; / \&quot;MATIC\&quot; / \&quot;STETH_ETH\&quot; in order to obtain information related to the specific blockchain network or retrieve information about all chains that have data available by providing no argument. | [optional] 
+ **chain_descriptor** | [**ChainDescriptor**](.md)| Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned. | [optional] 
 
 ### Return type
 
@@ -239,7 +249,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | An array of position data was returned successfully |  * X-Request-ID -  <br>  |
+**200** | Positions retrieved successfully. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -247,9 +262,9 @@ No authorization required
 # **get_chain_info**
 > ChainInfoResponse get_chain_info(chain_descriptor)
 
-Get chain-specific staking summary
+Get chain-level staking parameters
 
-Return chain-specific, staking-related information summary (e.g. epoch details, lockup durations, estimated rewards, etc.)
+Returns chain-specific staking information such as epoch/slot cadence, lockup or unbonding periods, fee/reward mechanics, and other operational constraints.
 
 ### Example
 
@@ -277,10 +292,10 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | The protocol identifier (e.g. \"ETH\"/\"SOL\"/\"MATIC\"/\"STETH_ETH\") to use
+    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Protocol identifier for the chain info staking operation (e.g., ETH/MATIC/SOL).
 
     try:
-        # Get chain-specific staking summary
+        # Get chain-level staking parameters
         api_response = fireblocks.staking.get_chain_info(chain_descriptor).result()
         print("The response of StakingApi->get_chain_info:\n")
         pprint(api_response)
@@ -295,7 +310,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | [**ChainDescriptor**](.md)| The protocol identifier (e.g. \&quot;ETH\&quot;/\&quot;SOL\&quot;/\&quot;MATIC\&quot;/\&quot;STETH_ETH\&quot;) to use | 
+ **chain_descriptor** | [**ChainDescriptor**](.md)| Protocol identifier for the chain info staking operation (e.g., ETH/MATIC/SOL). | 
 
 ### Return type
 
@@ -314,7 +329,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Chain specific info summary was returned successfully |  * X-Request-ID -  <br>  |
+**200** | Chain-specific staking information returned successfully. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -322,9 +342,10 @@ No authorization required
 # **get_chains**
 > List[ChainDescriptor] get_chains()
 
-List staking supported chains
+List supported staking chains
 
-Return an alphabetical list of supported chains.
+Returns an alphabetical list of blockchains supported for staking by the current workspace context.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -353,7 +374,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # List staking supported chains
+        # List supported staking chains
         api_response = fireblocks.staking.get_chains().result()
         print("The response of StakingApi->get_chains:\n")
         pprint(api_response)
@@ -384,7 +405,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | An array of supported chains was returned successfully |  * X-Request-ID -  <br>  |
+**200** | An array of supported chains was returned successfully. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -392,9 +417,9 @@ No authorization required
 # **get_delegation_by_id**
 > Delegation get_delegation_by_id(id)
 
-Get staking position details
+Get position details
 
-Return detailed information on a staking position, including the staked amount, rewards, status and more.
+Returns full details for a single staking position: amounts, rewards, status, chain, and vault.
 
 ### Example
 
@@ -421,10 +446,10 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    id = '1fe3b61f-7e1f-4a19-aff0-4f0a524d44d7' # str | The unique identifier of the staking position
+    id = 'id_example' # str | Unique identifier of the staking position.
 
     try:
-        # Get staking position details
+        # Get position details
         api_response = fireblocks.staking.get_delegation_by_id(id).result()
         print("The response of StakingApi->get_delegation_by_id:\n")
         pprint(api_response)
@@ -439,7 +464,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The unique identifier of the staking position | 
+ **id** | **str**| Unique identifier of the staking position. | 
 
 ### Return type
 
@@ -458,7 +483,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Position data was returned successfully |  * X-Request-ID -  <br>  |
+**200** | Position retrieved successfully. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -466,9 +496,10 @@ No authorization required
 # **get_providers**
 > List[Provider] get_providers()
 
-List staking providers details
+List staking providers
 
-Return information on all the available staking providers.
+Returns all available staking providers with metadata such as name, ID, and supported chains.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -497,7 +528,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # List staking providers details
+        # List staking providers
         api_response = fireblocks.staking.get_providers().result()
         print("The response of StakingApi->get_providers:\n")
         pprint(api_response)
@@ -528,7 +559,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | An array of supported providers was returned successfully |  * X-Request-ID -  <br>  |
+**200** | Supported providers retrieved successfully. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -536,9 +571,9 @@ No authorization required
 # **get_summary**
 > DelegationSummary get_summary()
 
-Get staking summary details
+Get positions summary
 
-Return a summary of all vaults, categorized by their status (active, inactive), the total amounts staked and total rewards per-chain.
+Returns an aggregated cross-vault summary: active/inactive counts, total staked, and total rewards per chain.
 
 ### Example
 
@@ -567,7 +602,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Get staking summary details
+        # Get positions summary
         api_response = fireblocks.staking.get_summary().result()
         print("The response of StakingApi->get_summary:\n")
         pprint(api_response)
@@ -598,7 +633,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A summary for all vaults were returned successfully |  * X-Request-ID -  <br>  |
+**200** | Summary across all vaults returned successfully. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -606,9 +645,9 @@ No authorization required
 # **get_summary_by_vault**
 > Dict[str, DelegationSummary] get_summary_by_vault()
 
-Get staking summary details by vault
+Get positions summary by vault
 
-Return a summary for each vault, categorized by their status (active, inactive), the total amounts staked and total rewards per-chain.
+Returns per-vault aggregates: status breakdown, total staked, and total rewards per chain.
 
 ### Example
 
@@ -637,7 +676,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Get staking summary details by vault
+        # Get positions summary by vault
         api_response = fireblocks.staking.get_summary_by_vault().result()
         print("The response of StakingApi->get_summary_by_vault:\n")
         pprint(api_response)
@@ -668,7 +707,11 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A summary for each vault were returned successfully |  * X-Request-ID -  <br>  |
+**200** | Per-vault summary returned successfully. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -676,11 +719,10 @@ No authorization required
 # **merge_stake_accounts**
 > MergeStakeAccountsResponse merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key)
 
-Merge Solana on stake accounts
+Merge staking positions
 
-Perform a Solana Merge of two active stake accounts into one.
-
-Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Merges the source stake account into the destination, consolidating the balance into the destination and closing the source account once complete. Both accounts must be from the same validator provider and of same vault account.. Supported chains: Solana (SOL).
+</br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -708,12 +750,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = 'SOL' # str | The protocol identifier (e.g. \"SOL\"/\"SOL_TEST\") to use
+    chain_descriptor = 'SOL' # str | Protocol identifier for the merge staking operation (e.g., SOL).
     merge_stake_accounts_request = fireblocks.MergeStakeAccountsRequest() # MergeStakeAccountsRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Merge Solana on stake accounts
+        # Merge staking positions
         api_response = fireblocks.staking.merge_stake_accounts(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key).result()
         print("The response of StakingApi->merge_stake_accounts:\n")
         pprint(api_response)
@@ -728,7 +770,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | **str**| The protocol identifier (e.g. \&quot;SOL\&quot;/\&quot;SOL_TEST\&quot;) to use | 
+ **chain_descriptor** | **str**| Protocol identifier for the merge staking operation (e.g., SOL). | 
  **merge_stake_accounts_request** | [**MergeStakeAccountsRequest**](MergeStakeAccountsRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -749,7 +791,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Merge action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Merge request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -757,9 +804,9 @@ No authorization required
 # **split**
 > SplitResponse split(chain_descriptor, split_request, idempotency_key=idempotency_key)
 
-Execute a Split operation on SOL/SOL_TEST stake account
+Split a staking position
 
-Perform a Solana Split stake account.
+Splits a staking position by creating a new stake account with the requested amount, while keeping the original account with the remaining balance. Supported chains: Solana (SOL).
 
 ### Example
 
@@ -787,12 +834,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = 'SOL' # str | The protocol identifier (e.g. \"SOL\"/\"SOL_TEST\") to use
+    chain_descriptor = 'SOL' # str | Protocol identifier for the staking operation (e.g., SOL).
     split_request = fireblocks.SplitRequest() # SplitRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Execute a Split operation on SOL/SOL_TEST stake account
+        # Split a staking position
         api_response = fireblocks.staking.split(chain_descriptor, split_request, idempotency_key=idempotency_key).result()
         print("The response of StakingApi->split:\n")
         pprint(api_response)
@@ -807,7 +854,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | **str**| The protocol identifier (e.g. \&quot;SOL\&quot;/\&quot;SOL_TEST\&quot;) to use | 
+ **chain_descriptor** | **str**| Protocol identifier for the staking operation (e.g., SOL). | 
  **split_request** | [**SplitRequest**](SplitRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -828,7 +875,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Split action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Split request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -836,9 +888,9 @@ No authorization required
 # **stake**
 > StakeResponse stake(chain_descriptor, stake_request, idempotency_key=idempotency_key)
 
-Initiate Stake Operation
+Initiate or add to existing stake
 
-Perform a chain-specific Stake.
+Creates a new staking position and returns its unique ID. For Ethereum compounding validator (EIP-7251): when the 'id' of an existing compounding validator position is provided, adds to that position; otherwise creates a new position. For Ethereum legacy validator: creates a new position regardless of existing delegations. For Cosmos chains and Ethereum liquid staking (Lido): automatically add to existing positions for the same validator provider and same vault account if one exists, otherwise create a new position. For Solana and Polygon: always create new positions regardless of existing delegations.
 
 ### Example
 
@@ -867,12 +919,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | The protocol identifier (e.g. \"ETH\"/\"SOL\"/\"MATIC\") to use
+    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Protocol identifier for the stake staking operation (e.g., ATOM_COS/AXL/CELESTIA).
     stake_request = fireblocks.StakeRequest() # StakeRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Initiate Stake Operation
+        # Initiate or add to existing stake
         api_response = fireblocks.staking.stake(chain_descriptor, stake_request, idempotency_key=idempotency_key).result()
         print("The response of StakingApi->stake:\n")
         pprint(api_response)
@@ -887,7 +939,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | [**ChainDescriptor**](.md)| The protocol identifier (e.g. \&quot;ETH\&quot;/\&quot;SOL\&quot;/\&quot;MATIC\&quot;) to use | 
+ **chain_descriptor** | [**ChainDescriptor**](.md)| Protocol identifier for the stake staking operation (e.g., ATOM_COS/AXL/CELESTIA). | 
  **stake_request** | [**StakeRequest**](StakeRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -908,7 +960,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Stake action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Stake request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -916,9 +973,9 @@ No authorization required
 # **unstake**
 > unstake(chain_descriptor, unstake_request, idempotency_key=idempotency_key)
 
-Execute an Unstake operation
+Initiate unstake
 
-Execute an Unstake operation
+Submits a chain-specific unstake request.
 
 ### Example
 
@@ -945,12 +1002,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | The protocol identifier (e.g. \"ETH\"/\"SOL\"/\"MATIC\") to use
+    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Protocol identifier for the unstake staking operation (e.g., SOL/SOL_TEST/MATIC).
     unstake_request = fireblocks.UnstakeRequest() # UnstakeRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Execute an Unstake operation
+        # Initiate unstake
         fireblocks.staking.unstake(chain_descriptor, unstake_request, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling StakingApi->unstake: %s\n" % e)
@@ -963,7 +1020,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | [**ChainDescriptor**](.md)| The protocol identifier (e.g. \&quot;ETH\&quot;/\&quot;SOL\&quot;/\&quot;MATIC\&quot;) to use | 
+ **chain_descriptor** | [**ChainDescriptor**](.md)| Protocol identifier for the unstake staking operation (e.g., SOL/SOL_TEST/MATIC). | 
  **unstake_request** | [**UnstakeRequest**](UnstakeRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -984,7 +1041,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Unstake action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Unstake request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -992,9 +1054,9 @@ No authorization required
 # **withdraw**
 > withdraw(chain_descriptor, withdraw_request, idempotency_key=idempotency_key)
 
-Execute a Withdraw operation
+Withdraw staked funds
 
-Perform a chain-specific Withdraw.
+Withdraws funds that have completed the unbonding period. Typically requires the position to be deactivated first (unstake → unbond → withdraw). Amount and timing vary by chain protocol.
 
 ### Example
 
@@ -1021,12 +1083,12 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | The protocol identifier (e.g. \"ETH\"/\"SOL\"/\"MATIC\") to use
+    chain_descriptor = fireblocks.ChainDescriptor() # ChainDescriptor | Protocol identifier for the withdraw staking operation (e.g., ATOM_COS/ETH/STETH_ETH).
     withdraw_request = fireblocks.WithdrawRequest() # WithdrawRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Execute a Withdraw operation
+        # Withdraw staked funds
         fireblocks.staking.withdraw(chain_descriptor, withdraw_request, idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling StakingApi->withdraw: %s\n" % e)
@@ -1039,7 +1101,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | [**ChainDescriptor**](.md)| The protocol identifier (e.g. \&quot;ETH\&quot;/\&quot;SOL\&quot;/\&quot;MATIC\&quot;) to use | 
+ **chain_descriptor** | [**ChainDescriptor**](.md)| Protocol identifier for the withdraw staking operation (e.g., ATOM_COS/ETH/STETH_ETH). | 
  **withdraw_request** | [**WithdrawRequest**](WithdrawRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -1060,7 +1122,12 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Withdraw action has been executed successfully on vault and is associated with 201 status code. |  * X-Request-ID -  <br>  |
+**201** | Withdraw request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

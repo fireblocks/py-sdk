@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_contract_template_by_id**](ContractTemplatesApi.md#get_contract_template_by_id) | **GET** /tokenization/templates/{contractTemplateId} | Return contract template by id
 [**get_contract_templates**](ContractTemplatesApi.md#get_contract_templates) | **GET** /tokenization/templates | List all contract templates
 [**get_function_abi_by_contract_template_id**](ContractTemplatesApi.md#get_function_abi_by_contract_template_id) | **GET** /tokenization/templates/{contractTemplateId}/function | Return contract template&#39;s function
+[**get_supported_blockchains_by_template_id**](ContractTemplatesApi.md#get_supported_blockchains_by_template_id) | **GET** /tokenization/templates/{contractTemplateId}/supported_blockchains | Get supported blockchains for the template
 [**upload_contract_template**](ContractTemplatesApi.md#upload_contract_template) | **POST** /tokenization/templates | Upload contract template
 
 
@@ -321,7 +322,8 @@ No authorization required
 
 List all contract templates
 
-Return minimal representation of all the contract templates available for the workspace
+Return minimal representation of all the contract templates available for the workspace.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -353,7 +355,7 @@ with Fireblocks(configuration) as fireblocks:
     page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
     page_size = 10 # float | Number of items per page, requesting more then max will return max items (optional)
     type = 'FUNGIBLE_TOKEN' # str | The type of the contract templates you wish to retrieve. Can accept one type, more or none (optional)
-    initialization_phase = 'initialization_phase_example' # str |  (optional)
+    initialization_phase = 'initialization_phase_example' # str | For standalone contracts use ON_DEPLOYMENT and for contracts that are behind proxies use POST_DEPLOYMENT (optional)
 
     try:
         # List all contract templates
@@ -376,7 +378,7 @@ Name | Type | Description  | Notes
  **page_cursor** | **str**| Page cursor to get the next page | [optional] 
  **page_size** | **float**| Number of items per page, requesting more then max will return max items | [optional] 
  **type** | **str**| The type of the contract templates you wish to retrieve. Can accept one type, more or none | [optional] 
- **initialization_phase** | **str**|  | [optional] 
+ **initialization_phase** | **str**| For standalone contracts use ON_DEPLOYMENT and for contracts that are behind proxies use POST_DEPLOYMENT | [optional] 
 
 ### Return type
 
@@ -472,6 +474,81 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Contract template&#x60;s function ABI was returned successfully |  -  |
+**404** | Could not find contract. |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_supported_blockchains_by_template_id**
+> SupportedBlockChainsResponse get_supported_blockchains_by_template_id(contract_template_id)
+
+Get supported blockchains for the template
+
+Get supported blockchains for the template
+
+### Example
+
+
+```python
+from fireblocks.models.supported_block_chains_response import SupportedBlockChainsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    contract_template_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850d' # str | The Contract Template identifier
+
+    try:
+        # Get supported blockchains for the template
+        api_response = fireblocks.contract_templates.get_supported_blockchains_by_template_id(contract_template_id).result()
+        print("The response of ContractTemplatesApi->get_supported_blockchains_by_template_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ContractTemplatesApi->get_supported_blockchains_by_template_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **contract_template_id** | **str**| The Contract Template identifier | 
+
+### Return type
+
+[**SupportedBlockChainsResponse**](SupportedBlockChainsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Supported blockchains list |  -  |
 **404** | Could not find contract. |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 

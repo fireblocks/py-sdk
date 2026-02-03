@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **amount** | **str** | Amount of tokens to be transferred to the new stake account. | 
 **fee** | **str** | Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required. | [optional] 
 **fee_level** | [**FeeLevel**](FeeLevel.md) |  | [optional] 
-**tx_note** | **str** | The note to associate with the transactions. | [optional] 
+**tx_note** | **str** | The note to associate with the split transactions. | [optional] 
 
 ## Example
 

@@ -1,33 +1,35 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Upload Python Package
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 jobs:
   bump-version:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate GitHub App token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.SDK_GENERATION_APP_ID }}
+          private-key: ${{ secrets.SDK_GENERATION_APP_PRIVATE_KEY }}
+
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.RELEASE_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
+
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install bump-my-version
+
       - name: Bump version
         run: |
           initialTag=${{ github.event.release.tag_name }}
@@ -46,34 +48,40 @@ jobs:
           git add .
           git commit -m "release $tag"
           git push
+
       - name: Move tag
         run: |
           TAG_NAME=${{ github.event.release.tag_name }}
-          echo $tag
+          echo $TAG_NAME
           git tag --force $TAG_NAME
           git push --force origin $TAG_NAME
 
   publish:
     needs: bump-version
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC/Trusted Publishing
+      contents: read
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-      with:
-        ref: master
-        fetch-depth: 0
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
-    - name: Build package
-      run: python -m build
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # No user/password needed - OIDC handles authentication

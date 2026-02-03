@@ -4,21 +4,21 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_contract_asset**](ContractsApi.md#add_contract_asset) | **POST** /contracts/{contractId}/{assetId} | Add an asset to a contract
-[**create_contract**](ContractsApi.md#create_contract) | **POST** /contracts | Create a contract
+[**add_contract_asset**](ContractsApi.md#add_contract_asset) | **POST** /contracts/{contractId}/{assetId} | Add an asset to a whitelisted contract
+[**create_contract**](ContractsApi.md#create_contract) | **POST** /contracts | Add a contract
 [**delete_contract**](ContractsApi.md#delete_contract) | **DELETE** /contracts/{contractId} | Delete a contract
-[**delete_contract_asset**](ContractsApi.md#delete_contract_asset) | **DELETE** /contracts/{contractId}/{assetId} | Delete a contract asset
-[**get_contract**](ContractsApi.md#get_contract) | **GET** /contracts/{contractId} | Find a specific contract
-[**get_contract_asset**](ContractsApi.md#get_contract_asset) | **GET** /contracts/{contractId}/{assetId} | Find a contract asset
-[**get_contracts**](ContractsApi.md#get_contracts) | **GET** /contracts | List contracts
+[**delete_contract_asset**](ContractsApi.md#delete_contract_asset) | **DELETE** /contracts/{contractId}/{assetId} | Delete an asset from a whitelisted contract
+[**get_contract**](ContractsApi.md#get_contract) | **GET** /contracts/{contractId} | Find a Specific Whitelisted Contract
+[**get_contract_asset**](ContractsApi.md#get_contract_asset) | **GET** /contracts/{contractId}/{assetId} | Find a whitelisted contract&#39;s asset
+[**get_contracts**](ContractsApi.md#get_contracts) | **GET** /contracts | List Whitelisted Contracts
 
 
 # **add_contract_asset**
 > ExternalWalletAsset add_contract_asset(contract_id, asset_id, idempotency_key=idempotency_key, add_contract_asset_request=add_contract_asset_request)
 
-Add an asset to a contract
+Add an asset to a whitelisted contract
 
-Adds an asset to an existing contract.
+Adds an asset to a whitelisted contract. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -52,7 +52,7 @@ with Fireblocks(configuration) as fireblocks:
     add_contract_asset_request = fireblocks.AddContractAssetRequest() # AddContractAssetRequest |  (optional)
 
     try:
-        # Add an asset to a contract
+        # Add an asset to a whitelisted contract
         api_response = fireblocks.contracts.add_contract_asset(contract_id, asset_id, idempotency_key=idempotency_key, add_contract_asset_request=add_contract_asset_request).result()
         print("The response of ContractsApi->add_contract_asset:\n")
         pprint(api_response)
@@ -97,9 +97,9 @@ No authorization required
 # **create_contract**
 > UnmanagedWallet create_contract(idempotency_key=idempotency_key, create_contract_request=create_contract_request)
 
-Create a contract
+Add a contract
 
-Creates a new contract.
+Adds a contract to the workspace whitelist. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -131,7 +131,7 @@ with Fireblocks(configuration) as fireblocks:
     create_contract_request = fireblocks.CreateContractRequest() # CreateContractRequest |  (optional)
 
     try:
-        # Create a contract
+        # Add a contract
         api_response = fireblocks.contracts.create_contract(idempotency_key=idempotency_key, create_contract_request=create_contract_request).result()
         print("The response of ContractsApi->create_contract:\n")
         pprint(api_response)
@@ -176,7 +176,7 @@ No authorization required
 
 Delete a contract
 
-Deletes a contract by ID.
+Deletes a contract by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -244,9 +244,9 @@ No authorization required
 # **delete_contract_asset**
 > delete_contract_asset(contract_id, asset_id)
 
-Delete a contract asset
+Delete an asset from a whitelisted contract
 
-Deletes a contract asset by ID.
+Deletes a whitelisted contract asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -275,7 +275,7 @@ with Fireblocks(configuration) as fireblocks:
     asset_id = 'asset_id_example' # str | The ID of the asset to delete
 
     try:
-        # Delete a contract asset
+        # Delete an asset from a whitelisted contract
         fireblocks.contracts.delete_contract_asset(contract_id, asset_id).result()
     except Exception as e:
         print("Exception when calling ContractsApi->delete_contract_asset: %s\n" % e)
@@ -316,9 +316,9 @@ No authorization required
 # **get_contract**
 > UnmanagedWallet get_contract(contract_id)
 
-Find a specific contract
+Find a Specific Whitelisted Contract
 
-Returns a contract by ID.
+Returns a whitelisted contract by Fireblocks Contract ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -348,7 +348,7 @@ with Fireblocks(configuration) as fireblocks:
     contract_id = 'contract_id_example' # str | The ID of the contract to return
 
     try:
-        # Find a specific contract
+        # Find a Specific Whitelisted Contract
         api_response = fireblocks.contracts.get_contract(contract_id).result()
         print("The response of ContractsApi->get_contract:\n")
         pprint(api_response)
@@ -390,9 +390,9 @@ No authorization required
 # **get_contract_asset**
 > ExternalWalletAsset get_contract_asset(contract_id, asset_id)
 
-Find a contract asset
+Find a whitelisted contract's asset
 
-Returns a contract asset by ID.
+Returns a whitelisted contract's asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -423,7 +423,7 @@ with Fireblocks(configuration) as fireblocks:
     asset_id = 'asset_id_example' # str | The ID of the asset to return
 
     try:
-        # Find a contract asset
+        # Find a whitelisted contract's asset
         api_response = fireblocks.contracts.get_contract_asset(contract_id, asset_id).result()
         print("The response of ContractsApi->get_contract_asset:\n")
         pprint(api_response)
@@ -466,9 +466,9 @@ No authorization required
 # **get_contracts**
 > List[UnmanagedWallet] get_contracts()
 
-List contracts
+List Whitelisted Contracts
 
-Gets a list of contracts.
+Gets a list of whitelisted contracts. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -497,7 +497,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # List contracts
+        # List Whitelisted Contracts
         api_response = fireblocks.contracts.get_contracts().result()
         print("The response of ContractsApi->get_contracts:\n")
         pprint(api_response)

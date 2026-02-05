@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.config_change_request_status import ConfigChangeRequestStatus
 from typing import Optional, Set
@@ -33,7 +33,7 @@ class WalletAsset(BaseModel):
     locked_amount: Optional[StrictStr] = Field(default=None, alias="lockedAmount")
     status: Optional[ConfigChangeRequestStatus] = None
     address: Optional[StrictStr] = None
-    tag: Optional[StrictStr] = None
+    tag: Optional[StrictBool] = None
     activation_time: Optional[StrictStr] = Field(default=None, alias="activationTime")
     __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "status", "address", "tag", "activationTime"]
 

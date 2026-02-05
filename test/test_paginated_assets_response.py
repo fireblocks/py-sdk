@@ -49,9 +49,10 @@ class TestPaginatedAssetsResponse(unittest.TestCase):
                             locked_amount = '', 
                             status = 'WAITING_FOR_APPROVAL', 
                             address = '', 
-                            tag = '', 
+                            tag = True, 
                             activation_time = '', )
-                        ], ),
+                        ], 
+                    test = True, ),
                 next = ''
             )
         else:
@@ -67,9 +68,10 @@ class TestPaginatedAssetsResponse(unittest.TestCase):
                             locked_amount = '', 
                             status = 'WAITING_FOR_APPROVAL', 
                             address = '', 
-                            tag = '', 
+                            tag = True, 
                             activation_time = '', )
-                        ], ),
+                        ], 
+                    test = True, ),
         )
         """
 

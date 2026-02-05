@@ -577,6 +577,7 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**resend_transaction_webhooks**](docs/WebhooksApi.md#resend_transaction_webhooks) | **POST** /webhooks/resend/{txId} | Resend webhooks for a transaction by ID
 *WebhooksApi* | [**resend_webhooks**](docs/WebhooksApi.md#resend_webhooks) | **POST** /webhooks/resend | Resend failed webhooks
 *WebhooksV2Api* | [**create_webhook**](docs/WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create a new webhook
+*WebhooksV2Api* | [**delete_notification**](docs/WebhooksV2Api.md#delete_notification) | **DELETE** /webhooks/{webhookId}/notifications/{notificationId} | Delete notification by id
 *WebhooksV2Api* | [**delete_webhook**](docs/WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
 *WebhooksV2Api* | [**get_metrics**](docs/WebhooksV2Api.md#get_metrics) | **GET** /webhooks/{webhookId}/metrics/{metricName} | Get webhook metrics
 *WebhooksV2Api* | [**get_notification**](docs/WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id

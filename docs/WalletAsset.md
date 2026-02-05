@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **locked_amount** | **str** |  | [optional] 
 **status** | [**ConfigChangeRequestStatus**](ConfigChangeRequestStatus.md) |  | [optional] 
 **address** | **str** |  | [optional] 
-**tag** | **str** |  | [optional] 
+**tag** | **bool** |  | [optional] 
 **activation_time** | **str** |  | [optional] 
 
 ## Example

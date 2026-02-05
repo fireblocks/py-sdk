@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **customer_ref_id** | **str** |  | [optional] 
 **assets** | [**List[WalletAsset]**](WalletAsset.md) |  | 
+**test** | **bool** |  | 
 
 ## Example
 

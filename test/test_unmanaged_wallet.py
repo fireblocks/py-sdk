@@ -47,9 +47,10 @@ class TestUnmanagedWallet(unittest.TestCase):
                         locked_amount = '', 
                         status = 'WAITING_FOR_APPROVAL', 
                         address = '', 
-                        tag = '', 
+                        tag = True, 
                         activation_time = '', )
-                    ]
+                    ],
+                test = True
             )
         else:
             return UnmanagedWallet(
@@ -62,9 +63,10 @@ class TestUnmanagedWallet(unittest.TestCase):
                         locked_amount = '', 
                         status = 'WAITING_FOR_APPROVAL', 
                         address = '', 
-                        tag = '', 
+                        tag = True, 
                         activation_time = '', )
                     ],
+                test = True,
         )
         """
 

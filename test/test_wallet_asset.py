@@ -42,7 +42,7 @@ class TestWalletAsset(unittest.TestCase):
                 locked_amount = '',
                 status = 'WAITING_FOR_APPROVAL',
                 address = '',
-                tag = '',
+                tag = True,
                 activation_time = ''
             )
         else:

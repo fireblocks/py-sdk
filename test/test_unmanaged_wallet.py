@@ -49,7 +49,8 @@ class TestUnmanagedWallet(unittest.TestCase):
                         address = '', 
                         tag = '', 
                         activation_time = '', )
-                    ]
+                    ],
+                test = True
             )
         else:
             return UnmanagedWallet(
@@ -65,6 +66,7 @@ class TestUnmanagedWallet(unittest.TestCase):
                         tag = '', 
                         activation_time = '', )
                     ],
+                test = True,
         )
         """
 

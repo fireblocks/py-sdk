@@ -41,6 +41,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_legal_entity_by_address(self) -> None:
+        """Test case for get_legal_entity_by_address
+
+        Look up legal entity by address and asset
+        """
+        pass
+
     def test_get_post_screening_policy(self) -> None:
         """Test case for get_post_screening_policy
 

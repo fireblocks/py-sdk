@@ -13,6 +13,10 @@ Name | Type | Description | Notes
 **postal_address** | [**PostalAddress**](PostalAddress.md) |  | 
 **email** | **str** |  | [optional] 
 **phone** | **str** | Mobile phone number in E.164 format | [optional] 
+**id_number** | **str** | The identification number corresponding to the primary identification document type specified in idType | [optional] 
+**id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) |  | [optional] 
+**additional_id_number** | **str** | The identification number corresponding to the additional identification document type specified in additionalIdType | [optional] 
+**additional_id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) |  | [optional] 
 
 ## Example
 

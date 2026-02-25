@@ -360,7 +360,7 @@ class NetworkConnectionsApi:
     ) -> Future[ApiResponse[NetworkIdResponse]]:
         """Creates a new Network ID
 
-        Creates a new Network ID.
+        Create a new Network ID.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -505,7 +505,7 @@ class NetworkConnectionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[DeleteNetworkConnectionResponse]]:
-        """Deletes a network connection by ID
+        """Delete a network connection by ID
 
         Deletes an existing network connection specified by its connection ID.
 
@@ -634,7 +634,7 @@ class NetworkConnectionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[DeleteNetworkIdResponse]]:
-        """Deletes specific network ID.
+        """Delete specific network ID.
 
         Deletes a network by its ID.
 
@@ -1013,7 +1013,7 @@ class NetworkConnectionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[NetworkIdResponse]]:
-        """Returns specific network ID.
+        """Return specific network ID.
 
         Returns specific network ID.
 
@@ -1263,7 +1263,7 @@ class NetworkConnectionsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[List[str]]]:
-        """Returns all enabled routing policy asset groups
+        """Return all enabled routing policy asset groups
 
         Returns all enabled routing policy asset groups
 

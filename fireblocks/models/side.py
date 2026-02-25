@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class Side(str, Enum):
     """
-    Side of the order
+    BUY: receive base / pay quote; SELL: give base / receive quote.
     """
 
     """

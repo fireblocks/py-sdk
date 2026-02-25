@@ -121,7 +121,7 @@ class TestTRLinkApi(unittest.TestCase):
     def test_get_tr_link_partners(self) -> None:
         """Test case for get_tr_link_partners
 
-        List available TRLink partners
+        List available TRSupport partners
         """
         pass
 

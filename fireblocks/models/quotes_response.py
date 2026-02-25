@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from fireblocks.models.quote import Quote
+from fireblocks.models.quote_failure import QuoteFailure
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +29,9 @@ class QuotesResponse(BaseModel):
     """
     QuotesResponse
     """ # noqa: E501
-    quotes: Optional[List[Quote]] = None
-    __properties: ClassVar[List[str]] = ["quotes"]
+    quotes: List[Quote]
+    quote_failures: List[QuoteFailure] = Field(description="List of partial failures encountered while requesting quotes. Empty when all quote attempts succeed.", alias="quoteFailures")
+    __properties: ClassVar[List[str]] = ["quotes", "quoteFailures"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,13 @@ class QuotesResponse(BaseModel):
                 if _item_quotes:
                     _items.append(_item_quotes.to_dict())
             _dict['quotes'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in quote_failures (list)
+        _items = []
+        if self.quote_failures:
+            for _item_quote_failures in self.quote_failures:
+                if _item_quote_failures:
+                    _items.append(_item_quote_failures.to_dict())
+            _dict['quoteFailures'] = _items
         return _dict
 
     @classmethod
@@ -89,7 +98,8 @@ class QuotesResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "quotes": [Quote.from_dict(_item) for _item in obj["quotes"]] if obj.get("quotes") is not None else None
+            "quotes": [Quote.from_dict(_item) for _item in obj["quotes"]] if obj.get("quotes") is not None else None,
+            "quoteFailures": [QuoteFailure.from_dict(_item) for _item in obj["quoteFailures"]] if obj.get("quoteFailures") is not None else None
         })
         return _obj
 

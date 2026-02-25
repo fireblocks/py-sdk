@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**get_asset_wallets**](VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | Get vault wallets (Paginated)
 [**get_create_multiple_deposit_addresses_job_status**](VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get the job status of the bulk deposit address creation
 [**get_create_multiple_vault_accounts_job_status**](VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
-[**get_max_bip_index_used**](VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip_index_used | Get maximum BIP44 index used
+[**get_max_bip_index_used**](VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip44_index_used | Get maximum BIP44 index used
 [**get_max_spendable_amount**](VaultsApi.md#get_max_spendable_amount) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_spendable_amount | Get max spendable amount in a transaction
 [**get_paged_vault_accounts**](VaultsApi.md#get_paged_vault_accounts) | **GET** /vault/accounts_paged | Get vault accounts (Paginated)
 [**get_public_key_info**](VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key for a derivation path
@@ -1126,7 +1126,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     name_prefix = 'name_prefix_example' # str |  (optional)
     name_suffix = 'name_suffix_example' # str |  (optional)
-    min_amount_threshold = 10 # float | Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. The amount set in this parameter is the native asset amount and not its USD value. (optional)
+    min_amount_threshold = 10 # float | Specifying minAmountThreshold will filter accounts whose total balance is greater than this value; otherwise, it returns all accounts. The amount set in this parameter represents the native asset amount, not its USD value. (optional)
     asset_id = 'asset_id_example' # str |  (optional)
     order_by = DESC # str |  (optional) (default to DESC)
     before = 'before_example' # str |  (optional)
@@ -1154,7 +1154,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name_prefix** | **str**|  | [optional] 
  **name_suffix** | **str**|  | [optional] 
- **min_amount_threshold** | **float**| Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. The amount set in this parameter is the native asset amount and not its USD value. | [optional] 
+ **min_amount_threshold** | **float**| Specifying minAmountThreshold will filter accounts whose total balance is greater than this value; otherwise, it returns all accounts. The amount set in this parameter represents the native asset amount, not its USD value. | [optional] 
  **asset_id** | **str**|  | [optional] 
  **order_by** | **str**|  | [optional] [default to DESC]
  **before** | **str**|  | [optional] 

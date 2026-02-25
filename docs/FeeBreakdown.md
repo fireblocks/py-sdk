@@ -1,5 +1,6 @@
 # FeeBreakdown
 
+Fee breakdown details for a transaction estimate
 
 ## Properties
 
@@ -7,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **base_fee** | **str** | Base fee component | [optional] 
 **priority_fee** | **str** | Priority fee component | [optional] 
-**rent** | **str** | Rent fee for Solana account creation/storage | [optional] 
+**rent** | **str** | Rent fee for account creation/storage (Solana-specific, optional) | [optional] 
 **total_fee** | **str** | Total fee amount | [optional] 
 
 ## Example

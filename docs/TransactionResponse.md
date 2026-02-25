@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 **authorization_info** | [**AuthorizationInfo**](AuthorizationInfo.md) |  | [optional] 
 **exchange_tx_id** | **str** | If the transaction originated from an exchange, this is the ID of this transaction at the exchange. | [optional] 
 **customer_ref_id** | **str** | The ID for AML providers to associate the owner of funds with transactions. | [optional] 
-**travel_rule_message_id** | **str** | The ID of the travel rule message from any travel rule provider. Used for  travel rule linking functionality to associate transactions with existing  travel rule messages. | [optional] 
+**travel_rule_message_id** | **str** | The ID of the travel rule message from any travel rule provider. Used for  travel rule supporting functionality to associate transactions with existing  travel rule messages. | [optional] 
 **aml_screening_result** | [**AmlScreeningResult**](AmlScreeningResult.md) |  | [optional] 
 **compliance_results** | [**ComplianceResults**](ComplianceResults.md) |  | [optional] 
 **not_broadcast_by_fireblocks** | **bool** | Indicates the transaction was not broadcast by Fireblocks | [optional] 

@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
+from fireblocks.models.address_registry_error import AddressRegistryError
 
 
-class TestFeeBreakdownOneOf1(unittest.TestCase):
-    """FeeBreakdownOneOf1 unit test stubs"""
+class TestAddressRegistryError(unittest.TestCase):
+    """AddressRegistryError unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,27 +27,27 @@ class TestFeeBreakdownOneOf1(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> FeeBreakdownOneOf1:
-        """Test FeeBreakdownOneOf1
+    def make_instance(self, include_optional) -> AddressRegistryError:
+        """Test AddressRegistryError
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `FeeBreakdownOneOf1`
+        # uncomment below to create an instance of `AddressRegistryError`
         """
-        model = FeeBreakdownOneOf1()
+        model = AddressRegistryError()
         if include_optional:
-            return FeeBreakdownOneOf1(
-                base_fee = '',
-                priority_fee = '',
-                total_fee = ''
+            return AddressRegistryError(
+                code = 56,
+                message = ''
             )
         else:
-            return FeeBreakdownOneOf1(
+            return AddressRegistryError(
+                message = '',
         )
         """
 
-    def testFeeBreakdownOneOf1(self):
-        """Test FeeBreakdownOneOf1"""
+    def testAddressRegistryError(self):
+        """Test AddressRegistryError"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

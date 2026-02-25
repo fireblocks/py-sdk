@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.create_token_request_dto import CreateTokenRequestDto
+from fireblocks.models.address_registry_legal_entity import AddressRegistryLegalEntity
 
 
-class TestCreateTokenRequestDto(unittest.TestCase):
-    """CreateTokenRequestDto unit test stubs"""
+class TestAddressRegistryLegalEntity(unittest.TestCase):
+    """AddressRegistryLegalEntity unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,36 +27,30 @@ class TestCreateTokenRequestDto(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateTokenRequestDto:
-        """Test CreateTokenRequestDto
+    def make_instance(self, include_optional) -> AddressRegistryLegalEntity:
+        """Test AddressRegistryLegalEntity
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreateTokenRequestDto`
+        # uncomment below to create an instance of `AddressRegistryLegalEntity`
         """
-        model = CreateTokenRequestDto()
+        model = AddressRegistryLegalEntity()
         if include_optional:
-            return CreateTokenRequestDto(
-                blockchain_id = 'B7QG017M',
-                asset_id = 'ETH_TEST5',
-                vault_account_id = '0',
-                create_params = None,
-                display_name = '',
-                use_gasless = False,
-                fee = '2000',
-                fee_level = 'MEDIUM',
-                tx_note = 'Token creation transaction for new stablecoin',
-                external_id = '0192e4f5-924e-7bb9-8e5b-c748270feb38'
+            return AddressRegistryLegalEntity(
+                company_name = 'ACME Corporation',
+                country_code = 'US',
+                company_id = '550e8400-e29b-41d4-a716-446655440000'
             )
         else:
-            return CreateTokenRequestDto(
-                vault_account_id = '0',
-                create_params = None,
+            return AddressRegistryLegalEntity(
+                company_name = 'ACME Corporation',
+                country_code = 'US',
+                company_id = '550e8400-e29b-41d4-a716-446655440000',
         )
         """
 
-    def testCreateTokenRequestDto(self):
-        """Test CreateTokenRequestDto"""
+    def testAddressRegistryLegalEntity(self):
+        """Test AddressRegistryLegalEntity"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

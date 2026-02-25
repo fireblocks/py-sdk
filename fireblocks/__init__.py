@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "14.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -127,6 +127,8 @@ from fireblocks.models.additional_info_request_additional_info import (
 from fireblocks.models.address_balance_item_dto import AddressBalanceItemDto
 from fireblocks.models.address_balance_paged_response import AddressBalancePagedResponse
 from fireblocks.models.address_not_available_error import AddressNotAvailableError
+from fireblocks.models.address_registry_error import AddressRegistryError
+from fireblocks.models.address_registry_legal_entity import AddressRegistryLegalEntity
 from fireblocks.models.alert_exposure_type_enum import AlertExposureTypeEnum
 from fireblocks.models.alert_level_enum import AlertLevelEnum
 from fireblocks.models.aml_alert import AmlAlert
@@ -628,8 +630,6 @@ from fireblocks.models.failure import Failure
 from fireblocks.models.failure_reason import FailureReason
 from fireblocks.models.fee import Fee
 from fireblocks.models.fee_breakdown import FeeBreakdown
-from fireblocks.models.fee_breakdown_one_of import FeeBreakdownOneOf
-from fireblocks.models.fee_breakdown_one_of1 import FeeBreakdownOneOf1
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_level import FeeLevel
 from fireblocks.models.fee_payer_info import FeePayerInfo
@@ -896,6 +896,7 @@ from fireblocks.models.personal_identification import PersonalIdentification
 from fireblocks.models.personal_identification_full_name import (
     PersonalIdentificationFullName,
 )
+from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.pix_address import PixAddress
 from fireblocks.models.pix_destination import PixDestination
 from fireblocks.models.pix_payment_info import PixPaymentInfo
@@ -939,6 +940,7 @@ from fireblocks.models.quote_execution_with_requote_request_details import (
 from fireblocks.models.quote_execution_with_requote_response_details import (
     QuoteExecutionWithRequoteResponseDetails,
 )
+from fireblocks.models.quote_failure import QuoteFailure
 from fireblocks.models.quote_properties_details import QuotePropertiesDetails
 from fireblocks.models.quote_type_enum import QuoteTypeEnum
 from fireblocks.models.quotes_response import QuotesResponse

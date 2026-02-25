@@ -20,18 +20,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.trading_error_schema import TradingErrorSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class FeeBreakdownOneOf(BaseModel):
+class QuoteFailure(BaseModel):
     """
-    Solana-specific fee breakdown
+    QuoteFailure
     """ # noqa: E501
-    base_fee: Optional[StrictStr] = Field(default=None, description="Base fee for Solana transaction", alias="baseFee")
-    priority_fee: Optional[StrictStr] = Field(default=None, description="Priority fee for Solana transaction", alias="priorityFee")
-    rent: Optional[StrictStr] = Field(default=None, description="Rent fee for Solana account creation/storage")
-    total_fee: Optional[StrictStr] = Field(default=None, description="Total fee amount", alias="totalFee")
-    __properties: ClassVar[List[str]] = ["baseFee", "priorityFee", "rent", "totalFee"]
+    provider_id: StrictStr = Field(description="Identifier of the provider for which the quote request failed.", alias="providerId")
+    account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the account for which the quote request failed (optional).", alias="accountId")
+    error: TradingErrorSchema
+    __properties: ClassVar[List[str]] = ["providerId", "accountId", "error"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +51,7 @@ class FeeBreakdownOneOf(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeeBreakdownOneOf from a JSON string"""
+        """Create an instance of QuoteFailure from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,11 +72,14 @@ class FeeBreakdownOneOf(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of error
+        if self.error:
+            _dict['error'] = self.error.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeeBreakdownOneOf from a dict"""
+        """Create an instance of QuoteFailure from a dict"""
         if obj is None:
             return None
 
@@ -84,10 +87,9 @@ class FeeBreakdownOneOf(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "baseFee": obj.get("baseFee"),
-            "priorityFee": obj.get("priorityFee"),
-            "rent": obj.get("rent"),
-            "totalFee": obj.get("totalFee")
+            "providerId": obj.get("providerId"),
+            "accountId": obj.get("accountId"),
+            "error": TradingErrorSchema.from_dict(obj["error"]) if obj.get("error") is not None else None
         })
         return _obj
 

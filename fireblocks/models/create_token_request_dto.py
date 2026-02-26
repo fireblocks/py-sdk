@@ -36,7 +36,9 @@ class CreateTokenRequestDto(BaseModel):
     use_gasless: Optional[StrictBool] = Field(default=None, description="Indicates whether the token should be created in a gasless manner, utilizing the ERC-2771 standard. When set to true, the transaction will be relayed by a designated relayer. The workspace must be configured to use Fireblocks gasless relay.", alias="useGasless")
     fee: Optional[StrictStr] = Field(default=None, description="Max fee amount for the write function transaction. interchangeable with the 'feeLevel' field")
     fee_level: Optional[StrictStr] = Field(default=None, description="Fee level for the write function transaction. interchangeable with the 'fee' field", alias="feeLevel")
-    __properties: ClassVar[List[str]] = ["blockchainId", "assetId", "vaultAccountId", "createParams", "displayName", "useGasless", "fee", "feeLevel"]
+    tx_note: Optional[StrictStr] = Field(default=None, description="Custom note that describes the transaction at your Fireblocks workspace. This note will be visible in the Fireblocks UI and in the transaction details and not on the blockchain.", alias="txNote")
+    external_id: Optional[StrictStr] = Field(default=None, description="External id that can be used to identify the transaction in your system. The unique identifier of the transaction outside of Fireblocks with max length of 255 characters", alias="externalId")
+    __properties: ClassVar[List[str]] = ["blockchainId", "assetId", "vaultAccountId", "createParams", "displayName", "useGasless", "fee", "feeLevel", "txNote", "externalId"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -109,7 +111,9 @@ class CreateTokenRequestDto(BaseModel):
             "displayName": obj.get("displayName"),
             "useGasless": obj.get("useGasless"),
             "fee": obj.get("fee"),
-            "feeLevel": obj.get("feeLevel")
+            "feeLevel": obj.get("feeLevel"),
+            "txNote": obj.get("txNote"),
+            "externalId": obj.get("externalId")
         })
         return _obj
 

@@ -32,7 +32,7 @@ class TransactionResponseDestination(BaseModel):
     """ # noqa: E501
     amount: Optional[StrictStr] = Field(default=None, description="The amount to be sent to this destination.")
     amount_usd: Optional[StrictStr] = Field(default=None, description="The USD value of the requested amount.", alias="amountUSD")
-    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for  travel rule linking functionality to associate transactions with existing  travel rule messages.", alias="travelRuleMessageId")
+    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for  travel rule supporting functionality to associate transactions with existing  travel rule messages.", alias="travelRuleMessageId")
     aml_screening_result: Optional[AmlScreeningResult] = Field(default=None, alias="amlScreeningResult")
     destination: Optional[DestinationTransferPeerPathResponse] = None
     authorization_info: Optional[AuthorizationInfo] = Field(default=None, alias="authorizationInfo")

@@ -19,18 +19,18 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class FeeBreakdownOneOf1(BaseModel):
+class AddressRegistryLegalEntity(BaseModel):
     """
-    Generic fee breakdown for other blockchains
+    Legal entity resolved for an address-registry lookup
     """ # noqa: E501
-    base_fee: Optional[StrictStr] = Field(default=None, description="Base fee component", alias="baseFee")
-    priority_fee: Optional[StrictStr] = Field(default=None, description="Priority fee component", alias="priorityFee")
-    total_fee: Optional[StrictStr] = Field(default=None, description="Total fee amount", alias="totalFee")
-    __properties: ClassVar[List[str]] = ["baseFee", "priorityFee", "totalFee"]
+    company_name: StrictStr = Field(description="Legal entity / company display name", alias="companyName")
+    country_code: StrictStr = Field(description="Jurisdiction country code (e.g. ISO 3166-1 alpha-2)", alias="countryCode")
+    company_id: StrictStr = Field(description="Company identifier for the resolved legal entity (UUID)", alias="companyId")
+    __properties: ClassVar[List[str]] = ["companyName", "countryCode", "companyId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class FeeBreakdownOneOf1(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FeeBreakdownOneOf1 from a JSON string"""
+        """Create an instance of AddressRegistryLegalEntity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +75,7 @@ class FeeBreakdownOneOf1(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FeeBreakdownOneOf1 from a dict"""
+        """Create an instance of AddressRegistryLegalEntity from a dict"""
         if obj is None:
             return None
 
@@ -83,9 +83,9 @@ class FeeBreakdownOneOf1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "baseFee": obj.get("baseFee"),
-            "priorityFee": obj.get("priorityFee"),
-            "totalFee": obj.get("totalFee")
+            "companyName": obj.get("companyName"),
+            "countryCode": obj.get("countryCode"),
+            "companyId": obj.get("companyId")
         })
         return _obj
 

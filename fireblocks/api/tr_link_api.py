@@ -561,7 +561,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[TRLinkCustomerResponse]]:
         """Create customer
 
-        Creates a new customer (legal entity/VASP) for TRLink Travel Rule compliance operations. The customer represents your organization in the Travel Rule network and contains IVMS101-compliant identity information.
+        Creates a new customer (legal entity/VASP) for TRSupport Travel Rule compliance operations. The customer represents your organization in the Travel Rule network and contains IVMS101-compliant identity information.
 
         :param tr_link_create_customer_request: (required)
         :type tr_link_create_customer_request: TRLinkCreateCustomerRequest
@@ -709,7 +709,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[TRLinkCustomerIntegrationResponse]]:
         """Create customer integration
 
-        Creates a new TRLink integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation.
+        Creates a new TRSupport integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation.
 
         :param tr_link_create_integration_request: (required)
         :type tr_link_create_integration_request: TRLinkCreateIntegrationRequest
@@ -1536,7 +1536,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[List[TRLinkCustomerIntegrationResponse]]]:
         """Get customer integrations
 
-        Retrieves all TRLink integrations for a specific customer. Returns a list of partner integrations configured for Travel Rule compliance.
+        Retrieves all TRSupport integrations for a specific customer. Returns a list of partner integrations configured for Travel Rule compliance.
 
         :param customer_id: Customer unique identifier (required)
         :type customer_id: str
@@ -1912,9 +1912,9 @@ class TRLinkApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[List[TRLinkPartnerResponse]]]:
-        """List available TRLink partners
+        """List available TRSupport partners
 
-        Retrieves a list of all available Travel Rule Link integration partners. Partners provide Travel Rule compliance services such as VASP discovery, TRM exchange, and PII encryption.
+        Retrieves a list of all available Travel Rule Support integration partners. Partners provide Travel Rule compliance services such as VASP discovery, TRM exchange, and PII encryption.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2035,7 +2035,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[TRLinkPolicyResponse]]:
         """Get TRLink policy
 
-        Retrieves the complete TRLink policy for the authenticated tenant, including pre-screening rules, post-screening rules, and missing TRM rules. Pre-screening rules determine whether transactions should be screened. Post-screening rules determine actions based on screening results. Missing TRM rules handle cases when screening data is unavailable.
+        Retrieves the complete TRSupport policy for the authenticated tenant, including pre-screening rules, post-screening rules, and missing TRM rules. Pre-screening rules determine whether transactions should be screened. Post-screening rules determine actions based on screening results. Missing TRM rules handle cases when screening data is unavailable.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

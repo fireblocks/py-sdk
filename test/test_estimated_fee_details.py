@@ -37,9 +37,21 @@ class TestEstimatedFeeDetails(unittest.TestCase):
         model = EstimatedFeeDetails()
         if include_optional:
             return EstimatedFeeDetails(
-                low = None,
-                medium = None,
-                high = None
+                low = fireblocks.models.fee_breakdown.FeeBreakdown(
+                    base_fee = '', 
+                    priority_fee = '', 
+                    rent = '', 
+                    total_fee = '', ),
+                medium = fireblocks.models.fee_breakdown.FeeBreakdown(
+                    base_fee = '', 
+                    priority_fee = '', 
+                    rent = '', 
+                    total_fee = '', ),
+                high = fireblocks.models.fee_breakdown.FeeBreakdown(
+                    base_fee = '', 
+                    priority_fee = '', 
+                    rent = '', 
+                    total_fee = '', )
             )
         else:
             return EstimatedFeeDetails(

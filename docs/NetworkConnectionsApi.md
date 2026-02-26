@@ -7,13 +7,13 @@ Method | HTTP request | Description
 [**check_third_party_routing**](NetworkConnectionsApi.md#check_third_party_routing) | **GET** /network_connections/{connectionId}/is_third_party_routing/{assetType} | Retrieve third-party network routing validation
 [**create_network_connection**](NetworkConnectionsApi.md#create_network_connection) | **POST** /network_connections | Create a new network connection
 [**create_network_id**](NetworkConnectionsApi.md#create_network_id) | **POST** /network_ids | Creates a new Network ID
-[**delete_network_connection**](NetworkConnectionsApi.md#delete_network_connection) | **DELETE** /network_connections/{connectionId} | Deletes a network connection by ID
-[**delete_network_id**](NetworkConnectionsApi.md#delete_network_id) | **DELETE** /network_ids/{networkId} | Deletes specific network ID.
+[**delete_network_connection**](NetworkConnectionsApi.md#delete_network_connection) | **DELETE** /network_connections/{connectionId} | Delete a network connection by ID
+[**delete_network_id**](NetworkConnectionsApi.md#delete_network_id) | **DELETE** /network_ids/{networkId} | Delete specific network ID.
 [**get_network**](NetworkConnectionsApi.md#get_network) | **GET** /network_connections/{connectionId} | Get a network connection
 [**get_network_connections**](NetworkConnectionsApi.md#get_network_connections) | **GET** /network_connections | List network connections
-[**get_network_id**](NetworkConnectionsApi.md#get_network_id) | **GET** /network_ids/{networkId} | Returns specific network ID.
+[**get_network_id**](NetworkConnectionsApi.md#get_network_id) | **GET** /network_ids/{networkId} | Return specific network ID.
 [**get_network_ids**](NetworkConnectionsApi.md#get_network_ids) | **GET** /network_ids | Get all network IDs
-[**get_routing_policy_asset_groups**](NetworkConnectionsApi.md#get_routing_policy_asset_groups) | **GET** /network_ids/routing_policy_asset_groups | Returns all enabled routing policy asset groups
+[**get_routing_policy_asset_groups**](NetworkConnectionsApi.md#get_routing_policy_asset_groups) | **GET** /network_ids/routing_policy_asset_groups | Return all enabled routing policy asset groups
 [**search_network_ids**](NetworkConnectionsApi.md#search_network_ids) | **GET** /network_ids/search | Get both local IDs and discoverable remote IDs
 [**set_network_id_discoverability**](NetworkConnectionsApi.md#set_network_id_discoverability) | **PATCH** /network_ids/{networkId}/set_discoverability | Update network ID&#39;s discoverability.
 [**set_network_id_name**](NetworkConnectionsApi.md#set_network_id_name) | **PATCH** /network_ids/{networkId}/set_name | Update network ID&#39;s name.
@@ -197,7 +197,7 @@ No authorization required
 
 Creates a new Network ID
 
-Creates a new Network ID.
+Create a new Network ID.
 
 ### Example
 
@@ -272,7 +272,7 @@ No authorization required
 # **delete_network_connection**
 > DeleteNetworkConnectionResponse delete_network_connection(connection_id)
 
-Deletes a network connection by ID
+Delete a network connection by ID
 
 Deletes an existing network connection specified by its connection ID.
 
@@ -304,7 +304,7 @@ with Fireblocks(configuration) as fireblocks:
     connection_id = 'connection_id_example' # str | The ID of the network connection to delete
 
     try:
-        # Deletes a network connection by ID
+        # Delete a network connection by ID
         api_response = fireblocks.network_connections.delete_network_connection(connection_id).result()
         print("The response of NetworkConnectionsApi->delete_network_connection:\n")
         pprint(api_response)
@@ -346,7 +346,7 @@ No authorization required
 # **delete_network_id**
 > DeleteNetworkIdResponse delete_network_id(network_id)
 
-Deletes specific network ID.
+Delete specific network ID.
 
 Deletes a network by its ID.
 
@@ -378,7 +378,7 @@ with Fireblocks(configuration) as fireblocks:
     network_id = 'network_id_example' # str | The ID of the network
 
     try:
-        # Deletes specific network ID.
+        # Delete specific network ID.
         api_response = fireblocks.network_connections.delete_network_id(network_id).result()
         print("The response of NetworkConnectionsApi->delete_network_id:\n")
         pprint(api_response)
@@ -578,7 +578,7 @@ No authorization required
 # **get_network_id**
 > NetworkIdResponse get_network_id(network_id)
 
-Returns specific network ID.
+Return specific network ID.
 
 Returns specific network ID.
 
@@ -610,7 +610,7 @@ with Fireblocks(configuration) as fireblocks:
     network_id = 'network_id_example' # str | The ID of the network
 
     try:
-        # Returns specific network ID.
+        # Return specific network ID.
         api_response = fireblocks.network_connections.get_network_id(network_id).result()
         print("The response of NetworkConnectionsApi->get_network_id:\n")
         pprint(api_response)
@@ -722,7 +722,7 @@ No authorization required
 # **get_routing_policy_asset_groups**
 > List[str] get_routing_policy_asset_groups()
 
-Returns all enabled routing policy asset groups
+Return all enabled routing policy asset groups
 
 Returns all enabled routing policy asset groups
 
@@ -752,7 +752,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Returns all enabled routing policy asset groups
+        # Return all enabled routing policy asset groups
         api_response = fireblocks.network_connections.get_routing_policy_asset_groups().result()
         print("The response of NetworkConnectionsApi->get_routing_policy_asset_groups:\n")
         pprint(api_response)

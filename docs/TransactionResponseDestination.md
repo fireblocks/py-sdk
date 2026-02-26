@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** | The amount to be sent to this destination. | [optional] 
 **amount_usd** | **str** | The USD value of the requested amount. | [optional] 
-**travel_rule_message_id** | **str** | The ID of the travel rule message from any travel rule provider. Used for  travel rule linking functionality to associate transactions with existing  travel rule messages. | [optional] 
+**travel_rule_message_id** | **str** | The ID of the travel rule message from any travel rule provider. Used for  travel rule supporting functionality to associate transactions with existing  travel rule messages. | [optional] 
 **aml_screening_result** | [**AmlScreeningResult**](AmlScreeningResult.md) |  | [optional] 
 **destination** | [**DestinationTransferPeerPathResponse**](DestinationTransferPeerPathResponse.md) |  | [optional] 
 **authorization_info** | [**AuthorizationInfo**](AuthorizationInfo.md) |  | [optional] 

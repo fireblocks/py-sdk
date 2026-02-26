@@ -246,6 +246,7 @@ Class | Method | HTTP request | Description
 *BlockchainsAssetsApi* | [**update_asset_user_metadata**](docs/BlockchainsAssetsApi.md#update_asset_user_metadata) | **PATCH** /assets/{id} | Update the user’s metadata for an asset
 *ComplianceApi* | [**get_aml_post_screening_policy**](docs/ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 *ComplianceApi* | [**get_aml_screening_policy**](docs/ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
+*ComplianceApi* | [**get_legal_entity_by_address**](docs/ComplianceApi.md#get_legal_entity_by_address) | **GET** /address_registry/legal_entity | Look up legal entity by address and asset
 *ComplianceApi* | [**get_post_screening_policy**](docs/ComplianceApi.md#get_post_screening_policy) | **GET** /screening/travel_rule/post_screening_policy | Travel Rule - View Post-Screening Policy
 *ComplianceApi* | [**get_screening_full_details**](docs/ComplianceApi.md#get_screening_full_details) | **GET** /screening/transaction/{txId} | Provides all the compliance details for the given screened transaction.
 *ComplianceApi* | [**get_screening_policy**](docs/ComplianceApi.md#get_screening_policy) | **GET** /screening/travel_rule/screening_policy | Travel Rule - View Screening Policy
@@ -379,13 +380,13 @@ Class | Method | HTTP request | Description
 *NetworkConnectionsApi* | [**check_third_party_routing**](docs/NetworkConnectionsApi.md#check_third_party_routing) | **GET** /network_connections/{connectionId}/is_third_party_routing/{assetType} | Retrieve third-party network routing validation
 *NetworkConnectionsApi* | [**create_network_connection**](docs/NetworkConnectionsApi.md#create_network_connection) | **POST** /network_connections | Create a new network connection
 *NetworkConnectionsApi* | [**create_network_id**](docs/NetworkConnectionsApi.md#create_network_id) | **POST** /network_ids | Creates a new Network ID
-*NetworkConnectionsApi* | [**delete_network_connection**](docs/NetworkConnectionsApi.md#delete_network_connection) | **DELETE** /network_connections/{connectionId} | Deletes a network connection by ID
-*NetworkConnectionsApi* | [**delete_network_id**](docs/NetworkConnectionsApi.md#delete_network_id) | **DELETE** /network_ids/{networkId} | Deletes specific network ID.
+*NetworkConnectionsApi* | [**delete_network_connection**](docs/NetworkConnectionsApi.md#delete_network_connection) | **DELETE** /network_connections/{connectionId} | Delete a network connection by ID
+*NetworkConnectionsApi* | [**delete_network_id**](docs/NetworkConnectionsApi.md#delete_network_id) | **DELETE** /network_ids/{networkId} | Delete specific network ID.
 *NetworkConnectionsApi* | [**get_network**](docs/NetworkConnectionsApi.md#get_network) | **GET** /network_connections/{connectionId} | Get a network connection
 *NetworkConnectionsApi* | [**get_network_connections**](docs/NetworkConnectionsApi.md#get_network_connections) | **GET** /network_connections | List network connections
-*NetworkConnectionsApi* | [**get_network_id**](docs/NetworkConnectionsApi.md#get_network_id) | **GET** /network_ids/{networkId} | Returns specific network ID.
+*NetworkConnectionsApi* | [**get_network_id**](docs/NetworkConnectionsApi.md#get_network_id) | **GET** /network_ids/{networkId} | Return specific network ID.
 *NetworkConnectionsApi* | [**get_network_ids**](docs/NetworkConnectionsApi.md#get_network_ids) | **GET** /network_ids | Get all network IDs
-*NetworkConnectionsApi* | [**get_routing_policy_asset_groups**](docs/NetworkConnectionsApi.md#get_routing_policy_asset_groups) | **GET** /network_ids/routing_policy_asset_groups | Returns all enabled routing policy asset groups
+*NetworkConnectionsApi* | [**get_routing_policy_asset_groups**](docs/NetworkConnectionsApi.md#get_routing_policy_asset_groups) | **GET** /network_ids/routing_policy_asset_groups | Return all enabled routing policy asset groups
 *NetworkConnectionsApi* | [**search_network_ids**](docs/NetworkConnectionsApi.md#search_network_ids) | **GET** /network_ids/search | Get both local IDs and discoverable remote IDs
 *NetworkConnectionsApi* | [**set_network_id_discoverability**](docs/NetworkConnectionsApi.md#set_network_id_discoverability) | **PATCH** /network_ids/{networkId}/set_discoverability | Update network ID&#39;s discoverability.
 *NetworkConnectionsApi* | [**set_network_id_name**](docs/NetworkConnectionsApi.md#set_network_id_name) | **PATCH** /network_ids/{networkId}/set_name | Update network ID&#39;s name.
@@ -465,7 +466,7 @@ Class | Method | HTTP request | Description
 *TRLinkApi* | [**get_tr_link_customer_integrations**](docs/TRLinkApi.md#get_tr_link_customer_integrations) | **GET** /screening/trlink/customers/{customerId}/integrations | Get customer integrations
 *TRLinkApi* | [**get_tr_link_customers**](docs/TRLinkApi.md#get_tr_link_customers) | **GET** /screening/trlink/customers | Get all customers
 *TRLinkApi* | [**get_tr_link_integration_public_key**](docs/TRLinkApi.md#get_tr_link_integration_public_key) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/public_key | Get public key for PII encryption
-*TRLinkApi* | [**get_tr_link_partners**](docs/TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRLink partners
+*TRLinkApi* | [**get_tr_link_partners**](docs/TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRSupport partners
 *TRLinkApi* | [**get_tr_link_policy**](docs/TRLinkApi.md#get_tr_link_policy) | **GET** /screening/trlink/policy | Get TRLink policy
 *TRLinkApi* | [**get_tr_link_supported_asset**](docs/TRLinkApi.md#get_tr_link_supported_asset) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets/{assetId} | Get supported asset by ID
 *TRLinkApi* | [**get_tr_link_trm_by_id**](docs/TRLinkApi.md#get_tr_link_trm_by_id) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId} | Get TRM by ID
@@ -551,7 +552,7 @@ Class | Method | HTTP request | Description
 *VaultsApi* | [**get_asset_wallets**](docs/VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | Get vault wallets (Paginated)
 *VaultsApi* | [**get_create_multiple_deposit_addresses_job_status**](docs/VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get the job status of the bulk deposit address creation
 *VaultsApi* | [**get_create_multiple_vault_accounts_job_status**](docs/VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
-*VaultsApi* | [**get_max_bip_index_used**](docs/VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip_index_used | Get maximum BIP44 index used
+*VaultsApi* | [**get_max_bip_index_used**](docs/VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip44_index_used | Get maximum BIP44 index used
 *VaultsApi* | [**get_max_spendable_amount**](docs/VaultsApi.md#get_max_spendable_amount) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_spendable_amount | Get max spendable amount in a transaction
 *VaultsApi* | [**get_paged_vault_accounts**](docs/VaultsApi.md#get_paged_vault_accounts) | **GET** /vault/accounts_paged | Get vault accounts (Paginated)
 *VaultsApi* | [**get_public_key_info**](docs/VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key for a derivation path
@@ -632,6 +633,8 @@ Class | Method | HTTP request | Description
  - [AddressBalanceItemDto](docs/AddressBalanceItemDto.md)
  - [AddressBalancePagedResponse](docs/AddressBalancePagedResponse.md)
  - [AddressNotAvailableError](docs/AddressNotAvailableError.md)
+ - [AddressRegistryError](docs/AddressRegistryError.md)
+ - [AddressRegistryLegalEntity](docs/AddressRegistryLegalEntity.md)
  - [AlertExposureTypeEnum](docs/AlertExposureTypeEnum.md)
  - [AlertLevelEnum](docs/AlertLevelEnum.md)
  - [AmlAlert](docs/AmlAlert.md)
@@ -947,8 +950,6 @@ Class | Method | HTTP request | Description
  - [FailureReason](docs/FailureReason.md)
  - [Fee](docs/Fee.md)
  - [FeeBreakdown](docs/FeeBreakdown.md)
- - [FeeBreakdownOneOf](docs/FeeBreakdownOneOf.md)
- - [FeeBreakdownOneOf1](docs/FeeBreakdownOneOf1.md)
  - [FeeInfo](docs/FeeInfo.md)
  - [FeeLevel](docs/FeeLevel.md)
  - [FeePayerInfo](docs/FeePayerInfo.md)
@@ -1131,6 +1132,7 @@ Class | Method | HTTP request | Description
  - [PersonalEntityTypeEnum](docs/PersonalEntityTypeEnum.md)
  - [PersonalIdentification](docs/PersonalIdentification.md)
  - [PersonalIdentificationFullName](docs/PersonalIdentificationFullName.md)
+ - [PersonalIdentificationType](docs/PersonalIdentificationType.md)
  - [PixAddress](docs/PixAddress.md)
  - [PixDestination](docs/PixDestination.md)
  - [PixPaymentInfo](docs/PixPaymentInfo.md)
@@ -1168,6 +1170,7 @@ Class | Method | HTTP request | Description
  - [QuoteExecutionTypeDetails](docs/QuoteExecutionTypeDetails.md)
  - [QuoteExecutionWithRequoteRequestDetails](docs/QuoteExecutionWithRequoteRequestDetails.md)
  - [QuoteExecutionWithRequoteResponseDetails](docs/QuoteExecutionWithRequoteResponseDetails.md)
+ - [QuoteFailure](docs/QuoteFailure.md)
  - [QuotePropertiesDetails](docs/QuotePropertiesDetails.md)
  - [QuoteTypeEnum](docs/QuoteTypeEnum.md)
  - [QuotesResponse](docs/QuotesResponse.md)

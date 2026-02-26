@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_aml_post_screening_policy**](ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 [**get_aml_screening_policy**](ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
+[**get_legal_entity_by_address**](ComplianceApi.md#get_legal_entity_by_address) | **GET** /address_registry/legal_entity | Look up legal entity by address and asset
 [**get_post_screening_policy**](ComplianceApi.md#get_post_screening_policy) | **GET** /screening/travel_rule/post_screening_policy | Travel Rule - View Post-Screening Policy
 [**get_screening_full_details**](ComplianceApi.md#get_screening_full_details) | **GET** /screening/transaction/{txId} | Provides all the compliance details for the given screened transaction.
 [**get_screening_policy**](ComplianceApi.md#get_screening_policy) | **GET** /screening/travel_rule/screening_policy | Travel Rule - View Screening Policy
@@ -151,6 +152,85 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Screening policy retrieved successfully. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_legal_entity_by_address**
+> AddressRegistryLegalEntity get_legal_entity_by_address(address, asset=asset)
+
+Look up legal entity by address and asset
+
+Returns the legal entity (company name, jurisdiction, companyId) for the given blockchain address and optional asset. Both the requester and the owner of the address must be opted in to the address registry.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_legal_entity import AddressRegistryLegalEntity
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    address = '0x742d35cc6634c0532925a3b844bc9e7595f0beb0' # str | Blockchain address to look up
+    asset = 'ETH' # str | Asset ID (e.g. ETH, BTC). Optional. (optional)
+
+    try:
+        # Look up legal entity by address and asset
+        api_response = fireblocks.compliance.get_legal_entity_by_address(address, asset=asset).result()
+        print("The response of ComplianceApi->get_legal_entity_by_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->get_legal_entity_by_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address** | **str**| Blockchain address to look up | 
+ **asset** | **str**| Asset ID (e.g. ETH, BTC). Optional. | [optional] 
+
+### Return type
+
+[**AddressRegistryLegalEntity**](AddressRegistryLegalEntity.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Legal entity found |  * X-Request-ID -  <br>  |
+**400** | Bad request – missing or invalid address or asset |  * X-Request-ID -  <br>  |
+**403** | Forbidden – requester or address owner not opted in to the address registry (error codes 2140, 2141) |  * X-Request-ID -  <br>  |
+**404** | Address not resolved or entity not found (error code 2142) |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

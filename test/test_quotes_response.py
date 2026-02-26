@@ -39,10 +39,25 @@ class TestQuotesResponse(unittest.TestCase):
             return QuotesResponse(
                 quotes = [
                     null
+                    ],
+                quote_failures = [
+                    fireblocks.models.quote_failure.QuoteFailure(
+                        provider_id = 'BRIDGE', 
+                        account_id = 'acc_9f4e2d8b1c6a5e73', 
+                        error = {"code":900,"message":"Invalid base amount: must be greater than 0"}, )
                     ]
             )
         else:
             return QuotesResponse(
+                quotes = [
+                    null
+                    ],
+                quote_failures = [
+                    fireblocks.models.quote_failure.QuoteFailure(
+                        provider_id = 'BRIDGE', 
+                        account_id = 'acc_9f4e2d8b1c6a5e73', 
+                        error = {"code":900,"message":"Invalid base amount: must be greater than 0"}, )
+                    ],
         )
         """
 

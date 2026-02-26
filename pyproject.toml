@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fireblocks"
-version = "0.0.0"
+version = "14.1.0"
 description = "Fireblocks API"
 authors = ["Fireblocks <developers@fireblocks.com>"]
 license = "MIT License"

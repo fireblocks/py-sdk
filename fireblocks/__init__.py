@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "14.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -896,6 +896,7 @@ from fireblocks.models.personal_identification import PersonalIdentification
 from fireblocks.models.personal_identification_full_name import (
     PersonalIdentificationFullName,
 )
+from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.pix_address import PixAddress
 from fireblocks.models.pix_destination import PixDestination
 from fireblocks.models.pix_payment_info import PixPaymentInfo
@@ -939,6 +940,7 @@ from fireblocks.models.quote_execution_with_requote_request_details import (
 from fireblocks.models.quote_execution_with_requote_response_details import (
     QuoteExecutionWithRequoteResponseDetails,
 )
+from fireblocks.models.quote_failure import QuoteFailure
 from fireblocks.models.quote_properties_details import QuotePropertiesDetails
 from fireblocks.models.quote_type_enum import QuoteTypeEnum
 from fireblocks.models.quotes_response import QuotesResponse

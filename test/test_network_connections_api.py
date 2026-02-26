@@ -51,14 +51,14 @@ class TestNetworkConnectionsApi(unittest.TestCase):
     def test_delete_network_connection(self) -> None:
         """Test case for delete_network_connection
 
-        Deletes a network connection by ID
+        Delete a network connection by ID
         """
         pass
 
     def test_delete_network_id(self) -> None:
         """Test case for delete_network_id
 
-        Deletes specific network ID.
+        Delete specific network ID.
         """
         pass
 
@@ -79,7 +79,7 @@ class TestNetworkConnectionsApi(unittest.TestCase):
     def test_get_network_id(self) -> None:
         """Test case for get_network_id
 
-        Returns specific network ID.
+        Return specific network ID.
         """
         pass
 
@@ -93,7 +93,7 @@ class TestNetworkConnectionsApi(unittest.TestCase):
     def test_get_routing_policy_asset_groups(self) -> None:
         """Test case for get_routing_policy_asset_groups
 
-        Returns all enabled routing policy asset groups
+        Return all enabled routing policy asset groups
         """
         pass
 

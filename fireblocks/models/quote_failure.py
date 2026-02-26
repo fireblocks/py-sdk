@@ -20,19 +20,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.destination_transfer_peer_path import DestinationTransferPeerPath
+from fireblocks.models.trading_error_schema import TradingErrorSchema
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TransactionRequestDestination(BaseModel):
+class QuoteFailure(BaseModel):
     """
-    TransactionRequestDestination
+    QuoteFailure
     """ # noqa: E501
-    amount: Optional[StrictStr] = None
-    destination: Optional[DestinationTransferPeerPath] = None
-    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for travel rule supporting functionality to associate transactions with existing travel rule messages.", alias="travelRuleMessageId")
-    customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
-    __properties: ClassVar[List[str]] = ["amount", "destination", "travelRuleMessageId", "customerRefId"]
+    provider_id: StrictStr = Field(description="Identifier of the provider for which the quote request failed.", alias="providerId")
+    account_id: Optional[StrictStr] = Field(default=None, description="Identifier of the account for which the quote request failed (optional).", alias="accountId")
+    error: TradingErrorSchema
+    __properties: ClassVar[List[str]] = ["providerId", "accountId", "error"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +51,7 @@ class TransactionRequestDestination(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TransactionRequestDestination from a JSON string"""
+        """Create an instance of QuoteFailure from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +72,14 @@ class TransactionRequestDestination(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of destination
-        if self.destination:
-            _dict['destination'] = self.destination.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of error
+        if self.error:
+            _dict['error'] = self.error.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TransactionRequestDestination from a dict"""
+        """Create an instance of QuoteFailure from a dict"""
         if obj is None:
             return None
 
@@ -88,10 +87,9 @@ class TransactionRequestDestination(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "amount": obj.get("amount"),
-            "destination": DestinationTransferPeerPath.from_dict(obj["destination"]) if obj.get("destination") is not None else None,
-            "travelRuleMessageId": obj.get("travelRuleMessageId"),
-            "customerRefId": obj.get("customerRefId")
+            "providerId": obj.get("providerId"),
+            "accountId": obj.get("accountId"),
+            "error": TradingErrorSchema.from_dict(obj["error"]) if obj.get("error") is not None else None
         })
         return _obj
 

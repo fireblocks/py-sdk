@@ -27,6 +27,13 @@ class TestBlockchainsAssetsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_delete_asset(self) -> None:
+        """Test case for delete_asset
+
+        Delete Asset by id
+        """
+        pass
+
     def test_get_asset(self) -> None:
         """Test case for get_asset
 

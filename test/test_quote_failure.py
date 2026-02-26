@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.create_token_request_dto import CreateTokenRequestDto
+from fireblocks.models.quote_failure import QuoteFailure
 
 
-class TestCreateTokenRequestDto(unittest.TestCase):
-    """CreateTokenRequestDto unit test stubs"""
+class TestQuoteFailure(unittest.TestCase):
+    """QuoteFailure unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,36 +27,29 @@ class TestCreateTokenRequestDto(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateTokenRequestDto:
-        """Test CreateTokenRequestDto
+    def make_instance(self, include_optional) -> QuoteFailure:
+        """Test QuoteFailure
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreateTokenRequestDto`
+        # uncomment below to create an instance of `QuoteFailure`
         """
-        model = CreateTokenRequestDto()
+        model = QuoteFailure()
         if include_optional:
-            return CreateTokenRequestDto(
-                blockchain_id = 'B7QG017M',
-                asset_id = 'ETH_TEST5',
-                vault_account_id = '0',
-                create_params = None,
-                display_name = '',
-                use_gasless = False,
-                fee = '2000',
-                fee_level = 'MEDIUM',
-                tx_note = 'Token creation transaction for new stablecoin',
-                external_id = '0192e4f5-924e-7bb9-8e5b-c748270feb38'
+            return QuoteFailure(
+                provider_id = 'BRIDGE',
+                account_id = 'acc_9f4e2d8b1c6a5e73',
+                error = {"code":900,"message":"Invalid base amount: must be greater than 0"}
             )
         else:
-            return CreateTokenRequestDto(
-                vault_account_id = '0',
-                create_params = None,
+            return QuoteFailure(
+                provider_id = 'BRIDGE',
+                error = {"code":900,"message":"Invalid base amount: must be greater than 0"},
         )
         """
 
-    def testCreateTokenRequestDto(self):
-        """Test CreateTokenRequestDto"""
+    def testQuoteFailure(self):
+        """Test QuoteFailure"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

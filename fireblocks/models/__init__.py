@@ -551,6 +551,7 @@ from fireblocks.models.peer_type import PeerType
 from fireblocks.models.personal_entity_type_enum import PersonalEntityTypeEnum
 from fireblocks.models.personal_identification import PersonalIdentification
 from fireblocks.models.personal_identification_full_name import PersonalIdentificationFullName
+from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.pix_address import PixAddress
 from fireblocks.models.pix_destination import PixDestination
 from fireblocks.models.pix_payment_info import PixPaymentInfo
@@ -588,6 +589,7 @@ from fireblocks.models.quote_execution_step import QuoteExecutionStep
 from fireblocks.models.quote_execution_type_details import QuoteExecutionTypeDetails
 from fireblocks.models.quote_execution_with_requote_request_details import QuoteExecutionWithRequoteRequestDetails
 from fireblocks.models.quote_execution_with_requote_response_details import QuoteExecutionWithRequoteResponseDetails
+from fireblocks.models.quote_failure import QuoteFailure
 from fireblocks.models.quote_properties_details import QuotePropertiesDetails
 from fireblocks.models.quote_type_enum import QuoteTypeEnum
 from fireblocks.models.quotes_response import QuotesResponse

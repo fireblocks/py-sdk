@@ -46,7 +46,11 @@ class TestPersonalIdentification(unittest.TestCase):
                 date_of_birth = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 postal_address = {"streetName":"Fifth Avenue","buildingNumber":"350","postalCode":"10118","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"},
                 email = '',
-                phone = '+14155551234'
+                phone = '+14155551234',
+                id_number = '',
+                id_type = 'NIN_SLIP_CARD',
+                additional_id_number = '',
+                additional_id_type = 'NIN_SLIP_CARD'
             )
         else:
             return PersonalIdentification(

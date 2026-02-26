@@ -1839,7 +1839,7 @@ class VaultsApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/vault/accounts/{vaultAccountId}/{assetId}/max_bip_index_used',
+            resource_path='/vault/accounts/{vaultAccountId}/{assetId}/max_bip44_index_used',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2006,7 +2006,7 @@ class VaultsApi:
         self,
         name_prefix: Optional[StrictStr] = None,
         name_suffix: Optional[StrictStr] = None,
-        min_amount_threshold: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. The amount set in this parameter is the native asset amount and not its USD value.")] = None,
+        min_amount_threshold: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Specifying minAmountThreshold will filter accounts whose total balance is greater than this value; otherwise, it returns all accounts. The amount set in this parameter represents the native asset amount, not its USD value.")] = None,
         asset_id: Optional[StrictStr] = None,
         order_by: Optional[StrictStr] = None,
         before: Optional[StrictStr] = None,
@@ -2036,7 +2036,7 @@ class VaultsApi:
         :type name_prefix: str
         :param name_suffix:
         :type name_suffix: str
-        :param min_amount_threshold: Specifying minAmountThreshold will filter accounts with balances greater than this value, otherwise, it will return all accounts. The amount set in this parameter is the native asset amount and not its USD value.
+        :param min_amount_threshold: Specifying minAmountThreshold will filter accounts whose total balance is greater than this value; otherwise, it returns all accounts. The amount set in this parameter represents the native asset amount, not its USD value.
         :type min_amount_threshold: float
         :param asset_id:
         :type asset_id: str

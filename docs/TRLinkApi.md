@@ -17,7 +17,7 @@ Method | HTTP request | Description
 [**get_tr_link_customer_integrations**](TRLinkApi.md#get_tr_link_customer_integrations) | **GET** /screening/trlink/customers/{customerId}/integrations | Get customer integrations
 [**get_tr_link_customers**](TRLinkApi.md#get_tr_link_customers) | **GET** /screening/trlink/customers | Get all customers
 [**get_tr_link_integration_public_key**](TRLinkApi.md#get_tr_link_integration_public_key) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/public_key | Get public key for PII encryption
-[**get_tr_link_partners**](TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRLink partners
+[**get_tr_link_partners**](TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRSupport partners
 [**get_tr_link_policy**](TRLinkApi.md#get_tr_link_policy) | **GET** /screening/trlink/policy | Get TRLink policy
 [**get_tr_link_supported_asset**](TRLinkApi.md#get_tr_link_supported_asset) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets/{assetId} | Get supported asset by ID
 [**get_tr_link_trm_by_id**](TRLinkApi.md#get_tr_link_trm_by_id) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId} | Get TRM by ID
@@ -275,7 +275,7 @@ No authorization required
 
 Create customer
 
-Creates a new customer (legal entity/VASP) for TRLink Travel Rule compliance operations. The customer represents your organization in the Travel Rule network and contains IVMS101-compliant identity information.
+Creates a new customer (legal entity/VASP) for TRSupport Travel Rule compliance operations. The customer represents your organization in the Travel Rule network and contains IVMS101-compliant identity information.
 
 ### Example
 
@@ -352,7 +352,7 @@ No authorization required
 
 Create customer integration
 
-Creates a new TRLink integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation.
+Creates a new TRSupport integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation.
 
 ### Example
 
@@ -798,7 +798,7 @@ No authorization required
 
 Get customer integrations
 
-Retrieves all TRLink integrations for a specific customer. Returns a list of partner integrations configured for Travel Rule compliance.
+Retrieves all TRSupport integrations for a specific customer. Returns a list of partner integrations configured for Travel Rule compliance.
 
 ### Example
 
@@ -1014,9 +1014,9 @@ No authorization required
 # **get_tr_link_partners**
 > List[TRLinkPartnerResponse] get_tr_link_partners()
 
-List available TRLink partners
+List available TRSupport partners
 
-Retrieves a list of all available Travel Rule Link integration partners. Partners provide Travel Rule compliance services such as VASP discovery, TRM exchange, and PII encryption.
+Retrieves a list of all available Travel Rule Support integration partners. Partners provide Travel Rule compliance services such as VASP discovery, TRM exchange, and PII encryption.
 
 ### Example
 
@@ -1045,7 +1045,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # List available TRLink partners
+        # List available TRSupport partners
         api_response = fireblocks.tr_link.get_tr_link_partners().result()
         print("The response of TRLinkApi->get_tr_link_partners:\n")
         pprint(api_response)
@@ -1086,7 +1086,7 @@ No authorization required
 
 Get TRLink policy
 
-Retrieves the complete TRLink policy for the authenticated tenant, including pre-screening rules, post-screening rules, and missing TRM rules. Pre-screening rules determine whether transactions should be screened. Post-screening rules determine actions based on screening results. Missing TRM rules handle cases when screening data is unavailable.
+Retrieves the complete TRSupport policy for the authenticated tenant, including pre-screening rules, post-screening rules, and missing TRM rules. Pre-screening rules determine whether transactions should be screened. Post-screening rules determine actions based on screening results. Missing TRM rules handle cases when screening data is unavailable.
 
 ### Example
 

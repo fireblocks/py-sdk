@@ -51,7 +51,9 @@ class TestPaginatedAssetsResponse(unittest.TestCase):
                             address = '', 
                             tag = '', 
                             activation_time = '', )
-                        ], ),
+                        ], 
+                    test = True, 
+                    test2 = True, ),
                 next = ''
             )
         else:
@@ -69,7 +71,9 @@ class TestPaginatedAssetsResponse(unittest.TestCase):
                             address = '', 
                             tag = '', 
                             activation_time = '', )
-                        ], ),
+                        ], 
+                    test = True, 
+                    test2 = True, ),
         )
         """
 

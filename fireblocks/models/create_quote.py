@@ -32,8 +32,8 @@ class CreateQuote(BaseModel):
     CreateQuote
     """ # noqa: E501
     scope: List[CreateQuoteScopeInner]
-    base_asset_id: StrictStr = Field(alias="baseAssetId")
-    quote_asset_id: StrictStr = Field(alias="quoteAssetId")
+    base_asset_id: StrictStr = Field(description="The asset you receive on BUY / give on SELL.", alias="baseAssetId")
+    quote_asset_id: StrictStr = Field(description="The counter asset used to pay/receive.", alias="quoteAssetId")
     base_amount: Annotated[str, Field(strict=True)] = Field(description="The amount to convert from", alias="baseAmount")
     slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=50, description="Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
     settlement: Optional[DVPSettlement] = None

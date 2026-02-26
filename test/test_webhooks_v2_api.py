@@ -34,6 +34,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_delete_notification(self) -> None:
+        """Test case for delete_notification
+
+        Delete notification by id
+        """
+        pass
+
     def test_delete_webhook(self) -> None:
         """Test case for delete_webhook
 

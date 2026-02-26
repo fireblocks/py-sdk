@@ -74,7 +74,7 @@ class TransactionResponse(BaseModel):
     authorization_info: Optional[AuthorizationInfo] = Field(default=None, alias="authorizationInfo")
     exchange_tx_id: Optional[StrictStr] = Field(default=None, description="If the transaction originated from an exchange, this is the ID of this transaction at the exchange.", alias="exchangeTxId")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
-    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for  travel rule linking functionality to associate transactions with existing  travel rule messages.", alias="travelRuleMessageId")
+    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for  travel rule supporting functionality to associate transactions with existing  travel rule messages.", alias="travelRuleMessageId")
     aml_screening_result: Optional[AmlScreeningResult] = Field(default=None, alias="amlScreeningResult")
     compliance_results: Optional[ComplianceResults] = Field(default=None, alias="complianceResults")
     not_broadcast_by_fireblocks: Optional[StrictBool] = Field(default=None, description="Indicates the transaction was not broadcast by Fireblocks", alias="notBroadcastByFireblocks")

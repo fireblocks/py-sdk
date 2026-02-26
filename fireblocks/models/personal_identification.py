@@ -25,6 +25,7 @@ from typing_extensions import Annotated
 from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
 from fireblocks.models.personal_entity_type_enum import PersonalEntityTypeEnum
 from fireblocks.models.personal_identification_full_name import PersonalIdentificationFullName
+from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.postal_address import PostalAddress
 from typing import Optional, Set
 from typing_extensions import Self
@@ -41,7 +42,11 @@ class PersonalIdentification(BaseModel):
     postal_address: PostalAddress = Field(alias="postalAddress")
     email: Optional[StrictStr] = None
     phone: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Mobile phone number in E.164 format")
-    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "fullName", "dateOfBirth", "postalAddress", "email", "phone"]
+    id_number: Optional[StrictStr] = Field(default=None, description="The identification number corresponding to the primary identification document type specified in idType", alias="idNumber")
+    id_type: Optional[PersonalIdentificationType] = Field(default=None, alias="idType")
+    additional_id_number: Optional[StrictStr] = Field(default=None, description="The identification number corresponding to the additional identification document type specified in additionalIdType", alias="additionalIdNumber")
+    additional_id_type: Optional[PersonalIdentificationType] = Field(default=None, alias="additionalIdType")
+    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "fullName", "dateOfBirth", "postalAddress", "email", "phone", "idNumber", "idType", "additionalIdNumber", "additionalIdType"]
 
     @field_validator('phone')
     def phone_validate_regular_expression(cls, value):
@@ -117,7 +122,11 @@ class PersonalIdentification(BaseModel):
             "dateOfBirth": obj.get("dateOfBirth"),
             "postalAddress": PostalAddress.from_dict(obj["postalAddress"]) if obj.get("postalAddress") is not None else None,
             "email": obj.get("email"),
-            "phone": obj.get("phone")
+            "phone": obj.get("phone"),
+            "idNumber": obj.get("idNumber"),
+            "idType": obj.get("idType"),
+            "additionalIdNumber": obj.get("additionalIdNumber"),
+            "additionalIdType": obj.get("additionalIdType")
         })
         return _obj
 

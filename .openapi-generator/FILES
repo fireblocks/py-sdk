@@ -564,6 +564,7 @@ docs/PeerType.md
 docs/PersonalEntityTypeEnum.md
 docs/PersonalIdentification.md
 docs/PersonalIdentificationFullName.md
+docs/PersonalIdentificationType.md
 docs/PixAddress.md
 docs/PixDestination.md
 docs/PixPaymentInfo.md
@@ -603,6 +604,7 @@ docs/QuoteExecutionStep.md
 docs/QuoteExecutionTypeDetails.md
 docs/QuoteExecutionWithRequoteRequestDetails.md
 docs/QuoteExecutionWithRequoteResponseDetails.md
+docs/QuoteFailure.md
 docs/QuotePropertiesDetails.md
 docs/QuoteTypeEnum.md
 docs/QuotesResponse.md
@@ -1616,6 +1618,7 @@ fireblocks/models/peer_type.py
 fireblocks/models/personal_entity_type_enum.py
 fireblocks/models/personal_identification.py
 fireblocks/models/personal_identification_full_name.py
+fireblocks/models/personal_identification_type.py
 fireblocks/models/pix_address.py
 fireblocks/models/pix_destination.py
 fireblocks/models/pix_payment_info.py
@@ -1653,6 +1656,7 @@ fireblocks/models/quote_execution_step.py
 fireblocks/models/quote_execution_type_details.py
 fireblocks/models/quote_execution_with_requote_request_details.py
 fireblocks/models/quote_execution_with_requote_response_details.py
+fireblocks/models/quote_failure.py
 fireblocks/models/quote_properties_details.py
 fireblocks/models/quote_type_enum.py
 fireblocks/models/quotes_response.py
@@ -2641,6 +2645,7 @@ test/test_peer_type.py
 test/test_personal_entity_type_enum.py
 test/test_personal_identification.py
 test/test_personal_identification_full_name.py
+test/test_personal_identification_type.py
 test/test_pix_address.py
 test/test_pix_destination.py
 test/test_pix_payment_info.py
@@ -2680,6 +2685,7 @@ test/test_quote_execution_step.py
 test/test_quote_execution_type_details.py
 test/test_quote_execution_with_requote_request_details.py
 test/test_quote_execution_with_requote_response_details.py
+test/test_quote_failure.py
 test/test_quote_properties_details.py
 test/test_quote_type_enum.py
 test/test_quotes_response.py

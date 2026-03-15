@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.account_holder_details import AccountHolderDetails
+from fireblocks.models.payment_redirect import PaymentRedirect
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +34,9 @@ class LocalBankTransferAfricaAddress(BaseModel):
     account_number: Annotated[str, Field(strict=True)] = Field(alias="accountNumber")
     bank_name: StrictStr = Field(description="Name of the bank", alias="bankName")
     bank_code: StrictStr = Field(description="Internal bank identifier", alias="bankCode")
-    __properties: ClassVar[List[str]] = ["accountHolder", "accountNumber", "bankName", "bankCode"]
+    success_payment_instruction_redirect_url: Optional[StrictStr] = Field(default=None, description="The URL to redirect to after the payment instruction is successful", alias="successPaymentInstructionRedirectUrl")
+    payment_redirect: Optional[PaymentRedirect] = Field(default=None, alias="paymentRedirect")
+    __properties: ClassVar[List[str]] = ["accountHolder", "accountNumber", "bankName", "bankCode", "successPaymentInstructionRedirectUrl", "paymentRedirect"]
 
     @field_validator('account_number')
     def account_number_validate_regular_expression(cls, value):
@@ -84,6 +87,9 @@ class LocalBankTransferAfricaAddress(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of account_holder
         if self.account_holder:
             _dict['accountHolder'] = self.account_holder.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of payment_redirect
+        if self.payment_redirect:
+            _dict['paymentRedirect'] = self.payment_redirect.to_dict()
         return _dict
 
     @classmethod
@@ -99,7 +105,9 @@ class LocalBankTransferAfricaAddress(BaseModel):
             "accountHolder": AccountHolderDetails.from_dict(obj["accountHolder"]) if obj.get("accountHolder") is not None else None,
             "accountNumber": obj.get("accountNumber"),
             "bankName": obj.get("bankName"),
-            "bankCode": obj.get("bankCode")
+            "bankCode": obj.get("bankCode"),
+            "successPaymentInstructionRedirectUrl": obj.get("successPaymentInstructionRedirectUrl"),
+            "paymentRedirect": PaymentRedirect.from_dict(obj["paymentRedirect"]) if obj.get("paymentRedirect") is not None else None
         })
         return _obj
 

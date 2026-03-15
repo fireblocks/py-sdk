@@ -15,23 +15,24 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.external_account_local_bank_africa_type import (
-    ExternalAccountLocalBankAfricaType,
-)
+from fireblocks.api.workspace_api import WorkspaceApi
 
 
-class TestExternalAccountLocalBankAfricaType(unittest.TestCase):
-    """ExternalAccountLocalBankAfricaType unit test stubs"""
+class TestWorkspaceApi(unittest.TestCase):
+    """WorkspaceApi unit test stubs"""
 
-    def setUp(self):
+    def setUp(self) -> None:
+        self.api = WorkspaceApi()
+
+    def tearDown(self) -> None:
         pass
 
-    def tearDown(self):
-        pass
+    def test_get_workspace(self) -> None:
+        """Test case for get_workspace
 
-    def testExternalAccountLocalBankAfricaType(self):
-        """Test ExternalAccountLocalBankAfricaType"""
-        # inst = ExternalAccountLocalBankAfricaType()
+        Get workspace
+        """
+        pass
 
 
 if __name__ == "__main__":

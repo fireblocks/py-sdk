@@ -41,7 +41,9 @@ class TestCreateQuote(unittest.TestCase):
                     null
                     ],
                 base_asset_id = '',
+                base_asset_rail = 'BLOCKCHAIN',
                 quote_asset_id = '',
+                quote_asset_rail = 'BLOCKCHAIN',
                 base_amount = '100.00',
                 slippage_bps = 1,
                 settlement = {"type":"DVP","sourceAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_3f7e1d9b2c5a8e4f"},"destinationAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_7b2e5d8f1c4a9e3b"}},

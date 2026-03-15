@@ -41,6 +41,13 @@ class TestStakingApi(unittest.TestCase):
         """
         pass
 
+    def test_consolidate(self) -> None:
+        """Test case for consolidate
+
+        Consolidate staking positions (ETH validator consolidation)
+        """
+        pass
+
     def test_get_all_delegations(self) -> None:
         """Test case for get_all_delegations
 

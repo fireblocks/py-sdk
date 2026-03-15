@@ -20,9 +20,12 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Any, List, Optional
 from fireblocks.models.aba_payment_info import AbaPaymentInfo
 from fireblocks.models.ach_payment_info import AchPaymentInfo
+from fireblocks.models.chaps_payment_info import ChapsPaymentInfo
 from fireblocks.models.iban_payment_info import IbanPaymentInfo
+from fireblocks.models.interac_payment_info import InteracPaymentInfo
 from fireblocks.models.lbt_payment_info import LbtPaymentInfo
 from fireblocks.models.momo_payment_info import MomoPaymentInfo
+from fireblocks.models.payid_payment_info import PayidPaymentInfo
 from fireblocks.models.pix_payment_info import PixPaymentInfo
 from fireblocks.models.sepa_payment_info import SepaPaymentInfo
 from fireblocks.models.spei_advanced_payment_info import SpeiAdvancedPaymentInfo
@@ -32,7 +35,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-ADDITIONALINFOREQUESTADDITIONALINFO_ONE_OF_SCHEMAS = ["AbaPaymentInfo", "AchPaymentInfo", "IbanPaymentInfo", "LbtPaymentInfo", "MomoPaymentInfo", "PixPaymentInfo", "SepaPaymentInfo", "SpeiAdvancedPaymentInfo", "SpeiBasicPaymentInfo", "UsWirePaymentInfo"]
+ADDITIONALINFOREQUESTADDITIONALINFO_ONE_OF_SCHEMAS = ["AbaPaymentInfo", "AchPaymentInfo", "ChapsPaymentInfo", "IbanPaymentInfo", "InteracPaymentInfo", "LbtPaymentInfo", "MomoPaymentInfo", "PayidPaymentInfo", "PixPaymentInfo", "SepaPaymentInfo", "SpeiAdvancedPaymentInfo", "SpeiBasicPaymentInfo", "UsWirePaymentInfo"]
 
 class AdditionalInfoRequestAdditionalInfo(BaseModel):
     """
@@ -58,8 +61,14 @@ class AdditionalInfoRequestAdditionalInfo(BaseModel):
     oneof_schema_9_validator: Optional[MomoPaymentInfo] = None
     # data type: LbtPaymentInfo
     oneof_schema_10_validator: Optional[LbtPaymentInfo] = None
-    actual_instance: Optional[Union[AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo]] = None
-    one_of_schemas: Set[str] = { "AbaPaymentInfo", "AchPaymentInfo", "IbanPaymentInfo", "LbtPaymentInfo", "MomoPaymentInfo", "PixPaymentInfo", "SepaPaymentInfo", "SpeiAdvancedPaymentInfo", "SpeiBasicPaymentInfo", "UsWirePaymentInfo" }
+    # data type: InteracPaymentInfo
+    oneof_schema_11_validator: Optional[InteracPaymentInfo] = None
+    # data type: PayidPaymentInfo
+    oneof_schema_12_validator: Optional[PayidPaymentInfo] = None
+    # data type: ChapsPaymentInfo
+    oneof_schema_13_validator: Optional[ChapsPaymentInfo] = None
+    actual_instance: Optional[Union[AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo]] = None
+    one_of_schemas: Set[str] = { "AbaPaymentInfo", "AchPaymentInfo", "ChapsPaymentInfo", "IbanPaymentInfo", "InteracPaymentInfo", "LbtPaymentInfo", "MomoPaymentInfo", "PayidPaymentInfo", "PixPaymentInfo", "SepaPaymentInfo", "SpeiAdvancedPaymentInfo", "SpeiBasicPaymentInfo", "UsWirePaymentInfo" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -132,12 +141,27 @@ class AdditionalInfoRequestAdditionalInfo(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `LbtPaymentInfo`")
         else:
             match += 1
+        # validate data type: InteracPaymentInfo
+        if not isinstance(v, InteracPaymentInfo):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InteracPaymentInfo`")
+        else:
+            match += 1
+        # validate data type: PayidPaymentInfo
+        if not isinstance(v, PayidPaymentInfo):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PayidPaymentInfo`")
+        else:
+            match += 1
+        # validate data type: ChapsPaymentInfo
+        if not isinstance(v, ChapsPaymentInfo):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ChapsPaymentInfo`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -212,13 +236,31 @@ class AdditionalInfoRequestAdditionalInfo(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into InteracPaymentInfo
+        try:
+            instance.actual_instance = InteracPaymentInfo.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into PayidPaymentInfo
+        try:
+            instance.actual_instance = PayidPaymentInfo.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into ChapsPaymentInfo
+        try:
+            instance.actual_instance = ChapsPaymentInfo.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into AdditionalInfoRequestAdditionalInfo with oneOf schemas: AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -232,7 +274,7 @@ class AdditionalInfoRequestAdditionalInfo(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AbaPaymentInfo, AchPaymentInfo, IbanPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AbaPaymentInfo, AchPaymentInfo, ChapsPaymentInfo, IbanPaymentInfo, InteracPaymentInfo, LbtPaymentInfo, MomoPaymentInfo, PayidPaymentInfo, PixPaymentInfo, SepaPaymentInfo, SpeiAdvancedPaymentInfo, SpeiBasicPaymentInfo, UsWirePaymentInfo]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

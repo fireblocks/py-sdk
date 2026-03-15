@@ -30,10 +30,10 @@ class ExecutionRequestBaseDetails(BaseModel):
     ExecutionRequestBaseDetails
     """ # noqa: E501
     side: Side
-    base_amount: StrictStr = Field(description="Amount to convert", alias="baseAmount")
-    base_asset_id: StrictStr = Field(description="Source asset identifier", alias="baseAssetId")
+    base_amount: StrictStr = Field(description="Amount in baseAssetId. BUY = base amount to receive; SELL = base amount to sell.", alias="baseAmount")
+    base_asset_id: StrictStr = Field(description="The asset you receive on BUY / give on SELL.", alias="baseAssetId")
     base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
-    quote_asset_id: StrictStr = Field(description="Target asset identifier", alias="quoteAssetId")
+    quote_asset_id: StrictStr = Field(description="Counter asset used to pay/receive", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
     __properties: ClassVar[List[str]] = ["side", "baseAmount", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail"]
 

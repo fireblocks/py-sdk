@@ -22,8 +22,8 @@ Name | Type | Description | Notes
 **aba_country** | **str** | The country for the ABA transfer (ISO 3166-1 alpha-2 code) | 
 **spei_clabe** | **str** | The CLABE (Clave Bancaria Estandarizada) number for SPEI transfers | 
 **spei_name** | **str** | The name associated with the SPEI account | [optional] 
-**rail** | **str** | The payment rail type for Lebanese bank transfers | 
-**addressing_system** | **str** | The addressing system used for Lebanese bank transfers (Bank Account Number) | 
+**rail** | **str** | The payment rail type for CHAPS transfers | 
+**addressing_system** | **str** | The addressing system used for CHAPS transfers | 
 **country** | **str** | The country for the transfer (ISO 3166-1 alpha-2 code) | 
 **bank_name** | **str** | The name of the bank | 
 **beneficiary_rfc** | **str** | The RFC (Registro Federal de Contribuyentes) of the beneficiary | [optional] 
@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 **bank_address** | **str** | The address of the bank | [optional] 
 **purpose_code** | **str** | The purpose code for the transfer | [optional] 
 **tax_id** | **str** | The tax identification number | [optional] 
-**account_number** | **str** | The bank account number | 
+**account_number** | **str** | UK bank account number | 
 **routing_number** | **str** | The bank routing number (ABA routing number) | 
 **account_type** | **str** | The type of bank account | 
 **swift_code** | **str** | The SWIFT/BIC code of the bank | 
@@ -52,6 +52,15 @@ Name | Type | Description | Notes
 **provider** | **str** | The mobile money service provider | 
 **beneficiary_document_id** | **str** | The document ID of the beneficiary | [optional] 
 **beneficiary_relationship** | **str** | The relationship between sender and beneficiary | [optional] 
+**recipient_handle_type** | **str** | The type of recipient handler being used | 
+**recipient_handle_value** | **str** | Email address registered for Interac e-Transfer | 
+**message** | **str** | The message to be sent to the recipient | 
+**value** | **str** | The PayID identifier (email, phone, ABN, or organization ID) | 
+**type** | **str** | The type of PayID being used | 
+**bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | [optional] 
+**sort_code** | **str** | UK bank sort code (format XX-XX-XX) | 
+**bank_account_country** | **str** | CHAPS bank account holder name | 
+**bank_account_holder_name** | **str** | CHAPS bank account holder name | 
 
 ## Example
 

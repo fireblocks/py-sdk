@@ -18,10 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
-from fireblocks.models.external_account_local_bank_africa_type import ExternalAccountLocalBankAfricaType
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,18 +27,8 @@ class ExternalAccountLocalBankAfrica(BaseModel):
     """
     ExternalAccountLocalBankAfrica
     """ # noqa: E501
-    type: ExternalAccountLocalBankAfricaType
-    account_number: Annotated[str, Field(strict=True)] = Field(alias="accountNumber")
-    bank_name: StrictStr = Field(description="Name of the bank", alias="bankName")
-    bank_code: StrictStr = Field(description="Internal bank identifier", alias="bankCode")
-    __properties: ClassVar[List[str]] = ["type", "accountNumber", "bankName", "bankCode"]
-
-    @field_validator('account_number')
-    def account_number_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^\d{4,17}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4,17}$/")
-        return value
+    success_redirect_url: Optional[StrictStr] = Field(default=None, description="URL to redirect the end user back to after they complete the payment on the bank/mobile provider page (e.g., the merchant checkout page)", alias="successRedirectUrl")
+    __properties: ClassVar[List[str]] = ["successRedirectUrl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,10 +81,7 @@ class ExternalAccountLocalBankAfrica(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
-            "accountNumber": obj.get("accountNumber"),
-            "bankName": obj.get("bankName"),
-            "bankCode": obj.get("bankCode")
+            "successRedirectUrl": obj.get("successRedirectUrl")
         })
         return _obj
 

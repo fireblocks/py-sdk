@@ -40,12 +40,12 @@ class TestLocalBankTransferAfricaDestination(unittest.TestCase):
         if include_optional:
             return LocalBankTransferAfricaDestination(
                 type = 'LOCAL_BANK_TRANSFER',
-                address = {"accountHolder":{"name":"Adaora Okafor","city":"Lagos","country":"NG","subdivision":"LA","address":"15 Victoria Island Road","postalCode":"101001"},"accountNumber":"1234567890123","bankName":"First Bank of Nigeria","bankCode":"011"}
+                address = {"accountHolder":{"name":"Adaora Okafor","city":"Lagos","country":"NG","subdivision":"LA","address":"15 Victoria Island Road","postalCode":"101001"},"accountNumber":"1234567890123","bankName":"First Bank of Nigeria","bankCode":"011","successPaymentInstructionRedirectUrl":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","paymentRedirect":{"url":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","expiresAt":"2025-01-15T12:00:00Z"}}
             )
         else:
             return LocalBankTransferAfricaDestination(
                 type = 'LOCAL_BANK_TRANSFER',
-                address = {"accountHolder":{"name":"Adaora Okafor","city":"Lagos","country":"NG","subdivision":"LA","address":"15 Victoria Island Road","postalCode":"101001"},"accountNumber":"1234567890123","bankName":"First Bank of Nigeria","bankCode":"011"},
+                address = {"accountHolder":{"name":"Adaora Okafor","city":"Lagos","country":"NG","subdivision":"LA","address":"15 Victoria Island Road","postalCode":"101001"},"accountNumber":"1234567890123","bankName":"First Bank of Nigeria","bankCode":"011","successPaymentInstructionRedirectUrl":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","paymentRedirect":{"url":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","expiresAt":"2025-01-15T12:00:00Z"}},
         )
         """
 

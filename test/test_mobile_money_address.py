@@ -41,7 +41,11 @@ class TestMobileMoneyAddress(unittest.TestCase):
                 mobile_phone_number = '+14155551234',
                 provider = 'm-pesa',
                 beneficiary_document_id = '',
-                beneficiary_relationship = ''
+                beneficiary_relationship = '',
+                success_payment_instruction_redirect_url = '',
+                payment_redirect = fireblocks.models.payment_redirect.PaymentRedirect(
+                    url = 'https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907', 
+                    expires_at = '2025-01-15T12:00:00Z', )
             )
         else:
             return MobileMoneyAddress(

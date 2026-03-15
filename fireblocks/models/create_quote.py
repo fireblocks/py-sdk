@@ -24,6 +24,7 @@ from typing_extensions import Annotated
 from fireblocks.models.create_quote_scope_inner import CreateQuoteScopeInner
 from fireblocks.models.dvp_settlement import DVPSettlement
 from fireblocks.models.side import Side
+from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,12 +34,14 @@ class CreateQuote(BaseModel):
     """ # noqa: E501
     scope: List[CreateQuoteScopeInner]
     base_asset_id: StrictStr = Field(description="The asset you receive on BUY / give on SELL.", alias="baseAssetId")
+    base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
     quote_asset_id: StrictStr = Field(description="The counter asset used to pay/receive.", alias="quoteAssetId")
-    base_amount: Annotated[str, Field(strict=True)] = Field(description="The amount to convert from", alias="baseAmount")
+    quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
+    base_amount: Annotated[str, Field(strict=True)] = Field(description="Amount in baseAssetId. BUY = base amount to receive; SELL = base amount to sell.", alias="baseAmount")
     slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=50, description="Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
     settlement: Optional[DVPSettlement] = None
     side: Side
-    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "quoteAssetId", "baseAmount", "slippageBps", "settlement", "side"]
+    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "baseAmount", "slippageBps", "settlement", "side"]
 
     @field_validator('base_amount')
     def base_amount_validate_regular_expression(cls, value):
@@ -110,7 +113,9 @@ class CreateQuote(BaseModel):
         _obj = cls.model_validate({
             "scope": [CreateQuoteScopeInner.from_dict(_item) for _item in obj["scope"]] if obj.get("scope") is not None else None,
             "baseAssetId": obj.get("baseAssetId"),
+            "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),
+            "quoteAssetRail": obj.get("quoteAssetRail"),
             "baseAmount": obj.get("baseAmount"),
             "slippageBps": obj.get("slippageBps") if obj.get("slippageBps") is not None else 50,
             "settlement": DVPSettlement.from_dict(obj["settlement"]) if obj.get("settlement") is not None else None,

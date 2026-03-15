@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **account_number** | **str** |  | 
 **bank_name** | **str** | Name of the bank | 
 **bank_code** | **str** | Internal bank identifier | 
+**success_payment_instruction_redirect_url** | **str** | The URL to redirect to after the payment instruction is successful | [optional] 
+**payment_redirect** | [**PaymentRedirect**](PaymentRedirect.md) |  | [optional] 
 
 ## Example
 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | The type of destination. Use \&quot;BLOCKCHAIN\&quot; for blockchain address destinations. | 
-**address** | [**EuropeanSEPAAddress**](EuropeanSEPAAddress.md) |  | 
+**address** | [**InternalTransferAddress**](InternalTransferAddress.md) |  | 
 **reference_id** | **str** |  | [optional] 
 
 ## Example

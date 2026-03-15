@@ -441,6 +441,7 @@ Class | Method | HTTP request | Description
 *SmartTransferApi* | [**update_ticket_term**](docs/SmartTransferApi.md#update_ticket_term) | **PUT** /smart-transfers/{ticketId}/terms/{termId} | Update ticket leg (term)
 *StakingApi* | [**approve_terms_of_service_by_provider_id**](docs/StakingApi.md#approve_terms_of_service_by_provider_id) | **POST** /staking/providers/{providerId}/approveTermsOfService | Approve provider terms of service
 *StakingApi* | [**claim_rewards**](docs/StakingApi.md#claim_rewards) | **POST** /staking/chains/{chainDescriptor}/claim_rewards | Claim accrued rewards
+*StakingApi* | [**consolidate**](docs/StakingApi.md#consolidate) | **POST** /staking/chains/{chainDescriptor}/consolidate | Consolidate staking positions (ETH validator consolidation)
 *StakingApi* | [**get_all_delegations**](docs/StakingApi.md#get_all_delegations) | **GET** /staking/positions | List staking positions
 *StakingApi* | [**get_chain_info**](docs/StakingApi.md#get_chain_info) | **GET** /staking/chains/{chainDescriptor}/chainInfo | Get chain-level staking parameters
 *StakingApi* | [**get_chains**](docs/StakingApi.md#get_chains) | **GET** /staking/chains | List supported staking chains
@@ -590,6 +591,7 @@ Class | Method | HTTP request | Description
 *WebhooksV2Api* | [**resend_notification_by_id**](docs/WebhooksV2Api.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
 *WebhooksV2Api* | [**resend_notifications_by_resource_id**](docs/WebhooksV2Api.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
 *WebhooksV2Api* | [**update_webhook**](docs/WebhooksV2Api.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
+*WorkspaceApi* | [**get_workspace**](docs/WorkspaceApi.md#get_workspace) | **GET** /workspace | Get workspace
 *WorkspaceStatusBetaApi* | [**get_workspace_status**](docs/WorkspaceStatusBetaApi.md#get_workspace_status) | **GET** /management/workspace_status | Returns current workspace status
 *WhitelistIpAddressesApi* | [**get_whitelist_ip_addresses**](docs/WhitelistIpAddressesApi.md#get_whitelist_ip_addresses) | **GET** /management/api_users/{userId}/whitelist_ip_addresses | Get whitelisted ip addresses for an API Key
 
@@ -720,6 +722,9 @@ Class | Method | HTTP request | Description
  - [ChannelDvnConfigWithConfirmations](docs/ChannelDvnConfigWithConfirmations.md)
  - [ChannelDvnConfigWithConfirmationsReceiveConfig](docs/ChannelDvnConfigWithConfirmationsReceiveConfig.md)
  - [ChannelDvnConfigWithConfirmationsSendConfig](docs/ChannelDvnConfigWithConfirmationsSendConfig.md)
+ - [ChapsAddress](docs/ChapsAddress.md)
+ - [ChapsDestination](docs/ChapsDestination.md)
+ - [ChapsPaymentInfo](docs/ChapsPaymentInfo.md)
  - [ClaimRewardsRequest](docs/ClaimRewardsRequest.md)
  - [CollectionBurnRequestDto](docs/CollectionBurnRequestDto.md)
  - [CollectionBurnResponseDto](docs/CollectionBurnResponseDto.md)
@@ -939,13 +944,13 @@ Class | Method | HTTP request | Description
  - [ExecutionTransferOperation](docs/ExecutionTransferOperation.md)
  - [ExternalAccount](docs/ExternalAccount.md)
  - [ExternalAccountLocalBankAfrica](docs/ExternalAccountLocalBankAfrica.md)
- - [ExternalAccountLocalBankAfricaType](docs/ExternalAccountLocalBankAfricaType.md)
  - [ExternalAccountMobileMoney](docs/ExternalAccountMobileMoney.md)
  - [ExternalAccountMobileMoneyProvider](docs/ExternalAccountMobileMoneyProvider.md)
  - [ExternalAccountMobileMoneyType](docs/ExternalAccountMobileMoneyType.md)
  - [ExternalAccountSenderInformation](docs/ExternalAccountSenderInformation.md)
  - [ExternalAccountType](docs/ExternalAccountType.md)
  - [ExternalWalletAsset](docs/ExternalWalletAsset.md)
+ - [ExtraParameters](docs/ExtraParameters.md)
  - [Failure](docs/Failure.md)
  - [FailureReason](docs/FailureReason.md)
  - [Fee](docs/Fee.md)
@@ -1007,7 +1012,12 @@ Class | Method | HTTP request | Description
  - [InitiatorConfig](docs/InitiatorConfig.md)
  - [InitiatorConfigPattern](docs/InitiatorConfigPattern.md)
  - [InstructionAmount](docs/InstructionAmount.md)
+ - [InteracAddress](docs/InteracAddress.md)
+ - [InteracDestination](docs/InteracDestination.md)
+ - [InteracPaymentInfo](docs/InteracPaymentInfo.md)
  - [InternalReference](docs/InternalReference.md)
+ - [InternalTransferAddress](docs/InternalTransferAddress.md)
+ - [InternalTransferDestination](docs/InternalTransferDestination.md)
  - [InternalTransferResponse](docs/InternalTransferResponse.md)
  - [InvalidParamaterValueError](docs/InvalidParamaterValueError.md)
  - [JobCreated](docs/JobCreated.md)
@@ -1115,11 +1125,15 @@ Class | Method | HTTP request | Description
  - [PayeeAccount](docs/PayeeAccount.md)
  - [PayeeAccountResponse](docs/PayeeAccountResponse.md)
  - [PayeeAccountType](docs/PayeeAccountType.md)
+ - [PayidAddress](docs/PayidAddress.md)
+ - [PayidDestination](docs/PayidDestination.md)
+ - [PayidPaymentInfo](docs/PayidPaymentInfo.md)
  - [PaymentAccount](docs/PaymentAccount.md)
  - [PaymentAccountResponse](docs/PaymentAccountResponse.md)
  - [PaymentAccountType](docs/PaymentAccountType.md)
  - [PaymentInstructions](docs/PaymentInstructions.md)
  - [PaymentInstructionsOneOf](docs/PaymentInstructionsOneOf.md)
+ - [PaymentRedirect](docs/PaymentRedirect.md)
  - [PayoutInitMethod](docs/PayoutInitMethod.md)
  - [PayoutInstruction](docs/PayoutInstruction.md)
  - [PayoutInstructionResponse](docs/PayoutInstructionResponse.md)
@@ -1179,6 +1193,7 @@ Class | Method | HTTP request | Description
  - [ReadAbiFunction](docs/ReadAbiFunction.md)
  - [ReadCallFunctionDto](docs/ReadCallFunctionDto.md)
  - [ReadCallFunctionDtoAbiFunction](docs/ReadCallFunctionDtoAbiFunction.md)
+ - [RecipientHandle](docs/RecipientHandle.md)
  - [RedeemFundsToLinkedDDAResponse](docs/RedeemFundsToLinkedDDAResponse.md)
  - [RegisterNewAssetRequest](docs/RegisterNewAssetRequest.md)
  - [ReissueMultichainTokenRequest](docs/ReissueMultichainTokenRequest.md)
@@ -1570,6 +1585,7 @@ Class | Method | HTTP request | Description
  - [WorkflowConfigStatus](docs/WorkflowConfigStatus.md)
  - [WorkflowConfigurationId](docs/WorkflowConfigurationId.md)
  - [WorkflowExecutionOperation](docs/WorkflowExecutionOperation.md)
+ - [Workspace](docs/Workspace.md)
  - [WriteAbiFunction](docs/WriteAbiFunction.md)
  - [WriteCallFunctionDto](docs/WriteCallFunctionDto.md)
  - [WriteCallFunctionDtoAbiFunction](docs/WriteCallFunctionDtoAbiFunction.md)

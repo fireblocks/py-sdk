@@ -33,13 +33,15 @@ class PixAddress(BaseModel):
     key_type: StrictStr = Field(alias="keyType")
     bank_name: Optional[StrictStr] = Field(default=None, alias="bankName")
     bank_code: Optional[StrictStr] = Field(default=None, alias="bankCode")
-    __properties: ClassVar[List[str]] = ["accountHolder", "pixKey", "keyType", "bankName", "bankCode"]
+    qr_code: Optional[StrictStr] = Field(default=None, description="The QR code to be used for the transfer", alias="qrCode")
+    expiration_date: Optional[StrictStr] = Field(default=None, description="The expiration date of the QR code", alias="expirationDate")
+    __properties: ClassVar[List[str]] = ["accountHolder", "pixKey", "keyType", "bankName", "bankCode", "qrCode", "expirationDate"]
 
     @field_validator('key_type')
     def key_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['cpf', 'cnpj', 'email', 'phone', 'random']):
-            raise ValueError("must be one of enum values ('cpf', 'cnpj', 'email', 'phone', 'random')")
+        if value not in set(['CPF', 'CNPJ', 'EMAIL', 'PHONE', 'RANDOM']):
+            raise ValueError("must be one of enum values ('CPF', 'CNPJ', 'EMAIL', 'PHONE', 'RANDOM')")
         return value
 
     model_config = ConfigDict(
@@ -100,7 +102,9 @@ class PixAddress(BaseModel):
             "pixKey": obj.get("pixKey"),
             "keyType": obj.get("keyType"),
             "bankName": obj.get("bankName"),
-            "bankCode": obj.get("bankCode")
+            "bankCode": obj.get("bankCode"),
+            "qrCode": obj.get("qrCode"),
+            "expirationDate": obj.get("expirationDate")
         })
         return _obj
 

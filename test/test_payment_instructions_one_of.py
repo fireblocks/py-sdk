@@ -37,30 +37,14 @@ class TestPaymentInstructionsOneOf(unittest.TestCase):
         model = PaymentInstructionsOneOf()
         if include_optional:
             return PaymentInstructionsOneOf(
-                type = 'EUROPEAN_SEPA',
-                address = fireblocks.models.european_sepa_address.EuropeanSEPAAddress(
-                    account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"}, 
-                    iban = 'GB82WEST12345698765432', 
-                    bic = '', 
-                    bank_name = '', 
-                    bank_branch = '', 
-                    bank_address = '', 
-                    purpose_code = '', 
-                    tax_id = '', ),
+                type = 'INTERNAL_TRANSFER',
+                address = {"externalSubAccountId":"sub_acc_1234567890","accountId":"acc_1234567890"},
                 reference_id = ''
             )
         else:
             return PaymentInstructionsOneOf(
-                type = 'EUROPEAN_SEPA',
-                address = fireblocks.models.european_sepa_address.EuropeanSEPAAddress(
-                    account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"}, 
-                    iban = 'GB82WEST12345698765432', 
-                    bic = '', 
-                    bank_name = '', 
-                    bank_branch = '', 
-                    bank_address = '', 
-                    purpose_code = '', 
-                    tax_id = '', ),
+                type = 'INTERNAL_TRANSFER',
+                address = {"externalSubAccountId":"sub_acc_1234567890","accountId":"acc_1234567890"},
         )
         """
 

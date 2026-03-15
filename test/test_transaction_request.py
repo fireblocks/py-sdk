@@ -87,7 +87,7 @@ class TestTransactionRequest(unittest.TestCase):
                 gas_price = None,
                 network_fee = None,
                 replace_tx_by_hash = '00000000-0000-0000-0000-000000000000',
-                extra_parameters = None,
+                extra_parameters = { },
                 customer_ref_id = 'abcdef',
                 travel_rule_message = fireblocks.models.travel_rule_create_transaction_request.TravelRuleCreateTransactionRequest(
                     originator_vas_pdid = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2', 

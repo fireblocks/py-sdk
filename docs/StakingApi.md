@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approve_terms_of_service_by_provider_id**](StakingApi.md#approve_terms_of_service_by_provider_id) | **POST** /staking/providers/{providerId}/approveTermsOfService | Approve provider terms of service
 [**claim_rewards**](StakingApi.md#claim_rewards) | **POST** /staking/chains/{chainDescriptor}/claim_rewards | Claim accrued rewards
+[**consolidate**](StakingApi.md#consolidate) | **POST** /staking/chains/{chainDescriptor}/consolidate | Consolidate staking positions (ETH validator consolidation)
 [**get_all_delegations**](StakingApi.md#get_all_delegations) | **GET** /staking/positions | List staking positions
 [**get_chain_info**](StakingApi.md#get_chain_info) | **GET** /staking/chains/{chainDescriptor}/chainInfo | Get chain-level staking parameters
 [**get_chains**](StakingApi.md#get_chains) | **GET** /staking/chains | List supported staking chains
@@ -169,6 +170,91 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Claim-rewards request accepted and created. |  * X-Request-ID -  <br>  |
+**400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
+**404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**500** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **consolidate**
+> MergeStakeAccountsResponse consolidate(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key)
+
+Consolidate staking positions (ETH validator consolidation)
+
+Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same validator provider and same vault account. On chain, this translates into a consolidation transaction, where the source validator is consolidated into the destination validator. Supported chains: Ethereum (ETH) only.
+</br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
+
+### Example
+
+
+```python
+from fireblocks.models.merge_stake_accounts_request import MergeStakeAccountsRequest
+from fireblocks.models.merge_stake_accounts_response import MergeStakeAccountsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    chain_descriptor = 'ETH' # str | Protocol identifier for the staking operation (e.g., ETH).
+    merge_stake_accounts_request = fireblocks.MergeStakeAccountsRequest() # MergeStakeAccountsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Consolidate staking positions (ETH validator consolidation)
+        api_response = fireblocks.staking.consolidate(chain_descriptor, merge_stake_accounts_request, idempotency_key=idempotency_key).result()
+        print("The response of StakingApi->consolidate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling StakingApi->consolidate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chain_descriptor** | **str**| Protocol identifier for the staking operation (e.g., ETH). | 
+ **merge_stake_accounts_request** | [**MergeStakeAccountsRequest**](MergeStakeAccountsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**MergeStakeAccountsResponse**](MergeStakeAccountsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Merge request accepted and created. |  * X-Request-ID -  <br>  |
 **400** | Bad request: missing/invalid fields, unsupported amount, or malformed payload. |  * X-Request-ID -  <br>  |
 **403** | Forbidden: insufficient permissions, disabled feature, or restricted provider/validator. |  * X-Request-ID -  <br>  |
 **404** | Not found: requested resource does not exist (e.g., position, validator, provider, or wallet). |  * X-Request-ID -  <br>  |

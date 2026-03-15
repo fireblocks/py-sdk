@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | [**MarketTypeEnum**](MarketTypeEnum.md) |  | 
 **side** | [**Side**](Side.md) |  | 
-**base_amount** | **str** | Amount to convert | 
-**base_asset_id** | **str** | Source asset identifier | 
+**base_amount** | **str** | Amount in baseAssetId. BUY &#x3D; base amount to receive; SELL &#x3D; base amount to sell. | 
+**base_asset_id** | **str** | The asset you receive on BUY / give on SELL. | 
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
-**quote_asset_id** | **str** | Target asset identifier | 
+**quote_asset_id** | **str** | Counter asset used to pay/receive | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 
 ## Example

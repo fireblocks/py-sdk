@@ -39,17 +39,10 @@ class TestExternalAccountLocalBankAfrica(unittest.TestCase):
         model = ExternalAccountLocalBankAfrica()
         if include_optional:
             return ExternalAccountLocalBankAfrica(
-                type = 'LOCAL_BANK_AFRICA_RAIL',
-                account_number = '1234567890123',
-                bank_name = '',
-                bank_code = ''
+                success_redirect_url = ''
             )
         else:
             return ExternalAccountLocalBankAfrica(
-                type = 'LOCAL_BANK_AFRICA_RAIL',
-                account_number = '1234567890123',
-                bank_name = '',
-                bank_code = '',
         )
         """
 

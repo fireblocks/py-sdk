@@ -38,12 +38,12 @@ class TestPixDestination(unittest.TestCase):
         if include_optional:
             return PixDestination(
                 type = 'PIX',
-                address = {"accountHolder":{"name":"Maria Silva Santos","city":"São Paulo","country":"BR","subdivision":"SP","address":"Rua das Flores, 123","postalCode":"01234-567"},"pixKey":"11987654321","keyType":"phone","bankName":"Banco do Brasil","bankCode":"001"}
+                address = {"accountHolder":{"name":"Maria Silva Santos","city":"São Paulo","country":"BR","subdivision":"SP","address":"Rua das Flores, 123","postalCode":"01234-567"},"pixKey":"11987654321","keyType":"phone","bankName":"Banco do Brasil","bankCode":"001","qrCode":"qr_code_number","expirationDate":"2025-01-15T12:00:00Z"}
             )
         else:
             return PixDestination(
                 type = 'PIX',
-                address = {"accountHolder":{"name":"Maria Silva Santos","city":"São Paulo","country":"BR","subdivision":"SP","address":"Rua das Flores, 123","postalCode":"01234-567"},"pixKey":"11987654321","keyType":"phone","bankName":"Banco do Brasil","bankCode":"001"},
+                address = {"accountHolder":{"name":"Maria Silva Santos","city":"São Paulo","country":"BR","subdivision":"SP","address":"Rua das Flores, 123","postalCode":"01234-567"},"pixKey":"11987654321","keyType":"phone","bankName":"Banco do Brasil","bankCode":"001","qrCode":"qr_code_number","expirationDate":"2025-01-15T12:00:00Z"},
         )
         """
 

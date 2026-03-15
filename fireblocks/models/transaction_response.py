@@ -26,6 +26,7 @@ from fireblocks.models.authorization_info import AuthorizationInfo
 from fireblocks.models.block_info import BlockInfo
 from fireblocks.models.compliance_results import ComplianceResults
 from fireblocks.models.destination_transfer_peer_path_response import DestinationTransferPeerPathResponse
+from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_payer_info import FeePayerInfo
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
@@ -82,7 +83,7 @@ class TransactionResponse(BaseModel):
     gas_limit: Optional[StrictStr] = Field(default=None, description="Gas limit for EVM-based blockchain transactions", alias="gasLimit")
     blockchain_index: Optional[StrictStr] = Field(default=None, description="Blockchain-specific index or identifier for the transaction", alias="blockchainIndex")
     paid_rent: Optional[StrictStr] = Field(default=None, description="Solana rent payment amount", alias="paidRent")
-    extra_parameters: Optional[Dict[str, Any]] = Field(default=None, description="Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/get_vault-accounts-vaultaccountid-assetid-unspent-inputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. For **exchange compliance (e.g., Binance) and Travel Rule purposes**, include the key `piiData` containing a **custom JSON structure** with Personally Identifiable Information (PII) relevant to the transaction. This data must be fully **encrypted by the sender** before being submitted to the Fireblocks API. The recommended encryption method is **hybrid encryption** using AES-256-GCM for the payload and RSA-OAEP for key exchange, with the recipient exchange’s public key. [development libraries](https://developers.fireblocks.com/docs/a-developers-guide-to-constructing-encrypted-pii-messages-for-binance-via-fireblocks) ", alias="extraParameters")
+    extra_parameters: Optional[ExtraParameters] = Field(default=None, alias="extraParameters")
     signed_messages: Optional[List[SignedMessage]] = Field(default=None, alias="signedMessages")
     num_of_confirmations: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of confirmations of the transaction. The number will increase until the transaction will be considered completed according to the confirmation policy.", alias="numOfConfirmations")
     block_info: Optional[BlockInfo] = Field(default=None, alias="blockInfo")
@@ -191,6 +192,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of compliance_results
         if self.compliance_results:
             _dict['complianceResults'] = self.compliance_results.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of extra_parameters
+        if self.extra_parameters:
+            _dict['extraParameters'] = self.extra_parameters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in signed_messages (list)
         _items = []
         if self.signed_messages:
@@ -270,7 +274,7 @@ class TransactionResponse(BaseModel):
             "gasLimit": obj.get("gasLimit"),
             "blockchainIndex": obj.get("blockchainIndex"),
             "paidRent": obj.get("paidRent"),
-            "extraParameters": obj.get("extraParameters"),
+            "extraParameters": ExtraParameters.from_dict(obj["extraParameters"]) if obj.get("extraParameters") is not None else None,
             "signedMessages": [SignedMessage.from_dict(_item) for _item in obj["signedMessages"]] if obj.get("signedMessages") is not None else None,
             "numOfConfirmations": obj.get("numOfConfirmations"),
             "blockInfo": BlockInfo.from_dict(obj["blockInfo"]) if obj.get("blockInfo") is not None else None,

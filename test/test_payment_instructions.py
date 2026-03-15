@@ -38,29 +38,13 @@ class TestPaymentInstructions(unittest.TestCase):
         if include_optional:
             return PaymentInstructions(
                 type = 'BLOCKCHAIN',
-                address = fireblocks.models.european_sepa_address.EuropeanSEPAAddress(
-                    account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"}, 
-                    iban = 'GB82WEST12345698765432', 
-                    bic = '', 
-                    bank_name = '', 
-                    bank_branch = '', 
-                    bank_address = '', 
-                    purpose_code = '', 
-                    tax_id = '', ),
+                address = {"externalSubAccountId":"sub_acc_1234567890","accountId":"acc_1234567890"},
                 reference_id = ''
             )
         else:
             return PaymentInstructions(
                 type = 'BLOCKCHAIN',
-                address = fireblocks.models.european_sepa_address.EuropeanSEPAAddress(
-                    account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"}, 
-                    iban = 'GB82WEST12345698765432', 
-                    bic = '', 
-                    bank_name = '', 
-                    bank_branch = '', 
-                    bank_address = '', 
-                    purpose_code = '', 
-                    tax_id = '', ),
+                address = {"externalSubAccountId":"sub_acc_1234567890","accountId":"acc_1234567890"},
         )
         """
 

@@ -299,7 +299,7 @@ class TestTransactionResponse(unittest.TestCase):
                 gas_limit = '21000',
                 blockchain_index = '1.1.1',
                 paid_rent = '0.00203928',
-                extra_parameters = None,
+                extra_parameters = { },
                 signed_messages = [
                     fireblocks.models.signed_message.SignedMessage(
                         content = '', 

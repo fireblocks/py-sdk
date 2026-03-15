@@ -39,23 +39,18 @@ class TestExternalAccountSenderInformation(unittest.TestCase):
         model = ExternalAccountSenderInformation()
         if include_optional:
             return ExternalAccountSenderInformation(
-                type = 'LOCAL_BANK_AFRICA_RAIL',
+                type = 'MOBILE_MONEY_RAIL',
                 mobile_phone_number = '+14155551234',
                 provider = 'M_PESA',
                 email = '',
-                account_number = '1234567890123',
-                bank_name = '',
-                bank_code = ''
+                success_redirect_url = ''
             )
         else:
             return ExternalAccountSenderInformation(
-                type = 'LOCAL_BANK_AFRICA_RAIL',
+                type = 'MOBILE_MONEY_RAIL',
                 mobile_phone_number = '+14155551234',
                 provider = 'M_PESA',
                 email = '',
-                account_number = '1234567890123',
-                bank_name = '',
-                bank_code = '',
         )
         """
 

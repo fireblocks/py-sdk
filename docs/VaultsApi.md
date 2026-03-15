@@ -37,7 +37,7 @@ Method | HTTP request | Description
 
 
 # **activate_asset_for_vault_account**
-> CreateVaultAssetResponse activate_asset_for_vault_account(vault_account_id, asset_id, idempotency_key=idempotency_key)
+> CreateVaultAssetResponse activate_asset_for_vault_account(vault_account_id, asset_id, idempotency_key=idempotency_key, blockchain_wallet_type=blockchain_wallet_type)
 
 Activate a wallet in a vault account
 
@@ -73,10 +73,11 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_id = 'vault_account_id_example' # str | The ID of the vault account to return, or 'default' for the default vault account
     asset_id = 'asset_id_example' # str | The ID of the asset
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+    blockchain_wallet_type = 'blockchain_wallet_type_example' # str | Optional immutable blockchain wallet type to store per tenant+vault (optional)
 
     try:
         # Activate a wallet in a vault account
-        api_response = fireblocks.vaults.activate_asset_for_vault_account(vault_account_id, asset_id, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.vaults.activate_asset_for_vault_account(vault_account_id, asset_id, idempotency_key=idempotency_key, blockchain_wallet_type=blockchain_wallet_type).result()
         print("The response of VaultsApi->activate_asset_for_vault_account:\n")
         pprint(api_response)
     except Exception as e:
@@ -93,6 +94,7 @@ Name | Type | Description  | Notes
  **vault_account_id** | **str**| The ID of the vault account to return, or &#39;default&#39; for the default vault account | 
  **asset_id** | **str**| The ID of the asset | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+ **blockchain_wallet_type** | **str**| Optional immutable blockchain wallet type to store per tenant+vault | [optional] 
 
 ### Return type
 
@@ -283,6 +285,7 @@ Bulk creation of new vault accounts
 
 Create multiple vault accounts by running an async job.      
 - The HBAR, TON, SUI, TERRA, ALGO, and DOT blockchains are not supported.
+- These endpoints are currently in beta and might be subject to changes.
 - Limited to a maximum of 10,000 accounts per operation.
 
 **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor.
@@ -523,7 +526,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_vault_account_asset**
-> CreateVaultAssetResponse create_vault_account_asset(vault_account_id, asset_id, idempotency_key=idempotency_key, create_assets_request=create_assets_request)
+> CreateVaultAssetResponse create_vault_account_asset(vault_account_id, asset_id, idempotency_key=idempotency_key, blockchain_wallet_type=blockchain_wallet_type, create_assets_request=create_assets_request)
 
 Create a new vault wallet
 
@@ -560,11 +563,12 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_id = 'vault_account_id_example' # str | The ID of the vault account to return, or 'default' for the default vault account
     asset_id = 'asset_id_example' # str | The ID of the asset
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+    blockchain_wallet_type = 'blockchain_wallet_type_example' # str | Optional immutable blockchain wallet type to store per tenant+vault (optional)
     create_assets_request = fireblocks.CreateAssetsRequest() # CreateAssetsRequest |  (optional)
 
     try:
         # Create a new vault wallet
-        api_response = fireblocks.vaults.create_vault_account_asset(vault_account_id, asset_id, idempotency_key=idempotency_key, create_assets_request=create_assets_request).result()
+        api_response = fireblocks.vaults.create_vault_account_asset(vault_account_id, asset_id, idempotency_key=idempotency_key, blockchain_wallet_type=blockchain_wallet_type, create_assets_request=create_assets_request).result()
         print("The response of VaultsApi->create_vault_account_asset:\n")
         pprint(api_response)
     except Exception as e:
@@ -581,6 +585,7 @@ Name | Type | Description  | Notes
  **vault_account_id** | **str**| The ID of the vault account to return, or &#39;default&#39; for the default vault account | 
  **asset_id** | **str**| The ID of the asset | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+ **blockchain_wallet_type** | **str**| Optional immutable blockchain wallet type to store per tenant+vault | [optional] 
  **create_assets_request** | [**CreateAssetsRequest**](CreateAssetsRequest.md)|  | [optional] 
 
 ### Return type

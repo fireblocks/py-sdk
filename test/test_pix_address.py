@@ -39,15 +39,17 @@ class TestPixAddress(unittest.TestCase):
             return PixAddress(
                 account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
                 pix_key = '',
-                key_type = 'cpf',
+                key_type = 'CPF',
                 bank_name = '',
-                bank_code = ''
+                bank_code = '',
+                qr_code = 'qr_code_number',
+                expiration_date = '2025-01-15T12:00:00Z'
             )
         else:
             return PixAddress(
                 account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
                 pix_key = '',
-                key_type = 'cpf',
+                key_type = 'CPF',
         )
         """
 

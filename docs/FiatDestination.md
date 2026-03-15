@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
-**address** | [**EuropeanSEPAAddress**](EuropeanSEPAAddress.md) |  | 
+**address** | [**InternalTransferAddress**](InternalTransferAddress.md) |  | 
 
 ## Example
 

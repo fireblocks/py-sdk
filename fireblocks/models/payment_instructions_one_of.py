@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.european_sepa_address import EuropeanSEPAAddress
+from fireblocks.models.internal_transfer_address import InternalTransferAddress
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,15 +29,15 @@ class PaymentInstructionsOneOf(BaseModel):
     PaymentInstructionsOneOf
     """ # noqa: E501
     type: StrictStr
-    address: EuropeanSEPAAddress
+    address: InternalTransferAddress
     reference_id: Optional[StrictStr] = Field(default=None, alias="referenceId")
     __properties: ClassVar[List[str]] = ["type", "address", "referenceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['EUROPEAN_SEPA']):
-            raise ValueError("must be one of enum values ('EUROPEAN_SEPA')")
+        if value not in set(['INTERNAL_TRANSFER']):
+            raise ValueError("must be one of enum values ('INTERNAL_TRANSFER')")
         return value
 
     model_config = ConfigDict(
@@ -95,7 +95,7 @@ class PaymentInstructionsOneOf(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "address": EuropeanSEPAAddress.from_dict(obj["address"]) if obj.get("address") is not None else None,
+            "address": InternalTransferAddress.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "referenceId": obj.get("referenceId")
         })
         return _obj

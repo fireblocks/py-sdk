@@ -42,7 +42,11 @@ class TestLocalBankTransferAfricaAddress(unittest.TestCase):
                 account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
                 account_number = '1234567890123',
                 bank_name = '',
-                bank_code = ''
+                bank_code = '',
+                success_payment_instruction_redirect_url = '',
+                payment_redirect = fireblocks.models.payment_redirect.PaymentRedirect(
+                    url = 'https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907', 
+                    expires_at = '2025-01-15T12:00:00Z', )
             )
         else:
             return LocalBankTransferAfricaAddress(

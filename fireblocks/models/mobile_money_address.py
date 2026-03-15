@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.account_holder_details import AccountHolderDetails
+from fireblocks.models.payment_redirect import PaymentRedirect
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,7 +35,9 @@ class MobileMoneyAddress(BaseModel):
     provider: StrictStr = Field(description="Mobile money provider")
     beneficiary_document_id: Optional[StrictStr] = Field(default=None, description="Beneficiary document identification (may be required)", alias="beneficiaryDocumentId")
     beneficiary_relationship: Optional[StrictStr] = Field(default=None, description="Relationship to beneficiary for AML purposes", alias="beneficiaryRelationship")
-    __properties: ClassVar[List[str]] = ["accountHolder", "mobilePhoneNumber", "provider", "beneficiaryDocumentId", "beneficiaryRelationship"]
+    success_payment_instruction_redirect_url: Optional[StrictStr] = Field(default=None, description="The URL to redirect to after the payment instruction is successful", alias="successPaymentInstructionRedirectUrl")
+    payment_redirect: Optional[PaymentRedirect] = Field(default=None, alias="paymentRedirect")
+    __properties: ClassVar[List[str]] = ["accountHolder", "mobilePhoneNumber", "provider", "beneficiaryDocumentId", "beneficiaryRelationship", "successPaymentInstructionRedirectUrl", "paymentRedirect"]
 
     @field_validator('mobile_phone_number')
     def mobile_phone_number_validate_regular_expression(cls, value):
@@ -92,6 +95,9 @@ class MobileMoneyAddress(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of account_holder
         if self.account_holder:
             _dict['accountHolder'] = self.account_holder.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of payment_redirect
+        if self.payment_redirect:
+            _dict['paymentRedirect'] = self.payment_redirect.to_dict()
         return _dict
 
     @classmethod
@@ -108,7 +114,9 @@ class MobileMoneyAddress(BaseModel):
             "mobilePhoneNumber": obj.get("mobilePhoneNumber"),
             "provider": obj.get("provider"),
             "beneficiaryDocumentId": obj.get("beneficiaryDocumentId"),
-            "beneficiaryRelationship": obj.get("beneficiaryRelationship")
+            "beneficiaryRelationship": obj.get("beneficiaryRelationship"),
+            "successPaymentInstructionRedirectUrl": obj.get("successPaymentInstructionRedirectUrl"),
+            "paymentRedirect": PaymentRedirect.from_dict(obj["paymentRedirect"]) if obj.get("paymentRedirect") is not None else None
         })
         return _obj
 

@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.external_account_mobile_money_provider import ExternalAccountMobileMoneyProvider
 from fireblocks.models.external_account_mobile_money_type import ExternalAccountMobileMoneyType
@@ -34,7 +34,8 @@ class ExternalAccountMobileMoney(BaseModel):
     mobile_phone_number: Annotated[str, Field(strict=True)] = Field(description="Mobile phone number in E.164 format", alias="mobilePhoneNumber")
     provider: ExternalAccountMobileMoneyProvider
     email: StrictStr
-    __properties: ClassVar[List[str]] = ["type", "mobilePhoneNumber", "provider", "email"]
+    success_redirect_url: Optional[StrictStr] = Field(default=None, description="URL to redirect the end user back to after they complete the payment on the bank/mobile provider page (e.g., the merchant checkout page)", alias="successRedirectUrl")
+    __properties: ClassVar[List[str]] = ["type", "mobilePhoneNumber", "provider", "email", "successRedirectUrl"]
 
     @field_validator('mobile_phone_number')
     def mobile_phone_number_validate_regular_expression(cls, value):
@@ -97,7 +98,8 @@ class ExternalAccountMobileMoney(BaseModel):
             "type": obj.get("type"),
             "mobilePhoneNumber": obj.get("mobilePhoneNumber"),
             "provider": obj.get("provider"),
-            "email": obj.get("email")
+            "email": obj.get("email"),
+            "successRedirectUrl": obj.get("successRedirectUrl")
         })
         return _obj
 

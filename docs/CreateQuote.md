@@ -7,8 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **scope** | [**List[CreateQuoteScopeInner]**](CreateQuoteScopeInner.md) |  | 
 **base_asset_id** | **str** | The asset you receive on BUY / give on SELL. | 
+**base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_asset_id** | **str** | The counter asset used to pay/receive. | 
-**base_amount** | **str** | The amount to convert from | 
+**quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
+**base_amount** | **str** | Amount in baseAssetId. BUY &#x3D; base amount to receive; SELL &#x3D; base amount to sell. | 
 **slippage_bps** | **float** | Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100% | [optional] [default to 50]
 **settlement** | [**DVPSettlement**](DVPSettlement.md) |  | [optional] 
 **side** | [**Side**](Side.md) |  | 

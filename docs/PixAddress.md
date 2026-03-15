@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **key_type** | **str** |  | 
 **bank_name** | **str** |  | [optional] 
 **bank_code** | **str** |  | [optional] 
+**qr_code** | **str** | The QR code to be used for the transfer | [optional] 
+**expiration_date** | **str** | The expiration date of the QR code | [optional] 
 
 ## Example
 

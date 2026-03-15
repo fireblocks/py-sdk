@@ -38,12 +38,12 @@ class TestMobileMoneyDestination(unittest.TestCase):
         if include_optional:
             return MobileMoneyDestination(
                 type = 'MOBILE_MONEY',
-                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self"}
+                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self","successPaymentInstructionRedirectUrl":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","paymentRedirect":{"url":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","expiresAt":"2025-01-15T12:00:00Z"}}
             )
         else:
             return MobileMoneyDestination(
                 type = 'MOBILE_MONEY',
-                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self"},
+                address = {"accountHolder":{"name":"Grace Wanjiku Kamau","city":"Nairobi","country":"KE","subdivision":"NRB","address":"Westlands Avenue 45","postalCode":"00100"},"mobilePhoneNumber":"+254712345678","provider":"m-pesa","beneficiaryDocumentId":"12345678","beneficiaryRelationship":"self","successPaymentInstructionRedirectUrl":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","paymentRedirect":{"url":"https://yellowcard.example.com/authorize?token=abc123&transactionId=16b8b2c3-bd61-4745-9c48-3d30c2bc6907","expiresAt":"2025-01-15T12:00:00Z"}},
         )
         """
 

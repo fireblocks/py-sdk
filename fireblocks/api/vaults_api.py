@@ -75,6 +75,7 @@ class VaultsApi:
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account to return, or 'default' for the default vault account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        blockchain_wallet_type: Annotated[Optional[StrictStr], Field(description="Optional immutable blockchain wallet type to store per tenant+vault")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -98,6 +99,8 @@ class VaultsApi:
         :type asset_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
+        :param blockchain_wallet_type: Optional immutable blockchain wallet type to store per tenant+vault
+        :type blockchain_wallet_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -127,6 +130,7 @@ class VaultsApi:
             vault_account_id=vault_account_id,
             asset_id=asset_id,
             idempotency_key=idempotency_key,
+            blockchain_wallet_type=blockchain_wallet_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -149,6 +153,7 @@ class VaultsApi:
         vault_account_id,
         asset_id,
         idempotency_key,
+        blockchain_wallet_type,
         _request_auth,
         _content_type,
         _headers,
@@ -175,6 +180,10 @@ class VaultsApi:
         if asset_id is not None:
             _path_params['assetId'] = asset_id
         # process the query parameters
+        if blockchain_wallet_type is not None:
+            
+            _query_params.append(('blockchainWalletType', blockchain_wallet_type))
+            
         # process the header parameters
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key
@@ -534,7 +543,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[JobCreated]]:
         """Bulk creation of new vault accounts
 
-        Create multiple vault accounts by running an async job.       - The HBAR, TON, SUI, TERRA, ALGO, and DOT blockchains are not supported. - Limited to a maximum of 10,000 accounts per operation.  **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor. 
+        Create multiple vault accounts by running an async job.       - The HBAR, TON, SUI, TERRA, ALGO, and DOT blockchains are not supported. - These endpoints are currently in beta and might be subject to changes. - Limited to a maximum of 10,000 accounts per operation.  **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor. 
 
         :param create_multiple_accounts_request: (required)
         :type create_multiple_accounts_request: CreateMultipleAccountsRequest
@@ -964,6 +973,7 @@ class VaultsApi:
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account to return, or 'default' for the default vault account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        blockchain_wallet_type: Annotated[Optional[StrictStr], Field(description="Optional immutable blockchain wallet type to store per tenant+vault")] = None,
         create_assets_request: Optional[CreateAssetsRequest] = None,
         _request_timeout: Union[
             None,
@@ -988,6 +998,8 @@ class VaultsApi:
         :type asset_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
+        :param blockchain_wallet_type: Optional immutable blockchain wallet type to store per tenant+vault
+        :type blockchain_wallet_type: str
         :param create_assets_request:
         :type create_assets_request: CreateAssetsRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -1019,6 +1031,7 @@ class VaultsApi:
             vault_account_id=vault_account_id,
             asset_id=asset_id,
             idempotency_key=idempotency_key,
+            blockchain_wallet_type=blockchain_wallet_type,
             create_assets_request=create_assets_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1042,6 +1055,7 @@ class VaultsApi:
         vault_account_id,
         asset_id,
         idempotency_key,
+        blockchain_wallet_type,
         create_assets_request,
         _request_auth,
         _content_type,
@@ -1069,6 +1083,10 @@ class VaultsApi:
         if asset_id is not None:
             _path_params['assetId'] = asset_id
         # process the query parameters
+        if blockchain_wallet_type is not None:
+            
+            _query_params.append(('blockchainWalletType', blockchain_wallet_type))
+            
         # process the header parameters
         if idempotency_key is not None:
             _header_params['Idempotency-Key'] = idempotency_key

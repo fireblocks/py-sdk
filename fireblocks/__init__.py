@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "14.1.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -63,6 +63,7 @@ from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
 from fireblocks.api.webhooks_v2_api import WebhooksV2Api
+from fireblocks.api.workspace_api import WorkspaceApi
 from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
@@ -234,6 +235,9 @@ from fireblocks.models.channel_dvn_config_with_confirmations_receive_config impo
 from fireblocks.models.channel_dvn_config_with_confirmations_send_config import (
     ChannelDvnConfigWithConfirmationsSendConfig,
 )
+from fireblocks.models.chaps_address import ChapsAddress
+from fireblocks.models.chaps_destination import ChapsDestination
+from fireblocks.models.chaps_payment_info import ChapsPaymentInfo
 from fireblocks.models.claim_rewards_request import ClaimRewardsRequest
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
@@ -611,9 +615,6 @@ from fireblocks.models.external_account import ExternalAccount
 from fireblocks.models.external_account_local_bank_africa import (
     ExternalAccountLocalBankAfrica,
 )
-from fireblocks.models.external_account_local_bank_africa_type import (
-    ExternalAccountLocalBankAfricaType,
-)
 from fireblocks.models.external_account_mobile_money import ExternalAccountMobileMoney
 from fireblocks.models.external_account_mobile_money_provider import (
     ExternalAccountMobileMoneyProvider,
@@ -626,6 +627,7 @@ from fireblocks.models.external_account_sender_information import (
 )
 from fireblocks.models.external_account_type import ExternalAccountType
 from fireblocks.models.external_wallet_asset import ExternalWalletAsset
+from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.failure import Failure
 from fireblocks.models.failure_reason import FailureReason
 from fireblocks.models.fee import Fee
@@ -713,7 +715,12 @@ from fireblocks.models.indicative_quote_type import IndicativeQuoteType
 from fireblocks.models.initiator_config import InitiatorConfig
 from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
 from fireblocks.models.instruction_amount import InstructionAmount
+from fireblocks.models.interac_address import InteracAddress
+from fireblocks.models.interac_destination import InteracDestination
+from fireblocks.models.interac_payment_info import InteracPaymentInfo
 from fireblocks.models.internal_reference import InternalReference
+from fireblocks.models.internal_transfer_address import InternalTransferAddress
+from fireblocks.models.internal_transfer_destination import InternalTransferDestination
 from fireblocks.models.internal_transfer_response import InternalTransferResponse
 from fireblocks.models.invalid_paramater_value_error import InvalidParamaterValueError
 from fireblocks.models.job_created import JobCreated
@@ -877,11 +884,15 @@ from fireblocks.models.participants_identification import ParticipantsIdentifica
 from fireblocks.models.payee_account import PayeeAccount
 from fireblocks.models.payee_account_response import PayeeAccountResponse
 from fireblocks.models.payee_account_type import PayeeAccountType
+from fireblocks.models.payid_address import PayidAddress
+from fireblocks.models.payid_destination import PayidDestination
+from fireblocks.models.payid_payment_info import PayidPaymentInfo
 from fireblocks.models.payment_account import PaymentAccount
 from fireblocks.models.payment_account_response import PaymentAccountResponse
 from fireblocks.models.payment_account_type import PaymentAccountType
 from fireblocks.models.payment_instructions import PaymentInstructions
 from fireblocks.models.payment_instructions_one_of import PaymentInstructionsOneOf
+from fireblocks.models.payment_redirect import PaymentRedirect
 from fireblocks.models.payout_init_method import PayoutInitMethod
 from fireblocks.models.payout_instruction import PayoutInstruction
 from fireblocks.models.payout_instruction_response import PayoutInstructionResponse
@@ -951,6 +962,7 @@ from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
 from fireblocks.models.read_call_function_dto_abi_function import (
     ReadCallFunctionDtoAbiFunction,
 )
+from fireblocks.models.recipient_handle import RecipientHandle
 from fireblocks.models.redeem_funds_to_linked_dda_response import (
     RedeemFundsToLinkedDDAResponse,
 )
@@ -1602,6 +1614,7 @@ from fireblocks.models.withdraw_request import WithdrawRequest
 from fireblocks.models.workflow_config_status import WorkflowConfigStatus
 from fireblocks.models.workflow_configuration_id import WorkflowConfigurationId
 from fireblocks.models.workflow_execution_operation import WorkflowExecutionOperation
+from fireblocks.models.workspace import Workspace
 from fireblocks.models.write_abi_function import WriteAbiFunction
 from fireblocks.models.write_call_function_dto import WriteCallFunctionDto
 from fireblocks.models.write_call_function_dto_abi_function import (

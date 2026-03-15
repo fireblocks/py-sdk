@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.destination_transfer_peer_path import DestinationTransferPeerPath
+from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.source_transfer_peer_path import SourceTransferPeerPath
 from fireblocks.models.transaction_operation import TransactionOperation
 from fireblocks.models.transaction_request_amount import TransactionRequestAmount
@@ -59,7 +60,7 @@ class TransactionRequest(BaseModel):
     gas_price: Optional[TransactionRequestGasPrice] = Field(default=None, alias="gasPrice")
     network_fee: Optional[TransactionRequestNetworkFee] = Field(default=None, alias="networkFee")
     replace_tx_by_hash: Optional[StrictStr] = Field(default=None, description="For EVM-based blockchains only. In case a transaction is stuck, specify the hash of the stuck transaction to replace it by this transaction with a higher fee, or to replace it with this transaction with a zero fee and drop it from the blockchain.", alias="replaceTxByHash")
-    extra_parameters: Optional[Dict[str, Any]] = Field(default=None, description="Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/get_vault-accounts-vaultaccountid-assetid-unspent-inputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. For **exchange compliance (e.g., Binance) and Travel Rule purposes**, include the key `piiData` containing a **custom JSON structure** with Personally Identifiable Information (PII) relevant to the transaction. This data must be fully **encrypted by the sender** before being submitted to the Fireblocks API. The recommended encryption method is **hybrid encryption** using AES-256-GCM for the payload and RSA-OAEP for key exchange, with the recipient exchange’s public key. [development libraries](https://developers.fireblocks.com/docs/a-developers-guide-to-constructing-encrypted-pii-messages-for-binance-via-fireblocks) ", alias="extraParameters")
+    extra_parameters: Optional[ExtraParameters] = Field(default=None, alias="extraParameters")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
     travel_rule_message: Optional[TravelRuleCreateTransactionRequest] = Field(default=None, alias="travelRuleMessage")
     travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for travel rule supporting functionality to associate transactions with existing travel rule messages.", alias="travelRuleMessageId")
@@ -149,6 +150,9 @@ class TransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network_fee
         if self.network_fee:
             _dict['networkFee'] = self.network_fee.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of extra_parameters
+        if self.extra_parameters:
+            _dict['extraParameters'] = self.extra_parameters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of travel_rule_message
         if self.travel_rule_message:
             _dict['travelRuleMessage'] = self.travel_rule_message.to_dict()
@@ -190,7 +194,7 @@ class TransactionRequest(BaseModel):
             "gasPrice": TransactionRequestGasPrice.from_dict(obj["gasPrice"]) if obj.get("gasPrice") is not None else None,
             "networkFee": TransactionRequestNetworkFee.from_dict(obj["networkFee"]) if obj.get("networkFee") is not None else None,
             "replaceTxByHash": obj.get("replaceTxByHash"),
-            "extraParameters": obj.get("extraParameters"),
+            "extraParameters": ExtraParameters.from_dict(obj["extraParameters"]) if obj.get("extraParameters") is not None else None,
             "customerRefId": obj.get("customerRefId"),
             "travelRuleMessage": TravelRuleCreateTransactionRequest.from_dict(obj["travelRuleMessage"]) if obj.get("travelRuleMessage") is not None else None,
             "travelRuleMessageId": obj.get("travelRuleMessageId"),

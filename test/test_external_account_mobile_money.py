@@ -40,7 +40,8 @@ class TestExternalAccountMobileMoney(unittest.TestCase):
                 type = 'MOBILE_MONEY_RAIL',
                 mobile_phone_number = '+14155551234',
                 provider = 'M_PESA',
-                email = ''
+                email = '',
+                success_redirect_url = ''
             )
         else:
             return ExternalAccountMobileMoney(

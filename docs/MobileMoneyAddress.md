@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **provider** | **str** | Mobile money provider | 
 **beneficiary_document_id** | **str** | Beneficiary document identification (may be required) | [optional] 
 **beneficiary_relationship** | **str** | Relationship to beneficiary for AML purposes | [optional] 
+**success_payment_instruction_redirect_url** | **str** | The URL to redirect to after the payment instruction is successful | [optional] 
+**payment_redirect** | [**PaymentRedirect**](PaymentRedirect.md) |  | [optional] 
 
 ## Example
 

@@ -22,7 +22,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.aml_status_enum import AmlStatusEnum
 from fireblocks.models.screening_aml_result import ScreeningAmlResult
-from fireblocks.models.screening_risk_level_enum import ScreeningRiskLevelEnum
 from fireblocks.models.screening_travel_rule_prescreening_rule import ScreeningTravelRulePrescreeningRule
 from fireblocks.models.screening_travel_rule_result import ScreeningTravelRuleResult
 from fireblocks.models.screening_verdict_enum import ScreeningVerdictEnum
@@ -33,26 +32,26 @@ class ComplianceScreeningResultFullPayload(BaseModel):
     """
     The result of the AML/Travel Rule screening. This unified schema contains all fields that may be returned for both AML and Travel Rule screening results. Not all fields will be present in every response - the actual fields depend on the screening type and provider. 
     """ # noqa: E501
-    provider: Optional[StrictStr] = Field(default=None, description="The AML/Travel Rule provider name. For AML: ELLIPTIC, CHAINALYSIS, etc. For Travel Rule: NOTABENE, SUMSUB, or any TRLink provider name ")
+    provider: Optional[StrictStr] = Field(default=None, description="The AML/Travel Rule provider name. For AML: ELLIPTIC, CHAINALYSIS, etc. For Travel Rule: NOTABENE, SUMSUB, GTR, or any TRLink provider name ")
     payload: Optional[Dict[str, Any]] = Field(default=None, description="The raw payload of the screening result from the provider. The payload is a JSON object that contains the screening result. The payload structure is different for each screening provider. This field contains the complete, unmodified response from the screening service. ")
     timestamp: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp in milliseconds when the screening result was generated")
     screening_status: Optional[StrictStr] = Field(default=None, description="Current status of the screening process", alias="screeningStatus")
-    bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason for bypassing the screening, if applicable. For AML: SANCTIONS_SCREENING_BYPASS, SANCTIONS_RECIPIENT_BYPASS, etc. For Travel Rule: BELOW_THRESHOLD, NO_TRM_AVAILABLE, etc. ", alias="bypassReason")
+    bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason for bypassing the screening, if applicable. For AML: UNSUPPORTED_ASSET, PASSED_BY_POLICY. For Travel Rule: UNSUPPORTED_ASSET, NO_TRAVEL_RULE_MESSAGE, TRANSACTION_ZERO_AMOUNT. ", alias="bypassReason")
     status: Optional[AmlStatusEnum] = None
     prev_status: Optional[AmlStatusEnum] = Field(default=None, alias="prevStatus")
-    prev_bypass_reason: Optional[StrictStr] = Field(default=None, description="Previous bypass reason before the current bypass reason change", alias="prevBypassReason")
+    prev_bypass_reason: Optional[StrictStr] = Field(default=None, description="Deprecated: This field is not currently returned in the API response. Previous bypass reason before the current bypass reason change. ", alias="prevBypassReason")
     verdict: Optional[ScreeningVerdictEnum] = None
-    risk: Optional[ScreeningRiskLevelEnum] = None
-    extended_risk: Optional[ScreeningRiskLevelEnum] = Field(default=None, alias="extendedRisk")
+    risk: Optional[StrictStr] = Field(default=None, description="Risk level assessment for screening results. Values vary by provider and are not managed by this service.  Known values by provider: - Chainalysis: severeRisk, highRisk, mediumRisk, lowRisk, noRiskInfo - Elliptic: noRiskDetected  Legacy values (SCREAMING_SNAKE_CASE, may appear in old transactions): VERY_HIGH, SEVERE, HIGH, MEDIUM, LOW, NO_RISK_INFO, UNKNOWN ")
+    extended_risk: Optional[StrictStr] = Field(default=None, description="Deprecated: This field is not currently returned in the API response. Use risk instead. ", alias="extendedRisk")
     external_id: Optional[StrictStr] = Field(default=None, description="External identifier for the screening (provider-specific)", alias="externalId")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="Customer-provided reference identifier for tracking", alias="customerRefId")
-    ref_id: Optional[StrictStr] = Field(default=None, description="Internal reference identifier", alias="refId")
+    ref_id: Optional[StrictStr] = Field(default=None, description="Deprecated: This field is not currently returned in the API response. Internal reference identifier. ", alias="refId")
     category: Optional[StrictStr] = Field(default=None, description="Risk category classification. Examples: EXCHANGE, GAMBLING, MIXER, DARKNET_SERVICE, SANCTIONED_ENTITY ")
     category_id: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Numeric identifier for the risk category", alias="categoryId")
     dest_address: Optional[StrictStr] = Field(default=None, description="The destination blockchain address associated with the screening", alias="destAddress")
     dest_tag: Optional[StrictStr] = Field(default=None, description="Destination tag or memo (for chains that support it like XRP, XLM)", alias="destTag")
-    dest_record_id: Optional[StrictStr] = Field(default=None, description="The destination record identifier used by the screening provider", alias="destRecordId")
-    address_resolution_signature: Optional[StrictStr] = Field(default=None, description="Cryptographic signature for address resolution verification", alias="addressResolutionSignature")
+    dest_record_id: Optional[StrictStr] = Field(default=None, description="Deprecated: This field is not currently returned in the API response. The destination record identifier used by the screening provider. ", alias="destRecordId")
+    address_resolution_signature: Optional[StrictStr] = Field(default=None, description="Deprecated: This field is not currently returned in the API response. Cryptographic signature for address resolution verification. ", alias="addressResolutionSignature")
     aml_result: Optional[ScreeningAmlResult] = Field(default=None, alias="amlResult")
     result: Optional[ScreeningTravelRuleResult] = None
     details_message: Optional[StrictStr] = Field(default=None, description="Additional human-readable details or message about the screening result", alias="detailsMessage")
@@ -63,7 +62,8 @@ class ComplianceScreeningResultFullPayload(BaseModel):
     customer_integration_id: Optional[StrictStr] = Field(default=None, description="Customer integration identifier used by Travel Rule providers", alias="customerIntegrationId")
     customer_short_name: Optional[StrictStr] = Field(default=None, description="Customer short name registered with Travel Rule providers", alias="customerShortName")
     travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="Travel rule message identifier for linking and tracking across providers", alias="travelRuleMessageId")
-    __properties: ClassVar[List[str]] = ["provider", "payload", "timestamp", "screeningStatus", "bypassReason", "status", "prevStatus", "prevBypassReason", "verdict", "risk", "extendedRisk", "externalId", "customerRefId", "refId", "category", "categoryId", "destAddress", "destTag", "destRecordId", "addressResolutionSignature", "amlResult", "result", "detailsMessage", "matchedAlert", "matchedRule", "matchedPrescreeningRule", "matchedNoTrmScreeningRule", "customerIntegrationId", "customerShortName", "travelRuleMessageId"]
+    provider_response: Optional[Dict[str, Any]] = Field(default=None, description="Complete response from the screening provider. This is a dynamic object that varies significantly between different providers (Chainalysis, Elliptic, NOTABENE, etc.). Each provider has their own proprietary response format and schema.  For AML providers: Contains risk scores, alerts, entity information For Travel Rule providers: Contains VASP information, PII data, protocol-specific fields  The structure is provider-dependent and cannot be standardized as each vendor implements their own proprietary data models and response formats. ", alias="providerResponse")
+    __properties: ClassVar[List[str]] = ["provider", "payload", "timestamp", "screeningStatus", "bypassReason", "status", "prevStatus", "prevBypassReason", "verdict", "risk", "extendedRisk", "externalId", "customerRefId", "refId", "category", "categoryId", "destAddress", "destTag", "destRecordId", "addressResolutionSignature", "amlResult", "result", "detailsMessage", "matchedAlert", "matchedRule", "matchedPrescreeningRule", "matchedNoTrmScreeningRule", "customerIntegrationId", "customerShortName", "travelRuleMessageId", "providerResponse"]
 
     @field_validator('screening_status')
     def screening_status_validate_enum(cls, value):
@@ -164,7 +164,8 @@ class ComplianceScreeningResultFullPayload(BaseModel):
             "matchedNoTrmScreeningRule": obj.get("matchedNoTrmScreeningRule"),
             "customerIntegrationId": obj.get("customerIntegrationId"),
             "customerShortName": obj.get("customerShortName"),
-            "travelRuleMessageId": obj.get("travelRuleMessageId")
+            "travelRuleMessageId": obj.get("travelRuleMessageId"),
+            "providerResponse": obj.get("providerResponse")
         })
         return _obj
 

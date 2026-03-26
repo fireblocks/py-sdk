@@ -1,6 +1,6 @@
 # AmlStatusEnum
 
-AML screening status
+Deprecated: Use screeningStatus instead. AML screening status. 
 
 ## Enum
 

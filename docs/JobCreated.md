@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **job_id** | **str** |  | [optional] 
+**approval_request_id** | **str** | Approval request ID. Returned when a tag triggers an approval flow. | [optional] 
 
 ## Example
 

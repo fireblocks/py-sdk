@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,8 @@ class TRLinkCreateIntegrationRequest(BaseModel):
     """ # noqa: E501
     customer_id: StrictStr = Field(description="Customer unique identifier", alias="customerId")
     partner_ident: StrictStr = Field(description="Partner identification code (e.g., \"sumsub\", \"notabene\")", alias="partnerIdent")
-    __properties: ClassVar[List[str]] = ["customerId", "partnerIdent"]
+    customer_integration_id: Optional[StrictStr] = Field(default=None, description="Optional. When supplied and permitted for the tenant (feature flag / CSM arrangement), this value is used as the TRLink integration identifier instead of a server-generated UUID. If omitted, the API generates a UUID. If supplied when the tenant is not permitted to set a custom id, the request fails with 400. Contact your CSM if you need a custom integration id.", alias="customerIntegrationId")
+    __properties: ClassVar[List[str]] = ["customerId", "partnerIdent", "customerIntegrationId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +84,8 @@ class TRLinkCreateIntegrationRequest(BaseModel):
 
         _obj = cls.model_validate({
             "customerId": obj.get("customerId"),
-            "partnerIdent": obj.get("partnerIdent")
+            "partnerIdent": obj.get("partnerIdent"),
+            "customerIntegrationId": obj.get("customerIntegrationId")
         })
         return _obj
 

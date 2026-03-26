@@ -11,10 +11,11 @@ Name | Type | Description | Notes
 **account_based** | **bool** | Indicates whether the provider access model is through accounts or directly | 
 **manifest** | [**Manifest**](Manifest.md) |  | 
 **connected** | **bool** | Whether the provider is currently connected | 
-**accounts** | [**List[AccountBase]**](AccountBase.md) |  | [optional] 
+**accounts** | [**List[AccountBase]**](AccountBase.md) |  | 
 **approved** | **bool** | Whether the provider was approved for use | [optional] 
 **has_terms_of_service** | **bool** | Whether the provider has terms of service | 
 **terms_of_service_url** | **str** | URL to the terms of service document | [optional] 
+**privacy_policy_url** | **str** | URL to the privacy policy document | [optional] 
 
 ## Example
 

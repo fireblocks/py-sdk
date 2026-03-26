@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.manifest import Manifest
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +32,8 @@ class BaseProvider(BaseModel):
     name: StrictStr = Field(description="Display name of the provider")
     logo: Optional[StrictStr] = Field(default=None, description="URL to the logo image of the provider")
     account_based: StrictBool = Field(description="Indicates whether the provider access model is through accounts or directly", alias="accountBased")
-    __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased"]
+    manifest: Manifest
+    __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "manifest"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,9 @@ class BaseProvider(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of manifest
+        if self.manifest:
+            _dict['manifest'] = self.manifest.to_dict()
         return _dict
 
     @classmethod
@@ -87,7 +92,8 @@ class BaseProvider(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "logo": obj.get("logo"),
-            "accountBased": obj.get("accountBased")
+            "accountBased": obj.get("accountBased"),
+            "manifest": Manifest.from_dict(obj["manifest"]) if obj.get("manifest") is not None else None
         })
         return _obj
 

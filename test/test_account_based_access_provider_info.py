@@ -15,13 +15,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.account_based_access_provider_details import (
-    AccountBasedAccessProviderDetails,
+from fireblocks.models.account_based_access_provider_info import (
+    AccountBasedAccessProviderInfo,
 )
 
 
-class TestAccountBasedAccessProviderDetails(unittest.TestCase):
-    """AccountBasedAccessProviderDetails unit test stubs"""
+class TestAccountBasedAccessProviderInfo(unittest.TestCase):
+    """AccountBasedAccessProviderInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,31 +29,32 @@ class TestAccountBasedAccessProviderDetails(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AccountBasedAccessProviderDetails:
-        """Test AccountBasedAccessProviderDetails
+    def make_instance(self, include_optional) -> AccountBasedAccessProviderInfo:
+        """Test AccountBasedAccessProviderInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AccountBasedAccessProviderDetails`
+        # uncomment below to create an instance of `AccountBasedAccessProviderInfo`
         """
-        model = AccountBasedAccessProviderDetails()
+        model = AccountBasedAccessProviderInfo()
         if include_optional:
-            return AccountBasedAccessProviderDetails(
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+            return AccountBasedAccessProviderInfo(
                 connected = True,
                 accounts = [
                     {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
                     ]
             )
         else:
-            return AccountBasedAccessProviderDetails(
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+            return AccountBasedAccessProviderInfo(
                 connected = True,
+                accounts = [
+                    {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
+                    ],
         )
         """
 
-    def testAccountBasedAccessProviderDetails(self):
-        """Test AccountBasedAccessProviderDetails"""
+    def testAccountBasedAccessProviderInfo(self):
+        """Test AccountBasedAccessProviderInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

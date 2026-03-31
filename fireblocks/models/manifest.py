@@ -18,20 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.asset_type_enum import AssetTypeEnum
-from fireblocks.models.capability import Capability
+from fireblocks.models.manifest_base import ManifestBase
+from fireblocks.models.manifest_order import ManifestOrder
+from fireblocks.models.manifest_quote import ManifestQuote
 from typing import Optional, Set
 from typing_extensions import Self
 
 class Manifest(BaseModel):
     """
-    Manifest
+    The manifest of the provider, describing its supported order, quote, and rate requirements.
     """ # noqa: E501
-    asset_types: List[AssetTypeEnum] = Field(alias="assetTypes")
-    capabilities: List[Capability]
-    __properties: ClassVar[List[str]] = ["assetTypes", "capabilities"]
+    order: ManifestOrder
+    quote: ManifestQuote
+    rate: ManifestBase
+    __properties: ClassVar[List[str]] = ["order", "quote", "rate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,15 @@ class Manifest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of order
+        if self.order:
+            _dict['order'] = self.order.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of quote
+        if self.quote:
+            _dict['quote'] = self.quote.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rate
+        if self.rate:
+            _dict['rate'] = self.rate.to_dict()
         return _dict
 
     @classmethod
@@ -84,8 +95,9 @@ class Manifest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "assetTypes": obj.get("assetTypes"),
-            "capabilities": obj.get("capabilities")
+            "order": ManifestOrder.from_dict(obj["order"]) if obj.get("order") is not None else None,
+            "quote": ManifestQuote.from_dict(obj["quote"]) if obj.get("quote") is not None else None,
+            "rate": ManifestBase.from_dict(obj["rate"]) if obj.get("rate") is not None else None
         })
         return _obj
 

@@ -1,13 +1,12 @@
-# Capability
+# SettlementTypeEnum
 
+Settlement type supported by the provider
 
 ## Enum
 
-* `WITHDRAWALS` (value: `'WITHDRAWALS'`)
+* `DVP` (value: `'DVP'`)
 
-* `DEPOSITS` (value: `'DEPOSITS'`)
-
-* `TRADING` (value: `'TRADING'`)
+* `PREFUNDED` (value: `'PREFUNDED'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -19,21 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class Capability(str, Enum):
+class ExecutionRequestDetailsType(str, Enum):
     """
-    Capability
+    Execution type supported by the provider
     """
 
     """
     allowed enum values
     """
-    WITHDRAWALS = 'WITHDRAWALS'
-    DEPOSITS = 'DEPOSITS'
-    TRADING = 'TRADING'
+    QUOTE = 'QUOTE'
+    MARKET = 'MARKET'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Capability from a JSON string"""
+        """Create an instance of ExecutionRequestDetailsType from a JSON string"""
         return cls(json.loads(json_str))
 
 

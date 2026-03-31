@@ -20,17 +20,24 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.manifest import Manifest
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DirectAccessProviderDetails(BaseModel):
+class DirectProviderDetails(BaseModel):
     """
-    DirectAccessProviderDetails
+    DirectProviderDetails
     """ # noqa: E501
+    id: StrictStr = Field(description="Unique identifier for the provider")
+    name: StrictStr = Field(description="Display name of the provider")
+    logo: Optional[StrictStr] = Field(default=None, description="URL to the logo image of the provider")
+    account_based: StrictBool = Field(description="Indicates whether the provider access model is through accounts or directly", alias="accountBased")
+    manifest: Manifest
     approved: Optional[StrictBool] = Field(default=None, description="Whether the provider was approved for use")
     has_terms_of_service: StrictBool = Field(description="Whether the provider has terms of service", alias="hasTermsOfService")
     terms_of_service_url: Optional[StrictStr] = Field(default=None, description="URL to the terms of service document", alias="termsOfServiceUrl")
-    __properties: ClassVar[List[str]] = ["approved", "hasTermsOfService", "termsOfServiceUrl"]
+    privacy_policy_url: Optional[StrictStr] = Field(default=None, description="URL to the privacy policy document", alias="privacyPolicyUrl")
+    __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "manifest", "approved", "hasTermsOfService", "termsOfServiceUrl", "privacyPolicyUrl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +57,7 @@ class DirectAccessProviderDetails(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DirectAccessProviderDetails from a JSON string"""
+        """Create an instance of DirectProviderDetails from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +78,14 @@ class DirectAccessProviderDetails(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of manifest
+        if self.manifest:
+            _dict['manifest'] = self.manifest.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DirectAccessProviderDetails from a dict"""
+        """Create an instance of DirectProviderDetails from a dict"""
         if obj is None:
             return None
 
@@ -83,9 +93,15 @@ class DirectAccessProviderDetails(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "logo": obj.get("logo"),
+            "accountBased": obj.get("accountBased"),
+            "manifest": Manifest.from_dict(obj["manifest"]) if obj.get("manifest") is not None else None,
             "approved": obj.get("approved"),
             "hasTermsOfService": obj.get("hasTermsOfService"),
-            "termsOfServiceUrl": obj.get("termsOfServiceUrl")
+            "termsOfServiceUrl": obj.get("termsOfServiceUrl"),
+            "privacyPolicyUrl": obj.get("privacyPolicyUrl")
         })
         return _obj
 

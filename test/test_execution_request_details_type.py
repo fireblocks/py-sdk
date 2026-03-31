@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.asset_type_enum import AssetTypeEnum
+from fireblocks.models.execution_request_details_type import ExecutionRequestDetailsType
 
 
-class TestAssetTypeEnum(unittest.TestCase):
-    """AssetTypeEnum unit test stubs"""
+class TestExecutionRequestDetailsType(unittest.TestCase):
+    """ExecutionRequestDetailsType unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,9 +27,9 @@ class TestAssetTypeEnum(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testAssetTypeEnum(self):
-        """Test AssetTypeEnum"""
-        # inst = AssetTypeEnum()
+    def testExecutionRequestDetailsType(self):
+        """Test ExecutionRequestDetailsType"""
+        # inst = ExecutionRequestDetailsType()
 
 
 if __name__ == "__main__":

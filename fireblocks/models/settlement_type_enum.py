@@ -19,24 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class ScreeningRiskLevelEnum(str, Enum):
+class SettlementTypeEnum(str, Enum):
     """
-    Risk level assessment for screening results. Possible values vary by provider and context. 
+    Settlement type supported by the provider
     """
 
     """
     allowed enum values
     """
-    VERY_HIGH = 'VERY_HIGH'
-    SEVERE = 'SEVERE'
-    HIGH = 'HIGH'
-    MEDIUM = 'MEDIUM'
-    LOW = 'LOW'
-    UNKNOWN = 'UNKNOWN'
+    DVP = 'DVP'
+    PREFUNDED = 'PREFUNDED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ScreeningRiskLevelEnum from a JSON string"""
+        """Create an instance of SettlementTypeEnum from a JSON string"""
         return cls(json.loads(json_str))
 
 

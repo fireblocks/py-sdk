@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class AmlStatusEnum(str, Enum):
     """
-    AML screening status
+    Deprecated: Use screeningStatus instead. AML screening status. 
     """
 
     """

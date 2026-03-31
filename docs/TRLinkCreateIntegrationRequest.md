@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_id** | **str** | Customer unique identifier | 
 **partner_ident** | **str** | Partner identification code (e.g., \&quot;sumsub\&quot;, \&quot;notabene\&quot;) | 
+**customer_integration_id** | **str** | Optional. When supplied and permitted for the tenant (feature flag / CSM arrangement), this value is used as the TRLink integration identifier instead of a server-generated UUID. If omitted, the API generates a UUID. If supplied when the tenant is not permitted to set a custom id, the request fails with 400. Contact your CSM if you need a custom integration id. | [optional] 
 
 ## Example
 

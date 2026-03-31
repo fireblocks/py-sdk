@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.screening_risk_level_enum import ScreeningRiskLevelEnum
+from fireblocks.models.settlement_type_enum import SettlementTypeEnum
 
 
-class TestScreeningRiskLevelEnum(unittest.TestCase):
-    """ScreeningRiskLevelEnum unit test stubs"""
+class TestSettlementTypeEnum(unittest.TestCase):
+    """SettlementTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,9 +27,9 @@ class TestScreeningRiskLevelEnum(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testScreeningRiskLevelEnum(self):
-        """Test ScreeningRiskLevelEnum"""
-        # inst = ScreeningRiskLevelEnum()
+    def testSettlementTypeEnum(self):
+        """Test SettlementTypeEnum"""
+        # inst = SettlementTypeEnum()
 
 
 if __name__ == "__main__":

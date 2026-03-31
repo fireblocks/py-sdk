@@ -76,6 +76,13 @@ class TestStakingApi(unittest.TestCase):
         """
         pass
 
+    def test_get_positions(self) -> None:
+        """Test case for get_positions
+
+        List staking positions (Paginated)
+        """
+        pass
+
     def test_get_providers(self) -> None:
         """Test case for get_providers
 

@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.direct_access_provider_details import DirectAccessProviderDetails
+from fireblocks.models.manifest_order_info import ManifestOrderInfo
 
 
-class TestDirectAccessProviderDetails(unittest.TestCase):
-    """DirectAccessProviderDetails unit test stubs"""
+class TestManifestOrderInfo(unittest.TestCase):
+    """ManifestOrderInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,28 +27,33 @@ class TestDirectAccessProviderDetails(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DirectAccessProviderDetails:
-        """Test DirectAccessProviderDetails
+    def make_instance(self, include_optional) -> ManifestOrderInfo:
+        """Test ManifestOrderInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `DirectAccessProviderDetails`
+        # uncomment below to create an instance of `ManifestOrderInfo`
         """
-        model = DirectAccessProviderDetails()
+        model = ManifestOrderInfo()
         if include_optional:
-            return DirectAccessProviderDetails(
-                approved = True,
-                has_terms_of_service = True,
-                terms_of_service_url = ''
+            return ManifestOrderInfo(
+                settlement_types = [
+                    'DVP'
+                    ],
+                execution_types = [
+                    'QUOTE'
+                    ]
             )
         else:
-            return DirectAccessProviderDetails(
-                has_terms_of_service = True,
+            return ManifestOrderInfo(
+                execution_types = [
+                    'QUOTE'
+                    ],
         )
         """
 
-    def testDirectAccessProviderDetails(self):
-        """Test DirectAccessProviderDetails"""
+    def testManifestOrderInfo(self):
+        """Test ManifestOrderInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

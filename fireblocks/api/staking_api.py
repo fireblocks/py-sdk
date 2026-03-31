@@ -33,6 +33,7 @@ from fireblocks.models.split_request import SplitRequest
 from fireblocks.models.split_response import SplitResponse
 from fireblocks.models.stake_request import StakeRequest
 from fireblocks.models.stake_response import StakeResponse
+from fireblocks.models.staking_positions_paginated_response import StakingPositionsPaginatedResponse
 from fireblocks.models.staking_provider import StakingProvider
 from fireblocks.models.unstake_request import UnstakeRequest
 from fireblocks.models.withdraw_request import WithdrawRequest
@@ -378,7 +379,7 @@ class StakingApi:
     ) -> Future[ApiResponse[MergeStakeAccountsResponse]]:
         """Consolidate staking positions (ETH validator consolidation)
 
-        Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same validator provider and same vault account. On chain, this translates into a consolidation transaction, where the source validator is consolidated into the destination validator. Supported chains: Ethereum (ETH) only. </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same funding vaults account (i.e. same withdrawals credentials).  On chain, this translates into a consolidation transaction, where the  source validator is consolidated into the destination validator.  Supported chains: Ethereum (ETH) only. </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor. **Note:** This endpoint is currently in beta and might be subject to changes.
 
         :param chain_descriptor: Protocol identifier for the staking operation (e.g., ETH). (required)
         :type chain_descriptor: str
@@ -522,6 +523,7 @@ class StakingApi:
     def get_all_delegations(
         self,
         chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.")] = None,
+        vault_account_id: Annotated[Optional[StrictStr], Field(description="Filter positions by vault account ID.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -541,6 +543,8 @@ class StakingApi:
 
         :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.
         :type chain_descriptor: ChainDescriptor
+        :param vault_account_id: Filter positions by vault account ID.
+        :type vault_account_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -566,6 +570,7 @@ class StakingApi:
 
         _param = self._get_all_delegations_serialize(
             chain_descriptor=chain_descriptor,
+            vault_account_id=vault_account_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -591,6 +596,7 @@ class StakingApi:
     def _get_all_delegations_serialize(
         self,
         chain_descriptor,
+        vault_account_id,
         _request_auth,
         _content_type,
         _headers,
@@ -616,6 +622,10 @@ class StakingApi:
         if chain_descriptor is not None:
             
             _query_params.append(('chainDescriptor', chain_descriptor.value))
+            
+        if vault_account_id is not None:
+            
+            _query_params.append(('vaultAccountId', vault_account_id))
             
         # process the header parameters
         # process the form parameters
@@ -1030,6 +1040,177 @@ class StakingApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/staking/positions/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_positions(
+        self,
+        page_size: Annotated[int, Field(le=100, strict=True, ge=1, description="Number of results per page. When provided, the response returns a paginated object with {data, next}. If omitted, all results are returned as an array.")],
+        chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.")] = None,
+        vault_account_id: Annotated[Optional[StrictStr], Field(description="Filter positions by Fireblocks vault account ID. If omitted, positions across all vault accounts are returned.")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor for the next page of results. Use the value from the 'next' field in the previous response.")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[StakingPositionsPaginatedResponse]]:
+        """List staking positions (Paginated)
+
+        Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+
+        :param page_size: Number of results per page. When provided, the response returns a paginated object with {data, next}. If omitted, all results are returned as an array. (required)
+        :type page_size: int
+        :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.
+        :type chain_descriptor: ChainDescriptor
+        :param vault_account_id: Filter positions by Fireblocks vault account ID. If omitted, positions across all vault accounts are returned.
+        :type vault_account_id: str
+        :param page_cursor: Cursor for the next page of results. Use the value from the 'next' field in the previous response.
+        :type page_cursor: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_positions_serialize(
+            page_size=page_size,
+            chain_descriptor=chain_descriptor,
+            vault_account_id=vault_account_id,
+            page_cursor=page_cursor,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "StakingPositionsPaginatedResponse",
+            '400': "ErrorSchema",
+            '403': "ErrorSchema",
+            '404': "ErrorSchema",
+            '429': "ErrorSchema",
+            '500': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_positions_serialize(
+        self,
+        page_size,
+        chain_descriptor,
+        vault_account_id,
+        page_cursor,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if chain_descriptor is not None:
+            
+            _query_params.append(('chainDescriptor', chain_descriptor.value))
+            
+        if vault_account_id is not None:
+            
+            _query_params.append(('vaultAccountId', vault_account_id))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/staking/positions_paginated',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

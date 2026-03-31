@@ -40,7 +40,8 @@ class TestTRLinkCreateIntegrationRequest(unittest.TestCase):
         if include_optional:
             return TRLinkCreateIntegrationRequest(
                 customer_id = '550e8400-e29b-41d4-a716-446655440001',
-                partner_ident = 'sumsub'
+                partner_ident = 'sumsub',
+                customer_integration_id = '660e8400-e29b-41d4-a716-446655440099'
             )
         else:
             return TRLinkCreateIntegrationRequest(

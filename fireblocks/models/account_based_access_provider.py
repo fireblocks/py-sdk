@@ -35,7 +35,7 @@ class AccountBasedAccessProvider(BaseModel):
     account_based: StrictBool = Field(description="Indicates whether the provider access model is through accounts or directly", alias="accountBased")
     manifest: Manifest
     connected: StrictBool = Field(description="Whether the provider is currently connected")
-    accounts: Optional[List[AccountBase]] = None
+    accounts: List[AccountBase]
     __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "manifest", "connected", "accounts"]
 
     model_config = ConfigDict(

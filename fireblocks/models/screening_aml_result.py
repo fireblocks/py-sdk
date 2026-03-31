@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class ScreeningAmlResult(BaseModel):
     """
-    Detailed AML screening result information. Contains alerts, risk scores, and other AML-specific data from provider-specific responses. 
+    Deprecated: This field is not currently returned in the API response. Detailed AML screening result information. Contains alerts, risk scores, and other AML-specific data from provider-specific responses. 
     """ # noqa: E501
     alerts: Optional[List[ScreeningAmlAlert]] = Field(default=None, description="List of AML alerts triggered during screening")
     provider_response: Optional[Dict[str, Any]] = Field(default=None, description="Complete response from the AML provider. This is a dynamic object that varies significantly between different AML providers (Chainalysis, Elliptic, etc.). Each provider has their own proprietary response format and schema.  Examples of provider-specific structures: - Chainalysis: Contains cluster info, risk scores, sanctions data - Elliptic: Includes risk assessment, entity types, compliance flags  The structure is provider-dependent and cannot be standardized as each vendor implements their own proprietary data models and response formats. ", alias="providerResponse")

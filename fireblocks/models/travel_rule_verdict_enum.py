@@ -31,6 +31,9 @@ class TravelRuleVerdictEnum(str, Enum):
     REJECT = 'REJECT'
     ALERT = 'ALERT'
     REVIEW = 'REVIEW'
+    WAIT = 'WAIT'
+    FREEZE = 'FREEZE'
+    CANCEL = 'CANCEL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

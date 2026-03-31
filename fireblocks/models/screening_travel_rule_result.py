@@ -28,7 +28,7 @@ from typing_extensions import Self
 
 class ScreeningTravelRuleResult(BaseModel):
     """
-    Detailed Travel Rule screening result containing provider-specific data. Contains Travel Rule specific information like verified status, rule type, and actions. 
+    Deprecated: This field is not currently returned in the API response. Detailed Travel Rule screening result containing provider-specific data. Contains Travel Rule specific information like verified status, rule type, and actions. 
     """ # noqa: E501
     direction: Optional[TravelRuleDirectionEnum] = None
     is_verified: Optional[StrictBool] = Field(default=None, description="Whether the travel rule information was verified", alias="isVerified")

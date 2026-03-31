@@ -1,11 +1,1 @@
-# IndicativeQuoteEnum
-
-Indicates this is an indicative quote
-
-## Enum
-
-* `INDICATIVE` (value: `'INDICATIVE'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBJbmRpY2F0aXZlUXVvdGVFbnVtCgpJbmRpY2F0ZXMgdGhpcyBpcyBhbiBpbmRpY2F0aXZlIHF1b3RlCgojIyBFbnVtCgoqIGBJTkRJQ0FUSVZFYCAodmFsdWU6IGAnSU5ESUNBVElWRSdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

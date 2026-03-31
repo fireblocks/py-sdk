@@ -1,15 +1,1 @@
-# PolicyCurrency
-
-Currency for the amount
-
-## Enum
-
-* `NATIVE` (value: `'NATIVE'`)
-
-* `USD` (value: `'USD'`)
-
-* `EUR` (value: `'EUR'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBQb2xpY3lDdXJyZW5jeQoKQ3VycmVuY3kgZm9yIHRoZSBhbW91bnQKCiMjIEVudW0KCiogYE5BVElWRWAgKHZhbHVlOiBgJ05BVElWRSdgKQoKKiBgVVNEYCAodmFsdWU6IGAnVVNEJ2ApCgoqIGBFVVJgICh2YWx1ZTogYCdFVVInYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

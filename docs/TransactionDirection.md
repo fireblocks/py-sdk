@@ -1,13 +1,1 @@
-# TransactionDirection
-
-Transaction direction
-
-## Enum
-
-* `INBOUND` (value: `'INBOUND'`)
-
-* `OUTBOUND` (value: `'OUTBOUND'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUcmFuc2FjdGlvbkRpcmVjdGlvbgoKVHJhbnNhY3Rpb24gZGlyZWN0aW9uCgojIyBFbnVtCgoqIGBJTkJPVU5EYCAodmFsdWU6IGAnSU5CT1VORCdgKQoKKiBgT1VUQk9VTkRgICh2YWx1ZTogYCdPVVRCT1VORCdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

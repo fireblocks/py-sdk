@@ -1,17 +1,1 @@
-# TravelRuleVerdictEnum
-
-The final verdict of the travel rule screening
-
-## Enum
-
-* `ACCEPT` (value: `'ACCEPT'`)
-
-* `REJECT` (value: `'REJECT'`)
-
-* `ALERT` (value: `'ALERT'`)
-
-* `REVIEW` (value: `'REVIEW'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUcmF2ZWxSdWxlVmVyZGljdEVudW0KClRoZSBmaW5hbCB2ZXJkaWN0IG9mIHRoZSB0cmF2ZWwgcnVsZSBzY3JlZW5pbmcKCiMjIEVudW0KCiogYEFDQ0VQVGAgKHZhbHVlOiBgJ0FDQ0VQVCdgKQoKKiBgUkVKRUNUYCAodmFsdWU6IGAnUkVKRUNUJ2ApCgoqIGBBTEVSVGAgKHZhbHVlOiBgJ0FMRVJUJ2ApCgoqIGBSRVZJRVdgICh2YWx1ZTogYCdSRVZJRVcnYCkKCiogYFdBSVRgICh2YWx1ZTogYCdXQUlUJ2ApCgoqIGBGUkVFWkVgICh2YWx1ZTogYCdGUkVFWkUnYCkKCiogYENBTkNFTGAgKHZhbHVlOiBgJ0NBTkNFTCdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

@@ -1,11 +1,1 @@
-# RetryRequoteTypeEnum
-
-Indicates that the order should be re-quoted if the original quote is expired, trying to match the original quote.
-
-## Enum
-
-* `RETRY` (value: `'RETRY'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBSZXRyeVJlcXVvdGVUeXBlRW51bQoKSW5kaWNhdGVzIHRoYXQgdGhlIG9yZGVyIHNob3VsZCBiZSByZS1xdW90ZWQgaWYgdGhlIG9yaWdpbmFsIHF1b3RlIGlzIGV4cGlyZWQsIHRyeWluZyB0byBtYXRjaCB0aGUgb3JpZ2luYWwgcXVvdGUuCgojIyBFbnVtCgoqIGBSRVRSWWAgKHZhbHVlOiBgJ1JFVFJZJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

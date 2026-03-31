@@ -1,17 +1,1 @@
-# TRLinkTrmStatus
-
-Current status of the Travel Rule Message
-
-## Enum
-
-* `PENDING` (value: `'PENDING'`)
-
-* `ACCEPTED` (value: `'ACCEPTED'`)
-
-* `REJECTED` (value: `'REJECTED'`)
-
-* `FAILED` (value: `'FAILED'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtUcm1TdGF0dXMKCkN1cnJlbnQgc3RhdHVzIG9mIHRoZSBUcmF2ZWwgUnVsZSBNZXNzYWdlCgojIyBFbnVtCgoqIGBQRU5ESU5HYCAodmFsdWU6IGAnUEVORElORydgKQoKKiBgQUNDRVBURURgICh2YWx1ZTogYCdBQ0NFUFRFRCdgKQoKKiBgUkVKRUNURURgICh2YWx1ZTogYCdSRUpFQ1RFRCdgKQoKKiBgRkFJTEVEYCAodmFsdWU6IGAnRkFJTEVEJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

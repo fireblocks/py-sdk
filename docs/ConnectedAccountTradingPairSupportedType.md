@@ -1,14 +1,1 @@
-# ConnectedAccountTradingPairSupportedType
-
-
-## Enum
-
-* `QUOTE` (value: `'QUOTE'`)
-
-* `MARKET` (value: `'MARKET'`)
-
-* `LIMIT` (value: `'LIMIT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBDb25uZWN0ZWRBY2NvdW50VHJhZGluZ1BhaXJTdXBwb3J0ZWRUeXBlCgoKIyMgRW51bQoKKiBgUVVPVEVgICh2YWx1ZTogYCdRVU9URSdgKQoKKiBgTUFSS0VUYCAodmFsdWU6IGAnTUFSS0VUJ2ApCgoqIGBMSU1JVGAgKHZhbHVlOiBgJ0xJTUlUJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

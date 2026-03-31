@@ -1,12 +1,1 @@
-# EmbeddedWalletRequiredAlgorithms
-
-
-## Enum
-
-* `MPC_ECDSA_SECP256_K1` (value: `'MPC_ECDSA_SECP256K1'`)
-
-* `MPC_EDDSA_ED25519` (value: `'MPC_EDDSA_ED25519'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBFbWJlZGRlZFdhbGxldFJlcXVpcmVkQWxnb3JpdGhtcwoKCiMjIEVudW0KCiogYE1QQ19FQ0RTQV9TRUNQMjU2X0sxYCAodmFsdWU6IGAnTVBDX0VDRFNBX1NFQ1AyNTZLMSdgKQoKKiBgTVBDX0VERFNBX0VEMjU1MTlgICh2YWx1ZTogYCdNUENfRUREU0FfRUQyNTUxOSdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

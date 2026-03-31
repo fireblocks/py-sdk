@@ -1,11 +1,1 @@
-# AssetFeature
-
-Asset feature
-
-## Enum
-
-* `STABLECOIN` (value: `'STABLECOIN'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBBc3NldEZlYXR1cmUKCkFzc2V0IGZlYXR1cmUKCiMjIEVudW0KCiogYFNUQUJMRUNPSU5gICh2YWx1ZTogYCdTVEFCTEVDT0lOJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

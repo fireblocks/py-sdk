@@ -1,11 +1,1 @@
-# MarketTypeEnum
-
-Order type for market orders
-
-## Enum
-
-* `MARKET` (value: `'MARKET'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBNYXJrZXRUeXBlRW51bQoKT3JkZXIgdHlwZSBmb3IgbWFya2V0IG9yZGVycwoKIyMgRW51bQoKKiBgTUFSS0VUYCAodmFsdWU6IGAnTUFSS0VUJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

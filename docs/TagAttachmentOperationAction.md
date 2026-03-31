@@ -1,12 +1,1 @@
-# TagAttachmentOperationAction
-
-
-## Enum
-
-* `ATTACH` (value: `'ATTACH'`)
-
-* `DETACH` (value: `'DETACH'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUYWdBdHRhY2htZW50T3BlcmF0aW9uQWN0aW9uCgoKIyMgRW51bQoKKiBgQVRUQUNIYCAodmFsdWU6IGAnQVRUQUNIJ2ApCgoqIGBERVRBQ0hgICh2YWx1ZTogYCdERVRBQ0gnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

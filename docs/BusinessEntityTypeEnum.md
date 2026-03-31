@@ -1,10 +1,1 @@
-# BusinessEntityTypeEnum
-
-
-## Enum
-
-* `BUSINESS` (value: `'BUSINESS'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBCdXNpbmVzc0VudGl0eVR5cGVFbnVtCgoKIyMgRW51bQoKKiBgQlVTSU5FU1NgICh2YWx1ZTogYCdCVVNJTkVTUydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

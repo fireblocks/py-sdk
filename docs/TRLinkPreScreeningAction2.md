@@ -1,12 +1,1 @@
-# TRLinkPreScreeningAction2
-
-
-## Enum
-
-* `SCREEN` (value: `'SCREEN'`)
-
-* `PASS` (value: `'PASS'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtQcmVTY3JlZW5pbmdBY3Rpb24yCgoKIyMgRW51bQoKKiBgU0NSRUVOYCAodmFsdWU6IGAnU0NSRUVOJ2ApCgoqIGBQQVNTYCAodmFsdWU6IGAnUEFTUydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

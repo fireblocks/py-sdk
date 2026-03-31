@@ -1,11 +1,1 @@
-# MarketRequoteTypeEnum
-
-Indicates that the order should be re-quoted if the original quote is expired. This will lead to a market order.
-
-## Enum
-
-* `MARKET` (value: `'MARKET'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBNYXJrZXRSZXF1b3RlVHlwZUVudW0KCkluZGljYXRlcyB0aGF0IHRoZSBvcmRlciBzaG91bGQgYmUgcmUtcXVvdGVkIGlmIHRoZSBvcmlnaW5hbCBxdW90ZSBpcyBleHBpcmVkLiBUaGlzIHdpbGwgbGVhZCB0byBhIG1hcmtldCBvcmRlci4KCiMjIEVudW0KCiogYE1BUktFVGAgKHZhbHVlOiBgJ01BUktFVCdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

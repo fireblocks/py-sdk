@@ -1,13 +1,1 @@
-# CollectionType
-
-The type of collection
-
-## Enum
-
-* `NON_FUNGIBLE_TOKEN` (value: `'NON_FUNGIBLE_TOKEN'`)
-
-* `SEMI_FUNGIBLE_TOKEN` (value: `'SEMI_FUNGIBLE_TOKEN'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBDb2xsZWN0aW9uVHlwZQoKVGhlIHR5cGUgb2YgY29sbGVjdGlvbgoKIyMgRW51bQoKKiBgTk9OX0ZVTkdJQkxFX1RPS0VOYCAodmFsdWU6IGAnTk9OX0ZVTkdJQkxFX1RPS0VOJ2ApCgoqIGBTRU1JX0ZVTkdJQkxFX1RPS0VOYCAodmFsdWU6IGAnU0VNSV9GVU5HSUJMRV9UT0tFTidgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

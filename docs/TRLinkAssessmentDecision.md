@@ -1,15 +1,1 @@
-# TRLinkAssessmentDecision
-
-Decision about Travel Rule applicability
-
-## Enum
-
-* `REQUIRED` (value: `'REQUIRED'`)
-
-* `NOT_REQUIRED` (value: `'NOT_REQUIRED'`)
-
-* `NEED_MORE_INFO` (value: `'NEED_MORE_INFO'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtBc3Nlc3NtZW50RGVjaXNpb24KCkRlY2lzaW9uIGFib3V0IFRyYXZlbCBSdWxlIGFwcGxpY2FiaWxpdHkKCiMjIEVudW0KCiogYFJFUVVJUkVEYCAodmFsdWU6IGAnUkVRVUlSRUQnYCkKCiogYE5PVF9SRVFVSVJFRGAgKHZhbHVlOiBgJ05PVF9SRVFVSVJFRCdgKQoKKiBgTkVFRF9NT1JFX0lORk9gICh2YWx1ZTogYCdORUVEX01PUkVfSU5GTydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

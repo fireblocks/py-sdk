@@ -1,12 +1,1 @@
-# PayoutInitMethod
-
-
-## Enum
-
-* `FILE` (value: `'FILE'`)
-
-* `API` (value: `'API'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBQYXlvdXRJbml0TWV0aG9kCgoKIyMgRW51bQoKKiBgRklMRWAgKHZhbHVlOiBgJ0ZJTEUnYCkKCiogYEFQSWAgKHZhbHVlOiBgJ0FQSSdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

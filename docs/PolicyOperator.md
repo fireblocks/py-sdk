@@ -1,11 +1,1 @@
-# PolicyOperator
-
-Operator for selection
-
-## Enum
-
-* `INCLUDES` (value: `'INCLUDES'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBQb2xpY3lPcGVyYXRvcgoKT3BlcmF0b3IgZm9yIHNlbGVjdGlvbgoKIyMgRW51bQoKKiBgSU5DTFVERVNgICh2YWx1ZTogYCdJTkNMVURFUydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

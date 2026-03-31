@@ -1,15 +1,1 @@
-# OrderSide
-
-Order side for trading operations
-
-## Enum
-
-* `BUY` (value: `'BUY'`)
-
-* `SELL` (value: `'SELL'`)
-
-* `ANY` (value: `'ANY'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBPcmRlclNpZGUKCk9yZGVyIHNpZGUgZm9yIHRyYWRpbmcgb3BlcmF0aW9ucwoKIyMgRW51bQoKKiBgQlVZYCAodmFsdWU6IGAnQlVZJ2ApCgoqIGBTRUxMYCAodmFsdWU6IGAnU0VMTCdgKQoKKiBgQU5ZYCAodmFsdWU6IGAnQU5ZJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

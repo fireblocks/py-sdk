@@ -1,13 +1,1 @@
-# TRLinkTrmDirection
-
-Transaction direction for TRM (in = inbound, out = outbound)
-
-## Enum
-
-* `IN` (value: `'in'`)
-
-* `OUT` (value: `'out'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtUcm1EaXJlY3Rpb24KClRyYW5zYWN0aW9uIGRpcmVjdGlvbiBmb3IgVFJNIChpbiA9IGluYm91bmQsIG91dCA9IG91dGJvdW5kKQoKIyMgRW51bQoKKiBgSU5gICh2YWx1ZTogYCdpbidgKQoKKiBgT1VUYCAodmFsdWU6IGAnb3V0J2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

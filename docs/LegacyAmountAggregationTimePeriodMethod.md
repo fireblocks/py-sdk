@@ -1,13 +1,1 @@
-# LegacyAmountAggregationTimePeriodMethod
-
-* PER_SINGLE_MATCH - Apply the limit to each listed entity * ACROSS_ALL_MATCHES - Apply the limit to the sum of all listed entities 
-
-## Enum
-
-* `PER_SINGLE_MATCH` (value: `'PER_SINGLE_MATCH'`)
-
-* `ACROSS_ALL_MATCHES` (value: `'ACROSS_ALL_MATCHES'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBMZWdhY3lBbW91bnRBZ2dyZWdhdGlvblRpbWVQZXJpb2RNZXRob2QKCiogUEVSX1NJTkdMRV9NQVRDSCAtIEFwcGx5IHRoZSBsaW1pdCB0byBlYWNoIGxpc3RlZCBlbnRpdHkgKiBBQ1JPU1NfQUxMX01BVENIRVMgLSBBcHBseSB0aGUgbGltaXQgdG8gdGhlIHN1bSBvZiBhbGwgbGlzdGVkIGVudGl0aWVzIAoKIyMgRW51bQoKKiBgUEVSX1NJTkdMRV9NQVRDSGAgKHZhbHVlOiBgJ1BFUl9TSU5HTEVfTUFUQ0gnYCkKCiogYEFDUk9TU19BTExfTUFUQ0hFU2AgKHZhbHVlOiBgJ0FDUk9TU19BTExfTUFUQ0hFUydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

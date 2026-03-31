@@ -1,15 +1,1 @@
-# ContractDataDecodeDataType
-
-The type of the data to decode.
-
-## Enum
-
-* `ERROR` (value: `'ERROR'`)
-
-* `LOG` (value: `'LOG'`)
-
-* `FUNCTION` (value: `'FUNCTION'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBDb250cmFjdERhdGFEZWNvZGVEYXRhVHlwZQoKVGhlIHR5cGUgb2YgdGhlIGRhdGEgdG8gZGVjb2RlLgoKIyMgRW51bQoKKiBgRVJST1JgICh2YWx1ZTogYCdFUlJPUidgKQoKKiBgTE9HYCAodmFsdWU6IGAnTE9HJ2ApCgoqIGBGVU5DVElPTmAgKHZhbHVlOiBgJ0ZVTkNUSU9OJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

@@ -1,15 +1,1 @@
-# TRLinkAssetFormat
-
-Asset format type
-
-## Enum
-
-* `FIREBLOCKS` (value: `'fireblocks'`)
-
-* `COINMARKETCAP` (value: `'coinmarketcap'`)
-
-* `SLIP44` (value: `'slip44'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtBc3NldEZvcm1hdAoKQXNzZXQgZm9ybWF0IHR5cGUKCiMjIEVudW0KCiogYEZJUkVCTE9DS1NgICh2YWx1ZTogYCdmaXJlYmxvY2tzJ2ApCgoqIGBDT0lOTUFSS0VUQ0FQYCAodmFsdWU6IGAnY29pbm1hcmtldGNhcCdgKQoKKiBgU0xJUDQ0YCAodmFsdWU6IGAnc2xpcDQ0J2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

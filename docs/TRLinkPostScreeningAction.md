@@ -1,16 +1,1 @@
-# TRLinkPostScreeningAction
-
-
-## Enum
-
-* `ACCEPT` (value: `'ACCEPT'`)
-
-* `ALERT` (value: `'ALERT'`)
-
-* `REJECT` (value: `'REJECT'`)
-
-* `WAIT` (value: `'WAIT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtQb3N0U2NyZWVuaW5nQWN0aW9uCgoKIyMgRW51bQoKKiBgQUNDRVBUYCAodmFsdWU6IGAnQUNDRVBUJ2ApCgoqIGBBTEVSVGAgKHZhbHVlOiBgJ0FMRVJUJ2ApCgoqIGBSRUpFQ1RgICh2YWx1ZTogYCdSRUpFQ1QnYCkKCiogYFdBSVRgICh2YWx1ZTogYCdXQUlUJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

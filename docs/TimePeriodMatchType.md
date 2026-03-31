@@ -1,13 +1,1 @@
-# TimePeriodMatchType
-
-Type of match for time period application
-
-## Enum
-
-* `PER_SINGLE_MATCH` (value: `'PER_SINGLE_MATCH'`)
-
-* `ACROSS_ALL_MATCHES` (value: `'ACROSS_ALL_MATCHES'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUaW1lUGVyaW9kTWF0Y2hUeXBlCgpUeXBlIG9mIG1hdGNoIGZvciB0aW1lIHBlcmlvZCBhcHBsaWNhdGlvbgoKIyMgRW51bQoKKiBgUEVSX1NJTkdMRV9NQVRDSGAgKHZhbHVlOiBgJ1BFUl9TSU5HTEVfTUFUQ0gnYCkKCiogYEFDUk9TU19BTExfTUFUQ0hFU2AgKHZhbHVlOiBgJ0FDUk9TU19BTExfTUFUQ0hFUydgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

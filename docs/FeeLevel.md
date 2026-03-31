@@ -1,15 +1,1 @@
-# FeeLevel
-
-Represents the fee level for a transaction, which can be set as slow, medium, or fast. Only one of fee/feeLevel is required.
-
-## Enum
-
-* `LOW` (value: `'LOW'`)
-
-* `MEDIUM` (value: `'MEDIUM'`)
-
-* `HIGH` (value: `'HIGH'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBGZWVMZXZlbAoKUmVwcmVzZW50cyB0aGUgZmVlIGxldmVsIGZvciBhIHRyYW5zYWN0aW9uLCB3aGljaCBjYW4gYmUgc2V0IGFzIHNsb3csIG1lZGl1bSwgb3IgZmFzdC4gT25seSBvbmUgb2YgZmVlL2ZlZUxldmVsIGlzIHJlcXVpcmVkLgoKIyMgRW51bQoKKiBgTE9XYCAodmFsdWU6IGAnTE9XJ2ApCgoqIGBNRURJVU1gICh2YWx1ZTogYCdNRURJVU0nYCkKCiogYEhJR0hgICh2YWx1ZTogYCdISUdIJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

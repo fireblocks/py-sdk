@@ -1,13 +1,1 @@
-# AssetScope
-
-The scope of the asset
-
-## Enum
-
-* `GLOBAL` (value: `'GLOBAL'`)
-
-* `LOCAL` (value: `'LOCAL'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBBc3NldFNjb3BlCgpUaGUgc2NvcGUgb2YgdGhlIGFzc2V0CgojIyBFbnVtCgoqIGBHTE9CQUxgICh2YWx1ZTogYCdHTE9CQUwnYCkKCiogYExPQ0FMYCAodmFsdWU6IGAnTE9DQUwnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

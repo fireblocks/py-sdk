@@ -1,15 +1,1 @@
-# TRLinkDiscoverableStatus
-
-Customer discoverability status in the Travel Rule network
-
-## Enum
-
-* `ANONYMOUS` (value: `'anonymous'`)
-
-* `HIDDEN` (value: `'hidden'`)
-
-* `DISCOVERABLE` (value: `'discoverable'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtEaXNjb3ZlcmFibGVTdGF0dXMKCkN1c3RvbWVyIGRpc2NvdmVyYWJpbGl0eSBzdGF0dXMgaW4gdGhlIFRyYXZlbCBSdWxlIG5ldHdvcmsKCiMjIEVudW0KCiogYEFOT05ZTU9VU2AgKHZhbHVlOiBgJ2Fub255bW91cydgKQoKKiBgSElEREVOYCAodmFsdWU6IGAnaGlkZGVuJ2ApCgoqIGBESVNDT1ZFUkFCTEVgICh2YWx1ZTogYCdkaXNjb3ZlcmFibGUnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

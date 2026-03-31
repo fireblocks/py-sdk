@@ -1,12 +1,1 @@
-name: PR Title Validation
-on:
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: deepakputhraya/action-pr-title@master
-      with:
-        disallowed_prefixes: 'COR-'
-        prefix_case_sensitive: false
+bmFtZTogUFIgVGl0bGUgVmFsaWRhdGlvbgpvbjoKICBwdWxsX3JlcXVlc3Q6CiAgICB0eXBlczogW29wZW5lZCwgZWRpdGVkLCBzeW5jaHJvbml6ZSwgcmVvcGVuZWRdCmpvYnM6CiAgdmFsaWRhdGU6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgIC0gdXNlczogZGVlcGFrcHV0aHJheWEvYWN0aW9uLXByLXRpdGxlQG1hc3RlcgogICAgICB3aXRoOgogICAgICAgIGRpc2FsbG93ZWRfcHJlZml4ZXM6ICdDT1ItJwogICAgICAgIHByZWZpeF9jYXNlX3NlbnNpdGl2ZTogZmFsc2UK

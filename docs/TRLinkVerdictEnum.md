@@ -1,17 +1,1 @@
-# TRLinkVerdictEnum
-
-TRLink verdict after screening
-
-## Enum
-
-* `ACCEPT` (value: `'ACCEPT'`)
-
-* `ALERT` (value: `'ALERT'`)
-
-* `REJECT` (value: `'REJECT'`)
-
-* `WAIT` (value: `'WAIT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtWZXJkaWN0RW51bQoKVFJMaW5rIHZlcmRpY3QgYWZ0ZXIgc2NyZWVuaW5nCgojIyBFbnVtCgoqIGBBQ0NFUFRgICh2YWx1ZTogYCdBQ0NFUFQnYCkKCiogYEFMRVJUYCAodmFsdWU6IGAnQUxFUlQnYCkKCiogYFJFSkVDVGAgKHZhbHVlOiBgJ1JFSkVDVCdgKQoKKiBgV0FJVGAgKHZhbHVlOiBgJ1dBSVQnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

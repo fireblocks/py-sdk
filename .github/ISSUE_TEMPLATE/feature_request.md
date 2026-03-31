@@ -1,17 +1,1 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: enhancement
-assignees: michael-fireblocks, tomervil
-
----
-
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
-
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+LS0tCm5hbWU6IEZlYXR1cmUgcmVxdWVzdAphYm91dDogU3VnZ2VzdCBhbiBpZGVhIGZvciB0aGlzIHByb2plY3QKdGl0bGU6ICcnCmxhYmVsczogZW5oYW5jZW1lbnQKYXNzaWduZWVzOiBtaWNoYWVsLWZpcmVibG9ja3MsIHRvbWVydmlsCgotLS0KCioqSXMgeW91ciBmZWF0dXJlIHJlcXVlc3QgcmVsYXRlZCB0byBhIHByb2JsZW0/IFBsZWFzZSBkZXNjcmliZS4qKgpBIGNsZWFyIGFuZCBjb25jaXNlIGRlc2NyaXB0aW9uIG9mIHdoYXQgdGhlIHByb2JsZW0gaXMuIEV4LiBJJ20gYWx3YXlzIGZydXN0cmF0ZWQgd2hlbiBbLi4uXQoKKipEZXNjcmliZSB0aGUgc29sdXRpb24geW91J2QgbGlrZSoqCkEgY2xlYXIgYW5kIGNvbmNpc2UgZGVzY3JpcHRpb24gb2Ygd2hhdCB5b3Ugd2FudCB0byBoYXBwZW4uCgoqKkFkZGl0aW9uYWwgY29udGV4dCoqCkFkZCBhbnkgb3RoZXIgY29udGV4dCBvciBzY3JlZW5zaG90cyBhYm91dCB0aGUgZmVhdHVyZSByZXF1ZXN0IGhlcmUuCg==

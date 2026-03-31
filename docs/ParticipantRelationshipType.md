@@ -1,14 +1,1 @@
-# ParticipantRelationshipType
-
-
-## Enum
-
-* `FIRSTPARTY` (value: `'FirstParty'`)
-
-* `SECONDPARTY` (value: `'SecondParty'`)
-
-* `THIRDPARTY` (value: `'ThirdParty'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBQYXJ0aWNpcGFudFJlbGF0aW9uc2hpcFR5cGUKCgojIyBFbnVtCgoqIGBGSVJTVFBBUlRZYCAodmFsdWU6IGAnRmlyc3RQYXJ0eSdgKQoKKiBgU0VDT05EUEFSVFlgICh2YWx1ZTogYCdTZWNvbmRQYXJ0eSdgKQoKKiBgVEhJUkRQQVJUWWAgKHZhbHVlOiBgJ1RoaXJkUGFydHknYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

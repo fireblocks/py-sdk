@@ -1,11 +1,1 @@
-# FixedAmountTypeEnum
-
-The type of amount for the fee, indicating a fixed amount.
-
-## Enum
-
-* `FIXED` (value: `'FIXED'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBGaXhlZEFtb3VudFR5cGVFbnVtCgpUaGUgdHlwZSBvZiBhbW91bnQgZm9yIHRoZSBmZWUsIGluZGljYXRpbmcgYSBmaXhlZCBhbW91bnQuCgojIyBFbnVtCgoqIGBGSVhFRGAgKHZhbHVlOiBgJ0ZJWEVEJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

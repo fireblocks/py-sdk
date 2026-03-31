@@ -1,11 +1,1 @@
-# CommittedQuoteEnum
-
-Indicates this is a committed quote
-
-## Enum
-
-* `COMMITTED` (value: `'COMMITTED'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBDb21taXR0ZWRRdW90ZUVudW0KCkluZGljYXRlcyB0aGlzIGlzIGEgY29tbWl0dGVkIHF1b3RlCgojIyBFbnVtCgoqIGBDT01NSVRURURgICh2YWx1ZTogYCdDT01NSVRURUQnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

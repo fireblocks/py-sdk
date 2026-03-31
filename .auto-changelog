@@ -1,11 +1,1 @@
-{
-  "output": "CHANGELOG.md",
-  "template": "keepachangelog",
-  "unreleased": false,
-  "commitLimit": 0,
-  "backfillLimit": 3,
-  "hideCredit": true,
-  "replaceText": {
-    "\\[([^\\]]+)\\]\\(https://github.com/[^/]+/([^/]+)/compare/[^)]+\\)": "[$1](https://github.com/fireblocks/$2/releases/tag/$1)"
-  }
-}
+ewogICJvdXRwdXQiOiAiQ0hBTkdFTE9HLm1kIiwKICAidGVtcGxhdGUiOiAia2VlcGFjaGFuZ2Vsb2ciLAogICJ1bnJlbGVhc2VkIjogZmFsc2UsCiAgImNvbW1pdExpbWl0IjogMCwKICAiYmFja2ZpbGxMaW1pdCI6IDMsCiAgImhpZGVDcmVkaXQiOiB0cnVlLAogICJyZXBsYWNlVGV4dCI6IHsKICAgICJcXFsoW15cXF1dKylcXF1cXChodHRwczovL2dpdGh1Yi5jb20vW14vXSsvKFteL10rKS9jb21wYXJlL1teKV0rXFwpIjogIlskMV0oaHR0cHM6Ly9naXRodWIuY29tL2ZpcmVibG9ja3MvJDIvcmVsZWFzZXMvdGFnLyQxKSIKICB9Cn0=

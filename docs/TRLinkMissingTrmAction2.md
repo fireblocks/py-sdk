@@ -1,14 +1,1 @@
-# TRLinkMissingTrmAction2
-
-
-## Enum
-
-* `WAIT` (value: `'WAIT'`)
-
-* `REJECT` (value: `'REJECT'`)
-
-* `ACCEPT` (value: `'ACCEPT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtNaXNzaW5nVHJtQWN0aW9uMgoKCiMjIEVudW0KCiogYFdBSVRgICh2YWx1ZTogYCdXQUlUJ2ApCgoqIGBSRUpFQ1RgICh2YWx1ZTogYCdSRUpFQ1QnYCkKCiogYEFDQ0VQVGAgKHZhbHVlOiBgJ0FDQ0VQVCdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

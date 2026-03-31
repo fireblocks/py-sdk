@@ -1,17 +1,1 @@
-# TRLinkTrmScreeningStatusEnum
-
-TRLink TRM screening status
-
-## Enum
-
-* `PENDING` (value: `'PENDING'`)
-
-* `ACCEPTED` (value: `'ACCEPTED'`)
-
-* `REJECTED` (value: `'REJECTED'`)
-
-* `FAILED` (value: `'FAILED'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtUcm1TY3JlZW5pbmdTdGF0dXNFbnVtCgpUUkxpbmsgVFJNIHNjcmVlbmluZyBzdGF0dXMKCiMjIEVudW0KCiogYFBFTkRJTkdgICh2YWx1ZTogYCdQRU5ESU5HJ2ApCgoqIGBBQ0NFUFRFRGAgKHZhbHVlOiBgJ0FDQ0VQVEVEJ2ApCgoqIGBSRUpFQ1RFRGAgKHZhbHVlOiBgJ1JFSkVDVEVEJ2ApCgoqIGBGQUlMRURgICh2YWx1ZTogYCdGQUlMRUQnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

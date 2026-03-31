@@ -1,13 +1,1 @@
-# ScreeningAlertExposureTypeEnum
-
-Alert exposure type
-
-## Enum
-
-* `DIRECT` (value: `'DIRECT'`)
-
-* `INDIRECT` (value: `'INDIRECT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBTY3JlZW5pbmdBbGVydEV4cG9zdXJlVHlwZUVudW0KCkFsZXJ0IGV4cG9zdXJlIHR5cGUKCiMjIEVudW0KCiogYERJUkVDVGAgKHZhbHVlOiBgJ0RJUkVDVCdgKQoKKiBgSU5ESVJFQ1RgICh2YWx1ZTogYCdJTkRJUkVDVCdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

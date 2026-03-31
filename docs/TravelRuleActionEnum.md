@@ -1,15 +1,1 @@
-# TravelRuleActionEnum
-
-Travel rule action
-
-## Enum
-
-* `SCREEN` (value: `'SCREEN'`)
-
-* `BYPASS` (value: `'BYPASS'`)
-
-* `BLOCK` (value: `'BLOCK'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUcmF2ZWxSdWxlQWN0aW9uRW51bQoKVHJhdmVsIHJ1bGUgYWN0aW9uCgojIyBFbnVtCgoqIGBTQ1JFRU5gICh2YWx1ZTogYCdTQ1JFRU4nYCkKCiogYEJZUEFTU2AgKHZhbHVlOiBgJ0JZUEFTUydgKQoKKiBgQkxPQ0tgICh2YWx1ZTogYCdCTE9DSydgKQoKKiBgUEFTU2AgKHZhbHVlOiBgJ1BBU1MnYCkKCiogYEZSRUVaRWAgKHZhbHVlOiBgJ0ZSRUVaRSdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

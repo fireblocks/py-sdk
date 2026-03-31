@@ -1,17 +1,1 @@
-# FeeTypeEnum
-
-The type of fee, such as ORDER, NETWORK, or SPREAD. ORDER - Fee for executing the order. NETWORK - Fee for network transactions. SPREAD - Fee for the difference between buy and sell prices. REBATE - Negative fee returned to the user as a reward or incentive. 
-
-## Enum
-
-* `ORDER` (value: `'ORDER'`)
-
-* `NETWORK` (value: `'NETWORK'`)
-
-* `SPREAD` (value: `'SPREAD'`)
-
-* `REBATE` (value: `'REBATE'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBGZWVUeXBlRW51bQoKVGhlIHR5cGUgb2YgZmVlLCBzdWNoIGFzIE9SREVSLCBORVRXT1JLLCBvciBTUFJFQUQuIE9SREVSIC0gRmVlIGZvciBleGVjdXRpbmcgdGhlIG9yZGVyLiBORVRXT1JLIC0gRmVlIGZvciBuZXR3b3JrIHRyYW5zYWN0aW9ucy4gU1BSRUFEIC0gRmVlIGZvciB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGJ1eSBhbmQgc2VsbCBwcmljZXMuIFJFQkFURSAtIE5lZ2F0aXZlIGZlZSByZXR1cm5lZCB0byB0aGUgdXNlciBhcyBhIHJld2FyZCBvciBpbmNlbnRpdmUuIAoKIyMgRW51bQoKKiBgT1JERVJgICh2YWx1ZTogYCdPUkRFUidgKQoKKiBgTkVUV09SS2AgKHZhbHVlOiBgJ05FVFdPUksnYCkKCiogYFNQUkVBRGAgKHZhbHVlOiBgJ1NQUkVBRCdgKQoKKiBgUkVCQVRFYCAodmFsdWU6IGAnUkVCQVRFJ2ApCgpbW0JhY2sgdG8gTW9kZWwgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1tb2RlbHMpIFtbQmFjayB0byBBUEkgbGlzdF1dKC4uL1JFQURNRS5tZCNkb2N1bWVudGF0aW9uLWZvci1hcGktZW5kcG9pbnRzKSBbW0JhY2sgdG8gUkVBRE1FXV0oLi4vUkVBRE1FLm1kKQoKCg==

@@ -1,13 +1,1 @@
-# TRLinkPreScreeningActionEnum
-
-TRLink pre-screening action
-
-## Enum
-
-* `SCREEN` (value: `'SCREEN'`)
-
-* `PASS` (value: `'PASS'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtQcmVTY3JlZW5pbmdBY3Rpb25FbnVtCgpUUkxpbmsgcHJlLXNjcmVlbmluZyBhY3Rpb24KCiMjIEVudW0KCiogYFNDUkVFTmAgKHZhbHVlOiBgJ1NDUkVFTidgKQoKKiBgUEFTU2AgKHZhbHVlOiBgJ1BBU1MnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

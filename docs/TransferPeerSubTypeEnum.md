@@ -1,17 +1,1 @@
-# TransferPeerSubTypeEnum
-
-Transfer peer sub-type for prescreening rules
-
-## Enum
-
-* `EXTERNAL` (value: `'EXTERNAL'`)
-
-* `INTERNAL` (value: `'INTERNAL'`)
-
-* `CONTRACT` (value: `'CONTRACT'`)
-
-* `EXCHANGETEST` (value: `'EXCHANGETEST'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUcmFuc2ZlclBlZXJTdWJUeXBlRW51bQoKVHJhbnNmZXIgcGVlciBzdWItdHlwZSBmb3IgcHJlc2NyZWVuaW5nIHJ1bGVzCgojIyBFbnVtCgoqIGBFWFRFUk5BTGAgKHZhbHVlOiBgJ0VYVEVSTkFMJ2ApCgoqIGBJTlRFUk5BTGAgKHZhbHVlOiBgJ0lOVEVSTkFMJ2ApCgoqIGBDT05UUkFDVGAgKHZhbHVlOiBgJ0NPTlRSQUNUJ2ApCgoqIGBFWENIQU5HRVRFU1RgICh2YWx1ZTogYCdFWENIQU5HRVRFU1QnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

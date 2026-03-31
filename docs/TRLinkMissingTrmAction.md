@@ -1,17 +1,1 @@
-# TRLinkMissingTrmAction
-
-TRLink missing TRM action
-
-## Enum
-
-* `WAIT` (value: `'WAIT'`)
-
-* `REJECT` (value: `'REJECT'`)
-
-* `ACCEPT` (value: `'ACCEPT'`)
-
-* `INITIATE_TRM` (value: `'INITIATE_TRM'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBUUkxpbmtNaXNzaW5nVHJtQWN0aW9uCgpUUkxpbmsgbWlzc2luZyBUUk0gYWN0aW9uCgojIyBFbnVtCgoqIGBXQUlUYCAodmFsdWU6IGAnV0FJVCdgKQoKKiBgUkVKRUNUYCAodmFsdWU6IGAnUkVKRUNUJ2ApCgoqIGBBQ0NFUFRgICh2YWx1ZTogYCdBQ0NFUFQnYCkKCiogYElOSVRJQVRFX1RSTWAgKHZhbHVlOiBgJ0lOSVRJQVRFX1RSTSdgKQoKW1tCYWNrIHRvIE1vZGVsIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItbW9kZWxzKSBbW0JhY2sgdG8gQVBJIGxpc3RdXSguLi9SRUFETUUubWQjZG9jdW1lbnRhdGlvbi1mb3ItYXBpLWVuZHBvaW50cykgW1tCYWNrIHRvIFJFQURNRV1dKC4uL1JFQURNRS5tZCkKCgo=

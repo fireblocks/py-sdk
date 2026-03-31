@@ -1,13 +1,1 @@
-# AlertExposureTypeEnum
-
-Alert exposure type (AlertExposureType enum)
-
-## Enum
-
-* `DIRECT` (value: `'DIRECT'`)
-
-* `INDIRECT` (value: `'INDIRECT'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBBbGVydEV4cG9zdXJlVHlwZUVudW0KCkFsZXJ0IGV4cG9zdXJlIHR5cGUgKEFsZXJ0RXhwb3N1cmVUeXBlIGVudW0pCgojIyBFbnVtCgoqIGBESVJFQ1RgICh2YWx1ZTogYCdESVJFQ1QnYCkKCiogYElORElSRUNUYCAodmFsdWU6IGAnSU5ESVJFQ1QnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

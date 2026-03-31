@@ -1,7 +1,1 @@
-python_dateutil >= 2.8.2
-setuptools >= 21.0.0
-urllib3 >= 2.1.0, < 3.0.0
-pydantic >= 2
-typing-extensions >= 4.7.1
-PyJWT >= 2.3.0
-cryptography>=2.7
+cHl0aG9uX2RhdGV1dGlsID49IDIuOC4yCnNldHVwdG9vbHMgPj0gMjEuMC4wCnVybGxpYjMgPj0gMi4xLjAsIDwgMy4wLjAKcHlkYW50aWMgPj0gMgp0eXBpbmctZXh0ZW5zaW9ucyA+PSA0LjcuMQpQeUpXVCA+PSAyLjMuMApjcnlwdG9ncmFwaHk+PTIuNwo=

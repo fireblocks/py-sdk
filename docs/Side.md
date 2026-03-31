@@ -1,13 +1,1 @@
-# Side
-
-BUY: receive base / pay quote; SELL: give base / receive quote.
-
-## Enum
-
-* `BUY` (value: `'BUY'`)
-
-* `SELL` (value: `'SELL'`)
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+IyBTaWRlCgpCVVk6IHJlY2VpdmUgYmFzZSAvIHBheSBxdW90ZTsgU0VMTDogZ2l2ZSBiYXNlIC8gcmVjZWl2ZSBxdW90ZS4KCiMjIEVudW0KCiogYEJVWWAgKHZhbHVlOiBgJ0JVWSdgKQoKKiBgU0VMTGAgKHZhbHVlOiBgJ1NFTEwnYCkKCltbQmFjayB0byBNb2RlbCBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLW1vZGVscykgW1tCYWNrIHRvIEFQSSBsaXN0XV0oLi4vUkVBRE1FLm1kI2RvY3VtZW50YXRpb24tZm9yLWFwaS1lbmRwb2ludHMpIFtbQmFjayB0byBSRUFETUVdXSguLi9SRUFETUUubWQpCgoK

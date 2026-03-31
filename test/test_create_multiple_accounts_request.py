@@ -43,7 +43,8 @@ class TestCreateMultipleAccountsRequest(unittest.TestCase):
                 base_asset_ids = ["BTC","ETH","SOL"],
                 names = ["first va","client 65502e71-ecdf-48da-a074-c1753befc7fb"],
                 vault_account_names_starting_index = 0,
-                prefix = 'Copied from: '
+                prefix = 'Copied from: ',
+                tag_ids = ["a1b2c3d4-e5f6-7890-abcd-ef1234567890","b2c3d4e5-f6a7-8901-bcde-f12345678901"]
             )
         else:
             return CreateMultipleAccountsRequest(

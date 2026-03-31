@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **account_based** | **bool** | Indicates whether the provider access model is through accounts or directly | 
 **manifest** | [**Manifest**](Manifest.md) |  | 
 **connected** | **bool** | Whether the provider is currently connected | 
-**accounts** | [**List[AccountBase]**](AccountBase.md) |  | [optional] 
+**accounts** | [**List[AccountBase]**](AccountBase.md) |  | 
 
 ## Example
 

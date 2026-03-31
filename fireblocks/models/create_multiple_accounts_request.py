@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,8 @@ class CreateMultipleAccountsRequest(BaseModel):
     names: Optional[List[StrictStr]] = Field(default=None, description="Names to assign to vault accounts. if vaultAccountNamesStartingIndex or prefix is used it'll fail")
     vault_account_names_starting_index: Optional[StrictInt] = Field(default=None, description="Copy vault accounts names starting from this index. If names array is used it'll fail", alias="vaultAccountNamesStartingIndex")
     prefix: Optional[StrictStr] = Field(default=None, description="When copying from existing vault accounts (vaultAccountNamesStartingIndex) then adding a prefix to the names. If names array is used it'll fail")
-    __properties: ClassVar[List[str]] = ["count", "baseAssetIds", "names", "vaultAccountNamesStartingIndex", "prefix"]
+    tag_ids: Optional[Annotated[List[StrictStr], Field(max_length=20)]] = Field(default=None, description="Optional list of tag IDs to attach to all created vault accounts", alias="tagIds")
+    __properties: ClassVar[List[str]] = ["count", "baseAssetIds", "names", "vaultAccountNamesStartingIndex", "prefix", "tagIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +91,8 @@ class CreateMultipleAccountsRequest(BaseModel):
             "baseAssetIds": obj.get("baseAssetIds"),
             "names": obj.get("names"),
             "vaultAccountNamesStartingIndex": obj.get("vaultAccountNamesStartingIndex"),
-            "prefix": obj.get("prefix")
+            "prefix": obj.get("prefix"),
+            "tagIds": obj.get("tagIds")
         })
         return _obj
 

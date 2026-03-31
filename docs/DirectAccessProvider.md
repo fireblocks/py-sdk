@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **name** | **str** | Display name of the provider | 
 **logo** | **str** | URL to the logo image of the provider | [optional] 
 **account_based** | **bool** | Indicates whether the provider access model is through accounts or directly | 
+**manifest** | [**Manifest**](Manifest.md) |  | 
 **approved** | **bool** | Whether the provider was approved for use | [optional] 
 **has_terms_of_service** | **bool** | Whether the provider has terms of service | 
 **terms_of_service_url** | **str** | URL to the terms of service document | [optional] 
+**privacy_policy_url** | **str** | URL to the privacy policy document | [optional] 
 
 ## Example
 

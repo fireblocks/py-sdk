@@ -33,8 +33,10 @@ class TravelRuleOwnershipProof(BaseModel):
     address: Optional[StrictStr] = Field(default=None, description="The wallet address being verified. Examples: - For Ethereum: `0x896B...0b9b` - For Bitcoin: `1442...dxhsQ`")
     wallet_provider: Optional[StrictStr] = Field(default=None, description="The wallet provider or method used for verification. Examples: - For Metamask: `Metamask` - For manual signature: `manual`")
     url: Optional[StrictStr] = Field(default=None, description="The URL for the uploaded screenshot (for `screenshot` proof types only). Example: `https://example.com/uploaded_image.png`")
+    did: Optional[StrictStr] = Field(default=None, description="The Decentralized Identifier (DID) associated with the ownership proof.")
+    status: Optional[StrictStr] = Field(default=None, description="The status of the ownership proof verification.")
     confirmed: Optional[StrictBool] = Field(default=None, description="Whether the user confirmed ownership of the wallet (for `self-declaration` proofs). Example: `true`")
-    __properties: ClassVar[List[str]] = ["type", "proof", "attestation", "address", "wallet_provider", "url", "confirmed"]
+    __properties: ClassVar[List[str]] = ["type", "proof", "attestation", "address", "wallet_provider", "url", "did", "status", "confirmed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,6 +95,8 @@ class TravelRuleOwnershipProof(BaseModel):
             "address": obj.get("address"),
             "wallet_provider": obj.get("wallet_provider"),
             "url": obj.get("url"),
+            "did": obj.get("did"),
+            "status": obj.get("status"),
             "confirmed": obj.get("confirmed")
         })
         return _obj

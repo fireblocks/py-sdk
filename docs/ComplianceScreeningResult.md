@@ -6,26 +6,26 @@ The result of the AML/Travel Rule screening. This unified schema contains all fi
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**provider** | **str** | The AML/Travel Rule provider name. For AML: ELLIPTIC, CHAINALYSIS, SCORECHAIN, MERKLE_SCIENCE, etc. For Travel Rule: NOTABENE, SYGNA, or any TRLink provider name  | [optional] 
+**provider** | **str** | The AML/Travel Rule provider name. For AML: ELLIPTIC, CHAINALYSIS, etc. For Travel Rule: NOTABENE, SUMSUB, GTR, or any TRLink provider name.  | [optional] 
 **payload** | **object** | The raw payload of the screening result from the provider. The payload is a JSON object that contains the screening result. The payload structure is different for each screening provider. This field contains the complete, unmodified response from the screening service.  | [optional] 
 **timestamp** | **float** | Unix timestamp in milliseconds when the screening result was generated | [optional] 
 **screening_status** | **str** | Current status of the screening process | [optional] 
-**bypass_reason** | **str** | Reason for bypassing the screening, if applicable. For AML: SANCTIONS_SCREENING_BYPASS, SANCTIONS_RECIPIENT_BYPASS, etc. For Travel Rule: BELOW_THRESHOLD, NO_TRM_AVAILABLE, etc.  | [optional] 
+**bypass_reason** | **str** | Reason for bypassing the screening, if applicable. For AML: UNSUPPORTED_ASSET, PASSED_BY_POLICY. For Travel Rule: UNSUPPORTED_ASSET, NO_TRAVEL_RULE_MESSAGE, TRANSACTION_ZERO_AMOUNT.  | [optional] 
 **status** | [**AmlStatusEnum**](AmlStatusEnum.md) |  | [optional] 
 **prev_status** | [**AmlStatusEnum**](AmlStatusEnum.md) |  | [optional] 
-**prev_bypass_reason** | **str** | Previous bypass reason before the current bypass reason change | [optional] 
+**prev_bypass_reason** | **str** | Deprecated: This field is not currently returned in the API response. Previous bypass reason before the current bypass reason change.  | [optional] 
 **verdict** | [**ScreeningVerdictEnum**](ScreeningVerdictEnum.md) |  | [optional] 
-**risk** | [**ScreeningRiskLevelEnum**](ScreeningRiskLevelEnum.md) |  | [optional] 
-**extended_risk** | [**ScreeningRiskLevelEnum**](ScreeningRiskLevelEnum.md) |  | [optional] 
+**risk** | **str** | Risk level assessment for screening results. Values vary by provider and are not managed by this service.  Known values by provider: - Chainalysis: severeRisk, highRisk, mediumRisk, lowRisk, noRiskInfo - Elliptic: noRiskDetected  Legacy values (SCREAMING_SNAKE_CASE, may appear in old transactions): VERY_HIGH, SEVERE, HIGH, MEDIUM, LOW, NO_RISK_INFO, UNKNOWN  | [optional] 
+**extended_risk** | **str** | Deprecated: This field is not currently returned in the API response. Use risk instead.  | [optional] 
 **external_id** | **str** | External identifier for the screening (provider-specific) | [optional] 
 **customer_ref_id** | **str** | Customer-provided reference identifier for tracking | [optional] 
-**ref_id** | **str** | Internal reference identifier | [optional] 
+**ref_id** | **str** | Deprecated: This field is not currently returned in the API response. Internal reference identifier.  | [optional] 
 **category** | **str** | Risk category classification. Examples: EXCHANGE, GAMBLING, MIXER, DARKNET_SERVICE, SANCTIONED_ENTITY  | [optional] 
 **category_id** | **float** | Numeric identifier for the risk category | [optional] 
 **dest_address** | **str** | The destination blockchain address associated with the screening | [optional] 
 **dest_tag** | **str** | Destination tag or memo (for chains that support it like XRP, XLM) | [optional] 
-**dest_record_id** | **str** | The destination record identifier used by the screening provider | [optional] 
-**address_resolution_signature** | **str** | Cryptographic signature for address resolution verification | [optional] 
+**dest_record_id** | **str** | Deprecated: This field is not currently returned in the API response. The destination record identifier used by the screening provider.  | [optional] 
+**address_resolution_signature** | **str** | Deprecated: This field is not currently returned in the API response. Cryptographic signature for address resolution verification.  | [optional] 
 **aml_result** | [**AmlResult**](AmlResult.md) |  | [optional] 
 **result** | [**TravelRuleResult**](TravelRuleResult.md) |  | [optional] 
 **details_message** | **str** | Additional human-readable details or message about the screening result | [optional] 
@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **customer_integration_id** | **str** | Customer integration identifier used by Travel Rule providers | [optional] 
 **customer_short_name** | **str** | Customer short name registered with Travel Rule providers | [optional] 
 **travel_rule_message_id** | **str** | Travel rule message identifier for linking and tracking across providers | [optional] 
+**provider_response** | **Dict[str, object]** | Complete response from the screening provider. This is a dynamic object that varies significantly between different providers (Chainalysis, Elliptic, NOTABENE, etc.). Each provider has their own proprietary response format and schema.  For AML providers: Contains risk scores, alerts, entity information For Travel Rule providers: Contains VASP information, PII data, protocol-specific fields  The structure is provider-dependent and cannot be standardized as each vendor implements their own proprietary data models and response formats.  | [optional] 
 
 ## Example
 

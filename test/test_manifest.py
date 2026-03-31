@@ -37,21 +37,17 @@ class TestManifest(unittest.TestCase):
         model = Manifest()
         if include_optional:
             return Manifest(
-                asset_types = [
-                    'DIGITAL'
-                    ],
-                capabilities = [
-                    'TRADING'
-                    ]
+                order = None,
+                quote = None,
+                rate = fireblocks.models.manifest_base.ManifestBase(
+                    supported = True, )
             )
         else:
             return Manifest(
-                asset_types = [
-                    'DIGITAL'
-                    ],
-                capabilities = [
-                    'TRADING'
-                    ],
+                order = None,
+                quote = None,
+                rate = fireblocks.models.manifest_base.ManifestBase(
+                    supported = True, ),
         )
         """
 

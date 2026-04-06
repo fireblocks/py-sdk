@@ -37,15 +37,21 @@ class TestAddressRegistryLegalEntity(unittest.TestCase):
         model = AddressRegistryLegalEntity()
         if include_optional:
             return AddressRegistryLegalEntity(
-                company_name = 'ACME Corporation',
-                country_code = 'US',
-                company_id = '550e8400-e29b-41d4-a716-446655440000'
+                verified = True,
+                entity_name = 'ACME Corporation',
+                jurisdiction = 'US',
+                lei = '254900GC33RBE6FQA817',
+                travel_rule_providers = ["TRAVEL_RULE_PROVIDER_NOTABENE","TRAVEL_RULE_PROVIDER_SYGNA"],
+                email = 'compliance@example.com'
             )
         else:
             return AddressRegistryLegalEntity(
-                company_name = 'ACME Corporation',
-                country_code = 'US',
-                company_id = '550e8400-e29b-41d4-a716-446655440000',
+                verified = True,
+                entity_name = 'ACME Corporation',
+                jurisdiction = 'US',
+                lei = '254900GC33RBE6FQA817',
+                travel_rule_providers = ["TRAVEL_RULE_PROVIDER_NOTABENE","TRAVEL_RULE_PROVIDER_SYGNA"],
+                email = 'compliance@example.com',
         )
         """
 

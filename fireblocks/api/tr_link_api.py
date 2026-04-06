@@ -709,7 +709,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[TRLinkCustomerIntegrationResponse]]:
         """Create customer integration
 
-        Creates a new TRSupport integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation.
+        Creates a new TRSupport integration for a customer. This establishes a connection placeholder between a customer and a Travel Rule partner. Use the connect endpoint to provide credentials after creation. You may optionally supply `customerIntegrationId` in the request body when your tenant is enabled for client-provided integration ids.
 
         :param tr_link_create_integration_request: (required)
         :type tr_link_create_integration_request: TRLinkCreateIntegrationRequest
@@ -1141,7 +1141,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[None]]:
         """Disconnect customer integration
 
-        Disconnects a customer integration by removing stored credentials. The integration record is deleted and cannot be recovered.
+        Disconnects the integration for the authenticated workspace (tenant): removes stored credentials and deletes this tenant's integration record. The operation is scoped to the caller's tenant; it does not remove partner-side state for other workspaces that reuse the same logical customer integration. The record cannot be recovered after delete.
 
         :param customer_integration_id: Customer integration unique identifier (required)
         :type customer_integration_id: str

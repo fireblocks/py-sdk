@@ -1,14 +1,17 @@
 # AddressRegistryLegalEntity
 
-Legal entity resolved for an address-registry lookup
+Legal entity details for a blockchain address.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company_name** | **str** | Legal entity / company display name | 
-**country_code** | **str** | Jurisdiction country code (e.g. ISO 3166-1 alpha-2) | 
-**company_id** | **str** | Company identifier for the resolved legal entity (UUID) | 
+**verified** | **bool** | Whether the entity was resolved from verified public registry data (e.g. LEI sources). | 
+**entity_name** | **str** | Legal entity display name. | 
+**jurisdiction** | **str** | Jurisdiction (e.g. ISO 3166-1 alpha-2 country code). | 
+**lei** | **str** | Legal Entity Identifier when available; may be empty when unverified. | 
+**travel_rule_providers** | [**List[AddressRegistryTravelRuleProvider]**](AddressRegistryTravelRuleProvider.md) |  | 
+**email** | **str** | Travel Rule contact email when available. | 
 
 ## Example
 

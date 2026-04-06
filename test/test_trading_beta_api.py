@@ -55,6 +55,13 @@ class TestTradingBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_trading_provider_by_id(self) -> None:
+        """Test case for get_trading_provider_by_id
+
+        Get trading provider by ID
+        """
+        pass
+
     def test_get_trading_providers(self) -> None:
         """Test case for get_trading_providers
 

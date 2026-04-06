@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.manifest import Manifest
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,10 +32,12 @@ class DirectAccessProvider(BaseModel):
     name: StrictStr = Field(description="Display name of the provider")
     logo: Optional[StrictStr] = Field(default=None, description="URL to the logo image of the provider")
     account_based: StrictBool = Field(description="Indicates whether the provider access model is through accounts or directly", alias="accountBased")
+    manifest: Manifest
     approved: Optional[StrictBool] = Field(default=None, description="Whether the provider was approved for use")
     has_terms_of_service: StrictBool = Field(description="Whether the provider has terms of service", alias="hasTermsOfService")
     terms_of_service_url: Optional[StrictStr] = Field(default=None, description="URL to the terms of service document", alias="termsOfServiceUrl")
-    __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "approved", "hasTermsOfService", "termsOfServiceUrl"]
+    privacy_policy_url: Optional[StrictStr] = Field(default=None, description="URL to the privacy policy document", alias="privacyPolicyUrl")
+    __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "manifest", "approved", "hasTermsOfService", "termsOfServiceUrl", "privacyPolicyUrl"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +78,9 @@ class DirectAccessProvider(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of manifest
+        if self.manifest:
+            _dict['manifest'] = self.manifest.to_dict()
         return _dict
 
     @classmethod
@@ -91,9 +97,11 @@ class DirectAccessProvider(BaseModel):
             "name": obj.get("name"),
             "logo": obj.get("logo"),
             "accountBased": obj.get("accountBased"),
+            "manifest": Manifest.from_dict(obj["manifest"]) if obj.get("manifest") is not None else None,
             "approved": obj.get("approved"),
             "hasTermsOfService": obj.get("hasTermsOfService"),
-            "termsOfServiceUrl": obj.get("termsOfServiceUrl")
+            "termsOfServiceUrl": obj.get("termsOfServiceUrl"),
+            "privacyPolicyUrl": obj.get("privacyPolicyUrl")
         })
         return _obj
 

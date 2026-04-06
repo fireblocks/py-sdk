@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**create_quote**](TradingBetaApi.md#create_quote) | **POST** /trading/quotes | Create a quote
 [**get_order**](TradingBetaApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
 [**get_orders**](TradingBetaApi.md#get_orders) | **GET** /trading/orders | Get orders
+[**get_trading_provider_by_id**](TradingBetaApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
 [**get_trading_providers**](TradingBetaApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
 
 
@@ -376,6 +377,92 @@ No authorization required
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
 **429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**5XX** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_trading_provider_by_id**
+> TradingProviderDetails get_trading_provider_by_id(provider_id)
+
+Get trading provider by ID
+
+Retrieve detailed information about a specific provider including its full manifest with order/quote requirements.
+
+**Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
+**Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
+
+
+### Example
+
+
+```python
+from fireblocks.models.trading_provider_details import TradingProviderDetails
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    provider_id = 'provider_id_example' # str | The unique identifier of the provider.
+
+    try:
+        # Get trading provider by ID
+        api_response = fireblocks.trading_beta.get_trading_provider_by_id(provider_id).result()
+        print("The response of TradingBetaApi->get_trading_provider_by_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TradingBetaApi->get_trading_provider_by_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider_id** | **str**| The unique identifier of the provider. | 
+
+### Return type
+
+[**TradingProviderDetails**](TradingProviderDetails.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Provider details |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Forbidden - insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
+**404** | Provider not found. |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded - slow down and retry later. |  * X-Request-ID -  <br>  |
 **5XX** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 

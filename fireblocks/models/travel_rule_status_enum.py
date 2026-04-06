@@ -32,6 +32,9 @@ class TravelRuleStatusEnum(str, Enum):
     BYPASSED = 'BYPASSED'
     FAILED = 'FAILED'
     FROZEN = 'FROZEN'
+    REJECTED = 'REJECTED'
+    CANCELED = 'CANCELED'
+    BLOCKING_TIME_EXPIRED = 'BLOCKING_TIME_EXPIRED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

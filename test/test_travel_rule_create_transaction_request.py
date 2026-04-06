@@ -189,6 +189,8 @@ class TestTravelRuleCreateTransactionRequest(unittest.TestCase):
                     address = '0x896B...0b9b', 
                     wallet_provider = 'Metamask', 
                     url = 'https://example.com/uploaded_image.png', 
+                    did = 'did:key:z6Mkf12345Zabcdef12345', 
+                    status = 'verified', 
                     confirmed = True, ),
                 beneficiary_proof = fireblocks.models.travel_rule_ownership_proof.TravelRuleOwnershipProof(
                     type = 'eip-191', 
@@ -197,6 +199,8 @@ class TestTravelRuleCreateTransactionRequest(unittest.TestCase):
                     address = '0x896B...0b9b', 
                     wallet_provider = 'Metamask', 
                     url = 'https://example.com/uploaded_image.png', 
+                    did = 'did:key:z6Mkf12345Zabcdef12345', 
+                    status = 'verified', 
                     confirmed = True, ),
                 beneficiary_did = 'did:key:z6Mkf67890Zghijkl67890',
                 originator_did = 'did:key:z6Mkf12345Zabcdef12345',

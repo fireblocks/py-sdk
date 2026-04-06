@@ -37,12 +37,12 @@ class TestAddressRegistryError(unittest.TestCase):
         model = AddressRegistryError()
         if include_optional:
             return AddressRegistryError(
-                code = 56,
-                message = ''
+                code = 2140,
+                message = 'Address registry opt-in required for this workspace.'
             )
         else:
             return AddressRegistryError(
-                message = '',
+                message = 'Address registry opt-in required for this workspace.',
         )
         """
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** | Display name of the provider | 
 **logo** | **str** | URL to the logo image of the provider | [optional] 
 **account_based** | **bool** | Indicates whether the provider access model is through accounts or directly | 
+**manifest** | [**Manifest**](Manifest.md) |  | 
 
 ## Example
 

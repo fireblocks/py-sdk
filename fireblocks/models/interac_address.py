@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.account_holder_details import AccountHolderDetails
 from fireblocks.models.recipient_handle import RecipientHandle
@@ -27,12 +27,15 @@ from typing_extensions import Self
 
 class InteracAddress(BaseModel):
     """
-    InteracAddress
+    When true, funds are deposited directly into the recipient's bank account without a security question.  When false, a security question and answer are required to complete the transfer
     """ # noqa: E501
     account_holder: AccountHolderDetails = Field(alias="accountHolder")
     recipient_handle: RecipientHandle = Field(alias="recipientHandle")
     message: Optional[StrictStr] = Field(default=None, description="The message to be sent to the recipient")
-    __properties: ClassVar[List[str]] = ["accountHolder", "recipientHandle", "message"]
+    auto_deposit: StrictBool = Field(description="Whether to automatically deposit the funds into the account", alias="autoDeposit")
+    security_question: Optional[StrictStr] = Field(default=None, description="The security question to be used for the security answer", alias="securityQuestion")
+    security_answer: Optional[StrictStr] = Field(default=None, description="The security answer to be used for the security question", alias="securityAnswer")
+    __properties: ClassVar[List[str]] = ["accountHolder", "recipientHandle", "message", "autoDeposit", "securityQuestion", "securityAnswer"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +96,10 @@ class InteracAddress(BaseModel):
         _obj = cls.model_validate({
             "accountHolder": AccountHolderDetails.from_dict(obj["accountHolder"]) if obj.get("accountHolder") is not None else None,
             "recipientHandle": RecipientHandle.from_dict(obj["recipientHandle"]) if obj.get("recipientHandle") is not None else None,
-            "message": obj.get("message")
+            "message": obj.get("message"),
+            "autoDeposit": obj.get("autoDeposit"),
+            "securityQuestion": obj.get("securityQuestion"),
+            "securityAnswer": obj.get("securityAnswer")
         })
         return _obj
 

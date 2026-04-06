@@ -41,13 +41,13 @@ class TestComplianceScreeningResult(unittest.TestCase):
                 payload = None,
                 timestamp = 1753459111824,
                 screening_status = 'COMPLETED',
-                bypass_reason = 'BELOW_THRESHOLD',
+                bypass_reason = 'UNSUPPORTED_ASSET',
                 status = 'COMPLETED',
                 prev_status = 'COMPLETED',
                 prev_bypass_reason = 'BELOW_THRESHOLD',
                 verdict = 'PASS',
-                risk = 'LOW',
-                extended_risk = 'LOW',
+                risk = 'lowRisk',
+                extended_risk = 'lowRisk',
                 external_id = 'aml_screening_12345',
                 customer_ref_id = 'customer_ref_789',
                 ref_id = 'ref_12345',
@@ -119,7 +119,8 @@ class TestComplianceScreeningResult(unittest.TestCase):
                 matched_no_trm_screening_rule = None,
                 customer_integration_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 customer_short_name = 'ACME Corp',
-                travel_rule_message_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6'
+                travel_rule_message_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                provider_response = { }
             )
         else:
             return ComplianceScreeningResult(

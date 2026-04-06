@@ -30,6 +30,8 @@ class TravelRuleActionEnum(str, Enum):
     SCREEN = 'SCREEN'
     BYPASS = 'BYPASS'
     BLOCK = 'BLOCK'
+    PASS = 'PASS'
+    FREEZE = 'FREEZE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

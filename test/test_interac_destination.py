@@ -38,12 +38,12 @@ class TestInteracDestination(unittest.TestCase):
         if include_optional:
             return InteracDestination(
                 type = 'INTERAC',
-                address = {"accountHolder":{"name":"John Smith","city":"Toronto","country":"CA","subdivision":"ON","address":"123 Yonge Street","postalCode":"M5B 1M4"},"recipientHandle":{"type":"EMAIL","value":"john.smith@email.com"},"message":"Please deposit the funds into the account","securityQuestion":"What is your mother's maiden name?","securityAnswer":"Jane Smith"}
+                address = {"accountHolder":{"name":"John Smith","city":"Toronto","country":"CA","subdivision":"ON","address":"123 Yonge Street","postalCode":"M5B 1M4"},"recipientHandle":{"type":"EMAIL","value":"john.smith@email.com"},"message":"Please deposit the funds into the account","autoDeposit":true,"securityQuestion":"What is your mother's maiden name?","securityAnswer":"Jane Smith"}
             )
         else:
             return InteracDestination(
                 type = 'INTERAC',
-                address = {"accountHolder":{"name":"John Smith","city":"Toronto","country":"CA","subdivision":"ON","address":"123 Yonge Street","postalCode":"M5B 1M4"},"recipientHandle":{"type":"EMAIL","value":"john.smith@email.com"},"message":"Please deposit the funds into the account","securityQuestion":"What is your mother's maiden name?","securityAnswer":"Jane Smith"},
+                address = {"accountHolder":{"name":"John Smith","city":"Toronto","country":"CA","subdivision":"ON","address":"123 Yonge Street","postalCode":"M5B 1M4"},"recipientHandle":{"type":"EMAIL","value":"john.smith@email.com"},"message":"Please deposit the funds into the account","autoDeposit":true,"securityQuestion":"What is your mother's maiden name?","securityAnswer":"Jane Smith"},
         )
         """
 

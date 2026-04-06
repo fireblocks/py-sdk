@@ -40,13 +40,15 @@ class TestBaseProvider(unittest.TestCase):
                 id = '',
                 name = '',
                 logo = '',
-                account_based = True
+                account_based = True,
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}}
             )
         else:
             return BaseProvider(
                 id = '',
                 name = '',
                 account_based = True,
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
         )
         """
 

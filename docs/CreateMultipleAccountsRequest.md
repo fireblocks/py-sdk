@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **names** | **List[str]** | Names to assign to vault accounts. if vaultAccountNamesStartingIndex or prefix is used it&#39;ll fail | [optional] 
 **vault_account_names_starting_index** | **int** | Copy vault accounts names starting from this index. If names array is used it&#39;ll fail | [optional] 
 **prefix** | **str** | When copying from existing vault accounts (vaultAccountNamesStartingIndex) then adding a prefix to the names. If names array is used it&#39;ll fail | [optional] 
+**tag_ids** | **List[str]** | Optional list of tag IDs to attach to all created vault accounts | [optional] 
 
 ## Example
 

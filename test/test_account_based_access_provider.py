@@ -41,7 +41,7 @@ class TestAccountBasedAccessProvider(unittest.TestCase):
                 name = '',
                 logo = '',
                 account_based = True,
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 connected = True,
                 accounts = [
                     {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
@@ -52,8 +52,11 @@ class TestAccountBasedAccessProvider(unittest.TestCase):
                 id = '',
                 name = '',
                 account_based = True,
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 connected = True,
+                accounts = [
+                    {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
+                    ],
         )
         """
 

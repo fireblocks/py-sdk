@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class AddressRegistryError(BaseModel):
     """
-    Error body for address-registry 4xx and 5xx.
+    Error body for address registry operations (4xx and 5xx).
     """ # noqa: E501
-    code: Optional[StrictInt] = Field(default=None, description="Numeric error code (2140–2143) for 403, 404 and 5xx responses.")
+    code: Optional[StrictInt] = Field(default=None, description="Application error code when present. Typical values include **2140** (403 — workspace not opted in to the address registry) and **2142** (404 — not found). Other codes may appear, including on server errors. ")
     message: StrictStr = Field(description="Human-readable error message")
     __properties: ClassVar[List[str]] = ["code", "message"]
 

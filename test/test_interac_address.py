@@ -41,7 +41,10 @@ class TestInteracAddress(unittest.TestCase):
                 recipient_handle = fireblocks.models.recipient_handle.RecipientHandle(
                     type = 'EMAIL', 
                     value = 'john.smith@email.com', ),
-                message = 'Please deposit the funds into the account'
+                message = 'Please deposit the funds into the account',
+                auto_deposit = True,
+                security_question = 'What is your mother's maiden name?',
+                security_answer = 'Jane Smith'
             )
         else:
             return InteracAddress(
@@ -49,6 +52,7 @@ class TestInteracAddress(unittest.TestCase):
                 recipient_handle = fireblocks.models.recipient_handle.RecipientHandle(
                     type = 'EMAIL', 
                     value = 'john.smith@email.com', ),
+                auto_deposit = True,
         )
         """
 

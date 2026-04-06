@@ -1,5 +1,6 @@
 # InteracAddress
 
+When true, funds are deposited directly into the recipient's bank account without a security question.  When false, a security question and answer are required to complete the transfer
 
 ## Properties
 
@@ -8,6 +9,9 @@ Name | Type | Description | Notes
 **account_holder** | [**AccountHolderDetails**](AccountHolderDetails.md) |  | 
 **recipient_handle** | [**RecipientHandle**](RecipientHandle.md) |  | 
 **message** | **str** | The message to be sent to the recipient | [optional] 
+**auto_deposit** | **bool** | Whether to automatically deposit the funds into the account | 
+**security_question** | **str** | The security question to be used for the security answer | [optional] 
+**security_answer** | **str** | The security answer to be used for the security question | [optional] 
 
 ## Example
 

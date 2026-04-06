@@ -41,22 +41,26 @@ class TestTradingProvider(unittest.TestCase):
                 name = '',
                 logo = '',
                 account_based = True,
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 connected = True,
                 accounts = [
                     {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
                     ],
                 approved = True,
                 has_terms_of_service = True,
-                terms_of_service_url = ''
+                terms_of_service_url = '',
+                privacy_policy_url = ''
             )
         else:
             return TradingProvider(
                 id = '',
                 name = '',
                 account_based = True,
-                manifest = {"assetTypes":["DIGITAL","FIAT"],"capabilities":["SPOT_TRADING","LIMIT_ORDERS"]},
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 connected = True,
+                accounts = [
+                    {"id":"acc_9f4e2d8b1c6a5e73","name":"Main Trading Account"}
+                    ],
                 has_terms_of_service = True,
         )
         """

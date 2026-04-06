@@ -37,7 +37,8 @@ class TestJobCreated(unittest.TestCase):
         model = JobCreated()
         if include_optional:
             return JobCreated(
-                job_id = ''
+                job_id = '',
+                approval_request_id = ''
             )
         else:
             return JobCreated(

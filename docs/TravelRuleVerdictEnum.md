@@ -12,6 +12,12 @@ The final verdict of the travel rule screening
 
 * `REVIEW` (value: `'REVIEW'`)
 
+* `WAIT` (value: `'WAIT'`)
+
+* `FREEZE` (value: `'FREEZE'`)
+
+* `CANCEL` (value: `'CANCEL'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

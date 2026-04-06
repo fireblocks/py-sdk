@@ -27,6 +27,34 @@ class TestComplianceApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_add_address_registry_vault_opt_outs(self) -> None:
+        """Test case for add_address_registry_vault_opt_outs
+
+        Add vault accounts to the address registry opt-out list
+        """
+        pass
+
+    def test_assign_vaults_to_legal_entity(self) -> None:
+        """Test case for assign_vaults_to_legal_entity
+
+        Assign vault accounts to a legal entity
+        """
+        pass
+
+    def test_get_address_registry_tenant_participation_status(self) -> None:
+        """Test case for get_address_registry_tenant_participation_status
+
+        Get address registry participation status for the authenticated workspace
+        """
+        pass
+
+    def test_get_address_registry_vault_opt_out(self) -> None:
+        """Test case for get_address_registry_vault_opt_out
+
+        Get whether a vault account is opted out of the address registry
+        """
+        pass
+
     def test_get_aml_post_screening_policy(self) -> None:
         """Test case for get_aml_post_screening_policy
 
@@ -41,10 +69,24 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_legal_entity(self) -> None:
+        """Test case for get_legal_entity
+
+        Get a legal entity
+        """
+        pass
+
     def test_get_legal_entity_by_address(self) -> None:
         """Test case for get_legal_entity_by_address
 
-        Look up legal entity by address and asset
+        [Deprecated] Look up legal entity by address (query parameter)
+        """
+        pass
+
+    def test_get_legal_entity_for_address(self) -> None:
+        """Test case for get_legal_entity_for_address
+
+        Look up legal entity by blockchain address
         """
         pass
 
@@ -69,6 +111,62 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_list_address_registry_vault_opt_outs(self) -> None:
+        """Test case for list_address_registry_vault_opt_outs
+
+        List vault-level address registry opt-outs (paginated)
+        """
+        pass
+
+    def test_list_legal_entities(self) -> None:
+        """Test case for list_legal_entities
+
+        List legal entities (Paginated)
+        """
+        pass
+
+    def test_list_vaults_for_legal_entity(self) -> None:
+        """Test case for list_vaults_for_legal_entity
+
+        List vault accounts for a legal entity (Paginated)
+        """
+        pass
+
+    def test_opt_in_address_registry_tenant(self) -> None:
+        """Test case for opt_in_address_registry_tenant
+
+        Opt the workspace in to the address registry
+        """
+        pass
+
+    def test_opt_out_address_registry_tenant(self) -> None:
+        """Test case for opt_out_address_registry_tenant
+
+        Opt the workspace out of the address registry
+        """
+        pass
+
+    def test_register_legal_entity(self) -> None:
+        """Test case for register_legal_entity
+
+        Register a new legal entity
+        """
+        pass
+
+    def test_remove_address_registry_vault_opt_out(self) -> None:
+        """Test case for remove_address_registry_vault_opt_out
+
+        Remove a single vault account from the address registry opt-out list
+        """
+        pass
+
+    def test_remove_all_address_registry_vault_opt_outs(self) -> None:
+        """Test case for remove_all_address_registry_vault_opt_outs
+
+        Remove all vault-level address registry opt-outs for the workspace
+        """
+        pass
+
     def test_retry_rejected_transaction_bypass_screening_checks(self) -> None:
         """Test case for retry_rejected_transaction_bypass_screening_checks
 
@@ -87,6 +185,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for update_aml_screening_configuration
 
         Update AML Configuration
+        """
+        pass
+
+    def test_update_legal_entity(self) -> None:
+        """Test case for update_legal_entity
+
+        Update legal entity
         """
         pass
 

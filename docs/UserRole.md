@@ -26,6 +26,10 @@ The role of the user
 
 * `NCW_SIGNER` (value: `'NCW_SIGNER'`)
 
+* `SECURITY_ADMIN` (value: `'SECURITY_ADMIN'`)
+
+* `SECURITY_AUDITOR` (value: `'SECURITY_AUDITOR'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

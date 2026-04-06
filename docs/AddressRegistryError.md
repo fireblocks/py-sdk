@@ -1,12 +1,12 @@
 # AddressRegistryError
 
-Error body for address-registry 4xx and 5xx.
+Error body for address registry operations (4xx and 5xx).
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **int** | Numeric error code (2140–2143) for 403, 404 and 5xx responses. | [optional] 
+**code** | **int** | Application error code when present. Typical values include **2140** (403 — workspace not opted in to the address registry) and **2142** (404 — not found). Other codes may appear, including on server errors.  | [optional] 
 **message** | **str** | Human-readable error message | 
 
 ## Example

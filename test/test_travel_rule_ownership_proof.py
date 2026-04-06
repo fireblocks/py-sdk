@@ -43,6 +43,8 @@ class TestTravelRuleOwnershipProof(unittest.TestCase):
                 address = '0x896B...0b9b',
                 wallet_provider = 'Metamask',
                 url = 'https://example.com/uploaded_image.png',
+                did = 'did:key:z6Mkf12345Zabcdef12345',
+                status = 'verified',
                 confirmed = True
             )
         else:

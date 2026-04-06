@@ -28,7 +28,8 @@ class JobCreated(BaseModel):
     JobCreated
     """ # noqa: E501
     job_id: Optional[StrictStr] = Field(default=None, alias="jobId")
-    __properties: ClassVar[List[str]] = ["jobId"]
+    approval_request_id: Optional[StrictStr] = Field(default=None, description="Approval request ID. Returned when a tag triggers an approval flow.", alias="approvalRequestId")
+    __properties: ClassVar[List[str]] = ["jobId", "approvalRequestId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +82,8 @@ class JobCreated(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "jobId": obj.get("jobId")
+            "jobId": obj.get("jobId"),
+            "approvalRequestId": obj.get("approvalRequestId")
         })
         return _obj
 

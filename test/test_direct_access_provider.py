@@ -41,15 +41,18 @@ class TestDirectAccessProvider(unittest.TestCase):
                 name = '',
                 logo = '',
                 account_based = True,
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 approved = True,
                 has_terms_of_service = True,
-                terms_of_service_url = ''
+                terms_of_service_url = '',
+                privacy_policy_url = ''
             )
         else:
             return DirectAccessProvider(
                 id = '',
                 name = '',
                 account_based = True,
+                manifest = {"order":{"supported":true,"executionTypes":["MARKET","QUOTE"],"settlementTypes":["DVP"]},"quote":{"supported":true,"settlementTypes":["DVP"]},"rate":{"supported":true}},
                 has_terms_of_service = True,
         )
         """

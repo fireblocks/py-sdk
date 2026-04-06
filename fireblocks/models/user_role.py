@@ -38,6 +38,8 @@ class UserRole(str, Enum):
     AUDITOR = 'AUDITOR'
     NCW_ADMIN = 'NCW_ADMIN'
     NCW_SIGNER = 'NCW_SIGNER'
+    SECURITY_ADMIN = 'SECURITY_ADMIN'
+    SECURITY_AUDITOR = 'SECURITY_AUDITOR'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

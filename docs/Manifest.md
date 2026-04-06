@@ -1,12 +1,14 @@
 # Manifest
 
+The manifest of the provider, describing its supported order, quote, and rate requirements.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_types** | [**List[AssetTypeEnum]**](AssetTypeEnum.md) |  | 
-**capabilities** | [**List[Capability]**](Capability.md) |  | 
+**order** | [**ManifestOrder**](ManifestOrder.md) |  | 
+**quote** | [**ManifestQuote**](ManifestQuote.md) |  | 
+**rate** | [**ManifestBase**](ManifestBase.md) |  | 
 
 ## Example
 

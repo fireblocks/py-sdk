@@ -18,19 +18,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List
+from fireblocks.models.address_registry_travel_rule_provider import AddressRegistryTravelRuleProvider
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AddressRegistryLegalEntity(BaseModel):
     """
-    Legal entity resolved for an address-registry lookup
+    Legal entity details for a blockchain address.
     """ # noqa: E501
-    company_name: StrictStr = Field(description="Legal entity / company display name", alias="companyName")
-    country_code: StrictStr = Field(description="Jurisdiction country code (e.g. ISO 3166-1 alpha-2)", alias="countryCode")
-    company_id: StrictStr = Field(description="Company identifier for the resolved legal entity (UUID)", alias="companyId")
-    __properties: ClassVar[List[str]] = ["companyName", "countryCode", "companyId"]
+    verified: StrictBool = Field(description="Whether the entity was resolved from verified public registry data (e.g. LEI sources).")
+    entity_name: StrictStr = Field(description="Legal entity display name.", alias="entityName")
+    jurisdiction: StrictStr = Field(description="Jurisdiction (e.g. ISO 3166-1 alpha-2 country code).")
+    lei: StrictStr = Field(description="Legal Entity Identifier when available; may be empty when unverified.")
+    travel_rule_providers: List[AddressRegistryTravelRuleProvider] = Field(alias="travelRuleProviders")
+    email: StrictStr = Field(description="Travel Rule contact email when available.")
+    __properties: ClassVar[List[str]] = ["verified", "entityName", "jurisdiction", "lei", "travelRuleProviders", "email"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,9 +87,12 @@ class AddressRegistryLegalEntity(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "companyName": obj.get("companyName"),
-            "countryCode": obj.get("countryCode"),
-            "companyId": obj.get("companyId")
+            "verified": obj.get("verified"),
+            "entityName": obj.get("entityName"),
+            "jurisdiction": obj.get("jurisdiction"),
+            "lei": obj.get("lei"),
+            "travelRuleProviders": obj.get("travelRuleProviders"),
+            "email": obj.get("email")
         })
         return _obj
 

@@ -28,11 +28,11 @@ class TransactionFee(BaseModel):
     TransactionFee
     """ # noqa: E501
     fee_per_byte: Optional[StrictStr] = Field(default=None, alias="feePerByte")
-    gas_price: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="gasPrice")
+    gas_price: Optional[Union[StrictFloat, StrictInt, StrictStr]] = Field(default=None, alias="gasPrice")
     gas_limit: Optional[StrictStr] = Field(default=None, alias="gasLimit")
     network_fee: Optional[StrictStr] = Field(default=None, alias="networkFee")
-    base_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="(optional) Base Fee according to EIP-1559 (ETH assets)", alias="baseFee")
-    priority_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="(optional) Priority Fee according to EIP-1559 (ETH assets)", alias="priorityFee")
+    base_fee: Optional[Union[StrictFloat, StrictInt, StrictStr]] = Field(default=None, description="(optional) Base Fee according to EIP-1559 (ETH assets)", alias="baseFee")
+    priority_fee: Optional[Union[StrictFloat, StrictInt, StrictStr]] = Field(default=None, description="(optional) Priority Fee according to EIP-1559 (ETH assets)", alias="priorityFee")
     max_fee_per_gas_delta: Optional[StrictStr] = Field(default=None, description="Max Fee Per Gas Delta added only for EIP-1559 (ETH assets)", alias="maxFeePerGasDelta")
     l1_fee: Optional[StrictStr] = Field(default=None, description="Layer 1 fee for Layer 2 chains", alias="l1Fee")
     __properties: ClassVar[List[str]] = ["feePerByte", "gasPrice", "gasLimit", "networkFee", "baseFee", "priorityFee", "maxFeePerGasDelta", "l1Fee"]

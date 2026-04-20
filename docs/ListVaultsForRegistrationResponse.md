@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **total** | **int** | Total number of legal entity registrations (optional) | [optional] 
 **data** | **List[str]** | List of vault account IDs assigned to the legal entity registration | 
 **next** | **str** | Cursor to pass as &#x60;pageCursor&#x60; to retrieve the next page | [optional] 
-**prev** | **str** | Cursor to pass as &#x60;pageCursor&#x60; to retrieve the previous page | [optional] 
 
 ## Example
 

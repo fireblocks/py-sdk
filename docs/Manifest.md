@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **order** | [**ManifestOrder**](ManifestOrder.md) |  | 
 **quote** | [**ManifestQuote**](ManifestQuote.md) |  | 
 **rate** | [**ManifestBase**](ManifestBase.md) |  | 
+**participants_identification_policy** | [**ParticipantsIdentificationPolicy**](ParticipantsIdentificationPolicy.md) |  | [optional] 
 
 ## Example
 

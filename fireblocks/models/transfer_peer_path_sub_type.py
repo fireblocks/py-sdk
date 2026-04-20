@@ -59,6 +59,7 @@ class TransferPeerPathSubType(str, Enum):
     POLONIEX = 'POLONIEX'
     EXTERNAL = 'External'
     INTERNAL = 'Internal'
+    VIRTUAL_ACCOUNT = 'VIRTUAL_ACCOUNT'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

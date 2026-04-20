@@ -28,6 +28,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
+from fireblocks.api.earn_beta_api import EarnBetaApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
@@ -53,6 +54,7 @@ from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
+from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -85,6 +87,7 @@ class Fireblocks:
         self._contracts = None
         self._cosigners_beta = None
         self._deployed_contracts = None
+        self._earn_beta = None
         self._embedded_wallets = None
         self._exchange_accounts = None
         self._external_wallets = None
@@ -110,6 +113,7 @@ class Fireblocks:
         self._trading_beta = None
         self._transactions = None
         self._travel_rule = None
+        self._utxo_management_beta = None
         self._user_groups_beta = None
         self._users = None
         self._vaults = None
@@ -202,6 +206,12 @@ class Fireblocks:
         if self._deployed_contracts is None:
             self._deployed_contracts = DeployedContractsApi(self._api_client)
         return self._deployed_contracts
+
+    @property
+    def earn_beta(self) -> EarnBetaApi:
+        if self._earn_beta is None:
+            self._earn_beta = EarnBetaApi(self._api_client)
+        return self._earn_beta
 
     @property
     def embedded_wallets(self) -> EmbeddedWalletsApi:
@@ -352,6 +362,12 @@ class Fireblocks:
         if self._travel_rule is None:
             self._travel_rule = TravelRuleApi(self._api_client)
         return self._travel_rule
+
+    @property
+    def utxo_management_beta(self) -> UTXOManagementBetaApi:
+        if self._utxo_management_beta is None:
+            self._utxo_management_beta = UTXOManagementBetaApi(self._api_client)
+        return self._utxo_management_beta
 
     @property
     def user_groups_beta(self) -> UserGroupsBetaApi:

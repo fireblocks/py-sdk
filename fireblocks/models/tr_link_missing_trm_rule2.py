@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.tr_link_amount2 import TRLinkAmount2
+from fireblocks.models.screening_policy_amount import ScreeningPolicyAmount
 from fireblocks.models.tr_link_missing_trm_action2 import TRLinkMissingTrmAction2
 from fireblocks.models.tr_link_transaction_direction import TRLinkTransactionDirection
 from typing import Optional, Set
@@ -42,7 +42,7 @@ class TRLinkMissingTrmRule2(BaseModel):
     dest_id: Optional[StrictStr] = Field(default=None, description="Destination identifier", alias="destId")
     asset: Optional[StrictStr] = Field(default=None, description="Asset or cryptocurrency type")
     base_asset: Optional[StrictStr] = Field(default=None, description="Base asset for derivatives", alias="baseAsset")
-    amount: Optional[TRLinkAmount2] = None
+    amount: Optional[ScreeningPolicyAmount] = None
     network_protocol: Optional[StrictStr] = Field(default=None, description="Network protocol identifier", alias="networkProtocol")
     operation: Optional[StrictStr] = Field(default=None, description="Operation type")
     description: Optional[StrictStr] = Field(default=None, description="Rule description")
@@ -203,7 +203,7 @@ class TRLinkMissingTrmRule2(BaseModel):
             "destId": obj.get("destId"),
             "asset": obj.get("asset"),
             "baseAsset": obj.get("baseAsset"),
-            "amount": TRLinkAmount2.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
+            "amount": ScreeningPolicyAmount.from_dict(obj["amount"]) if obj.get("amount") is not None else None,
             "networkProtocol": obj.get("networkProtocol"),
             "operation": obj.get("operation"),
             "description": obj.get("description"),

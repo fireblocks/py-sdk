@@ -28,7 +28,7 @@ from fireblocks.models.order_details import OrderDetails
 from fireblocks.models.order_status import OrderStatus
 from fireblocks.models.providers_list_response import ProvidersListResponse
 from fireblocks.models.quotes_response import QuotesResponse
-from fireblocks.models.trading_provider_details import TradingProviderDetails
+from fireblocks.models.trading_provider import TradingProvider
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -714,10 +714,10 @@ class TradingBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[TradingProviderDetails]]:
+    ) -> Future[ApiResponse[TradingProvider]]:
         """Get trading provider by ID
 
-        Retrieve detailed information about a specific provider including its full manifest with order/quote requirements.  **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.  **Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.  For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes). 
+        Retrieve a single provider by ID.  **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.  **Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.  For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes). 
 
         :param provider_id: The unique identifier of the provider. (required)
         :type provider_id: str
@@ -754,7 +754,7 @@ class TradingBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TradingProviderDetails",
+            '200': "TradingProvider",
             '401': "TradingErrorSchema",
             '403': "TradingErrorSchema",
             '404': "TradingErrorSchema",

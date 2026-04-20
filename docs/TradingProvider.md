@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **logo** | **str** | URL to the logo image of the provider | [optional] 
 **account_based** | **bool** | Indicates whether the provider access model is through accounts or directly | 
 **manifest** | [**Manifest**](Manifest.md) |  | 
-**connected** | **bool** | Whether the provider is currently connected | 
+**connected** | **bool** | Whether the provider is currently connected. | 
 **accounts** | [**List[AccountBase]**](AccountBase.md) |  | 
 **approved** | **bool** | Whether the provider was approved for use | [optional] 
 **has_terms_of_service** | **bool** | Whether the provider has terms of service | 

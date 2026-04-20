@@ -49,11 +49,7 @@ class TestTRLinkPostScreeningRule2(unittest.TestCase):
                 dest_id = '',
                 asset = 'ETH',
                 base_asset = '',
-                amount = fireblocks.models.tr_link_amount_2.TRLinkAmount-2(
-                    range = fireblocks.models.tr_link_amount_range.TRLinkAmountRange(
-                        min = '1000', 
-                        max = '100000', ), 
-                    currency = 'USD', ),
+                amount = {"range":{"min":"1000","max":"100000"},"currency":"USD"},
                 network_protocol = 'ETHEREUM',
                 operation = 'TRANSFER',
                 description = 'Accept transactions with TRM approval after January 2024',

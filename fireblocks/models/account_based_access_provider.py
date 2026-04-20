@@ -27,14 +27,14 @@ from typing_extensions import Self
 
 class AccountBasedAccessProvider(BaseModel):
     """
-    AccountBasedAccessProvider
+    Provider integrated via Fireblocks connected accounts (`accountBased` is `true`).
     """ # noqa: E501
     id: StrictStr = Field(description="Unique identifier for the provider")
     name: StrictStr = Field(description="Display name of the provider")
     logo: Optional[StrictStr] = Field(default=None, description="URL to the logo image of the provider")
     account_based: StrictBool = Field(description="Indicates whether the provider access model is through accounts or directly", alias="accountBased")
     manifest: Manifest
-    connected: StrictBool = Field(description="Whether the provider is currently connected")
+    connected: StrictBool = Field(description="Whether the provider is currently connected.")
     accounts: List[AccountBase]
     __properties: ClassVar[List[str]] = ["id", "name", "logo", "accountBased", "manifest", "connected", "accounts"]
 

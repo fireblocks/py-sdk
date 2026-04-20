@@ -4,14 +4,17 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**activate_byork_config**](ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 [**add_address_registry_vault_opt_outs**](ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list
 [**assign_vaults_to_legal_entity**](ComplianceApi.md#assign_vaults_to_legal_entity) | **POST** /legal_entities/{legalEntityId}/vaults | Assign vault accounts to a legal entity
+[**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 [**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
 [**get_address_registry_vault_opt_out**](ComplianceApi.md#get_address_registry_vault_opt_out) | **GET** /address_registry/vaults/{vaultAccountId} | Get whether a vault account is opted out of the address registry
 [**get_aml_post_screening_policy**](ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 [**get_aml_screening_policy**](ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
+[**get_byork_config**](ComplianceApi.md#get_byork_config) | **GET** /screening/byork/config | Get BYORK Light configuration
+[**get_byork_verdict**](ComplianceApi.md#get_byork_verdict) | **GET** /screening/byork/verdict | Get BYORK Light verdict
 [**get_legal_entity**](ComplianceApi.md#get_legal_entity) | **GET** /legal_entities/{legalEntityId} | Get a legal entity
-[**get_legal_entity_by_address**](ComplianceApi.md#get_legal_entity_by_address) | **GET** /address_registry/legal_entity | [Deprecated] Look up legal entity by address (query parameter)
 [**get_legal_entity_for_address**](ComplianceApi.md#get_legal_entity_for_address) | **GET** /address_registry/legal_entities/{address} | Look up legal entity by blockchain address
 [**get_post_screening_policy**](ComplianceApi.md#get_post_screening_policy) | **GET** /screening/travel_rule/post_screening_policy | Travel Rule - View Post-Screening Policy
 [**get_screening_full_details**](ComplianceApi.md#get_screening_full_details) | **GET** /screening/transaction/{txId} | Provides all the compliance details for the given screened transaction.
@@ -25,12 +28,89 @@ Method | HTTP request | Description
 [**remove_address_registry_vault_opt_out**](ComplianceApi.md#remove_address_registry_vault_opt_out) | **DELETE** /address_registry/vaults/{vaultAccountId} | Remove a single vault account from the address registry opt-out list
 [**remove_all_address_registry_vault_opt_outs**](ComplianceApi.md#remove_all_address_registry_vault_opt_outs) | **DELETE** /address_registry/vaults | Remove all vault-level address registry opt-outs for the workspace
 [**retry_rejected_transaction_bypass_screening_checks**](ComplianceApi.md#retry_rejected_transaction_bypass_screening_checks) | **POST** /screening/transaction/{txId}/bypass_screening_policy | Calling the \&quot;Bypass Screening Policy\&quot; API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
-[**set_aml_verdict**](ComplianceApi.md#set_aml_verdict) | **POST** /screening/aml/verdict/manual | Set AML Verdict for Manual Screening Verdict.
+[**set_aml_verdict**](ComplianceApi.md#set_aml_verdict) | **POST** /screening/aml/verdict/manual | Set AML Verdict (BYORK Super Light)
+[**set_byork_timeouts**](ComplianceApi.md#set_byork_timeouts) | **PUT** /screening/byork/config/timeouts | Set BYORK Light timeouts
+[**set_byork_verdict**](ComplianceApi.md#set_byork_verdict) | **POST** /screening/byork/verdict | Set BYORK Light verdict
 [**update_aml_screening_configuration**](ComplianceApi.md#update_aml_screening_configuration) | **PUT** /screening/aml/policy_configuration | Update AML Configuration
 [**update_legal_entity**](ComplianceApi.md#update_legal_entity) | **PUT** /legal_entities/{legalEntityId} | Update legal entity
 [**update_screening_configuration**](ComplianceApi.md#update_screening_configuration) | **PUT** /screening/configurations | Tenant - Screening Configuration
 [**update_travel_rule_config**](ComplianceApi.md#update_travel_rule_config) | **PUT** /screening/travel_rule/policy_configuration | Update Travel Rule Configuration
 
+
+# **activate_byork_config**
+> ByorkConfigResponse activate_byork_config(idempotency_key=idempotency_key)
+
+Activate BYORK Light
+
+Activates BYORK Light for the authenticated tenant (sets config.active to true). Once activated, BYORK screening applies to matching transactions. Requires BYORK Light to be enabled for the tenant (contact your CSM to enable).
+
+### Example
+
+
+```python
+from fireblocks.models.byork_config_response import ByorkConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Activate BYORK Light
+        api_response = fireblocks.compliance.activate_byork_config(idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->activate_byork_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->activate_byork_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ByorkConfigResponse**](ByorkConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | BYORK configuration activated. |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled for tenant. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_address_registry_vault_opt_outs**
 > AddressRegistryAddVaultOptOutsResponse add_address_registry_vault_opt_outs(address_registry_add_vault_opt_outs_request, idempotency_key=idempotency_key)
@@ -187,6 +267,81 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | Vault accounts assigned successfully |  * X-Request-ID -  <br>  |
 **404** | Legal entity registration not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deactivate_byork_config**
+> ByorkConfigResponse deactivate_byork_config(idempotency_key=idempotency_key)
+
+Deactivate BYORK Light
+
+Deactivates BYORK Light for the authenticated tenant (sets config.active to false). Once deactivated, BYORK screening no longer applies until activated again. Requires BYORK Light to be enabled for the tenant (contact your CSM to enable).
+
+### Example
+
+
+```python
+from fireblocks.models.byork_config_response import ByorkConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Deactivate BYORK Light
+        api_response = fireblocks.compliance.deactivate_byork_config(idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->deactivate_byork_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->deactivate_byork_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ByorkConfigResponse**](ByorkConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | BYORK configuration deactivated. |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled for tenant. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -474,6 +629,154 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_byork_config**
+> ByorkConfigResponse get_byork_config()
+
+Get BYORK Light configuration
+
+Retrieves BYORK Light configuration for the authenticated tenant (timeouts, active flag, allowed timeout ranges). Returns default config when none exists. Requires BYORK Light to be enabled for the tenant.
+
+### Example
+
+
+```python
+from fireblocks.models.byork_config_response import ByorkConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get BYORK Light configuration
+        api_response = fireblocks.compliance.get_byork_config().result()
+        print("The response of ComplianceApi->get_byork_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->get_byork_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ByorkConfigResponse**](ByorkConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | BYORK configuration (or default). |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled for tenant. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_byork_verdict**
+> GetByorkVerdictResponse get_byork_verdict(tx_id)
+
+Get BYORK Light verdict
+
+Returns the current BYORK verdict and status for a transaction. Status can be PRE_ACCEPTED, PENDING, RECEIVED (verdict is final but processing not yet complete), or COMPLETED. Requires BYORK Light to be enabled for the tenant. Returns 404 if no BYORK verdict is found for the transaction.
+
+### Example
+
+
+```python
+from fireblocks.models.get_byork_verdict_response import GetByorkVerdictResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    tx_id = '550e8400-e29b-41d4-a716-446655440000' # str | Transaction ID
+
+    try:
+        # Get BYORK Light verdict
+        api_response = fireblocks.compliance.get_byork_verdict(tx_id).result()
+        print("The response of ComplianceApi->get_byork_verdict:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->get_byork_verdict: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tx_id** | **str**| Transaction ID | 
+
+### Return type
+
+[**GetByorkVerdictResponse**](GetByorkVerdictResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Current verdict and status. |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled for tenant or txId missing. |  * X-Request-ID -  <br>  |
+**404** | No BYORK verdict found for this transaction. |  * X-Request-ID -  <br>  |
+**500** | Internal server error. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_legal_entity**
 > LegalEntityRegistration get_legal_entity(legal_entity_id)
 
@@ -550,95 +853,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_legal_entity_by_address**
-> AddressRegistryLegalEntityLegacy get_legal_entity_by_address(address, asset=asset)
-
-[Deprecated] Look up legal entity by address (query parameter)
-
-**Deprecated** — use `GET /v1/address_registry/legal_entities/{address}` instead.
-Here `address` is a **query** parameter; the replacement uses a path segment.
-The response includes only `companyName`, `countryCode`, and `companyId`. The replacement returns additional fields documented on that operation.
-Optional **`asset`** is supported here only (not on the replacement path).
-
-### Example
-
-
-```python
-from fireblocks.models.address_registry_legal_entity_legacy import AddressRegistryLegalEntityLegacy
-from fireblocks.client import Fireblocks
-from fireblocks.client_configuration import ClientConfiguration
-from fireblocks.exceptions import ApiException
-from fireblocks.base_path import BasePath
-from pprint import pprint
-
-# load the secret key content from a file
-with open('your_secret_key_file_path', 'r') as file:
-    secret_key_value = file.read()
-
-# build the configuration
-configuration = ClientConfiguration(
-        api_key="your_api_key",
-        secret_key=secret_key_value,
-        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with Fireblocks(configuration) as fireblocks:
-    address = '0x742d35cc6634c0532925a3b844bc9e7595f0beb0' # str | Blockchain address to look up
-    asset = 'ETH' # str | Optional asset identifier (this deprecated operation only). (optional)
-
-    try:
-        # [Deprecated] Look up legal entity by address (query parameter)
-        api_response = fireblocks.compliance.get_legal_entity_by_address(address, asset=asset).result()
-        print("The response of ComplianceApi->get_legal_entity_by_address:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ComplianceApi->get_legal_entity_by_address: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **address** | **str**| Blockchain address to look up | 
- **asset** | **str**| Optional asset identifier (this deprecated operation only). | [optional] 
-
-### Return type
-
-[**AddressRegistryLegalEntityLegacy**](AddressRegistryLegalEntityLegacy.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Legal entity found |  * X-Request-ID -  <br>  |
-**400** | Bad request – missing or invalid address |  * X-Request-ID -  <br>  |
-**403** | Forbidden – the authenticated workspace is not opted in to the address registry (error code 2140) |  * X-Request-ID -  <br>  |
-**404** | Not found (error code 2142) — unresolved address, no legal entity for a resolved address, or the same not-found outcome in other cases. |  * X-Request-ID -  <br>  |
-**0** | Error Response |  * X-Request-ID -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_legal_entity_for_address**
 > AddressRegistryLegalEntity get_legal_entity_for_address(address)
 
 Look up legal entity by blockchain address
 
-Returns legal entity information for the given blockchain address. URL-encode `{address}` when required.
-Prefer this operation over the deprecated `GET /v1/address_registry/legal_entity?address=…`, which returns only `companyName`, `countryCode`, and `companyId`. This operation adds verification status, LEI, Travel Rule providers, and contact email (see response properties).
+Returns legal entity information for the given blockchain address (verification status, LEI, Travel Rule providers, contact email, and related fields — see response schema). URL-encode `{address}` when required.
 
 ### Example
 
@@ -703,8 +923,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Legal entity found |  * X-Request-ID -  <br>  |
-**400** | Bad request – missing or invalid address |  * X-Request-ID -  <br>  |
-**403** | Forbidden – the authenticated workspace is not opted in to the address registry (error code 2140) |  * X-Request-ID -  <br>  |
+**400** | Bad request — either request validation (path &#x60;{address}&#x60; empty or whitespace-only after trim, e.g. encoded spaces only; numeric code 4100), or the authenticated workspace is not opted in to the address registry (numeric code 2140). The &#x60;message&#x60; field describes the failure; use &#x60;code&#x60; to distinguish. |  * X-Request-ID -  <br>  |
 **404** | Not found (error code 2142) — unresolved address, no legal entity for a resolved address, or the same not-found outcome in other cases. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
@@ -1003,7 +1222,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_legal_entities**
-> ListLegalEntitiesResponse list_legal_entities(vault_account_id=vault_account_id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> ListLegalEntitiesResponse list_legal_entities(vault_account_id=vault_account_id, page_cursor=page_cursor, page_size=page_size)
 
 List legal entities (Paginated)
 
@@ -1039,12 +1258,10 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_id = 'vault_account_id_example' # str | The ID of the vault account. When provided, returns the legal entity associated with that vault account and pagination parameters are ignored. (optional)
     page_cursor = 'page_cursor_example' # str | Cursor string returned in `next` or `prev` of a previous response. Ignored when `vaultAccountId` is provided. (optional)
     page_size = 50 # int | Maximum number of registrations to return. Ignored when `vaultAccountId` is provided. (optional) (default to 50)
-    sort_by = 'sort_by_example' # str | Field to sort results by. Ignored when `vaultAccountId` is provided. (optional)
-    order = DESC # str | Sort order. Ignored when `vaultAccountId` is provided. (optional) (default to DESC)
 
     try:
         # List legal entities (Paginated)
-        api_response = fireblocks.compliance.list_legal_entities(vault_account_id=vault_account_id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        api_response = fireblocks.compliance.list_legal_entities(vault_account_id=vault_account_id, page_cursor=page_cursor, page_size=page_size).result()
         print("The response of ComplianceApi->list_legal_entities:\n")
         pprint(api_response)
     except Exception as e:
@@ -1061,8 +1278,6 @@ Name | Type | Description  | Notes
  **vault_account_id** | **str**| The ID of the vault account. When provided, returns the legal entity associated with that vault account and pagination parameters are ignored. | [optional] 
  **page_cursor** | **str**| Cursor string returned in &#x60;next&#x60; or &#x60;prev&#x60; of a previous response. Ignored when &#x60;vaultAccountId&#x60; is provided. | [optional] 
  **page_size** | **int**| Maximum number of registrations to return. Ignored when &#x60;vaultAccountId&#x60; is provided. | [optional] [default to 50]
- **sort_by** | **str**| Field to sort results by. Ignored when &#x60;vaultAccountId&#x60; is provided. | [optional] 
- **order** | **str**| Sort order. Ignored when &#x60;vaultAccountId&#x60; is provided. | [optional] [default to DESC]
 
 ### Return type
 
@@ -1616,9 +1831,9 @@ No authorization required
 # **set_aml_verdict**
 > AmlVerdictManualResponse set_aml_verdict(aml_verdict_manual_request, idempotency_key=idempotency_key)
 
-Set AML Verdict for Manual Screening Verdict.
+Set AML Verdict (BYORK Super Light)
 
-Set AML verdict for incoming transactions when Manual Screening Verdict feature is enabled.
+Set AML verdict for incoming transactions when **BYORK Super Light** (Manual Screening Verdict) is enabled. This endpoint is for Super Light only. For **BYORK Light**, use POST /screening/byork/verdict instead. When Super Light is retired, this endpoint will be deprecated; use the BYORK Light verdict API for new integrations.
 
 ### Example
 
@@ -1650,7 +1865,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Set AML Verdict for Manual Screening Verdict.
+        # Set AML Verdict (BYORK Super Light)
         api_response = fireblocks.compliance.set_aml_verdict(aml_verdict_manual_request, idempotency_key=idempotency_key).result()
         print("The response of ComplianceApi->set_aml_verdict:\n")
         pprint(api_response)
@@ -1688,6 +1903,165 @@ No authorization required
 **200** | AML verdict set successfully. |  -  |
 **400** | Feature not enabled for tenant. |  * X-Request-ID -  <br>  |
 **425** | Too Early - transaction not yet in pending screening. |  * X-Request-ID -  <br>  |
+**500** | Internal server error. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_byork_timeouts**
+> ByorkConfigResponse set_byork_timeouts(byork_set_timeouts_request, idempotency_key=idempotency_key)
+
+Set BYORK Light timeouts
+
+Updates timeout values for BYORK wait-for-response (incoming and/or outgoing). At least one of incomingTimeoutSeconds or outgoingTimeoutSeconds is required. Values must be within the ranges returned in GET config (timeoutRangeIncoming for incomingTimeoutSeconds, timeoutRangeOutgoing for outgoingTimeoutSeconds). Requires BYORK Light to be enabled for the tenant (contact your CSM to enable).
+
+### Example
+
+
+```python
+from fireblocks.models.byork_config_response import ByorkConfigResponse
+from fireblocks.models.byork_set_timeouts_request import ByorkSetTimeoutsRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    byork_set_timeouts_request = fireblocks.ByorkSetTimeoutsRequest() # ByorkSetTimeoutsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Set BYORK Light timeouts
+        api_response = fireblocks.compliance.set_byork_timeouts(byork_set_timeouts_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->set_byork_timeouts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->set_byork_timeouts: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **byork_set_timeouts_request** | [**ByorkSetTimeoutsRequest**](ByorkSetTimeoutsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ByorkConfigResponse**](ByorkConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Timeouts updated. |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled, or timeout value out of range, or missing both timeouts. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **set_byork_verdict**
+> ByorkVerdictResponse set_byork_verdict(byork_verdict_request, idempotency_key=idempotency_key)
+
+Set BYORK Light verdict
+
+Submit verdict (ACCEPT or REJECT) for a transaction in the BYORK Light flow. If the transaction is awaiting your decision, the verdict is applied immediately (response status COMPLETED). If processing has not yet reached that point, the verdict is stored and applied when it does (response status PRE_ACCEPTED). Requires BYORK Light to be enabled for the tenant.
+
+### Example
+
+
+```python
+from fireblocks.models.byork_verdict_request import ByorkVerdictRequest
+from fireblocks.models.byork_verdict_response import ByorkVerdictResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    byork_verdict_request = fireblocks.ByorkVerdictRequest() # ByorkVerdictRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Set BYORK Light verdict
+        api_response = fireblocks.compliance.set_byork_verdict(byork_verdict_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->set_byork_verdict:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->set_byork_verdict: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **byork_verdict_request** | [**ByorkVerdictRequest**](ByorkVerdictRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ByorkVerdictResponse**](ByorkVerdictResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Verdict applied (COMPLETED) or pre-accepted (PRE_ACCEPTED). |  * X-Request-ID -  <br>  |
+**400** | BYORK Light not enabled for tenant or invalid verdict. |  * X-Request-ID -  <br>  |
+**409** | BYORK decision already final, screening already completed, or state inconsistent. |  * X-Request-ID -  <br>  |
+**425** | Too Early - transaction not found (screening not started yet). |  * X-Request-ID -  <br>  |
 **500** | Internal server error. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 

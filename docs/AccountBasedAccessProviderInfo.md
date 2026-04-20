@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**connected** | **bool** | Whether the provider is currently connected | 
+**connected** | **bool** | Whether the provider is currently connected. | 
 **accounts** | [**List[AccountBase]**](AccountBase.md) |  | 
 
 ## Example

@@ -33,6 +33,7 @@ from fireblocks.models.transaction_request_network_fee import TransactionRequest
 from fireblocks.models.transaction_request_network_staking import TransactionRequestNetworkStaking
 from fireblocks.models.transaction_request_priority_fee import TransactionRequestPriorityFee
 from fireblocks.models.travel_rule_create_transaction_request import TravelRuleCreateTransactionRequest
+from fireblocks.models.utxo_selection_params import UtxoSelectionParams
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -61,6 +62,7 @@ class TransactionRequest(BaseModel):
     network_fee: Optional[TransactionRequestNetworkFee] = Field(default=None, alias="networkFee")
     replace_tx_by_hash: Optional[StrictStr] = Field(default=None, description="For EVM-based blockchains only. In case a transaction is stuck, specify the hash of the stuck transaction to replace it by this transaction with a higher fee, or to replace it with this transaction with a zero fee and drop it from the blockchain.", alias="replaceTxByHash")
     extra_parameters: Optional[ExtraParameters] = Field(default=None, alias="extraParameters")
+    utxo_selection_params: Optional[UtxoSelectionParams] = Field(default=None, alias="utxoSelectionParams")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
     travel_rule_message: Optional[TravelRuleCreateTransactionRequest] = Field(default=None, alias="travelRuleMessage")
     travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="The ID of the travel rule message from any travel rule provider. Used for travel rule supporting functionality to associate transactions with existing travel rule messages.", alias="travelRuleMessageId")
@@ -68,7 +70,7 @@ class TransactionRequest(BaseModel):
     network_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="networkStaking")
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
     use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gasless configuration by sending true\\false", alias="useGasless")
-    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless"]
+    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -153,6 +155,9 @@ class TransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of extra_parameters
         if self.extra_parameters:
             _dict['extraParameters'] = self.extra_parameters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of utxo_selection_params
+        if self.utxo_selection_params:
+            _dict['utxoSelectionParams'] = self.utxo_selection_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of travel_rule_message
         if self.travel_rule_message:
             _dict['travelRuleMessage'] = self.travel_rule_message.to_dict()
@@ -195,6 +200,7 @@ class TransactionRequest(BaseModel):
             "networkFee": TransactionRequestNetworkFee.from_dict(obj["networkFee"]) if obj.get("networkFee") is not None else None,
             "replaceTxByHash": obj.get("replaceTxByHash"),
             "extraParameters": ExtraParameters.from_dict(obj["extraParameters"]) if obj.get("extraParameters") is not None else None,
+            "utxoSelectionParams": UtxoSelectionParams.from_dict(obj["utxoSelectionParams"]) if obj.get("utxoSelectionParams") is not None else None,
             "customerRefId": obj.get("customerRefId"),
             "travelRuleMessage": TravelRuleCreateTransactionRequest.from_dict(obj["travelRuleMessage"]) if obj.get("travelRuleMessage") is not None else None,
             "travelRuleMessageId": obj.get("travelRuleMessageId"),

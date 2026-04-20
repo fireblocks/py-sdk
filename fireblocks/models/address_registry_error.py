@@ -27,7 +27,7 @@ class AddressRegistryError(BaseModel):
     """
     Error body for address registry operations (4xx and 5xx).
     """ # noqa: E501
-    code: Optional[StrictInt] = Field(default=None, description="Application error code when present. Typical values include **2140** (403 — workspace not opted in to the address registry) and **2142** (404 — not found). Other codes may appear, including on server errors. ")
+    code: Optional[StrictInt] = Field(default=None, description="Application error code when present. For HTTP 400 on legal-entity lookup, distinguish: 4100 — request validation (e.g. missing, empty, or whitespace-only `address` after trim); 2140 — workspace not opted in to the address registry (`AR_OPT_IN_REQUIRED`). 2142 — not found (404). Other codes may appear, including on server errors. ")
     message: StrictStr = Field(description="Human-readable error message")
     __properties: ClassVar[List[str]] = ["code", "message"]
 

@@ -14,7 +14,6 @@ docs/AccountAccess.md
 docs/AccountBase.md
 docs/AccountBasedAccessProvider.md
 docs/AccountBasedAccessProviderInfo.md
-docs/AccountBasedProviderDetails.md
 docs/AccountConfig.md
 docs/AccountHolderDetails.md
 docs/AccountIdentifier.md
@@ -25,6 +24,7 @@ docs/AchAccountType.md
 docs/AchAddress.md
 docs/AchDestination.md
 docs/AchPaymentInfo.md
+docs/ActionRecord.md
 docs/AdapterProcessingResult.md
 docs/AddAbiRequestDto.md
 docs/AddAssetToExternalWalletRequest.md
@@ -46,7 +46,6 @@ docs/AddressRegistryAddVaultOptOutsResponse.md
 docs/AddressRegistryError.md
 docs/AddressRegistryGetVaultOptOutResponse.md
 docs/AddressRegistryLegalEntity.md
-docs/AddressRegistryLegalEntityLegacy.md
 docs/AddressRegistryListVaultOptOutsResponse.md
 docs/AddressRegistryRemoveAllVaultOptOutsResponse.md
 docs/AddressRegistryRemoveVaultOptOutResponse.md
@@ -79,6 +78,7 @@ docs/ApiUserApi.md
 docs/ApprovalRequest.md
 docs/ApproversConfig.md
 docs/ApproversConfigApprovalGroupsInner.md
+docs/Apy.md
 docs/Asset.md
 docs/AssetAlreadyExistHttpError.md
 docs/AssetAmount.md
@@ -110,6 +110,8 @@ docs/AssetTypesConfigInner.md
 docs/AssetWallet.md
 docs/AssignVaultsToLegalEntityRequest.md
 docs/AssignVaultsToLegalEntityResponse.md
+docs/AttachDetachUtxoLabelsRequest.md
+docs/AttachDetachUtxoLabelsResponse.md
 docs/AuditLogData.md
 docs/AuditLogsApi.md
 docs/AuditorData.md
@@ -134,6 +136,14 @@ docs/BlockchainsAssetsApi.md
 docs/BpsFee.md
 docs/BusinessEntityTypeEnum.md
 docs/BusinessIdentification.md
+docs/ByorkConfigResponse.md
+docs/ByorkSetTimeoutsRequest.md
+docs/ByorkSetVerdictEnum.md
+docs/ByorkTimeoutRange.md
+docs/ByorkVerdictEnum.md
+docs/ByorkVerdictRequest.md
+docs/ByorkVerdictResponse.md
+docs/ByorkVerdictResponseStatusEnum.md
 docs/CallbackHandler.md
 docs/CallbackHandlerRequest.md
 docs/CancelTransactionResponse.md
@@ -242,6 +252,8 @@ docs/CreateConsoleUser.md
 docs/CreateContractRequest.md
 docs/CreateConversionConfigOperationRequest.md
 docs/CreateDisbursementConfigOperationRequest.md
+docs/CreateEarnActionRequest.md
+docs/CreateEarnActionResponse.md
 docs/CreateInternalTransferRequest.md
 docs/CreateInternalWalletAssetRequest.md
 docs/CreateMultichainTokenRequest.md
@@ -299,7 +311,6 @@ docs/DestinationTransferPeerPathResponse.md
 docs/DirectAccess.md
 docs/DirectAccessProvider.md
 docs/DirectAccessProviderInfo.md
-docs/DirectProviderDetails.md
 docs/DisbursementAmountInstruction.md
 docs/DisbursementConfigOperation.md
 docs/DisbursementInstruction.md
@@ -324,6 +335,9 @@ docs/DropTransactionResponse.md
 docs/DvnConfig.md
 docs/DvnConfigWithConfirmations.md
 docs/EVMTokenCreateParamsDto.md
+docs/EarnAsset.md
+docs/EarnBetaApi.md
+docs/EarnProvider.md
 docs/EditGasStationConfigurationResponse.md
 docs/EmbeddedWallet.md
 docs/EmbeddedWalletAccount.md
@@ -375,6 +389,7 @@ docs/ExecutionStepError.md
 docs/ExecutionStepStatusEnum.md
 docs/ExecutionStepType.md
 docs/ExecutionTransferOperation.md
+docs/Exposure.md
 docs/ExternalAccount.md
 docs/ExternalAccountLocalBankAfrica.md
 docs/ExternalAccountMobileMoney.md
@@ -404,6 +419,7 @@ docs/FiatPaymentMetadata.md
 docs/FiatTransfer.md
 docs/FixedAmountTypeEnum.md
 docs/FixedFee.md
+docs/FlowDirection.md
 docs/FreezeTransactionResponse.md
 docs/FunctionDoc.md
 docs/Funds.md
@@ -414,7 +430,10 @@ docs/GasStationsApi.md
 docs/GasslessStandardConfigurations.md
 docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md
 docs/GetAPIUsersResponse.md
+docs/GetActionResponse.md
+docs/GetActionsResponse.md
 docs/GetAuditLogsResponse.md
+docs/GetByorkVerdictResponse.md
 docs/GetConnectionsResponse.md
 docs/GetConsoleUsersResponse.md
 docs/GetDeployableAddressRequest.md
@@ -427,22 +446,27 @@ docs/GetMaxBipIndexUsedResponse.md
 docs/GetMaxSpendableAmountResponse.md
 docs/GetMpcKeysResponse.md
 docs/GetNFTsResponse.md
+docs/GetOpportunitiesResponse.md
 docs/GetOrdersResponse.md
 docs/GetOtaStatusResponse.md
 docs/GetOwnershipTokensResponse.md
 docs/GetPagedExchangeAccountsResponse.md
 docs/GetPagedExchangeAccountsResponsePaging.md
+docs/GetPositionsResponse.md
+docs/GetProvidersResponse.md
 docs/GetSigningKeyResponseDto.md
 docs/GetTransactionOperation.md
 docs/GetValidationKeyResponseDto.md
 docs/GetWhitelistIpAddressesResponse.md
 docs/GetWorkspaceStatusResponse.md
 docs/GleifData.md
+docs/GleifOtherLegalEntityName.md
 docs/HttpContractDoesNotExistError.md
 docs/IbanAddress.md
 docs/IbanDestination.md
 docs/IbanPaymentInfo.md
 docs/Identification.md
+docs/IdentificationPolicyOverride.md
 docs/IdlType.md
 docs/IndicativeQuoteEnum.md
 docs/IndicativeQuoteType.md
@@ -502,6 +526,7 @@ docs/ListBlockchainsResponse.md
 docs/ListLegalEntitiesResponse.md
 docs/ListOwnedCollectionsResponse.md
 docs/ListOwnedTokensResponse.md
+docs/ListUtxosResponse.md
 docs/ListVaultsForRegistrationResponse.md
 docs/LocalBankTransferAfricaAddress.md
 docs/LocalBankTransferAfricaDestination.md
@@ -559,6 +584,7 @@ docs/OneTimeAddressAccount.md
 docs/OneTimeAddressPeerType.md
 docs/OneTimeAddressReference.md
 docs/OperationExecutionFailure.md
+docs/Opportunity.md
 docs/OrderDetails.md
 docs/OrderExecutionStep.md
 docs/OrderSide.md
@@ -576,6 +602,8 @@ docs/Parameter.md
 docs/ParameterWithValue.md
 docs/ParticipantRelationshipType.md
 docs/ParticipantsIdentification.md
+docs/ParticipantsIdentificationPolicy.md
+docs/ParticipantsIdentificationSupportedEndpoint.md
 docs/PayeeAccount.md
 docs/PayeeAccountResponse.md
 docs/PayeeAccountType.md
@@ -626,6 +654,7 @@ docs/PolicyValidation.md
 docs/PolicyVerdictActionEnum.md
 docs/PolicyVerdictActionEnum2.md
 docs/Position.md
+docs/Position2.md
 docs/PostalAddress.md
 docs/PreScreening.md
 docs/PrefundedSettlement.md
@@ -668,6 +697,8 @@ docs/RenameConnectedAccountRequest.md
 docs/RenameConnectedAccountResponse.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
+docs/ResendByQueryRequest.md
+docs/ResendByQueryResponse.md
 docs/ResendFailedNotificationsJobStatusResponse.md
 docs/ResendFailedNotificationsRequest.md
 docs/ResendFailedNotificationsResponse.md
@@ -698,6 +729,9 @@ docs/ScreeningOperationExecution.md
 docs/ScreeningOperationExecutionOutput.md
 docs/ScreeningOperationFailure.md
 docs/ScreeningOperationType.md
+docs/ScreeningPolicyAmount.md
+docs/ScreeningPolicyAmountRange.md
+docs/ScreeningPolicyCurrency.md
 docs/ScreeningPolicyResponse.md
 docs/ScreeningProviderRulesConfigurationResponse.md
 docs/ScreeningTRLinkAmount.md
@@ -807,8 +841,6 @@ docs/SwiftDestination.md
 docs/SystemMessageInfo.md
 docs/TRLinkAPIPagedResponse.md
 docs/TRLinkAmount.md
-docs/TRLinkAmount2.md
-docs/TRLinkAmountRange.md
 docs/TRLinkApi.md
 docs/TRLinkAssessTravelRuleRequest.md
 docs/TRLinkAssessTravelRuleResponse.md
@@ -822,7 +854,6 @@ docs/TRLinkConnectIntegrationRequest.md
 docs/TRLinkCreateCustomerRequest.md
 docs/TRLinkCreateIntegrationRequest.md
 docs/TRLinkCreateTrmRequest.md
-docs/TRLinkCurrency.md
 docs/TRLinkCustomerIntegrationResponse.md
 docs/TRLinkCustomerResponse.md
 docs/TRLinkDestinationTransferPeerPath.md
@@ -917,7 +948,6 @@ docs/TradingAccountType.md
 docs/TradingBetaApi.md
 docs/TradingErrorSchema.md
 docs/TradingProvider.md
-docs/TradingProviderDetails.md
 docs/Transaction.md
 docs/TransactionDirection.md
 docs/TransactionFee.md
@@ -1005,6 +1035,7 @@ docs/TxLog.md
 docs/TypedMessageTransactionStatusEnum.md
 docs/USWireAddress.md
 docs/USWireDestination.md
+docs/UTXOManagementBetaApi.md
 docs/UnfreezeTransactionResponse.md
 docs/UnmanagedWallet.md
 docs/UnspentInput.md
@@ -1031,6 +1062,13 @@ docs/UserRole.md
 docs/UserStatus.md
 docs/UserType.md
 docs/UsersApi.md
+docs/UtxoIdentifier.md
+docs/UtxoInput.md
+docs/UtxoInput2.md
+docs/UtxoInputSelection.md
+docs/UtxoOutput.md
+docs/UtxoSelectionFilters.md
+docs/UtxoSelectionParams.md
 docs/ValidateAddressResponse.md
 docs/ValidateLayerZeroChannelResponse.md
 docs/ValidationKeyDto.md
@@ -1086,6 +1124,7 @@ fireblocks/api/contract_templates_api.py
 fireblocks/api/contracts_api.py
 fireblocks/api/cosigners_beta_api.py
 fireblocks/api/deployed_contracts_api.py
+fireblocks/api/earn_beta_api.py
 fireblocks/api/embedded_wallets_api.py
 fireblocks/api/exchange_accounts_api.py
 fireblocks/api/external_wallets_api.py
@@ -1113,6 +1152,7 @@ fireblocks/api/transactions_api.py
 fireblocks/api/travel_rule_api.py
 fireblocks/api/user_groups_beta_api.py
 fireblocks/api/users_api.py
+fireblocks/api/utxo_management_beta_api.py
 fireblocks/api/vaults_api.py
 fireblocks/api/web3_connections_api.py
 fireblocks/api/webhooks_api.py
@@ -1140,7 +1180,6 @@ fireblocks/models/account_access.py
 fireblocks/models/account_base.py
 fireblocks/models/account_based_access_provider.py
 fireblocks/models/account_based_access_provider_info.py
-fireblocks/models/account_based_provider_details.py
 fireblocks/models/account_config.py
 fireblocks/models/account_holder_details.py
 fireblocks/models/account_identifier.py
@@ -1151,6 +1190,7 @@ fireblocks/models/ach_account_type.py
 fireblocks/models/ach_address.py
 fireblocks/models/ach_destination.py
 fireblocks/models/ach_payment_info.py
+fireblocks/models/action_record.py
 fireblocks/models/adapter_processing_result.py
 fireblocks/models/add_abi_request_dto.py
 fireblocks/models/add_asset_to_external_wallet_request.py
@@ -1172,7 +1212,6 @@ fireblocks/models/address_registry_add_vault_opt_outs_response.py
 fireblocks/models/address_registry_error.py
 fireblocks/models/address_registry_get_vault_opt_out_response.py
 fireblocks/models/address_registry_legal_entity.py
-fireblocks/models/address_registry_legal_entity_legacy.py
 fireblocks/models/address_registry_list_vault_opt_outs_response.py
 fireblocks/models/address_registry_remove_all_vault_opt_outs_response.py
 fireblocks/models/address_registry_remove_vault_opt_out_response.py
@@ -1205,6 +1244,7 @@ fireblocks/models/api_user.py
 fireblocks/models/approval_request.py
 fireblocks/models/approvers_config.py
 fireblocks/models/approvers_config_approval_groups_inner.py
+fireblocks/models/apy.py
 fireblocks/models/asset.py
 fireblocks/models/asset_already_exist_http_error.py
 fireblocks/models/asset_amount.py
@@ -1236,6 +1276,8 @@ fireblocks/models/asset_types_config_inner.py
 fireblocks/models/asset_wallet.py
 fireblocks/models/assign_vaults_to_legal_entity_request.py
 fireblocks/models/assign_vaults_to_legal_entity_response.py
+fireblocks/models/attach_detach_utxo_labels_request.py
+fireblocks/models/attach_detach_utxo_labels_response.py
 fireblocks/models/audit_log_data.py
 fireblocks/models/auditor_data.py
 fireblocks/models/authorization_groups.py
@@ -1258,6 +1300,14 @@ fireblocks/models/blockchain_transfer.py
 fireblocks/models/bps_fee.py
 fireblocks/models/business_entity_type_enum.py
 fireblocks/models/business_identification.py
+fireblocks/models/byork_config_response.py
+fireblocks/models/byork_set_timeouts_request.py
+fireblocks/models/byork_set_verdict_enum.py
+fireblocks/models/byork_timeout_range.py
+fireblocks/models/byork_verdict_enum.py
+fireblocks/models/byork_verdict_request.py
+fireblocks/models/byork_verdict_response.py
+fireblocks/models/byork_verdict_response_status_enum.py
 fireblocks/models/callback_handler.py
 fireblocks/models/callback_handler_request.py
 fireblocks/models/cancel_transaction_response.py
@@ -1358,6 +1408,8 @@ fireblocks/models/create_console_user.py
 fireblocks/models/create_contract_request.py
 fireblocks/models/create_conversion_config_operation_request.py
 fireblocks/models/create_disbursement_config_operation_request.py
+fireblocks/models/create_earn_action_request.py
+fireblocks/models/create_earn_action_response.py
 fireblocks/models/create_internal_transfer_request.py
 fireblocks/models/create_internal_wallet_asset_request.py
 fireblocks/models/create_multichain_token_request.py
@@ -1412,7 +1464,6 @@ fireblocks/models/destination_transfer_peer_path_response.py
 fireblocks/models/direct_access.py
 fireblocks/models/direct_access_provider.py
 fireblocks/models/direct_access_provider_info.py
-fireblocks/models/direct_provider_details.py
 fireblocks/models/disbursement_amount_instruction.py
 fireblocks/models/disbursement_config_operation.py
 fireblocks/models/disbursement_instruction.py
@@ -1438,6 +1489,8 @@ fireblocks/models/dvn_config.py
 fireblocks/models/dvn_config_with_confirmations.py
 fireblocks/models/dvp_settlement.py
 fireblocks/models/dvp_settlement_type.py
+fireblocks/models/earn_asset.py
+fireblocks/models/earn_provider.py
 fireblocks/models/edit_gas_station_configuration_response.py
 fireblocks/models/embedded_wallet.py
 fireblocks/models/embedded_wallet_account.py
@@ -1488,6 +1541,7 @@ fireblocks/models/execution_step_error.py
 fireblocks/models/execution_step_status_enum.py
 fireblocks/models/execution_step_type.py
 fireblocks/models/execution_transfer_operation.py
+fireblocks/models/exposure.py
 fireblocks/models/external_account.py
 fireblocks/models/external_account_local_bank_africa.py
 fireblocks/models/external_account_mobile_money.py
@@ -1515,6 +1569,7 @@ fireblocks/models/fiat_payment_metadata.py
 fireblocks/models/fiat_transfer.py
 fireblocks/models/fixed_amount_type_enum.py
 fireblocks/models/fixed_fee.py
+fireblocks/models/flow_direction.py
 fireblocks/models/freeze_transaction_response.py
 fireblocks/models/function_doc.py
 fireblocks/models/funds.py
@@ -1523,8 +1578,11 @@ fireblocks/models/gas_station_configuration_response.py
 fireblocks/models/gas_station_properties_response.py
 fireblocks/models/gassless_standard_configurations.py
 fireblocks/models/gassless_standard_configurations_gasless_standard_configurations_value.py
+fireblocks/models/get_action_response.py
+fireblocks/models/get_actions_response.py
 fireblocks/models/get_api_users_response.py
 fireblocks/models/get_audit_logs_response.py
+fireblocks/models/get_byork_verdict_response.py
 fireblocks/models/get_connections_response.py
 fireblocks/models/get_console_users_response.py
 fireblocks/models/get_deployable_address_request.py
@@ -1537,22 +1595,27 @@ fireblocks/models/get_max_bip_index_used_response.py
 fireblocks/models/get_max_spendable_amount_response.py
 fireblocks/models/get_mpc_keys_response.py
 fireblocks/models/get_nfts_response.py
+fireblocks/models/get_opportunities_response.py
 fireblocks/models/get_orders_response.py
 fireblocks/models/get_ota_status_response.py
 fireblocks/models/get_ownership_tokens_response.py
 fireblocks/models/get_paged_exchange_accounts_response.py
 fireblocks/models/get_paged_exchange_accounts_response_paging.py
+fireblocks/models/get_positions_response.py
+fireblocks/models/get_providers_response.py
 fireblocks/models/get_signing_key_response_dto.py
 fireblocks/models/get_transaction_operation.py
 fireblocks/models/get_validation_key_response_dto.py
 fireblocks/models/get_whitelist_ip_addresses_response.py
 fireblocks/models/get_workspace_status_response.py
 fireblocks/models/gleif_data.py
+fireblocks/models/gleif_other_legal_entity_name.py
 fireblocks/models/http_contract_does_not_exist_error.py
 fireblocks/models/iban_address.py
 fireblocks/models/iban_destination.py
 fireblocks/models/iban_payment_info.py
 fireblocks/models/identification.py
+fireblocks/models/identification_policy_override.py
 fireblocks/models/idl_type.py
 fireblocks/models/indicative_quote_enum.py
 fireblocks/models/indicative_quote_type.py
@@ -1609,6 +1672,7 @@ fireblocks/models/list_blockchains_response.py
 fireblocks/models/list_legal_entities_response.py
 fireblocks/models/list_owned_collections_response.py
 fireblocks/models/list_owned_tokens_response.py
+fireblocks/models/list_utxos_response.py
 fireblocks/models/list_vaults_for_registration_response.py
 fireblocks/models/local_bank_transfer_africa_address.py
 fireblocks/models/local_bank_transfer_africa_destination.py
@@ -1661,6 +1725,7 @@ fireblocks/models/one_time_address_account.py
 fireblocks/models/one_time_address_peer_type.py
 fireblocks/models/one_time_address_reference.py
 fireblocks/models/operation_execution_failure.py
+fireblocks/models/opportunity.py
 fireblocks/models/order_details.py
 fireblocks/models/order_execution_step.py
 fireblocks/models/order_side.py
@@ -1678,6 +1743,8 @@ fireblocks/models/parameter.py
 fireblocks/models/parameter_with_value.py
 fireblocks/models/participant_relationship_type.py
 fireblocks/models/participants_identification.py
+fireblocks/models/participants_identification_policy.py
+fireblocks/models/participants_identification_supported_endpoint.py
 fireblocks/models/payee_account.py
 fireblocks/models/payee_account_response.py
 fireblocks/models/payee_account_type.py
@@ -1725,6 +1792,7 @@ fireblocks/models/policy_validation.py
 fireblocks/models/policy_verdict_action_enum.py
 fireblocks/models/policy_verdict_action_enum2.py
 fireblocks/models/position.py
+fireblocks/models/position2.py
 fireblocks/models/postal_address.py
 fireblocks/models/pre_screening.py
 fireblocks/models/prefunded_settlement.py
@@ -1767,6 +1835,8 @@ fireblocks/models/rename_connected_account_request.py
 fireblocks/models/rename_connected_account_response.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
+fireblocks/models/resend_by_query_request.py
+fireblocks/models/resend_by_query_response.py
 fireblocks/models/resend_failed_notifications_job_status_response.py
 fireblocks/models/resend_failed_notifications_request.py
 fireblocks/models/resend_failed_notifications_response.py
@@ -1792,6 +1862,9 @@ fireblocks/models/screening_operation_execution.py
 fireblocks/models/screening_operation_execution_output.py
 fireblocks/models/screening_operation_failure.py
 fireblocks/models/screening_operation_type.py
+fireblocks/models/screening_policy_amount.py
+fireblocks/models/screening_policy_amount_range.py
+fireblocks/models/screening_policy_currency.py
 fireblocks/models/screening_policy_response.py
 fireblocks/models/screening_provider_rules_configuration_response.py
 fireblocks/models/screening_tr_link_amount.py
@@ -1926,8 +1999,6 @@ fireblocks/models/tokens_paginated_response.py
 fireblocks/models/total_supply_item_dto.py
 fireblocks/models/total_supply_paged_response.py
 fireblocks/models/tr_link_amount.py
-fireblocks/models/tr_link_amount2.py
-fireblocks/models/tr_link_amount_range.py
 fireblocks/models/tr_link_api_paged_response.py
 fireblocks/models/tr_link_assess_travel_rule_request.py
 fireblocks/models/tr_link_assess_travel_rule_response.py
@@ -1941,7 +2012,6 @@ fireblocks/models/tr_link_connect_integration_request.py
 fireblocks/models/tr_link_create_customer_request.py
 fireblocks/models/tr_link_create_integration_request.py
 fireblocks/models/tr_link_create_trm_request.py
-fireblocks/models/tr_link_currency.py
 fireblocks/models/tr_link_customer_integration_response.py
 fireblocks/models/tr_link_customer_response.py
 fireblocks/models/tr_link_destination_transfer_peer_path.py
@@ -2009,7 +2079,6 @@ fireblocks/models/tr_link_verdict_enum.py
 fireblocks/models/trading_account_type.py
 fireblocks/models/trading_error_schema.py
 fireblocks/models/trading_provider.py
-fireblocks/models/trading_provider_details.py
 fireblocks/models/transaction.py
 fireblocks/models/transaction_direction.py
 fireblocks/models/transaction_fee.py
@@ -2119,6 +2188,13 @@ fireblocks/models/user_response.py
 fireblocks/models/user_role.py
 fireblocks/models/user_status.py
 fireblocks/models/user_type.py
+fireblocks/models/utxo_identifier.py
+fireblocks/models/utxo_input.py
+fireblocks/models/utxo_input2.py
+fireblocks/models/utxo_input_selection.py
+fireblocks/models/utxo_output.py
+fireblocks/models/utxo_selection_filters.py
+fireblocks/models/utxo_selection_params.py
 fireblocks/models/validate_address_response.py
 fireblocks/models/validate_layer_zero_channel_response.py
 fireblocks/models/validation_key_dto.py
@@ -2186,7 +2262,6 @@ test/test_account_access.py
 test/test_account_base.py
 test/test_account_based_access_provider.py
 test/test_account_based_access_provider_info.py
-test/test_account_based_provider_details.py
 test/test_account_config.py
 test/test_account_holder_details.py
 test/test_account_identifier.py
@@ -2197,6 +2272,7 @@ test/test_ach_account_type.py
 test/test_ach_address.py
 test/test_ach_destination.py
 test/test_ach_payment_info.py
+test/test_action_record.py
 test/test_adapter_processing_result.py
 test/test_add_abi_request_dto.py
 test/test_add_asset_to_external_wallet_request.py
@@ -2218,7 +2294,6 @@ test/test_address_registry_add_vault_opt_outs_response.py
 test/test_address_registry_error.py
 test/test_address_registry_get_vault_opt_out_response.py
 test/test_address_registry_legal_entity.py
-test/test_address_registry_legal_entity_legacy.py
 test/test_address_registry_list_vault_opt_outs_response.py
 test/test_address_registry_remove_all_vault_opt_outs_response.py
 test/test_address_registry_remove_vault_opt_out_response.py
@@ -2252,6 +2327,7 @@ test/test_api_user_api.py
 test/test_approval_request.py
 test/test_approvers_config.py
 test/test_approvers_config_approval_groups_inner.py
+test/test_apy.py
 test/test_asset.py
 test/test_asset_already_exist_http_error.py
 test/test_asset_amount.py
@@ -2283,6 +2359,8 @@ test/test_asset_types_config_inner.py
 test/test_asset_wallet.py
 test/test_assign_vaults_to_legal_entity_request.py
 test/test_assign_vaults_to_legal_entity_response.py
+test/test_attach_detach_utxo_labels_request.py
+test/test_attach_detach_utxo_labels_response.py
 test/test_audit_log_data.py
 test/test_audit_logs_api.py
 test/test_auditor_data.py
@@ -2307,6 +2385,14 @@ test/test_blockchains_assets_api.py
 test/test_bps_fee.py
 test/test_business_entity_type_enum.py
 test/test_business_identification.py
+test/test_byork_config_response.py
+test/test_byork_set_timeouts_request.py
+test/test_byork_set_verdict_enum.py
+test/test_byork_timeout_range.py
+test/test_byork_verdict_enum.py
+test/test_byork_verdict_request.py
+test/test_byork_verdict_response.py
+test/test_byork_verdict_response_status_enum.py
 test/test_callback_handler.py
 test/test_callback_handler_request.py
 test/test_cancel_transaction_response.py
@@ -2415,6 +2501,8 @@ test/test_create_console_user.py
 test/test_create_contract_request.py
 test/test_create_conversion_config_operation_request.py
 test/test_create_disbursement_config_operation_request.py
+test/test_create_earn_action_request.py
+test/test_create_earn_action_response.py
 test/test_create_internal_transfer_request.py
 test/test_create_internal_wallet_asset_request.py
 test/test_create_multichain_token_request.py
@@ -2470,7 +2558,6 @@ test/test_destination_transfer_peer_path_response.py
 test/test_direct_access.py
 test/test_direct_access_provider.py
 test/test_direct_access_provider_info.py
-test/test_direct_provider_details.py
 test/test_disbursement_amount_instruction.py
 test/test_disbursement_config_operation.py
 test/test_disbursement_instruction.py
@@ -2496,6 +2583,9 @@ test/test_dvn_config.py
 test/test_dvn_config_with_confirmations.py
 test/test_dvp_settlement.py
 test/test_dvp_settlement_type.py
+test/test_earn_asset.py
+test/test_earn_beta_api.py
+test/test_earn_provider.py
 test/test_edit_gas_station_configuration_response.py
 test/test_embedded_wallet.py
 test/test_embedded_wallet_account.py
@@ -2548,6 +2638,7 @@ test/test_execution_step_error.py
 test/test_execution_step_status_enum.py
 test/test_execution_step_type.py
 test/test_execution_transfer_operation.py
+test/test_exposure.py
 test/test_external_account.py
 test/test_external_account_local_bank_africa.py
 test/test_external_account_mobile_money.py
@@ -2577,6 +2668,7 @@ test/test_fiat_payment_metadata.py
 test/test_fiat_transfer.py
 test/test_fixed_amount_type_enum.py
 test/test_fixed_fee.py
+test/test_flow_direction.py
 test/test_freeze_transaction_response.py
 test/test_function_doc.py
 test/test_funds.py
@@ -2586,8 +2678,11 @@ test/test_gas_station_properties_response.py
 test/test_gas_stations_api.py
 test/test_gassless_standard_configurations.py
 test/test_gassless_standard_configurations_gasless_standard_configurations_value.py
+test/test_get_action_response.py
+test/test_get_actions_response.py
 test/test_get_api_users_response.py
 test/test_get_audit_logs_response.py
+test/test_get_byork_verdict_response.py
 test/test_get_connections_response.py
 test/test_get_console_users_response.py
 test/test_get_deployable_address_request.py
@@ -2600,22 +2695,27 @@ test/test_get_max_bip_index_used_response.py
 test/test_get_max_spendable_amount_response.py
 test/test_get_mpc_keys_response.py
 test/test_get_nfts_response.py
+test/test_get_opportunities_response.py
 test/test_get_orders_response.py
 test/test_get_ota_status_response.py
 test/test_get_ownership_tokens_response.py
 test/test_get_paged_exchange_accounts_response.py
 test/test_get_paged_exchange_accounts_response_paging.py
+test/test_get_positions_response.py
+test/test_get_providers_response.py
 test/test_get_signing_key_response_dto.py
 test/test_get_transaction_operation.py
 test/test_get_validation_key_response_dto.py
 test/test_get_whitelist_ip_addresses_response.py
 test/test_get_workspace_status_response.py
 test/test_gleif_data.py
+test/test_gleif_other_legal_entity_name.py
 test/test_http_contract_does_not_exist_error.py
 test/test_iban_address.py
 test/test_iban_destination.py
 test/test_iban_payment_info.py
 test/test_identification.py
+test/test_identification_policy_override.py
 test/test_idl_type.py
 test/test_indicative_quote_enum.py
 test/test_indicative_quote_type.py
@@ -2675,6 +2775,7 @@ test/test_list_blockchains_response.py
 test/test_list_legal_entities_response.py
 test/test_list_owned_collections_response.py
 test/test_list_owned_tokens_response.py
+test/test_list_utxos_response.py
 test/test_list_vaults_for_registration_response.py
 test/test_local_bank_transfer_africa_address.py
 test/test_local_bank_transfer_africa_destination.py
@@ -2731,6 +2832,7 @@ test/test_one_time_address_account.py
 test/test_one_time_address_peer_type.py
 test/test_one_time_address_reference.py
 test/test_operation_execution_failure.py
+test/test_opportunity.py
 test/test_order_details.py
 test/test_order_execution_step.py
 test/test_order_side.py
@@ -2749,6 +2851,8 @@ test/test_parameter.py
 test/test_parameter_with_value.py
 test/test_participant_relationship_type.py
 test/test_participants_identification.py
+test/test_participants_identification_policy.py
+test/test_participants_identification_supported_endpoint.py
 test/test_payee_account.py
 test/test_payee_account_response.py
 test/test_payee_account_type.py
@@ -2799,6 +2903,7 @@ test/test_policy_validation.py
 test/test_policy_verdict_action_enum.py
 test/test_policy_verdict_action_enum2.py
 test/test_position.py
+test/test_position2.py
 test/test_postal_address.py
 test/test_pre_screening.py
 test/test_prefunded_settlement.py
@@ -2841,6 +2946,8 @@ test/test_rename_connected_account_request.py
 test/test_rename_connected_account_response.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
+test/test_resend_by_query_request.py
+test/test_resend_by_query_response.py
 test/test_resend_failed_notifications_job_status_response.py
 test/test_resend_failed_notifications_request.py
 test/test_resend_failed_notifications_response.py
@@ -2867,6 +2974,9 @@ test/test_screening_operation_execution.py
 test/test_screening_operation_execution_output.py
 test/test_screening_operation_failure.py
 test/test_screening_operation_type.py
+test/test_screening_policy_amount.py
+test/test_screening_policy_amount_range.py
+test/test_screening_policy_currency.py
 test/test_screening_policy_response.py
 test/test_screening_provider_rules_configuration_response.py
 test/test_screening_tr_link_amount.py
@@ -3005,8 +3115,6 @@ test/test_tokens_paginated_response.py
 test/test_total_supply_item_dto.py
 test/test_total_supply_paged_response.py
 test/test_tr_link_amount.py
-test/test_tr_link_amount2.py
-test/test_tr_link_amount_range.py
 test/test_tr_link_api.py
 test/test_tr_link_api_paged_response.py
 test/test_tr_link_assess_travel_rule_request.py
@@ -3021,7 +3129,6 @@ test/test_tr_link_connect_integration_request.py
 test/test_tr_link_create_customer_request.py
 test/test_tr_link_create_integration_request.py
 test/test_tr_link_create_trm_request.py
-test/test_tr_link_currency.py
 test/test_tr_link_customer_integration_response.py
 test/test_tr_link_customer_response.py
 test/test_tr_link_destination_transfer_peer_path.py
@@ -3090,7 +3197,6 @@ test/test_trading_account_type.py
 test/test_trading_beta_api.py
 test/test_trading_error_schema.py
 test/test_trading_provider.py
-test/test_trading_provider_details.py
 test/test_transaction.py
 test/test_transaction_direction.py
 test/test_transaction_fee.py
@@ -3204,6 +3310,14 @@ test/test_user_role.py
 test/test_user_status.py
 test/test_user_type.py
 test/test_users_api.py
+test/test_utxo_identifier.py
+test/test_utxo_input.py
+test/test_utxo_input2.py
+test/test_utxo_input_selection.py
+test/test_utxo_management_beta_api.py
+test/test_utxo_output.py
+test/test_utxo_selection_filters.py
+test/test_utxo_selection_params.py
 test/test_validate_address_response.py
 test/test_validate_layer_zero_channel_response.py
 test/test_validation_key_dto.py

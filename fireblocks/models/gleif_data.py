@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from fireblocks.models.gleif_other_legal_entity_name import GleifOtherLegalEntityName
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,11 +32,12 @@ class GleifData(BaseModel):
     """ # noqa: E501
     lei: StrictStr = Field(description="Legal Entity Identifier (LEI) code")
     legal_name: StrictStr = Field(description="Official legal name of the entity", alias="legalName")
-    other_names: Optional[Annotated[List[StrictStr], Field(min_length=0, max_length=20)]] = Field(default=None, description="Alternative names for the entity", alias="otherNames")
+    legal_name_language: Optional[Annotated[str, Field(min_length=2, strict=True, max_length=2)]] = Field(default=None, description="Two-letter ISO 639-1 language code", alias="legalNameLanguage")
+    other_names: Optional[Annotated[List[GleifOtherLegalEntityName], Field(min_length=0, max_length=20)]] = Field(default=None, description="Alternative names for the entity", alias="otherNames")
     legal_address_region: Optional[StrictStr] = Field(default=None, description="Region or state of the legal address", alias="legalAddressRegion")
     legal_address_country: StrictStr = Field(description="Country code of the legal address (ISO 3166-1 alpha-2)", alias="legalAddressCountry")
     next_renewal_date: Optional[datetime] = Field(default=None, description="Date when the LEI registration must be renewed", alias="nextRenewalDate")
-    __properties: ClassVar[List[str]] = ["lei", "legalName", "otherNames", "legalAddressRegion", "legalAddressCountry", "nextRenewalDate"]
+    __properties: ClassVar[List[str]] = ["lei", "legalName", "legalNameLanguage", "otherNames", "legalAddressRegion", "legalAddressCountry", "nextRenewalDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,6 +78,13 @@ class GleifData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in other_names (list)
+        _items = []
+        if self.other_names:
+            for _item_other_names in self.other_names:
+                if _item_other_names:
+                    _items.append(_item_other_names.to_dict())
+            _dict['otherNames'] = _items
         return _dict
 
     @classmethod
@@ -90,7 +99,8 @@ class GleifData(BaseModel):
         _obj = cls.model_validate({
             "lei": obj.get("lei"),
             "legalName": obj.get("legalName"),
-            "otherNames": obj.get("otherNames"),
+            "legalNameLanguage": obj.get("legalNameLanguage"),
+            "otherNames": [GleifOtherLegalEntityName.from_dict(_item) for _item in obj["otherNames"]] if obj.get("otherNames") is not None else None,
             "legalAddressRegion": obj.get("legalAddressRegion"),
             "legalAddressCountry": obj.get("legalAddressCountry"),
             "nextRenewalDate": obj.get("nextRenewalDate")

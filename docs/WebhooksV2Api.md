@@ -10,11 +10,13 @@ Method | HTTP request | Description
 [**get_notification**](WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
 [**get_notification_attempts**](WebhooksV2Api.md#get_notification_attempts) | **GET** /webhooks/{webhookId}/notifications/{notificationId}/attempts | Get notification attempts
 [**get_notifications**](WebhooksV2Api.md#get_notifications) | **GET** /webhooks/{webhookId}/notifications | Get all notifications by webhook id
+[**get_resend_by_query_job_status**](WebhooksV2Api.md#get_resend_by_query_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_by_query/jobs/{jobId} | Get resend by query job status
 [**get_resend_job_status**](WebhooksV2Api.md#get_resend_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_failed/jobs/{jobId} | Get resend job status
 [**get_webhook**](WebhooksV2Api.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
 [**get_webhooks**](WebhooksV2Api.md#get_webhooks) | **GET** /webhooks | Get all webhooks
 [**resend_failed_notifications**](WebhooksV2Api.md#resend_failed_notifications) | **POST** /webhooks/{webhookId}/notifications/resend_failed | Resend failed notifications
 [**resend_notification_by_id**](WebhooksV2Api.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
+[**resend_notifications_by_query**](WebhooksV2Api.md#resend_notifications_by_query) | **POST** /webhooks/{webhookId}/notifications/resend_by_query | Resend notifications by query
 [**resend_notifications_by_resource_id**](WebhooksV2Api.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
 [**update_webhook**](WebhooksV2Api.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
 
@@ -508,6 +510,83 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_resend_by_query_job_status**
+> ResendFailedNotificationsJobStatusResponse get_resend_by_query_job_status(webhook_id, job_id)
+
+Get resend by query job status
+
+Get the status of a resend by query job
+
+
+### Example
+
+
+```python
+from fireblocks.models.resend_failed_notifications_job_status_response import ResendFailedNotificationsJobStatusResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_id = 'webhook_id_example' # str | The ID of the webhook
+    job_id = 'job_id_example' # str | The ID of the resend job
+
+    try:
+        # Get resend by query job status
+        api_response = fireblocks.webhooks_v2.get_resend_by_query_job_status(webhook_id, job_id).result()
+        print("The response of WebhooksV2Api->get_resend_by_query_job_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->get_resend_by_query_job_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **str**| The ID of the webhook | 
+ **job_id** | **str**| The ID of the resend job | 
+
+### Return type
+
+[**ResendFailedNotificationsJobStatusResponse**](ResendFailedNotificationsJobStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Job status |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_resend_job_status**
 > ResendFailedNotificationsJobStatusResponse get_resend_job_status(webhook_id, job_id)
 
@@ -895,6 +974,89 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Resend notification request was accepted and is being processed |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **resend_notifications_by_query**
+> ResendByQueryResponse resend_notifications_by_query(webhook_id, resend_by_query_request, idempotency_key=idempotency_key)
+
+Resend notifications by query
+
+Resend notifications matching the given query filters (statuses, events, time range, resource ID)
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Editor, Signer.
+
+
+### Example
+
+
+```python
+from fireblocks.models.resend_by_query_request import ResendByQueryRequest
+from fireblocks.models.resend_by_query_response import ResendByQueryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_id = 'webhook_id_example' # str | The ID of the webhook
+    resend_by_query_request = fireblocks.ResendByQueryRequest() # ResendByQueryRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Resend notifications by query
+        api_response = fireblocks.webhooks_v2.resend_notifications_by_query(webhook_id, resend_by_query_request, idempotency_key=idempotency_key).result()
+        print("The response of WebhooksV2Api->resend_notifications_by_query:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->resend_notifications_by_query: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **str**| The ID of the webhook | 
+ **resend_by_query_request** | [**ResendByQueryRequest**](ResendByQueryRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ResendByQueryResponse**](ResendByQueryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No matching notifications to resend |  * X-Request-ID -  <br>  |
+**202** | Resend notifications request was accepted and is being processed |  * X-Request-ID -  <br>  * Location -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

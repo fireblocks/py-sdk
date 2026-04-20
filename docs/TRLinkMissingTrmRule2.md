@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **dest_id** | **str** | Destination identifier | [optional] 
 **asset** | **str** | Asset or cryptocurrency type | [optional] 
 **base_asset** | **str** | Base asset for derivatives | [optional] 
-**amount** | [**TRLinkAmount2**](TRLinkAmount2.md) |  | [optional] 
+**amount** | [**ScreeningPolicyAmount**](ScreeningPolicyAmount.md) |  | [optional] 
 **network_protocol** | **str** | Network protocol identifier | [optional] 
 **operation** | **str** | Operation type | [optional] 
 **description** | **str** | Rule description | [optional] 

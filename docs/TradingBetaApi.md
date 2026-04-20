@@ -383,11 +383,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_trading_provider_by_id**
-> TradingProviderDetails get_trading_provider_by_id(provider_id)
+> TradingProvider get_trading_provider_by_id(provider_id)
 
 Get trading provider by ID
 
-Retrieve detailed information about a specific provider including its full manifest with order/quote requirements.
+Retrieve a single provider by ID.
 
 **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
@@ -400,7 +400,7 @@ For detailed information about error codes and troubleshooting, please refer to 
 
 
 ```python
-from fireblocks.models.trading_provider_details import TradingProviderDetails
+from fireblocks.models.trading_provider import TradingProvider
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TradingProviderDetails**](TradingProviderDetails.md)
+[**TradingProvider**](TradingProvider.md)
 
 ### Authorization
 
@@ -458,7 +458,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Provider details |  * X-Request-ID -  <br>  |
+**200** | Single provider details. |  * X-Request-ID -  <br>  |
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Forbidden - insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
 **404** | Provider not found. |  * X-Request-ID -  <br>  |

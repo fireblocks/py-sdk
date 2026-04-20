@@ -41,8 +41,7 @@ class TestListVaultsForRegistrationResponse(unittest.TestCase):
             return ListVaultsForRegistrationResponse(
                 total = 5,
                 data = ["23","12","1"],
-                next = 'eyJpZCI6IjEyMyJ9',
-                prev = 'eyJpZCI6IjEyMCJ9'
+                next = 'eyJpZCI6IjEyMyJ9'
             )
         else:
             return ListVaultsForRegistrationResponse(

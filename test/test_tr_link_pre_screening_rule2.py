@@ -49,11 +49,7 @@ class TestTRLinkPreScreeningRule2(unittest.TestCase):
                 dest_id = '',
                 asset = 'BTC',
                 base_asset = '',
-                amount = fireblocks.models.tr_link_amount_2.TRLinkAmount-2(
-                    range = fireblocks.models.tr_link_amount_range.TRLinkAmountRange(
-                        min = '1000', 
-                        max = '100000', ), 
-                    currency = 'USD', ),
+                amount = {"range":{"min":"1000","max":"100000"},"currency":"USD"},
                 network_protocol = 'BITCOIN',
                 operation = 'TRANSFER',
                 description = 'Screen large BTC outbound transactions to external wallets',

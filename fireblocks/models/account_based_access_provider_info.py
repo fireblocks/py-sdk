@@ -28,7 +28,7 @@ class AccountBasedAccessProviderInfo(BaseModel):
     """
     AccountBasedAccessProviderInfo
     """ # noqa: E501
-    connected: StrictBool = Field(description="Whether the provider is currently connected")
+    connected: StrictBool = Field(description="Whether the provider is currently connected.")
     accounts: List[AccountBase]
     __properties: ClassVar[List[str]] = ["connected", "accounts"]
 

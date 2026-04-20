@@ -31,8 +31,7 @@ class ListLegalEntitiesResponse(BaseModel):
     total: Optional[StrictInt] = Field(default=None, description="Total number of legal entity registrations (optional)")
     data: List[LegalEntityRegistration] = Field(description="Legal entity registrations for the current page")
     next: Optional[StrictStr] = Field(default=None, description="Cursor to pass as `pageCursor` to retrieve the next page")
-    prev: Optional[StrictStr] = Field(default=None, description="Cursor to pass as `pageCursor` to retrieve the previous page")
-    __properties: ClassVar[List[str]] = ["total", "data", "next", "prev"]
+    __properties: ClassVar[List[str]] = ["total", "data", "next"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,8 +93,7 @@ class ListLegalEntitiesResponse(BaseModel):
         _obj = cls.model_validate({
             "total": obj.get("total"),
             "data": [LegalEntityRegistration.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
-            "next": obj.get("next"),
-            "prev": obj.get("prev")
+            "next": obj.get("next")
         })
         return _obj
 

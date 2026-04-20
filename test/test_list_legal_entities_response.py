@@ -49,15 +49,15 @@ class TestListLegalEntitiesResponse(unittest.TestCase):
                         gleif_data = fireblocks.models.gleif_data.GleifData(
                             lei = '529900HNOAA1KXQJUQ27', 
                             legal_name = 'Example Corporation Ltd.', 
-                            other_names = ["ExCorp","Example Corp"], 
+                            legal_name_language = 'en', 
+                            other_names = [{"name":"ExCorp","language":"en"},{"name":"Example Corp","language":"en"}], 
                             legal_address_region = 'NY', 
                             legal_address_country = 'US', 
                             next_renewal_date = '2025-12-31T00:00Z', ), 
                         created_at = '1700000000000', 
                         updated_at = '1700000000000', )
                     ],
-                next = 'eyJpZCI6IjEyMyJ9',
-                prev = 'eyJpZCI6IjEyMCJ9'
+                next = 'eyJpZCI6IjEyMyJ9'
             )
         else:
             return ListLegalEntitiesResponse(
@@ -72,7 +72,8 @@ class TestListLegalEntitiesResponse(unittest.TestCase):
                         gleif_data = fireblocks.models.gleif_data.GleifData(
                             lei = '529900HNOAA1KXQJUQ27', 
                             legal_name = 'Example Corporation Ltd.', 
-                            other_names = ["ExCorp","Example Corp"], 
+                            legal_name_language = 'en', 
+                            other_names = [{"name":"ExCorp","language":"en"},{"name":"Example Corp","language":"en"}], 
                             legal_address_region = 'NY', 
                             legal_address_country = 'US', 
                             next_renewal_date = '2025-12-31T00:00Z', ), 

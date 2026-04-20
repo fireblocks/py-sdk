@@ -29,7 +29,6 @@ class TRLinkAssetFormat(str, Enum):
     """
     FIREBLOCKS = 'fireblocks'
     COINMARKETCAP = 'coinmarketcap'
-    SLIP44 = 'slip44'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

@@ -30,8 +30,7 @@ class ListVaultsForRegistrationResponse(BaseModel):
     total: Optional[StrictInt] = Field(default=None, description="Total number of legal entity registrations (optional)")
     data: List[StrictStr] = Field(description="List of vault account IDs assigned to the legal entity registration")
     next: Optional[StrictStr] = Field(default=None, description="Cursor to pass as `pageCursor` to retrieve the next page")
-    prev: Optional[StrictStr] = Field(default=None, description="Cursor to pass as `pageCursor` to retrieve the previous page")
-    __properties: ClassVar[List[str]] = ["total", "data", "next", "prev"]
+    __properties: ClassVar[List[str]] = ["total", "data", "next"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,8 +85,7 @@ class ListVaultsForRegistrationResponse(BaseModel):
         _obj = cls.model_validate({
             "total": obj.get("total"),
             "data": obj.get("data"),
-            "next": obj.get("next"),
-            "prev": obj.get("prev")
+            "next": obj.get("next")
         })
         return _obj
 

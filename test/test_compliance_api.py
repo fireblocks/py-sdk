@@ -27,6 +27,13 @@ class TestComplianceApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_activate_byork_config(self) -> None:
+        """Test case for activate_byork_config
+
+        Activate BYORK Light
+        """
+        pass
+
     def test_add_address_registry_vault_opt_outs(self) -> None:
         """Test case for add_address_registry_vault_opt_outs
 
@@ -38,6 +45,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for assign_vaults_to_legal_entity
 
         Assign vault accounts to a legal entity
+        """
+        pass
+
+    def test_deactivate_byork_config(self) -> None:
+        """Test case for deactivate_byork_config
+
+        Deactivate BYORK Light
         """
         pass
 
@@ -69,17 +83,24 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_byork_config(self) -> None:
+        """Test case for get_byork_config
+
+        Get BYORK Light configuration
+        """
+        pass
+
+    def test_get_byork_verdict(self) -> None:
+        """Test case for get_byork_verdict
+
+        Get BYORK Light verdict
+        """
+        pass
+
     def test_get_legal_entity(self) -> None:
         """Test case for get_legal_entity
 
         Get a legal entity
-        """
-        pass
-
-    def test_get_legal_entity_by_address(self) -> None:
-        """Test case for get_legal_entity_by_address
-
-        [Deprecated] Look up legal entity by address (query parameter)
         """
         pass
 
@@ -177,7 +198,21 @@ class TestComplianceApi(unittest.TestCase):
     def test_set_aml_verdict(self) -> None:
         """Test case for set_aml_verdict
 
-        Set AML Verdict for Manual Screening Verdict.
+        Set AML Verdict (BYORK Super Light)
+        """
+        pass
+
+    def test_set_byork_timeouts(self) -> None:
+        """Test case for set_byork_timeouts
+
+        Set BYORK Light timeouts
+        """
+        pass
+
+    def test_set_byork_verdict(self) -> None:
+        """Test case for set_byork_verdict
+
+        Set BYORK Light verdict
         """
         pass
 

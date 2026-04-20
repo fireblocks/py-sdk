@@ -69,6 +69,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_resend_by_query_job_status(self) -> None:
+        """Test case for get_resend_by_query_job_status
+
+        Get resend by query job status
+        """
+        pass
+
     def test_get_resend_job_status(self) -> None:
         """Test case for get_resend_job_status
 
@@ -101,6 +108,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """Test case for resend_notification_by_id
 
         Resend notification by id
+        """
+        pass
+
+    def test_resend_notifications_by_query(self) -> None:
+        """Test case for resend_notifications_by_query
+
+        Resend notifications by query
         """
         pass
 

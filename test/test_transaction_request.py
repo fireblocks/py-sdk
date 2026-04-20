@@ -88,6 +88,28 @@ class TestTransactionRequest(unittest.TestCase):
                 network_fee = None,
                 replace_tx_by_hash = '00000000-0000-0000-0000-000000000000',
                 extra_parameters = { },
+                utxo_selection_params = fireblocks.models.utxo_selection_params.UtxoSelectionParams(
+                    filters = fireblocks.models.utxo_selection_filters.UtxoSelectionFilters(
+                        include_all_labels = ["cold-storage"], 
+                        include_any_labels = ["vip","high-value"], 
+                        exclude_any_labels = ["deprecated"], 
+                        address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 
+                        min_amount = '0.001', 
+                        max_amount = '9.999', 
+                        use_change = True, 
+                        use_coinbase = True, ), 
+                    input_selection = fireblocks.models.utxo_input_selection.UtxoInputSelection(
+                        inputs_to_spend = [
+                            fireblocks.models.utxo_input.UtxoInput(
+                                tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
+                                vout = 0, )
+                            ], 
+                        inputs_to_exclude = [
+                            fireblocks.models.utxo_input.UtxoInput(
+                                tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
+                                vout = 0, )
+                            ], 
+                        fill_fee_for_selected_inputs = True, ), ),
                 customer_ref_id = 'abcdef',
                 travel_rule_message = fireblocks.models.travel_rule_create_transaction_request.TravelRuleCreateTransactionRequest(
                     originator_vas_pdid = 'did:ethr:0x44957e75d6ce4a5bf37aae117da86422c848f7c2', 

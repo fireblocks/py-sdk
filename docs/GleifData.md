@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lei** | **str** | Legal Entity Identifier (LEI) code | 
 **legal_name** | **str** | Official legal name of the entity | 
-**other_names** | **List[str]** | Alternative names for the entity | [optional] 
+**legal_name_language** | **str** | Two-letter ISO 639-1 language code | [optional] 
+**other_names** | [**List[GleifOtherLegalEntityName]**](GleifOtherLegalEntityName.md) | Alternative names for the entity | [optional] 
 **legal_address_region** | **str** | Region or state of the legal address | [optional] 
 **legal_address_country** | **str** | Country code of the legal address (ISO 3166-1 alpha-2) | 
 **next_renewal_date** | **datetime** | Date when the LEI registration must be renewed | [optional] 

@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class DirectAccessProvider(BaseModel):
     """
-    DirectAccessProvider
+    Provider used without per-account linking (`accountBased` is `false`).
     """ # noqa: E501
     id: StrictStr = Field(description="Unique identifier for the provider")
     name: StrictStr = Field(description="Display name of the provider")

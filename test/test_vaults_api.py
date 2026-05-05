@@ -34,6 +34,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_activate_circle_gateway_wallet_beta(self) -> None:
+        """Test case for activate_circle_gateway_wallet_beta
+
+        Activate a Circle Gateway wallet
+        """
+        pass
+
     def test_attach_or_detach_tags_from_vault_accounts(self) -> None:
         """Test case for attach_or_detach_tags_from_vault_accounts
 
@@ -83,10 +90,24 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_deactivate_circle_gateway_wallet_beta(self) -> None:
+        """Test case for deactivate_circle_gateway_wallet_beta
+
+        Deactivate a Circle Gateway wallet
+        """
+        pass
+
     def test_get_asset_wallets(self) -> None:
         """Test case for get_asset_wallets
 
         Get vault wallets (Paginated)
+        """
+        pass
+
+    def test_get_circle_gateway_wallet_info_beta(self) -> None:
+        """Test case for get_circle_gateway_wallet_info_beta
+
+        Get Circle Gateway wallet info
         """
         pass
 

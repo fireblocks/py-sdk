@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Get an asset
 
-Returns an asset by ID or legacyID.</br>
+Returns an asset by ID or legacyID.
 
 **Note**:
 
@@ -350,7 +350,7 @@ No authorization required
 
 List blockchains
 
-Returns all blockchains supported by Fireblocks.</br>
+Returns all blockchains supported by Fireblocks.
 
 
 ### Example

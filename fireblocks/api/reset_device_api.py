@@ -61,7 +61,7 @@ class ResetDeviceApi:
     ) -> Future[ApiResponse[None]]:
         """Resets device
 
-        Resets mobile device for given console user, that user will need to do mobile onboarding again. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Resets mobile device for given console user, that user will need to do mobile onboarding again. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param id: The ID of the console user (required)
         :type id: str

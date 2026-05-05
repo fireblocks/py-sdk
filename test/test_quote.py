@@ -53,6 +53,7 @@ class TestQuote(unittest.TestCase):
                     ],
                 side = 'BUY',
                 expires_at = '',
+                order_creation_requirements = '',
                 type = 'INDICATIVE'
             )
         else:

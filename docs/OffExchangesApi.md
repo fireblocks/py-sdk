@@ -18,7 +18,7 @@ Add Collateral
 
 Add collateral and create deposit request.
 Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -97,7 +97,7 @@ Find a specific collateral exchange account
 
 Returns a collateral account by mainExchangeAccountId.
 Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -173,7 +173,7 @@ Get Settlements Transactions
 
 Get settlements transactions from exchange.
 Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -249,7 +249,7 @@ Remove Collateral
 
 Remove collateral, create withdraw request.
 Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -328,7 +328,7 @@ Create Settlement for a Trader
 
 Create settlement for a trader.
 Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 

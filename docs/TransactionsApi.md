@@ -27,7 +27,7 @@ Cancel a transaction
 Cancels a transaction by Fireblocks Transaction ID.
 
 Can be used only for transactions that did not get to the BROADCASTING state.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -185,7 +185,7 @@ No authorization required
 Drop ETH (EVM) transaction by ID
 
 Drops a stuck ETH (EVM) transaction and creates a replacement transaction with 0 amount.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -278,7 +278,7 @@ Notes:
     - For other assets, the response will contain the `networkFee` parameter.
 
 Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -354,11 +354,10 @@ Estimate transaction fee
 
 Estimates the transaction fee for a specific transaction request.
 This endpoint simulates a transaction which means that the system will expect to have the requested asset and balance in the specified wallet.
-
-
 **Note**: Supports all Fireblocks assets except ZCash (ZEC).
+The PROGRAM_CALL operation is not supported by this endpoint — fee estimation for Solana program calls is not available.
 Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee).
-</br>Endpoint Permission: Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -440,7 +439,7 @@ Freezes a transaction by ID.
 Usually used for AML integrations when the incoming funds should be quarantined.
 For account based assets - the entire amount of the transaction is frozen 
 For UTXO based assets - all UTXOs of the specified transaction are frozen
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -518,7 +517,7 @@ No authorization required
 Get a specific transaction by Fireblocks transaction ID
 
 Get a specific transaction data by Fireblocks Transaction ID
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -594,7 +593,7 @@ No authorization required
 Get a specific transaction by external transaction ID
 
 Returns transaction by external transaction ID.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -776,7 +775,7 @@ No authorization required
 Set confirmation threshold by transaction hash
 
 Overrides the required number of confirmations for transaction completion by transaction hash.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -856,7 +855,7 @@ No authorization required
 Set confirmation threshold by Fireblocks Transaction ID
 
 Overrides the required number of confirmations for transaction completion Fireblocks Transaction ID.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -936,7 +935,7 @@ No authorization required
 Unfreeze a transaction
 
 Unfreezes a transaction by Fireblocks Transaction ID and makes the transaction available again.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -1014,7 +1013,7 @@ No authorization required
 Validate destination address
 
 Checks if an address is valid and active (for XRP, DOT, XLM, and EOS).
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 

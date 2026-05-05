@@ -14,7 +14,7 @@ Resets device
 
 Resets mobile device for given console user, that user will need to do mobile onboarding again.
 - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

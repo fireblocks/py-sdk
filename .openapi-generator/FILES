@@ -155,6 +155,8 @@ docs/ChannelDvnConfigWithConfirmationsSendConfig.md
 docs/ChapsAddress.md
 docs/ChapsDestination.md
 docs/ChapsPaymentInfo.md
+docs/CircleGatewayWalletInfoResponse.md
+docs/CircleGatewayWalletStatusResponse.md
 docs/ClaimRewardsRequest.md
 docs/CollectionBurnRequestDto.md
 docs/CollectionBurnResponseDto.md
@@ -241,6 +243,8 @@ docs/ConvertAssetsResponse.md
 docs/Cosigner.md
 docs/CosignersBetaApi.md
 docs/CosignersPaginatedResponse.md
+docs/CounterpartyGroup.md
+docs/CounterpartyGroupsPaginatedResponse.md
 docs/CreateAPIUser.md
 docs/CreateAddressRequest.md
 docs/CreateAddressResponse.md
@@ -251,6 +255,7 @@ docs/CreateConnectionResponse.md
 docs/CreateConsoleUser.md
 docs/CreateContractRequest.md
 docs/CreateConversionConfigOperationRequest.md
+docs/CreateCounterpartyGroupRequest.md
 docs/CreateDisbursementConfigOperationRequest.md
 docs/CreateEarnActionRequest.md
 docs/CreateEarnActionResponse.md
@@ -849,6 +854,7 @@ docs/TRLinkAsset.md
 docs/TRLinkAssetData.md
 docs/TRLinkAssetFormat.md
 docs/TRLinkAssetsListPagedResponse.md
+docs/TRLinkBeneficiaryPii.md
 docs/TRLinkCancelTrmRequest.md
 docs/TRLinkConnectIntegrationRequest.md
 docs/TRLinkCreateCustomerRequest.md
@@ -860,10 +866,16 @@ docs/TRLinkDestinationTransferPeerPath.md
 docs/TRLinkDiscoverableStatus.md
 docs/TRLinkFiatValue.md
 docs/TRLinkGeographicAddressRequest.md
+docs/TRLinkGetRequiredActionsResponse.md
 docs/TRLinkGetSupportedAssetResponse.md
 docs/TRLinkIvms.md
 docs/TRLinkIvmsResponse.md
 docs/TRLinkJwkPublicKey.md
+docs/TRLinkManualDecisionAction.md
+docs/TRLinkManualDecisionDestinationDetail.md
+docs/TRLinkManualDecisionRequest.md
+docs/TRLinkManualDecisionResponse.md
+docs/TRLinkManualDecisionSource.md
 docs/TRLinkMissingTrmAction.md
 docs/TRLinkMissingTrmAction2.md
 docs/TRLinkMissingTrmActionEnum.md
@@ -893,6 +905,11 @@ docs/TRLinkRegistrationResult.md
 docs/TRLinkRegistrationResultFullPayload.md
 docs/TRLinkRegistrationStatus.md
 docs/TRLinkRegistrationStatusEnum.md
+docs/TRLinkRequiredAction.md
+docs/TRLinkRequiredActionData.md
+docs/TRLinkRequiredField.md
+docs/TRLinkResolveActionData.md
+docs/TRLinkResolveActionRequest.md
 docs/TRLinkResult.md
 docs/TRLinkResultFullPayload.md
 docs/TRLinkRuleBase.md
@@ -1044,6 +1061,7 @@ docs/UnstakeRequest.md
 docs/UpdateAssetUserMetadataRequest.md
 docs/UpdateCallbackHandlerRequest.md
 docs/UpdateCallbackHandlerResponse.md
+docs/UpdateCounterpartyGroupRequest.md
 docs/UpdateDraftRequest.md
 docs/UpdateLegalEntityRequest.md
 docs/UpdateTagRequest.md
@@ -1319,6 +1337,8 @@ fireblocks/models/channel_dvn_config_with_confirmations_send_config.py
 fireblocks/models/chaps_address.py
 fireblocks/models/chaps_destination.py
 fireblocks/models/chaps_payment_info.py
+fireblocks/models/circle_gateway_wallet_info_response.py
+fireblocks/models/circle_gateway_wallet_status_response.py
 fireblocks/models/claim_rewards_request.py
 fireblocks/models/collection_burn_request_dto.py
 fireblocks/models/collection_burn_response_dto.py
@@ -1397,6 +1417,8 @@ fireblocks/models/convert_assets_request.py
 fireblocks/models/convert_assets_response.py
 fireblocks/models/cosigner.py
 fireblocks/models/cosigners_paginated_response.py
+fireblocks/models/counterparty_group.py
+fireblocks/models/counterparty_groups_paginated_response.py
 fireblocks/models/create_address_request.py
 fireblocks/models/create_address_response.py
 fireblocks/models/create_api_user.py
@@ -1407,6 +1429,7 @@ fireblocks/models/create_connection_response.py
 fireblocks/models/create_console_user.py
 fireblocks/models/create_contract_request.py
 fireblocks/models/create_conversion_config_operation_request.py
+fireblocks/models/create_counterparty_group_request.py
 fireblocks/models/create_disbursement_config_operation_request.py
 fireblocks/models/create_earn_action_request.py
 fireblocks/models/create_earn_action_response.py
@@ -2007,6 +2030,7 @@ fireblocks/models/tr_link_asset.py
 fireblocks/models/tr_link_asset_data.py
 fireblocks/models/tr_link_asset_format.py
 fireblocks/models/tr_link_assets_list_paged_response.py
+fireblocks/models/tr_link_beneficiary_pii.py
 fireblocks/models/tr_link_cancel_trm_request.py
 fireblocks/models/tr_link_connect_integration_request.py
 fireblocks/models/tr_link_create_customer_request.py
@@ -2018,10 +2042,16 @@ fireblocks/models/tr_link_destination_transfer_peer_path.py
 fireblocks/models/tr_link_discoverable_status.py
 fireblocks/models/tr_link_fiat_value.py
 fireblocks/models/tr_link_geographic_address_request.py
+fireblocks/models/tr_link_get_required_actions_response.py
 fireblocks/models/tr_link_get_supported_asset_response.py
 fireblocks/models/tr_link_ivms.py
 fireblocks/models/tr_link_ivms_response.py
 fireblocks/models/tr_link_jwk_public_key.py
+fireblocks/models/tr_link_manual_decision_action.py
+fireblocks/models/tr_link_manual_decision_destination_detail.py
+fireblocks/models/tr_link_manual_decision_request.py
+fireblocks/models/tr_link_manual_decision_response.py
+fireblocks/models/tr_link_manual_decision_source.py
 fireblocks/models/tr_link_missing_trm_action.py
 fireblocks/models/tr_link_missing_trm_action2.py
 fireblocks/models/tr_link_missing_trm_action_enum.py
@@ -2051,6 +2081,11 @@ fireblocks/models/tr_link_registration_result.py
 fireblocks/models/tr_link_registration_result_full_payload.py
 fireblocks/models/tr_link_registration_status.py
 fireblocks/models/tr_link_registration_status_enum.py
+fireblocks/models/tr_link_required_action.py
+fireblocks/models/tr_link_required_action_data.py
+fireblocks/models/tr_link_required_field.py
+fireblocks/models/tr_link_resolve_action_data.py
+fireblocks/models/tr_link_resolve_action_request.py
 fireblocks/models/tr_link_result.py
 fireblocks/models/tr_link_result_full_payload.py
 fireblocks/models/tr_link_rule_base.py
@@ -2170,6 +2205,7 @@ fireblocks/models/unstake_request.py
 fireblocks/models/update_asset_user_metadata_request.py
 fireblocks/models/update_callback_handler_request.py
 fireblocks/models/update_callback_handler_response.py
+fireblocks/models/update_counterparty_group_request.py
 fireblocks/models/update_draft_request.py
 fireblocks/models/update_legal_entity_request.py
 fireblocks/models/update_tag_request.py
@@ -2404,6 +2440,8 @@ test/test_channel_dvn_config_with_confirmations_send_config.py
 test/test_chaps_address.py
 test/test_chaps_destination.py
 test/test_chaps_payment_info.py
+test/test_circle_gateway_wallet_info_response.py
+test/test_circle_gateway_wallet_status_response.py
 test/test_claim_rewards_request.py
 test/test_collection_burn_request_dto.py
 test/test_collection_burn_response_dto.py
@@ -2490,6 +2528,8 @@ test/test_convert_assets_response.py
 test/test_cosigner.py
 test/test_cosigners_beta_api.py
 test/test_cosigners_paginated_response.py
+test/test_counterparty_group.py
+test/test_counterparty_groups_paginated_response.py
 test/test_create_address_request.py
 test/test_create_address_response.py
 test/test_create_api_user.py
@@ -2500,6 +2540,7 @@ test/test_create_connection_response.py
 test/test_create_console_user.py
 test/test_create_contract_request.py
 test/test_create_conversion_config_operation_request.py
+test/test_create_counterparty_group_request.py
 test/test_create_disbursement_config_operation_request.py
 test/test_create_earn_action_request.py
 test/test_create_earn_action_response.py
@@ -3124,6 +3165,7 @@ test/test_tr_link_asset.py
 test/test_tr_link_asset_data.py
 test/test_tr_link_asset_format.py
 test/test_tr_link_assets_list_paged_response.py
+test/test_tr_link_beneficiary_pii.py
 test/test_tr_link_cancel_trm_request.py
 test/test_tr_link_connect_integration_request.py
 test/test_tr_link_create_customer_request.py
@@ -3135,10 +3177,16 @@ test/test_tr_link_destination_transfer_peer_path.py
 test/test_tr_link_discoverable_status.py
 test/test_tr_link_fiat_value.py
 test/test_tr_link_geographic_address_request.py
+test/test_tr_link_get_required_actions_response.py
 test/test_tr_link_get_supported_asset_response.py
 test/test_tr_link_ivms.py
 test/test_tr_link_ivms_response.py
 test/test_tr_link_jwk_public_key.py
+test/test_tr_link_manual_decision_action.py
+test/test_tr_link_manual_decision_destination_detail.py
+test/test_tr_link_manual_decision_request.py
+test/test_tr_link_manual_decision_response.py
+test/test_tr_link_manual_decision_source.py
 test/test_tr_link_missing_trm_action.py
 test/test_tr_link_missing_trm_action2.py
 test/test_tr_link_missing_trm_action_enum.py
@@ -3168,6 +3216,11 @@ test/test_tr_link_registration_result.py
 test/test_tr_link_registration_result_full_payload.py
 test/test_tr_link_registration_status.py
 test/test_tr_link_registration_status_enum.py
+test/test_tr_link_required_action.py
+test/test_tr_link_required_action_data.py
+test/test_tr_link_required_field.py
+test/test_tr_link_resolve_action_data.py
+test/test_tr_link_resolve_action_request.py
 test/test_tr_link_result.py
 test/test_tr_link_result_full_payload.py
 test/test_tr_link_rule_base.py
@@ -3290,6 +3343,7 @@ test/test_unstake_request.py
 test/test_update_asset_user_metadata_request.py
 test/test_update_callback_handler_request.py
 test/test_update_callback_handler_response.py
+test/test_update_counterparty_group_request.py
 test/test_update_draft_request.py
 test/test_update_legal_entity_request.py
 test/test_update_tag_request.py

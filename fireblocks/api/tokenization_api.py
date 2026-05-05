@@ -246,7 +246,7 @@ class TokenizationApi:
     ) -> Future[ApiResponse[CollectionLinkDto]]:
         """Create a new collection
 
-        Create a new collection and link it as a token. </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
+        Create a new collection and link it as a token. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
 
         :param collection_deploy_request_dto: (required)
         :type collection_deploy_request_dto: CollectionDeployRequestDto
@@ -1385,7 +1385,7 @@ class TokenizationApi:
     ) -> Future[ApiResponse[GetLinkedCollectionsPaginatedResponse]]:
         """Get collections
 
-        Get collections (paginated). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get collections (paginated). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param page_cursor: Page cursor to get the next page, for example - \"MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==\"
         :type page_cursor: str
@@ -1930,7 +1930,7 @@ class TokenizationApi:
     ) -> Future[ApiResponse[TokenLinkDto]]:
         """Issue a new token
 
-        Facilitates the creation of a new token, supporting both EVM-based and Stellar/Ripple platforms. For EVM, it deploys the corresponding contract template to the blockchain and links the token to the workspace. For Stellar/Ripple, it links a newly created token directly to the workspace without deploying a contract. Returns the token link with status \"PENDING\" until the token is deployed or \"SUCCESS\" if no deployment is needed. </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
+        Facilitates the creation of a new token, supporting both EVM-based and Stellar/Ripple platforms. For EVM, it deploys the corresponding contract template to the blockchain and links the token to the workspace. For Stellar/Ripple, it links a newly created token directly to the workspace without deploying a contract. Returns the token link with status \"PENDING\" until the token is deployed or \"SUCCESS\" if no deployment is needed. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, and Editor.
 
         :param create_token_request_dto: (required)
         :type create_token_request_dto: CreateTokenRequestDto

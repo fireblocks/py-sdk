@@ -244,7 +244,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Cancel Ticket
 
-        Cancel Smart Transfer ticket. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Cancel Smart Transfer ticket. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -532,7 +532,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketTermResponse]]:
         """Create leg (term)
 
-        Creates new smart transfer ticket term (when the ticket status is DRAFT). Learn more about Fireblocks Smart Transfers in the following [guide](https://developers.fireblocks.com/docs/execute-smart-transfers). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Creates new smart transfer ticket term (when the ticket status is DRAFT). Learn more about Fireblocks Smart Transfers in the following [guide](https://developers.fireblocks.com/docs/execute-smart-transfers). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -687,7 +687,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Search Ticket by ID
 
-        Find Smart Transfer ticket by id. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Find Smart Transfer ticket by id. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -818,7 +818,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketTermResponse]]:
         """Get Smart Transfer ticket term
 
-        Find a specific term of a specific Smart Transfer ticket. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Find a specific term of a specific Smart Transfer ticket. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -956,7 +956,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Fund ticket manually
 
-        Manually fulfill ticket, in case when all terms (legs) are funded manually. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Manually fulfill ticket, in case when all terms (legs) are funded manually. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -1254,7 +1254,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketTermResponse]]:
         """Define funding source
 
-        Set funding source for ticket term (in case of ASYNC tickets, this will execute transfer immediately). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Set funding source for ticket term (in case of ASYNC tickets, this will execute transfer immediately). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -1538,7 +1538,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferUserGroupsResponse]]:
         """Get user group
 
-        Get Smart Transfer user groups. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get Smart Transfer user groups. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1664,7 +1664,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketTermResponse]]:
         """Manually add term transaction
 
-        Manually set ticket term transaction. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Manually set ticket term transaction. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -2215,7 +2215,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Add external ref. ID
 
-        Set external id Smart Transfer ticket. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Set external id Smart Transfer ticket. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -2373,7 +2373,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Set expiration
 
-        Set expiration date on Smart Transfer ticket. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Set expiration date on Smart Transfer ticket. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str
@@ -2530,7 +2530,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferUserGroupsResponse]]:
         """Set user group
 
-        Set Smart Transfers user group to receive email notifications for Smart Transfers. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Set Smart Transfers user group to receive email notifications for Smart Transfers. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param smart_transfer_set_user_groups: (required)
         :type smart_transfer_set_user_groups: SmartTransferSetUserGroups
@@ -2680,7 +2680,7 @@ class SmartTransferApi:
     ) -> Future[ApiResponse[SmartTransferTicketResponse]]:
         """Submit ticket
 
-        Submit Smart Transfer ticket - change status into ready for approval if auto approval is not turned on, or OPEN if auto approval is on. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Submit Smart Transfer ticket - change status into ready for approval if auto approval is not turned on, or OPEN if auto approval is on. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param ticket_id: (required)
         :type ticket_id: str

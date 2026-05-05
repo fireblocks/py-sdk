@@ -15,7 +15,7 @@ Create API Key
 
 Create a new API key in your workspace.
 Learn more about Fireblocks API Keys management in the following [guide](https://developers.fireblocks.com/docs/manage-api-keys).
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -94,7 +94,7 @@ Get API Keys
 
 List all API keys in your workspace.
 - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

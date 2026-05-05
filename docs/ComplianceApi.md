@@ -7,19 +7,23 @@ Method | HTTP request | Description
 [**activate_byork_config**](ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 [**add_address_registry_vault_opt_outs**](ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list
 [**assign_vaults_to_legal_entity**](ComplianceApi.md#assign_vaults_to_legal_entity) | **POST** /legal_entities/{legalEntityId}/vaults | Assign vault accounts to a legal entity
+[**create_counterparty_group**](ComplianceApi.md#create_counterparty_group) | **POST** /counterparty_groups | Create a counterparty group
 [**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
+[**delete_counterparty_group**](ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
 [**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
 [**get_address_registry_vault_opt_out**](ComplianceApi.md#get_address_registry_vault_opt_out) | **GET** /address_registry/vaults/{vaultAccountId} | Get whether a vault account is opted out of the address registry
 [**get_aml_post_screening_policy**](ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 [**get_aml_screening_policy**](ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
 [**get_byork_config**](ComplianceApi.md#get_byork_config) | **GET** /screening/byork/config | Get BYORK Light configuration
 [**get_byork_verdict**](ComplianceApi.md#get_byork_verdict) | **GET** /screening/byork/verdict | Get BYORK Light verdict
+[**get_counterparty_group**](ComplianceApi.md#get_counterparty_group) | **GET** /counterparty_groups/{groupId} | Get a counterparty group
 [**get_legal_entity**](ComplianceApi.md#get_legal_entity) | **GET** /legal_entities/{legalEntityId} | Get a legal entity
 [**get_legal_entity_for_address**](ComplianceApi.md#get_legal_entity_for_address) | **GET** /address_registry/legal_entities/{address} | Look up legal entity by blockchain address
 [**get_post_screening_policy**](ComplianceApi.md#get_post_screening_policy) | **GET** /screening/travel_rule/post_screening_policy | Travel Rule - View Post-Screening Policy
 [**get_screening_full_details**](ComplianceApi.md#get_screening_full_details) | **GET** /screening/transaction/{txId} | Provides all the compliance details for the given screened transaction.
 [**get_screening_policy**](ComplianceApi.md#get_screening_policy) | **GET** /screening/travel_rule/screening_policy | Travel Rule - View Screening Policy
 [**list_address_registry_vault_opt_outs**](ComplianceApi.md#list_address_registry_vault_opt_outs) | **GET** /address_registry/vaults | List vault-level address registry opt-outs (paginated)
+[**list_counterparty_groups**](ComplianceApi.md#list_counterparty_groups) | **GET** /counterparty_groups | List counterparty groups
 [**list_legal_entities**](ComplianceApi.md#list_legal_entities) | **GET** /legal_entities | List legal entities (Paginated)
 [**list_vaults_for_legal_entity**](ComplianceApi.md#list_vaults_for_legal_entity) | **GET** /legal_entities/{legalEntityId}/vaults | List vault accounts for a legal entity (Paginated)
 [**opt_in_address_registry_tenant**](ComplianceApi.md#opt_in_address_registry_tenant) | **POST** /address_registry/tenant | Opt the workspace in to the address registry
@@ -32,6 +36,7 @@ Method | HTTP request | Description
 [**set_byork_timeouts**](ComplianceApi.md#set_byork_timeouts) | **PUT** /screening/byork/config/timeouts | Set BYORK Light timeouts
 [**set_byork_verdict**](ComplianceApi.md#set_byork_verdict) | **POST** /screening/byork/verdict | Set BYORK Light verdict
 [**update_aml_screening_configuration**](ComplianceApi.md#update_aml_screening_configuration) | **PUT** /screening/aml/policy_configuration | Update AML Configuration
+[**update_counterparty_group**](ComplianceApi.md#update_counterparty_group) | **PATCH** /counterparty_groups/{groupId} | Update a counterparty group
 [**update_legal_entity**](ComplianceApi.md#update_legal_entity) | **PUT** /legal_entities/{legalEntityId} | Update legal entity
 [**update_screening_configuration**](ComplianceApi.md#update_screening_configuration) | **PUT** /screening/configurations | Tenant - Screening Configuration
 [**update_travel_rule_config**](ComplianceApi.md#update_travel_rule_config) | **PUT** /screening/travel_rule/policy_configuration | Update Travel Rule Configuration
@@ -196,7 +201,7 @@ No authorization required
 Assign vault accounts to a legal entity
 
 Assigns one or more vault accounts to a specific legal entity registration. Explicitly mapped vault accounts take precedence over the workspace default legal entity.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -267,6 +272,86 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | Vault accounts assigned successfully |  * X-Request-ID -  <br>  |
 **404** | Legal entity registration not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_counterparty_group**
+> CounterpartyGroup create_counterparty_group(create_counterparty_group_request, idempotency_key=idempotency_key)
+
+Create a counterparty group
+
+Creates a new counterparty group.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.models.counterparty_group import CounterpartyGroup
+from fireblocks.models.create_counterparty_group_request import CreateCounterpartyGroupRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_counterparty_group_request = fireblocks.CreateCounterpartyGroupRequest() # CreateCounterpartyGroupRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Create a counterparty group
+        api_response = fireblocks.compliance.create_counterparty_group(create_counterparty_group_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->create_counterparty_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->create_counterparty_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_counterparty_group_request** | [**CreateCounterpartyGroupRequest**](CreateCounterpartyGroupRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**CounterpartyGroup**](CounterpartyGroup.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Counterparty group created successfully |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -342,6 +427,80 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | BYORK configuration deactivated. |  * X-Request-ID -  <br>  |
 **400** | BYORK Light not enabled for tenant. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_counterparty_group**
+> delete_counterparty_group(group_id)
+
+Delete a counterparty group
+
+Permanently deletes a counterparty group.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    group_id = 'group_id_example' # str | The unique identifier of the counterparty group
+
+    try:
+        # Delete a counterparty group
+        fireblocks.compliance.delete_counterparty_group(group_id).result()
+    except Exception as e:
+        print("Exception when calling ComplianceApi->delete_counterparty_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The unique identifier of the counterparty group | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Counterparty group deleted successfully |  * X-Request-ID -  <br>  |
+**404** | Counterparty group not found |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -777,13 +936,91 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_counterparty_group**
+> CounterpartyGroup get_counterparty_group(group_id)
+
+Get a counterparty group
+
+Returns the details of a specific counterparty group.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin, Viewer.
+
+
+### Example
+
+
+```python
+from fireblocks.models.counterparty_group import CounterpartyGroup
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    group_id = 'group_id_example' # str | The unique identifier of the counterparty group
+
+    try:
+        # Get a counterparty group
+        api_response = fireblocks.compliance.get_counterparty_group(group_id).result()
+        print("The response of ComplianceApi->get_counterparty_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->get_counterparty_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The unique identifier of the counterparty group | 
+
+### Return type
+
+[**CounterpartyGroup**](CounterpartyGroup.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A counterparty group object |  * X-Request-ID -  <br>  |
+**404** | Counterparty group not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_legal_entity**
 > LegalEntityRegistration get_legal_entity(legal_entity_id)
 
 Get a legal entity
 
 Returns details of a specific legal entity registration, including GLEIF data when available.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -1221,6 +1458,85 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_counterparty_groups**
+> CounterpartyGroupsPaginatedResponse list_counterparty_groups(page_cursor=page_cursor, page_size=page_size)
+
+List counterparty groups
+
+Returns a paginated list of counterparty groups.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin, Viewer.
+
+
+### Example
+
+
+```python
+from fireblocks.models.counterparty_groups_paginated_response import CounterpartyGroupsPaginatedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    page_cursor = 'page_cursor_example' # str | Cursor of the required page (optional)
+    page_size = 50 # int | Maximum number of items in the page (optional) (default to 50)
+
+    try:
+        # List counterparty groups
+        api_response = fireblocks.compliance.list_counterparty_groups(page_cursor=page_cursor, page_size=page_size).result()
+        print("The response of ComplianceApi->list_counterparty_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->list_counterparty_groups: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_cursor** | **str**| Cursor of the required page | [optional] 
+ **page_size** | **int**| Maximum number of items in the page | [optional] [default to 50]
+
+### Return type
+
+[**CounterpartyGroupsPaginatedResponse**](CounterpartyGroupsPaginatedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A paginated list of counterparty groups |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_legal_entities**
 > ListLegalEntitiesResponse list_legal_entities(vault_account_id=vault_account_id, page_cursor=page_cursor, page_size=page_size)
 
@@ -1228,7 +1544,7 @@ List legal entities (Paginated)
 
 Returns legal entity registrations for the workspace with cursor-based pagination.
 If query parameter vaultAccountId is used it returns the legal entity registration associated with a specific vault account. If no explicit mapping exists for the vault, the workspace default legal entity is returned. Returns an empty response if neither a vault mapping nor a default legal entity is configured.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -1307,7 +1623,7 @@ No authorization required
 List vault accounts for a legal entity (Paginated)
 
 Returns vault account IDs explicitly assigned to a specific legal entity registration, with cursor-based pagination.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -1531,7 +1847,7 @@ No authorization required
 Register a new legal entity
 
 Registers a new legal entity for the workspace using its LEI (Legal Entity Identifier) code. The LEI is validated against the GLEIF registry. Each workspace can register multiple legal entities.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -2140,13 +2456,96 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_counterparty_group**
+> CounterpartyGroup update_counterparty_group(group_id, update_counterparty_group_request, idempotency_key=idempotency_key)
+
+Update a counterparty group
+
+Updates an existing counterparty group.
+
+**Endpoint Permissions:** Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.models.counterparty_group import CounterpartyGroup
+from fireblocks.models.update_counterparty_group_request import UpdateCounterpartyGroupRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    group_id = 'group_id_example' # str | The unique identifier of the counterparty group
+    update_counterparty_group_request = fireblocks.UpdateCounterpartyGroupRequest() # UpdateCounterpartyGroupRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Update a counterparty group
+        api_response = fireblocks.compliance.update_counterparty_group(group_id, update_counterparty_group_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->update_counterparty_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->update_counterparty_group: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group_id** | **str**| The unique identifier of the counterparty group | 
+ **update_counterparty_group_request** | [**UpdateCounterpartyGroupRequest**](UpdateCounterpartyGroupRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**CounterpartyGroup**](CounterpartyGroup.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Counterparty group updated successfully |  * X-Request-ID -  <br>  |
+**404** | Counterparty group not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_legal_entity**
 > LegalEntityRegistration update_legal_entity(legal_entity_id, update_legal_entity_request, idempotency_key=idempotency_key)
 
 Update legal entity
 
 Updates the status of a legal entity registration. Setting isDefault to true marks the registration as the workspace default, which is applied to vault accounts that have no explicit legal entity mapping.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

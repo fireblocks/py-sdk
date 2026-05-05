@@ -22,7 +22,7 @@ Method | HTTP request | Description
 Add cosigner
 
 Add a new cosigner. The cosigner will be pending pairing until the API key is manually paired
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -101,7 +101,7 @@ Get API key
 
 Get an API key by ID.
 **Note:** These endpoints are currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -179,7 +179,7 @@ Get all API keys
 
 Get all cosigner paired API keys (paginated).
 **Note:** These endpoints are currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -261,7 +261,7 @@ Get cosigner
 
 Get a cosigner by ID.
 **Note:** These endpoints are currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -337,7 +337,7 @@ Get all cosigners
 
 Get all workspace cosigners (paginated).
 **Note:** These endpoints are currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -416,7 +416,7 @@ No authorization required
 Get request status
 
 Get the status of an asynchronous request
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -495,7 +495,7 @@ No authorization required
 Pair API key
 
 Pair an API key to a cosigner
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -578,7 +578,7 @@ Rename cosigner
 
 Rename a cosigner by ID.
 **Note:** These endpoints are currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -656,7 +656,7 @@ No authorization required
 Unpair API key
 
 Unpair an API key from a cosigner
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 
@@ -733,7 +733,7 @@ No authorization required
 Update API key callback handler
 
 Update the callback handler of an API key
-</br>Endpoint Permission: Admin and Non-Signing Admin.
+Endpoint Permission: Admin and Non-Signing Admin.
 
 ### Example
 

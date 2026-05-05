@@ -27,10 +27,12 @@ class CreateMultipleVaultAccountsJobStatus(BaseModel):
     """
     CreateMultipleVaultAccountsJobStatus
     """ # noqa: E501
-    status: StrictStr
+    status: StrictStr = Field(description="Status of the job. Possible values - Success, In Progress, Failed, Pending Approval, Cancelled")
     vault_accounts: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, description="Mapping between VaultAccountId to a mapping of asset to address", alias="vaultAccounts")
+    tag_ids: Optional[List[StrictStr]] = Field(default=None, description="List of tag IDs successfully attached to each of the created vault accounts", alias="tagIds")
     error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
-    __properties: ClassVar[List[str]] = ["status", "vaultAccounts", "errorMessage"]
+    approval_request_id: Optional[StrictStr] = Field(default=None, description="Approval request ID if the job has protected tags to attach to the vault accounts", alias="approvalRequestId")
+    __properties: ClassVar[List[str]] = ["status", "vaultAccounts", "tagIds", "errorMessage", "approvalRequestId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +87,9 @@ class CreateMultipleVaultAccountsJobStatus(BaseModel):
         _obj = cls.model_validate({
             "status": obj.get("status"),
             "vaultAccounts": obj.get("vaultAccounts"),
-            "errorMessage": obj.get("errorMessage")
+            "tagIds": obj.get("tagIds"),
+            "errorMessage": obj.get("errorMessage"),
+            "approvalRequestId": obj.get("approvalRequestId")
         })
         return _obj
 

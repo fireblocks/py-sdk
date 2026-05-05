@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **general_fees** | [**List[Fee]**](Fee.md) |  | [optional] 
 **side** | [**Side**](Side.md) |  | 
 **expires_at** | **str** | The expiration time of the quote in ISO format. | 
+**order_creation_requirements** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order for this quote. The schema mirrors the structure of CreateOrderRequest.participantsIdentification json schema, so clients can validate their order payload before sending.  | [optional] 
 
 ## Example
 

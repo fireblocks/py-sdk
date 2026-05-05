@@ -178,7 +178,7 @@ No authorization required
 Return deployed contract's ABI
 
 Return deployed contract's ABI by blockchain native asset id and contract address.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
 ### Example
 
@@ -258,7 +258,7 @@ Get transaction receipt
 
 Retrieve the transaction receipt by blockchain native asset ID and transaction hash
 > **Note** > This functionality is exclusively available for EVM (Ethereum Virtual Machine) compatible chains. 
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
 ### Example
 

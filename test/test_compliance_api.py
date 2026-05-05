@@ -48,10 +48,24 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_create_counterparty_group(self) -> None:
+        """Test case for create_counterparty_group
+
+        Create a counterparty group
+        """
+        pass
+
     def test_deactivate_byork_config(self) -> None:
         """Test case for deactivate_byork_config
 
         Deactivate BYORK Light
+        """
+        pass
+
+    def test_delete_counterparty_group(self) -> None:
+        """Test case for delete_counterparty_group
+
+        Delete a counterparty group
         """
         pass
 
@@ -97,6 +111,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_counterparty_group(self) -> None:
+        """Test case for get_counterparty_group
+
+        Get a counterparty group
+        """
+        pass
+
     def test_get_legal_entity(self) -> None:
         """Test case for get_legal_entity
 
@@ -136,6 +157,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for list_address_registry_vault_opt_outs
 
         List vault-level address registry opt-outs (paginated)
+        """
+        pass
+
+    def test_list_counterparty_groups(self) -> None:
+        """Test case for list_counterparty_groups
+
+        List counterparty groups
         """
         pass
 
@@ -220,6 +248,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for update_aml_screening_configuration
 
         Update AML Configuration
+        """
+        pass
+
+    def test_update_counterparty_group(self) -> None:
+        """Test case for update_counterparty_group
+
+        Update a counterparty group
         """
         pass
 

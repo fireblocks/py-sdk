@@ -220,7 +220,7 @@ class ExchangeAccountsApi:
     ) -> Future[ApiResponse[ConvertAssetsResponse]]:
         """Convert exchange account funds
 
-        Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions. Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers). </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions. Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers). Endpoint Permission: Admin, Non-Signing Admin.
 
         :param exchange_account_id: The ID of the exchange account. Please make sure the exchange supports conversions. To find the ID of your exchange account, use GET/exchange_accounts. (required)
         :type exchange_account_id: str
@@ -374,7 +374,7 @@ class ExchangeAccountsApi:
     ) -> Future[ApiResponse[ExchangeAccount]]:
         """Get a specific exchange account
 
-        Returns an exchange account by ID. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Returns an exchange account by ID. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param exchange_account_id: The ID of the exchange account to return (required)
         :type exchange_account_id: str
@@ -504,7 +504,7 @@ class ExchangeAccountsApi:
     ) -> Future[ApiResponse[ExchangeAsset]]:
         """Get an asset for an exchange account
 
-        Returns an asset for an exchange account. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Returns an asset for an exchange account. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param exchange_account_id: The ID of the exchange account to return (required)
         :type exchange_account_id: str
@@ -763,7 +763,7 @@ class ExchangeAccountsApi:
     ) -> Future[ApiResponse[GetPagedExchangeAccountsResponse]]:
         """List connected exchange accounts
 
-        Returns a list of the connected exchange accounts in your workspace. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Returns a list of the connected exchange accounts in your workspace. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param limit: number of exchanges per page (required)
         :type limit: float
@@ -911,7 +911,7 @@ class ExchangeAccountsApi:
     ) -> Future[ApiResponse[InternalTransferResponse]]:
         """Internal transfer for exchange accounts
 
-        Transfers funds between trading accounts under the same exchange account. Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers). </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Transfers funds between trading accounts under the same exchange account. Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers). Endpoint Permission: Admin, Non-Signing Admin.
 
         :param exchange_account_id: The ID of the exchange account to return (required)
         :type exchange_account_id: str

@@ -5,9 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **str** |  | 
+**status** | **str** | Status of the job. Possible values - Success, In Progress, Failed, Pending Approval, Cancelled | 
 **vault_accounts** | **Dict[str, Dict[str, str]]** | Mapping between VaultAccountId to a mapping of asset to address | [optional] 
+**tag_ids** | **List[str]** | List of tag IDs successfully attached to each of the created vault accounts | [optional] 
 **error_message** | **str** |  | [optional] 
+**approval_request_id** | **str** | Approval request ID if the job has protected tags to attach to the vault accounts | [optional] 
 
 ## Example
 

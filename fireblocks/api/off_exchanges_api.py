@@ -68,7 +68,7 @@ class OffExchangesApi:
     ) -> Future[ApiResponse[CreateTransactionResponse]]:
         """Add Collateral
 
-        Add collateral and create deposit request. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Add collateral and create deposit request. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -215,7 +215,7 @@ class OffExchangesApi:
     ) -> Future[ApiResponse[ExchangeAccount]]:
         """Find a specific collateral exchange account
 
-        Returns a collateral account by mainExchangeAccountId. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns a collateral account by mainExchangeAccountId. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param main_exchange_account_id: The id of the main exchange account for which the requested collateral account is associated with (required)
         :type main_exchange_account_id: str
@@ -344,7 +344,7 @@ class OffExchangesApi:
     ) -> Future[ApiResponse[ExchangeSettlementTransactionsResponse]]:
         """Get Settlements Transactions
 
-        Get settlements transactions from exchange. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Get settlements transactions from exchange. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param main_exchange_account_id: (required)
         :type main_exchange_account_id: str
@@ -476,7 +476,7 @@ class OffExchangesApi:
     ) -> Future[ApiResponse[CreateTransactionResponse]]:
         """Remove Collateral
 
-        Remove collateral, create withdraw request. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Remove collateral, create withdraw request. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -624,7 +624,7 @@ class OffExchangesApi:
     ) -> Future[ApiResponse[SettlementResponse]]:
         """Create Settlement for a Trader
 
-        Create settlement for a trader. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Create settlement for a trader. Learn more about Fireblocks Off Exchange in the following [guide](https://developers.fireblocks.com/docs/off-exchange). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str

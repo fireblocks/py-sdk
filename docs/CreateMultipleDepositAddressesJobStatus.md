@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **str** |  | 
+**status** | **str** | Status of the job. Possible values - Success, In Progress, Failed | 
 **addresses** | [**List[NewAddress]**](NewAddress.md) |  | [optional] 
 **error_message** | **str** |  | [optional] 
 

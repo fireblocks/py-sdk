@@ -62,6 +62,13 @@ class TestTRLinkApi(unittest.TestCase):
         """
         pass
 
+    def test_create_tr_link_manual_decision(self) -> None:
+        """Test case for create_tr_link_manual_decision
+
+        Manual decision for missing TRM
+        """
+        pass
+
     def test_create_tr_link_trm(self) -> None:
         """Test case for create_tr_link_trm
 
@@ -146,6 +153,13 @@ class TestTRLinkApi(unittest.TestCase):
         """
         pass
 
+    def test_get_tr_link_trm_required_actions(self) -> None:
+        """Test case for get_tr_link_trm_required_actions
+
+        Get required actions for a TRM
+        """
+        pass
+
     def test_get_tr_link_vasp_by_id(self) -> None:
         """Test case for get_tr_link_vasp_by_id
 
@@ -171,6 +185,13 @@ class TestTRLinkApi(unittest.TestCase):
         """Test case for redirect_tr_link_trm
 
         Redirect Travel Rule Message
+        """
+        pass
+
+    def test_resolve_action_tr_link_trm(self) -> None:
+        """Test case for resolve_action_tr_link_trm
+
+        Resolve action for a TRM
         """
         pass
 

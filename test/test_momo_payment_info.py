@@ -44,6 +44,7 @@ class TestMomoPaymentInfo(unittest.TestCase):
                 country = 'GH',
                 mobile_phone_number = '+233241234567',
                 provider = 'MTN',
+                email = 'john.doe@example.com',
                 beneficiary_document_id = 'GHA-123456789-0',
                 beneficiary_relationship = 'Family'
             )
@@ -56,6 +57,7 @@ class TestMomoPaymentInfo(unittest.TestCase):
                 country = 'GH',
                 mobile_phone_number = '+233241234567',
                 provider = 'MTN',
+                email = 'john.doe@example.com',
         )
         """
 

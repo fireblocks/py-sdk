@@ -39,6 +39,8 @@ class ChainDescriptor(str, Enum):
     MANTRA = 'MANTRA'
     MATIC = 'MATIC'
     OSMO = 'OSMO'
+    POL = 'POL'
+    POL_TEST = 'POL_TEST'
     SOL = 'SOL'
     SOL_TEST = 'SOL_TEST'
     STETH_ETH = 'STETH_ETH'

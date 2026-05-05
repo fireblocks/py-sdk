@@ -50,6 +50,7 @@ Name | Type | Description | Notes
 **branch_number** | **str** | The branch number of the bank | [optional] 
 **mobile_phone_number** | **str** | The mobile phone number associated with the mobile money account | 
 **provider** | **str** | The mobile money service provider | 
+**email** | **str** | The email address of the account holder | 
 **beneficiary_document_id** | **str** | The document ID of the beneficiary | [optional] 
 **beneficiary_relationship** | **str** | The relationship between sender and beneficiary | [optional] 
 **recipient_handle_type** | **str** | The type of recipient handler being used | 

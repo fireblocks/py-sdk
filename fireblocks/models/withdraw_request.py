@@ -32,7 +32,7 @@ class WithdrawRequest(BaseModel):
     fee: Optional[StrictStr] = Field(default=None, description="Represents the fee for a transaction, which can be specified as a percentage value. Only one of fee/feeLevel is required.")
     fee_level: Optional[FeeLevel] = Field(default=None, alias="feeLevel")
     tx_note: Optional[StrictStr] = Field(default=None, description="The note to associate with the transactions.", alias="txNote")
-    amount: Optional[StrictStr] = Field(default=None, description="Amount of tokens to withdraw. Only supported for Cosmos chains to enable partial withdrawals. For other chains, this field is ignored and the entire available amount will be withdrawn. If not provided, the entire available amount will be withdrawn.")
+    amount: Optional[StrictStr] = Field(default=None, description="Amount of tokens to withdraw. Only supported for ETH compounding validators (EIP-7251/Pectra) and Cosmos chains to enable partial withdrawals. For ETH compounding validators, the remaining balance must be at least 32 ETH after withdrawal. For other chains, this field is ignored and the entire available amount will be withdrawn. If not provided, the entire available amount will be withdrawn.")
     __properties: ClassVar[List[str]] = ["id", "fee", "feeLevel", "txNote", "amount"]
 
     model_config = ConfigDict(

@@ -43,7 +43,8 @@ class QuotePropertiesDetails(BaseModel):
     general_fees: Optional[List[Fee]] = Field(default=None, alias="generalFees")
     side: Side
     expires_at: StrictStr = Field(description="The expiration time of the quote in ISO format.", alias="expiresAt")
-    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "baseAssetId", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "executionSteps", "generalFees", "side", "expiresAt"]
+    order_creation_requirements: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order for this quote. The schema mirrors the structure of CreateOrderRequest.participantsIdentification json schema, so clients can validate their order payload before sending. ", alias="orderCreationRequirements")
+    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "baseAssetId", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "executionSteps", "generalFees", "side", "expiresAt", "orderCreationRequirements"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -124,7 +125,8 @@ class QuotePropertiesDetails(BaseModel):
             "executionSteps": [QuoteExecutionStep.from_dict(_item) for _item in obj["executionSteps"]] if obj.get("executionSteps") is not None else None,
             "generalFees": [Fee.from_dict(_item) for _item in obj["generalFees"]] if obj.get("generalFees") is not None else None,
             "side": obj.get("side"),
-            "expiresAt": obj.get("expiresAt")
+            "expiresAt": obj.get("expiresAt"),
+            "orderCreationRequirements": obj.get("orderCreationRequirements")
         })
         return _obj
 

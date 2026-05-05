@@ -68,7 +68,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[ExternalWalletAsset]]:
         """Add an asset to an external wallet.
 
-        Adds an asset to an existing external wallet. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Adds an asset to an existing external wallet. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -230,7 +230,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[UnmanagedWallet]]:
         """Create an external wallet
 
-        Creates a new external wallet with the requested name.  External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties.  - You cannot see the balance of the external wallet. - You cannot initiate transactions from an external wallet as the source via Fireblocks. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Creates a new external wallet with the requested name.  External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties.  - You cannot see the balance of the external wallet. - You cannot initiate transactions from an external wallet as the source via Fireblocks. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -377,7 +377,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[None]]:
         """Delete an external wallet
 
-        Deletes an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Deletes an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet to delete (required)
         :type wallet_id: str
@@ -506,7 +506,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[UnmanagedWallet]]:
         """Find an external wallet
 
-        Returns an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param wallet_id: The ID of the wallet to return (required)
         :type wallet_id: str
@@ -636,7 +636,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[ExternalWalletAsset]]:
         """Get an asset from an external wallet
 
-        Returns an external wallet by wallet ID and asset ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns an external wallet by wallet ID and asset ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -771,7 +771,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[List[UnmanagedWallet]]]:
         """List external wallets
 
-        Gets a list of external wallets under the workspace.  External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties.  - You cannot see the balance of the external wallet. - You cannot initiate transactions from an external wallet as the source via Fireblocks. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Gets a list of external wallets under the workspace.  External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties.  - You cannot see the balance of the external wallet. - You cannot initiate transactions from an external wallet as the source via Fireblocks. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -894,7 +894,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[None]]:
         """Delete an asset from an external wallet
 
-        Deletes an external wallet asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Deletes an external wallet asset by ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The ID of the wallet (required)
         :type wallet_id: str
@@ -1032,7 +1032,7 @@ class ExternalWalletsApi:
     ) -> Future[ApiResponse[None]]:
         """Set an AML customer reference ID for an external wallet
 
-        Sets an AML/KYT customer reference ID for the specific external wallet. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Sets an AML/KYT customer reference ID for the specific external wallet. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param wallet_id: The wallet ID (required)
         :type wallet_id: str

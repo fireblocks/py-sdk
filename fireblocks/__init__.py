@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "17.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -295,6 +295,12 @@ from fireblocks.models.channel_dvn_config_with_confirmations_send_config import 
 from fireblocks.models.chaps_address import ChapsAddress
 from fireblocks.models.chaps_destination import ChapsDestination
 from fireblocks.models.chaps_payment_info import ChapsPaymentInfo
+from fireblocks.models.circle_gateway_wallet_info_response import (
+    CircleGatewayWalletInfoResponse,
+)
+from fireblocks.models.circle_gateway_wallet_status_response import (
+    CircleGatewayWalletStatusResponse,
+)
 from fireblocks.models.claim_rewards_request import ClaimRewardsRequest
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
@@ -419,6 +425,10 @@ from fireblocks.models.convert_assets_request import ConvertAssetsRequest
 from fireblocks.models.convert_assets_response import ConvertAssetsResponse
 from fireblocks.models.cosigner import Cosigner
 from fireblocks.models.cosigners_paginated_response import CosignersPaginatedResponse
+from fireblocks.models.counterparty_group import CounterpartyGroup
+from fireblocks.models.counterparty_groups_paginated_response import (
+    CounterpartyGroupsPaginatedResponse,
+)
 from fireblocks.models.create_api_user import CreateAPIUser
 from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
@@ -432,6 +442,9 @@ from fireblocks.models.create_console_user import CreateConsoleUser
 from fireblocks.models.create_contract_request import CreateContractRequest
 from fireblocks.models.create_conversion_config_operation_request import (
     CreateConversionConfigOperationRequest,
+)
+from fireblocks.models.create_counterparty_group_request import (
+    CreateCounterpartyGroupRequest,
 )
 from fireblocks.models.create_disbursement_config_operation_request import (
     CreateDisbursementConfigOperationRequest,
@@ -1333,6 +1346,7 @@ from fireblocks.models.tr_link_asset_format import TRLinkAssetFormat
 from fireblocks.models.tr_link_assets_list_paged_response import (
     TRLinkAssetsListPagedResponse,
 )
+from fireblocks.models.tr_link_beneficiary_pii import TRLinkBeneficiaryPii
 from fireblocks.models.tr_link_cancel_trm_request import TRLinkCancelTrmRequest
 from fireblocks.models.tr_link_connect_integration_request import (
     TRLinkConnectIntegrationRequest,
@@ -1356,12 +1370,26 @@ from fireblocks.models.tr_link_fiat_value import TRLinkFiatValue
 from fireblocks.models.tr_link_geographic_address_request import (
     TRLinkGeographicAddressRequest,
 )
+from fireblocks.models.tr_link_get_required_actions_response import (
+    TRLinkGetRequiredActionsResponse,
+)
 from fireblocks.models.tr_link_get_supported_asset_response import (
     TRLinkGetSupportedAssetResponse,
 )
 from fireblocks.models.tr_link_ivms import TRLinkIvms
 from fireblocks.models.tr_link_ivms_response import TRLinkIvmsResponse
 from fireblocks.models.tr_link_jwk_public_key import TRLinkJwkPublicKey
+from fireblocks.models.tr_link_manual_decision_action import TRLinkManualDecisionAction
+from fireblocks.models.tr_link_manual_decision_destination_detail import (
+    TRLinkManualDecisionDestinationDetail,
+)
+from fireblocks.models.tr_link_manual_decision_request import (
+    TRLinkManualDecisionRequest,
+)
+from fireblocks.models.tr_link_manual_decision_response import (
+    TRLinkManualDecisionResponse,
+)
+from fireblocks.models.tr_link_manual_decision_source import TRLinkManualDecisionSource
 from fireblocks.models.tr_link_missing_trm_action import TRLinkMissingTrmAction
 from fireblocks.models.tr_link_missing_trm_action2 import TRLinkMissingTrmAction2
 from fireblocks.models.tr_link_missing_trm_action_enum import TRLinkMissingTrmActionEnum
@@ -1401,6 +1429,11 @@ from fireblocks.models.tr_link_registration_status import TRLinkRegistrationStat
 from fireblocks.models.tr_link_registration_status_enum import (
     TRLinkRegistrationStatusEnum,
 )
+from fireblocks.models.tr_link_required_action import TRLinkRequiredAction
+from fireblocks.models.tr_link_required_action_data import TRLinkRequiredActionData
+from fireblocks.models.tr_link_required_field import TRLinkRequiredField
+from fireblocks.models.tr_link_resolve_action_data import TRLinkResolveActionData
+from fireblocks.models.tr_link_resolve_action_request import TRLinkResolveActionRequest
 from fireblocks.models.tr_link_result import TRLinkResult
 from fireblocks.models.tr_link_result_full_payload import TRLinkResultFullPayload
 from fireblocks.models.tr_link_rule_base import TRLinkRuleBase
@@ -1655,6 +1688,9 @@ from fireblocks.models.update_callback_handler_request import (
 )
 from fireblocks.models.update_callback_handler_response import (
     UpdateCallbackHandlerResponse,
+)
+from fireblocks.models.update_counterparty_group_request import (
+    UpdateCounterpartyGroupRequest,
 )
 from fireblocks.models.update_draft_request import UpdateDraftRequest
 from fireblocks.models.update_legal_entity_request import UpdateLegalEntityRequest

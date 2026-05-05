@@ -196,7 +196,7 @@ class PolicyEditorV2BetaApi:
     ) -> Future[ApiResponse[DraftReviewAndValidationResponse]]:
         """Get the active draft by policy type
 
-        Returns the active draft and its validation for a specific policy type. </br> **Note:** These endpoints are currently in beta and might be subject to changes. 
+        Returns the active draft and its validation for a specific policy type.  **Note:** These endpoints are currently in beta and might be subject to changes. 
 
         :param policy_type: The policy type(s) to retrieve. Can be a single type or multiple types by repeating the parameter (e.g., ?policyType=TRANSFER&policyType=MINT). (required)
         :type policy_type: PolicyType
@@ -327,7 +327,7 @@ class PolicyEditorV2BetaApi:
     ) -> Future[ApiResponse[PublishResult]]:
         """Send publish request for a certain draft id
 
-        Send publish request of certain draft id and returns the response. </br> **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Policy Editor, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
+        Send publish request of certain draft id and returns the response.  **Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Policy Editor, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com. 
 
         :param publish_draft_request: (required)
         :type publish_draft_request: PublishDraftRequest
@@ -475,7 +475,7 @@ class PolicyEditorV2BetaApi:
     ) -> Future[ApiResponse[DraftReviewAndValidationResponse]]:
         """Update the draft with a new set of rules by policy types
 
-        Update the draft and return its validation for specific policy types. </br> **Note:** These endpoints are currently in beta and might be subject to changes. 
+        Update the draft and return its validation for specific policy types.  **Note:** These endpoints are currently in beta and might be subject to changes. 
 
         :param update_draft_request: (required)
         :type update_draft_request: UpdateDraftRequest

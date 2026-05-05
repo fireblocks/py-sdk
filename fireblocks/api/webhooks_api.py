@@ -219,7 +219,7 @@ class WebhooksApi:
     ) -> Future[ApiResponse[ResendWebhooksResponse]]:
         """Resend failed webhooks
 
-        Resends all failed webhook notifications.  Learn more about Fireblocks Webhooks in the following [guide](https://developers.fireblocks.com/docs/configure-webhooks).  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Resends all failed webhook notifications.  Learn more about Fireblocks Webhooks in the following [guide](https://developers.fireblocks.com/docs/configure-webhooks).  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str

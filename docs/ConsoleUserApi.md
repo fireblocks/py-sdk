@@ -16,7 +16,7 @@ Create console user
 Create console users in your workspace
 - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
 Learn more about Fireblocks Users management in the following [guide](https://developers.fireblocks.com/docs/manage-users).
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -95,7 +95,7 @@ Get console users
 
 Get console users for your workspace.
 - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

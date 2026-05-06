@@ -41,7 +41,9 @@ class TestCreateMultipleVaultAccountsJobStatus(unittest.TestCase):
             return CreateMultipleVaultAccountsJobStatus(
                 status = 'Success',
                 vault_accounts = {"0":{"BTC_TEST":"bcrt1qs0zzqytuw49w2jqkmfhzgdh2lylzde2uw4zncz","ETH_TEST":"0x460395Edb2338023c6f137259C6e20B6C37dDE95"}},
-                error_message = 'Asset not supported'
+                tag_ids = ["a1b2c3d4-e5f6-7890-abcd-ef1234567890","b2c3d4e5-f6a7-8901-bcde-f12345678901"],
+                error_message = 'Asset not supported',
+                approval_request_id = '12345'
             )
         else:
             return CreateMultipleVaultAccountsJobStatus(

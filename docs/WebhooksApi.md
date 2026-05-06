@@ -101,7 +101,7 @@ Resends all failed webhook notifications.
 
 Learn more about Fireblocks Webhooks in the following [guide](https://developers.fireblocks.com/docs/configure-webhooks).
 
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 

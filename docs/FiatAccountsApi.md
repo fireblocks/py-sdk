@@ -95,7 +95,7 @@ No authorization required
 Find a specific fiat account
 
 Returns a fiat account by ID.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -170,7 +170,7 @@ No authorization required
 List fiat accounts
 
 Returns all fiat accounts.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

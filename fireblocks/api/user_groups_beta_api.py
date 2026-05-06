@@ -66,7 +66,7 @@ class UserGroupsBetaApi:
     ) -> Future[ApiResponse[CreateUserGroupResponse]]:
         """Create user group
 
-        Create a new user group. Users with the Viewer role cannot be added to groups. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Create a new user group. Users with the Viewer role cannot be added to groups. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param user_group_create_request: (required)
         :type user_group_create_request: UserGroupCreateRequest
@@ -213,7 +213,7 @@ class UserGroupsBetaApi:
     ) -> Future[ApiResponse[None]]:
         """Delete user group
 
-        Delete a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+        Delete a user group by ID.  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
 
         :param group_id: The ID of the user group (required)
         :type group_id: str
@@ -342,7 +342,7 @@ class UserGroupsBetaApi:
     ) -> Future[ApiResponse[UserGroupResponse]]:
         """Get user group
 
-        Get a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+        Get a user group by ID.  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
 
         :param group_id: The ID of the user group (required)
         :type group_id: str
@@ -470,7 +470,7 @@ class UserGroupsBetaApi:
     ) -> Future[ApiResponse[List[UserGroupResponse]]]:
         """List user groups
 
-        Get all user groups in your workspace  - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Get all user groups in your workspace  - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -594,7 +594,7 @@ class UserGroupsBetaApi:
     ) -> Future[ApiResponse[UserGroupCreateResponse]]:
         """Update user group
 
-        Update a user group by ID.</br>  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
+        Update a user group by ID.  **Note**: - This endpoint is now in Beta, disabled for general availability at this time. - Please note that this endpoint is available only for API keys with Admin permissions. 
 
         :param group_id: The ID of the user group (required)
         :type group_id: str

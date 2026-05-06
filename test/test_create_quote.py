@@ -47,7 +47,8 @@ class TestCreateQuote(unittest.TestCase):
                 base_amount = '100.00',
                 slippage_bps = 1,
                 settlement = {"type":"DVP","sourceAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_3f7e1d9b2c5a8e4f"},"destinationAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_7b2e5d8f1c4a9e3b"}},
-                side = 'BUY'
+                side = 'BUY',
+                participants_identification = {"originator":{"externalReferenceId":"user_123456","entityType":"INDIVIDUAL","participantRelationshipType":"FirstParty","fullName":{"firstName":"John","lastName":"Smith"},"dateOfBirth":"1985-03-15","email":"john.smith@example.com","phone":"+14155551234","postalAddress":{"streetName":"Main Street","buildingNumber":"123","postalCode":"10001","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}},"beneficiary":{"externalReferenceId":"user_789012","entityType":"INDIVIDUAL","participantRelationshipType":"ThirdParty","fullName":{"firstName":"Alice","lastName":"Johnson"},"dateOfBirth":"1990-07-22","email":"alice.johnson@example.com","phone":"+14155551234","postalAddress":{"streetName":"Broadway","buildingNumber":"456","postalCode":"10002","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}}}
             )
         else:
             return CreateQuote(

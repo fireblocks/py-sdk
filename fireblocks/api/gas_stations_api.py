@@ -63,7 +63,7 @@ class GasStationsApi:
     ) -> Future[ApiResponse[GasStationPropertiesResponse]]:
         """Get gas station settings by asset
 
-        Returns gas station settings and balances for a requested asset. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns gas station settings and balances for a requested asset. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param asset_id: The ID of the asset (required)
         :type asset_id: str
@@ -191,7 +191,7 @@ class GasStationsApi:
     ) -> Future[ApiResponse[GasStationPropertiesResponse]]:
         """Get gas station settings
 
-        Returns gas station settings and ETH balance. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns gas station settings and ETH balance. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -314,7 +314,7 @@ class GasStationsApi:
     ) -> Future[ApiResponse[EditGasStationConfigurationResponse]]:
         """Edit gas station settings
 
-        Configures gas station settings for ETH. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Configures gas station settings for ETH. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param gas_station_configuration: (required)
         :type gas_station_configuration: GasStationConfiguration
@@ -463,7 +463,7 @@ class GasStationsApi:
     ) -> Future[ApiResponse[EditGasStationConfigurationResponse]]:
         """Edit gas station settings for an asset
 
-        Configures gas station settings for a requested asset. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Configures gas station settings for a requested asset. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param asset_id: The ID of the asset (required)
         :type asset_id: str

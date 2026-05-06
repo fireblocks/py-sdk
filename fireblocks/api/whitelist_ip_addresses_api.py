@@ -60,7 +60,7 @@ class WhitelistIpAddressesApi:
     ) -> Future[ApiResponse[GetWhitelistIpAddressesResponse]]:
         """Get whitelisted ip addresses for an API Key
 
-        Get a list of the whitelisted IP addresses for a specific API Key - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Get a list of the whitelisted IP addresses for a specific API Key - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param user_id: The ID of the api user (required)
         :type user_id: str

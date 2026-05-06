@@ -73,7 +73,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[AddCosignerResponse]]:
         """Add cosigner
 
-        Add a new cosigner. The cosigner will be pending pairing until the API key is manually paired </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Add a new cosigner. The cosigner will be pending pairing until the API key is manually paired Endpoint Permission: Admin and Non-Signing Admin.
 
         :param add_cosigner_request: (required)
         :type add_cosigner_request: AddCosignerRequest
@@ -221,7 +221,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[ApiKey]]:
         """Get API key
 
-        Get an API key by ID. **Note:** These endpoints are currently in beta and might be subject to changes. </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Get an API key by ID. **Note:** These endpoints are currently in beta and might be subject to changes. Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -360,7 +360,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[ApiKeysPaginatedResponse]]:
         """Get all API keys
 
-        Get all cosigner paired API keys (paginated). **Note:** These endpoints are currently in beta and might be subject to changes. </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Get all cosigner paired API keys (paginated). **Note:** These endpoints are currently in beta and might be subject to changes. Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -513,7 +513,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[Cosigner]]:
         """Get cosigner
 
-        Get a cosigner by ID. **Note:** These endpoints are currently in beta and might be subject to changes. </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Get a cosigner by ID. **Note:** These endpoints are currently in beta and might be subject to changes. Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -644,7 +644,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[CosignersPaginatedResponse]]:
         """Get all cosigners
 
-        Get all workspace cosigners (paginated). **Note:** These endpoints are currently in beta and might be subject to changes. </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Get all workspace cosigners (paginated). **Note:** These endpoints are currently in beta and might be subject to changes. Endpoint Permission: Admin and Non-Signing Admin.
 
         :param order: ASC / DESC ordering (default DESC)
         :type order: str
@@ -792,7 +792,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[Status]]:
         """Get request status
 
-        Get the status of an asynchronous request </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Get the status of an asynchronous request Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -938,7 +938,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[PairApiKeyResponse]]:
         """Pair API key
 
-        Pair an API key to a cosigner </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Pair an API key to a cosigner Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -1100,7 +1100,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[Cosigner]]:
         """Rename cosigner
 
-        Rename a cosigner by ID. **Note:** These endpoints are currently in beta and might be subject to changes. </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Rename a cosigner by ID. **Note:** These endpoints are currently in beta and might be subject to changes. Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -1249,7 +1249,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[ApiKey]]:
         """Unpair API key
 
-        Unpair an API key from a cosigner </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Unpair an API key from a cosigner Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str
@@ -1387,7 +1387,7 @@ class CosignersBetaApi:
     ) -> Future[ApiResponse[UpdateCallbackHandlerResponse]]:
         """Update API key callback handler
 
-        Update the callback handler of an API key </br>Endpoint Permission: Admin and Non-Signing Admin.
+        Update the callback handler of an API key Endpoint Permission: Admin and Non-Signing Admin.
 
         :param cosigner_id: The unique identifier of the cosigner (required)
         :type cosigner_id: str

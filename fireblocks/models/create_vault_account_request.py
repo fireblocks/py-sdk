@@ -31,8 +31,8 @@ class CreateVaultAccountRequest(BaseModel):
     hidden_on_ui: Optional[StrictBool] = Field(default=None, description="Optional - if true, the created account and all related transactions will not be shown on Fireblocks console", alias="hiddenOnUI")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="Optional - Sets a customer reference ID", alias="customerRefId")
     auto_fuel: Optional[StrictBool] = Field(default=None, description="Optional - Sets the autoFuel property of the vault account", alias="autoFuel")
-    vault_type: Optional[StrictStr] = Field(default='MPC', description="Type of vault account. The default type will be set to MPC.<br/>  If the workspace does not support the selected type, it will return an error.", alias="vaultType")
-    auto_assign: Optional[StrictBool] = Field(default=False, description="Applicable only when the vault account type is KEY_LINK. For MPC, this parameter will be ignored.<br/> If set to true and there are available keys, random keys will be assigned to the newly created vault account.<br/> If set to true and there are no available keys to be assigned, it will return an error.<br/> If set to false, the vault account will be created without any keys.", alias="autoAssign")
+    vault_type: Optional[StrictStr] = Field(default='MPC', description="Type of vault account. The default type will be set to MPC. If the workspace does not support the selected type, it will return an error. ", alias="vaultType")
+    auto_assign: Optional[StrictBool] = Field(default=False, description="Applicable only when the vault account type is KEY_LINK. For MPC, this parameter will be ignored. If set to true and there are available keys, random keys will be assigned to the newly created vault account. If set to true and there are no available keys to be assigned, it will return an error. If set to false, the vault account will be created without any keys. ", alias="autoAssign")
     __properties: ClassVar[List[str]] = ["name", "hiddenOnUI", "customerRefId", "autoFuel", "vaultType", "autoAssign"]
 
     @field_validator('vault_type')

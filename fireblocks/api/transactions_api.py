@@ -75,7 +75,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[CancelTransactionResponse]]:
         """Cancel a transaction
 
-        Cancels a transaction by Fireblocks Transaction ID.  Can be used only for transactions that did not get to the BROADCASTING state. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Cancels a transaction by Fireblocks Transaction ID.  Can be used only for transactions that did not get to the BROADCASTING state. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param tx_id: The ID of the transaction to cancel (required)
         :type tx_id: str
@@ -374,7 +374,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[DropTransactionResponse]]:
         """Drop ETH (EVM) transaction by ID
 
-        Drops a stuck ETH (EVM) transaction and creates a replacement transaction with 0 amount. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Drops a stuck ETH (EVM) transaction and creates a replacement transaction with 0 amount. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param tx_id: The ID of the transaction (required)
         :type tx_id: str
@@ -534,7 +534,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[EstimatedNetworkFeeResponse]]:
         """Estimate the required fee for an asset
 
-        Gets the estimated required fee for an asset. Fireblocks fetches, calculates and caches the result every 30 seconds. Customers should query this API while taking the caching interval into consideration. Notes: - The `networkFee` parameter is the `gasPrice` with a given delta added, multiplied by the gasLimit plus the delta. - The estimation provided depends on the asset type.     - For UTXO-based assets, the response contains the `feePerByte` parameter     - For ETH-based and all EVM based assets, the response will contain `gasPrice` parameter. This is calculated by adding the `baseFee` to the `actualPriority` based on the latest 12 blocks. The response for ETH-based  contains the `baseFee`, `gasPrice`, and `priorityFee` parameters.     - For ADA-based assets, the response will contain the parameter `networkFee` and `feePerByte` parameters.     - For XRP and XLM, the response will contain the transaction fee.     - For other assets, the response will contain the `networkFee` parameter.  Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Gets the estimated required fee for an asset. Fireblocks fetches, calculates and caches the result every 30 seconds. Customers should query this API while taking the caching interval into consideration. Notes: - The `networkFee` parameter is the `gasPrice` with a given delta added, multiplied by the gasLimit plus the delta. - The estimation provided depends on the asset type.     - For UTXO-based assets, the response contains the `feePerByte` parameter     - For ETH-based and all EVM based assets, the response will contain `gasPrice` parameter. This is calculated by adding the `baseFee` to the `actualPriority` based on the latest 12 blocks. The response for ETH-based  contains the `baseFee`, `gasPrice`, and `priorityFee` parameters.     - For ADA-based assets, the response will contain the parameter `networkFee` and `feePerByte` parameters.     - For XRP and XLM, the response will contain the transaction fee.     - For other assets, the response will contain the `networkFee` parameter.  Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param asset_id: The asset for which to estimate the fee (required)
         :type asset_id: str
@@ -666,7 +666,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[EstimatedTransactionFeeResponse]]:
         """Estimate transaction fee
 
-        Estimates the transaction fee for a specific transaction request. This endpoint simulates a transaction which means that the system will expect to have the requested asset and balance in the specified wallet.   **Note**: Supports all Fireblocks assets except ZCash (ZEC). Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). </br>Endpoint Permission: Admin, Signer, Approver, Editor.
+        Estimates the transaction fee for a specific transaction request. This endpoint simulates a transaction which means that the system will expect to have the requested asset and balance in the specified wallet. **Note**: Supports all Fireblocks assets except ZCash (ZEC). The PROGRAM_CALL operation is not supported by this endpoint — fee estimation for Solana program calls is not available. Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). Endpoint Permission: Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -815,7 +815,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[FreezeTransactionResponse]]:
         """Freeze a transaction
 
-        Freezes a transaction by ID.  Usually used for AML integrations when the incoming funds should be quarantined. For account based assets - the entire amount of the transaction is frozen  For UTXO based assets - all UTXOs of the specified transaction are frozen </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Freezes a transaction by ID.  Usually used for AML integrations when the incoming funds should be quarantined. For account based assets - the entire amount of the transaction is frozen  For UTXO based assets - all UTXOs of the specified transaction are frozen Endpoint Permission: Admin, Non-Signing Admin.
 
         :param tx_id: The ID of the transaction to freeze (required)
         :type tx_id: str
@@ -955,7 +955,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[TransactionResponse]]:
         """Get a specific transaction by Fireblocks transaction ID
 
-        Get a specific transaction data by Fireblocks Transaction ID </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get a specific transaction data by Fireblocks Transaction ID Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param tx_id: The ID of the transaction to return (required)
         :type tx_id: str
@@ -1085,7 +1085,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[TransactionResponse]]:
         """Get a specific transaction by external transaction ID
 
-        Returns transaction by external transaction ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns transaction by external transaction ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param external_tx_id: The external ID of the transaction to return (required)
         :type external_tx_id: str
@@ -1481,7 +1481,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[SetConfirmationsThresholdResponse]]:
         """Set confirmation threshold by transaction hash
 
-        Overrides the required number of confirmations for transaction completion by transaction hash. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Overrides the required number of confirmations for transaction completion by transaction hash. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param tx_hash: The TxHash (required)
         :type tx_hash: str
@@ -1637,7 +1637,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[SetConfirmationsThresholdResponse]]:
         """Set confirmation threshold by Fireblocks Transaction ID
 
-        Overrides the required number of confirmations for transaction completion Fireblocks Transaction ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Overrides the required number of confirmations for transaction completion Fireblocks Transaction ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param tx_id: The ID of the transaction (required)
         :type tx_id: str
@@ -1793,7 +1793,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[UnfreezeTransactionResponse]]:
         """Unfreeze a transaction
 
-        Unfreezes a transaction by Fireblocks Transaction ID and makes the transaction available again. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Unfreezes a transaction by Fireblocks Transaction ID and makes the transaction available again. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param tx_id: The ID of the transaction to unfreeze (required)
         :type tx_id: str
@@ -1934,7 +1934,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[ValidateAddressResponse]]:
         """Validate destination address
 
-        Checks if an address is valid and active (for XRP, DOT, XLM, and EOS). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Checks if an address is valid and active (for XRP, DOT, XLM, and EOS). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param asset_id: The asset of the address (required)
         :type asset_id: str

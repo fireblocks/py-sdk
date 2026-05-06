@@ -102,7 +102,7 @@ Convert exchange account funds
 
 Convert exchange account funds from the source asset to the destination asset. Coinbase (USD to USDC, USDC to USD) and Bitso (MXN to USD) are supported conversions.
 Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers).
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -182,7 +182,7 @@ No authorization required
 Get a specific exchange account
 
 Returns an exchange account by ID.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -257,7 +257,7 @@ No authorization required
 Get an asset for an exchange account
 
 Returns an asset for an exchange account.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -403,7 +403,7 @@ No authorization required
 
 List connected exchange accounts
 
-Returns a list of the connected exchange accounts in your workspace. </br>Endpoint Permission: Admin, Non-Signing Admin.
+Returns a list of the connected exchange accounts in your workspace. Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -483,7 +483,7 @@ Internal transfer for exchange accounts
 
 Transfers funds between trading accounts under the same exchange account.
 Learn more about Fireblocks Exchange Connectivity in the following [guide](https://developers.fireblocks.com/docs/connect-to-exchanges-and-fiat-providers).
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 

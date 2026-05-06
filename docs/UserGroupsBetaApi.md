@@ -17,7 +17,7 @@ Method | HTTP request | Description
 Create user group
 
 Create a new user group. Users with the Viewer role cannot be added to groups.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -94,7 +94,7 @@ No authorization required
 
 Delete user group
 
-Delete a user group by ID.</br>
+Delete a user group by ID.
 
 **Note**:
 - This endpoint is now in Beta, disabled for general availability at this time.
@@ -169,7 +169,7 @@ No authorization required
 
 Get user group
 
-Get a user group by ID.</br>
+Get a user group by ID.
 
 **Note**:
 - This endpoint is now in Beta, disabled for general availability at this time.
@@ -251,7 +251,7 @@ List user groups
 Get all user groups in your workspace
 
 - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
-</br>Endpoint Permission: Admin, Non-Signing Admin.
+Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
 
@@ -321,7 +321,7 @@ No authorization required
 
 Update user group
 
-Update a user group by ID.</br>
+Update a user group by ID.
 
 **Note**:
 - This endpoint is now in Beta, disabled for general availability at this time.

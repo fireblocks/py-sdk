@@ -28,7 +28,7 @@ class CreateMultipleDepositAddressesJobStatus(BaseModel):
     """
     CreateMultipleDepositAddressesJobStatus
     """ # noqa: E501
-    status: StrictStr
+    status: StrictStr = Field(description="Status of the job. Possible values - Success, In Progress, Failed")
     addresses: Optional[List[NewAddress]] = None
     error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
     __properties: ClassVar[List[str]] = ["status", "addresses", "errorMessage"]

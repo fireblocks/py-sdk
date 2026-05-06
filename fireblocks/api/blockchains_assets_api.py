@@ -73,7 +73,7 @@ class BlockchainsAssetsApi:
     ) -> Future[ApiResponse[Asset]]:
         """Get an asset
 
-        Returns an asset by ID or legacyID.</br>  **Note**:    - We will continue displaying and supporting the legacy ID (API ID). Since not all Fireblocks services fully support the new Assets UUID, please use only the legacy ID until further notice. 
+        Returns an asset by ID or legacyID.  **Note**:    - We will continue displaying and supporting the legacy ID (API ID). Since not all Fireblocks services fully support the new Assets UUID, please use only the legacy ID until further notice. 
 
         :param id: The ID or legacyId of the asset (required)
         :type id: str
@@ -669,7 +669,7 @@ class BlockchainsAssetsApi:
     ) -> Future[ApiResponse[ListBlockchainsResponse]]:
         """List blockchains
 
-        Returns all blockchains supported by Fireblocks.</br> 
+        Returns all blockchains supported by Fireblocks. 
 
         :param protocol: Blockchain protocol
         :type protocol: str

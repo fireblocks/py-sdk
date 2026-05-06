@@ -52,7 +52,8 @@ class TestQuotePropertiesDetails(unittest.TestCase):
                     null
                     ],
                 side = 'BUY',
-                expires_at = ''
+                expires_at = '',
+                order_creation_requirements = ''
             )
         else:
             return QuotePropertiesDetails(

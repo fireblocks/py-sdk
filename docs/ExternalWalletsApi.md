@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Add an asset to an external wallet.
 
-Adds an asset to an existing external wallet. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Adds an asset to an existing external wallet. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -106,7 +106,7 @@ External Wallet is a whitelisted address of a wallet that belongs to your users/
 
 - You cannot see the balance of the external wallet.
 - You cannot initiate transactions from an external wallet as the source via Fireblocks.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -183,7 +183,7 @@ No authorization required
 
 Delete an external wallet
 
-Deletes an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Deletes an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -253,7 +253,7 @@ No authorization required
 
 Find an external wallet
 
-Returns an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Returns an external wallet by ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -327,7 +327,7 @@ No authorization required
 
 Get an asset from an external wallet
 
-Returns an external wallet by wallet ID and asset ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Returns an external wallet by wallet ID and asset ID. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -409,7 +409,7 @@ External Wallet is a whitelisted address of a wallet that belongs to your users/
 
 - You cannot see the balance of the external wallet.
 - You cannot initiate transactions from an external wallet as the source via Fireblocks.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -479,7 +479,7 @@ No authorization required
 
 Delete an asset from an external wallet
 
-Deletes an external wallet asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Deletes an external wallet asset by ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 
@@ -551,7 +551,7 @@ No authorization required
 
 Set an AML customer reference ID for an external wallet
 
-Sets an AML/KYT customer reference ID for the specific external wallet. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Sets an AML/KYT customer reference ID for the specific external wallet. External Wallet is a whitelisted address of a wallet that belongs to your users/counterparties. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **slippage_bps** | **float** | Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100% | [optional] [default to 50]
 **settlement** | [**DVPSettlement**](DVPSettlement.md) |  | [optional] 
 **side** | [**Side**](Side.md) |  | 
+**participants_identification** | [**ParticipantsIdentification**](ParticipantsIdentification.md) |  | [optional] 
 
 ## Example
 

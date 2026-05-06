@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**connect_tr_link_integration**](TRLinkApi.md#connect_tr_link_integration) | **PUT** /screening/trlink/customers/integration/{customerIntegrationId} | Connect customer integration
 [**create_tr_link_customer**](TRLinkApi.md#create_tr_link_customer) | **POST** /screening/trlink/customers | Create customer
 [**create_tr_link_integration**](TRLinkApi.md#create_tr_link_integration) | **POST** /screening/trlink/customers/integration | Create customer integration
+[**create_tr_link_manual_decision**](TRLinkApi.md#create_tr_link_manual_decision) | **POST** /screening/trlink/customers/integration/{customerIntegrationId}/transactions/{txId}/manual_decision | Manual decision for missing TRM
 [**create_tr_link_trm**](TRLinkApi.md#create_tr_link_trm) | **POST** /screening/trlink/customers/integration/{customerIntegrationId}/trm | Create Travel Rule Message
 [**delete_tr_link_customer**](TRLinkApi.md#delete_tr_link_customer) | **DELETE** /screening/trlink/customers/{customerId} | Delete customer
 [**disconnect_tr_link_integration**](TRLinkApi.md#disconnect_tr_link_integration) | **DELETE** /screening/trlink/customers/integration/{customerIntegrationId} | Disconnect customer integration
@@ -21,10 +22,12 @@ Method | HTTP request | Description
 [**get_tr_link_policy**](TRLinkApi.md#get_tr_link_policy) | **GET** /screening/trlink/policy | Get TRLink policy
 [**get_tr_link_supported_asset**](TRLinkApi.md#get_tr_link_supported_asset) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets/{assetId} | Get supported asset by ID
 [**get_tr_link_trm_by_id**](TRLinkApi.md#get_tr_link_trm_by_id) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId} | Get TRM by ID
+[**get_tr_link_trm_required_actions**](TRLinkApi.md#get_tr_link_trm_required_actions) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/required_actions | Get required actions for a TRM
 [**get_tr_link_vasp_by_id**](TRLinkApi.md#get_tr_link_vasp_by_id) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/vasps/{vaspId} | Get VASP by ID
 [**list_tr_link_supported_assets**](TRLinkApi.md#list_tr_link_supported_assets) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets | List supported assets
 [**list_tr_link_vasps**](TRLinkApi.md#list_tr_link_vasps) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/vasps | List VASPs
 [**redirect_tr_link_trm**](TRLinkApi.md#redirect_tr_link_trm) | **POST** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/redirect | Redirect Travel Rule Message
+[**resolve_action_tr_link_trm**](TRLinkApi.md#resolve_action_tr_link_trm) | **POST** /screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/resolve_action | Resolve action for a TRM
 [**set_tr_link_destination_travel_rule_message_id**](TRLinkApi.md#set_tr_link_destination_travel_rule_message_id) | **POST** /screening/trlink/transaction/{txId}/destination/travel_rule_message_id | Set destination travel rule message ID
 [**set_tr_link_transaction_travel_rule_message_id**](TRLinkApi.md#set_tr_link_transaction_travel_rule_message_id) | **POST** /screening/trlink/transaction/{txId}/travel_rule_message_id | Set transaction travel rule message ID
 [**test_tr_link_integration_connection**](TRLinkApi.md#test_tr_link_integration_connection) | **POST** /screening/trlink/customers/integration/{customerIntegrationId}/test_connection | Test connection
@@ -420,6 +423,87 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Customer integration created successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_tr_link_manual_decision**
+> TRLinkManualDecisionResponse create_tr_link_manual_decision(customer_integration_id, tx_id, tr_link_manual_decision_request, idempotency_key=idempotency_key)
+
+Manual decision for missing TRM
+
+Accept or reject destinations stuck in NoTRM step without waiting for TRP webhook or policy timeout.
+
+### Example
+
+
+```python
+from fireblocks.models.tr_link_manual_decision_request import TRLinkManualDecisionRequest
+from fireblocks.models.tr_link_manual_decision_response import TRLinkManualDecisionResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    customer_integration_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6' # str | Customer integration unique identifier
+    tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e' # str | Fireblocks transaction unique identifier
+    tr_link_manual_decision_request = fireblocks.TRLinkManualDecisionRequest() # TRLinkManualDecisionRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Manual decision for missing TRM
+        api_response = fireblocks.tr_link.create_tr_link_manual_decision(customer_integration_id, tx_id, tr_link_manual_decision_request, idempotency_key=idempotency_key).result()
+        print("The response of TRLinkApi->create_tr_link_manual_decision:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TRLinkApi->create_tr_link_manual_decision: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_integration_id** | **str**| Customer integration unique identifier | 
+ **tx_id** | **str**| Fireblocks transaction unique identifier | 
+ **tr_link_manual_decision_request** | [**TRLinkManualDecisionRequest**](TRLinkManualDecisionRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**TRLinkManualDecisionResponse**](TRLinkManualDecisionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Decision applied successfully |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1303,6 +1387,82 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_tr_link_trm_required_actions**
+> TRLinkGetRequiredActionsResponse get_tr_link_trm_required_actions(customer_integration_id, trm_id)
+
+Get required actions for a TRM
+
+Retrieves the list of required actions (e.g., PII fields) needed to process the Travel Rule Message.
+
+### Example
+
+
+```python
+from fireblocks.models.tr_link_get_required_actions_response import TRLinkGetRequiredActionsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    customer_integration_id = 'customer_integration_id_example' # str | Customer integration unique identifier
+    trm_id = 'trm_id_example' # str | Travel Rule Message unique identifier
+
+    try:
+        # Get required actions for a TRM
+        api_response = fireblocks.tr_link.get_tr_link_trm_required_actions(customer_integration_id, trm_id).result()
+        print("The response of TRLinkApi->get_tr_link_trm_required_actions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TRLinkApi->get_tr_link_trm_required_actions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_integration_id** | **str**| Customer integration unique identifier | 
+ **trm_id** | **str**| Travel Rule Message unique identifier | 
+
+### Return type
+
+[**TRLinkGetRequiredActionsResponse**](TRLinkGetRequiredActionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Required actions retrieved successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_tr_link_vasp_by_id**
 > TRLinkVaspDto get_tr_link_vasp_by_id(customer_integration_id, vasp_id)
 
@@ -1612,6 +1772,87 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Transaction redirect request accepted |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **resolve_action_tr_link_trm**
+> TRLinkTrmInfoResponse resolve_action_tr_link_trm(customer_integration_id, trm_id, tr_link_resolve_action_request, idempotency_key=idempotency_key)
+
+Resolve action for a TRM
+
+Submits required data (e.g., beneficiary PII) to resolve a pending Travel Rule Message action.
+
+### Example
+
+
+```python
+from fireblocks.models.tr_link_resolve_action_request import TRLinkResolveActionRequest
+from fireblocks.models.tr_link_trm_info_response import TRLinkTrmInfoResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    customer_integration_id = 'customer_integration_id_example' # str | Customer integration unique identifier
+    trm_id = 'trm_id_example' # str | Travel Rule Message unique identifier
+    tr_link_resolve_action_request = fireblocks.TRLinkResolveActionRequest() # TRLinkResolveActionRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Resolve action for a TRM
+        api_response = fireblocks.tr_link.resolve_action_tr_link_trm(customer_integration_id, trm_id, tr_link_resolve_action_request, idempotency_key=idempotency_key).result()
+        print("The response of TRLinkApi->resolve_action_tr_link_trm:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TRLinkApi->resolve_action_tr_link_trm: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_integration_id** | **str**| Customer integration unique identifier | 
+ **trm_id** | **str**| Travel Rule Message unique identifier | 
+ **tr_link_resolve_action_request** | [**TRLinkResolveActionRequest**](TRLinkResolveActionRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**TRLinkTrmInfoResponse**](TRLinkTrmInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Action resolved successfully |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -380,7 +380,7 @@ class ContractInteractionsApi:
     ) -> Future[ApiResponse[ContractAbiResponseDto]]:
         """Return deployed contract's ABI
 
-        Return deployed contract's ABI by blockchain native asset id and contract address. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
+        Return deployed contract's ABI by blockchain native asset id and contract address. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
         :param contract_address: The contract's onchain address (required)
         :type contract_address: str
@@ -523,7 +523,7 @@ class ContractInteractionsApi:
     ) -> Future[ApiResponse[TransactionReceiptResponse]]:
         """Get transaction receipt
 
-        Retrieve the transaction receipt by blockchain native asset ID and transaction hash > **Note** > This functionality is exclusively available for EVM (Ethereum Virtual Machine) compatible chains.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
+        Retrieve the transaction receipt by blockchain native asset ID and transaction hash > **Note** > This functionality is exclusively available for EVM (Ethereum Virtual Machine) compatible chains.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, and Viewer.
 
         :param base_asset_id: The blockchain base assetId (required)
         :type base_asset_id: str

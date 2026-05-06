@@ -34,9 +34,10 @@ class MomoPaymentInfo(BaseModel):
     country: StrictStr = Field(description="The country for the transfer (ISO 3166-1 alpha-2 code)")
     mobile_phone_number: StrictStr = Field(description="The mobile phone number associated with the mobile money account", alias="mobilePhoneNumber")
     provider: StrictStr = Field(description="The mobile money service provider")
+    email: StrictStr = Field(description="The email address of the account holder")
     beneficiary_document_id: Optional[StrictStr] = Field(default=None, description="The document ID of the beneficiary", alias="beneficiaryDocumentId")
     beneficiary_relationship: Optional[StrictStr] = Field(default=None, description="The relationship between sender and beneficiary", alias="beneficiaryRelationship")
-    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "country", "mobilePhoneNumber", "provider", "beneficiaryDocumentId", "beneficiaryRelationship"]
+    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "country", "mobilePhoneNumber", "provider", "email", "beneficiaryDocumentId", "beneficiaryRelationship"]
 
     @field_validator('rail')
     def rail_validate_enum(cls, value):
@@ -55,8 +56,8 @@ class MomoPaymentInfo(BaseModel):
     @field_validator('provider')
     def provider_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['M_PESA', 'AIRTEL', 'MTN', 'TIGO']):
-            raise ValueError("must be one of enum values ('M_PESA', 'AIRTEL', 'MTN', 'TIGO')")
+        if value not in set(['M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE']):
+            raise ValueError("must be one of enum values ('M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE')")
         return value
 
     model_config = ConfigDict(
@@ -117,6 +118,7 @@ class MomoPaymentInfo(BaseModel):
             "country": obj.get("country"),
             "mobilePhoneNumber": obj.get("mobilePhoneNumber"),
             "provider": obj.get("provider"),
+            "email": obj.get("email"),
             "beneficiaryDocumentId": obj.get("beneficiaryDocumentId"),
             "beneficiaryRelationship": obj.get("beneficiaryRelationship")
         })

@@ -21,6 +21,8 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
+from fireblocks.models.circle_gateway_wallet_info_response import CircleGatewayWalletInfoResponse
+from fireblocks.models.circle_gateway_wallet_status_response import CircleGatewayWalletStatusResponse
 from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
 from fireblocks.models.create_assets_request import CreateAssetsRequest
@@ -91,7 +93,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateVaultAssetResponse]]:
         """Activate a wallet in a vault account
 
-        Initiates activation for a wallet in a vault account.  Activation is required for tokens that need an on-chain transaction for creation (XLM tokens, SOL tokens etc). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Initiates activation for a wallet in a vault account.  Activation is required for tokens that need an on-chain transaction for creation (XLM tokens, SOL tokens etc). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account to return, or 'default' for the default vault account (required)
         :type vault_account_id: str
@@ -207,6 +209,142 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/vault/accounts/{vaultAccountId}/{assetId}/activate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def activate_circle_gateway_wallet_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[CircleGatewayWalletStatusResponse]]:
+        """Activate a Circle Gateway wallet
+
+        Activates the Circle Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="activate_circle_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._activate_circle_gateway_wallet_beta_serialize(
+            vault_account_id=vault_account_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CircleGatewayWalletStatusResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _activate_circle_gateway_wallet_beta_serialize(
+        self,
+        vault_account_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway/activate',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -393,7 +531,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateAddressResponse]]:
         """Convert a segwit address to legacy format
 
-        Converts an existing segwit address to the legacy format. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Converts an existing segwit address to the legacy format. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -839,7 +977,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAccount]]:
         """Create a new vault account
 
-        Creates a new vault account with the requested name. **Note: ** Vault account names should consist of ASCII characters only. Learn more about Fireblocks Vault Accounts in the following [guide](https://developers.fireblocks.com/reference/create-vault-account). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Creates a new vault account with the requested name. **Note: ** Vault account names should consist of ASCII characters only. Learn more about Fireblocks Vault Accounts in the following [guide](https://developers.fireblocks.com/reference/create-vault-account). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param create_vault_account_request: (required)
         :type create_vault_account_request: CreateVaultAccountRequest
@@ -990,7 +1128,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateVaultAssetResponse]]:
         """Create a new vault wallet
 
-        Creates a wallet for a specific asset in a vault account. Learn more about Fireblocks Vault Wallets in the following [guide](https://developers.fireblocks.com/reference/create-vault-wallet). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Creates a wallet for a specific asset in a vault account. Learn more about Fireblocks Vault Wallets in the following [guide](https://developers.fireblocks.com/reference/create-vault-wallet). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account to return, or 'default' for the default vault account (required)
         :type vault_account_id: str
@@ -1162,7 +1300,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateAddressResponse]]:
         """Create new asset deposit address
 
-        Creates a new deposit address for an asset of a vault account. Should be used for UTXO or Tag/Memo based assets ONLY.  Requests with account based assets will fail.  </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Creates a new deposit address for an asset of a vault account. Should be used for UTXO or Tag/Memo based assets ONLY.  Requests with account based assets will fail.  Endpoint Permission: Admin, Non-Signing Admin.
 
         :param vault_account_id: The ID of the vault account to return (required)
         :type vault_account_id: str
@@ -1305,6 +1443,142 @@ class VaultsApi:
 
 
     @validate_call
+    def deactivate_circle_gateway_wallet_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[CircleGatewayWalletStatusResponse]]:
+        """Deactivate a Circle Gateway wallet
+
+        Deactivates the Circle Gateway wallet associated with the given vault account.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="deactivate_circle_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._deactivate_circle_gateway_wallet_beta_serialize(
+            vault_account_id=vault_account_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CircleGatewayWalletStatusResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _deactivate_circle_gateway_wallet_beta_serialize(
+        self,
+        vault_account_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway/deactivate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_asset_wallets(
         self,
         total_amount_larger_than: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="When specified, only vault wallets with total balance greater than this amount are returned.")] = None,
@@ -1328,7 +1602,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[PaginatedAssetWalletResponse]]:
         """Get vault wallets (Paginated)
 
-        Get all vault wallets of the vault accounts in your workspace.  A vault wallet is an asset in a vault account.   This method allows fast traversal of all account balances. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get all vault wallets of the vault accounts in your workspace.  A vault wallet is an asset in a vault account.   This method allows fast traversal of all account balances. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param total_amount_larger_than: When specified, only vault wallets with total balance greater than this amount are returned.
         :type total_amount_larger_than: float
@@ -1463,6 +1737,135 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/asset_wallets',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_circle_gateway_wallet_info_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[CircleGatewayWalletInfoResponse]]:
+        """Get Circle Gateway wallet info
+
+        Returns the Circle Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_circle_gateway_wallet_info_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._get_circle_gateway_wallet_info_beta_serialize(
+            vault_account_id=vault_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CircleGatewayWalletInfoResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_circle_gateway_wallet_info_beta_serialize(
+        self,
+        vault_account_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2048,7 +2451,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAccountsPagedResponse]]:
         """Get vault accounts (Paginated)
 
-        Gets all vault accounts in your workspace. This endpoint returns a limited amount of results with a quick response time. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Gets all vault accounts in your workspace. This endpoint returns a limited amount of results with a quick response time. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param name_prefix:
         :type name_prefix: str
@@ -2262,7 +2665,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[PublicKeyInformation]]:
         """Get the public key for a derivation path
 
-        Gets the public key information based on derivation path and signing algorithm. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Gets the public key information based on derivation path and signing algorithm. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param derivation_path: (required)
         :type derivation_path: str
@@ -2414,7 +2817,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[PublicKeyInformation]]:
         """Get an asset's public key
 
-        Get the public key information for a specific asset in a vault account. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Get the public key information for a specific asset in a vault account. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param vault_account_id: (required)
         :type vault_account_id: str
@@ -2571,7 +2974,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[List[UnspentInputsResponse]]]:
         """Get UTXO unspent inputs information
 
-        Returns unspent inputs information of an UTXO asset in a vault account.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns unspent inputs information of an UTXO asset in a vault account.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -2707,7 +3110,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAccount]]:
         """Get a vault account by ID
 
-        Get a vault account by its unique ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get a vault account by its unique ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -2837,7 +3240,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAsset]]:
         """Get the asset balance for a vault account
 
-        Returns a specific vault wallet balance information for a specific asset.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor,   Viewer.
+        Returns a specific vault wallet balance information for a specific asset.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor,   Viewer.
 
         :param vault_account_id: The ID of the vault account to return (required)
         :type vault_account_id: str
@@ -2977,7 +3380,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[PaginatedAddressResponse]]:
         """Get addresses (Paginated)
 
-        Returns a paginated response of the addresses for a given vault account and asset. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns a paginated response of the addresses for a given vault account and asset. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account to return (required)
         :type vault_account_id: str
@@ -3138,7 +3541,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[List[VaultAsset]]]:
         """Get asset balance for chosen assets
 
-        Gets the assets amount summary for all accounts or filtered accounts.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Gets the assets amount summary for all accounts or filtered accounts.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param account_name_prefix:
         :type account_name_prefix: str
@@ -3276,7 +3679,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAsset]]:
         """Get vault balance by an asset
 
-        Get the total balance of an asset across all the vault accounts.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Get the total balance of an asset across all the vault accounts.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param asset_id: (required)
         :type asset_id: str
@@ -3406,7 +3809,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Hide a vault account in the console
 
-        Hides the requested vault account from the web console view. This operation is required when creating thousands of vault accounts to serve your end-users. Used for preventing the web console to be swamped with too much vault accounts. Learn more in the following [guide](https://developers.fireblocks.com/docs/create-direct-custody-wallets#hiding-vault-accounts). NOTE: Hiding the vault account from the web console will also hide all the related transactions to/from this vault. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Hides the requested vault account from the web console view. This operation is required when creating thousands of vault accounts to serve your end-users. Used for preventing the web console to be swamped with too much vault accounts. Learn more in the following [guide](https://developers.fireblocks.com/docs/create-direct-custody-wallets#hiding-vault-accounts). NOTE: Hiding the vault account from the web console will also hide all the related transactions to/from this vault. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The vault account to hide (required)
         :type vault_account_id: str
@@ -3545,7 +3948,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Assign AML customer reference ID
 
-        Sets an AML/KYT customer reference ID for a specific address. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Sets an AML/KYT customer reference ID for a specific address. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -3715,7 +4118,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Set auto fueling to on or off
 
-        Toggles the auto fueling property of the vault account to enabled or disabled. Vault Accounts with 'autoFuel=true' are monitored and auto fueled by the Fireblocks Gas Station. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Toggles the auto fueling property of the vault account to enabled or disabled. Vault Accounts with 'autoFuel=true' are monitored and auto fueled by the Fireblocks Gas Station. Learn more about the Fireblocks Gas Station in the following [guide](https://developers.fireblocks.com/docs/work-with-gas-station). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The vault account ID (required)
         :type vault_account_id: str
@@ -3871,7 +4274,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Set an AML/KYT ID for a vault account
 
-        Assigns an AML/KYT customer reference ID for the vault account. Learn more about Fireblocks AML management in the following [guide](https://developers.fireblocks.com/docs/define-aml-policies). </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Assigns an AML/KYT customer reference ID for the vault account. Learn more about Fireblocks AML management in the following [guide](https://developers.fireblocks.com/docs/define-aml-policies). Endpoint Permission: Admin, Non-Signing Admin.
 
         :param vault_account_id: The vault account ID (required)
         :type vault_account_id: str
@@ -4026,7 +4429,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Unhide a vault account in the console
 
-        Makes a hidden vault account visible in web console view. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Makes a hidden vault account visible in web console view. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The vault account to unhide (required)
         :type vault_account_id: str
@@ -4163,7 +4566,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[RenameVaultAccountResponse]]:
         """Rename a vault account
 
-        Renames the requested vault account. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Renames the requested vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account to edit (required)
         :type vault_account_id: str
@@ -4321,7 +4724,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultActionStatus]]:
         """Update address description
 
-        Updates the description of an existing address of an asset in a vault account. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Updates the description of an existing address of an asset in a vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -4491,7 +4894,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[VaultAsset]]:
         """Refresh asset balance data
 
-        Updates the balance of a specific asset in a vault account.  This API endpoint is subject to a strict rate limit. Should be used by clients in very specific scenarios.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Updates the balance of a specific asset in a vault account.  This API endpoint is subject to a strict rate limit. Should be used by clients in very specific scenarios.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account to return (required)
         :type vault_account_id: str

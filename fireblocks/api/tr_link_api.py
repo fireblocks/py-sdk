@@ -32,11 +32,15 @@ from fireblocks.models.tr_link_create_integration_request import TRLinkCreateInt
 from fireblocks.models.tr_link_create_trm_request import TRLinkCreateTrmRequest
 from fireblocks.models.tr_link_customer_integration_response import TRLinkCustomerIntegrationResponse
 from fireblocks.models.tr_link_customer_response import TRLinkCustomerResponse
+from fireblocks.models.tr_link_get_required_actions_response import TRLinkGetRequiredActionsResponse
 from fireblocks.models.tr_link_get_supported_asset_response import TRLinkGetSupportedAssetResponse
+from fireblocks.models.tr_link_manual_decision_request import TRLinkManualDecisionRequest
+from fireblocks.models.tr_link_manual_decision_response import TRLinkManualDecisionResponse
 from fireblocks.models.tr_link_partner_response import TRLinkPartnerResponse
 from fireblocks.models.tr_link_policy_response import TRLinkPolicyResponse
 from fireblocks.models.tr_link_public_key_response import TRLinkPublicKeyResponse
 from fireblocks.models.tr_link_redirect_trm_request import TRLinkRedirectTrmRequest
+from fireblocks.models.tr_link_resolve_action_request import TRLinkResolveActionRequest
 from fireblocks.models.tr_link_set_destination_travel_rule_message_id_request import TRLinkSetDestinationTravelRuleMessageIdRequest
 from fireblocks.models.tr_link_set_destination_travel_rule_message_id_response import TRLinkSetDestinationTravelRuleMessageIdResponse
 from fireblocks.models.tr_link_set_transaction_travel_rule_message_id_request import TRLinkSetTransactionTravelRuleMessageIdRequest
@@ -822,6 +826,170 @@ class TRLinkApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/screening/trlink/customers/integration',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_tr_link_manual_decision(
+        self,
+        customer_integration_id: Annotated[StrictStr, Field(description="Customer integration unique identifier")],
+        tx_id: Annotated[StrictStr, Field(description="Fireblocks transaction unique identifier")],
+        tr_link_manual_decision_request: TRLinkManualDecisionRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TRLinkManualDecisionResponse]]:
+        """Manual decision for missing TRM
+
+        Accept or reject destinations stuck in NoTRM step without waiting for TRP webhook or policy timeout.
+
+        :param customer_integration_id: Customer integration unique identifier (required)
+        :type customer_integration_id: str
+        :param tx_id: Fireblocks transaction unique identifier (required)
+        :type tx_id: str
+        :param tr_link_manual_decision_request: (required)
+        :type tr_link_manual_decision_request: TRLinkManualDecisionRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="create_tr_link_manual_decision", param_name="customer_integration_id", param_value=customer_integration_id)
+        validate_not_empty_string(function_name="create_tr_link_manual_decision", param_name="tx_id", param_value=tx_id)
+
+        _param = self._create_tr_link_manual_decision_serialize(
+            customer_integration_id=customer_integration_id,
+            tx_id=tx_id,
+            tr_link_manual_decision_request=tr_link_manual_decision_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TRLinkManualDecisionResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _create_tr_link_manual_decision_serialize(
+        self,
+        customer_integration_id,
+        tx_id,
+        tr_link_manual_decision_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customer_integration_id is not None:
+            _path_params['customerIntegrationId'] = customer_integration_id
+        if tx_id is not None:
+            _path_params['txId'] = tx_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if tr_link_manual_decision_request is not None:
+            _body_params = tr_link_manual_decision_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/transactions/{txId}/manual_decision',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2413,6 +2581,143 @@ class TRLinkApi:
 
 
     @validate_call
+    def get_tr_link_trm_required_actions(
+        self,
+        customer_integration_id: Annotated[StrictStr, Field(description="Customer integration unique identifier")],
+        trm_id: Annotated[StrictStr, Field(description="Travel Rule Message unique identifier")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TRLinkGetRequiredActionsResponse]]:
+        """Get required actions for a TRM
+
+        Retrieves the list of required actions (e.g., PII fields) needed to process the Travel Rule Message.
+
+        :param customer_integration_id: Customer integration unique identifier (required)
+        :type customer_integration_id: str
+        :param trm_id: Travel Rule Message unique identifier (required)
+        :type trm_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_tr_link_trm_required_actions", param_name="customer_integration_id", param_value=customer_integration_id)
+        validate_not_empty_string(function_name="get_tr_link_trm_required_actions", param_name="trm_id", param_value=trm_id)
+
+        _param = self._get_tr_link_trm_required_actions_serialize(
+            customer_integration_id=customer_integration_id,
+            trm_id=trm_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TRLinkGetRequiredActionsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_tr_link_trm_required_actions_serialize(
+        self,
+        customer_integration_id,
+        trm_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customer_integration_id is not None:
+            _path_params['customerIntegrationId'] = customer_integration_id
+        if trm_id is not None:
+            _path_params['trmId'] = trm_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/required_actions',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_tr_link_vasp_by_id(
         self,
         customer_integration_id: Annotated[StrictStr, Field(description="Customer integration unique identifier")],
@@ -2992,6 +3297,170 @@ class TRLinkApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/redirect',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def resolve_action_tr_link_trm(
+        self,
+        customer_integration_id: Annotated[StrictStr, Field(description="Customer integration unique identifier")],
+        trm_id: Annotated[StrictStr, Field(description="Travel Rule Message unique identifier")],
+        tr_link_resolve_action_request: TRLinkResolveActionRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TRLinkTrmInfoResponse]]:
+        """Resolve action for a TRM
+
+        Submits required data (e.g., beneficiary PII) to resolve a pending Travel Rule Message action.
+
+        :param customer_integration_id: Customer integration unique identifier (required)
+        :type customer_integration_id: str
+        :param trm_id: Travel Rule Message unique identifier (required)
+        :type trm_id: str
+        :param tr_link_resolve_action_request: (required)
+        :type tr_link_resolve_action_request: TRLinkResolveActionRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="resolve_action_tr_link_trm", param_name="customer_integration_id", param_value=customer_integration_id)
+        validate_not_empty_string(function_name="resolve_action_tr_link_trm", param_name="trm_id", param_value=trm_id)
+
+        _param = self._resolve_action_tr_link_trm_serialize(
+            customer_integration_id=customer_integration_id,
+            trm_id=trm_id,
+            tr_link_resolve_action_request=tr_link_resolve_action_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TRLinkTrmInfoResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _resolve_action_tr_link_trm_serialize(
+        self,
+        customer_integration_id,
+        trm_id,
+        tr_link_resolve_action_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customer_integration_id is not None:
+            _path_params['customerIntegrationId'] = customer_integration_id
+        if trm_id is not None:
+            _path_params['trmId'] = trm_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if tr_link_resolve_action_request is not None:
+            _body_params = tr_link_resolve_action_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/trm/{trmId}/resolve_action',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

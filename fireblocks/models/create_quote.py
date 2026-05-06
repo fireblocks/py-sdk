@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_quote_scope_inner import CreateQuoteScopeInner
 from fireblocks.models.dvp_settlement import DVPSettlement
+from fireblocks.models.participants_identification import ParticipantsIdentification
 from fireblocks.models.side import Side
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
@@ -41,7 +42,8 @@ class CreateQuote(BaseModel):
     slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=50, description="Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
     settlement: Optional[DVPSettlement] = None
     side: Side
-    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "baseAmount", "slippageBps", "settlement", "side"]
+    participants_identification: Optional[ParticipantsIdentification] = Field(default=None, alias="participantsIdentification")
+    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "baseAmount", "slippageBps", "settlement", "side", "participantsIdentification"]
 
     @field_validator('base_amount')
     def base_amount_validate_regular_expression(cls, value):
@@ -99,6 +101,9 @@ class CreateQuote(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of settlement
         if self.settlement:
             _dict['settlement'] = self.settlement.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of participants_identification
+        if self.participants_identification:
+            _dict['participantsIdentification'] = self.participants_identification.to_dict()
         return _dict
 
     @classmethod
@@ -119,7 +124,8 @@ class CreateQuote(BaseModel):
             "baseAmount": obj.get("baseAmount"),
             "slippageBps": obj.get("slippageBps") if obj.get("slippageBps") is not None else 50,
             "settlement": DVPSettlement.from_dict(obj["settlement"]) if obj.get("settlement") is not None else None,
-            "side": obj.get("side")
+            "side": obj.get("side"),
+            "participantsIdentification": ParticipantsIdentification.from_dict(obj["participantsIdentification"]) if obj.get("participantsIdentification") is not None else None
         })
         return _obj
 

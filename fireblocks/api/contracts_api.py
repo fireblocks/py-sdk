@@ -67,7 +67,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[ExternalWalletAsset]]:
         """Add an asset to a whitelisted contract
 
-        Adds an asset to a whitelisted contract. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Adds an asset to a whitelisted contract. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param contract_id: The ID of the contract (required)
         :type contract_id: str
@@ -229,7 +229,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[UnmanagedWallet]]:
         """Add a contract
 
-        Adds a contract to the workspace whitelist. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Adds a contract to the workspace whitelist. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -376,7 +376,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[None]]:
         """Delete a contract
 
-        Deletes a contract by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Deletes a contract by ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param contract_id: The ID of the contract to delete (required)
         :type contract_id: str
@@ -506,7 +506,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[None]]:
         """Delete an asset from a whitelisted contract
 
-        Deletes a whitelisted contract asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Deletes a whitelisted contract asset by ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param contract_id: The ID of the contract (required)
         :type contract_id: str
@@ -642,7 +642,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[UnmanagedWallet]]:
         """Find a Specific Whitelisted Contract
 
-        Returns a whitelisted contract by Fireblocks Contract ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns a whitelisted contract by Fireblocks Contract ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param contract_id: The ID of the contract to return (required)
         :type contract_id: str
@@ -772,7 +772,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[ExternalWalletAsset]]:
         """Find a whitelisted contract's asset
 
-        Returns a whitelisted contract's asset by ID. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns a whitelisted contract's asset by ID. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param contract_id: The ID of the contract (required)
         :type contract_id: str
@@ -907,7 +907,7 @@ class ContractsApi:
     ) -> Future[ApiResponse[List[UnmanagedWallet]]]:
         """List Whitelisted Contracts
 
-        Gets a list of whitelisted contracts. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Gets a list of whitelisted contracts. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

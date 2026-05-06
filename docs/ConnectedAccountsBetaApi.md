@@ -18,7 +18,8 @@ Method | HTTP request | Description
 
 Disconnect connected account
 
-Disconnect a connected account by ID. </br>
+Disconnect a connected account by ID.
+
 **Note**:
 - This endpoint is currently in beta and might be subject to changes.
 

@@ -63,7 +63,7 @@ class ApiUserApi:
     ) -> Future[ApiResponse[None]]:
         """Create API Key
 
-        Create a new API key in your workspace. Learn more about Fireblocks API Keys management in the following [guide](https://developers.fireblocks.com/docs/manage-api-keys). </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Create a new API key in your workspace. Learn more about Fireblocks API Keys management in the following [guide](https://developers.fireblocks.com/docs/manage-api-keys). Endpoint Permission: Admin, Non-Signing Admin.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
@@ -213,7 +213,7 @@ class ApiUserApi:
     ) -> Future[ApiResponse[GetAPIUsersResponse]]:
         """Get API Keys
 
-        List all API keys in your workspace. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        List all API keys in your workspace. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

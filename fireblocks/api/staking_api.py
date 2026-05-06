@@ -200,7 +200,7 @@ class StakingApi:
     @validate_call
     def claim_rewards(
         self,
-        chain_descriptor: Annotated[StrictStr, Field(description="Protocol identifier for the claim rewards staking operation (e.g., MATIC/SOL).")],
+        chain_descriptor: Annotated[StrictStr, Field(description="Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL).")],
         claim_rewards_request: ClaimRewardsRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
@@ -218,9 +218,9 @@ class StakingApi:
     ) -> Future[ApiResponse[None]]:
         """Claim accrued rewards
 
-        Claims available staking rewards for the specified chain and vault. Supported chains: Solana and Polygon (Matic). Behavior depends on protocol reward distribution.
+        Claims available staking rewards for the specified chain and vault. Supported chains: Solana and Polygon (POL/Matic). Behavior depends on protocol reward distribution.
 
-        :param chain_descriptor: Protocol identifier for the claim rewards staking operation (e.g., MATIC/SOL). (required)
+        :param chain_descriptor: Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL). (required)
         :type chain_descriptor: str
         :param claim_rewards_request: (required)
         :type claim_rewards_request: ClaimRewardsRequest
@@ -379,7 +379,7 @@ class StakingApi:
     ) -> Future[ApiResponse[MergeStakeAccountsResponse]]:
         """Consolidate staking positions (ETH validator consolidation)
 
-        Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same funding vaults account (i.e. same withdrawals credentials).  On chain, this translates into a consolidation transaction, where the  source validator is consolidated into the destination validator.  Supported chains: Ethereum (ETH) only. </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor. **Note:** This endpoint is currently in beta and might be subject to changes.
+        Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same vault account (i.e. same withdrawal credentials).  On chain, this translates into a consolidation transaction, where the  source validator is consolidated into the destination validator.  Supported chains: Ethereum (ETH) only. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor. **Note:** This endpoint is currently in beta and might be subject to changes.
 
         :param chain_descriptor: Protocol identifier for the staking operation (e.g., ETH). (required)
         :type chain_descriptor: str
@@ -522,7 +522,7 @@ class StakingApi:
     @validate_call
     def get_all_delegations(
         self,
-        chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.")] = None,
+        chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA). If omitted, positions across all supported chains are returned.")] = None,
         vault_account_id: Annotated[Optional[StrictStr], Field(description="Filter positions by vault account ID.")] = None,
         _request_timeout: Union[
             None,
@@ -539,9 +539,9 @@ class StakingApi:
     ) -> Future[ApiResponse[List[Delegation]]]:
         """List staking positions
 
-        Returns all staking positions with core details: amounts, rewards, status, chain, and vault. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns all staking positions with core details: amounts, rewards, status, chain, and vault. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
-        :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.
+        :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA). If omitted, positions across all supported chains are returned.
         :type chain_descriptor: ChainDescriptor
         :param vault_account_id: Filter positions by vault account ID.
         :type vault_account_id: str
@@ -814,7 +814,7 @@ class StakingApi:
     ) -> Future[ApiResponse[List[ChainDescriptor]]]:
         """List supported staking chains
 
-        Returns an alphabetical list of blockchains supported for staking by the current workspace context. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns an alphabetical list of blockchains supported for staking by the current workspace context. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1059,7 +1059,7 @@ class StakingApi:
     def get_positions(
         self,
         page_size: Annotated[int, Field(le=100, strict=True, ge=1, description="Number of results per page. When provided, the response returns a paginated object with {data, next}. If omitted, all results are returned as an array.")],
-        chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.")] = None,
+        chain_descriptor: Annotated[Optional[ChainDescriptor], Field(description="Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA). If omitted, positions across all supported chains are returned.")] = None,
         vault_account_id: Annotated[Optional[StrictStr], Field(description="Filter positions by Fireblocks vault account ID. If omitted, positions across all vault accounts are returned.")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor for the next page of results. Use the value from the 'next' field in the previous response.")] = None,
         order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
@@ -1078,11 +1078,11 @@ class StakingApi:
     ) -> Future[ApiResponse[StakingPositionsPaginatedResponse]]:
         """List staking positions (Paginated)
 
-        Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param page_size: Number of results per page. When provided, the response returns a paginated object with {data, next}. If omitted, all results are returned as an array. (required)
         :type page_size: int
-        :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA}). If omitted, positions across all supported chains are returned.
+        :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA). If omitted, positions across all supported chains are returned.
         :type chain_descriptor: ChainDescriptor
         :param vault_account_id: Filter positions by Fireblocks vault account ID. If omitted, positions across all vault accounts are returned.
         :type vault_account_id: str
@@ -1244,7 +1244,7 @@ class StakingApi:
     ) -> Future[ApiResponse[List[Provider]]]:
         """List staking providers
 
-        Returns all available staking providers with metadata such as name, ID, and supported chains. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns all available staking providers with metadata such as name, ID, and supported chains. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1622,7 +1622,7 @@ class StakingApi:
     ) -> Future[ApiResponse[MergeStakeAccountsResponse]]:
         """Merge staking positions
 
-        Merges the source stake account into the destination, consolidating the balance into the destination and closing the source account once complete. Both accounts must be from the same validator provider and of same vault account.. Supported chains: Solana (SOL). </br>Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Merges the source stake account into the destination, consolidating the balance into the destination and closing the source account once complete. Both accounts must be from the same validator provider and of same vault account.. Supported chains: Solana (SOL). Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param chain_descriptor: Protocol identifier for the merge staking operation (e.g., SOL). (required)
         :type chain_descriptor: str
@@ -1944,7 +1944,7 @@ class StakingApi:
     ) -> Future[ApiResponse[StakeResponse]]:
         """Initiate or add to existing stake
 
-        Creates a new staking position and returns its unique ID. For Ethereum compounding validator (EIP-7251): when the 'id' of an existing compounding validator position is provided, adds to that position; otherwise creates a new position. For Ethereum legacy validator: creates a new position regardless of existing delegations. For Cosmos chains and Ethereum liquid staking (Lido): automatically add to existing positions for the same validator provider and same vault account if one exists, otherwise create a new position. For Solana and Polygon: always create new positions regardless of existing delegations.
+        Creates a new staking position and returns its unique ID. For Ethereum compounding validator (EIP-7251): when the 'id' of an existing compounding validator position is provided, adds to that position; otherwise creates a new position. For Ethereum legacy validator: creates a new position regardless of existing delegations. For Cosmos chains and Ethereum liquid staking (Lido): automatically add to existing positions for the same validator provider and same vault account if one exists, otherwise create a new position. For Solana and Polygon (MATIC/POL): always create new positions regardless of existing delegations.
 
         :param chain_descriptor: Protocol identifier for the stake staking operation (e.g., ATOM_COS/AXL/CELESTIA). (required)
         :type chain_descriptor: ChainDescriptor
@@ -2264,7 +2264,7 @@ class StakingApi:
     ) -> Future[ApiResponse[None]]:
         """Withdraw staked funds
 
-        Withdraws funds that have completed the unbonding period. Typically requires the position to be deactivated first (unstake → unbond → withdraw). Amount and timing vary by chain protocol.
+        Withdraws funds that have completed the unbonding period. Typically requires the position to be deactivated first (unstake → unbond → withdraw). Amount and timing vary by chain protocol.  Partial withdrawal is supported for ETH compounding validators (EIP-7251/Pectra) and Cosmos chains via the optional 'amount' field. For ETH compounding validators, the remaining balance must be at least 32 ETH after the withdrawal. For all other chains, omitting 'amount' withdraws the entire available balance.
 
         :param chain_descriptor: Protocol identifier for the withdraw staking operation (e.g., ATOM_COS/ETH/STETH_ETH). (required)
         :type chain_descriptor: ChainDescriptor

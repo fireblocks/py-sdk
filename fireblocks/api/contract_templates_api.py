@@ -628,7 +628,7 @@ class ContractTemplatesApi:
     ) -> Future[ApiResponse[TemplatesPaginatedResponse]]:
         """List all contract templates
 
-        Return minimal representation of all the contract templates available for the workspace. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Return minimal representation of all the contract templates available for the workspace. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param limit: Items per page (max 100)
         :type limit: float

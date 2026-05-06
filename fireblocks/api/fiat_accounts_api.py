@@ -220,7 +220,7 @@ class FiatAccountsApi:
     ) -> Future[ApiResponse[FiatAccount]]:
         """Find a specific fiat account
 
-        Returns a fiat account by ID. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Returns a fiat account by ID. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param account_id: The ID of the fiat account to return (required)
         :type account_id: str
@@ -348,7 +348,7 @@ class FiatAccountsApi:
     ) -> Future[ApiResponse[List[FiatAccount]]]:
         """List fiat accounts
 
-        Returns all fiat accounts. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Returns all fiat accounts. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

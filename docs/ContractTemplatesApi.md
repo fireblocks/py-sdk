@@ -323,7 +323,7 @@ No authorization required
 List all contract templates
 
 Return minimal representation of all the contract templates available for the workspace.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 

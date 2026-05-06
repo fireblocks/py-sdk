@@ -67,7 +67,7 @@ class ConnectedAccountsBetaApi:
     ) -> Future[ApiResponse[None]]:
         """Disconnect connected account
 
-        Disconnect a connected account by ID. </br> **Note**: - This endpoint is currently in beta and might be subject to changes. 
+        Disconnect a connected account by ID.  **Note**: - This endpoint is currently in beta and might be subject to changes. 
 
         :param account_id: The ID of the account to disconnect. (required)
         :type account_id: str

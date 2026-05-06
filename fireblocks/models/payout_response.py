@@ -37,7 +37,7 @@ class PayoutResponse(BaseModel):
     created_at: Union[StrictFloat, StrictInt] = Field(alias="createdAt")
     state: PayoutState
     status: PayoutStatus
-    reason_of_failure: Optional[StrictStr] = Field(default=None, description="<ul>  <li> INSUFFICIENT_BALANCE</li> <li> SOURCE_TRANSLATION</li> <li> SOURCE_NOT_UNIQUE</li> <li> SOURCE_NOT_FOUND</li> <li> SOURCE_TYPE_NOT_SUPPORTED</li> <li> EMPTY_SOURCE</li> <li> DESTINATION_TRANSLATION</li> <li> DESTINATION_NOT_UNIQUE</li> <li> DESTINATION_NOT_FOUND</li> <li> EMPTY_DESTINATION</li> <li> PARSING </li> <li> UNKNOWN</li> <li> FIREBLOCKS_CLIENT</li> <li> TRANSACTION_SUBMISSION</li> </ul> ", alias="reasonOfFailure")
+    reason_of_failure: Optional[StrictStr] = Field(default=None, description="- INSUFFICIENT_BALANCE - SOURCE_TRANSLATION - SOURCE_NOT_UNIQUE - SOURCE_NOT_FOUND - SOURCE_TYPE_NOT_SUPPORTED - EMPTY_SOURCE - DESTINATION_TRANSLATION - DESTINATION_NOT_UNIQUE - DESTINATION_NOT_FOUND - EMPTY_DESTINATION - PARSING - UNKNOWN - FIREBLOCKS_CLIENT - TRANSACTION_SUBMISSION ", alias="reasonOfFailure")
     init_method: Optional[PayoutInitMethod] = Field(default=None, alias="initMethod")
     instruction_set: List[PayoutInstructionResponse] = Field(alias="instructionSet")
     report_url: Optional[StrictStr] = Field(default=None, alias="reportUrl")

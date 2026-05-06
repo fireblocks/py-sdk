@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class TRLinkMissingTrmAction2(str, Enum):
     """
-    TRLinkMissingTrmAction2
+    TRLink missing TRM action
     """
 
     """

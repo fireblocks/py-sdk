@@ -62,7 +62,7 @@ class AuditLogsApi:
     ) -> Future[ApiResponse[GetAuditLogsResponse]]:
         """Get audit logs
 
-        Get Audit logs for the last Day/Week.  - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. </br>Endpoint Permission: Admin, Non-Signing Admin.
+        Get Audit logs for the last Day/Week.  - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
 
         :param time_period: The last time period to fetch audit logs
         :type time_period: str

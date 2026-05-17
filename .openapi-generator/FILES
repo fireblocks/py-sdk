@@ -53,6 +53,7 @@ docs/AddressRegistryTenantRegistryResponse.md
 docs/AddressRegistryTravelRuleProvider.md
 docs/AddressRegistryVaultListOrder.md
 docs/AddressRegistryVaultOptOutItem.md
+docs/AddressReverseLookupResponse.md
 docs/AlertExposureTypeEnum.md
 docs/AlertLevelEnum.md
 docs/AmlAlert.md
@@ -79,6 +80,7 @@ docs/ApprovalRequest.md
 docs/ApproversConfig.md
 docs/ApproversConfigApprovalGroupsInner.md
 docs/Apy.md
+docs/ArsConfigResponse.md
 docs/Asset.md
 docs/AssetAlreadyExistHttpError.md
 docs/AssetAmount.md
@@ -155,8 +157,6 @@ docs/ChannelDvnConfigWithConfirmationsSendConfig.md
 docs/ChapsAddress.md
 docs/ChapsDestination.md
 docs/ChapsPaymentInfo.md
-docs/CircleGatewayWalletInfoResponse.md
-docs/CircleGatewayWalletStatusResponse.md
 docs/ClaimRewardsRequest.md
 docs/CollectionBurnRequestDto.md
 docs/CollectionBurnResponseDto.md
@@ -169,8 +169,6 @@ docs/CollectionOwnershipResponse.md
 docs/CollectionTokenMetadataAttributeDto.md
 docs/CollectionTokenMetadataDto.md
 docs/CollectionType.md
-docs/CommittedQuoteEnum.md
-docs/CommittedQuoteType.md
 docs/ComplianceApi.md
 docs/ComplianceResultFullPayload.md
 docs/ComplianceResultStatusesEnum.md
@@ -269,6 +267,7 @@ docs/CreateMultipleDepositAddressesRequest.md
 docs/CreateMultipleVaultAccountsJobStatus.md
 docs/CreateNcwConnectionRequest.md
 docs/CreateNetworkIdRequest.md
+docs/CreateOffersRequest.md
 docs/CreateOrderRequest.md
 docs/CreatePayoutRequest.md
 docs/CreateQuote.md
@@ -434,6 +433,10 @@ docs/GasStationPropertiesResponse.md
 docs/GasStationsApi.md
 docs/GasslessStandardConfigurations.md
 docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md
+docs/GenieBetaApi.md
+docs/GenieChatMessage.md
+docs/GenieCreateSessionResponse.md
+docs/GenieSendMessageRequest.md
 docs/GetAPIUsersResponse.md
 docs/GetActionResponse.md
 docs/GetActionsResponse.md
@@ -473,8 +476,6 @@ docs/IbanPaymentInfo.md
 docs/Identification.md
 docs/IdentificationPolicyOverride.md
 docs/IdlType.md
-docs/IndicativeQuoteEnum.md
-docs/IndicativeQuoteType.md
 docs/InitiatorConfig.md
 docs/InitiatorConfigPattern.md
 docs/InstructionAmount.md
@@ -581,6 +582,8 @@ docs/NotificationStatus.md
 docs/NotificationWithData.md
 docs/OTABetaApi.md
 docs/OffExchangesApi.md
+docs/Offer.md
+docs/OffersResponse.md
 docs/OnchainDataApi.md
 docs/OnchainTransaction.md
 docs/OnchainTransactionsPagedResponse.md
@@ -674,17 +677,23 @@ docs/Quote.md
 docs/QuoteExecutionRequestDetails.md
 docs/QuoteExecutionStep.md
 docs/QuoteExecutionTypeDetails.md
+docs/QuoteExecutionTypeEnum.md
 docs/QuoteExecutionWithRequoteRequestDetails.md
 docs/QuoteExecutionWithRequoteResponseDetails.md
-docs/QuoteFailure.md
-docs/QuotePropertiesDetails.md
-docs/QuoteTypeEnum.md
+docs/QuoteOffer.md
+docs/QuoteOfferType.md
 docs/QuotesResponse.md
+docs/Rate.md
+docs/RateOffer.md
+docs/RateOfferType.md
+docs/RatesRequest.md
+docs/RatesResponse.md
 docs/ReQuoteDetails.md
 docs/ReQuoteDetailsReQuote.md
 docs/ReadAbiFunction.md
 docs/ReadCallFunctionDto.md
 docs/ReadCallFunctionDtoAbiFunction.md
+docs/ReasonForPaymentEnum.md
 docs/RecipientHandle.md
 docs/RedeemFundsToLinkedDDAResponse.md
 docs/RegisterLegalEntityRequest.md
@@ -724,6 +733,7 @@ docs/SEPADestination.md
 docs/SOLAccount.md
 docs/SOLAccountWithValue.md
 docs/ScopeItem.md
+docs/ScopeItemFailure.md
 docs/ScreeningAlertExposureTypeEnum.md
 docs/ScreeningAmlAlert.md
 docs/ScreeningAmlMatchedRule.md
@@ -821,6 +831,7 @@ docs/SolanaInstruction.md
 docs/SolanaInstructionWithValue.md
 docs/SolanaSimpleCreateParams.md
 docs/SourceConfig.md
+docs/SourceOfFunds.md
 docs/SourceTransferPeerPath.md
 docs/SourceTransferPeerPathResponse.md
 docs/SpamOwnershipResponse.md
@@ -1070,6 +1081,8 @@ docs/UpdateVaultAccountAssetAddressRequest.md
 docs/UpdateVaultAccountRequest.md
 docs/UpdateWebhookRequest.md
 docs/UsWirePaymentInfo.md
+docs/UsdcGatewayWalletInfoResponse.md
+docs/UsdcGatewayWalletStatusResponse.md
 docs/UserGroupCreateRequest.md
 docs/UserGroupCreateResponse.md
 docs/UserGroupResponse.md
@@ -1148,6 +1161,7 @@ fireblocks/api/exchange_accounts_api.py
 fireblocks/api/external_wallets_api.py
 fireblocks/api/fiat_accounts_api.py
 fireblocks/api/gas_stations_api.py
+fireblocks/api/genie_beta_api.py
 fireblocks/api/internal_wallets_api.py
 fireblocks/api/key_link_beta_api.py
 fireblocks/api/keys_beta_api.py
@@ -1237,6 +1251,7 @@ fireblocks/models/address_registry_tenant_registry_response.py
 fireblocks/models/address_registry_travel_rule_provider.py
 fireblocks/models/address_registry_vault_list_order.py
 fireblocks/models/address_registry_vault_opt_out_item.py
+fireblocks/models/address_reverse_lookup_response.py
 fireblocks/models/alert_exposure_type_enum.py
 fireblocks/models/alert_level_enum.py
 fireblocks/models/aml_alert.py
@@ -1263,6 +1278,7 @@ fireblocks/models/approval_request.py
 fireblocks/models/approvers_config.py
 fireblocks/models/approvers_config_approval_groups_inner.py
 fireblocks/models/apy.py
+fireblocks/models/ars_config_response.py
 fireblocks/models/asset.py
 fireblocks/models/asset_already_exist_http_error.py
 fireblocks/models/asset_amount.py
@@ -1337,8 +1353,6 @@ fireblocks/models/channel_dvn_config_with_confirmations_send_config.py
 fireblocks/models/chaps_address.py
 fireblocks/models/chaps_destination.py
 fireblocks/models/chaps_payment_info.py
-fireblocks/models/circle_gateway_wallet_info_response.py
-fireblocks/models/circle_gateway_wallet_status_response.py
 fireblocks/models/claim_rewards_request.py
 fireblocks/models/collection_burn_request_dto.py
 fireblocks/models/collection_burn_response_dto.py
@@ -1351,8 +1365,6 @@ fireblocks/models/collection_ownership_response.py
 fireblocks/models/collection_token_metadata_attribute_dto.py
 fireblocks/models/collection_token_metadata_dto.py
 fireblocks/models/collection_type.py
-fireblocks/models/committed_quote_enum.py
-fireblocks/models/committed_quote_type.py
 fireblocks/models/compliance_result_full_payload.py
 fireblocks/models/compliance_result_statuses_enum.py
 fireblocks/models/compliance_results.py
@@ -1443,6 +1455,7 @@ fireblocks/models/create_multiple_deposit_addresses_request.py
 fireblocks/models/create_multiple_vault_accounts_job_status.py
 fireblocks/models/create_ncw_connection_request.py
 fireblocks/models/create_network_id_request.py
+fireblocks/models/create_offers_request.py
 fireblocks/models/create_order_request.py
 fireblocks/models/create_payout_request.py
 fireblocks/models/create_quote.py
@@ -1601,6 +1614,9 @@ fireblocks/models/gas_station_configuration_response.py
 fireblocks/models/gas_station_properties_response.py
 fireblocks/models/gassless_standard_configurations.py
 fireblocks/models/gassless_standard_configurations_gasless_standard_configurations_value.py
+fireblocks/models/genie_chat_message.py
+fireblocks/models/genie_create_session_response.py
+fireblocks/models/genie_send_message_request.py
 fireblocks/models/get_action_response.py
 fireblocks/models/get_actions_response.py
 fireblocks/models/get_api_users_response.py
@@ -1640,8 +1656,6 @@ fireblocks/models/iban_payment_info.py
 fireblocks/models/identification.py
 fireblocks/models/identification_policy_override.py
 fireblocks/models/idl_type.py
-fireblocks/models/indicative_quote_enum.py
-fireblocks/models/indicative_quote_type.py
 fireblocks/models/initiator_config.py
 fireblocks/models/initiator_config_pattern.py
 fireblocks/models/instruction_amount.py
@@ -1741,6 +1755,8 @@ fireblocks/models/notification_attempts_paginated_response.py
 fireblocks/models/notification_paginated_response.py
 fireblocks/models/notification_status.py
 fireblocks/models/notification_with_data.py
+fireblocks/models/offer.py
+fireblocks/models/offers_response.py
 fireblocks/models/onchain_transaction.py
 fireblocks/models/onchain_transactions_paged_response.py
 fireblocks/models/one_time_address.py
@@ -1830,17 +1846,23 @@ fireblocks/models/quote.py
 fireblocks/models/quote_execution_request_details.py
 fireblocks/models/quote_execution_step.py
 fireblocks/models/quote_execution_type_details.py
+fireblocks/models/quote_execution_type_enum.py
 fireblocks/models/quote_execution_with_requote_request_details.py
 fireblocks/models/quote_execution_with_requote_response_details.py
-fireblocks/models/quote_failure.py
-fireblocks/models/quote_properties_details.py
-fireblocks/models/quote_type_enum.py
+fireblocks/models/quote_offer.py
+fireblocks/models/quote_offer_type.py
 fireblocks/models/quotes_response.py
+fireblocks/models/rate.py
+fireblocks/models/rate_offer.py
+fireblocks/models/rate_offer_type.py
+fireblocks/models/rates_request.py
+fireblocks/models/rates_response.py
 fireblocks/models/re_quote_details.py
 fireblocks/models/re_quote_details_re_quote.py
 fireblocks/models/read_abi_function.py
 fireblocks/models/read_call_function_dto.py
 fireblocks/models/read_call_function_dto_abi_function.py
+fireblocks/models/reason_for_payment_enum.py
 fireblocks/models/recipient_handle.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
 fireblocks/models/register_legal_entity_request.py
@@ -1875,6 +1897,7 @@ fireblocks/models/rewards_info.py
 fireblocks/models/role_details.py
 fireblocks/models/role_grantee.py
 fireblocks/models/scope_item.py
+fireblocks/models/scope_item_failure.py
 fireblocks/models/screening_alert_exposure_type_enum.py
 fireblocks/models/screening_aml_alert.py
 fireblocks/models/screening_aml_matched_rule.py
@@ -1975,6 +1998,7 @@ fireblocks/models/solana_instruction.py
 fireblocks/models/solana_instruction_with_value.py
 fireblocks/models/solana_simple_create_params.py
 fireblocks/models/source_config.py
+fireblocks/models/source_of_funds.py
 fireblocks/models/source_transfer_peer_path.py
 fireblocks/models/source_transfer_peer_path_response.py
 fireblocks/models/spam_ownership_response.py
@@ -2216,6 +2240,8 @@ fireblocks/models/update_webhook_request.py
 fireblocks/models/us_wire_address.py
 fireblocks/models/us_wire_destination.py
 fireblocks/models/us_wire_payment_info.py
+fireblocks/models/usdc_gateway_wallet_info_response.py
+fireblocks/models/usdc_gateway_wallet_status_response.py
 fireblocks/models/user_group_create_request.py
 fireblocks/models/user_group_create_response.py
 fireblocks/models/user_group_response.py
@@ -2337,6 +2363,7 @@ test/test_address_registry_tenant_registry_response.py
 test/test_address_registry_travel_rule_provider.py
 test/test_address_registry_vault_list_order.py
 test/test_address_registry_vault_opt_out_item.py
+test/test_address_reverse_lookup_response.py
 test/test_alert_exposure_type_enum.py
 test/test_alert_level_enum.py
 test/test_aml_alert.py
@@ -2364,6 +2391,7 @@ test/test_approval_request.py
 test/test_approvers_config.py
 test/test_approvers_config_approval_groups_inner.py
 test/test_apy.py
+test/test_ars_config_response.py
 test/test_asset.py
 test/test_asset_already_exist_http_error.py
 test/test_asset_amount.py
@@ -2440,8 +2468,6 @@ test/test_channel_dvn_config_with_confirmations_send_config.py
 test/test_chaps_address.py
 test/test_chaps_destination.py
 test/test_chaps_payment_info.py
-test/test_circle_gateway_wallet_info_response.py
-test/test_circle_gateway_wallet_status_response.py
 test/test_claim_rewards_request.py
 test/test_collection_burn_request_dto.py
 test/test_collection_burn_response_dto.py
@@ -2454,8 +2480,6 @@ test/test_collection_ownership_response.py
 test/test_collection_token_metadata_attribute_dto.py
 test/test_collection_token_metadata_dto.py
 test/test_collection_type.py
-test/test_committed_quote_enum.py
-test/test_committed_quote_type.py
 test/test_compliance_api.py
 test/test_compliance_result_full_payload.py
 test/test_compliance_result_statuses_enum.py
@@ -2554,6 +2578,7 @@ test/test_create_multiple_deposit_addresses_request.py
 test/test_create_multiple_vault_accounts_job_status.py
 test/test_create_ncw_connection_request.py
 test/test_create_network_id_request.py
+test/test_create_offers_request.py
 test/test_create_order_request.py
 test/test_create_payout_request.py
 test/test_create_quote.py
@@ -2719,6 +2744,10 @@ test/test_gas_station_properties_response.py
 test/test_gas_stations_api.py
 test/test_gassless_standard_configurations.py
 test/test_gassless_standard_configurations_gasless_standard_configurations_value.py
+test/test_genie_beta_api.py
+test/test_genie_chat_message.py
+test/test_genie_create_session_response.py
+test/test_genie_send_message_request.py
 test/test_get_action_response.py
 test/test_get_actions_response.py
 test/test_get_api_users_response.py
@@ -2758,8 +2787,6 @@ test/test_iban_payment_info.py
 test/test_identification.py
 test/test_identification_policy_override.py
 test/test_idl_type.py
-test/test_indicative_quote_enum.py
-test/test_indicative_quote_type.py
 test/test_initiator_config.py
 test/test_initiator_config_pattern.py
 test/test_instruction_amount.py
@@ -2865,6 +2892,8 @@ test/test_notification_paginated_response.py
 test/test_notification_status.py
 test/test_notification_with_data.py
 test/test_off_exchanges_api.py
+test/test_offer.py
+test/test_offers_response.py
 test/test_onchain_data_api.py
 test/test_onchain_transaction.py
 test/test_onchain_transactions_paged_response.py
@@ -2959,17 +2988,23 @@ test/test_quote.py
 test/test_quote_execution_request_details.py
 test/test_quote_execution_step.py
 test/test_quote_execution_type_details.py
+test/test_quote_execution_type_enum.py
 test/test_quote_execution_with_requote_request_details.py
 test/test_quote_execution_with_requote_response_details.py
-test/test_quote_failure.py
-test/test_quote_properties_details.py
-test/test_quote_type_enum.py
+test/test_quote_offer.py
+test/test_quote_offer_type.py
 test/test_quotes_response.py
+test/test_rate.py
+test/test_rate_offer.py
+test/test_rate_offer_type.py
+test/test_rates_request.py
+test/test_rates_response.py
 test/test_re_quote_details.py
 test/test_re_quote_details_re_quote.py
 test/test_read_abi_function.py
 test/test_read_call_function_dto.py
 test/test_read_call_function_dto_abi_function.py
+test/test_reason_for_payment_enum.py
 test/test_recipient_handle.py
 test/test_redeem_funds_to_linked_dda_response.py
 test/test_register_legal_entity_request.py
@@ -3005,6 +3040,7 @@ test/test_rewards_info.py
 test/test_role_details.py
 test/test_role_grantee.py
 test/test_scope_item.py
+test/test_scope_item_failure.py
 test/test_screening_alert_exposure_type_enum.py
 test/test_screening_aml_alert.py
 test/test_screening_aml_matched_rule.py
@@ -3106,6 +3142,7 @@ test/test_solana_instruction.py
 test/test_solana_instruction_with_value.py
 test/test_solana_simple_create_params.py
 test/test_source_config.py
+test/test_source_of_funds.py
 test/test_source_transfer_peer_path.py
 test/test_source_transfer_peer_path_response.py
 test/test_spam_ownership_response.py
@@ -3354,6 +3391,8 @@ test/test_update_webhook_request.py
 test/test_us_wire_address.py
 test/test_us_wire_destination.py
 test/test_us_wire_payment_info.py
+test/test_usdc_gateway_wallet_info_response.py
+test/test_usdc_gateway_wallet_status_response.py
 test/test_user_group_create_request.py
 test/test_user_group_create_response.py
 test/test_user_group_response.py

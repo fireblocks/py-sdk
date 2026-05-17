@@ -42,9 +42,7 @@ class TestUtxoSelectionFilters(unittest.TestCase):
                 exclude_any_labels = ["deprecated"],
                 address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
                 min_amount = '0.001',
-                max_amount = '9.999',
-                use_change = True,
-                use_coinbase = True
+                max_amount = '9.999'
             )
         else:
             return UtxoSelectionFilters(

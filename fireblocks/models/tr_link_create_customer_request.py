@@ -35,10 +35,10 @@ class TRLinkCreateCustomerRequest(BaseModel):
     full_legal_name: Optional[StrictStr] = Field(default=None, description="Full legal entity name", alias="fullLegalName")
     geographic_address: Optional[TRLinkGeographicAddressRequest] = Field(default=None, alias="geographicAddress")
     country_of_registration: Optional[StrictStr] = Field(default=None, description="ISO 3166-1 alpha-2 country code where the entity is registered", alias="countryOfRegistration")
-    national_identification: Optional[StrictStr] = Field(default=None, description="National identification as JSON string", alias="nationalIdentification")
+    national_identification: Optional[StrictStr] = Field(default=None, description="National identification, sent as a JSON-encoded string. The server normalizes input into a compact JSON with these optional keys: `nationalIdentifier`, `nationalIdentifierType` (e.g. `LEIX` for an LEI), `countryOfIssue` (ISO 3166-1 alpha-2), `registrationAuthority`. If the input is not a JSON object, it is wrapped as `{\"nationalIdentifier\":\"<value>\"}`; if the value matches the LEI format, `nationalIdentifierType` is set to `LEIX` automatically and `countryOfIssue` defaults to this request's `countryOfRegistration` if not provided. The compacted JSON must be 240 characters or fewer. On read, the value is returned exactly as stored.", alias="nationalIdentification")
     date_of_incorporation: Optional[date] = Field(default=None, description="Date of entity incorporation (ISO 8601 format: YYYY-MM-DD)", alias="dateOfIncorporation")
     vaults: Optional[List[StrictInt]] = Field(default=None, description="Associated Fireblocks vault account IDs")
-    tr_primary_purpose: Optional[StrictStr] = Field(default=None, description="Primary purpose for Travel Rule compliance (enum value)", alias="trPrimaryPurpose")
+    tr_primary_purpose: Optional[StrictStr] = Field(default='trlink', description="Primary Travel Rule role for this customer; determines how the customer's Travel Rule messages are routed. Valid values: `notabene`, `trlink`.", alias="trPrimaryPurpose")
     __properties: ClassVar[List[str]] = ["discoverable", "shortName", "fullLegalName", "geographicAddress", "countryOfRegistration", "nationalIdentification", "dateOfIncorporation", "vaults", "trPrimaryPurpose"]
 
     model_config = ConfigDict(
@@ -118,11 +118,6 @@ class TRLinkCreateCustomerRequest(BaseModel):
         if self.vaults is None and "vaults" in self.model_fields_set:
             _dict['vaults'] = None
 
-        # set to None if tr_primary_purpose (nullable) is None
-        # and model_fields_set contains the field
-        if self.tr_primary_purpose is None and "tr_primary_purpose" in self.model_fields_set:
-            _dict['trPrimaryPurpose'] = None
-
         return _dict
 
     @classmethod
@@ -143,7 +138,7 @@ class TRLinkCreateCustomerRequest(BaseModel):
             "nationalIdentification": obj.get("nationalIdentification"),
             "dateOfIncorporation": obj.get("dateOfIncorporation"),
             "vaults": obj.get("vaults"),
-            "trPrimaryPurpose": obj.get("trPrimaryPurpose")
+            "trPrimaryPurpose": obj.get("trPrimaryPurpose") if obj.get("trPrimaryPurpose") is not None else 'trlink'
         })
         return _obj
 

@@ -41,6 +41,20 @@ class TestTradingBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_fetch_all_offers(self) -> None:
+        """Test case for fetch_all_offers
+
+        Get all offers
+        """
+        pass
+
+    def test_fetch_rates(self) -> None:
+        """Test case for fetch_rates
+
+        Get rates
+        """
+        pass
+
     def test_get_order(self) -> None:
         """Test case for get_order
 

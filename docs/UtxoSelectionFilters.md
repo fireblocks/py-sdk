@@ -12,8 +12,6 @@ Name | Type | Description | Notes
 **address** | **str** | Only include UTXOs from this specific address. | [optional] 
 **min_amount** | **str** | Minimum UTXO amount in the asset&#39;s base unit (e.g., BTC). | [optional] 
 **max_amount** | **str** | Maximum UTXO amount in the asset&#39;s base unit (e.g., BTC). | [optional] 
-**use_change** | **bool** | Set to false to exclude change UTXOs. Default is true. | [optional] 
-**use_coinbase** | **bool** | Set to false to exclude coinbase UTXOs. Default is true. | [optional] 
 
 ## Example
 

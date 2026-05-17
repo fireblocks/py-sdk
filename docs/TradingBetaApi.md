@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_order**](TradingBetaApi.md#create_order) | **POST** /trading/orders | Create an order
 [**create_quote**](TradingBetaApi.md#create_quote) | **POST** /trading/quotes | Create a quote
+[**fetch_all_offers**](TradingBetaApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
+[**fetch_rates**](TradingBetaApi.md#fetch_rates) | **POST** /trading/rates | Get rates
 [**get_order**](TradingBetaApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
 [**get_orders**](TradingBetaApi.md#get_orders) | **GET** /trading/orders | Get orders
 [**get_trading_provider_by_id**](TradingBetaApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
@@ -183,6 +185,192 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Quote created |  * X-Request-ID -  <br>  |
+**400** | Bad request: invalid input parameters, malformed request body, or validation failure. |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**5XX** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fetch_all_offers**
+> OffersResponse fetch_all_offers(create_offers_request, idempotency_key=idempotency_key)
+
+Get all offers
+
+Retrieve all available offers across the workspace for a given asset pair.
+Always operates in open scope — no provider or account selection required.
+Returns a mix of indicative rates and committed quotes as applicable per provider.
+
+If no slippageBps is provided, it defaults to 50 bps (0.5%).
+Slippage and settlement configuration do not affect the returned rate.
+
+Note: These endpoints are currently in beta and might be subject to changes.
+
+If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
+
+For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
+
+### Example
+
+
+```python
+from fireblocks.models.create_offers_request import CreateOffersRequest
+from fireblocks.models.offers_response import OffersResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_offers_request = fireblocks.CreateOffersRequest() # CreateOffersRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Get all offers
+        api_response = fireblocks.trading_beta.fetch_all_offers(create_offers_request, idempotency_key=idempotency_key).result()
+        print("The response of TradingBetaApi->fetch_all_offers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TradingBetaApi->fetch_all_offers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_offers_request** | [**CreateOffersRequest**](CreateOffersRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**OffersResponse**](OffersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Offers response |  * X-Request-ID -  <br>  |
+**400** | Bad request: invalid input parameters, malformed request body, or validation failure. |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**5XX** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fetch_rates**
+> RatesResponse fetch_rates(rates_request, idempotency_key=idempotency_key)
+
+Get rates
+
+Retrieve indicative exchange rate from specified providers for a given asset pair.
+Rates are non-executable price signals intended for discovery and display purposes.
+
+Note: These endpoints are currently in beta and might be subject to changes.
+
+If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
+
+### Example
+
+
+```python
+from fireblocks.models.rates_request import RatesRequest
+from fireblocks.models.rates_response import RatesResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    rates_request = fireblocks.RatesRequest() # RatesRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Get rates
+        api_response = fireblocks.trading_beta.fetch_rates(rates_request, idempotency_key=idempotency_key).result()
+        print("The response of TradingBetaApi->fetch_rates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TradingBetaApi->fetch_rates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rates_request** | [**RatesRequest**](RatesRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**RatesResponse**](RatesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Rate response |  * X-Request-ID -  <br>  |
 **400** | Bad request: invalid input parameters, malformed request body, or validation failure. |  * X-Request-ID -  <br>  |
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |

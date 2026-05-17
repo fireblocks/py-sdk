@@ -27,6 +27,13 @@ class TestComplianceApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_activate_ars_config(self) -> None:
+        """Test case for activate_ars_config
+
+        Activate ARS (Address Registry Screening)
+        """
+        pass
+
     def test_activate_byork_config(self) -> None:
         """Test case for activate_byork_config
 
@@ -52,6 +59,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for create_counterparty_group
 
         Create a counterparty group
+        """
+        pass
+
+    def test_deactivate_ars_config(self) -> None:
+        """Test case for deactivate_ars_config
+
+        Deactivate ARS (Address Registry Screening)
         """
         pass
 
@@ -219,7 +233,7 @@ class TestComplianceApi(unittest.TestCase):
     def test_retry_rejected_transaction_bypass_screening_checks(self) -> None:
         """Test case for retry_rejected_transaction_bypass_screening_checks
 
-        Calling the \"Bypass Screening Policy\" API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+        Bypass Screening Policy
         """
         pass
 

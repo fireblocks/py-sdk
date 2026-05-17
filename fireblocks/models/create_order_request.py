@@ -25,6 +25,7 @@ from fireblocks.models.access_type import AccessType
 from fireblocks.models.execution_request_details import ExecutionRequestDetails
 from fireblocks.models.participants_identification import ParticipantsIdentification
 from fireblocks.models.settlement import Settlement
+from fireblocks.models.source_of_funds import SourceOfFunds
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,9 +37,10 @@ class CreateOrderRequest(BaseModel):
     execution_request_details: ExecutionRequestDetails = Field(alias="executionRequestDetails")
     settlement: Settlement
     participants_identification: Optional[ParticipantsIdentification] = Field(default=None, alias="participantsIdentification")
+    source_of_funds: Optional[SourceOfFunds] = Field(default=None, alias="sourceOfFunds")
     customer_internal_reference_id: Optional[StrictStr] = Field(default=None, description="Internal reference ID for the customer", alias="customerInternalReferenceId")
     note: Optional[Annotated[str, Field(strict=True, max_length=512)]] = Field(default=None, description="Optional note for the order")
-    __properties: ClassVar[List[str]] = ["via", "executionRequestDetails", "settlement", "participantsIdentification", "customerInternalReferenceId", "note"]
+    __properties: ClassVar[List[str]] = ["via", "executionRequestDetails", "settlement", "participantsIdentification", "sourceOfFunds", "customerInternalReferenceId", "note"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +93,9 @@ class CreateOrderRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of participants_identification
         if self.participants_identification:
             _dict['participantsIdentification'] = self.participants_identification.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of source_of_funds
+        if self.source_of_funds:
+            _dict['sourceOfFunds'] = self.source_of_funds.to_dict()
         return _dict
 
     @classmethod
@@ -107,6 +112,7 @@ class CreateOrderRequest(BaseModel):
             "executionRequestDetails": ExecutionRequestDetails.from_dict(obj["executionRequestDetails"]) if obj.get("executionRequestDetails") is not None else None,
             "settlement": Settlement.from_dict(obj["settlement"]) if obj.get("settlement") is not None else None,
             "participantsIdentification": ParticipantsIdentification.from_dict(obj["participantsIdentification"]) if obj.get("participantsIdentification") is not None else None,
+            "sourceOfFunds": SourceOfFunds.from_dict(obj["sourceOfFunds"]) if obj.get("sourceOfFunds") is not None else None,
             "customerInternalReferenceId": obj.get("customerInternalReferenceId"),
             "note": obj.get("note")
         })

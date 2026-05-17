@@ -1,24 +1,28 @@
 # Quote
 
+A committed executable quote for a trading pair.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **via** | [**AccessType**](AccessType.md) |  | 
-**id** | **str** |  | 
-**quote_asset_id** | **str** |  | 
-**base_asset_id** | **str** |  | 
-**base_amount** | **str** |  | 
-**quote_amount** | **str** |  | 
-**price_impact** | **float** |  | [optional] 
-**quote_min_amount** | **str** |  | [optional] 
-**execution_steps** | [**List[QuoteExecutionStep]**](QuoteExecutionStep.md) |  | [optional] 
-**general_fees** | [**List[Fee]**](Fee.md) |  | [optional] 
+**id** | **str** | The unique identifier of the quote. | 
+**quote_asset_id** | **str** | The target asset identifier. | 
+**quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
+**base_asset_id** | **str** | The source asset identifier. | 
+**base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
+**base_amount** | **str** | The amount of the base asset. | 
+**quote_amount** | **str** | The amount of the quote asset. | 
+**price_impact** | **float** | The estimated price impact as a decimal fraction. | [optional] 
+**quote_min_amount** | **str** | The minimum guaranteed amount of the quote asset. | [optional] 
+**is_slippage_applied** | **bool** | Indicates if slippage was applied to the quote. | [optional] [default to False]
+**execution_steps** | [**List[QuoteExecutionStep]**](QuoteExecutionStep.md) | Ordered list of execution steps for the quote. | [optional] 
+**general_fees** | [**List[Fee]**](Fee.md) | General fees associated with the quote. | [optional] 
 **side** | [**Side**](Side.md) |  | 
-**expires_at** | **str** | The expiration time of the quote in ISO format. | 
-**order_creation_requirements** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order for this quote. The schema mirrors the structure of CreateOrderRequest.participantsIdentification json schema, so clients can validate their order payload before sending.  | [optional] 
-**type** | [**IndicativeQuoteEnum**](IndicativeQuoteEnum.md) |  | 
+**expires_at** | **str** | The expiration time of the quote in ISO 8601 format. | 
+**order_creation_requirements** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending.  | [optional] 
+**type** | **str** | The type of the quote. | 
 
 ## Example
 

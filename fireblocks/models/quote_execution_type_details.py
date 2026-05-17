@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.quote_type_enum import QuoteTypeEnum
+from fireblocks.models.quote_execution_type_enum import QuoteExecutionTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class QuoteExecutionTypeDetails(BaseModel):
     """
     QuoteExecutionTypeDetails
     """ # noqa: E501
-    type: QuoteTypeEnum
+    type: QuoteExecutionTypeEnum
     quote_id: StrictStr = Field(description="Quote ID for quote orders", alias="quoteId")
     quote_amount: StrictStr = Field(description="Quote amount for quote orders", alias="quoteAmount")
     __properties: ClassVar[List[str]] = ["type", "quoteId", "quoteAmount"]

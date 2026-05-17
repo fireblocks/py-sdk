@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,9 +33,7 @@ class UtxoSelectionFilters(BaseModel):
     address: Optional[StrictStr] = Field(default=None, description="Only include UTXOs from this specific address.")
     min_amount: Optional[StrictStr] = Field(default=None, description="Minimum UTXO amount in the asset's base unit (e.g., BTC).", alias="minAmount")
     max_amount: Optional[StrictStr] = Field(default=None, description="Maximum UTXO amount in the asset's base unit (e.g., BTC).", alias="maxAmount")
-    use_change: Optional[StrictBool] = Field(default=None, description="Set to false to exclude change UTXOs. Default is true.", alias="useChange")
-    use_coinbase: Optional[StrictBool] = Field(default=None, description="Set to false to exclude coinbase UTXOs. Default is true.", alias="useCoinbase")
-    __properties: ClassVar[List[str]] = ["includeAllLabels", "includeAnyLabels", "excludeAnyLabels", "address", "minAmount", "maxAmount", "useChange", "useCoinbase"]
+    __properties: ClassVar[List[str]] = ["includeAllLabels", "includeAnyLabels", "excludeAnyLabels", "address", "minAmount", "maxAmount"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,9 +91,7 @@ class UtxoSelectionFilters(BaseModel):
             "excludeAnyLabels": obj.get("excludeAnyLabels"),
             "address": obj.get("address"),
             "minAmount": obj.get("minAmount"),
-            "maxAmount": obj.get("maxAmount"),
-            "useChange": obj.get("useChange"),
-            "useCoinbase": obj.get("useCoinbase")
+            "maxAmount": obj.get("maxAmount")
         })
         return _obj
 

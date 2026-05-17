@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.utxo_input_selection import UtxoInputSelection
 from fireblocks.models.utxo_selection_filters import UtxoSelectionFilters
@@ -29,9 +29,20 @@ class UtxoSelectionParams(BaseModel):
     """
     For UTXO-based blockchains only. Controls which UTXOs are used for automatic selection. Cannot be used together with extraParameters.inputsSelection. This feature is currently in beta and might be subject to changes. 
     """ # noqa: E501
+    selection_strategy: Optional[StrictStr] = Field(default=None, description="Optional override for the UTXO selection strategy configured at the vault/tenant level. ", alias="selectionStrategy")
     filters: Optional[UtxoSelectionFilters] = None
     input_selection: Optional[UtxoInputSelection] = Field(default=None, alias="inputSelection")
-    __properties: ClassVar[List[str]] = ["filters", "inputSelection"]
+    __properties: ClassVar[List[str]] = ["selectionStrategy", "filters", "inputSelection"]
+
+    @field_validator('selection_strategy')
+    def selection_strategy_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['AMOUNT_ASC', 'AMOUNT_DESC']):
+            raise ValueError("must be one of enum values ('AMOUNT_ASC', 'AMOUNT_DESC')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +101,7 @@ class UtxoSelectionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "selectionStrategy": obj.get("selectionStrategy"),
             "filters": UtxoSelectionFilters.from_dict(obj["filters"]) if obj.get("filters") is not None else None,
             "inputSelection": UtxoInputSelection.from_dict(obj["inputSelection"]) if obj.get("inputSelection") is not None else None
         })

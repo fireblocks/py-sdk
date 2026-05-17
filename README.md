@@ -244,10 +244,12 @@ Class | Method | HTTP request | Description
 *BlockchainsAssetsApi* | [**register_new_asset**](docs/BlockchainsAssetsApi.md#register_new_asset) | **POST** /assets | Register an asset
 *BlockchainsAssetsApi* | [**set_asset_price**](docs/BlockchainsAssetsApi.md#set_asset_price) | **POST** /assets/prices/{id} | Set asset price
 *BlockchainsAssetsApi* | [**update_asset_user_metadata**](docs/BlockchainsAssetsApi.md#update_asset_user_metadata) | **PATCH** /assets/{id} | Update the user’s metadata for an asset
+*ComplianceApi* | [**activate_ars_config**](docs/ComplianceApi.md#activate_ars_config) | **POST** /screening/ars/config/activate | Activate ARS (Address Registry Screening)
 *ComplianceApi* | [**activate_byork_config**](docs/ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 *ComplianceApi* | [**add_address_registry_vault_opt_outs**](docs/ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list
 *ComplianceApi* | [**assign_vaults_to_legal_entity**](docs/ComplianceApi.md#assign_vaults_to_legal_entity) | **POST** /legal_entities/{legalEntityId}/vaults | Assign vault accounts to a legal entity
 *ComplianceApi* | [**create_counterparty_group**](docs/ComplianceApi.md#create_counterparty_group) | **POST** /counterparty_groups | Create a counterparty group
+*ComplianceApi* | [**deactivate_ars_config**](docs/ComplianceApi.md#deactivate_ars_config) | **POST** /screening/ars/config/deactivate | Deactivate ARS (Address Registry Screening)
 *ComplianceApi* | [**deactivate_byork_config**](docs/ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 *ComplianceApi* | [**delete_counterparty_group**](docs/ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
 *ComplianceApi* | [**get_address_registry_tenant_participation_status**](docs/ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
@@ -271,7 +273,7 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**register_legal_entity**](docs/ComplianceApi.md#register_legal_entity) | **POST** /legal_entities | Register a new legal entity
 *ComplianceApi* | [**remove_address_registry_vault_opt_out**](docs/ComplianceApi.md#remove_address_registry_vault_opt_out) | **DELETE** /address_registry/vaults/{vaultAccountId} | Remove a single vault account from the address registry opt-out list
 *ComplianceApi* | [**remove_all_address_registry_vault_opt_outs**](docs/ComplianceApi.md#remove_all_address_registry_vault_opt_outs) | **DELETE** /address_registry/vaults | Remove all vault-level address registry opt-outs for the workspace
-*ComplianceApi* | [**retry_rejected_transaction_bypass_screening_checks**](docs/ComplianceApi.md#retry_rejected_transaction_bypass_screening_checks) | **POST** /screening/transaction/{txId}/bypass_screening_policy | Calling the \&quot;Bypass Screening Policy\&quot; API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+*ComplianceApi* | [**retry_rejected_transaction_bypass_screening_checks**](docs/ComplianceApi.md#retry_rejected_transaction_bypass_screening_checks) | **POST** /screening/transaction/{txId}/bypass_screening_policy | Bypass Screening Policy
 *ComplianceApi* | [**set_aml_verdict**](docs/ComplianceApi.md#set_aml_verdict) | **POST** /screening/aml/verdict/manual | Set AML Verdict (BYORK Super Light)
 *ComplianceApi* | [**set_byork_timeouts**](docs/ComplianceApi.md#set_byork_timeouts) | **PUT** /screening/byork/config/timeouts | Set BYORK Light timeouts
 *ComplianceApi* | [**set_byork_verdict**](docs/ComplianceApi.md#set_byork_verdict) | **POST** /screening/byork/verdict | Set BYORK Light verdict
@@ -379,6 +381,8 @@ Class | Method | HTTP request | Description
 *GasStationsApi* | [**get_gas_station_info**](docs/GasStationsApi.md#get_gas_station_info) | **GET** /gas_station | Get gas station settings
 *GasStationsApi* | [**update_gas_station_configuration**](docs/GasStationsApi.md#update_gas_station_configuration) | **PUT** /gas_station/configuration | Edit gas station settings
 *GasStationsApi* | [**update_gas_station_configuration_by_asset_id**](docs/GasStationsApi.md#update_gas_station_configuration_by_asset_id) | **PUT** /gas_station/configuration/{assetId} | Edit gas station settings for an asset
+*GenieBetaApi* | [**create_genie_session**](docs/GenieBetaApi.md#create_genie_session) | **POST** /genie/sessions | Create a Genie session
+*GenieBetaApi* | [**send_genie_message**](docs/GenieBetaApi.md#send_genie_message) | **POST** /genie/sessions/{sessionId}/messages | Send a message to a Genie session
 *InternalWalletsApi* | [**create_internal_wallet**](docs/InternalWalletsApi.md#create_internal_wallet) | **POST** /internal_wallets | Create an internal wallet
 *InternalWalletsApi* | [**create_internal_wallet_asset**](docs/InternalWalletsApi.md#create_internal_wallet_asset) | **POST** /internal_wallets/{walletId}/{assetId} | Add an asset to an internal wallet
 *InternalWalletsApi* | [**delete_internal_wallet**](docs/InternalWalletsApi.md#delete_internal_wallet) | **DELETE** /internal_wallets/{walletId} | Delete an internal wallet
@@ -548,6 +552,8 @@ Class | Method | HTTP request | Description
 *TokenizationApi* | [**validate_layer_zero_channel_config**](docs/TokenizationApi.md#validate_layer_zero_channel_config) | **GET** /tokenization/multichain/bridge/layerzero/validate | Validate LayerZero channel configuration
 *TradingBetaApi* | [**create_order**](docs/TradingBetaApi.md#create_order) | **POST** /trading/orders | Create an order
 *TradingBetaApi* | [**create_quote**](docs/TradingBetaApi.md#create_quote) | **POST** /trading/quotes | Create a quote
+*TradingBetaApi* | [**fetch_all_offers**](docs/TradingBetaApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
+*TradingBetaApi* | [**fetch_rates**](docs/TradingBetaApi.md#fetch_rates) | **POST** /trading/rates | Get rates
 *TradingBetaApi* | [**get_order**](docs/TradingBetaApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
 *TradingBetaApi* | [**get_orders**](docs/TradingBetaApi.md#get_orders) | **GET** /trading/orders | Get orders
 *TradingBetaApi* | [**get_trading_provider_by_id**](docs/TradingBetaApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
@@ -582,7 +588,7 @@ Class | Method | HTTP request | Description
 *UserGroupsBetaApi* | [**update_user_group**](docs/UserGroupsBetaApi.md#update_user_group) | **PUT** /management/user_groups/{groupId} | Update user group
 *UsersApi* | [**get_users**](docs/UsersApi.md#get_users) | **GET** /users | List users
 *VaultsApi* | [**activate_asset_for_vault_account**](docs/VaultsApi.md#activate_asset_for_vault_account) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/activate | Activate a wallet in a vault account
-*VaultsApi* | [**activate_circle_gateway_wallet_beta**](docs/VaultsApi.md#activate_circle_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/circle_gateway/activate | Activate a Circle Gateway wallet
+*VaultsApi* | [**activate_usdc_gateway_wallet_beta**](docs/VaultsApi.md#activate_usdc_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/usdc_gateway/activate | Activate a USDC Gateway wallet
 *VaultsApi* | [**attach_or_detach_tags_from_vault_accounts**](docs/VaultsApi.md#attach_or_detach_tags_from_vault_accounts) | **POST** /vault/accounts/attached_tags | Attach or detach tags from vault accounts
 *VaultsApi* | [**create_legacy_address**](docs/VaultsApi.md#create_legacy_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/create_legacy | Convert a segwit address to legacy format
 *VaultsApi* | [**create_multiple_accounts**](docs/VaultsApi.md#create_multiple_accounts) | **POST** /vault/accounts/bulk | Bulk creation of new vault accounts
@@ -590,9 +596,8 @@ Class | Method | HTTP request | Description
 *VaultsApi* | [**create_vault_account**](docs/VaultsApi.md#create_vault_account) | **POST** /vault/accounts | Create a new vault account
 *VaultsApi* | [**create_vault_account_asset**](docs/VaultsApi.md#create_vault_account_asset) | **POST** /vault/accounts/{vaultAccountId}/{assetId} | Create a new vault wallet
 *VaultsApi* | [**create_vault_account_asset_address**](docs/VaultsApi.md#create_vault_account_asset_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses | Create new asset deposit address
-*VaultsApi* | [**deactivate_circle_gateway_wallet_beta**](docs/VaultsApi.md#deactivate_circle_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/circle_gateway/deactivate | Deactivate a Circle Gateway wallet
+*VaultsApi* | [**deactivate_usdc_gateway_wallet_beta**](docs/VaultsApi.md#deactivate_usdc_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/usdc_gateway/deactivate | Deactivate a USDC Gateway wallet
 *VaultsApi* | [**get_asset_wallets**](docs/VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | Get vault wallets (Paginated)
-*VaultsApi* | [**get_circle_gateway_wallet_info_beta**](docs/VaultsApi.md#get_circle_gateway_wallet_info_beta) | **GET** /vault/accounts/{vaultAccountId}/circle_gateway | Get Circle Gateway wallet info
 *VaultsApi* | [**get_create_multiple_deposit_addresses_job_status**](docs/VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get the job status of the bulk deposit address creation
 *VaultsApi* | [**get_create_multiple_vault_accounts_job_status**](docs/VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
 *VaultsApi* | [**get_max_bip_index_used**](docs/VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip44_index_used | Get maximum BIP44 index used
@@ -601,12 +606,14 @@ Class | Method | HTTP request | Description
 *VaultsApi* | [**get_public_key_info**](docs/VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key for a derivation path
 *VaultsApi* | [**get_public_key_info_for_address**](docs/VaultsApi.md#get_public_key_info_for_address) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/{change}/{addressIndex}/public_key_info | Get an asset&#39;s public key
 *VaultsApi* | [**get_unspent_inputs**](docs/VaultsApi.md#get_unspent_inputs) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/unspent_inputs | Get UTXO unspent inputs information
+*VaultsApi* | [**get_usdc_gateway_wallet_info_beta**](docs/VaultsApi.md#get_usdc_gateway_wallet_info_beta) | **GET** /vault/accounts/{vaultAccountId}/usdc_gateway | Get USDC Gateway wallet info
 *VaultsApi* | [**get_vault_account**](docs/VaultsApi.md#get_vault_account) | **GET** /vault/accounts/{vaultAccountId} | Get a vault account by ID
 *VaultsApi* | [**get_vault_account_asset**](docs/VaultsApi.md#get_vault_account_asset) | **GET** /vault/accounts/{vaultAccountId}/{assetId} | Get the asset balance for a vault account
 *VaultsApi* | [**get_vault_account_asset_addresses_paginated**](docs/VaultsApi.md#get_vault_account_asset_addresses_paginated) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/addresses_paginated | Get addresses (Paginated)
 *VaultsApi* | [**get_vault_assets**](docs/VaultsApi.md#get_vault_assets) | **GET** /vault/assets | Get asset balance for chosen assets
 *VaultsApi* | [**get_vault_balance_by_asset**](docs/VaultsApi.md#get_vault_balance_by_asset) | **GET** /vault/assets/{assetId} | Get vault balance by an asset
 *VaultsApi* | [**hide_vault_account**](docs/VaultsApi.md#hide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/hide | Hide a vault account in the console
+*VaultsApi* | [**lookup_vault_by_address**](docs/VaultsApi.md#lookup_vault_by_address) | **GET** /vault/lookup_by_address | Look up a vault account by blockchain address
 *VaultsApi* | [**set_customer_ref_id_for_address**](docs/VaultsApi.md#set_customer_ref_id_for_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/set_customer_ref_id | Assign AML customer reference ID
 *VaultsApi* | [**set_vault_account_auto_fuel**](docs/VaultsApi.md#set_vault_account_auto_fuel) | **POST** /vault/accounts/{vaultAccountId}/set_auto_fuel | Set auto fueling to on or off
 *VaultsApi* | [**set_vault_account_customer_ref_id**](docs/VaultsApi.md#set_vault_account_customer_ref_id) | **POST** /vault/accounts/{vaultAccountId}/set_customer_ref_id | Set an AML/KYT ID for a vault account
@@ -693,6 +700,7 @@ Class | Method | HTTP request | Description
  - [AddressRegistryTravelRuleProvider](docs/AddressRegistryTravelRuleProvider.md)
  - [AddressRegistryVaultListOrder](docs/AddressRegistryVaultListOrder.md)
  - [AddressRegistryVaultOptOutItem](docs/AddressRegistryVaultOptOutItem.md)
+ - [AddressReverseLookupResponse](docs/AddressReverseLookupResponse.md)
  - [AlertExposureTypeEnum](docs/AlertExposureTypeEnum.md)
  - [AlertLevelEnum](docs/AlertLevelEnum.md)
  - [AmlAlert](docs/AmlAlert.md)
@@ -718,6 +726,7 @@ Class | Method | HTTP request | Description
  - [ApproversConfig](docs/ApproversConfig.md)
  - [ApproversConfigApprovalGroupsInner](docs/ApproversConfigApprovalGroupsInner.md)
  - [Apy](docs/Apy.md)
+ - [ArsConfigResponse](docs/ArsConfigResponse.md)
  - [Asset](docs/Asset.md)
  - [AssetAlreadyExistHttpError](docs/AssetAlreadyExistHttpError.md)
  - [AssetAmount](docs/AssetAmount.md)
@@ -792,8 +801,6 @@ Class | Method | HTTP request | Description
  - [ChapsAddress](docs/ChapsAddress.md)
  - [ChapsDestination](docs/ChapsDestination.md)
  - [ChapsPaymentInfo](docs/ChapsPaymentInfo.md)
- - [CircleGatewayWalletInfoResponse](docs/CircleGatewayWalletInfoResponse.md)
- - [CircleGatewayWalletStatusResponse](docs/CircleGatewayWalletStatusResponse.md)
  - [ClaimRewardsRequest](docs/ClaimRewardsRequest.md)
  - [CollectionBurnRequestDto](docs/CollectionBurnRequestDto.md)
  - [CollectionBurnResponseDto](docs/CollectionBurnResponseDto.md)
@@ -806,8 +813,6 @@ Class | Method | HTTP request | Description
  - [CollectionTokenMetadataAttributeDto](docs/CollectionTokenMetadataAttributeDto.md)
  - [CollectionTokenMetadataDto](docs/CollectionTokenMetadataDto.md)
  - [CollectionType](docs/CollectionType.md)
- - [CommittedQuoteEnum](docs/CommittedQuoteEnum.md)
- - [CommittedQuoteType](docs/CommittedQuoteType.md)
  - [ComplianceResultFullPayload](docs/ComplianceResultFullPayload.md)
  - [ComplianceResultStatusesEnum](docs/ComplianceResultStatusesEnum.md)
  - [ComplianceResults](docs/ComplianceResults.md)
@@ -898,6 +903,7 @@ Class | Method | HTTP request | Description
  - [CreateMultipleVaultAccountsJobStatus](docs/CreateMultipleVaultAccountsJobStatus.md)
  - [CreateNcwConnectionRequest](docs/CreateNcwConnectionRequest.md)
  - [CreateNetworkIdRequest](docs/CreateNetworkIdRequest.md)
+ - [CreateOffersRequest](docs/CreateOffersRequest.md)
  - [CreateOrderRequest](docs/CreateOrderRequest.md)
  - [CreatePayoutRequest](docs/CreatePayoutRequest.md)
  - [CreateQuote](docs/CreateQuote.md)
@@ -1056,6 +1062,9 @@ Class | Method | HTTP request | Description
  - [GasStationPropertiesResponse](docs/GasStationPropertiesResponse.md)
  - [GasslessStandardConfigurations](docs/GasslessStandardConfigurations.md)
  - [GasslessStandardConfigurationsGaslessStandardConfigurationsValue](docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md)
+ - [GenieChatMessage](docs/GenieChatMessage.md)
+ - [GenieCreateSessionResponse](docs/GenieCreateSessionResponse.md)
+ - [GenieSendMessageRequest](docs/GenieSendMessageRequest.md)
  - [GetAPIUsersResponse](docs/GetAPIUsersResponse.md)
  - [GetActionResponse](docs/GetActionResponse.md)
  - [GetActionsResponse](docs/GetActionsResponse.md)
@@ -1095,8 +1104,6 @@ Class | Method | HTTP request | Description
  - [Identification](docs/Identification.md)
  - [IdentificationPolicyOverride](docs/IdentificationPolicyOverride.md)
  - [IdlType](docs/IdlType.md)
- - [IndicativeQuoteEnum](docs/IndicativeQuoteEnum.md)
- - [IndicativeQuoteType](docs/IndicativeQuoteType.md)
  - [InitiatorConfig](docs/InitiatorConfig.md)
  - [InitiatorConfigPattern](docs/InitiatorConfigPattern.md)
  - [InstructionAmount](docs/InstructionAmount.md)
@@ -1196,6 +1203,8 @@ Class | Method | HTTP request | Description
  - [NotificationPaginatedResponse](docs/NotificationPaginatedResponse.md)
  - [NotificationStatus](docs/NotificationStatus.md)
  - [NotificationWithData](docs/NotificationWithData.md)
+ - [Offer](docs/Offer.md)
+ - [OffersResponse](docs/OffersResponse.md)
  - [OnchainTransaction](docs/OnchainTransaction.md)
  - [OnchainTransactionsPagedResponse](docs/OnchainTransactionsPagedResponse.md)
  - [OneTimeAddress](docs/OneTimeAddress.md)
@@ -1285,17 +1294,23 @@ Class | Method | HTTP request | Description
  - [QuoteExecutionRequestDetails](docs/QuoteExecutionRequestDetails.md)
  - [QuoteExecutionStep](docs/QuoteExecutionStep.md)
  - [QuoteExecutionTypeDetails](docs/QuoteExecutionTypeDetails.md)
+ - [QuoteExecutionTypeEnum](docs/QuoteExecutionTypeEnum.md)
  - [QuoteExecutionWithRequoteRequestDetails](docs/QuoteExecutionWithRequoteRequestDetails.md)
  - [QuoteExecutionWithRequoteResponseDetails](docs/QuoteExecutionWithRequoteResponseDetails.md)
- - [QuoteFailure](docs/QuoteFailure.md)
- - [QuotePropertiesDetails](docs/QuotePropertiesDetails.md)
- - [QuoteTypeEnum](docs/QuoteTypeEnum.md)
+ - [QuoteOffer](docs/QuoteOffer.md)
+ - [QuoteOfferType](docs/QuoteOfferType.md)
  - [QuotesResponse](docs/QuotesResponse.md)
+ - [Rate](docs/Rate.md)
+ - [RateOffer](docs/RateOffer.md)
+ - [RateOfferType](docs/RateOfferType.md)
+ - [RatesRequest](docs/RatesRequest.md)
+ - [RatesResponse](docs/RatesResponse.md)
  - [ReQuoteDetails](docs/ReQuoteDetails.md)
  - [ReQuoteDetailsReQuote](docs/ReQuoteDetailsReQuote.md)
  - [ReadAbiFunction](docs/ReadAbiFunction.md)
  - [ReadCallFunctionDto](docs/ReadCallFunctionDto.md)
  - [ReadCallFunctionDtoAbiFunction](docs/ReadCallFunctionDtoAbiFunction.md)
+ - [ReasonForPaymentEnum](docs/ReasonForPaymentEnum.md)
  - [RecipientHandle](docs/RecipientHandle.md)
  - [RedeemFundsToLinkedDDAResponse](docs/RedeemFundsToLinkedDDAResponse.md)
  - [RegisterLegalEntityRequest](docs/RegisterLegalEntityRequest.md)
@@ -1334,6 +1349,7 @@ Class | Method | HTTP request | Description
  - [SOLAccount](docs/SOLAccount.md)
  - [SOLAccountWithValue](docs/SOLAccountWithValue.md)
  - [ScopeItem](docs/ScopeItem.md)
+ - [ScopeItemFailure](docs/ScopeItemFailure.md)
  - [ScreeningAlertExposureTypeEnum](docs/ScreeningAlertExposureTypeEnum.md)
  - [ScreeningAmlAlert](docs/ScreeningAmlAlert.md)
  - [ScreeningAmlMatchedRule](docs/ScreeningAmlMatchedRule.md)
@@ -1430,6 +1446,7 @@ Class | Method | HTTP request | Description
  - [SolanaInstructionWithValue](docs/SolanaInstructionWithValue.md)
  - [SolanaSimpleCreateParams](docs/SolanaSimpleCreateParams.md)
  - [SourceConfig](docs/SourceConfig.md)
+ - [SourceOfFunds](docs/SourceOfFunds.md)
  - [SourceTransferPeerPath](docs/SourceTransferPeerPath.md)
  - [SourceTransferPeerPathResponse](docs/SourceTransferPeerPathResponse.md)
  - [SpamOwnershipResponse](docs/SpamOwnershipResponse.md)
@@ -1671,6 +1688,8 @@ Class | Method | HTTP request | Description
  - [UpdateVaultAccountRequest](docs/UpdateVaultAccountRequest.md)
  - [UpdateWebhookRequest](docs/UpdateWebhookRequest.md)
  - [UsWirePaymentInfo](docs/UsWirePaymentInfo.md)
+ - [UsdcGatewayWalletInfoResponse](docs/UsdcGatewayWalletInfoResponse.md)
+ - [UsdcGatewayWalletStatusResponse](docs/UsdcGatewayWalletStatusResponse.md)
  - [UserGroupCreateRequest](docs/UserGroupCreateRequest.md)
  - [UserGroupCreateResponse](docs/UserGroupCreateResponse.md)
  - [UserGroupResponse](docs/UserGroupResponse.md)

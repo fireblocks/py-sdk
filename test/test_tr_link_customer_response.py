@@ -38,7 +38,6 @@ class TestTRLinkCustomerResponse(unittest.TestCase):
         if include_optional:
             return TRLinkCustomerResponse(
                 id = '550e8400-e29b-41d4-a716-446655440001',
-                tenant_id = '550e8400-e29b-41d4-a716-446655440003',
                 discoverable = 'discoverable',
                 short_name = 'Acme Corp',
                 full_legal_name = 'Acme Corporation Ltd.',
@@ -54,21 +53,21 @@ class TestTRLinkCustomerResponse(unittest.TestCase):
                     country_sub_division = 'NY', 
                     country = 'US', ),
                 country_of_registration = 'US',
-                national_identification = '{"nationalIdentifierType":"LEIXG","nationalIdentifier":"5493001KJTIIGC8Y1R12","countryOfIssue":"US"}',
+                national_identification = '{"nationalIdentifier":"EXAMPLELEI1234567890","nationalIdentifierType":"LEIX","countryOfIssue":"US"}',
                 date_of_incorporation = 'Sun Mar 15 00:00:00 GMT 2015',
                 vaults = [0,1,2],
-                tr_primary_purpose = 'Virtual asset service provider',
+                tr_primary_purpose = 'trlink',
                 create_date = '2025-01-20T10:30Z',
                 last_update = '2025-01-24T08:45Z'
             )
         else:
             return TRLinkCustomerResponse(
                 id = '550e8400-e29b-41d4-a716-446655440001',
-                tenant_id = '550e8400-e29b-41d4-a716-446655440003',
                 discoverable = 'discoverable',
                 short_name = 'Acme Corp',
                 full_legal_name = 'Acme Corporation Ltd.',
                 country_of_registration = 'US',
+                tr_primary_purpose = 'trlink',
                 create_date = '2025-01-20T10:30Z',
                 last_update = '2025-01-24T08:45Z',
         )

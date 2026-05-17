@@ -41,6 +41,7 @@ class TestCreateOrderRequest(unittest.TestCase):
                 execution_request_details = None,
                 settlement = None,
                 participants_identification = {"originator":{"externalReferenceId":"user_123456","entityType":"INDIVIDUAL","participantRelationshipType":"FirstParty","fullName":{"firstName":"John","lastName":"Smith"},"dateOfBirth":"1985-03-15","email":"john.smith@example.com","phone":"+14155551234","postalAddress":{"streetName":"Main Street","buildingNumber":"123","postalCode":"10001","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}},"beneficiary":{"externalReferenceId":"user_789012","entityType":"INDIVIDUAL","participantRelationshipType":"ThirdParty","fullName":{"firstName":"Alice","lastName":"Johnson"},"dateOfBirth":"1990-07-22","email":"alice.johnson@example.com","phone":"+14155551234","postalAddress":{"streetName":"Broadway","buildingNumber":"456","postalCode":"10002","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"}}},
+                source_of_funds = {"reasonForPayment":"INVOICE_PAYMENT"},
                 customer_internal_reference_id = '',
                 note = ''
             )

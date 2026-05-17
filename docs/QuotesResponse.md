@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **quotes** | [**List[Quote]**](Quote.md) |  | 
-**quote_failures** | [**List[QuoteFailure]**](QuoteFailure.md) | List of partial failures encountered while requesting quotes. Empty when all quote attempts succeed. | 
+**quote_failures** | [**List[ScopeItemFailure]**](ScopeItemFailure.md) | List of partial failures encountered while requesting quotes. Empty when all quote attempts succeed. | 
 
 ## Example
 

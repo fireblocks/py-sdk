@@ -37,15 +37,14 @@ class TestUtxoSelectionParams(unittest.TestCase):
         model = UtxoSelectionParams()
         if include_optional:
             return UtxoSelectionParams(
+                selection_strategy = 'AMOUNT_ASC',
                 filters = fireblocks.models.utxo_selection_filters.UtxoSelectionFilters(
                     include_all_labels = ["cold-storage"], 
                     include_any_labels = ["vip","high-value"], 
                     exclude_any_labels = ["deprecated"], 
                     address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 
                     min_amount = '0.001', 
-                    max_amount = '9.999', 
-                    use_change = True, 
-                    use_coinbase = True, ),
+                    max_amount = '9.999', ),
                 input_selection = fireblocks.models.utxo_input_selection.UtxoInputSelection(
                     inputs_to_spend = [
                         fireblocks.models.utxo_input.UtxoInput(

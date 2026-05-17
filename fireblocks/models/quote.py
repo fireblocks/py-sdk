@@ -18,35 +18,45 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.access_type import AccessType
 from fireblocks.models.fee import Fee
-from fireblocks.models.indicative_quote_enum import IndicativeQuoteEnum
 from fireblocks.models.quote_execution_step import QuoteExecutionStep
 from fireblocks.models.side import Side
+from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
 
 class Quote(BaseModel):
     """
-    Quote
+    A committed executable quote for a trading pair.
     """ # noqa: E501
     via: AccessType
-    id: StrictStr
-    quote_asset_id: StrictStr = Field(alias="quoteAssetId")
-    base_asset_id: StrictStr = Field(alias="baseAssetId")
-    base_amount: StrictStr = Field(alias="baseAmount")
-    quote_amount: StrictStr = Field(alias="quoteAmount")
-    price_impact: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="priceImpact")
-    quote_min_amount: Optional[StrictStr] = Field(default=None, alias="quoteMinAmount")
-    execution_steps: Optional[List[QuoteExecutionStep]] = Field(default=None, alias="executionSteps")
-    general_fees: Optional[List[Fee]] = Field(default=None, alias="generalFees")
+    id: StrictStr = Field(description="The unique identifier of the quote.")
+    quote_asset_id: StrictStr = Field(description="The target asset identifier.", alias="quoteAssetId")
+    quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
+    base_asset_id: StrictStr = Field(description="The source asset identifier.", alias="baseAssetId")
+    base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
+    base_amount: StrictStr = Field(description="The amount of the base asset.", alias="baseAmount")
+    quote_amount: StrictStr = Field(description="The amount of the quote asset.", alias="quoteAmount")
+    price_impact: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The estimated price impact as a decimal fraction.", alias="priceImpact")
+    quote_min_amount: Optional[StrictStr] = Field(default=None, description="The minimum guaranteed amount of the quote asset.", alias="quoteMinAmount")
+    is_slippage_applied: Optional[StrictBool] = Field(default=False, description="Indicates if slippage was applied to the quote.", alias="isSlippageApplied")
+    execution_steps: Optional[List[QuoteExecutionStep]] = Field(default=None, description="Ordered list of execution steps for the quote.", alias="executionSteps")
+    general_fees: Optional[List[Fee]] = Field(default=None, description="General fees associated with the quote.", alias="generalFees")
     side: Side
-    expires_at: StrictStr = Field(description="The expiration time of the quote in ISO format.", alias="expiresAt")
-    order_creation_requirements: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order for this quote. The schema mirrors the structure of CreateOrderRequest.participantsIdentification json schema, so clients can validate their order payload before sending. ", alias="orderCreationRequirements")
-    type: IndicativeQuoteEnum
-    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "baseAssetId", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "executionSteps", "generalFees", "side", "expiresAt", "orderCreationRequirements", "type"]
+    expires_at: StrictStr = Field(description="The expiration time of the quote in ISO 8601 format.", alias="expiresAt")
+    order_creation_requirements: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending. ", alias="orderCreationRequirements")
+    type: StrictStr = Field(description="The type of the quote.")
+    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "quoteAssetRail", "baseAssetId", "baseAssetRail", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "isSlippageApplied", "executionSteps", "generalFees", "side", "expiresAt", "orderCreationRequirements", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['COMMITTED', 'INDICATIVE']):
+            raise ValueError("must be one of enum values ('COMMITTED', 'INDICATIVE')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,11 +129,14 @@ class Quote(BaseModel):
             "via": AccessType.from_dict(obj["via"]) if obj.get("via") is not None else None,
             "id": obj.get("id"),
             "quoteAssetId": obj.get("quoteAssetId"),
+            "quoteAssetRail": obj.get("quoteAssetRail"),
             "baseAssetId": obj.get("baseAssetId"),
+            "baseAssetRail": obj.get("baseAssetRail"),
             "baseAmount": obj.get("baseAmount"),
             "quoteAmount": obj.get("quoteAmount"),
             "priceImpact": obj.get("priceImpact"),
             "quoteMinAmount": obj.get("quoteMinAmount"),
+            "isSlippageApplied": obj.get("isSlippageApplied") if obj.get("isSlippageApplied") is not None else False,
             "executionSteps": [QuoteExecutionStep.from_dict(_item) for _item in obj["executionSteps"]] if obj.get("executionSteps") is not None else None,
             "generalFees": [Fee.from_dict(_item) for _item in obj["generalFees"]] if obj.get("generalFees") is not None else None,
             "side": obj.get("side"),

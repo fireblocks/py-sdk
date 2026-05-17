@@ -4,10 +4,12 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**activate_ars_config**](ComplianceApi.md#activate_ars_config) | **POST** /screening/ars/config/activate | Activate ARS (Address Registry Screening)
 [**activate_byork_config**](ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 [**add_address_registry_vault_opt_outs**](ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list
 [**assign_vaults_to_legal_entity**](ComplianceApi.md#assign_vaults_to_legal_entity) | **POST** /legal_entities/{legalEntityId}/vaults | Assign vault accounts to a legal entity
 [**create_counterparty_group**](ComplianceApi.md#create_counterparty_group) | **POST** /counterparty_groups | Create a counterparty group
+[**deactivate_ars_config**](ComplianceApi.md#deactivate_ars_config) | **POST** /screening/ars/config/deactivate | Deactivate ARS (Address Registry Screening)
 [**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 [**delete_counterparty_group**](ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
 [**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
@@ -31,7 +33,7 @@ Method | HTTP request | Description
 [**register_legal_entity**](ComplianceApi.md#register_legal_entity) | **POST** /legal_entities | Register a new legal entity
 [**remove_address_registry_vault_opt_out**](ComplianceApi.md#remove_address_registry_vault_opt_out) | **DELETE** /address_registry/vaults/{vaultAccountId} | Remove a single vault account from the address registry opt-out list
 [**remove_all_address_registry_vault_opt_outs**](ComplianceApi.md#remove_all_address_registry_vault_opt_outs) | **DELETE** /address_registry/vaults | Remove all vault-level address registry opt-outs for the workspace
-[**retry_rejected_transaction_bypass_screening_checks**](ComplianceApi.md#retry_rejected_transaction_bypass_screening_checks) | **POST** /screening/transaction/{txId}/bypass_screening_policy | Calling the \&quot;Bypass Screening Policy\&quot; API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+[**retry_rejected_transaction_bypass_screening_checks**](ComplianceApi.md#retry_rejected_transaction_bypass_screening_checks) | **POST** /screening/transaction/{txId}/bypass_screening_policy | Bypass Screening Policy
 [**set_aml_verdict**](ComplianceApi.md#set_aml_verdict) | **POST** /screening/aml/verdict/manual | Set AML Verdict (BYORK Super Light)
 [**set_byork_timeouts**](ComplianceApi.md#set_byork_timeouts) | **PUT** /screening/byork/config/timeouts | Set BYORK Light timeouts
 [**set_byork_verdict**](ComplianceApi.md#set_byork_verdict) | **POST** /screening/byork/verdict | Set BYORK Light verdict
@@ -41,6 +43,81 @@ Method | HTTP request | Description
 [**update_screening_configuration**](ComplianceApi.md#update_screening_configuration) | **PUT** /screening/configurations | Tenant - Screening Configuration
 [**update_travel_rule_config**](ComplianceApi.md#update_travel_rule_config) | **PUT** /screening/travel_rule/policy_configuration | Update Travel Rule Configuration
 
+
+# **activate_ars_config**
+> ArsConfigResponse activate_ars_config(idempotency_key=idempotency_key)
+
+Activate ARS (Address Registry Screening)
+
+Activates ARS (Address Registry Screening) for the authenticated tenant (sets config.active to true). Once activated, ARS screening applies to matching transactions.
+
+### Example
+
+
+```python
+from fireblocks.models.ars_config_response import ArsConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Activate ARS (Address Registry Screening)
+        api_response = fireblocks.compliance.activate_ars_config(idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->activate_ars_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->activate_ars_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ArsConfigResponse**](ArsConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ARS configuration activated. |  * X-Request-ID -  <br>  |
+**400** | Tenant not opted-in for address registry. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **activate_byork_config**
 > ByorkConfigResponse activate_byork_config(idempotency_key=idempotency_key)
@@ -352,6 +429,81 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Counterparty group created successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deactivate_ars_config**
+> ArsConfigResponse deactivate_ars_config(idempotency_key=idempotency_key)
+
+Deactivate ARS (Address Registry Screening)
+
+Deactivates ARS (Address Registry Screening) for the authenticated tenant (sets config.active to false). Once deactivated, ARS screening no longer applies until activated again.
+
+### Example
+
+
+```python
+from fireblocks.models.ars_config_response import ArsConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Deactivate ARS (Address Registry Screening)
+        api_response = fireblocks.compliance.deactivate_ars_config(idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->deactivate_ars_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->deactivate_ars_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ArsConfigResponse**](ArsConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ARS configuration deactivated. |  * X-Request-ID -  <br>  |
+**400** | Tenant not opted-in for address registry. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2071,9 +2223,9 @@ No authorization required
 # **retry_rejected_transaction_bypass_screening_checks**
 > CreateTransactionResponse retry_rejected_transaction_bypass_screening_checks(tx_id, idempotency_key=idempotency_key)
 
-Calling the \"Bypass Screening Policy\" API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+Bypass Screening Policy
 
-This endpoint is restricted to Admin API users and is only applicable to outgoing transactions.
+Triggers a new transaction, with the API user as the initiator, bypassing the screening policy checks. This endpoint is restricted to Admin API users and is only applicable to outgoing transactions.
 
 ### Example
 
@@ -2104,7 +2256,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Calling the \"Bypass Screening Policy\" API endpoint triggers a new transaction, with the API user as the initiator, bypassing the screening policy check
+        # Bypass Screening Policy
         api_response = fireblocks.compliance.retry_rejected_transaction_bypass_screening_checks(tx_id, idempotency_key=idempotency_key).result()
         print("The response of ComplianceApi->retry_rejected_transaction_bypass_screening_checks:\n")
         pprint(api_response)

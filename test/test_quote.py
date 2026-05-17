@@ -38,13 +38,16 @@ class TestQuote(unittest.TestCase):
         if include_optional:
             return Quote(
                 via = None,
-                id = '',
-                quote_asset_id = '',
-                base_asset_id = '',
-                base_amount = '',
-                quote_amount = '',
-                price_impact = 1.337,
-                quote_min_amount = '',
+                id = 'quote_8f2e4d1a9c5b7e3f',
+                quote_asset_id = 'USD',
+                quote_asset_rail = 'BLOCKCHAIN',
+                base_asset_id = 'BTC',
+                base_asset_rail = 'BLOCKCHAIN',
+                base_amount = '1000.00',
+                quote_amount = '0.02458',
+                price_impact = 0.005,
+                quote_min_amount = '0.02450',
+                is_slippage_applied = True,
                 execution_steps = [
                     {"type":"MARKET_EXECUTION","fee":{"feeType":"ORDER","assetId":"USD","amountType":"FIXED","amount":"2.50"}}
                     ],
@@ -52,21 +55,21 @@ class TestQuote(unittest.TestCase):
                     null
                     ],
                 side = 'BUY',
-                expires_at = '',
+                expires_at = '2024-01-15T10:35:00.000Z',
                 order_creation_requirements = '',
-                type = 'INDICATIVE'
+                type = 'COMMITTED'
             )
         else:
             return Quote(
                 via = None,
-                id = '',
-                quote_asset_id = '',
-                base_asset_id = '',
-                base_amount = '',
-                quote_amount = '',
+                id = 'quote_8f2e4d1a9c5b7e3f',
+                quote_asset_id = 'USD',
+                base_asset_id = 'BTC',
+                base_amount = '1000.00',
+                quote_amount = '0.02458',
                 side = 'BUY',
-                expires_at = '',
-                type = 'INDICATIVE',
+                expires_at = '2024-01-15T10:35:00.000Z',
+                type = 'COMMITTED',
         )
         """
 

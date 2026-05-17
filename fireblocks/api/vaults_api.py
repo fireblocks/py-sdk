@@ -21,8 +21,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from fireblocks.models.circle_gateway_wallet_info_response import CircleGatewayWalletInfoResponse
-from fireblocks.models.circle_gateway_wallet_status_response import CircleGatewayWalletStatusResponse
+from fireblocks.models.address_reverse_lookup_response import AddressReverseLookupResponse
 from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
 from fireblocks.models.create_assets_request import CreateAssetsRequest
@@ -45,6 +44,8 @@ from fireblocks.models.set_customer_ref_id_request import SetCustomerRefIdReques
 from fireblocks.models.unspent_inputs_response import UnspentInputsResponse
 from fireblocks.models.update_vault_account_asset_address_request import UpdateVaultAccountAssetAddressRequest
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
+from fireblocks.models.usdc_gateway_wallet_info_response import UsdcGatewayWalletInfoResponse
+from fireblocks.models.usdc_gateway_wallet_status_response import UsdcGatewayWalletStatusResponse
 from fireblocks.models.vault_account import VaultAccount
 from fireblocks.models.vault_accounts_paged_response import VaultAccountsPagedResponse
 from fireblocks.models.vault_accounts_tag_attachment_operations_request import VaultAccountsTagAttachmentOperationsRequest
@@ -225,7 +226,7 @@ class VaultsApi:
 
 
     @validate_call
-    def activate_circle_gateway_wallet_beta(
+    def activate_usdc_gateway_wallet_beta(
         self,
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
@@ -241,10 +242,10 @@ class VaultsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[CircleGatewayWalletStatusResponse]]:
-        """Activate a Circle Gateway wallet
+    ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
+        """Activate a USDC Gateway wallet
 
-        Activates the Circle Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -272,9 +273,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="activate_circle_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="activate_usdc_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
 
-        _param = self._activate_circle_gateway_wallet_beta_serialize(
+        _param = self._activate_usdc_gateway_wallet_beta_serialize(
             vault_account_id=vault_account_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
@@ -284,7 +285,7 @@ class VaultsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CircleGatewayWalletStatusResponse",
+            '200': "UsdcGatewayWalletStatusResponse",
             'default': "ErrorSchema",
         }
 
@@ -294,7 +295,7 @@ class VaultsApi:
             _response_types_map=_response_types_map,
         )
 
-    def _activate_circle_gateway_wallet_beta_serialize(
+    def _activate_usdc_gateway_wallet_beta_serialize(
         self,
         vault_account_id,
         idempotency_key,
@@ -344,7 +345,7 @@ class VaultsApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway/activate',
+            resource_path='/vault/accounts/{vaultAccountId}/usdc_gateway/activate',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1443,7 +1444,7 @@ class VaultsApi:
 
 
     @validate_call
-    def deactivate_circle_gateway_wallet_beta(
+    def deactivate_usdc_gateway_wallet_beta(
         self,
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
@@ -1459,10 +1460,10 @@ class VaultsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[CircleGatewayWalletStatusResponse]]:
-        """Deactivate a Circle Gateway wallet
+    ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
+        """Deactivate a USDC Gateway wallet
 
-        Deactivates the Circle Gateway wallet associated with the given vault account.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Deactivates the USDC Gateway wallet associated with the given vault account.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -1490,9 +1491,9 @@ class VaultsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="deactivate_circle_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="deactivate_usdc_gateway_wallet_beta", param_name="vault_account_id", param_value=vault_account_id)
 
-        _param = self._deactivate_circle_gateway_wallet_beta_serialize(
+        _param = self._deactivate_usdc_gateway_wallet_beta_serialize(
             vault_account_id=vault_account_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
@@ -1502,7 +1503,7 @@ class VaultsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CircleGatewayWalletStatusResponse",
+            '200': "UsdcGatewayWalletStatusResponse",
             'default': "ErrorSchema",
         }
 
@@ -1512,7 +1513,7 @@ class VaultsApi:
             _response_types_map=_response_types_map,
         )
 
-    def _deactivate_circle_gateway_wallet_beta_serialize(
+    def _deactivate_usdc_gateway_wallet_beta_serialize(
         self,
         vault_account_id,
         idempotency_key,
@@ -1562,7 +1563,7 @@ class VaultsApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway/deactivate',
+            resource_path='/vault/accounts/{vaultAccountId}/usdc_gateway/deactivate',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1737,135 +1738,6 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/asset_wallets',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def get_circle_gateway_wallet_info_beta(
-        self,
-        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[CircleGatewayWalletInfoResponse]]:
-        """Get Circle Gateway wallet info
-
-        Returns the Circle Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
-
-        :param vault_account_id: The ID of the vault account (required)
-        :type vault_account_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        validate_not_empty_string(function_name="get_circle_gateway_wallet_info_beta", param_name="vault_account_id", param_value=vault_account_id)
-
-        _param = self._get_circle_gateway_wallet_info_beta_serialize(
-            vault_account_id=vault_account_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CircleGatewayWalletInfoResponse",
-            'default': "ErrorSchema",
-        }
-
-        return self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout,
-            _response_types_map=_response_types_map,
-        )
-
-    def _get_circle_gateway_wallet_info_beta_serialize(
-        self,
-        vault_account_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if vault_account_id is not None:
-            _path_params['vaultAccountId'] = vault_account_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/vault/accounts/{vaultAccountId}/circle_gateway',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3092,6 +2964,135 @@ class VaultsApi:
 
 
     @validate_call
+    def get_usdc_gateway_wallet_info_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[UsdcGatewayWalletInfoResponse]]:
+        """Get USDC Gateway wallet info
+
+        Returns the USDC Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_usdc_gateway_wallet_info_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._get_usdc_gateway_wallet_info_beta_serialize(
+            vault_account_id=vault_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UsdcGatewayWalletInfoResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_usdc_gateway_wallet_info_beta_serialize(
+        self,
+        vault_account_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/{vaultAccountId}/usdc_gateway',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_vault_account(
         self,
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
@@ -3910,6 +3911,140 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/vault/accounts/{vaultAccountId}/hide',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def lookup_vault_by_address(
+        self,
+        address: Annotated[StrictStr, Field(description="The blockchain address to resolve.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AddressReverseLookupResponse]]:
+        """Look up a vault account by blockchain address
+
+        Resolves a blockchain address to the vault account that owns it. Returns the vault account ID and the blockchains associated with the address. **Note:** This endpoint is currently in beta and might be subject to changes. 
+
+        :param address: The blockchain address to resolve. (required)
+        :type address: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="lookup_vault_by_address", param_name="address", param_value=address)
+
+        _param = self._lookup_vault_by_address_serialize(
+            address=address,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddressReverseLookupResponse",
+            '401': None,
+            '403': None,
+            '404': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _lookup_vault_by_address_serialize(
+        self,
+        address,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if address is not None:
+            
+            _query_params.append(('address', address))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/lookup_by_address',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

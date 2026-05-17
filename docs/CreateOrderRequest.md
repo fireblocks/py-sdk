@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **execution_request_details** | [**ExecutionRequestDetails**](ExecutionRequestDetails.md) |  | 
 **settlement** | [**Settlement**](Settlement.md) |  | 
 **participants_identification** | [**ParticipantsIdentification**](ParticipantsIdentification.md) |  | [optional] 
+**source_of_funds** | [**SourceOfFunds**](SourceOfFunds.md) |  | [optional] 
 **customer_internal_reference_id** | **str** | Internal reference ID for the customer | [optional] 
 **note** | **str** | Optional note for the order | [optional] 
 

@@ -6,6 +6,7 @@ For UTXO-based blockchains only. Controls which UTXOs are used for automatic sel
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**selection_strategy** | **str** | Optional override for the UTXO selection strategy configured at the vault/tenant level.  | [optional] 
 **filters** | [**UtxoSelectionFilters**](UtxoSelectionFilters.md) |  | [optional] 
 **input_selection** | [**UtxoInputSelection**](UtxoInputSelection.md) |  | [optional] 
 

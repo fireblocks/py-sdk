@@ -31,19 +31,18 @@ class TRLinkCustomerResponse(BaseModel):
     TRLinkCustomerResponse
     """ # noqa: E501
     id: StrictStr = Field(description="Customer unique identifier")
-    tenant_id: StrictStr = Field(description="Fireblocks tenant ID", alias="tenantId")
     discoverable: Optional[TRLinkDiscoverableStatus]
     short_name: StrictStr = Field(description="Short display name", alias="shortName")
     full_legal_name: StrictStr = Field(description="Full legal entity name", alias="fullLegalName")
     geographic_address: Optional[TRLinkGeographicAddressRequest] = Field(default=None, alias="geographicAddress")
     country_of_registration: StrictStr = Field(description="ISO 3166-1 alpha-2 country code where the entity is registered", alias="countryOfRegistration")
-    national_identification: Optional[StrictStr] = Field(default=None, description="National identification (serialized as string)", alias="nationalIdentification")
+    national_identification: Optional[StrictStr] = Field(default=None, description="National identification, returned exactly as stored: a compact, whitespace-free JSON-encoded string with these optional keys (in this order): `nationalIdentifier`, `nationalIdentifierType` (e.g. `LEIX` for an LEI), `countryOfIssue` (ISO 3166-1 alpha-2), `registrationAuthority`. Maximum length is 240 characters.", alias="nationalIdentification")
     date_of_incorporation: Optional[date] = Field(default=None, description="Date of entity incorporation (ISO 8601 format)", alias="dateOfIncorporation")
     vaults: Optional[List[StrictInt]] = Field(default=None, description="Associated Fireblocks vault account IDs")
-    tr_primary_purpose: Optional[StrictStr] = Field(default=None, description="Primary purpose for Travel Rule compliance", alias="trPrimaryPurpose")
+    tr_primary_purpose: StrictStr = Field(description="Primary Travel Rule role for this customer; determines how the customer's Travel Rule messages are routed. Valid values: `notabene`, `trlink`.", alias="trPrimaryPurpose")
     create_date: datetime = Field(description="Timestamp when the customer was created (ISO 8601 format)", alias="createDate")
     last_update: datetime = Field(description="Timestamp when the customer was last updated (ISO 8601 format)", alias="lastUpdate")
-    __properties: ClassVar[List[str]] = ["id", "tenantId", "discoverable", "shortName", "fullLegalName", "geographicAddress", "countryOfRegistration", "nationalIdentification", "dateOfIncorporation", "vaults", "trPrimaryPurpose", "createDate", "lastUpdate"]
+    __properties: ClassVar[List[str]] = ["id", "discoverable", "shortName", "fullLegalName", "geographicAddress", "countryOfRegistration", "nationalIdentification", "dateOfIncorporation", "vaults", "trPrimaryPurpose", "createDate", "lastUpdate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,11 +111,6 @@ class TRLinkCustomerResponse(BaseModel):
         if self.vaults is None and "vaults" in self.model_fields_set:
             _dict['vaults'] = None
 
-        # set to None if tr_primary_purpose (nullable) is None
-        # and model_fields_set contains the field
-        if self.tr_primary_purpose is None and "tr_primary_purpose" in self.model_fields_set:
-            _dict['trPrimaryPurpose'] = None
-
         return _dict
 
     @classmethod
@@ -130,7 +124,6 @@ class TRLinkCustomerResponse(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "tenantId": obj.get("tenantId"),
             "discoverable": obj.get("discoverable"),
             "shortName": obj.get("shortName"),
             "fullLegalName": obj.get("fullLegalName"),

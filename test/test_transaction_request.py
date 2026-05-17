@@ -89,15 +89,14 @@ class TestTransactionRequest(unittest.TestCase):
                 replace_tx_by_hash = '00000000-0000-0000-0000-000000000000',
                 extra_parameters = { },
                 utxo_selection_params = fireblocks.models.utxo_selection_params.UtxoSelectionParams(
+                    selection_strategy = 'AMOUNT_ASC', 
                     filters = fireblocks.models.utxo_selection_filters.UtxoSelectionFilters(
                         include_all_labels = ["cold-storage"], 
                         include_any_labels = ["vip","high-value"], 
                         exclude_any_labels = ["deprecated"], 
                         address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', 
                         min_amount = '0.001', 
-                        max_amount = '9.999', 
-                        use_change = True, 
-                        use_coinbase = True, ), 
+                        max_amount = '9.999', ), 
                     input_selection = fireblocks.models.utxo_input_selection.UtxoInputSelection(
                         inputs_to_spend = [
                             fireblocks.models.utxo_input.UtxoInput(

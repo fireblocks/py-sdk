@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**QuoteTypeEnum**](QuoteTypeEnum.md) |  | 
+**type** | [**QuoteExecutionTypeEnum**](QuoteExecutionTypeEnum.md) |  | 
 **side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount to convert | 
 **base_asset_id** | **str** | Source asset identifier | 

@@ -31,14 +31,14 @@ class TRLinkUpdateCustomerRequest(BaseModel):
     TRLinkUpdateCustomerRequest
     """ # noqa: E501
     discoverable: Optional[TRLinkDiscoverableStatus] = None
-    short_name: Optional[StrictStr] = Field(default=None, description="Short display name", alias="shortName")
+    short_name: StrictStr = Field(description="Short display name (required)", alias="shortName")
     full_legal_name: Optional[StrictStr] = Field(default=None, description="Full legal entity name", alias="fullLegalName")
     geographic_address: Optional[TRLinkGeographicAddressRequest] = Field(default=None, alias="geographicAddress")
     country_of_registration: Optional[StrictStr] = Field(default=None, description="ISO 3166-1 alpha-2 country code where the entity is registered", alias="countryOfRegistration")
-    national_identification: Optional[StrictStr] = Field(default=None, description="National identification as JSON string", alias="nationalIdentification")
+    national_identification: Optional[StrictStr] = Field(default=None, description="National identification, sent as a JSON-encoded string. The server normalizes input into a compact JSON with these optional keys: `nationalIdentifier`, `nationalIdentifierType` (e.g. `LEIX` for an LEI), `countryOfIssue` (ISO 3166-1 alpha-2), `registrationAuthority`. If the input is not a JSON object, it is wrapped as `{\"nationalIdentifier\":\"<value>\"}`; if the value matches the LEI format, `nationalIdentifierType` is set to `LEIX` automatically and `countryOfIssue` defaults to this request's `countryOfRegistration` if not provided. The compacted JSON must be 240 characters or fewer. Omitting this field leaves the stored value unchanged; setting it to `null` clears it. On read, the value is returned exactly as stored.", alias="nationalIdentification")
     date_of_incorporation: Optional[date] = Field(default=None, description="Date of entity incorporation (ISO 8601 format: YYYY-MM-DD)", alias="dateOfIncorporation")
     vaults: Optional[List[StrictInt]] = Field(default=None, description="Associated Fireblocks vault account IDs")
-    tr_primary_purpose: Optional[StrictStr] = Field(default=None, description="Primary purpose for Travel Rule compliance", alias="trPrimaryPurpose")
+    tr_primary_purpose: Optional[StrictStr] = Field(default=None, description="Primary Travel Rule role for this customer; determines how the customer's Travel Rule messages are routed. Valid values: `notabene`, `trlink`. Omit the field to leave the stored value unchanged.", alias="trPrimaryPurpose")
     __properties: ClassVar[List[str]] = ["discoverable", "shortName", "fullLegalName", "geographicAddress", "countryOfRegistration", "nationalIdentification", "dateOfIncorporation", "vaults", "trPrimaryPurpose"]
 
     model_config = ConfigDict(
@@ -88,11 +88,6 @@ class TRLinkUpdateCustomerRequest(BaseModel):
         if self.discoverable is None and "discoverable" in self.model_fields_set:
             _dict['discoverable'] = None
 
-        # set to None if short_name (nullable) is None
-        # and model_fields_set contains the field
-        if self.short_name is None and "short_name" in self.model_fields_set:
-            _dict['shortName'] = None
-
         # set to None if full_legal_name (nullable) is None
         # and model_fields_set contains the field
         if self.full_legal_name is None and "full_legal_name" in self.model_fields_set:
@@ -122,11 +117,6 @@ class TRLinkUpdateCustomerRequest(BaseModel):
         # and model_fields_set contains the field
         if self.vaults is None and "vaults" in self.model_fields_set:
             _dict['vaults'] = None
-
-        # set to None if tr_primary_purpose (nullable) is None
-        # and model_fields_set contains the field
-        if self.tr_primary_purpose is None and "tr_primary_purpose" in self.model_fields_set:
-            _dict['trPrimaryPurpose'] = None
 
         return _dict
 

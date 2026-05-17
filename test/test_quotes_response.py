@@ -38,10 +38,31 @@ class TestQuotesResponse(unittest.TestCase):
         if include_optional:
             return QuotesResponse(
                 quotes = [
-                    null
+                    fireblocks.models.quote.Quote(
+                        via = null, 
+                        id = 'quote_8f2e4d1a9c5b7e3f', 
+                        quote_asset_id = 'USD', 
+                        quote_asset_rail = 'BLOCKCHAIN', 
+                        base_asset_id = 'BTC', 
+                        base_asset_rail = 'BLOCKCHAIN', 
+                        base_amount = '1000.00', 
+                        quote_amount = '0.02458', 
+                        price_impact = 0.005, 
+                        quote_min_amount = '0.02450', 
+                        is_slippage_applied = True, 
+                        execution_steps = [
+                            {"type":"MARKET_EXECUTION","fee":{"feeType":"ORDER","assetId":"USD","amountType":"FIXED","amount":"2.50"}}
+                            ], 
+                        general_fees = [
+                            null
+                            ], 
+                        side = 'BUY', 
+                        expires_at = '2024-01-15T10:35:00.000Z', 
+                        order_creation_requirements = '', 
+                        type = 'COMMITTED', )
                     ],
                 quote_failures = [
-                    fireblocks.models.quote_failure.QuoteFailure(
+                    fireblocks.models.scope_item_failure.ScopeItemFailure(
                         provider_id = 'BRIDGE', 
                         account_id = 'acc_9f4e2d8b1c6a5e73', 
                         error = {"code":900,"message":"Invalid base amount: must be greater than 0"}, )
@@ -50,10 +71,31 @@ class TestQuotesResponse(unittest.TestCase):
         else:
             return QuotesResponse(
                 quotes = [
-                    null
+                    fireblocks.models.quote.Quote(
+                        via = null, 
+                        id = 'quote_8f2e4d1a9c5b7e3f', 
+                        quote_asset_id = 'USD', 
+                        quote_asset_rail = 'BLOCKCHAIN', 
+                        base_asset_id = 'BTC', 
+                        base_asset_rail = 'BLOCKCHAIN', 
+                        base_amount = '1000.00', 
+                        quote_amount = '0.02458', 
+                        price_impact = 0.005, 
+                        quote_min_amount = '0.02450', 
+                        is_slippage_applied = True, 
+                        execution_steps = [
+                            {"type":"MARKET_EXECUTION","fee":{"feeType":"ORDER","assetId":"USD","amountType":"FIXED","amount":"2.50"}}
+                            ], 
+                        general_fees = [
+                            null
+                            ], 
+                        side = 'BUY', 
+                        expires_at = '2024-01-15T10:35:00.000Z', 
+                        order_creation_requirements = '', 
+                        type = 'COMMITTED', )
                     ],
                 quote_failures = [
-                    fireblocks.models.quote_failure.QuoteFailure(
+                    fireblocks.models.scope_item_failure.ScopeItemFailure(
                         provider_id = 'BRIDGE', 
                         account_id = 'acc_9f4e2d8b1c6a5e73', 
                         error = {"code":900,"message":"Invalid base amount: must be greater than 0"}, )

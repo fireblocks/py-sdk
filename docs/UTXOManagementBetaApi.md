@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **get_utxos**
-> ListUtxosResponse get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount, use_change=use_change, use_coinbase=use_coinbase)
+> ListUtxosResponse get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount)
 
 List unspent outputs (UTXOs)
 
@@ -55,12 +55,10 @@ with Fireblocks(configuration) as fireblocks:
     address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa' # str | Filter by address (optional)
     min_amount = '0.001' # str | Minimum amount filter (optional)
     max_amount = '1.0' # str | Maximum amount filter (optional)
-    use_change = true # bool | Include change outputs (optional)
-    use_coinbase = true # bool | Include coinbase outputs (optional)
 
     try:
         # List unspent outputs (UTXOs)
-        api_response = fireblocks.utxo_management_beta.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount, use_change=use_change, use_coinbase=use_coinbase).result()
+        api_response = fireblocks.utxo_management_beta.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount).result()
         print("The response of UTXOManagementBetaApi->get_utxos:\n")
         pprint(api_response)
     except Exception as e:
@@ -87,8 +85,6 @@ Name | Type | Description  | Notes
  **address** | **str**| Filter by address | [optional] 
  **min_amount** | **str**| Minimum amount filter | [optional] 
  **max_amount** | **str**| Maximum amount filter | [optional] 
- **use_change** | **bool**| Include change outputs | [optional] 
- **use_coinbase** | **bool**| Include coinbase outputs | [optional] 
 
 ### Return type
 

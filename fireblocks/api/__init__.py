@@ -19,6 +19,7 @@ from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
+from fireblocks.api.genie_beta_api import GenieBetaApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
 from fireblocks.api.keys_beta_api import KeysBetaApi

@@ -6,7 +6,7 @@ Order execution details
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**QuoteTypeEnum**](QuoteTypeEnum.md) |  | 
+**type** | [**QuoteExecutionTypeEnum**](QuoteExecutionTypeEnum.md) |  | 
 **side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount in baseAssetId. BUY &#x3D; base amount to receive; SELL &#x3D; base amount to sell. | 
 **base_asset_id** | **str** | The asset you receive on BUY / give on SELL. | 

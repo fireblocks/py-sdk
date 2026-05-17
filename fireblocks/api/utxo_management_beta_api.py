@@ -18,7 +18,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, field_validator
+from pydantic import Field, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.attach_detach_utxo_labels_request import AttachDetachUtxoLabelsRequest
@@ -60,8 +60,6 @@ class UTXOManagementBetaApi:
         address: Annotated[Optional[StrictStr], Field(description="Filter by address")] = None,
         min_amount: Annotated[Optional[StrictStr], Field(description="Minimum amount filter")] = None,
         max_amount: Annotated[Optional[StrictStr], Field(description="Maximum amount filter")] = None,
-        use_change: Annotated[Optional[StrictBool], Field(description="Include change outputs")] = None,
-        use_coinbase: Annotated[Optional[StrictBool], Field(description="Include coinbase outputs")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -105,10 +103,6 @@ class UTXOManagementBetaApi:
         :type min_amount: str
         :param max_amount: Maximum amount filter
         :type max_amount: str
-        :param use_change: Include change outputs
-        :type use_change: bool
-        :param use_coinbase: Include coinbase outputs
-        :type use_coinbase: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -148,8 +142,6 @@ class UTXOManagementBetaApi:
             address=address,
             min_amount=min_amount,
             max_amount=max_amount,
-            use_change=use_change,
-            use_coinbase=use_coinbase,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -182,8 +174,6 @@ class UTXOManagementBetaApi:
         address,
         min_amount,
         max_amount,
-        use_change,
-        use_coinbase,
         _request_auth,
         _content_type,
         _headers,
@@ -257,14 +247,6 @@ class UTXOManagementBetaApi:
         if max_amount is not None:
             
             _query_params.append(('maxAmount', max_amount))
-            
-        if use_change is not None:
-            
-            _query_params.append(('useChange', use_change))
-            
-        if use_coinbase is not None:
-            
-            _query_params.append(('useCoinbase', use_coinbase))
             
         # process the header parameters
         # process the form parameters

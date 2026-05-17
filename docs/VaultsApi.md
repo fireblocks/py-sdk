@@ -5,7 +5,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**activate_asset_for_vault_account**](VaultsApi.md#activate_asset_for_vault_account) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/activate | Activate a wallet in a vault account
-[**activate_circle_gateway_wallet_beta**](VaultsApi.md#activate_circle_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/circle_gateway/activate | Activate a Circle Gateway wallet
+[**activate_usdc_gateway_wallet_beta**](VaultsApi.md#activate_usdc_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/usdc_gateway/activate | Activate a USDC Gateway wallet
 [**attach_or_detach_tags_from_vault_accounts**](VaultsApi.md#attach_or_detach_tags_from_vault_accounts) | **POST** /vault/accounts/attached_tags | Attach or detach tags from vault accounts
 [**create_legacy_address**](VaultsApi.md#create_legacy_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/create_legacy | Convert a segwit address to legacy format
 [**create_multiple_accounts**](VaultsApi.md#create_multiple_accounts) | **POST** /vault/accounts/bulk | Bulk creation of new vault accounts
@@ -13,9 +13,8 @@ Method | HTTP request | Description
 [**create_vault_account**](VaultsApi.md#create_vault_account) | **POST** /vault/accounts | Create a new vault account
 [**create_vault_account_asset**](VaultsApi.md#create_vault_account_asset) | **POST** /vault/accounts/{vaultAccountId}/{assetId} | Create a new vault wallet
 [**create_vault_account_asset_address**](VaultsApi.md#create_vault_account_asset_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses | Create new asset deposit address
-[**deactivate_circle_gateway_wallet_beta**](VaultsApi.md#deactivate_circle_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/circle_gateway/deactivate | Deactivate a Circle Gateway wallet
+[**deactivate_usdc_gateway_wallet_beta**](VaultsApi.md#deactivate_usdc_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/usdc_gateway/deactivate | Deactivate a USDC Gateway wallet
 [**get_asset_wallets**](VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | Get vault wallets (Paginated)
-[**get_circle_gateway_wallet_info_beta**](VaultsApi.md#get_circle_gateway_wallet_info_beta) | **GET** /vault/accounts/{vaultAccountId}/circle_gateway | Get Circle Gateway wallet info
 [**get_create_multiple_deposit_addresses_job_status**](VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get the job status of the bulk deposit address creation
 [**get_create_multiple_vault_accounts_job_status**](VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
 [**get_max_bip_index_used**](VaultsApi.md#get_max_bip_index_used) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/max_bip44_index_used | Get maximum BIP44 index used
@@ -24,12 +23,14 @@ Method | HTTP request | Description
 [**get_public_key_info**](VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key for a derivation path
 [**get_public_key_info_for_address**](VaultsApi.md#get_public_key_info_for_address) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/{change}/{addressIndex}/public_key_info | Get an asset&#39;s public key
 [**get_unspent_inputs**](VaultsApi.md#get_unspent_inputs) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/unspent_inputs | Get UTXO unspent inputs information
+[**get_usdc_gateway_wallet_info_beta**](VaultsApi.md#get_usdc_gateway_wallet_info_beta) | **GET** /vault/accounts/{vaultAccountId}/usdc_gateway | Get USDC Gateway wallet info
 [**get_vault_account**](VaultsApi.md#get_vault_account) | **GET** /vault/accounts/{vaultAccountId} | Get a vault account by ID
 [**get_vault_account_asset**](VaultsApi.md#get_vault_account_asset) | **GET** /vault/accounts/{vaultAccountId}/{assetId} | Get the asset balance for a vault account
 [**get_vault_account_asset_addresses_paginated**](VaultsApi.md#get_vault_account_asset_addresses_paginated) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/addresses_paginated | Get addresses (Paginated)
 [**get_vault_assets**](VaultsApi.md#get_vault_assets) | **GET** /vault/assets | Get asset balance for chosen assets
 [**get_vault_balance_by_asset**](VaultsApi.md#get_vault_balance_by_asset) | **GET** /vault/assets/{assetId} | Get vault balance by an asset
 [**hide_vault_account**](VaultsApi.md#hide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/hide | Hide a vault account in the console
+[**lookup_vault_by_address**](VaultsApi.md#lookup_vault_by_address) | **GET** /vault/lookup_by_address | Look up a vault account by blockchain address
 [**set_customer_ref_id_for_address**](VaultsApi.md#set_customer_ref_id_for_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/set_customer_ref_id | Assign AML customer reference ID
 [**set_vault_account_auto_fuel**](VaultsApi.md#set_vault_account_auto_fuel) | **POST** /vault/accounts/{vaultAccountId}/set_auto_fuel | Set auto fueling to on or off
 [**set_vault_account_customer_ref_id**](VaultsApi.md#set_vault_account_customer_ref_id) | **POST** /vault/accounts/{vaultAccountId}/set_customer_ref_id | Set an AML/KYT ID for a vault account
@@ -121,12 +122,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **activate_circle_gateway_wallet_beta**
-> CircleGatewayWalletStatusResponse activate_circle_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key)
+# **activate_usdc_gateway_wallet_beta**
+> UsdcGatewayWalletStatusResponse activate_usdc_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key)
 
-Activate a Circle Gateway wallet
+Activate a USDC Gateway wallet
 
-Activates the Circle Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.
+Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.
 
  **Note:** This endpoint is currently in beta and might be subject to changes.
 
@@ -136,7 +137,7 @@ Activates the Circle Gateway wallet associated with the given vault account. If 
 
 
 ```python
-from fireblocks.models.circle_gateway_wallet_status_response import CircleGatewayWalletStatusResponse
+from fireblocks.models.usdc_gateway_wallet_status_response import UsdcGatewayWalletStatusResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -161,12 +162,12 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Activate a Circle Gateway wallet
-        api_response = fireblocks.vaults.activate_circle_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key).result()
-        print("The response of VaultsApi->activate_circle_gateway_wallet_beta:\n")
+        # Activate a USDC Gateway wallet
+        api_response = fireblocks.vaults.activate_usdc_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key).result()
+        print("The response of VaultsApi->activate_usdc_gateway_wallet_beta:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling VaultsApi->activate_circle_gateway_wallet_beta: %s\n" % e)
+        print("Exception when calling VaultsApi->activate_usdc_gateway_wallet_beta: %s\n" % e)
 ```
 
 
@@ -181,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleGatewayWalletStatusResponse**](CircleGatewayWalletStatusResponse.md)
+[**UsdcGatewayWalletStatusResponse**](UsdcGatewayWalletStatusResponse.md)
 
 ### Authorization
 
@@ -196,7 +197,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Circle Gateway wallet activated successfully |  * X-Request-ID -  <br>  |
+**200** | USDC Gateway wallet activated successfully |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -779,12 +780,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deactivate_circle_gateway_wallet_beta**
-> CircleGatewayWalletStatusResponse deactivate_circle_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key)
+# **deactivate_usdc_gateway_wallet_beta**
+> UsdcGatewayWalletStatusResponse deactivate_usdc_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key)
 
-Deactivate a Circle Gateway wallet
+Deactivate a USDC Gateway wallet
 
-Deactivates the Circle Gateway wallet associated with the given vault account.
+Deactivates the USDC Gateway wallet associated with the given vault account.
 
  **Note:** This endpoint is currently in beta and might be subject to changes.
 
@@ -794,7 +795,7 @@ Deactivates the Circle Gateway wallet associated with the given vault account.
 
 
 ```python
-from fireblocks.models.circle_gateway_wallet_status_response import CircleGatewayWalletStatusResponse
+from fireblocks.models.usdc_gateway_wallet_status_response import UsdcGatewayWalletStatusResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -819,12 +820,12 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Deactivate a Circle Gateway wallet
-        api_response = fireblocks.vaults.deactivate_circle_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key).result()
-        print("The response of VaultsApi->deactivate_circle_gateway_wallet_beta:\n")
+        # Deactivate a USDC Gateway wallet
+        api_response = fireblocks.vaults.deactivate_usdc_gateway_wallet_beta(vault_account_id, idempotency_key=idempotency_key).result()
+        print("The response of VaultsApi->deactivate_usdc_gateway_wallet_beta:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling VaultsApi->deactivate_circle_gateway_wallet_beta: %s\n" % e)
+        print("Exception when calling VaultsApi->deactivate_usdc_gateway_wallet_beta: %s\n" % e)
 ```
 
 
@@ -839,7 +840,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleGatewayWalletStatusResponse**](CircleGatewayWalletStatusResponse.md)
+[**UsdcGatewayWalletStatusResponse**](UsdcGatewayWalletStatusResponse.md)
 
 ### Authorization
 
@@ -854,7 +855,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Circle Gateway wallet deactivated successfully |  * X-Request-ID -  <br>  |
+**200** | USDC Gateway wallet deactivated successfully |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -943,82 +944,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A PaginatedAssetWalletResponse object |  * X-Request-ID -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_circle_gateway_wallet_info_beta**
-> CircleGatewayWalletInfoResponse get_circle_gateway_wallet_info_beta(vault_account_id)
-
-Get Circle Gateway wallet info
-
-Returns the Circle Gateway wallet information associated with the given vault account.
-**Note:** This endpoint is currently in beta and might be subject to changes.
-</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
-
-### Example
-
-
-```python
-from fireblocks.models.circle_gateway_wallet_info_response import CircleGatewayWalletInfoResponse
-from fireblocks.client import Fireblocks
-from fireblocks.client_configuration import ClientConfiguration
-from fireblocks.exceptions import ApiException
-from fireblocks.base_path import BasePath
-from pprint import pprint
-
-# load the secret key content from a file
-with open('your_secret_key_file_path', 'r') as file:
-    secret_key_value = file.read()
-
-# build the configuration
-configuration = ClientConfiguration(
-        api_key="your_api_key",
-        secret_key=secret_key_value,
-        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with Fireblocks(configuration) as fireblocks:
-    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
-
-    try:
-        # Get Circle Gateway wallet info
-        api_response = fireblocks.vaults.get_circle_gateway_wallet_info_beta(vault_account_id).result()
-        print("The response of VaultsApi->get_circle_gateway_wallet_info_beta:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling VaultsApi->get_circle_gateway_wallet_info_beta: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **vault_account_id** | **str**| The ID of the vault account | 
-
-### Return type
-
-[**CircleGatewayWalletInfoResponse**](CircleGatewayWalletInfoResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Circle Gateway wallet information |  * X-Request-ID -  <br>  |
-**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1669,6 +1594,82 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_usdc_gateway_wallet_info_beta**
+> UsdcGatewayWalletInfoResponse get_usdc_gateway_wallet_info_beta(vault_account_id)
+
+Get USDC Gateway wallet info
+
+Returns the USDC Gateway wallet information associated with the given vault account.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+</br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+### Example
+
+
+```python
+from fireblocks.models.usdc_gateway_wallet_info_response import UsdcGatewayWalletInfoResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+
+    try:
+        # Get USDC Gateway wallet info
+        api_response = fireblocks.vaults.get_usdc_gateway_wallet_info_beta(vault_account_id).result()
+        print("The response of VaultsApi->get_usdc_gateway_wallet_info_beta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->get_usdc_gateway_wallet_info_beta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+
+### Return type
+
+[**UsdcGatewayWalletInfoResponse**](UsdcGatewayWalletInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | USDC Gateway wallet information |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_vault_account**
 > VaultAccount get_vault_account(vault_account_id)
 
@@ -2137,6 +2138,85 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **lookup_vault_by_address**
+> AddressReverseLookupResponse lookup_vault_by_address(address)
+
+Look up a vault account by blockchain address
+
+Resolves a blockchain address to the vault account that owns it. Returns the vault account ID and the blockchains associated with the address.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.models.address_reverse_lookup_response import AddressReverseLookupResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    address = 'address_example' # str | The blockchain address to resolve.
+
+    try:
+        # Look up a vault account by blockchain address
+        api_response = fireblocks.vaults.lookup_vault_by_address(address).result()
+        print("The response of VaultsApi->lookup_vault_by_address:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->lookup_vault_by_address: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address** | **str**| The blockchain address to resolve. | 
+
+### Return type
+
+[**AddressReverseLookupResponse**](AddressReverseLookupResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Vault account that owns the address, with associated blockchains. |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Feature is not enabled for the workspace. |  * X-Request-ID -  <br>  |
+**404** | Vault account not found for the supplied address |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

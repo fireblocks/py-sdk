@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**QuoteTypeEnum**](QuoteTypeEnum.md) |  | 
+**type** | [**QuoteExecutionTypeEnum**](QuoteExecutionTypeEnum.md) |  | 
 **quote_id** | **str** | Quote ID for quote orders | 
 
 ## Example

@@ -54,13 +54,14 @@ class TestTRLinkUpdateCustomerRequest(unittest.TestCase):
                     country_sub_division = 'NY', 
                     country = 'US', ),
                 country_of_registration = 'US',
-                national_identification = '{"nationalIdentifierType":"LEIXG","nationalIdentifier":"5493001KJTIIGC8Y1R12","countryOfIssue":"US"}',
+                national_identification = '{"nationalIdentifier":"EXAMPLELEI1234567890","nationalIdentifierType":"LEIX","countryOfIssue":"US"}',
                 date_of_incorporation = 'Sun Mar 15 00:00:00 GMT 2015',
                 vaults = [0,1,2,3],
-                tr_primary_purpose = 'Updated: Virtual asset service provider and exchange'
+                tr_primary_purpose = 'trlink'
             )
         else:
             return TRLinkUpdateCustomerRequest(
+                short_name = 'Acme Corporation',
         )
         """
 

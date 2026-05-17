@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "18.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -38,6 +38,7 @@ from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
+from fireblocks.api.genie_beta_api import GenieBetaApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
 from fireblocks.api.keys_beta_api import KeysBetaApi
@@ -166,6 +167,9 @@ from fireblocks.models.address_registry_vault_list_order import (
 from fireblocks.models.address_registry_vault_opt_out_item import (
     AddressRegistryVaultOptOutItem,
 )
+from fireblocks.models.address_reverse_lookup_response import (
+    AddressReverseLookupResponse,
+)
 from fireblocks.models.alert_exposure_type_enum import AlertExposureTypeEnum
 from fireblocks.models.alert_level_enum import AlertLevelEnum
 from fireblocks.models.aml_alert import AmlAlert
@@ -195,6 +199,7 @@ from fireblocks.models.approvers_config_approval_groups_inner import (
     ApproversConfigApprovalGroupsInner,
 )
 from fireblocks.models.apy import Apy
+from fireblocks.models.ars_config_response import ArsConfigResponse
 from fireblocks.models.asset import Asset
 from fireblocks.models.asset_already_exist_http_error import AssetAlreadyExistHttpError
 from fireblocks.models.asset_amount import AssetAmount
@@ -295,12 +300,6 @@ from fireblocks.models.channel_dvn_config_with_confirmations_send_config import 
 from fireblocks.models.chaps_address import ChapsAddress
 from fireblocks.models.chaps_destination import ChapsDestination
 from fireblocks.models.chaps_payment_info import ChapsPaymentInfo
-from fireblocks.models.circle_gateway_wallet_info_response import (
-    CircleGatewayWalletInfoResponse,
-)
-from fireblocks.models.circle_gateway_wallet_status_response import (
-    CircleGatewayWalletStatusResponse,
-)
 from fireblocks.models.claim_rewards_request import ClaimRewardsRequest
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
@@ -315,8 +314,6 @@ from fireblocks.models.collection_token_metadata_attribute_dto import (
 )
 from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
 from fireblocks.models.collection_type import CollectionType
-from fireblocks.models.committed_quote_enum import CommittedQuoteEnum
-from fireblocks.models.committed_quote_type import CommittedQuoteType
 from fireblocks.models.compliance_result_full_payload import ComplianceResultFullPayload
 from fireblocks.models.compliance_result_statuses_enum import (
     ComplianceResultStatusesEnum,
@@ -477,6 +474,7 @@ from fireblocks.models.create_multiple_vault_accounts_job_status import (
 )
 from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionRequest
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
+from fireblocks.models.create_offers_request import CreateOffersRequest
 from fireblocks.models.create_order_request import CreateOrderRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
 from fireblocks.models.create_quote import CreateQuote
@@ -739,6 +737,9 @@ from fireblocks.models.gassless_standard_configurations import (
 from fireblocks.models.gassless_standard_configurations_gasless_standard_configurations_value import (
     GasslessStandardConfigurationsGaslessStandardConfigurationsValue,
 )
+from fireblocks.models.genie_chat_message import GenieChatMessage
+from fireblocks.models.genie_create_session_response import GenieCreateSessionResponse
+from fireblocks.models.genie_send_message_request import GenieSendMessageRequest
 from fireblocks.models.get_api_users_response import GetAPIUsersResponse
 from fireblocks.models.get_action_response import GetActionResponse
 from fireblocks.models.get_actions_response import GetActionsResponse
@@ -798,8 +799,6 @@ from fireblocks.models.identification_policy_override import (
     IdentificationPolicyOverride,
 )
 from fireblocks.models.idl_type import IdlType
-from fireblocks.models.indicative_quote_enum import IndicativeQuoteEnum
-from fireblocks.models.indicative_quote_type import IndicativeQuoteType
 from fireblocks.models.initiator_config import InitiatorConfig
 from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
 from fireblocks.models.instruction_amount import InstructionAmount
@@ -949,6 +948,8 @@ from fireblocks.models.notification_paginated_response import (
 )
 from fireblocks.models.notification_status import NotificationStatus
 from fireblocks.models.notification_with_data import NotificationWithData
+from fireblocks.models.offer import Offer
+from fireblocks.models.offers_response import OffersResponse
 from fireblocks.models.onchain_transaction import OnchainTransaction
 from fireblocks.models.onchain_transactions_paged_response import (
     OnchainTransactionsPagedResponse,
@@ -1054,16 +1055,21 @@ from fireblocks.models.quote_execution_request_details import (
 )
 from fireblocks.models.quote_execution_step import QuoteExecutionStep
 from fireblocks.models.quote_execution_type_details import QuoteExecutionTypeDetails
+from fireblocks.models.quote_execution_type_enum import QuoteExecutionTypeEnum
 from fireblocks.models.quote_execution_with_requote_request_details import (
     QuoteExecutionWithRequoteRequestDetails,
 )
 from fireblocks.models.quote_execution_with_requote_response_details import (
     QuoteExecutionWithRequoteResponseDetails,
 )
-from fireblocks.models.quote_failure import QuoteFailure
-from fireblocks.models.quote_properties_details import QuotePropertiesDetails
-from fireblocks.models.quote_type_enum import QuoteTypeEnum
+from fireblocks.models.quote_offer import QuoteOffer
+from fireblocks.models.quote_offer_type import QuoteOfferType
 from fireblocks.models.quotes_response import QuotesResponse
+from fireblocks.models.rate import Rate
+from fireblocks.models.rate_offer import RateOffer
+from fireblocks.models.rate_offer_type import RateOfferType
+from fireblocks.models.rates_request import RatesRequest
+from fireblocks.models.rates_response import RatesResponse
 from fireblocks.models.re_quote_details import ReQuoteDetails
 from fireblocks.models.re_quote_details_re_quote import ReQuoteDetailsReQuote
 from fireblocks.models.read_abi_function import ReadAbiFunction
@@ -1071,6 +1077,7 @@ from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
 from fireblocks.models.read_call_function_dto_abi_function import (
     ReadCallFunctionDtoAbiFunction,
 )
+from fireblocks.models.reason_for_payment_enum import ReasonForPaymentEnum
 from fireblocks.models.recipient_handle import RecipientHandle
 from fireblocks.models.redeem_funds_to_linked_dda_response import (
     RedeemFundsToLinkedDDAResponse,
@@ -1139,6 +1146,7 @@ from fireblocks.models.sepa_destination import SEPADestination
 from fireblocks.models.sol_account import SOLAccount
 from fireblocks.models.sol_account_with_value import SOLAccountWithValue
 from fireblocks.models.scope_item import ScopeItem
+from fireblocks.models.scope_item_failure import ScopeItemFailure
 from fireblocks.models.screening_alert_exposure_type_enum import (
     ScreeningAlertExposureTypeEnum,
 )
@@ -1301,6 +1309,7 @@ from fireblocks.models.solana_instruction import SolanaInstruction
 from fireblocks.models.solana_instruction_with_value import SolanaInstructionWithValue
 from fireblocks.models.solana_simple_create_params import SolanaSimpleCreateParams
 from fireblocks.models.source_config import SourceConfig
+from fireblocks.models.source_of_funds import SourceOfFunds
 from fireblocks.models.source_transfer_peer_path import SourceTransferPeerPath
 from fireblocks.models.source_transfer_peer_path_response import (
     SourceTransferPeerPathResponse,
@@ -1704,6 +1713,12 @@ from fireblocks.models.update_vault_account_asset_address_request import (
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
 from fireblocks.models.us_wire_payment_info import UsWirePaymentInfo
+from fireblocks.models.usdc_gateway_wallet_info_response import (
+    UsdcGatewayWalletInfoResponse,
+)
+from fireblocks.models.usdc_gateway_wallet_status_response import (
+    UsdcGatewayWalletStatusResponse,
+)
 from fireblocks.models.user_group_create_request import UserGroupCreateRequest
 from fireblocks.models.user_group_create_response import UserGroupCreateResponse
 from fireblocks.models.user_group_response import UserGroupResponse

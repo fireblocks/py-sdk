@@ -34,10 +34,10 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
-    def test_activate_circle_gateway_wallet_beta(self) -> None:
-        """Test case for activate_circle_gateway_wallet_beta
+    def test_activate_usdc_gateway_wallet_beta(self) -> None:
+        """Test case for activate_usdc_gateway_wallet_beta
 
-        Activate a Circle Gateway wallet
+        Activate a USDC Gateway wallet
         """
         pass
 
@@ -90,10 +90,10 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
-    def test_deactivate_circle_gateway_wallet_beta(self) -> None:
-        """Test case for deactivate_circle_gateway_wallet_beta
+    def test_deactivate_usdc_gateway_wallet_beta(self) -> None:
+        """Test case for deactivate_usdc_gateway_wallet_beta
 
-        Deactivate a Circle Gateway wallet
+        Deactivate a USDC Gateway wallet
         """
         pass
 
@@ -101,13 +101,6 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for get_asset_wallets
 
         Get vault wallets (Paginated)
-        """
-        pass
-
-    def test_get_circle_gateway_wallet_info_beta(self) -> None:
-        """Test case for get_circle_gateway_wallet_info_beta
-
-        Get Circle Gateway wallet info
         """
         pass
 
@@ -167,6 +160,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_usdc_gateway_wallet_info_beta(self) -> None:
+        """Test case for get_usdc_gateway_wallet_info_beta
+
+        Get USDC Gateway wallet info
+        """
+        pass
+
     def test_get_vault_account(self) -> None:
         """Test case for get_vault_account
 
@@ -206,6 +206,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for hide_vault_account
 
         Hide a vault account in the console
+        """
+        pass
+
+    def test_lookup_vault_by_address(self) -> None:
+        """Test case for lookup_vault_by_address
+
+        Look up a vault account by blockchain address
         """
         pass
 

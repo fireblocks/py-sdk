@@ -21,7 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from fireblocks.models.quote import Quote
-from fireblocks.models.quote_failure import QuoteFailure
+from fireblocks.models.scope_item_failure import ScopeItemFailure
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +30,7 @@ class QuotesResponse(BaseModel):
     QuotesResponse
     """ # noqa: E501
     quotes: List[Quote]
-    quote_failures: List[QuoteFailure] = Field(description="List of partial failures encountered while requesting quotes. Empty when all quote attempts succeed.", alias="quoteFailures")
+    quote_failures: List[ScopeItemFailure] = Field(description="List of partial failures encountered while requesting quotes. Empty when all quote attempts succeed.", alias="quoteFailures")
     __properties: ClassVar[List[str]] = ["quotes", "quoteFailures"]
 
     model_config = ConfigDict(
@@ -99,7 +99,7 @@ class QuotesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "quotes": [Quote.from_dict(_item) for _item in obj["quotes"]] if obj.get("quotes") is not None else None,
-            "quoteFailures": [QuoteFailure.from_dict(_item) for _item in obj["quoteFailures"]] if obj.get("quoteFailures") is not None else None
+            "quoteFailures": [ScopeItemFailure.from_dict(_item) for _item in obj["quoteFailures"]] if obj.get("quoteFailures") is not None else None
         })
         return _obj
 

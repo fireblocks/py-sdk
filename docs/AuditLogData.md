@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **user** | **str** | The user who performed the action | [optional] 
 **subject** | **str** | The subject of the action | [optional] 
 **event** | **str** | The event that was performed | [optional] 
+**category** | **str** | The category of the audit event | [optional] 
 **tenant_id** | **str** | The tenant ID of the audit log | [optional] 
 **user_id** | **str** | The user ID of the audit log | [optional] 
 

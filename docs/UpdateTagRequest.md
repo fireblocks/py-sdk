@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **label** | **str** | The tag label | [optional] 
 **description** | **str** | Description for the tag | [optional] 
+**color** | **str** | The tag color in hex format | [optional] 
 
 ## Example
 

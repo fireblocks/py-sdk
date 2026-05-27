@@ -29,7 +29,8 @@ class UpdateTagRequest(BaseModel):
     """ # noqa: E501
     label: Optional[StrictStr] = Field(default=None, description="The tag label")
     description: Optional[StrictStr] = Field(default=None, description="Description for the tag")
-    __properties: ClassVar[List[str]] = ["label", "description"]
+    color: Optional[StrictStr] = Field(default=None, description="The tag color in hex format")
+    __properties: ClassVar[List[str]] = ["label", "description", "color"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +84,8 @@ class UpdateTagRequest(BaseModel):
 
         _obj = cls.model_validate({
             "label": obj.get("label"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "color": obj.get("color")
         })
         return _obj
 

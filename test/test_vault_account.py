@@ -71,6 +71,7 @@ class TestVaultAccount(unittest.TestCase):
                         color = '#FF5733', 
                         is_protected = True, 
                         updated_at = 1717084800000, 
+                        type = 'WALLET_POOL', 
                         pending_approval_request = fireblocks.models.approval_request.ApprovalRequest(
                             id = '12345', 
                             type = 'TAG_UPDATE', 

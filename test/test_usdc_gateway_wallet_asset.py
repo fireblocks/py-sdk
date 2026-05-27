@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.create_tag_request import CreateTagRequest
+from fireblocks.models.usdc_gateway_wallet_asset import UsdcGatewayWalletAsset
 
 
-class TestCreateTagRequest(unittest.TestCase):
-    """CreateTagRequest unit test stubs"""
+class TestUsdcGatewayWalletAsset(unittest.TestCase):
+    """UsdcGatewayWalletAsset unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,32 @@ class TestCreateTagRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateTagRequest:
-        """Test CreateTagRequest
+    def make_instance(self, include_optional) -> UsdcGatewayWalletAsset:
+        """Test UsdcGatewayWalletAsset
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreateTagRequest`
+        # uncomment below to create an instance of `UsdcGatewayWalletAsset`
         """
-        model = CreateTagRequest()
+        model = UsdcGatewayWalletAsset()
         if include_optional:
-            return CreateTagRequest(
-                label = 'VIP',
-                description = 'Tag for VIP customers',
-                color = '#FF5733',
-                is_protected = True,
-                type = 'WALLET_POOL'
+            return UsdcGatewayWalletAsset(
+                id = 'USDC',
+                balance = '100',
+                chain = 'Ethereum',
+                network = 'Mainnet'
             )
         else:
-            return CreateTagRequest(
-                label = 'VIP',
+            return UsdcGatewayWalletAsset(
+                id = 'USDC',
+                balance = '100',
+                chain = 'Ethereum',
+                network = 'Mainnet',
         )
         """
 
-    def testCreateTagRequest(self):
-        """Test CreateTagRequest"""
+    def testUsdcGatewayWalletAsset(self):
+        """Test UsdcGatewayWalletAsset"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

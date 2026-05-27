@@ -45,11 +45,12 @@ class TestGetAuditLogsResponse(unittest.TestCase):
                         user = '', 
                         subject = '', 
                         event = '', 
+                        category = 'Administration', 
                         tenant_id = '', 
                         user_id = '', )
                     ],
-                cursor = '',
-                total = 1.337
+                next = 'eyJpZCI6IjEyMzQ1NiJ9',
+                cursor = ''
             )
         else:
             return GetAuditLogsResponse(

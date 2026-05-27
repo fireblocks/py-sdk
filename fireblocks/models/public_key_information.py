@@ -38,8 +38,8 @@ class PublicKeyInformation(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['MPC_ECDSA_SECP256K1', 'MPC_ECDSA_SECP256R1', 'MPC_EDDSA_ED25519']):
-            raise ValueError("must be one of enum values ('MPC_ECDSA_SECP256K1', 'MPC_ECDSA_SECP256R1', 'MPC_EDDSA_ED25519')")
+        if value not in set(['MPC_ECDSA_SECP256K1', 'MPC_EDDSA_ED25519']):
+            raise ValueError("must be one of enum values ('MPC_ECDSA_SECP256K1', 'MPC_EDDSA_ED25519')")
         return value
 
     model_config = ConfigDict(

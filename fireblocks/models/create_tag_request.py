@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from fireblocks.models.tag_type import TagType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,8 @@ class CreateTagRequest(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=250)]] = Field(default=None, description="Description for the tag")
     color: Optional[StrictStr] = Field(default=None, description="The tag color in hex format")
     is_protected: Optional[StrictBool] = Field(default=False, description="Indication if the tag is protected tag", alias="isProtected")
-    __properties: ClassVar[List[str]] = ["label", "description", "color", "isProtected"]
+    type: Optional[TagType] = None
+    __properties: ClassVar[List[str]] = ["label", "description", "color", "isProtected", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +90,8 @@ class CreateTagRequest(BaseModel):
             "label": obj.get("label"),
             "description": obj.get("description"),
             "color": obj.get("color"),
-            "isProtected": obj.get("isProtected") if obj.get("isProtected") is not None else False
+            "isProtected": obj.get("isProtected") if obj.get("isProtected") is not None else False,
+            "type": obj.get("type")
         })
         return _obj
 

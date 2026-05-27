@@ -353,7 +353,7 @@ class GasStationsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "EditGasStationConfigurationResponse",
+            '200': "EditGasStationConfigurationResponse",
             'default': "ErrorSchema",
         }
 
@@ -506,7 +506,7 @@ class GasStationsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "EditGasStationConfigurationResponse",
+            '200': "EditGasStationConfigurationResponse",
             'default': "ErrorSchema",
         }
 

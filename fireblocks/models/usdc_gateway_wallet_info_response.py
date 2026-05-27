@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from fireblocks.models.usdc_gateway_wallet_asset import UsdcGatewayWalletAsset
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,8 +32,10 @@ class UsdcGatewayWalletInfoResponse(BaseModel):
     type: StrictStr = Field(description="The USDC Gateway provider identifier")
     status: StrictStr = Field(description="Current activation status of the USDC Gateway wallet")
     symbol: StrictStr = Field(description="The token symbol supported by this wallet (e.g. USDC)")
-    asset_ids: List[StrictStr] = Field(description="Fireblocks asset IDs available for this wallet", alias="assetIds")
-    __properties: ClassVar[List[str]] = ["walletId", "type", "status", "symbol", "assetIds"]
+    total_balance: StrictStr = Field(description="Aggregate USDC balance across all assets", alias="totalBalance")
+    assets: List[UsdcGatewayWalletAsset] = Field(description="Per-chain USDC asset balances")
+    virtual_asset_id: StrictStr = Field(description="The id of the virtual asset", alias="virtualAssetId")
+    __properties: ClassVar[List[str]] = ["walletId", "type", "status", "symbol", "totalBalance", "assets", "virtualAssetId"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -80,6 +83,13 @@ class UsdcGatewayWalletInfoResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in assets (list)
+        _items = []
+        if self.assets:
+            for _item_assets in self.assets:
+                if _item_assets:
+                    _items.append(_item_assets.to_dict())
+            _dict['assets'] = _items
         return _dict
 
     @classmethod
@@ -96,7 +106,9 @@ class UsdcGatewayWalletInfoResponse(BaseModel):
             "type": obj.get("type"),
             "status": obj.get("status"),
             "symbol": obj.get("symbol"),
-            "assetIds": obj.get("assetIds")
+            "totalBalance": obj.get("totalBalance"),
+            "assets": [UsdcGatewayWalletAsset.from_dict(_item) for _item in obj["assets"]] if obj.get("assets") is not None else None,
+            "virtualAssetId": obj.get("virtualAssetId")
         })
         return _obj
 

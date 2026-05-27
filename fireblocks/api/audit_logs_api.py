@@ -18,8 +18,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
-from typing import Optional
+from pydantic import Field, StrictInt, StrictStr, field_validator
+from typing import List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.get_audit_logs_response import GetAuditLogsResponse
 
@@ -45,8 +45,18 @@ class AuditLogsApi:
     @validate_call
     def get_audit_logs(
         self,
-        time_period: Annotated[Optional[StrictStr], Field(description="The last time period to fetch audit logs")] = None,
-        cursor: Annotated[Optional[StrictStr], Field(description="The next id to start fetch audit logs from")] = None,
+        start_time: Annotated[Optional[StrictInt], Field(description="Start of date range as epoch time in milliseconds. Takes precedence over timePeriod when provided. Must be no more than 1 year before the current time.")] = None,
+        end_time: Annotated[Optional[StrictInt], Field(description="End of date range as epoch time in milliseconds. Must be after startTime. Defaults to now when omitted.")] = None,
+        time_period: Annotated[Optional[StrictStr], Field(description="Deprecated. Use startTime/endTime instead. Ignored when startTime is provided. Defaults to DAY when neither timePeriod nor startTime is supplied.")] = None,
+        category: Annotated[Optional[List[StrictStr]], Field(description="Filter by event category. Repeat the parameter for multiple values (OR logic within field).")] = None,
+        subject: Annotated[Optional[List[StrictStr]], Field(description="Filter by event subject. Repeat the parameter for multiple values.")] = None,
+        event: Annotated[Optional[List[StrictStr]], Field(description="Filter by event type. Repeat the parameter for multiple values.")] = None,
+        user: Annotated[Optional[List[StrictStr]], Field(description="Filter by user name. Repeat the parameter for multiple values.")] = None,
+        user_id: Annotated[Optional[List[StrictStr]], Field(description="Filter by user ID. Repeat the parameter for multiple values.")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="Sort direction. Defaults to DESC.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=500, strict=True, ge=1)]], Field(description="Number of results per page. Maximum 500. Defaults to 200.")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor returned from the previous response to fetch the next page.")] = None,
+        cursor: Annotated[Optional[StrictStr], Field(description="Deprecated. Use pageCursor instead.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -62,11 +72,31 @@ class AuditLogsApi:
     ) -> Future[ApiResponse[GetAuditLogsResponse]]:
         """Get audit logs
 
-        Get Audit logs for the last Day/Week.  - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin.
+        Retrieve audit log events for the workspace with optional filtering, date range, sorting, and cursor-based pagination.  Filters within the same field are combined as OR (e.g. category=Administration&category=Security returns events in either category). Filters across different fields are combined as AND.  **Deprecated parameters:** `timePeriod` and `cursor` remain functional for backward compatibility but new integrations should use `startTime`/`endTime` and `pageCursor` instead.  Endpoint Permission: Admin, Non-Signing Admin, Auditor, Security Admin, Security Auditor.
 
-        :param time_period: The last time period to fetch audit logs
+        :param start_time: Start of date range as epoch time in milliseconds. Takes precedence over timePeriod when provided. Must be no more than 1 year before the current time.
+        :type start_time: int
+        :param end_time: End of date range as epoch time in milliseconds. Must be after startTime. Defaults to now when omitted.
+        :type end_time: int
+        :param time_period: Deprecated. Use startTime/endTime instead. Ignored when startTime is provided. Defaults to DAY when neither timePeriod nor startTime is supplied.
         :type time_period: str
-        :param cursor: The next id to start fetch audit logs from
+        :param category: Filter by event category. Repeat the parameter for multiple values (OR logic within field).
+        :type category: List[str]
+        :param subject: Filter by event subject. Repeat the parameter for multiple values.
+        :type subject: List[str]
+        :param event: Filter by event type. Repeat the parameter for multiple values.
+        :type event: List[str]
+        :param user: Filter by user name. Repeat the parameter for multiple values.
+        :type user: List[str]
+        :param user_id: Filter by user ID. Repeat the parameter for multiple values.
+        :type user_id: List[str]
+        :param order: Sort direction. Defaults to DESC.
+        :type order: str
+        :param page_size: Number of results per page. Maximum 500. Defaults to 200.
+        :type page_size: int
+        :param page_cursor: Cursor returned from the previous response to fetch the next page.
+        :type page_cursor: str
+        :param cursor: Deprecated. Use pageCursor instead.
         :type cursor: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -92,7 +122,17 @@ class AuditLogsApi:
 
 
         _param = self._get_audit_logs_serialize(
+            start_time=start_time,
+            end_time=end_time,
             time_period=time_period,
+            category=category,
+            subject=subject,
+            event=event,
+            user=user,
+            user_id=user_id,
+            order=order,
+            page_size=page_size,
+            page_cursor=page_cursor,
             cursor=cursor,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -102,6 +142,8 @@ class AuditLogsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAuditLogsResponse",
+            '400': "ErrorSchema",
+            '403': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -113,7 +155,17 @@ class AuditLogsApi:
 
     def _get_audit_logs_serialize(
         self,
+        start_time,
+        end_time,
         time_period,
+        category,
+        subject,
+        event,
+        user,
+        user_id,
+        order,
+        page_size,
+        page_cursor,
         cursor,
         _request_auth,
         _content_type,
@@ -124,6 +176,11 @@ class AuditLogsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'category': 'multi',
+            'subject': 'multi',
+            'event': 'multi',
+            'user': 'multi',
+            'userId': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -137,9 +194,49 @@ class AuditLogsApi:
 
         # process the path parameters
         # process the query parameters
+        if start_time is not None:
+            
+            _query_params.append(('startTime', start_time))
+            
+        if end_time is not None:
+            
+            _query_params.append(('endTime', end_time))
+            
         if time_period is not None:
             
             _query_params.append(('timePeriod', time_period))
+            
+        if category is not None:
+            
+            _query_params.append(('category', category))
+            
+        if subject is not None:
+            
+            _query_params.append(('subject', subject))
+            
+        if event is not None:
+            
+            _query_params.append(('event', event))
+            
+        if user is not None:
+            
+            _query_params.append(('user', user))
+            
+        if user_id is not None:
+            
+            _query_params.append(('userId', user_id))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
             
         if cursor is not None:
             

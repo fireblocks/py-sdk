@@ -43,6 +43,7 @@ class TestAuditLogData(unittest.TestCase):
                 user = '',
                 subject = '',
                 event = '',
+                category = 'Administration',
                 tenant_id = '',
                 user_id = ''
             )

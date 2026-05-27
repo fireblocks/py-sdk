@@ -38,7 +38,8 @@ class TestUpdateTagRequest(unittest.TestCase):
         if include_optional:
             return UpdateTagRequest(
                 label = 'VIP',
-                description = 'Tag for VIP customers'
+                description = 'Tag for VIP customers',
+                color = '#FF5733'
             )
         else:
             return UpdateTagRequest(

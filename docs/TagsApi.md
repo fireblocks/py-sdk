@@ -385,7 +385,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_tags**
-> TagsPagedResponse get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected)
+> TagsPagedResponse get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type)
 
 Get list of tags
 
@@ -395,6 +395,7 @@ Retrieve a paged list of all tags according to filters.
 
 
 ```python
+from fireblocks.models.tag_type import TagType
 from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
@@ -422,10 +423,11 @@ with Fireblocks(configuration) as fireblocks:
     tag_ids = ['tag_ids_example'] # List[str] | List of tag IDs to filter by. (optional)
     include_pending_approvals_info = False # bool | Whether to include pending approval requests info. (optional) (default to False)
     is_protected = True # bool |  (optional)
+    type = [fireblocks.TagType()] # List[TagType] | Filter by tag type (optional)
 
     try:
         # Get list of tags
-        api_response = fireblocks.tags.get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected).result()
+        api_response = fireblocks.tags.get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type).result()
         print("The response of TagsApi->get_tags:\n")
         pprint(api_response)
     except Exception as e:
@@ -445,6 +447,7 @@ Name | Type | Description  | Notes
  **tag_ids** | [**List[str]**](str.md)| List of tag IDs to filter by. | [optional] 
  **include_pending_approvals_info** | **bool**| Whether to include pending approval requests info. | [optional] [default to False]
  **is_protected** | **bool**|  | [optional] 
+ **type** | [**List[TagType]**](TagType.md)| Filter by tag type | [optional] 
 
 ### Return type
 

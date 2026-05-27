@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.approval_request import ApprovalRequest
+from fireblocks.models.tag_type import TagType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,8 +35,9 @@ class Tag(BaseModel):
     color: Optional[StrictStr] = Field(default=None, description="The tag color in hex format")
     is_protected: StrictBool = Field(description="Indication if the tag is a protected tag", alias="isProtected")
     updated_at: Union[StrictFloat, StrictInt] = Field(description="The date and time the tag was last updated", alias="updatedAt")
+    type: Optional[TagType] = None
     pending_approval_request: Optional[ApprovalRequest] = Field(default=None, alias="pendingApprovalRequest")
-    __properties: ClassVar[List[str]] = ["id", "label", "description", "color", "isProtected", "updatedAt", "pendingApprovalRequest"]
+    __properties: ClassVar[List[str]] = ["id", "label", "description", "color", "isProtected", "updatedAt", "type", "pendingApprovalRequest"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +99,7 @@ class Tag(BaseModel):
             "color": obj.get("color"),
             "isProtected": obj.get("isProtected") if obj.get("isProtected") is not None else False,
             "updatedAt": obj.get("updatedAt"),
+            "type": obj.get("type"),
             "pendingApprovalRequest": ApprovalRequest.from_dict(obj["pendingApprovalRequest"]) if obj.get("pendingApprovalRequest") is not None else None
         })
         return _obj

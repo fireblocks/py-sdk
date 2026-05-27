@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.create_tag_request import CreateTagRequest
+from fireblocks.models.staking_error_schema import StakingErrorSchema
 
 
-class TestCreateTagRequest(unittest.TestCase):
-    """CreateTagRequest unit test stubs"""
+class TestStakingErrorSchema(unittest.TestCase):
+    """StakingErrorSchema unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,29 @@ class TestCreateTagRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateTagRequest:
-        """Test CreateTagRequest
+    def make_instance(self, include_optional) -> StakingErrorSchema:
+        """Test StakingErrorSchema
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreateTagRequest`
+        # uncomment below to create an instance of `StakingErrorSchema`
         """
-        model = CreateTagRequest()
+        model = StakingErrorSchema()
         if include_optional:
-            return CreateTagRequest(
-                label = 'VIP',
-                description = 'Tag for VIP customers',
-                color = '#FF5733',
-                is_protected = True,
-                type = 'WALLET_POOL'
+            return StakingErrorSchema(
+                message = 'Couldn't find position with id: abc-123',
+                code = 3310,
+                descriptor = '{"positionId":"abc-123"}'
             )
         else:
-            return CreateTagRequest(
-                label = 'VIP',
+            return StakingErrorSchema(
+                message = 'Couldn't find position with id: abc-123',
+                code = 3310,
         )
         """
 
-    def testCreateTagRequest(self):
-        """Test CreateTagRequest"""
+    def testStakingErrorSchema(self):
+        """Test StakingErrorSchema"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

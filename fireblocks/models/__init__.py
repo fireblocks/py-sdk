@@ -826,6 +826,7 @@ from fireblocks.models.split_response import SplitResponse
 from fireblocks.models.st_eth_blockchain_data import StEthBlockchainData
 from fireblocks.models.stake_request import StakeRequest
 from fireblocks.models.stake_response import StakeResponse
+from fireblocks.models.staking_error_schema import StakingErrorSchema
 from fireblocks.models.staking_positions_paginated_response import StakingPositionsPaginatedResponse
 from fireblocks.models.staking_provider import StakingProvider
 from fireblocks.models.status import Status
@@ -927,6 +928,7 @@ from fireblocks.models.tr_link_verdict import TRLinkVerdict
 from fireblocks.models.tr_link_verdict_enum import TRLinkVerdictEnum
 from fireblocks.models.tag import Tag
 from fireblocks.models.tag_attachment_operation_action import TagAttachmentOperationAction
+from fireblocks.models.tag_type import TagType
 from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.models.templates_paginated_response import TemplatesPaginatedResponse
 from fireblocks.models.third_party_routing import ThirdPartyRouting
@@ -1054,6 +1056,7 @@ from fireblocks.models.update_vault_account_asset_address_request import UpdateV
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
 from fireblocks.models.us_wire_payment_info import UsWirePaymentInfo
+from fireblocks.models.usdc_gateway_wallet_asset import UsdcGatewayWalletAsset
 from fireblocks.models.usdc_gateway_wallet_info_response import UsdcGatewayWalletInfoResponse
 from fireblocks.models.usdc_gateway_wallet_status_response import UsdcGatewayWalletStatusResponse
 from fireblocks.models.user_group_create_request import UserGroupCreateRequest

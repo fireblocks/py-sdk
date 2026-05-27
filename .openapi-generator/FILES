@@ -846,6 +846,7 @@ docs/StEthBlockchainData.md
 docs/StakeRequest.md
 docs/StakeResponse.md
 docs/StakingApi.md
+docs/StakingErrorSchema.md
 docs/StakingPositionsPaginatedResponse.md
 docs/StakingProvider.md
 docs/Status.md
@@ -948,6 +949,7 @@ docs/TRLinkVerdict.md
 docs/TRLinkVerdictEnum.md
 docs/Tag.md
 docs/TagAttachmentOperationAction.md
+docs/TagType.md
 docs/TagsApi.md
 docs/TagsPagedResponse.md
 docs/TemplatesPaginatedResponse.md
@@ -1081,6 +1083,7 @@ docs/UpdateVaultAccountAssetAddressRequest.md
 docs/UpdateVaultAccountRequest.md
 docs/UpdateWebhookRequest.md
 docs/UsWirePaymentInfo.md
+docs/UsdcGatewayWalletAsset.md
 docs/UsdcGatewayWalletInfoResponse.md
 docs/UsdcGatewayWalletStatusResponse.md
 docs/UserGroupCreateRequest.md
@@ -2012,6 +2015,7 @@ fireblocks/models/split_response.py
 fireblocks/models/st_eth_blockchain_data.py
 fireblocks/models/stake_request.py
 fireblocks/models/stake_response.py
+fireblocks/models/staking_error_schema.py
 fireblocks/models/staking_positions_paginated_response.py
 fireblocks/models/staking_provider.py
 fireblocks/models/status.py
@@ -2023,6 +2027,7 @@ fireblocks/models/swift_destination.py
 fireblocks/models/system_message_info.py
 fireblocks/models/tag.py
 fireblocks/models/tag_attachment_operation_action.py
+fireblocks/models/tag_type.py
 fireblocks/models/tags_paged_response.py
 fireblocks/models/templates_paginated_response.py
 fireblocks/models/third_party_routing.py
@@ -2240,6 +2245,7 @@ fireblocks/models/update_webhook_request.py
 fireblocks/models/us_wire_address.py
 fireblocks/models/us_wire_destination.py
 fireblocks/models/us_wire_payment_info.py
+fireblocks/models/usdc_gateway_wallet_asset.py
 fireblocks/models/usdc_gateway_wallet_info_response.py
 fireblocks/models/usdc_gateway_wallet_status_response.py
 fireblocks/models/user_group_create_request.py
@@ -3157,6 +3163,7 @@ test/test_st_eth_blockchain_data.py
 test/test_stake_request.py
 test/test_stake_response.py
 test/test_staking_api.py
+test/test_staking_error_schema.py
 test/test_staking_positions_paginated_response.py
 test/test_staking_provider.py
 test/test_status.py
@@ -3168,6 +3175,7 @@ test/test_swift_destination.py
 test/test_system_message_info.py
 test/test_tag.py
 test/test_tag_attachment_operation_action.py
+test/test_tag_type.py
 test/test_tags_api.py
 test/test_tags_paged_response.py
 test/test_templates_paginated_response.py
@@ -3391,6 +3399,7 @@ test/test_update_webhook_request.py
 test/test_us_wire_address.py
 test/test_us_wire_destination.py
 test/test_us_wire_payment_info.py
+test/test_usdc_gateway_wallet_asset.py
 test/test_usdc_gateway_wallet_info_response.py
 test/test_usdc_gateway_wallet_status_response.py
 test/test_user_group_create_request.py

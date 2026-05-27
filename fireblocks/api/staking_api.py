@@ -117,11 +117,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': None,
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -262,11 +262,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': None,
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -423,11 +423,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "MergeStakeAccountsResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -579,11 +579,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[Delegation]",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -719,11 +719,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ChainInfoResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -848,10 +848,10 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[ChainDescriptor]",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -978,11 +978,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Delegation",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1127,11 +1127,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StakingPositionsPaginatedResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1278,10 +1278,10 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[Provider]",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1403,10 +1403,10 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DelegationSummary",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1528,10 +1528,10 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Dict[str, DelegationSummary]",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1666,11 +1666,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "MergeStakeAccountsResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1827,11 +1827,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "SplitResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -1987,11 +1987,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "StakeResponse",
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -2147,11 +2147,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': None,
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -2307,11 +2307,11 @@ class StakingApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': None,
-            '400': "ErrorSchema",
-            '403': "ErrorSchema",
-            '404': "ErrorSchema",
-            '429': "ErrorSchema",
-            '500': "ErrorSchema",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
             'default': "ErrorSchema",
         }
 

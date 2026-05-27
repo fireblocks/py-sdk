@@ -33,9 +33,10 @@ class AuditLogData(BaseModel):
     user: Optional[StrictStr] = Field(default=None, description="The user who performed the action")
     subject: Optional[StrictStr] = Field(default=None, description="The subject of the action")
     event: Optional[StrictStr] = Field(default=None, description="The event that was performed")
+    category: Optional[StrictStr] = Field(default=None, description="The category of the audit event")
     tenant_id: Optional[StrictStr] = Field(default=None, description="The tenant ID of the audit log", alias="tenantId")
     user_id: Optional[StrictStr] = Field(default=None, description="The user ID of the audit log", alias="userId")
-    __properties: ClassVar[List[str]] = ["id", "timestamp", "createdAt", "user", "subject", "event", "tenantId", "userId"]
+    __properties: ClassVar[List[str]] = ["id", "timestamp", "createdAt", "user", "subject", "event", "category", "tenantId", "userId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +95,7 @@ class AuditLogData(BaseModel):
             "user": obj.get("user"),
             "subject": obj.get("subject"),
             "event": obj.get("event"),
+            "category": obj.get("category"),
             "tenantId": obj.get("tenantId"),
             "userId": obj.get("userId")
         })

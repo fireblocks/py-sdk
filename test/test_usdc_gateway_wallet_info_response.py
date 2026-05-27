@@ -43,7 +43,9 @@ class TestUsdcGatewayWalletInfoResponse(unittest.TestCase):
                 type = 'CIRCLEGATEWAY',
                 status = 'ACTIVATED',
                 symbol = 'USDC',
-                asset_ids = ["USDC"]
+                total_balance = '150',
+                assets = [{"id":"USDC","balance":"100","chain":"Ethereum","network":"Mainnet"}],
+                virtual_asset_id = '0e7e2ab4-544e-40aa-a7d2-93b6f6a1516e'
             )
         else:
             return UsdcGatewayWalletInfoResponse(
@@ -51,7 +53,9 @@ class TestUsdcGatewayWalletInfoResponse(unittest.TestCase):
                 type = 'CIRCLEGATEWAY',
                 status = 'ACTIVATED',
                 symbol = 'USDC',
-                asset_ids = ["USDC"],
+                total_balance = '150',
+                assets = [{"id":"USDC","balance":"100","chain":"Ethereum","network":"Mainnet"}],
+                virtual_asset_id = '0e7e2ab4-544e-40aa-a7d2-93b6f6a1516e',
         )
         """
 

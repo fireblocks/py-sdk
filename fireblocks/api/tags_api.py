@@ -24,6 +24,7 @@ from typing_extensions import Annotated
 from fireblocks.models.approval_request import ApprovalRequest
 from fireblocks.models.create_tag_request import CreateTagRequest
 from fireblocks.models.tag import Tag
+from fireblocks.models.tag_type import TagType
 from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.models.update_tag_request import UpdateTagRequest
 
@@ -721,6 +722,7 @@ class TagsApi:
         tag_ids: Annotated[Optional[Annotated[List[StrictStr], Field(max_length=100)]], Field(description="List of tag IDs to filter by.")] = None,
         include_pending_approvals_info: Annotated[Optional[StrictBool], Field(description="Whether to include pending approval requests info.")] = None,
         is_protected: Optional[StrictBool] = None,
+        type: Annotated[Optional[List[TagType]], Field(description="Filter by tag type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -750,6 +752,8 @@ class TagsApi:
         :type include_pending_approvals_info: bool
         :param is_protected:
         :type is_protected: bool
+        :param type: Filter by tag type
+        :type type: List[TagType]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -780,6 +784,7 @@ class TagsApi:
             tag_ids=tag_ids,
             include_pending_approvals_info=include_pending_approvals_info,
             is_protected=is_protected,
+            type=type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -804,6 +809,7 @@ class TagsApi:
         tag_ids,
         include_pending_approvals_info,
         is_protected,
+        type,
         _request_auth,
         _content_type,
         _headers,
@@ -814,6 +820,7 @@ class TagsApi:
 
         _collection_formats: Dict[str, str] = {
             'tagIds': 'multi',
+            'type': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -850,6 +857,10 @@ class TagsApi:
         if is_protected is not None:
             
             _query_params.append(('isProtected', is_protected))
+            
+        if type is not None:
+            
+            _query_params.append(('type', type))
             
         # process the header parameters
         # process the form parameters

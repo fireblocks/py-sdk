@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | [optional] 
+**id** | **str** | Deprecated. Use assetId or assetLegacyId instead. | [optional] 
 **balance** | **str** |  | [optional] 
 **locked_amount** | **str** |  | [optional] 
 **total** | **str** |  | [optional] 
 **available** | **str** |  | [optional] 
 **credit** | **str** |  | [optional] 
-**asset_id** | **str** | The id of the asset | [optional] 
-**provider_symbol** | **str** | The provider symbol of the asset | [optional] 
-**asset_symbol** | **str** | The asset symbol of the asset | [optional] 
-**asset_legacy_id** | **str** | The asset legacy id of the asset | [optional] 
+**asset_id** | **str** | The Fireblocks asset id. Present only when Fireblocks can identify the exchange asset. | [optional] 
+**provider_symbol** | **str** | The symbol used by the exchange provider to identify the asset. | [optional] 
+**asset_symbol** | **str** | The Fireblocks asset symbol. Present only when Fireblocks can identify the exchange asset. | [optional] 
+**asset_legacy_id** | **str** | The Fireblocks legacy asset id. Present only when Fireblocks can identify the exchange asset. | [optional] 
 
 ## Example
 

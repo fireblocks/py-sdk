@@ -27,16 +27,16 @@ class ExchangeAsset(BaseModel):
     """
     ExchangeAsset
     """ # noqa: E501
-    id: Optional[StrictStr] = None
+    id: Optional[StrictStr] = Field(default=None, description="Deprecated. Use assetId or assetLegacyId instead.")
     balance: Optional[StrictStr] = None
     locked_amount: Optional[StrictStr] = Field(default=None, alias="lockedAmount")
     total: Optional[StrictStr] = None
     available: Optional[StrictStr] = None
     credit: Optional[StrictStr] = None
-    asset_id: Optional[StrictStr] = Field(default=None, description="The id of the asset", alias="assetId")
-    provider_symbol: Optional[StrictStr] = Field(default=None, description="The provider symbol of the asset", alias="providerSymbol")
-    asset_symbol: Optional[StrictStr] = Field(default=None, description="The asset symbol of the asset", alias="assetSymbol")
-    asset_legacy_id: Optional[StrictStr] = Field(default=None, description="The asset legacy id of the asset", alias="assetLegacyId")
+    asset_id: Optional[StrictStr] = Field(default=None, description="The Fireblocks asset id. Present only when Fireblocks can identify the exchange asset.", alias="assetId")
+    provider_symbol: Optional[StrictStr] = Field(default=None, description="The symbol used by the exchange provider to identify the asset.", alias="providerSymbol")
+    asset_symbol: Optional[StrictStr] = Field(default=None, description="The Fireblocks asset symbol. Present only when Fireblocks can identify the exchange asset.", alias="assetSymbol")
+    asset_legacy_id: Optional[StrictStr] = Field(default=None, description="The Fireblocks legacy asset id. Present only when Fireblocks can identify the exchange asset.", alias="assetLegacyId")
     __properties: ClassVar[List[str]] = ["id", "balance", "lockedAmount", "total", "available", "credit", "assetId", "providerSymbol", "assetSymbol", "assetLegacyId"]
 
     model_config = ConfigDict(

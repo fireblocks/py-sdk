@@ -8,14 +8,17 @@ Method | HTTP request | Description
 
 
 # **get_audit_logs**
-> GetAuditLogsResponse get_audit_logs(time_period=time_period, cursor=cursor)
+> GetAuditLogsResponse get_audit_logs(start_time=start_time, end_time=end_time, time_period=time_period, category=category, subject=subject, event=event, user=user, user_id=user_id, order=order, page_size=page_size, page_cursor=page_cursor, cursor=cursor)
 
 Get audit logs
 
-Get Audit logs for the last Day/Week.
+Retrieve audit log events for the workspace with optional filtering, date range, sorting, and cursor-based pagination.
 
-- Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions.
-Endpoint Permission: Admin, Non-Signing Admin.
+Filters within the same field are combined as OR (e.g. category=Administration&category=Security returns events in either category). Filters across different fields are combined as AND.
+
+**Deprecated parameters:** `timePeriod` and `cursor` remain functional for backward compatibility but new integrations should use `startTime`/`endTime` and `pageCursor` instead.
+
+Endpoint Permission: Admin, Non-Signing Admin, Auditor, Security Admin, Security Auditor.
 
 ### Example
 
@@ -42,12 +45,22 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    time_period = 'time_period_example' # str | The last time period to fetch audit logs (optional)
-    cursor = 'cursor_example' # str | The next id to start fetch audit logs from (optional)
+    start_time = 56 # int | Start of date range as epoch time in milliseconds. Takes precedence over timePeriod when provided. Must be no more than 1 year before the current time. (optional)
+    end_time = 56 # int | End of date range as epoch time in milliseconds. Must be after startTime. Defaults to now when omitted. (optional)
+    time_period = 'time_period_example' # str | Deprecated. Use startTime/endTime instead. Ignored when startTime is provided. Defaults to DAY when neither timePeriod nor startTime is supplied. (optional)
+    category = ['category_example'] # List[str] | Filter by event category. Repeat the parameter for multiple values (OR logic within field). (optional)
+    subject = ['subject_example'] # List[str] | Filter by event subject. Repeat the parameter for multiple values. (optional)
+    event = ['event_example'] # List[str] | Filter by event type. Repeat the parameter for multiple values. (optional)
+    user = ['user_example'] # List[str] | Filter by user name. Repeat the parameter for multiple values. (optional)
+    user_id = ['user_id_example'] # List[str] | Filter by user ID. Repeat the parameter for multiple values. (optional)
+    order = DESC # str | Sort direction. Defaults to DESC. (optional) (default to DESC)
+    page_size = 200 # int | Number of results per page. Maximum 500. Defaults to 200. (optional) (default to 200)
+    page_cursor = 'page_cursor_example' # str | Cursor returned from the previous response to fetch the next page. (optional)
+    cursor = 'cursor_example' # str | Deprecated. Use pageCursor instead. (optional)
 
     try:
         # Get audit logs
-        api_response = fireblocks.audit_logs.get_audit_logs(time_period=time_period, cursor=cursor).result()
+        api_response = fireblocks.audit_logs.get_audit_logs(start_time=start_time, end_time=end_time, time_period=time_period, category=category, subject=subject, event=event, user=user, user_id=user_id, order=order, page_size=page_size, page_cursor=page_cursor, cursor=cursor).result()
         print("The response of AuditLogsApi->get_audit_logs:\n")
         pprint(api_response)
     except Exception as e:
@@ -61,8 +74,18 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **time_period** | **str**| The last time period to fetch audit logs | [optional] 
- **cursor** | **str**| The next id to start fetch audit logs from | [optional] 
+ **start_time** | **int**| Start of date range as epoch time in milliseconds. Takes precedence over timePeriod when provided. Must be no more than 1 year before the current time. | [optional] 
+ **end_time** | **int**| End of date range as epoch time in milliseconds. Must be after startTime. Defaults to now when omitted. | [optional] 
+ **time_period** | **str**| Deprecated. Use startTime/endTime instead. Ignored when startTime is provided. Defaults to DAY when neither timePeriod nor startTime is supplied. | [optional] 
+ **category** | [**List[str]**](str.md)| Filter by event category. Repeat the parameter for multiple values (OR logic within field). | [optional] 
+ **subject** | [**List[str]**](str.md)| Filter by event subject. Repeat the parameter for multiple values. | [optional] 
+ **event** | [**List[str]**](str.md)| Filter by event type. Repeat the parameter for multiple values. | [optional] 
+ **user** | [**List[str]**](str.md)| Filter by user name. Repeat the parameter for multiple values. | [optional] 
+ **user_id** | [**List[str]**](str.md)| Filter by user ID. Repeat the parameter for multiple values. | [optional] 
+ **order** | **str**| Sort direction. Defaults to DESC. | [optional] [default to DESC]
+ **page_size** | **int**| Number of results per page. Maximum 500. Defaults to 200. | [optional] [default to 200]
+ **page_cursor** | **str**| Cursor returned from the previous response to fetch the next page. | [optional] 
+ **cursor** | **str**| Deprecated. Use pageCursor instead. | [optional] 
 
 ### Return type
 
@@ -81,7 +104,9 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Audit logs from requested time period |  * X-Request-ID -  <br>  |
+**200** | Audit log events matching the requested filters and date range |  * X-Request-ID -  <br>  |
+**400** | Error Response |  * X-Request-ID -  <br>  |
+**403** | Error Response |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

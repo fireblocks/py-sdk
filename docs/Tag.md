@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **color** | **str** | The tag color in hex format | [optional] 
 **is_protected** | **bool** | Indication if the tag is a protected tag | [default to False]
 **updated_at** | **float** | The date and time the tag was last updated | 
+**type** | [**TagType**](TagType.md) |  | [optional] 
 **pending_approval_request** | [**ApprovalRequest**](ApprovalRequest.md) |  | [optional] 
 
 ## Example

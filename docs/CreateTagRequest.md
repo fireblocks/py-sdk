@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **str** | Description for the tag | [optional] 
 **color** | **str** | The tag color in hex format | [optional] 
 **is_protected** | **bool** | Indication if the tag is protected tag | [optional] [default to False]
+**type** | [**TagType**](TagType.md) |  | [optional] 
 
 ## Example
 

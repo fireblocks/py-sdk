@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[AuditLogData]**](AuditLogData.md) |  | [optional] 
-**cursor** | **str** | The next id to start fetch audit logs from | [optional] 
-**total** | **float** | The total number of audit logs | [optional] 
+**next** | **str** | Cursor to pass as pageCursor in the next request. Null when no further pages exist. | [optional] 
+**cursor** | **str** | Deprecated. Use next instead. | [optional] 
 
 ## Example
 

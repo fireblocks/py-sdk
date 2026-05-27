@@ -9,7 +9,9 @@ Name | Type | Description | Notes
 **type** | **str** | The USDC Gateway provider identifier | 
 **status** | **str** | Current activation status of the USDC Gateway wallet | 
 **symbol** | **str** | The token symbol supported by this wallet (e.g. USDC) | 
-**asset_ids** | **List[str]** | Fireblocks asset IDs available for this wallet | 
+**total_balance** | **str** | Aggregate USDC balance across all assets | 
+**assets** | [**List[UsdcGatewayWalletAsset]**](UsdcGatewayWalletAsset.md) | Per-chain USDC asset balances | 
+**virtual_asset_id** | **str** | The id of the virtual asset | 
 
 ## Example
 

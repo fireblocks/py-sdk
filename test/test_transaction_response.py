@@ -144,6 +144,7 @@ class TestTransactionResponse(unittest.TestCase):
                     ],
                 created_at = 1.337,
                 last_updated = 1.337,
+                expires_at = 1735689600000,
                 created_by = '',
                 signed_by = [
                     ''

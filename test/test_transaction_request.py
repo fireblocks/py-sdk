@@ -219,7 +219,8 @@ class TestTransactionRequest(unittest.TestCase):
                 auto_staking = True,
                 network_staking = None,
                 cpu_staking = None,
-                use_gasless = True
+                use_gasless = True,
+                expires_after_seconds = 3600
             )
         else:
             return TransactionRequest(

@@ -19,7 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from fireblocks.models.destination_transfer_peer_path import DestinationTransferPeerPath
 from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.source_transfer_peer_path import SourceTransferPeerPath
@@ -70,7 +71,8 @@ class TransactionRequest(BaseModel):
     network_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="networkStaking")
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
     use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gasless configuration by sending true\\false", alias="useGasless")
-    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless"]
+    expires_after_seconds: Optional[Union[Annotated[float, Field(le=86400, strict=True, ge=600)], Annotated[int, Field(le=86400, strict=True, ge=600)]]] = Field(default=None, description="The number of seconds the transaction is valid for before it expires. After the specified duration, the transaction will expire if it has not been broadcasted.", alias="expiresAfterSeconds")
+    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless", "expiresAfterSeconds"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -207,7 +209,8 @@ class TransactionRequest(BaseModel):
             "autoStaking": obj.get("autoStaking"),
             "networkStaking": TransactionRequestNetworkStaking.from_dict(obj["networkStaking"]) if obj.get("networkStaking") is not None else None,
             "cpuStaking": TransactionRequestNetworkStaking.from_dict(obj["cpuStaking"]) if obj.get("cpuStaking") is not None else None,
-            "useGasless": obj.get("useGasless")
+            "useGasless": obj.get("useGasless"),
+            "expiresAfterSeconds": obj.get("expiresAfterSeconds")
         })
         return _obj
 

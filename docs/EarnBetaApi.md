@@ -4,7 +4,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**approve_terms_of_service**](EarnBetaApi.md#approve_terms_of_service) | **POST** /earn/providers/{providerId}/approve_terms_of_service | Approve earn provider terms of service
+[**approve_terms_of_service**](EarnBetaApi.md#approve_terms_of_service) | **POST** /earn/providers/approve_terms_of_service | Approve earn provider terms of service
 [**create_earn_action**](EarnBetaApi.md#create_earn_action) | **POST** /earn/actions | Create and execute a lending action (deposit or withdraw)
 [**get_earn_action**](EarnBetaApi.md#get_earn_action) | **GET** /earn/actions/{id} | Get a single earn lending action
 [**get_earn_actions**](EarnBetaApi.md#get_earn_actions) | **GET** /earn/actions | List earn lending actions
@@ -14,13 +14,13 @@ Method | HTTP request | Description
 
 
 # **approve_terms_of_service**
-> approve_terms_of_service(provider_id, idempotency_key=idempotency_key)
+> approve_terms_of_service(idempotency_key=idempotency_key)
 
 Approve earn provider terms of service
 
-Approves the lending provider's terms of service for this workspace. When
-`isTermsApprovalRequired` is true on the provider (see list providers),
-call this once before creating or executing earn actions with that provider.
+Approves earn provider terms of service for this workspace (one-time per tenant).
+When `isTermsApprovalRequired` is true on a provider (see list providers),
+call this once before creating or executing earn actions with providers that require it.
 After success, `GET /earn/providers` reflects `isTermsOfServiceApproved`.
 
 **Note:** This endpoint is currently in beta and might be subject to changes.
@@ -49,12 +49,11 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    provider_id = 'provider_id_example' # str | Stable protocol identifier for the earn provider (`MORPHO` or `AAVE`).
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Approve earn provider terms of service
-        fireblocks.earn_beta.approve_terms_of_service(provider_id, idempotency_key=idempotency_key).result()
+        fireblocks.earn_beta.approve_terms_of_service(idempotency_key=idempotency_key).result()
     except Exception as e:
         print("Exception when calling EarnBetaApi->approve_terms_of_service: %s\n" % e)
 ```
@@ -66,7 +65,6 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provider_id** | **str**| Stable protocol identifier for the earn provider (&#x60;MORPHO&#x60; or &#x60;AAVE&#x60;). | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type

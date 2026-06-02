@@ -69,6 +69,7 @@ class TransactionResponse(BaseModel):
     network_records: Optional[List[NetworkRecord]] = Field(default=None, description="In case a single transaction resulted with multiple transfers, for example a result of a contract call, then this parameter specifies each transfer that took place on the blockchain. In case of a single transfer transaction, this parameter is empty.", alias="networkRecords")
     created_at: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction’s creation date and time, in unix timestamp.", alias="createdAt")
     last_updated: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction’s last update date and time, in unix timestamp.", alias="lastUpdated")
+    expires_at: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction’s expiration date and time, in unix timestamp. Only returned for transactions that have an expiration set.", alias="expiresAt")
     created_by: Optional[StrictStr] = Field(default=None, description="User ID of the initiator of the transaction.", alias="createdBy")
     signed_by: Optional[List[StrictStr]] = Field(default=None, description="User ID’s of the signers of the transaction.", alias="signedBy")
     rejected_by: Optional[StrictStr] = Field(default=None, description="User ID of the user that rejected the transaction (in case it was rejected).", alias="rejectedBy")
@@ -103,7 +104,7 @@ class TransactionResponse(BaseModel):
     replaced_tx_hash: Optional[StrictStr] = Field(default=None, description="if the transaction is a replace by fee (RBF) transaction, this is the hash of the transsaction that was replaced", alias="replacedTxHash")
     nonce: Optional[StrictStr] = Field(default=None, description="blockchain nonce for the transaction")
     blockchain_info: Optional[Dict[str, Any]] = Field(default=None, description="A JSON used to store additional data that is blockchain-specific.", alias="blockchainInfo")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -260,6 +261,7 @@ class TransactionResponse(BaseModel):
             "networkRecords": [NetworkRecord.from_dict(_item) for _item in obj["networkRecords"]] if obj.get("networkRecords") is not None else None,
             "createdAt": obj.get("createdAt"),
             "lastUpdated": obj.get("lastUpdated"),
+            "expiresAt": obj.get("expiresAt"),
             "createdBy": obj.get("createdBy"),
             "signedBy": obj.get("signedBy"),
             "rejectedBy": obj.get("rejectedBy"),

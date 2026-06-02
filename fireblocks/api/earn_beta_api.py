@@ -51,7 +51,6 @@ class EarnBetaApi:
     @validate_call
     def approve_terms_of_service(
         self,
-        provider_id: Annotated[StrictStr, Field(description="Stable protocol identifier for the earn provider (`MORPHO` or `AAVE`).")],
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -68,10 +67,8 @@ class EarnBetaApi:
     ) -> Future[ApiResponse[None]]:
         """Approve earn provider terms of service
 
-        Approves the lending provider's terms of service for this workspace. When `isTermsApprovalRequired` is true on the provider (see list providers), call this once before creating or executing earn actions with that provider. After success, `GET /earn/providers` reflects `isTermsOfServiceApproved`.  **Note:** This endpoint is currently in beta and might be subject to changes. 
+        Approves earn provider terms of service for this workspace (one-time per tenant). When `isTermsApprovalRequired` is true on a provider (see list providers), call this once before creating or executing earn actions with providers that require it. After success, `GET /earn/providers` reflects `isTermsOfServiceApproved`.  **Note:** This endpoint is currently in beta and might be subject to changes. 
 
-        :param provider_id: Stable protocol identifier for the earn provider (`MORPHO` or `AAVE`). (required)
-        :type provider_id: str
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -96,10 +93,8 @@ class EarnBetaApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="approve_terms_of_service", param_name="provider_id", param_value=provider_id)
 
         _param = self._approve_terms_of_service_serialize(
-            provider_id=provider_id,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -125,7 +120,6 @@ class EarnBetaApi:
 
     def _approve_terms_of_service_serialize(
         self,
-        provider_id,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -148,8 +142,6 @@ class EarnBetaApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if provider_id is not None:
-            _path_params['providerId'] = provider_id
         # process the query parameters
         # process the header parameters
         if idempotency_key is not None:
@@ -173,7 +165,7 @@ class EarnBetaApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/earn/providers/{providerId}/approve_terms_of_service',
+            resource_path='/earn/providers/approve_terms_of_service',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

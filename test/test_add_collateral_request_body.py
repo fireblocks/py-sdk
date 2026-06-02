@@ -206,7 +206,8 @@ class TestAddCollateralRequestBody(unittest.TestCase):
                     auto_staking = True, 
                     network_staking = null, 
                     cpu_staking = null, 
-                    use_gasless = True, ),
+                    use_gasless = True, 
+                    expires_after_seconds = 3600, ),
                 is_src_collateral = True
             )
         else:

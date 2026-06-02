@@ -245,7 +245,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
         """Activate a USDC Gateway wallet
 
-        Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -1463,7 +1463,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
         """Deactivate a USDC Gateway wallet
 
-        Deactivates the USDC Gateway wallet associated with the given vault account.   **Note:** This endpoint is currently in beta and might be subject to changes.  </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Deactivates the USDC Gateway wallet associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -2982,7 +2982,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletInfoResponse]]:
         """Get USDC Gateway wallet info
 
-        Returns the USDC Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. </br>Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns the USDC Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str

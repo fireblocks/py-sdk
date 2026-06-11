@@ -7,11 +7,11 @@ Matched prescreening rule details. Prescreening rules are evaluated before the m
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bypass_reason** | **str** | Reason for bypass if prescreening rule triggered a bypass | [optional] 
-**source_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
+**source_type** | [**TransferPeerTypeEnum2**](TransferPeerTypeEnum2.md) |  | [optional] 
 **source_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 
-**dest_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
+**dest_type** | [**TransferPeerTypeEnum2**](TransferPeerTypeEnum2.md) |  | [optional] 
 **dest_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 
-**transfer_peer_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
+**transfer_peer_type** | [**TransferPeerTypeEnum2**](TransferPeerTypeEnum2.md) |  | [optional] 
 **transfer_peer_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 
 **dest_address** | **str** | Destination address | [optional] 
 **source_id** | **str** | Source ID | [optional] 

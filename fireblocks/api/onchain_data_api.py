@@ -22,14 +22,14 @@ from datetime import datetime
 from pydantic import Field, StrictStr, field_validator
 from typing import Dict, Optional
 from typing_extensions import Annotated
-from fireblocks.models.access_registry_current_state_response import AccessRegistryCurrentStateResponse
+from fireblocks.models.access_registry_current_state_response2 import AccessRegistryCurrentStateResponse2
 from fireblocks.models.access_registry_summary_response import AccessRegistrySummaryResponse
-from fireblocks.models.address_balance_paged_response import AddressBalancePagedResponse
-from fireblocks.models.balance_history_paged_response import BalanceHistoryPagedResponse
-from fireblocks.models.onchain_transactions_paged_response import OnchainTransactionsPagedResponse
-from fireblocks.models.role_details import RoleDetails
+from fireblocks.models.address_balance_paged_response2 import AddressBalancePagedResponse2
+from fireblocks.models.balance_history_paged_response2 import BalanceHistoryPagedResponse2
+from fireblocks.models.onchain_transactions_paged_response2 import OnchainTransactionsPagedResponse2
+from fireblocks.models.role_details2 import RoleDetails2
 from fireblocks.models.token_contract_summary_response import TokenContractSummaryResponse
-from fireblocks.models.total_supply_paged_response import TotalSupplyPagedResponse
+from fireblocks.models.total_supply_paged_response2 import TotalSupplyPagedResponse2
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -71,7 +71,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[AccessRegistryCurrentStateResponse]]:
+    ) -> Future[ApiResponse[AccessRegistryCurrentStateResponse2]]:
         """Get the current state of addresses in an access registry
 
         Returns the current state of addresses in the specified access registry. Only addresses that are currently active (added but not removed) are included.
@@ -127,7 +127,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AccessRegistryCurrentStateResponse",
+            '200': "AccessRegistryCurrentStateResponse2",
             'default': "ErrorSchema",
         }
 
@@ -377,7 +377,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[Dict[str, RoleDetails]]]:
+    ) -> Future[ApiResponse[Dict[str, RoleDetails2]]]:
         """List of active roles for a given contract address and base asset ID
 
         Returns a list of currently active roles for the specified baseAssetId and contractAddress.
@@ -421,7 +421,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Dict[str, RoleDetails]",
+            '200': "Dict[str, RoleDetails2]",
             'default': "ErrorSchema",
         }
 
@@ -522,7 +522,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[BalanceHistoryPagedResponse]]:
+    ) -> Future[ApiResponse[BalanceHistoryPagedResponse2]]:
         """Get historical balance data for a specific account in a contract
 
         Returns the paginated balance history of the specified account in a contract with optional date range and interval filtering.
@@ -591,7 +591,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BalanceHistoryPagedResponse",
+            '200': "BalanceHistoryPagedResponse2",
             'default': "ErrorSchema",
         }
 
@@ -884,7 +884,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[TotalSupplyPagedResponse]]:
+    ) -> Future[ApiResponse[TotalSupplyPagedResponse2]]:
         """Get historical total supply data for a contract
 
         Returns the paginated total supply history of the specified contract with optional date range and interval filtering.
@@ -949,7 +949,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TotalSupplyPagedResponse",
+            '200': "TotalSupplyPagedResponse2",
             'default': "ErrorSchema",
         }
 
@@ -1100,7 +1100,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[AddressBalancePagedResponse]]:
+    ) -> Future[ApiResponse[AddressBalancePagedResponse2]]:
         """Get latest balances for all addresses holding tokens from a contract
 
         Returns the latest balance for each unique address with support for numeric balance sorting. The `prev` cursor is reserved for future support.
@@ -1159,7 +1159,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddressBalancePagedResponse",
+            '200': "AddressBalancePagedResponse2",
             'default': "ErrorSchema",
         }
 
@@ -1283,7 +1283,7 @@ class OnchainDataApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[OnchainTransactionsPagedResponse]]:
+    ) -> Future[ApiResponse[OnchainTransactionsPagedResponse2]]:
         """Fetch onchain transactions for a contract
 
         Returns a paginated list of onchain transactions for the specified contract address and base asset ID, optionally filtered by date range.
@@ -1345,7 +1345,7 @@ class OnchainDataApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "OnchainTransactionsPagedResponse",
+            '200': "OnchainTransactionsPagedResponse2",
             'default': "ErrorSchema",
         }
 

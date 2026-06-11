@@ -13,12 +13,16 @@ Name | Type | Description | Notes
 **postal_address** | [**PostalAddress**](PostalAddress.md) |  | 
 **email** | **str** |  | [optional] 
 **phone** | **str** | Mobile phone number in E.164 format | [optional] 
-**id_number** | **str** | The identification number corresponding to the primary identification document type specified in idType | [optional] 
-**id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) |  | [optional] 
-**additional_id_number** | **str** | The identification number corresponding to the additional identification document type specified in additionalIdType | [optional] 
-**additional_id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) |  | [optional] 
+**id_number** | **str** | Deprecated. Use identificationDocuments instead. | [optional] 
+**id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) | Deprecated. Use identificationDocuments instead. | [optional] 
+**additional_id_number** | **str** | Deprecated. Use identificationDocuments instead. | [optional] 
+**additional_id_type** | [**PersonalIdentificationType**](PersonalIdentificationType.md) | Deprecated. Use identificationDocuments instead. | [optional] 
+**nationality** | **str** | The ISO-3166 Alpha-2 country code representing the individual&#39;s nationality. | [optional] 
+**identification_documents** | [**List[PersonalIdentificationDocument]**](PersonalIdentificationDocument.md) | List of identification documents for the individual. | [optional] 
 **business_name** | **str** |  | 
 **registration_number** | **str** |  | 
+**date_of_registration** | **date** | The date the business was registered. | [optional] 
+**country_of_registration** | **str** | The ISO-3166 Alpha-2 country code where the business is registered. | [optional] 
 
 ## Example
 

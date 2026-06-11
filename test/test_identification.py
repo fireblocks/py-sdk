@@ -51,8 +51,12 @@ class TestIdentification(unittest.TestCase):
                 id_type = 'NIN_SLIP_CARD',
                 additional_id_number = '',
                 additional_id_type = 'NIN_SLIP_CARD',
+                nationality = 'US',
+                identification_documents = [{id=12345678901, type=PASSPORT, expirationDate=2030-03-15}],
                 business_name = '',
-                registration_number = ''
+                registration_number = '',
+                date_of_registration = 'Mon Jun 15 00:00:00 GMT 2020',
+                country_of_registration = 'US'
             )
         else:
             return Identification(

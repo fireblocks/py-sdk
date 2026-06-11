@@ -220,7 +220,8 @@ class TestTransactionRequest(unittest.TestCase):
                 network_staking = None,
                 cpu_staking = None,
                 use_gasless = True,
-                expires_after_seconds = 3600
+                configurations = fireblocks.models.transaction_configurations.TransactionConfigurations(
+                    expires_after_seconds = 3600, )
             )
         else:
             return TransactionRequest(

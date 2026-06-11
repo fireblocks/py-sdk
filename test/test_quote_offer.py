@@ -56,7 +56,7 @@ class TestQuoteOffer(unittest.TestCase):
                     ],
                 side = 'BUY',
                 expires_at = '2024-01-15T10:35:00.000Z',
-                order_creation_requirements = '',
+                required_participants_identification_on_order = '',
                 type = 'COMMITTED',
                 offer_type = 'QUOTE'
             )

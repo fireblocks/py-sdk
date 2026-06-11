@@ -62,6 +62,13 @@ class TestTradingBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_order_requirements(self) -> None:
+        """Test case for get_order_requirements
+
+        Get order requirement details for an order
+        """
+        pass
+
     def test_get_orders(self) -> None:
         """Test case for get_orders
 
@@ -80,6 +87,20 @@ class TestTradingBetaApi(unittest.TestCase):
         """Test case for get_trading_providers
 
         Get providers
+        """
+        pass
+
+    def test_submit_order_requirements(self) -> None:
+        """Test case for submit_order_requirements
+
+        Submit a response to an order requirement
+        """
+        pass
+
+    def test_upload_order_requirement_file(self) -> None:
+        """Test case for upload_order_requirement_file
+
+        Upload a file for an order requirement
         """
         pass
 

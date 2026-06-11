@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
+from fireblocks.models.webhook_mtls import WebhookMtls
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +34,8 @@ class CreateWebhookRequest(BaseModel):
     description: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="description of the webhook. should not contain special characters.")
     events: List[WebhookEvent] = Field(description="event types the webhook will subscribe to")
     enabled: Optional[StrictBool] = Field(default=True, description="The status of the webhook. If false, the webhook will not receive notifications.")
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled"]
+    mtls: Optional[WebhookMtls] = None
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,6 +76,14 @@ class CreateWebhookRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of mtls
+        if self.mtls:
+            _dict['mtls'] = self.mtls.to_dict()
+        # set to None if mtls (nullable) is None
+        # and model_fields_set contains the field
+        if self.mtls is None and "mtls" in self.model_fields_set:
+            _dict['mtls'] = None
+
         return _dict
 
     @classmethod
@@ -89,7 +99,8 @@ class CreateWebhookRequest(BaseModel):
             "url": obj.get("url"),
             "description": obj.get("description"),
             "events": obj.get("events"),
-            "enabled": obj.get("enabled") if obj.get("enabled") is not None else True
+            "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
+            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None
         })
         return _obj
 

@@ -32,6 +32,8 @@ Transfer peer type (source or destination)
 
 * `MULTI_DESTINATION` (value: `'MULTI_DESTINATION'`)
 
+* `WALLET_POOL` (value: `'WALLET_POOL'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

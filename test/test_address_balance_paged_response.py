@@ -37,24 +37,14 @@ class TestAddressBalancePagedResponse(unittest.TestCase):
         model = AddressBalancePagedResponse()
         if include_optional:
             return AddressBalancePagedResponse(
-                data = [
-                    fireblocks.models.address_balance_item_dto.AddressBalanceItemDto(
-                        account_address = '0x1234567890123456789012345678901234567890', 
-                        balance = '1000000000000000000', 
-                        last_updated = '2023-12-01T12:00Z', )
-                    ],
+                data = [{"accountAddress":"0x1234567890123456789012345678901234567890","balance":"1000000000000000000","lastUpdated":"2023-12-01T12:00:00.000Z"}],
                 next = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==',
                 prev = 'dGhpcyBpcyBhIHByZXZpb3VzIGN1cnNvcg==',
                 total = 150
             )
         else:
             return AddressBalancePagedResponse(
-                data = [
-                    fireblocks.models.address_balance_item_dto.AddressBalanceItemDto(
-                        account_address = '0x1234567890123456789012345678901234567890', 
-                        balance = '1000000000000000000', 
-                        last_updated = '2023-12-01T12:00Z', )
-                    ],
+                data = [{"accountAddress":"0x1234567890123456789012345678901234567890","balance":"1000000000000000000","lastUpdated":"2023-12-01T12:00:00.000Z"}],
         )
         """
 

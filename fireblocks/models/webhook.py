@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
+from fireblocks.models.webhook_mtls import WebhookMtls
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,7 +37,8 @@ class Webhook(BaseModel):
     status: StrictStr = Field(description="The status of the webhook")
     created_at: StrictInt = Field(description="The date and time the webhook was created in milliseconds", alias="createdAt")
     updated_at: StrictInt = Field(description="The date and time the webhook was last updated in milliseconds", alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt"]
+    mtls: Optional[WebhookMtls] = None
+    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt", "mtls"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -84,6 +86,14 @@ class Webhook(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of mtls
+        if self.mtls:
+            _dict['mtls'] = self.mtls.to_dict()
+        # set to None if mtls (nullable) is None
+        # and model_fields_set contains the field
+        if self.mtls is None and "mtls" in self.model_fields_set:
+            _dict['mtls'] = None
+
         return _dict
 
     @classmethod
@@ -102,7 +112,8 @@ class Webhook(BaseModel):
             "events": obj.get("events"),
             "status": obj.get("status"),
             "createdAt": obj.get("createdAt"),
-            "updatedAt": obj.get("updatedAt")
+            "updatedAt": obj.get("updatedAt"),
+            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None
         })
         return _obj
 

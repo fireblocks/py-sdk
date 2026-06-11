@@ -118,6 +118,76 @@ class TestTokenizationApi(unittest.TestCase):
         """
         pass
 
+    def test_get_token_access_registry_addresses(self) -> None:
+        """Test case for get_token_access_registry_addresses
+
+        Get current state of addresses in an access registry
+        """
+        pass
+
+    def test_get_token_access_registry_summary(self) -> None:
+        """Test case for get_token_access_registry_summary
+
+        Get summary of an access registry
+        """
+        pass
+
+    def test_get_token_balance_for_account(self) -> None:
+        """Test case for get_token_balance_for_account
+
+        Get the latest balance for a specific account
+        """
+        pass
+
+    def test_get_token_balance_history(self) -> None:
+        """Test case for get_token_balance_history
+
+        Get balance history for a specific account
+        """
+        pass
+
+    def test_get_token_balances(self) -> None:
+        """Test case for get_token_balances
+
+        Get latest balances for all holders of a token
+        """
+        pass
+
+    def test_get_token_contract_summary(self) -> None:
+        """Test case for get_token_contract_summary
+
+        Get onchain summary for a token
+        """
+        pass
+
+    def test_get_token_rbac(self) -> None:
+        """Test case for get_token_rbac
+
+        Get active RBAC roles for a token
+        """
+        pass
+
+    def test_get_token_total_supply(self) -> None:
+        """Test case for get_token_total_supply
+
+        Get historical total supply for a token
+        """
+        pass
+
+    def test_get_token_transactions(self) -> None:
+        """Test case for get_token_transactions
+
+        Get onchain transactions for a token
+        """
+        pass
+
+    def test_get_token_transfers(self) -> None:
+        """Test case for get_token_transfers
+
+        Get onchain transfers for a token
+        """
+        pass
+
     def test_issue_new_token(self) -> None:
         """Test case for issue_new_token
 

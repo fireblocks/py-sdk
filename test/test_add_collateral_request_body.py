@@ -207,7 +207,8 @@ class TestAddCollateralRequestBody(unittest.TestCase):
                     network_staking = null, 
                     cpu_staking = null, 
                     use_gasless = True, 
-                    expires_after_seconds = 3600, ),
+                    configurations = fireblocks.models.transaction_configurations.TransactionConfigurations(
+                        expires_after_seconds = 3600, ), ),
                 is_src_collateral = True
             )
         else:

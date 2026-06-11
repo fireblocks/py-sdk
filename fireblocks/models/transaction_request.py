@@ -19,11 +19,11 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing_extensions import Annotated
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.destination_transfer_peer_path import DestinationTransferPeerPath
 from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.source_transfer_peer_path import SourceTransferPeerPath
+from fireblocks.models.transaction_configurations import TransactionConfigurations
 from fireblocks.models.transaction_operation import TransactionOperation
 from fireblocks.models.transaction_request_amount import TransactionRequestAmount
 from fireblocks.models.transaction_request_destination import TransactionRequestDestination
@@ -71,8 +71,8 @@ class TransactionRequest(BaseModel):
     network_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="networkStaking")
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
     use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gasless configuration by sending true\\false", alias="useGasless")
-    expires_after_seconds: Optional[Union[Annotated[float, Field(le=86400, strict=True, ge=600)], Annotated[int, Field(le=86400, strict=True, ge=600)]]] = Field(default=None, description="The number of seconds the transaction is valid for before it expires. After the specified duration, the transaction will expire if it has not been broadcasted.", alias="expiresAfterSeconds")
-    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless", "expiresAfterSeconds"]
+    configurations: Optional[TransactionConfigurations] = None
+    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless", "configurations"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -169,6 +169,9 @@ class TransactionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cpu_staking
         if self.cpu_staking:
             _dict['cpuStaking'] = self.cpu_staking.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of configurations
+        if self.configurations:
+            _dict['configurations'] = self.configurations.to_dict()
         return _dict
 
     @classmethod
@@ -210,7 +213,7 @@ class TransactionRequest(BaseModel):
             "networkStaking": TransactionRequestNetworkStaking.from_dict(obj["networkStaking"]) if obj.get("networkStaking") is not None else None,
             "cpuStaking": TransactionRequestNetworkStaking.from_dict(obj["cpuStaking"]) if obj.get("cpuStaking") is not None else None,
             "useGasless": obj.get("useGasless"),
-            "expiresAfterSeconds": obj.get("expiresAfterSeconds")
+            "configurations": TransactionConfigurations.from_dict(obj["configurations"]) if obj.get("configurations") is not None else None
         })
         return _obj
 

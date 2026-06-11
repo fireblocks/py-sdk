@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.transaction_operation_enum import TransactionOperationEnum
 from fireblocks.models.transfer_peer_sub_type_enum import TransferPeerSubTypeEnum
-from fireblocks.models.transfer_peer_type_enum import TransferPeerTypeEnum
+from fireblocks.models.transfer_peer_type_enum2 import TransferPeerTypeEnum2
 from fireblocks.models.travel_rule_action_enum import TravelRuleActionEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,11 +32,11 @@ class ScreeningTravelRulePrescreeningRule(BaseModel):
     Matched prescreening rule details. Prescreening rules are evaluated before the main screening to determine if screening is necessary or should be bypassed. 
     """ # noqa: E501
     bypass_reason: Optional[StrictStr] = Field(default=None, description="Reason for bypass if prescreening rule triggered a bypass", alias="bypassReason")
-    source_type: Optional[TransferPeerTypeEnum] = Field(default=None, alias="sourceType")
+    source_type: Optional[TransferPeerTypeEnum2] = Field(default=None, alias="sourceType")
     source_sub_type: Optional[TransferPeerSubTypeEnum] = Field(default=None, alias="sourceSubType")
-    dest_type: Optional[TransferPeerTypeEnum] = Field(default=None, alias="destType")
+    dest_type: Optional[TransferPeerTypeEnum2] = Field(default=None, alias="destType")
     dest_sub_type: Optional[TransferPeerSubTypeEnum] = Field(default=None, alias="destSubType")
-    transfer_peer_type: Optional[TransferPeerTypeEnum] = Field(default=None, alias="transferPeerType")
+    transfer_peer_type: Optional[TransferPeerTypeEnum2] = Field(default=None, alias="transferPeerType")
     transfer_peer_sub_type: Optional[TransferPeerSubTypeEnum] = Field(default=None, alias="transferPeerSubType")
     dest_address: Optional[StrictStr] = Field(default=None, description="Destination address", alias="destAddress")
     source_id: Optional[StrictStr] = Field(default=None, description="Source ID", alias="sourceId")

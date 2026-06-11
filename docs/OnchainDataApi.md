@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **get_access_registry_current_state**
-> AccessRegistryCurrentStateResponse get_access_registry_current_state(base_asset_id, access_registry_address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> AccessRegistryCurrentStateResponse2 get_access_registry_current_state(base_asset_id, access_registry_address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
 
 Get the current state of addresses in an access registry
 
@@ -25,7 +25,7 @@ Returns the current state of addresses in the specified access registry. Only ad
 
 
 ```python
-from fireblocks.models.access_registry_current_state_response import AccessRegistryCurrentStateResponse
+from fireblocks.models.access_registry_current_state_response2 import AccessRegistryCurrentStateResponse2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AccessRegistryCurrentStateResponse**](AccessRegistryCurrentStateResponse.md)
+[**AccessRegistryCurrentStateResponse2**](AccessRegistryCurrentStateResponse2.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_active_roles_for_contract**
-> Dict[str, RoleDetails] get_active_roles_for_contract(base_asset_id, contract_address)
+> Dict[str, RoleDetails2] get_active_roles_for_contract(base_asset_id, contract_address)
 
 List of active roles for a given contract address and base asset ID
 
@@ -185,7 +185,7 @@ Returns a list of currently active roles for the specified baseAssetId and contr
 
 
 ```python
-from fireblocks.models.role_details import RoleDetails
+from fireblocks.models.role_details2 import RoleDetails2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Dict[str, RoleDetails]**](RoleDetails.md)
+[**Dict[str, RoleDetails2]**](RoleDetails2.md)
 
 ### Authorization
 
@@ -251,7 +251,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_contract_balance_history**
-> BalanceHistoryPagedResponse get_contract_balance_history(base_asset_id, contract_address, account_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> BalanceHistoryPagedResponse2 get_contract_balance_history(base_asset_id, contract_address, account_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
 
 Get historical balance data for a specific account in a contract
 
@@ -261,7 +261,7 @@ Returns the paginated balance history of the specified account in a contract wit
 
 
 ```python
-from fireblocks.models.balance_history_paged_response import BalanceHistoryPagedResponse
+from fireblocks.models.balance_history_paged_response2 import BalanceHistoryPagedResponse2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BalanceHistoryPagedResponse**](BalanceHistoryPagedResponse.md)
+[**BalanceHistoryPagedResponse2**](BalanceHistoryPagedResponse2.md)
 
 ### Authorization
 
@@ -419,7 +419,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_contract_total_supply**
-> TotalSupplyPagedResponse get_contract_total_supply(base_asset_id, contract_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> TotalSupplyPagedResponse2 get_contract_total_supply(base_asset_id, contract_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
 
 Get historical total supply data for a contract
 
@@ -429,7 +429,7 @@ Returns the paginated total supply history of the specified contract with option
 
 
 ```python
-from fireblocks.models.total_supply_paged_response import TotalSupplyPagedResponse
+from fireblocks.models.total_supply_paged_response2 import TotalSupplyPagedResponse2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -488,7 +488,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TotalSupplyPagedResponse**](TotalSupplyPagedResponse.md)
+[**TotalSupplyPagedResponse2**](TotalSupplyPagedResponse2.md)
 
 ### Authorization
 
@@ -509,7 +509,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_latest_balances_for_contract**
-> AddressBalancePagedResponse get_latest_balances_for_contract(base_asset_id, contract_address, account_address=account_address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> AddressBalancePagedResponse2 get_latest_balances_for_contract(base_asset_id, contract_address, account_address=account_address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
 
 Get latest balances for all addresses holding tokens from a contract
 
@@ -519,7 +519,7 @@ Returns the latest balance for each unique address with support for numeric bala
 
 
 ```python
-from fireblocks.models.address_balance_paged_response import AddressBalancePagedResponse
+from fireblocks.models.address_balance_paged_response2 import AddressBalancePagedResponse2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -574,7 +574,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddressBalancePagedResponse**](AddressBalancePagedResponse.md)
+[**AddressBalancePagedResponse2**](AddressBalancePagedResponse2.md)
 
 ### Authorization
 
@@ -595,7 +595,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_onchain_transactions**
-> OnchainTransactionsPagedResponse get_onchain_transactions(base_asset_id, contract_address, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> OnchainTransactionsPagedResponse2 get_onchain_transactions(base_asset_id, contract_address, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
 
 Fetch onchain transactions for a contract
 
@@ -605,7 +605,7 @@ Returns a paginated list of onchain transactions for the specified contract addr
 
 
 ```python
-from fireblocks.models.onchain_transactions_paged_response import OnchainTransactionsPagedResponse
+from fireblocks.models.onchain_transactions_paged_response2 import OnchainTransactionsPagedResponse2
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -662,7 +662,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OnchainTransactionsPagedResponse**](OnchainTransactionsPagedResponse.md)
+[**OnchainTransactionsPagedResponse2**](OnchainTransactionsPagedResponse2.md)
 
 ### Authorization
 

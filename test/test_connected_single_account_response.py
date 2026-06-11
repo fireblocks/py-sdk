@@ -51,6 +51,9 @@ class TestConnectedSingleAccountResponse(unittest.TestCase):
                     asset_types = [], 
                     capabilities = ["WITHDRAWALS"], ),
                 parent_id = 'acc-parent-001',
+                api_key = 'rk_live_abc123',
+                provider_account_name = 'Main Account',
+                account_type = 'CONNECTED_ACCOUNT',
                 sub_accounts_ids = [acc-sub-001, acc-sub-002]
             )
         else:
@@ -66,6 +69,7 @@ class TestConnectedSingleAccountResponse(unittest.TestCase):
                 manifest = fireblocks.models.connected_account_manifest.ConnectedAccountManifest(
                     asset_types = [], 
                     capabilities = ["WITHDRAWALS"], ),
+                account_type = 'CONNECTED_ACCOUNT',
         )
         """
 

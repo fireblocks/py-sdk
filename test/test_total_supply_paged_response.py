@@ -37,22 +37,14 @@ class TestTotalSupplyPagedResponse(unittest.TestCase):
         model = TotalSupplyPagedResponse()
         if include_optional:
             return TotalSupplyPagedResponse(
-                data = [
-                    fireblocks.models.total_supply_item_dto.TotalSupplyItemDto(
-                        timestamp = '2024-01-01T23:59:59.999Z', 
-                        total_supply = '1000000000000000000000', )
-                    ],
+                data = [{"timestamp":"2024-01-01T23:59:59.999Z","totalSupply":"1000000000000000000000"}],
                 next = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==',
                 prev = 'dGhpcyBpcyBhIHByZXZpb3VzIGN1cnNvcg==',
                 total = 150
             )
         else:
             return TotalSupplyPagedResponse(
-                data = [
-                    fireblocks.models.total_supply_item_dto.TotalSupplyItemDto(
-                        timestamp = '2024-01-01T23:59:59.999Z', 
-                        total_supply = '1000000000000000000000', )
-                    ],
+                data = [{"timestamp":"2024-01-01T23:59:59.999Z","totalSupply":"1000000000000000000000"}],
         )
         """
 

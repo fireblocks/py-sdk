@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **status** | **str** | The status of the webhook | 
 **created_at** | **int** | The date and time the webhook was created in milliseconds | 
 **updated_at** | **int** | The date and time the webhook was last updated in milliseconds | 
+**mtls** | [**WebhookMtls**](WebhookMtls.md) |  | [optional] 
 
 ## Example
 

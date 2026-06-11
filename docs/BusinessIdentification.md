@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **postal_address** | [**PostalAddress**](PostalAddress.md) |  | 
 **email** | **str** |  | [optional] 
 **phone** | **str** | Mobile phone number in E.164 format | [optional] 
+**date_of_registration** | **date** | The date the business was registered. | [optional] 
+**country_of_registration** | **str** | The ISO-3166 Alpha-2 country code where the business is registered. | [optional] 
 
 ## Example
 

@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_id** | **str** | Reference to TRLinkCustomer.id | [optional] 
 **direction** | [**TravelRuleDirectionEnum**](TravelRuleDirectionEnum.md) |  | [optional] 
-**source_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
+**source_type** | [**TransferPeerTypeEnum2**](TransferPeerTypeEnum2.md) |  | [optional] 
 **source_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 
 **source_address** | **str** | Source address | [optional] 
-**dest_type** | [**TransferPeerTypeEnum**](TransferPeerTypeEnum.md) |  | [optional] 
+**dest_type** | [**TransferPeerTypeEnum2**](TransferPeerTypeEnum2.md) |  | [optional] 
 **dest_sub_type** | [**TransferPeerSubTypeEnum**](TransferPeerSubTypeEnum.md) |  | [optional] 
 **dest_address** | **str** | Destination address | [optional] 
 **source_id** | **str** | Source ID | [optional] 

@@ -44,7 +44,9 @@ class TestBusinessIdentification(unittest.TestCase):
                 registration_number = '',
                 postal_address = {"streetName":"Fifth Avenue","buildingNumber":"350","postalCode":"10118","city":"New York","subdivision":"NY","district":"Manhattan","country":"US"},
                 email = '',
-                phone = '+14155551234'
+                phone = '+14155551234',
+                date_of_registration = 'Mon Jun 15 00:00:00 GMT 2020',
+                country_of_registration = 'US'
             )
         else:
             return BusinessIdentification(

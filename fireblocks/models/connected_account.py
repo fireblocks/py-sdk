@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.connected_account_approval_status import ConnectedAccountApprovalStatus
 from fireblocks.models.connected_account_manifest import ConnectedAccountManifest
 from fireblocks.models.connected_account_total_balance import ConnectedAccountTotalBalance
+from fireblocks.models.connected_account_type import ConnectedAccountType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -37,7 +38,10 @@ class ConnectedAccount(BaseModel):
     total_balance: ConnectedAccountTotalBalance = Field(alias="totalBalance")
     manifest: ConnectedAccountManifest
     parent_id: Optional[StrictStr] = Field(default=None, description="The ID of the parent main account, if this is a sub account.", alias="parentId")
-    __properties: ClassVar[List[str]] = ["id", "name", "providerId", "status", "totalBalance", "manifest", "parentId"]
+    api_key: Optional[StrictStr] = Field(default=None, description="The API key identifier used to connect this account.", alias="apiKey")
+    provider_account_name: Optional[StrictStr] = Field(default=None, description="The account name provided by the provider.", alias="providerAccountName")
+    account_type: ConnectedAccountType = Field(alias="accountType")
+    __properties: ClassVar[List[str]] = ["id", "name", "providerId", "status", "totalBalance", "manifest", "parentId", "apiKey", "providerAccountName", "accountType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -102,7 +106,10 @@ class ConnectedAccount(BaseModel):
             "status": obj.get("status"),
             "totalBalance": ConnectedAccountTotalBalance.from_dict(obj["totalBalance"]) if obj.get("totalBalance") is not None else None,
             "manifest": ConnectedAccountManifest.from_dict(obj["manifest"]) if obj.get("manifest") is not None else None,
-            "parentId": obj.get("parentId")
+            "parentId": obj.get("parentId"),
+            "apiKey": obj.get("apiKey"),
+            "providerAccountName": obj.get("providerAccountName"),
+            "accountType": obj.get("accountType")
         })
         return _obj
 

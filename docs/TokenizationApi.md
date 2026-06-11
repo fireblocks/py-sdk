@@ -17,6 +17,16 @@ Method | HTTP request | Description
 [**get_linked_token**](TokenizationApi.md#get_linked_token) | **GET** /tokenization/tokens/{id} | Return a linked token
 [**get_linked_tokens**](TokenizationApi.md#get_linked_tokens) | **GET** /tokenization/tokens | List all linked tokens
 [**get_linked_tokens_count**](TokenizationApi.md#get_linked_tokens_count) | **GET** /tokenization/tokens/count | Get the total count of linked tokens
+[**get_token_access_registry_addresses**](TokenizationApi.md#get_token_access_registry_addresses) | **GET** /tokenization/access_registries/{id}/addresses | Get current state of addresses in an access registry
+[**get_token_access_registry_summary**](TokenizationApi.md#get_token_access_registry_summary) | **GET** /tokenization/access_registries/{id}/summary | Get summary of an access registry
+[**get_token_balance_for_account**](TokenizationApi.md#get_token_balance_for_account) | **GET** /tokenization/tokens/{id}/balances/{accountAddress} | Get the latest balance for a specific account
+[**get_token_balance_history**](TokenizationApi.md#get_token_balance_history) | **GET** /tokenization/tokens/{id}/balances/{accountAddress}/history | Get balance history for a specific account
+[**get_token_balances**](TokenizationApi.md#get_token_balances) | **GET** /tokenization/tokens/{id}/balances | Get latest balances for all holders of a token
+[**get_token_contract_summary**](TokenizationApi.md#get_token_contract_summary) | **GET** /tokenization/tokens/{id}/summary | Get onchain summary for a token
+[**get_token_rbac**](TokenizationApi.md#get_token_rbac) | **GET** /tokenization/tokens/{id}/rbac | Get active RBAC roles for a token
+[**get_token_total_supply**](TokenizationApi.md#get_token_total_supply) | **GET** /tokenization/tokens/{id}/total_supply | Get historical total supply for a token
+[**get_token_transactions**](TokenizationApi.md#get_token_transactions) | **GET** /tokenization/tokens/{id}/transactions | Get onchain transactions for a token
+[**get_token_transfers**](TokenizationApi.md#get_token_transfers) | **GET** /tokenization/tokens/{id}/transfers | Get onchain transfers for a token
 [**issue_new_token**](TokenizationApi.md#issue_new_token) | **POST** /tokenization/tokens | Issue a new token
 [**issue_token_multi_chain**](TokenizationApi.md#issue_token_multi_chain) | **POST** /tokenization/multichain/tokens | Issue a token on one or more blockchains
 [**link**](TokenizationApi.md#link) | **POST** /tokenization/tokens/link | Link a contract
@@ -1028,6 +1038,830 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Count fetched successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_access_registry_addresses**
+> AccessRegistryCurrentStateResponse get_token_access_registry_addresses(id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get current state of addresses in an access registry
+
+Returns the currently active addresses in the access registry (added but not removed).
+
+### Example
+
+
+```python
+from fireblocks.models.access_registry_current_state_response import AccessRegistryCurrentStateResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = dateAdded # str | Sorting field (enum). (optional) (default to dateAdded)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+
+    try:
+        # Get current state of addresses in an access registry
+        api_response = fireblocks.tokenization.get_token_access_registry_addresses(id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of TokenizationApi->get_token_access_registry_addresses:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_access_registry_addresses: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field (enum). | [optional] [default to dateAdded]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+
+### Return type
+
+[**AccessRegistryCurrentStateResponse**](AccessRegistryCurrentStateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Access registry addresses retrieved successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_access_registry_summary**
+> AccessRegistrySummaryResponse get_token_access_registry_summary(id)
+
+Get summary of an access registry
+
+Returns a summary of the current state of the access registry.
+
+### Example
+
+
+```python
+from fireblocks.models.access_registry_summary_response import AccessRegistrySummaryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+
+    try:
+        # Get summary of an access registry
+        api_response = fireblocks.tokenization.get_token_access_registry_summary(id).result()
+        print("The response of TokenizationApi->get_token_access_registry_summary:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_access_registry_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+
+### Return type
+
+[**AccessRegistrySummaryResponse**](AccessRegistrySummaryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Access registry summary retrieved successfully |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_balance_for_account**
+> AddressBalanceItemDto get_token_balance_for_account(id, account_address)
+
+Get the latest balance for a specific account
+
+Returns the latest token balance for the specified account address.
+
+### Example
+
+
+```python
+from fireblocks.models.address_balance_item_dto import AddressBalanceItemDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    account_address = '0x1234567890abcdef1234567890abcdef12345678' # str | The account address to get balance history for
+
+    try:
+        # Get the latest balance for a specific account
+        api_response = fireblocks.tokenization.get_token_balance_for_account(id, account_address).result()
+        print("The response of TokenizationApi->get_token_balance_for_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_balance_for_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **account_address** | **str**| The account address to get balance history for | 
+
+### Return type
+
+[**AddressBalanceItemDto**](AddressBalanceItemDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the balance for the account |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_balance_history**
+> BalanceHistoryPagedResponse get_token_balance_history(id, account_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get balance history for a specific account
+
+Returns paginated balance history for the specified account address with optional time-range filtering.
+
+### Example
+
+
+```python
+from fireblocks.models.balance_history_paged_response import BalanceHistoryPagedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    account_address = '0x1234567890abcdef1234567890abcdef12345678' # str | The account address to get balance history for
+    start_date = '2025-01-16T15:45:00Z' # datetime | Start date of the time range in ISO 8601 format (optional)
+    end_date = '2025-01-16T15:45:00Z' # datetime | End date of the time range in ISO 8601 format (optional)
+    interval = DAY # str | Time interval for grouping data (optional) (default to DAY)
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = blockTimestamp # str | Sorting field (enum). Sorting only supported by 'blockTimestamp' (optional) (default to blockTimestamp)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+
+    try:
+        # Get balance history for a specific account
+        api_response = fireblocks.tokenization.get_token_balance_history(id, account_address, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of TokenizationApi->get_token_balance_history:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_balance_history: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **account_address** | **str**| The account address to get balance history for | 
+ **start_date** | **datetime**| Start date of the time range in ISO 8601 format | [optional] 
+ **end_date** | **datetime**| End date of the time range in ISO 8601 format | [optional] 
+ **interval** | **str**| Time interval for grouping data | [optional] [default to DAY]
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field (enum). Sorting only supported by &#39;blockTimestamp&#39; | [optional] [default to blockTimestamp]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+
+### Return type
+
+[**BalanceHistoryPagedResponse**](BalanceHistoryPagedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the balance history |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_balances**
+> AddressBalancePagedResponse get_token_balances(id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get latest balances for all holders of a token
+
+Returns the latest balance for each unique address holding this token.
+
+### Example
+
+
+```python
+from fireblocks.models.address_balance_paged_response import AddressBalancePagedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = blockTimestamp # str | Sorting field for balances (optional) (default to blockTimestamp)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+
+    try:
+        # Get latest balances for all holders of a token
+        api_response = fireblocks.tokenization.get_token_balances(id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of TokenizationApi->get_token_balances:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_balances: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field for balances | [optional] [default to blockTimestamp]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+
+### Return type
+
+[**AddressBalancePagedResponse**](AddressBalancePagedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the latest balances for the token |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_contract_summary**
+> TokenContractSummaryResponse get_token_contract_summary(id)
+
+Get onchain summary for a token
+
+Returns the total number of unique holders and the total supply for the token contract.
+
+### Example
+
+
+```python
+from fireblocks.models.token_contract_summary_response import TokenContractSummaryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+
+    try:
+        # Get onchain summary for a token
+        api_response = fireblocks.tokenization.get_token_contract_summary(id).result()
+        print("The response of TokenizationApi->get_token_contract_summary:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_contract_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+
+### Return type
+
+[**TokenContractSummaryResponse**](TokenContractSummaryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the summary for the token contract |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_rbac**
+> ActiveRolesResponse get_token_rbac(id)
+
+Get active RBAC roles for a token
+
+Returns a list of currently active roles for the token contract.
+
+### Example
+
+
+```python
+from fireblocks.models.active_roles_response import ActiveRolesResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+
+    try:
+        # Get active RBAC roles for a token
+        api_response = fireblocks.tokenization.get_token_rbac(id).result()
+        print("The response of TokenizationApi->get_token_rbac:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_rbac: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+
+### Return type
+
+[**ActiveRolesResponse**](ActiveRolesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the list of active roles |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_total_supply**
+> TotalSupplyPagedResponse get_token_total_supply(id, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get historical total supply for a token
+
+Returns paginated total supply history for the token contract with optional time-range filtering and binning.
+
+### Example
+
+
+```python
+from fireblocks.models.total_supply_paged_response import TotalSupplyPagedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    start_date = '2025-01-16T15:45:00Z' # datetime | Start date of the time range in ISO 8601 format (optional)
+    end_date = '2025-01-16T15:45:00Z' # datetime | End date of the time range in ISO 8601 format (optional)
+    interval = DAY # str | Time interval for grouping data (optional) (default to DAY)
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = blockTimestamp # str | Sorting field (enum). Sorting only supported by 'blockTimestamp' (optional) (default to blockTimestamp)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+
+    try:
+        # Get historical total supply for a token
+        api_response = fireblocks.tokenization.get_token_total_supply(id, start_date=start_date, end_date=end_date, interval=interval, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of TokenizationApi->get_token_total_supply:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_total_supply: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **start_date** | **datetime**| Start date of the time range in ISO 8601 format | [optional] 
+ **end_date** | **datetime**| End date of the time range in ISO 8601 format | [optional] 
+ **interval** | **str**| Time interval for grouping data | [optional] [default to DAY]
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field (enum). Sorting only supported by &#39;blockTimestamp&#39; | [optional] [default to blockTimestamp]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+
+### Return type
+
+[**TotalSupplyPagedResponse**](TotalSupplyPagedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved the token total supply history |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_transactions**
+> OnchainTransactionsPagedResponse get_token_transactions(id, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get onchain transactions for a token
+
+Returns a paginated list of onchain transactions for the token contract, optionally filtered by date range.
+
+### Example
+
+
+```python
+from fireblocks.models.onchain_transactions_paged_response import OnchainTransactionsPagedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    start_date = '2025-01-16T15:45:00Z' # datetime | Start date of the time range in ISO 8601 format (optional)
+    end_date = '2025-01-16T15:45:00Z' # datetime | End date of the time range in ISO 8601 format (optional)
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = blockTimestamp # str | Sorting field (enum). (optional) (default to blockTimestamp)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+
+    try:
+        # Get onchain transactions for a token
+        api_response = fireblocks.tokenization.get_token_transactions(id, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of TokenizationApi->get_token_transactions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_transactions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **start_date** | **datetime**| Start date of the time range in ISO 8601 format | [optional] 
+ **end_date** | **datetime**| End date of the time range in ISO 8601 format | [optional] 
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field (enum). | [optional] [default to blockTimestamp]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+
+### Return type
+
+[**OnchainTransactionsPagedResponse**](OnchainTransactionsPagedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Onchain transactions fetched successfully |  -  |
+**404** | Token not found |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_token_transfers**
+> OnchainTransfersPagedResponse get_token_transfers(id, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, sender=sender, receiver=receiver)
+
+Get onchain transfers for a token
+
+Returns a paginated list of ERC20 transfer events for the token contract, optionally filtered by date range.
+
+### Example
+
+
+```python
+from fireblocks.models.onchain_transfers_paged_response import OnchainTransfersPagedResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    id = 'fbfbfbfb-fbfb-fbfb-fbfb-fbfbfbfbfbfb' # str | The token link id
+    start_date = '2025-01-16T15:45:00Z' # datetime | Start date of the time range in ISO 8601 format (optional)
+    end_date = '2025-01-16T15:45:00Z' # datetime | End date of the time range in ISO 8601 format (optional)
+    page_cursor = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==' # str | Page cursor to get the next page (optional)
+    page_size = 10 # int | Number of items per page (max 100), requesting more than 100 will return 100 items (optional)
+    sort_by = blockTimeStamp # str | Sorting field for transfers (optional) (default to blockTimeStamp)
+    order = DESC # str | ASC / DESC ordering (default DESC) (optional) (default to DESC)
+    sender = '0xabcdef1234567890abcdef1234567890abcdef12' # str | Filter transfers by sender address (optional)
+    receiver = '0x1234567890abcdef1234567890abcdef12345678' # str | Filter transfers by receiver address (optional)
+
+    try:
+        # Get onchain transfers for a token
+        api_response = fireblocks.tokenization.get_token_transfers(id, start_date=start_date, end_date=end_date, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, sender=sender, receiver=receiver).result()
+        print("The response of TokenizationApi->get_token_transfers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TokenizationApi->get_token_transfers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The token link id | 
+ **start_date** | **datetime**| Start date of the time range in ISO 8601 format | [optional] 
+ **end_date** | **datetime**| End date of the time range in ISO 8601 format | [optional] 
+ **page_cursor** | **str**| Page cursor to get the next page | [optional] 
+ **page_size** | **int**| Number of items per page (max 100), requesting more than 100 will return 100 items | [optional] 
+ **sort_by** | **str**| Sorting field for transfers | [optional] [default to blockTimeStamp]
+ **order** | **str**| ASC / DESC ordering (default DESC) | [optional] [default to DESC]
+ **sender** | **str**| Filter transfers by sender address | [optional] 
+ **receiver** | **str**| Filter transfers by receiver address | [optional] 
+
+### Return type
+
+[**OnchainTransfersPagedResponse**](OnchainTransfersPagedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Onchain transfers fetched successfully |  -  |
+**404** | Token not found |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

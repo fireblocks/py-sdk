@@ -6,11 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**disconnect_connected_account**](ConnectedAccountsBetaApi.md#disconnect_connected_account) | **DELETE** /connected_accounts/{accountId} | Disconnect connected account
 [**get_connected_account**](ConnectedAccountsBetaApi.md#get_connected_account) | **GET** /connected_accounts/{accountId} | Get connected account
+[**get_connected_account_allowlist**](ConnectedAccountsBetaApi.md#get_connected_account_allowlist) | **GET** /connected_accounts/{accountId}/allowlist | Get allowlist for connected account
+[**get_connected_account_allowlist_entry**](ConnectedAccountsBetaApi.md#get_connected_account_allowlist_entry) | **GET** /connected_accounts/{accountId}/allowlist/{allowlistId} | Get a single allowlist entry for a connected account
 [**get_connected_account_balances**](ConnectedAccountsBetaApi.md#get_connected_account_balances) | **GET** /connected_accounts/{accountId}/balances | Get balances for an account
 [**get_connected_account_rates**](ConnectedAccountsBetaApi.md#get_connected_account_rates) | **GET** /connected_accounts/{accountId}/rates | Get exchange rates for an account
 [**get_connected_account_trading_pairs**](ConnectedAccountsBetaApi.md#get_connected_account_trading_pairs) | **GET** /connected_accounts/{accountId}/manifest/capabilities/trading/pairs | Get supported trading pairs for an account
 [**get_connected_accounts**](ConnectedAccountsBetaApi.md#get_connected_accounts) | **GET** /connected_accounts | Get connected accounts
 [**rename_connected_account**](ConnectedAccountsBetaApi.md#rename_connected_account) | **POST** /connected_accounts/{accountId}/rename | Rename Connected Account
+[**sync_connected_account_allowlist**](ConnectedAccountsBetaApi.md#sync_connected_account_allowlist) | **POST** /connected_accounts/{accountId}/allowlist/sync | Sync allowlist for connected account
 
 
 # **disconnect_connected_account**
@@ -160,6 +163,181 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Account response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_connected_account_allowlist**
+> AllowlistResponse get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+
+Get allowlist for connected account
+
+Retrieves the address allowlist for a specified connected account.
+
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+
+
+### Example
+
+
+```python
+from fireblocks.models.allowlist_entry_status import AllowlistEntryStatus
+from fireblocks.models.allowlist_response import AllowlistResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    account_id = 'account_id_example' # str | The connected account identifier
+    status = fireblocks.AllowlistEntryStatus() # AllowlistEntryStatus | Filter by allowlist entry status (optional)
+    asset_id = 'asset_id_example' # str | Filter by Fireblocks asset ID.  See [List assets](https://developers.fireblocks.com/reference/listassets) for the canonical list of Fireblocks asset IDs.  (optional)
+    network_id = 'network_id_example' # str | Filter by Fireblocks network ID.  See [List blockchains](https://developers.fireblocks.com/reference/listblockchains) for the canonical list of Fireblocks blockchain identifiers.  (optional)
+    address = 'address_example' # str | Filter by specific address (optional)
+    page_cursor = 'page_cursor_example' # str | Pagination cursor for next page (optional)
+    page_size = 56 # int | Maximum number of entries to return (optional)
+    sort_by = addedAt # str | Field to sort results by. (optional) (default to addedAt)
+    order = DESC # str | Sort order (ASC or DESC). (optional) (default to DESC)
+
+    try:
+        # Get allowlist for connected account
+        api_response = fireblocks.connected_accounts_beta.get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of ConnectedAccountsBetaApi->get_connected_account_allowlist:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->get_connected_account_allowlist: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_id** | **str**| The connected account identifier | 
+ **status** | [**AllowlistEntryStatus**](.md)| Filter by allowlist entry status | [optional] 
+ **asset_id** | **str**| Filter by Fireblocks asset ID.  See [List assets](https://developers.fireblocks.com/reference/listassets) for the canonical list of Fireblocks asset IDs.  | [optional] 
+ **network_id** | **str**| Filter by Fireblocks network ID.  See [List blockchains](https://developers.fireblocks.com/reference/listblockchains) for the canonical list of Fireblocks blockchain identifiers.  | [optional] 
+ **address** | **str**| Filter by specific address | [optional] 
+ **page_cursor** | **str**| Pagination cursor for next page | [optional] 
+ **page_size** | **int**| Maximum number of entries to return | [optional] 
+ **sort_by** | **str**| Field to sort results by. | [optional] [default to addedAt]
+ **order** | **str**| Sort order (ASC or DESC). | [optional] [default to DESC]
+
+### Return type
+
+[**AllowlistResponse**](AllowlistResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Allowlist entries response |  * X-Request-ID -  <br>  |
+**404** | Connected account not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_connected_account_allowlist_entry**
+> AllowlistEntry get_connected_account_allowlist_entry(account_id, allowlist_id)
+
+Get a single allowlist entry for a connected account
+
+Retrieves a single allowlist entry by its Fireblocks identifier for a specified connected account.
+
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+
+
+### Example
+
+
+```python
+from fireblocks.models.allowlist_entry import AllowlistEntry
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    account_id = 'account_id_example' # str | The connected account identifier
+    allowlist_id = 'allowlist_id_example' # str | The Fireblocks allowlist entry identifier
+
+    try:
+        # Get a single allowlist entry for a connected account
+        api_response = fireblocks.connected_accounts_beta.get_connected_account_allowlist_entry(account_id, allowlist_id).result()
+        print("The response of ConnectedAccountsBetaApi->get_connected_account_allowlist_entry:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->get_connected_account_allowlist_entry: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_id** | **str**| The connected account identifier | 
+ **allowlist_id** | **str**| The Fireblocks allowlist entry identifier | 
+
+### Return type
+
+[**AllowlistEntry**](AllowlistEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Allowlist entry response |  * X-Request-ID -  <br>  |
+**404** | Connected account or allowlist entry not found |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -571,6 +749,83 @@ No authorization required
 **403** | Failed to rename connected account. |  -  |
 **404** | Connected account not found |  -  |
 **409** | Conflict. Account name is already in use by another account. |  -  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **sync_connected_account_allowlist**
+> sync_connected_account_allowlist(account_id, idempotency_key=idempotency_key)
+
+Sync allowlist for connected account
+
+Triggers an on-demand sync from the exchange, bypassing the cache and fetching live data immediately.
+
+**Rate limit:** 1 request per minute per connected account.
+
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    account_id = 'account_id_example' # str | The connected account identifier
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Sync allowlist for connected account
+        fireblocks.connected_accounts_beta.sync_connected_account_allowlist(account_id, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->sync_connected_account_allowlist: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_id** | **str**| The connected account identifier | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Sync request accepted and processing |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

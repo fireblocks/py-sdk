@@ -41,6 +41,7 @@ class TransferPeerTypeEnum(str, Enum):
     END_USER_WALLET = 'END_USER_WALLET'
     PROGRAM_CALL = 'PROGRAM_CALL'
     MULTI_DESTINATION = 'MULTI_DESTINATION'
+    WALLET_POOL = 'WALLET_POOL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

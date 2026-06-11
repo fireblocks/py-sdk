@@ -39,21 +39,13 @@ class TestRoleDetails(unittest.TestCase):
             return RoleDetails(
                 role_hash = '0x0000000000000000000000000000000000000000000000000000000000000000',
                 description = 'DEFAULT_ADMIN_ROLE',
-                accounts = [
-                    fireblocks.models.role_grantee.RoleGrantee(
-                        account_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66', 
-                        date_of_grant = '2024-07-01T00:00Z', )
-                    ]
+                accounts = [{"accountAddress":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66","dateOfGrant":"2024-07-01T00:00:00.000Z"}]
             )
         else:
             return RoleDetails(
                 role_hash = '0x0000000000000000000000000000000000000000000000000000000000000000',
                 description = 'DEFAULT_ADMIN_ROLE',
-                accounts = [
-                    fireblocks.models.role_grantee.RoleGrantee(
-                        account_address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66', 
-                        date_of_grant = '2024-07-01T00:00Z', )
-                    ],
+                accounts = [{"accountAddress":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66","dateOfGrant":"2024-07-01T00:00:00.000Z"}],
         )
         """
 

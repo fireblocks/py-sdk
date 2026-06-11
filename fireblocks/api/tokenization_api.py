@@ -18,10 +18,17 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from datetime import datetime
+from pydantic import Field, StrictStr, field_validator
 from typing import Any, List, Optional, Union
 from typing_extensions import Annotated
+from fireblocks.models.access_registry_current_state_response import AccessRegistryCurrentStateResponse
+from fireblocks.models.access_registry_summary_response import AccessRegistrySummaryResponse
+from fireblocks.models.active_roles_response import ActiveRolesResponse
 from fireblocks.models.adapter_processing_result import AdapterProcessingResult
+from fireblocks.models.address_balance_item_dto import AddressBalanceItemDto
+from fireblocks.models.address_balance_paged_response import AddressBalancePagedResponse
+from fireblocks.models.balance_history_paged_response import BalanceHistoryPagedResponse
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
 from fireblocks.models.collection_deploy_request_dto import CollectionDeployRequestDto
@@ -37,6 +44,8 @@ from fireblocks.models.get_layer_zero_dvn_config_response import GetLayerZeroDvn
 from fireblocks.models.get_layer_zero_peers_response import GetLayerZeroPeersResponse
 from fireblocks.models.get_linked_collections_paginated_response import GetLinkedCollectionsPaginatedResponse
 from fireblocks.models.linked_tokens_count import LinkedTokensCount
+from fireblocks.models.onchain_transactions_paged_response import OnchainTransactionsPagedResponse
+from fireblocks.models.onchain_transfers_paged_response import OnchainTransfersPagedResponse
 from fireblocks.models.reissue_multichain_token_request import ReissueMultichainTokenRequest
 from fireblocks.models.remove_layer_zero_adapters_request import RemoveLayerZeroAdaptersRequest
 from fireblocks.models.remove_layer_zero_adapters_response import RemoveLayerZeroAdaptersResponse
@@ -46,9 +55,11 @@ from fireblocks.models.set_layer_zero_dvn_config_request import SetLayerZeroDvnC
 from fireblocks.models.set_layer_zero_dvn_config_response import SetLayerZeroDvnConfigResponse
 from fireblocks.models.set_layer_zero_peers_request import SetLayerZeroPeersRequest
 from fireblocks.models.set_layer_zero_peers_response import SetLayerZeroPeersResponse
+from fireblocks.models.token_contract_summary_response import TokenContractSummaryResponse
 from fireblocks.models.token_link_dto import TokenLinkDto
 from fireblocks.models.token_link_request_dto import TokenLinkRequestDto
 from fireblocks.models.tokens_paginated_response import TokensPaginatedResponse
+from fireblocks.models.total_supply_paged_response import TotalSupplyPagedResponse
 from fireblocks.models.validate_layer_zero_channel_response import ValidateLayerZeroChannelResponse
 
 from fireblocks.api_client import ApiClient, RequestSerialized
@@ -1895,6 +1906,1716 @@ class TokenizationApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/tokenization/tokens/count',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_access_registry_addresses(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field (enum).")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AccessRegistryCurrentStateResponse]]:
+        """Get current state of addresses in an access registry
+
+        Returns the currently active addresses in the access registry (added but not removed).
+
+        :param id: The token link id (required)
+        :type id: str
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field (enum).
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_access_registry_addresses", param_name="id", param_value=id)
+
+        _param = self._get_token_access_registry_addresses_serialize(
+            id=id,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AccessRegistryCurrentStateResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_access_registry_addresses_serialize(
+        self,
+        id,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/access_registries/{id}/addresses',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_access_registry_summary(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AccessRegistrySummaryResponse]]:
+        """Get summary of an access registry
+
+        Returns a summary of the current state of the access registry.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_access_registry_summary", param_name="id", param_value=id)
+
+        _param = self._get_token_access_registry_summary_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AccessRegistrySummaryResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_access_registry_summary_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/access_registries/{id}/summary',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_balance_for_account(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        account_address: Annotated[StrictStr, Field(description="The account address to get balance history for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AddressBalanceItemDto]]:
+        """Get the latest balance for a specific account
+
+        Returns the latest token balance for the specified account address.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param account_address: The account address to get balance history for (required)
+        :type account_address: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_balance_for_account", param_name="id", param_value=id)
+        validate_not_empty_string(function_name="get_token_balance_for_account", param_name="account_address", param_value=account_address)
+
+        _param = self._get_token_balance_for_account_serialize(
+            id=id,
+            account_address=account_address,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddressBalanceItemDto",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_balance_for_account_serialize(
+        self,
+        id,
+        account_address,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if account_address is not None:
+            _path_params['accountAddress'] = account_address
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/balances/{accountAddress}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_balance_history(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        account_address: Annotated[StrictStr, Field(description="The account address to get balance history for")],
+        start_date: Annotated[Optional[datetime], Field(description="Start date of the time range in ISO 8601 format")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="End date of the time range in ISO 8601 format")] = None,
+        interval: Annotated[Optional[StrictStr], Field(description="Time interval for grouping data")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field (enum). Sorting only supported by 'blockTimestamp'")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[BalanceHistoryPagedResponse]]:
+        """Get balance history for a specific account
+
+        Returns paginated balance history for the specified account address with optional time-range filtering.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param account_address: The account address to get balance history for (required)
+        :type account_address: str
+        :param start_date: Start date of the time range in ISO 8601 format
+        :type start_date: datetime
+        :param end_date: End date of the time range in ISO 8601 format
+        :type end_date: datetime
+        :param interval: Time interval for grouping data
+        :type interval: str
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field (enum). Sorting only supported by 'blockTimestamp'
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_balance_history", param_name="id", param_value=id)
+        validate_not_empty_string(function_name="get_token_balance_history", param_name="account_address", param_value=account_address)
+
+        _param = self._get_token_balance_history_serialize(
+            id=id,
+            account_address=account_address,
+            start_date=start_date,
+            end_date=end_date,
+            interval=interval,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "BalanceHistoryPagedResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_balance_history_serialize(
+        self,
+        id,
+        account_address,
+        start_date,
+        end_date,
+        interval,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        if account_address is not None:
+            _path_params['accountAddress'] = account_address
+        # process the query parameters
+        if start_date is not None:
+            if isinstance(start_date, datetime):
+                _query_params.append(
+                    (
+                        'startDate',
+                        start_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, datetime):
+                _query_params.append(
+                    (
+                        'endDate',
+                        end_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDate', end_date))
+            
+        if interval is not None:
+            
+            _query_params.append(('interval', interval))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/balances/{accountAddress}/history',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_balances(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field for balances")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AddressBalancePagedResponse]]:
+        """Get latest balances for all holders of a token
+
+        Returns the latest balance for each unique address holding this token.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field for balances
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_balances", param_name="id", param_value=id)
+
+        _param = self._get_token_balances_serialize(
+            id=id,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddressBalancePagedResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_balances_serialize(
+        self,
+        id,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/balances',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_contract_summary(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TokenContractSummaryResponse]]:
+        """Get onchain summary for a token
+
+        Returns the total number of unique holders and the total supply for the token contract.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_contract_summary", param_name="id", param_value=id)
+
+        _param = self._get_token_contract_summary_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TokenContractSummaryResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_contract_summary_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/summary',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_rbac(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[ActiveRolesResponse]]:
+        """Get active RBAC roles for a token
+
+        Returns a list of currently active roles for the token contract.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_rbac", param_name="id", param_value=id)
+
+        _param = self._get_token_rbac_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ActiveRolesResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_rbac_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/rbac',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_total_supply(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        start_date: Annotated[Optional[datetime], Field(description="Start date of the time range in ISO 8601 format")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="End date of the time range in ISO 8601 format")] = None,
+        interval: Annotated[Optional[StrictStr], Field(description="Time interval for grouping data")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field (enum). Sorting only supported by 'blockTimestamp'")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TotalSupplyPagedResponse]]:
+        """Get historical total supply for a token
+
+        Returns paginated total supply history for the token contract with optional time-range filtering and binning.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param start_date: Start date of the time range in ISO 8601 format
+        :type start_date: datetime
+        :param end_date: End date of the time range in ISO 8601 format
+        :type end_date: datetime
+        :param interval: Time interval for grouping data
+        :type interval: str
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field (enum). Sorting only supported by 'blockTimestamp'
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_total_supply", param_name="id", param_value=id)
+
+        _param = self._get_token_total_supply_serialize(
+            id=id,
+            start_date=start_date,
+            end_date=end_date,
+            interval=interval,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TotalSupplyPagedResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_total_supply_serialize(
+        self,
+        id,
+        start_date,
+        end_date,
+        interval,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if start_date is not None:
+            if isinstance(start_date, datetime):
+                _query_params.append(
+                    (
+                        'startDate',
+                        start_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, datetime):
+                _query_params.append(
+                    (
+                        'endDate',
+                        end_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDate', end_date))
+            
+        if interval is not None:
+            
+            _query_params.append(('interval', interval))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/total_supply',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_transactions(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        start_date: Annotated[Optional[datetime], Field(description="Start date of the time range in ISO 8601 format")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="End date of the time range in ISO 8601 format")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field (enum).")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[OnchainTransactionsPagedResponse]]:
+        """Get onchain transactions for a token
+
+        Returns a paginated list of onchain transactions for the token contract, optionally filtered by date range.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param start_date: Start date of the time range in ISO 8601 format
+        :type start_date: datetime
+        :param end_date: End date of the time range in ISO 8601 format
+        :type end_date: datetime
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field (enum).
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_transactions", param_name="id", param_value=id)
+
+        _param = self._get_token_transactions_serialize(
+            id=id,
+            start_date=start_date,
+            end_date=end_date,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "OnchainTransactionsPagedResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_transactions_serialize(
+        self,
+        id,
+        start_date,
+        end_date,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if start_date is not None:
+            if isinstance(start_date, datetime):
+                _query_params.append(
+                    (
+                        'startDate',
+                        start_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, datetime):
+                _query_params.append(
+                    (
+                        'endDate',
+                        end_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDate', end_date))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/transactions',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_token_transfers(
+        self,
+        id: Annotated[StrictStr, Field(description="The token link id")],
+        start_date: Annotated[Optional[datetime], Field(description="Start date of the time range in ISO 8601 format")] = None,
+        end_date: Annotated[Optional[datetime], Field(description="End date of the time range in ISO 8601 format")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor to get the next page")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=100, strict=True, ge=1)]], Field(description="Number of items per page (max 100), requesting more than 100 will return 100 items")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sorting field for transfers")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering (default DESC)")] = None,
+        sender: Annotated[Optional[StrictStr], Field(description="Filter transfers by sender address")] = None,
+        receiver: Annotated[Optional[StrictStr], Field(description="Filter transfers by receiver address")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[OnchainTransfersPagedResponse]]:
+        """Get onchain transfers for a token
+
+        Returns a paginated list of ERC20 transfer events for the token contract, optionally filtered by date range.
+
+        :param id: The token link id (required)
+        :type id: str
+        :param start_date: Start date of the time range in ISO 8601 format
+        :type start_date: datetime
+        :param end_date: End date of the time range in ISO 8601 format
+        :type end_date: datetime
+        :param page_cursor: Page cursor to get the next page
+        :type page_cursor: str
+        :param page_size: Number of items per page (max 100), requesting more than 100 will return 100 items
+        :type page_size: int
+        :param sort_by: Sorting field for transfers
+        :type sort_by: str
+        :param order: ASC / DESC ordering (default DESC)
+        :type order: str
+        :param sender: Filter transfers by sender address
+        :type sender: str
+        :param receiver: Filter transfers by receiver address
+        :type receiver: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_token_transfers", param_name="id", param_value=id)
+
+        _param = self._get_token_transfers_serialize(
+            id=id,
+            start_date=start_date,
+            end_date=end_date,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            sort_by=sort_by,
+            order=order,
+            sender=sender,
+            receiver=receiver,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "OnchainTransfersPagedResponse",
+            '404': "NotFoundException",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_token_transfers_serialize(
+        self,
+        id,
+        start_date,
+        end_date,
+        page_cursor,
+        page_size,
+        sort_by,
+        order,
+        sender,
+        receiver,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if start_date is not None:
+            if isinstance(start_date, datetime):
+                _query_params.append(
+                    (
+                        'startDate',
+                        start_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            if isinstance(end_date, datetime):
+                _query_params.append(
+                    (
+                        'endDate',
+                        end_date.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('endDate', end_date))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        if sender is not None:
+            
+            _query_params.append(('sender', sender))
+            
+        if receiver is not None:
+            
+            _query_params.append(('receiver', receiver))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tokenization/tokens/{id}/transfers',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

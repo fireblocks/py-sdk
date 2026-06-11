@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
@@ -39,7 +40,9 @@ class BusinessIdentification(BaseModel):
     postal_address: PostalAddress = Field(alias="postalAddress")
     email: Optional[StrictStr] = None
     phone: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Mobile phone number in E.164 format")
-    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "businessName", "registrationNumber", "postalAddress", "email", "phone"]
+    date_of_registration: Optional[date] = Field(default=None, description="The date the business was registered.", alias="dateOfRegistration")
+    country_of_registration: Optional[StrictStr] = Field(default=None, description="The ISO-3166 Alpha-2 country code where the business is registered.", alias="countryOfRegistration")
+    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "businessName", "registrationNumber", "postalAddress", "email", "phone", "dateOfRegistration", "countryOfRegistration"]
 
     @field_validator('phone')
     def phone_validate_regular_expression(cls, value):
@@ -112,7 +115,9 @@ class BusinessIdentification(BaseModel):
             "registrationNumber": obj.get("registrationNumber"),
             "postalAddress": PostalAddress.from_dict(obj["postalAddress"]) if obj.get("postalAddress") is not None else None,
             "email": obj.get("email"),
-            "phone": obj.get("phone")
+            "phone": obj.get("phone"),
+            "dateOfRegistration": obj.get("dateOfRegistration"),
+            "countryOfRegistration": obj.get("countryOfRegistration")
         })
         return _obj
 

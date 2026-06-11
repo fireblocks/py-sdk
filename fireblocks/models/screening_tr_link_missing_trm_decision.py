@@ -25,7 +25,7 @@ from fireblocks.models.screening_tr_link_amount import ScreeningTRLinkAmount
 from fireblocks.models.tr_link_missing_trm_action_enum import TRLinkMissingTrmActionEnum
 from fireblocks.models.transaction_operation_enum import TransactionOperationEnum
 from fireblocks.models.transfer_peer_sub_type_enum import TransferPeerSubTypeEnum
-from fireblocks.models.transfer_peer_type_enum import TransferPeerTypeEnum
+from fireblocks.models.transfer_peer_type_enum2 import TransferPeerTypeEnum2
 from fireblocks.models.travel_rule_direction_enum import TravelRuleDirectionEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,10 +36,10 @@ class ScreeningTRLinkMissingTrmDecision(BaseModel):
     """ # noqa: E501
     customer_id: Optional[StrictStr] = Field(default=None, description="Reference to TRLinkCustomer.id", alias="customerId")
     direction: Optional[TravelRuleDirectionEnum] = None
-    source_type: Optional[TransferPeerTypeEnum] = Field(default=None, alias="sourceType")
+    source_type: Optional[TransferPeerTypeEnum2] = Field(default=None, alias="sourceType")
     source_sub_type: Optional[TransferPeerSubTypeEnum] = Field(default=None, alias="sourceSubType")
     source_address: Optional[StrictStr] = Field(default=None, description="Source address", alias="sourceAddress")
-    dest_type: Optional[TransferPeerTypeEnum] = Field(default=None, alias="destType")
+    dest_type: Optional[TransferPeerTypeEnum2] = Field(default=None, alias="destType")
     dest_sub_type: Optional[TransferPeerSubTypeEnum] = Field(default=None, alias="destSubType")
     dest_address: Optional[StrictStr] = Field(default=None, description="Destination address", alias="destAddress")
     source_id: Optional[StrictStr] = Field(default=None, description="Source ID", alias="sourceId")

@@ -43,7 +43,11 @@ class TestWebhook(unittest.TestCase):
                 events = ["transaction.created","transaction.status.updated"],
                 status = 'ENABLED',
                 created_at = 1625126400000,
-                updated_at = 1625126400000
+                updated_at = 1625126400000,
+                mtls = fireblocks.models.webhook_mtls.WebhookMtls(
+                    client_signed_cert = '-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----', )
             )
         else:
             return Webhook(

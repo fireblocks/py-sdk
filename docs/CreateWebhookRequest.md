@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **str** | description of the webhook. should not contain special characters. | [optional] 
 **events** | [**List[WebhookEvent]**](WebhookEvent.md) | event types the webhook will subscribe to | 
 **enabled** | **bool** | The status of the webhook. If false, the webhook will not receive notifications. | [optional] [default to True]
+**mtls** | [**WebhookMtls**](WebhookMtls.md) |  | [optional] 
 
 ## Example
 

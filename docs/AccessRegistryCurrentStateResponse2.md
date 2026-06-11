@@ -1,0 +1,32 @@
+# AccessRegistryCurrentStateResponse2
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**data** | [**List[AccessRegistryAddressItem]**](AccessRegistryAddressItem.md) | Array of active addresses in the access registry | 
+**next** | **str** | Cursor for next page | [optional] 
+**prev** | **str** | Cursor for previous page | [optional] 
+**total** | **float** | Total count of active addresses in the access registry | [optional] 
+
+## Example
+
+```python
+from fireblocks.models.access_registry_current_state_response2 import AccessRegistryCurrentStateResponse2
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AccessRegistryCurrentStateResponse2 from a JSON string
+access_registry_current_state_response2_instance = AccessRegistryCurrentStateResponse2.from_json(json)
+# print the JSON string representation of the object
+print(AccessRegistryCurrentStateResponse2.to_json())
+
+# convert the object into a dict
+access_registry_current_state_response2_dict = access_registry_current_state_response2_instance.to_dict()
+# create an instance of AccessRegistryCurrentStateResponse2 from a dict
+access_registry_current_state_response2_from_dict = AccessRegistryCurrentStateResponse2.from_dict(access_registry_current_state_response2_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

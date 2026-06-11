@@ -39,22 +39,14 @@ class TestAccessRegistryCurrentStateResponse(unittest.TestCase):
         model = AccessRegistryCurrentStateResponse()
         if include_optional:
             return AccessRegistryCurrentStateResponse(
-                data = [
-                    fireblocks.models.access_registry_address_item.AccessRegistryAddressItem(
-                        address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66', 
-                        date_added = '2024-07-01T00:00Z', )
-                    ],
+                data = [{"address":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66","dateAdded":"2024-07-01T00:00:00.000Z"}],
                 next = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==',
                 prev = 'dGhpcyBpcyBhIHByZXZpb3VzIGN1bcnNvcg==',
                 total = 150
             )
         else:
             return AccessRegistryCurrentStateResponse(
-                data = [
-                    fireblocks.models.access_registry_address_item.AccessRegistryAddressItem(
-                        address = '0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66', 
-                        date_added = '2024-07-01T00:00Z', )
-                    ],
+                data = [{"address":"0xC2c4e1Db41F0bB97996D0eD0542D2170d146FB66","dateAdded":"2024-07-01T00:00:00.000Z"}],
         )
         """
 

@@ -41,6 +41,20 @@ class TestConnectedAccountsBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_connected_account_allowlist(self) -> None:
+        """Test case for get_connected_account_allowlist
+
+        Get allowlist for connected account
+        """
+        pass
+
+    def test_get_connected_account_allowlist_entry(self) -> None:
+        """Test case for get_connected_account_allowlist_entry
+
+        Get a single allowlist entry for a connected account
+        """
+        pass
+
     def test_get_connected_account_balances(self) -> None:
         """Test case for get_connected_account_balances
 
@@ -73,6 +87,13 @@ class TestConnectedAccountsBetaApi(unittest.TestCase):
         """Test case for rename_connected_account
 
         Rename Connected Account
+        """
+        pass
+
+    def test_sync_connected_account_allowlist(self) -> None:
+        """Test case for sync_connected_account_allowlist
+
+        Sync allowlist for connected account
         """
         pass
 

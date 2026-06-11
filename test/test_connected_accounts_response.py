@@ -37,13 +37,13 @@ class TestConnectedAccountsResponse(unittest.TestCase):
         model = ConnectedAccountsResponse()
         if include_optional:
             return ConnectedAccountsResponse(
-                data = [{"id":"acc-123456","name":"Main Venue Account","providerId":"BRIDGE","status":"APPROVED","totalBalance":{"amount":"1201.15","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":true},"manifest":{"assetTypes":[],"capabilities":["DEPOSITS","WITHDRAWALS"]}},{"id":"acc-654321","name":"Secondary Account","providerId":"BRIDGE","status":"WAITING_FOR_APPROVAL","totalBalance":{"amount":"0.00","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":false},"manifest":{"assetTypes":[],"capabilities":["WITHDRAWALS"]}}],
+                data = [{"id":"acc-123456","name":"Main Venue Account","providerId":"BRIDGE","status":"APPROVED","totalBalance":{"amount":"1201.15","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":true},"manifest":{"assetTypes":[],"capabilities":["DEPOSITS","WITHDRAWALS"]},"accountType":"CONNECTED_ACCOUNT"},{"id":"acc-654321","name":"Secondary Account","providerId":"BRIDGE","status":"WAITING_FOR_APPROVAL","totalBalance":{"amount":"0.00","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":false},"manifest":{"assetTypes":[],"capabilities":["WITHDRAWALS"]},"accountType":"CONNECTED_ACCOUNT"}],
                 total = 2,
                 next = 'eyJwYWdlIjoyfQ=='
             )
         else:
             return ConnectedAccountsResponse(
-                data = [{"id":"acc-123456","name":"Main Venue Account","providerId":"BRIDGE","status":"APPROVED","totalBalance":{"amount":"1201.15","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":true},"manifest":{"assetTypes":[],"capabilities":["DEPOSITS","WITHDRAWALS"]}},{"id":"acc-654321","name":"Secondary Account","providerId":"BRIDGE","status":"WAITING_FOR_APPROVAL","totalBalance":{"amount":"0.00","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":false},"manifest":{"assetTypes":[],"capabilities":["WITHDRAWALS"]}}],
+                data = [{"id":"acc-123456","name":"Main Venue Account","providerId":"BRIDGE","status":"APPROVED","totalBalance":{"amount":"1201.15","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":true},"manifest":{"assetTypes":[],"capabilities":["DEPOSITS","WITHDRAWALS"]},"accountType":"CONNECTED_ACCOUNT"},{"id":"acc-654321","name":"Secondary Account","providerId":"BRIDGE","status":"WAITING_FOR_APPROVAL","totalBalance":{"amount":"0.00","denominatedAssetId":"ea6c3cb7-355a-4ee3-82ff-267c69970214","hasFullAssetCoverage":false},"manifest":{"assetTypes":[],"capabilities":["WITHDRAWALS"]},"accountType":"CONNECTED_ACCOUNT"}],
         )
         """
 

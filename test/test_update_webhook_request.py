@@ -40,7 +40,11 @@ class TestUpdateWebhookRequest(unittest.TestCase):
                 url = 'https://example.com/webhook',
                 description = 'This webhook is used for transactions notifications',
                 events = ["transaction.created","transaction.status.updated"],
-                enabled = False
+                enabled = False,
+                mtls = fireblocks.models.webhook_mtls.WebhookMtls(
+                    client_signed_cert = '-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----', )
             )
         else:
             return UpdateWebhookRequest(

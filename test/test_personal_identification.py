@@ -50,7 +50,9 @@ class TestPersonalIdentification(unittest.TestCase):
                 id_number = '',
                 id_type = 'NIN_SLIP_CARD',
                 additional_id_number = '',
-                additional_id_type = 'NIN_SLIP_CARD'
+                additional_id_type = 'NIN_SLIP_CARD',
+                nationality = 'US',
+                identification_documents = [{"id":"12345678901","type":"PASSPORT","expirationDate":"2030-03-15"}]
             )
         else:
             return PersonalIdentification(

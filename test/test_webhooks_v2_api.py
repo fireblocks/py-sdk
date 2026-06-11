@@ -48,6 +48,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_mtls_csr(self) -> None:
+        """Test case for get_mtls_csr
+
+        Get mTLS CSR
+        """
+        pass
+
     def test_get_notification(self) -> None:
         """Test case for get_notification
 

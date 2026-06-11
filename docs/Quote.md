@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **general_fees** | [**List[Fee]**](Fee.md) | General fees associated with the quote. | [optional] 
 **side** | [**Side**](Side.md) |  | 
 **expires_at** | **str** | The expiration time of the quote in ISO 8601 format. | 
-**order_creation_requirements** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending.  | [optional] 
+**required_participants_identification_on_order** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending.  | [optional] 
 **type** | **str** | The type of the quote. | 
 
 ## Example

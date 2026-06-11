@@ -43,6 +43,7 @@ class TransferPeerPathType(str, Enum):
     PROGRAM_CALL = 'PROGRAM_CALL'
     MULTI_DESTINATION = 'MULTI_DESTINATION'
     OEC_PARTNER = 'OEC_PARTNER'
+    WALLET_POOL = 'WALLET_POOL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

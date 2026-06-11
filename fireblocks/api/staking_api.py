@@ -33,6 +33,7 @@ from fireblocks.models.split_request import SplitRequest
 from fireblocks.models.split_response import SplitResponse
 from fireblocks.models.stake_request import StakeRequest
 from fireblocks.models.stake_response import StakeResponse
+from fireblocks.models.staking_position_related_transactions_paginated_response import StakingPositionRelatedTransactionsPaginatedResponse
 from fireblocks.models.staking_positions_paginated_response import StakingPositionsPaginatedResponse
 from fireblocks.models.staking_provider import StakingProvider
 from fireblocks.models.unstake_request import UnstakeRequest
@@ -1040,6 +1041,167 @@ class StakingApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/staking/positions/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_position_related_transactions(
+        self,
+        id: Annotated[StrictStr, Field(description="Unique identifier of the staking position.")],
+        page_size: Annotated[int, Field(le=100, strict=True, ge=1, description="Number of results per page (minimum: 1, maximum: 100).")],
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor for the next page of results. Use the value from the 'next' field in the previous response.")] = None,
+        order: Annotated[Optional[StrictStr], Field(description="ASC / DESC ordering for completed/failed history (default DESC). The in-flight transaction is always returned first.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[StakingPositionRelatedTransactionsPaginatedResponse]]:
+        """List related transactions for a position
+
+        Returns enriched transaction history for a staking position with cursor-based pagination. Includes in-flight transactions with status pending. The in-flight transaction is always returned first; completed and failed history is ordered by the order parameter.
+
+        :param id: Unique identifier of the staking position. (required)
+        :type id: str
+        :param page_size: Number of results per page (minimum: 1, maximum: 100). (required)
+        :type page_size: int
+        :param page_cursor: Cursor for the next page of results. Use the value from the 'next' field in the previous response.
+        :type page_cursor: str
+        :param order: ASC / DESC ordering for completed/failed history (default DESC). The in-flight transaction is always returned first.
+        :type order: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_position_related_transactions", param_name="id", param_value=id)
+
+        _param = self._get_position_related_transactions_serialize(
+            id=id,
+            page_size=page_size,
+            page_cursor=page_cursor,
+            order=order,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "StakingPositionRelatedTransactionsPaginatedResponse",
+            '400': "StakingErrorSchema",
+            '403': "StakingErrorSchema",
+            '404': "StakingErrorSchema",
+            '429': "StakingErrorSchema",
+            '500': "StakingErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_position_related_transactions_serialize(
+        self,
+        id,
+        page_size,
+        page_cursor,
+        order,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if order is not None:
+            
+            _query_params.append(('order', order))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/staking/positions/{id}/related_transactions',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

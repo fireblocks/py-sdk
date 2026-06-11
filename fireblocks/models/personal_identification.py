@@ -24,6 +24,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
 from fireblocks.models.personal_entity_type_enum import PersonalEntityTypeEnum
+from fireblocks.models.personal_identification_document import PersonalIdentificationDocument
 from fireblocks.models.personal_identification_full_name import PersonalIdentificationFullName
 from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.postal_address import PostalAddress
@@ -42,11 +43,13 @@ class PersonalIdentification(BaseModel):
     postal_address: PostalAddress = Field(alias="postalAddress")
     email: Optional[StrictStr] = None
     phone: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Mobile phone number in E.164 format")
-    id_number: Optional[StrictStr] = Field(default=None, description="The identification number corresponding to the primary identification document type specified in idType", alias="idNumber")
-    id_type: Optional[PersonalIdentificationType] = Field(default=None, alias="idType")
-    additional_id_number: Optional[StrictStr] = Field(default=None, description="The identification number corresponding to the additional identification document type specified in additionalIdType", alias="additionalIdNumber")
-    additional_id_type: Optional[PersonalIdentificationType] = Field(default=None, alias="additionalIdType")
-    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "fullName", "dateOfBirth", "postalAddress", "email", "phone", "idNumber", "idType", "additionalIdNumber", "additionalIdType"]
+    id_number: Optional[StrictStr] = Field(default=None, description="Deprecated. Use identificationDocuments instead.", alias="idNumber")
+    id_type: Optional[PersonalIdentificationType] = Field(default=None, description="Deprecated. Use identificationDocuments instead.", alias="idType")
+    additional_id_number: Optional[StrictStr] = Field(default=None, description="Deprecated. Use identificationDocuments instead.", alias="additionalIdNumber")
+    additional_id_type: Optional[PersonalIdentificationType] = Field(default=None, description="Deprecated. Use identificationDocuments instead.", alias="additionalIdType")
+    nationality: Optional[StrictStr] = Field(default=None, description="The ISO-3166 Alpha-2 country code representing the individual's nationality.")
+    identification_documents: Optional[List[PersonalIdentificationDocument]] = Field(default=None, description="List of identification documents for the individual.", alias="identificationDocuments")
+    __properties: ClassVar[List[str]] = ["externalReferenceId", "entityType", "participantRelationshipType", "fullName", "dateOfBirth", "postalAddress", "email", "phone", "idNumber", "idType", "additionalIdNumber", "additionalIdType", "nationality", "identificationDocuments"]
 
     @field_validator('phone')
     def phone_validate_regular_expression(cls, value):
@@ -103,6 +106,13 @@ class PersonalIdentification(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of postal_address
         if self.postal_address:
             _dict['postalAddress'] = self.postal_address.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in identification_documents (list)
+        _items = []
+        if self.identification_documents:
+            for _item_identification_documents in self.identification_documents:
+                if _item_identification_documents:
+                    _items.append(_item_identification_documents.to_dict())
+            _dict['identificationDocuments'] = _items
         return _dict
 
     @classmethod
@@ -126,7 +136,9 @@ class PersonalIdentification(BaseModel):
             "idNumber": obj.get("idNumber"),
             "idType": obj.get("idType"),
             "additionalIdNumber": obj.get("additionalIdNumber"),
-            "additionalIdType": obj.get("additionalIdType")
+            "additionalIdType": obj.get("additionalIdType"),
+            "nationality": obj.get("nationality"),
+            "identificationDocuments": [PersonalIdentificationDocument.from_dict(_item) for _item in obj["identificationDocuments"]] if obj.get("identificationDocuments") is not None else None
         })
         return _obj
 

@@ -47,9 +47,9 @@ class Quote(BaseModel):
     general_fees: Optional[List[Fee]] = Field(default=None, description="General fees associated with the quote.", alias="generalFees")
     side: Side
     expires_at: StrictStr = Field(description="The expiration time of the quote in ISO 8601 format.", alias="expiresAt")
-    order_creation_requirements: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending. ", alias="orderCreationRequirements")
+    required_participants_identification_on_order: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending. ", alias="requiredParticipantsIdentificationOnOrder")
     type: StrictStr = Field(description="The type of the quote.")
-    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "quoteAssetRail", "baseAssetId", "baseAssetRail", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "isSlippageApplied", "executionSteps", "generalFees", "side", "expiresAt", "orderCreationRequirements", "type"]
+    __properties: ClassVar[List[str]] = ["via", "id", "quoteAssetId", "quoteAssetRail", "baseAssetId", "baseAssetRail", "baseAmount", "quoteAmount", "priceImpact", "quoteMinAmount", "isSlippageApplied", "executionSteps", "generalFees", "side", "expiresAt", "requiredParticipantsIdentificationOnOrder", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -141,7 +141,7 @@ class Quote(BaseModel):
             "generalFees": [Fee.from_dict(_item) for _item in obj["generalFees"]] if obj.get("generalFees") is not None else None,
             "side": obj.get("side"),
             "expiresAt": obj.get("expiresAt"),
-            "orderCreationRequirements": obj.get("orderCreationRequirements"),
+            "requiredParticipantsIdentificationOnOrder": obj.get("requiredParticipantsIdentificationOnOrder"),
             "type": obj.get("type")
         })
         return _obj

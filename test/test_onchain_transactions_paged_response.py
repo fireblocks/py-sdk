@@ -39,62 +39,14 @@ class TestOnchainTransactionsPagedResponse(unittest.TestCase):
         model = OnchainTransactionsPagedResponse()
         if include_optional:
             return OnchainTransactionsPagedResponse(
-                data = [
-                    fireblocks.models.onchain_transaction.OnchainTransaction(
-                        id = '550e8400-e29b-41d4-a716-446655440000', 
-                        base_asset_id = 'ETH_TEST3', 
-                        block_hash = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', 
-                        block_number = 12345678, 
-                        block_timestamp = '2025-01-16T15:45Z', 
-                        chain_id = 1, 
-                        contract_address = '0x1234567890123456789012345678901234567890', 
-                        cumulative_gas_used = '21000', 
-                        decoded_logs = fireblocks.models.decoded_log.DecodedLog(
-                            address = '0x1234567890123456789012345678901234567890', 
-                            block_hash = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', 
-                            block_number = '12345678', 
-                            transaction_hash = '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890', 
-                            log_index = '0', ), 
-                        effective_gas_price = '20000000000', 
-                        from_address = '0xabcdef1234567890abcdef1234567890abcdef12', 
-                        gas_used = '21000', 
-                        status = '1', 
-                        to_address = '0x1234567890123456789012345678901234567890', 
-                        transaction_hash = '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890', 
-                        transaction_index = '0', 
-                        type = '2', )
-                    ],
+                data = [{"id":"550e8400-e29b-41d4-a716-446655440000","baseAssetId":"ETH_TEST3","blockHash":"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef","blockNumber":12345678,"blockTimestamp":"2025-01-16T15:45:00Z","chainId":1,"contractAddress":"0x1234567890123456789012345678901234567890","cumulativeGasUsed":"21000","effectiveGasPrice":"20000000000","fromAddress":"0xabcdef1234567890abcdef1234567890abcdef12","gasUsed":"21000","status":"1","toAddress":"0x1234567890123456789012345678901234567890","transactionHash":"0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890","transactionIndex":"0","type":"2"}],
                 next = 'MjAyMy0xMi0xMyAyMDozNjowOC4zMDI=:MTEwMA==',
                 prev = 'dGhpcyBpcyBhIHByZXZpb3VzIGN1cnNvcg==',
                 total = 150
             )
         else:
             return OnchainTransactionsPagedResponse(
-                data = [
-                    fireblocks.models.onchain_transaction.OnchainTransaction(
-                        id = '550e8400-e29b-41d4-a716-446655440000', 
-                        base_asset_id = 'ETH_TEST3', 
-                        block_hash = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', 
-                        block_number = 12345678, 
-                        block_timestamp = '2025-01-16T15:45Z', 
-                        chain_id = 1, 
-                        contract_address = '0x1234567890123456789012345678901234567890', 
-                        cumulative_gas_used = '21000', 
-                        decoded_logs = fireblocks.models.decoded_log.DecodedLog(
-                            address = '0x1234567890123456789012345678901234567890', 
-                            block_hash = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef', 
-                            block_number = '12345678', 
-                            transaction_hash = '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890', 
-                            log_index = '0', ), 
-                        effective_gas_price = '20000000000', 
-                        from_address = '0xabcdef1234567890abcdef1234567890abcdef12', 
-                        gas_used = '21000', 
-                        status = '1', 
-                        to_address = '0x1234567890123456789012345678901234567890', 
-                        transaction_hash = '0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890', 
-                        transaction_index = '0', 
-                        type = '2', )
-                    ],
+                data = [{"id":"550e8400-e29b-41d4-a716-446655440000","baseAssetId":"ETH_TEST3","blockHash":"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef","blockNumber":12345678,"blockTimestamp":"2025-01-16T15:45:00Z","chainId":1,"contractAddress":"0x1234567890123456789012345678901234567890","cumulativeGasUsed":"21000","effectiveGasPrice":"20000000000","fromAddress":"0xabcdef1234567890abcdef1234567890abcdef12","gasUsed":"21000","status":"1","toAddress":"0x1234567890123456789012345678901234567890","transactionHash":"0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890","transactionIndex":"0","type":"2"}],
         )
         """
 

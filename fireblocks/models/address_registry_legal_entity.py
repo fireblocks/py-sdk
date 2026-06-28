@@ -28,13 +28,13 @@ class AddressRegistryLegalEntity(BaseModel):
     """
     Legal entity details for a blockchain address.
     """ # noqa: E501
-    verified: StrictBool = Field(description="Whether the entity was resolved from verified public registry data (e.g. LEI sources).")
+    lei_data: StrictBool = Field(description="Indicates whether LEI (Legal Entity Identifier) data is available for this address from a verified public registry. A value of `false` means no LEI record was found.", alias="leiData")
     entity_name: StrictStr = Field(description="Legal entity display name.", alias="entityName")
     jurisdiction: StrictStr = Field(description="Jurisdiction (e.g. ISO 3166-1 alpha-2 country code).")
-    lei: StrictStr = Field(description="Legal Entity Identifier when available; may be empty when unverified.")
+    lei: StrictStr = Field(description="Legal Entity Identifier when available. Empty when `leiData` is `false`.")
     travel_rule_providers: List[AddressRegistryTravelRuleProvider] = Field(alias="travelRuleProviders")
     email: StrictStr = Field(description="Travel Rule contact email when available.")
-    __properties: ClassVar[List[str]] = ["verified", "entityName", "jurisdiction", "lei", "travelRuleProviders", "email"]
+    __properties: ClassVar[List[str]] = ["leiData", "entityName", "jurisdiction", "lei", "travelRuleProviders", "email"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +87,7 @@ class AddressRegistryLegalEntity(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "verified": obj.get("verified"),
+            "leiData": obj.get("leiData"),
             "entityName": obj.get("entityName"),
             "jurisdiction": obj.get("jurisdiction"),
             "lei": obj.get("lei"),

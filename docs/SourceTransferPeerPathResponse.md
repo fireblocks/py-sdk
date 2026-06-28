@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the peer. | [optional] 
 **wallet_id** | **str** |  | [optional] 
 **trading_account** | **str** | If this transaction is an exchange internal transfer, this field will be populated with the type of that trading account. | [optional] 
+**tags** | [**List[TransactionTag]**](TransactionTag.md) | Tags associated with the transaction&#39;s source. | [optional] 
 
 ## Example
 

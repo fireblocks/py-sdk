@@ -40,12 +40,12 @@ class TestUtxoInputSelection(unittest.TestCase):
                 inputs_to_spend = [
                     fireblocks.models.utxo_input.UtxoInput(
                         tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
-                        vout = 0, )
+                        index = 0, )
                     ],
                 inputs_to_exclude = [
                     fireblocks.models.utxo_input.UtxoInput(
                         tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
-                        vout = 0, )
+                        index = 0, )
                     ],
                 fill_fee_for_selected_inputs = True
             )

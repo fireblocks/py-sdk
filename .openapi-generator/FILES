@@ -57,9 +57,11 @@ docs/AddressRegistryTravelRuleProvider.md
 docs/AddressRegistryVaultListOrder.md
 docs/AddressRegistryVaultOptOutItem.md
 docs/AddressReverseLookupResponse.md
+docs/AddressesFilters.md
 docs/AlertExposureTypeEnum.md
 docs/AlertLevelEnum.md
 docs/AllowlistEntry.md
+docs/AllowlistEntryResponse.md
 docs/AllowlistEntryStatus.md
 docs/AllowlistMetadata.md
 docs/AllowlistResponse.md
@@ -255,8 +257,11 @@ docs/CounterpartyGroupsPaginatedResponse.md
 docs/CreateAPIUser.md
 docs/CreateAddressRequest.md
 docs/CreateAddressResponse.md
+docs/CreateAddressesReportRequest.md
 docs/CreateAssetsRequest.md
 docs/CreateConfigOperationRequest.md
+docs/CreateConnectedAccountRequest.md
+docs/CreateConnectedAccountResponse.md
 docs/CreateConnectionRequest.md
 docs/CreateConnectionResponse.md
 docs/CreateConsoleUser.md
@@ -281,6 +286,8 @@ docs/CreateOrderRequest.md
 docs/CreatePayoutRequest.md
 docs/CreateQuote.md
 docs/CreateQuoteScopeInner.md
+docs/CreateReportRequest.md
+docs/CreateReportResponse.md
 docs/CreateSigningKeyDto.md
 docs/CreateSigningKeyDtoProofOfOwnership.md
 docs/CreateTagRequest.md
@@ -297,6 +304,7 @@ docs/CreateVaultAssetResponse.md
 docs/CreateWalletRequest.md
 docs/CreateWebhookRequest.md
 docs/CreateWorkflowExecutionRequestParamsInner.md
+docs/CreatedConnectedAccountItem.md
 docs/CustomRoutingDest.md
 docs/DAppAddressConfig.md
 docs/DVPSettlement.md
@@ -497,6 +505,7 @@ docs/InternalTransferDestination.md
 docs/InternalTransferResponse.md
 docs/InternalWalletsApi.md
 docs/InvalidParamaterValueError.md
+docs/IssueApiUserPairingTokenResponse.md
 docs/JobCreated.md
 docs/KeyLinkBetaApi.md
 docs/KeysBetaApi.md
@@ -626,7 +635,6 @@ docs/ParameterWithValue.md
 docs/ParticipantRelationshipType.md
 docs/ParticipantsIdentification.md
 docs/ParticipantsIdentificationPolicy.md
-docs/ParticipantsIdentificationSupportedEndpoint.md
 docs/PayeeAccount.md
 docs/PayeeAccountResponse.md
 docs/PayeeAccountType.md
@@ -664,8 +672,8 @@ docs/PolicyAndValidationResponse.md
 docs/PolicyCheckResult.md
 docs/PolicyCurrency.md
 docs/PolicyEditorBetaApi.md
-docs/PolicyEditorV2BetaApi.md
-docs/PolicyMetadata.md
+docs/PolicyEditorV2Api.md
+docs/PolicyMetadataEntry.md
 docs/PolicyOperator.md
 docs/PolicyResponse.md
 docs/PolicyRule.md
@@ -728,6 +736,15 @@ docs/RenameConnectedAccountRequest.md
 docs/RenameConnectedAccountResponse.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
+docs/ReportConflictResponse.md
+docs/ReportJob.md
+docs/ReportJobLinks.md
+docs/ReportJobResponse.md
+docs/ReportListResponse.md
+docs/ReportOutputFormat.md
+docs/ReportStatus.md
+docs/ReportType.md
+docs/ReportsBetaApi.md
 docs/ResendByQueryRequest.md
 docs/ResendByQueryResponse.md
 docs/ResendFailedNotificationsJobStatusResponse.md
@@ -847,6 +864,7 @@ docs/SolanaBlockchainData.md
 docs/SolanaConfig.md
 docs/SolanaInstruction.md
 docs/SolanaInstructionWithValue.md
+docs/SolanaRewardsBreakdown.md
 docs/SolanaSimpleCreateParams.md
 docs/SourceConfig.md
 docs/SourceOfFunds.md
@@ -1018,6 +1036,7 @@ docs/TransactionRequestPriorityFee.md
 docs/TransactionResponse.md
 docs/TransactionResponseContractCallDecodedData.md
 docs/TransactionResponseDestination.md
+docs/TransactionTag.md
 docs/TransactionsApi.md
 docs/TransferConfigOperation.md
 docs/TransferOperationConfigParams.md
@@ -1200,7 +1219,8 @@ fireblocks/api/onchain_data_api.py
 fireblocks/api/ota_beta_api.py
 fireblocks/api/payments_payout_api.py
 fireblocks/api/policy_editor_beta_api.py
-fireblocks/api/policy_editor_v2_beta_api.py
+fireblocks/api/policy_editor_v2_api.py
+fireblocks/api/reports_beta_api.py
 fireblocks/api/reset_device_api.py
 fireblocks/api/smart_transfer_api.py
 fireblocks/api/staking_api.py
@@ -1283,9 +1303,11 @@ fireblocks/models/address_registry_travel_rule_provider.py
 fireblocks/models/address_registry_vault_list_order.py
 fireblocks/models/address_registry_vault_opt_out_item.py
 fireblocks/models/address_reverse_lookup_response.py
+fireblocks/models/addresses_filters.py
 fireblocks/models/alert_exposure_type_enum.py
 fireblocks/models/alert_level_enum.py
 fireblocks/models/allowlist_entry.py
+fireblocks/models/allowlist_entry_response.py
 fireblocks/models/allowlist_entry_status.py
 fireblocks/models/allowlist_metadata.py
 fireblocks/models/allowlist_response.py
@@ -1470,9 +1492,12 @@ fireblocks/models/counterparty_group.py
 fireblocks/models/counterparty_groups_paginated_response.py
 fireblocks/models/create_address_request.py
 fireblocks/models/create_address_response.py
+fireblocks/models/create_addresses_report_request.py
 fireblocks/models/create_api_user.py
 fireblocks/models/create_assets_request.py
 fireblocks/models/create_config_operation_request.py
+fireblocks/models/create_connected_account_request.py
+fireblocks/models/create_connected_account_response.py
 fireblocks/models/create_connection_request.py
 fireblocks/models/create_connection_response.py
 fireblocks/models/create_console_user.py
@@ -1497,6 +1522,8 @@ fireblocks/models/create_order_request.py
 fireblocks/models/create_payout_request.py
 fireblocks/models/create_quote.py
 fireblocks/models/create_quote_scope_inner.py
+fireblocks/models/create_report_request.py
+fireblocks/models/create_report_response.py
 fireblocks/models/create_signing_key_dto.py
 fireblocks/models/create_signing_key_dto_proof_of_ownership.py
 fireblocks/models/create_tag_request.py
@@ -1513,6 +1540,7 @@ fireblocks/models/create_vault_asset_response.py
 fireblocks/models/create_wallet_request.py
 fireblocks/models/create_webhook_request.py
 fireblocks/models/create_workflow_execution_request_params_inner.py
+fireblocks/models/created_connected_account_item.py
 fireblocks/models/custom_routing_dest.py
 fireblocks/models/d_app_address_config.py
 fireblocks/models/decoded_log.py
@@ -1704,6 +1732,7 @@ fireblocks/models/internal_transfer_address.py
 fireblocks/models/internal_transfer_destination.py
 fireblocks/models/internal_transfer_response.py
 fireblocks/models/invalid_paramater_value_error.py
+fireblocks/models/issue_api_user_pairing_token_response.py
 fireblocks/models/job_created.py
 fireblocks/models/layer_zero_adapter_create_params.py
 fireblocks/models/lbt_payment_info.py
@@ -1826,7 +1855,6 @@ fireblocks/models/parameter_with_value.py
 fireblocks/models/participant_relationship_type.py
 fireblocks/models/participants_identification.py
 fireblocks/models/participants_identification_policy.py
-fireblocks/models/participants_identification_supported_endpoint.py
 fireblocks/models/payee_account.py
 fireblocks/models/payee_account_response.py
 fireblocks/models/payee_account_type.py
@@ -1862,7 +1890,7 @@ fireblocks/models/players.py
 fireblocks/models/policy_and_validation_response.py
 fireblocks/models/policy_check_result.py
 fireblocks/models/policy_currency.py
-fireblocks/models/policy_metadata.py
+fireblocks/models/policy_metadata_entry.py
 fireblocks/models/policy_operator.py
 fireblocks/models/policy_response.py
 fireblocks/models/policy_rule.py
@@ -1925,6 +1953,14 @@ fireblocks/models/rename_connected_account_request.py
 fireblocks/models/rename_connected_account_response.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
+fireblocks/models/report_conflict_response.py
+fireblocks/models/report_job.py
+fireblocks/models/report_job_links.py
+fireblocks/models/report_job_response.py
+fireblocks/models/report_list_response.py
+fireblocks/models/report_output_format.py
+fireblocks/models/report_status.py
+fireblocks/models/report_type.py
 fireblocks/models/resend_by_query_request.py
 fireblocks/models/resend_by_query_response.py
 fireblocks/models/resend_failed_notifications_job_status_response.py
@@ -2042,6 +2078,7 @@ fireblocks/models/solana_blockchain_data.py
 fireblocks/models/solana_config.py
 fireblocks/models/solana_instruction.py
 fireblocks/models/solana_instruction_with_value.py
+fireblocks/models/solana_rewards_breakdown.py
 fireblocks/models/solana_simple_create_params.py
 fireblocks/models/source_config.py
 fireblocks/models/source_of_funds.py
@@ -2208,6 +2245,7 @@ fireblocks/models/transaction_request_priority_fee.py
 fireblocks/models/transaction_response.py
 fireblocks/models/transaction_response_contract_call_decoded_data.py
 fireblocks/models/transaction_response_destination.py
+fireblocks/models/transaction_tag.py
 fireblocks/models/transfer_config_operation.py
 fireblocks/models/transfer_operation_config_params.py
 fireblocks/models/transfer_operation_execution.py
@@ -2423,9 +2461,11 @@ test/test_address_registry_travel_rule_provider.py
 test/test_address_registry_vault_list_order.py
 test/test_address_registry_vault_opt_out_item.py
 test/test_address_reverse_lookup_response.py
+test/test_addresses_filters.py
 test/test_alert_exposure_type_enum.py
 test/test_alert_level_enum.py
 test/test_allowlist_entry.py
+test/test_allowlist_entry_response.py
 test/test_allowlist_entry_status.py
 test/test_allowlist_metadata.py
 test/test_allowlist_response.py
@@ -2621,9 +2661,12 @@ test/test_counterparty_group.py
 test/test_counterparty_groups_paginated_response.py
 test/test_create_address_request.py
 test/test_create_address_response.py
+test/test_create_addresses_report_request.py
 test/test_create_api_user.py
 test/test_create_assets_request.py
 test/test_create_config_operation_request.py
+test/test_create_connected_account_request.py
+test/test_create_connected_account_response.py
 test/test_create_connection_request.py
 test/test_create_connection_response.py
 test/test_create_console_user.py
@@ -2648,6 +2691,8 @@ test/test_create_order_request.py
 test/test_create_payout_request.py
 test/test_create_quote.py
 test/test_create_quote_scope_inner.py
+test/test_create_report_request.py
+test/test_create_report_response.py
 test/test_create_signing_key_dto.py
 test/test_create_signing_key_dto_proof_of_ownership.py
 test/test_create_tag_request.py
@@ -2664,6 +2709,7 @@ test/test_create_vault_asset_response.py
 test/test_create_wallet_request.py
 test/test_create_webhook_request.py
 test/test_create_workflow_execution_request_params_inner.py
+test/test_created_connected_account_item.py
 test/test_custom_routing_dest.py
 test/test_d_app_address_config.py
 test/test_decoded_log.py
@@ -2864,6 +2910,7 @@ test/test_internal_transfer_destination.py
 test/test_internal_transfer_response.py
 test/test_internal_wallets_api.py
 test/test_invalid_paramater_value_error.py
+test/test_issue_api_user_pairing_token_response.py
 test/test_job_created.py
 test/test_key_link_beta_api.py
 test/test_keys_beta_api.py
@@ -2993,7 +3040,6 @@ test/test_parameter_with_value.py
 test/test_participant_relationship_type.py
 test/test_participants_identification.py
 test/test_participants_identification_policy.py
-test/test_participants_identification_supported_endpoint.py
 test/test_payee_account.py
 test/test_payee_account_response.py
 test/test_payee_account_type.py
@@ -3031,8 +3077,8 @@ test/test_policy_and_validation_response.py
 test/test_policy_check_result.py
 test/test_policy_currency.py
 test/test_policy_editor_beta_api.py
-test/test_policy_editor_v2_beta_api.py
-test/test_policy_metadata.py
+test/test_policy_editor_v2_api.py
+test/test_policy_metadata_entry.py
 test/test_policy_operator.py
 test/test_policy_response.py
 test/test_policy_rule.py
@@ -3095,6 +3141,15 @@ test/test_rename_connected_account_request.py
 test/test_rename_connected_account_response.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
+test/test_report_conflict_response.py
+test/test_report_job.py
+test/test_report_job_links.py
+test/test_report_job_response.py
+test/test_report_list_response.py
+test/test_report_output_format.py
+test/test_report_status.py
+test/test_report_type.py
+test/test_reports_beta_api.py
 test/test_resend_by_query_request.py
 test/test_resend_by_query_response.py
 test/test_resend_failed_notifications_job_status_response.py
@@ -3214,6 +3269,7 @@ test/test_solana_blockchain_data.py
 test/test_solana_config.py
 test/test_solana_instruction.py
 test/test_solana_instruction_with_value.py
+test/test_solana_rewards_breakdown.py
 test/test_solana_simple_create_params.py
 test/test_source_config.py
 test/test_source_of_funds.py
@@ -3385,6 +3441,7 @@ test/test_transaction_request_priority_fee.py
 test/test_transaction_response.py
 test/test_transaction_response_contract_call_decoded_data.py
 test/test_transaction_response_destination.py
+test/test_transaction_tag.py
 test/test_transactions_api.py
 test/test_transfer_config_operation.py
 test/test_transfer_operation_config_params.py

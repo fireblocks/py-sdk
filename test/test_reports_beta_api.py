@@ -15,23 +15,38 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.participants_identification_supported_endpoint import (
-    ParticipantsIdentificationSupportedEndpoint,
-)
+from fireblocks.api.reports_beta_api import ReportsBetaApi
 
 
-class TestParticipantsIdentificationSupportedEndpoint(unittest.TestCase):
-    """ParticipantsIdentificationSupportedEndpoint unit test stubs"""
+class TestReportsBetaApi(unittest.TestCase):
+    """ReportsBetaApi unit test stubs"""
 
-    def setUp(self):
+    def setUp(self) -> None:
+        self.api = ReportsBetaApi()
+
+    def tearDown(self) -> None:
         pass
 
-    def tearDown(self):
+    def test_create_report(self) -> None:
+        """Test case for create_report
+
+        Create a report
+        """
         pass
 
-    def testParticipantsIdentificationSupportedEndpoint(self):
-        """Test ParticipantsIdentificationSupportedEndpoint"""
-        # inst = ParticipantsIdentificationSupportedEndpoint()
+    def test_get_report(self) -> None:
+        """Test case for get_report
+
+        Get report status
+        """
+        pass
+
+    def test_list_reports(self) -> None:
+        """Test case for list_reports
+
+        List reports
+        """
+        pass
 
 
 if __name__ == "__main__":

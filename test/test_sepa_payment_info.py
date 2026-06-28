@@ -42,6 +42,8 @@ class TestSepaPaymentInfo(unittest.TestCase):
                 account_holder_given_name = 'Marie',
                 account_holder_surname = 'Dupont',
                 account_holder_country = 'FR',
+                account_holder_postal_code = '75001',
+                account_holder_city = 'Paris',
                 account_holder_address = '123 Rue de la Paix',
                 iban = 'FR1420041010050500013M02606',
                 country = 'FR',

@@ -29,8 +29,9 @@ from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
+from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
+from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi

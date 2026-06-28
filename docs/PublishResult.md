@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **status** | [**PolicyStatus**](PolicyStatus.md) |  | 
 **rules** | [**List[PolicyRule]**](PolicyRule.md) |  | 
 **check_result** | [**PolicyCheckResult**](PolicyCheckResult.md) |  | 
-**metadata** | [**PolicyMetadata**](PolicyMetadata.md) |  | 
+**metadata** | [**Dict[str, PolicyMetadataEntry]**](PolicyMetadataEntry.md) | Policy metadata keyed by policy type | 
 
 ## Example
 

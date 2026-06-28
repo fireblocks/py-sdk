@@ -38,7 +38,8 @@ class TestSolanaBlockchainData(unittest.TestCase):
         if include_optional:
             return SolanaBlockchainData(
                 stake_account_address = '3Ru67FyzMTcdENmmRL4Eve4dtPd6AdpuypR21q5EQCdq',
-                stake_account_derivation_change_value = 7
+                stake_account_derivation_change_value = 7,
+                rewards_breakdown = {"issuance":"0.000856038","mev":"0.000123456","lastRewardSyncedAt":"2023-07-13T15:55:34.256Z"}
             )
         else:
             return SolanaBlockchainData(

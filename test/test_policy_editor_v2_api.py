@@ -15,14 +15,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
+from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 
 
-class TestPolicyEditorV2BetaApi(unittest.TestCase):
-    """PolicyEditorV2BetaApi unit test stubs"""
+class TestPolicyEditorV2Api(unittest.TestCase):
+    """PolicyEditorV2Api unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = PolicyEditorV2BetaApi()
+        self.api = PolicyEditorV2Api()
 
     def tearDown(self) -> None:
         pass

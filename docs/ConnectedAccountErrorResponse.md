@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error_message** | **str** | Error message describing what went wrong | 
-**error_code** | **str** | Error code identifying the type of error | 
+**message** | **str** | Error message describing what went wrong. | 
+**code** | **int** | Numeric error code identifying the type of error. | 
+**error_message** | **str** | Error message describing what went wrong | [optional] 
+**error_code** | **str** | Error code identifying the type of error | [optional] 
 
 ## Example
 

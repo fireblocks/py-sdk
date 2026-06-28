@@ -32,13 +32,16 @@ class ChapsPaymentInfo(BaseModel):
     addressing_system: StrictStr = Field(description="The addressing system used for CHAPS transfers", alias="addressingSystem")
     account_holder_given_name: StrictStr = Field(description="The given name (first name) of the account holder", alias="accountHolderGivenName")
     account_holder_surname: StrictStr = Field(description="The surname (last name) of the account holder", alias="accountHolderSurname")
+    account_holder_city: Optional[StrictStr] = Field(default=None, description="The city where the account holder resides", alias="accountHolderCity")
+    account_holder_country: Optional[StrictStr] = Field(default=None, description="The country where the account holder resides (ISO 3166-1 alpha-2 code)", alias="accountHolderCountry")
+    account_holder_postal_code: Optional[StrictStr] = Field(default=None, description="The postal code of the account holder's address", alias="accountHolderPostalCode")
     country: StrictStr = Field(description="The country for the transfer (ISO 3166-1 alpha-2 code)")
     sort_code: Annotated[str, Field(strict=True)] = Field(description="UK bank sort code (format XX-XX-XX)", alias="sortCode")
     account_number: Annotated[str, Field(strict=True)] = Field(description="UK bank account number", alias="accountNumber")
     bank_name: Optional[StrictStr] = Field(default=None, description="The name of the bank", alias="bankName")
     bank_account_country: Annotated[str, Field(strict=True)] = Field(description="CHAPS bank account holder name", alias="bankAccountCountry")
     bank_account_holder_name: Annotated[str, Field(strict=True)] = Field(description="CHAPS bank account holder name", alias="bankAccountHolderName")
-    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "country", "sortCode", "accountNumber", "bankName", "bankAccountCountry", "bankAccountHolderName"]
+    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "accountHolderCity", "accountHolderCountry", "accountHolderPostalCode", "country", "sortCode", "accountNumber", "bankName", "bankAccountCountry", "bankAccountHolderName"]
 
     @field_validator('rail')
     def rail_validate_enum(cls, value):
@@ -137,6 +140,9 @@ class ChapsPaymentInfo(BaseModel):
             "addressingSystem": obj.get("addressingSystem"),
             "accountHolderGivenName": obj.get("accountHolderGivenName"),
             "accountHolderSurname": obj.get("accountHolderSurname"),
+            "accountHolderCity": obj.get("accountHolderCity"),
+            "accountHolderCountry": obj.get("accountHolderCountry"),
+            "accountHolderPostalCode": obj.get("accountHolderPostalCode"),
             "country": obj.get("country"),
             "sortCode": obj.get("sortCode"),
             "accountNumber": obj.get("accountNumber"),

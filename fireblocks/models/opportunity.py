@@ -45,8 +45,9 @@ class Opportunity(BaseModel):
     apy: Optional[Apy] = Field(default=None, description="APY breakdown; values are percentages (e.g. 4.25 means 4.25%).")
     performance_fee: Optional[StrictStr] = Field(default=None, description="Performance fee as a human-readable decimal string.", alias="performanceFee")
     management_fee: Optional[StrictStr] = Field(default=None, description="Management fee as a human-readable decimal string.", alias="managementFee")
-    exposure: Optional[Annotated[List[Exposure], Field(min_length=0, max_length=10)]] = Field(default=None, description="Optional per-asset exposure breakdown.")
-    __properties: ClassVar[List[str]] = ["id", "providerId", "type", "chainId", "address", "name", "symbol", "principalAsset", "positionAsset", "totalAssets", "liquidity", "apy", "performanceFee", "managementFee", "exposure"]
+    exposure_type: Optional[StrictStr] = Field(default=None, description="What the `exposure` rows represent; `UNSPECIFIED` when there is no exposure.", alias="exposureType")
+    exposure: Optional[Annotated[List[Exposure], Field(min_length=0, max_length=20)]] = Field(default=None, description="Per-asset exposure breakdown (vault allocation slices, top 20 by USD notional). Empty when not applicable.")
+    __properties: ClassVar[List[str]] = ["id", "providerId", "type", "chainId", "address", "name", "symbol", "principalAsset", "positionAsset", "totalAssets", "liquidity", "apy", "performanceFee", "managementFee", "exposureType", "exposure"]
 
     @field_validator('provider_id')
     def provider_id_validate_enum(cls, value):
@@ -66,6 +67,16 @@ class Opportunity(BaseModel):
 
         if value not in set(['VAULT', 'MARKET']):
             raise ValueError("must be one of enum values ('VAULT', 'MARKET')")
+        return value
+
+    @field_validator('exposure_type')
+    def exposure_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['UNSPECIFIED', 'VAULT_ALLOCATION', 'MARKET_COLLATERAL']):
+            raise ValueError("must be one of enum values ('UNSPECIFIED', 'VAULT_ALLOCATION', 'MARKET_COLLATERAL')")
         return value
 
     model_config = ConfigDict(
@@ -149,6 +160,7 @@ class Opportunity(BaseModel):
             "apy": Apy.from_dict(obj["apy"]) if obj.get("apy") is not None else None,
             "performanceFee": obj.get("performanceFee"),
             "managementFee": obj.get("managementFee"),
+            "exposureType": obj.get("exposureType"),
             "exposure": [Exposure.from_dict(_item) for _item in obj["exposure"]] if obj.get("exposure") is not None else None
         })
         return _obj

@@ -7,7 +7,7 @@ Response object for policy operations
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rules** | [**List[PolicyRule]**](PolicyRule.md) | A set of policy rules | 
-**metadata** | [**PolicyMetadata**](PolicyMetadata.md) |  | 
+**metadata** | [**Dict[str, PolicyMetadataEntry]**](PolicyMetadataEntry.md) | Policy metadata keyed by policy type | 
 
 ## Example
 

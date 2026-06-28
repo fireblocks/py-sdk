@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **account_holder_given_name** | **str** | The given name (first name) of the account holder | 
 **account_holder_surname** | **str** | The surname (last name) of the account holder | 
 **account_holder_country** | **str** | The country where the account holder resides (ISO 3166-1 alpha-2 code) | [optional] 
+**account_holder_postal_code** | **str** | The postal code of the account holder&#39;s address | [optional] 
+**account_holder_city** | **str** | The city where the account holder resides | [optional] 
 **account_holder_address** | **str** | The address of the account holder | [optional] 
 **iban** | **str** | The International Bank Account Number (IBAN) | 
 **country** | **str** | The country for the transfer (ISO 3166-1 alpha-2 code) | 

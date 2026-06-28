@@ -27,8 +27,8 @@ class CreateMultipleVaultAccountsJobStatus(BaseModel):
     """
     CreateMultipleVaultAccountsJobStatus
     """ # noqa: E501
-    status: StrictStr = Field(description="Status of the job. Possible values - Success, In Progress, Failed, Pending Approval, Cancelled")
-    vault_accounts: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, description="Mapping between VaultAccountId to a mapping of asset to address", alias="vaultAccounts")
+    status: StrictStr = Field(description="Status of the job. Possible values - Success, In Progress, Error, Pending Approval, Canceled")
+    vault_accounts: Optional[Dict[str, Dict[str, StrictStr]]] = Field(default=None, description="Mapping between VaultAccountId to a mapping of asset to address, and the vault account name", alias="vaultAccounts")
     tag_ids: Optional[List[StrictStr]] = Field(default=None, description="List of tag IDs successfully attached to each of the created vault accounts", alias="tagIds")
     error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
     approval_request_id: Optional[StrictStr] = Field(default=None, description="Approval request ID if the job has protected tags to attach to the vault accounts", alias="approvalRequestId")

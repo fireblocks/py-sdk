@@ -37,7 +37,7 @@ class TestAddressRegistryLegalEntity(unittest.TestCase):
         model = AddressRegistryLegalEntity()
         if include_optional:
             return AddressRegistryLegalEntity(
-                verified = True,
+                lei_data = True,
                 entity_name = 'ACME Corporation',
                 jurisdiction = 'US',
                 lei = '254900GC33RBE6FQA817',
@@ -46,7 +46,7 @@ class TestAddressRegistryLegalEntity(unittest.TestCase):
             )
         else:
             return AddressRegistryLegalEntity(
-                verified = True,
+                lei_data = True,
                 entity_name = 'ACME Corporation',
                 jurisdiction = 'US',
                 lei = '254900GC33RBE6FQA817',

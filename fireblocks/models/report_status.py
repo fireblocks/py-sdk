@@ -19,21 +19,22 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class ParticipantsIdentificationSupportedEndpoint(str, Enum):
+class ReportStatus(str, Enum):
     """
-    Trading API endpoint category where `participantsIdentification` may be required when this policy is present. Corresponds to manifest `order`, `quote`, and `rate`: ORDER, QUOTE, and RATE respectively. 
+    The current lifecycle state of a report job
     """
 
     """
     allowed enum values
     """
-    ORDER = 'ORDER'
-    QUOTE = 'QUOTE'
-    RATE = 'RATE'
+    QUEUED = 'QUEUED'
+    PROCESSING = 'PROCESSING'
+    COMPLETED = 'COMPLETED'
+    FAILED = 'FAILED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of ParticipantsIdentificationSupportedEndpoint from a JSON string"""
+        """Create an instance of ReportStatus from a JSON string"""
         return cls(json.loads(json_str))
 
 

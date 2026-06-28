@@ -21,6 +21,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.dvp_settlement_type import DVPSettlementType
+from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
+from fireblocks.models.participants_identification_policy import ParticipantsIdentificationPolicy
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,8 +31,10 @@ class ManifestQuote(BaseModel):
     ManifestQuote
     """ # noqa: E501
     supported: StrictBool = Field(description="Indicates whether the endpoint is supported by the provider")
+    participants_identification_policy: Optional[ParticipantsIdentificationPolicy] = Field(default=None, alias="participantsIdentificationPolicy")
+    supported_parties: Optional[List[ParticipantRelationshipType]] = Field(default=None, description="The participant party types the provider supports for this endpoint. ", alias="supportedParties")
     settlement_types: Optional[List[DVPSettlementType]] = Field(default=None, description="Supported settlement types when requesting a quote. If present - settlement is required. If absent - no need to provide settlement. ", alias="settlementTypes")
-    __properties: ClassVar[List[str]] = ["supported", "settlementTypes"]
+    __properties: ClassVar[List[str]] = ["supported", "participantsIdentificationPolicy", "supportedParties", "settlementTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +75,9 @@ class ManifestQuote(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of participants_identification_policy
+        if self.participants_identification_policy:
+            _dict['participantsIdentificationPolicy'] = self.participants_identification_policy.to_dict()
         return _dict
 
     @classmethod
@@ -84,6 +91,8 @@ class ManifestQuote(BaseModel):
 
         _obj = cls.model_validate({
             "supported": obj.get("supported"),
+            "participantsIdentificationPolicy": ParticipantsIdentificationPolicy.from_dict(obj["participantsIdentificationPolicy"]) if obj.get("participantsIdentificationPolicy") is not None else None,
+            "supportedParties": obj.get("supportedParties"),
             "settlementTypes": obj.get("settlementTypes")
         })
         return _obj

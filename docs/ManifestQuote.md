@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **supported** | **bool** | Indicates whether the endpoint is supported by the provider | 
+**participants_identification_policy** | [**ParticipantsIdentificationPolicy**](ParticipantsIdentificationPolicy.md) |  | [optional] 
+**supported_parties** | [**List[ParticipantRelationshipType]**](ParticipantRelationshipType.md) | The participant party types the provider supports for this endpoint.  | [optional] 
 **settlement_types** | [**List[DVPSettlementType]**](DVPSettlementType.md) | Supported settlement types when requesting a quote. If present - settlement is required. If absent - no need to provide settlement.  | [optional] 
 
 ## Example

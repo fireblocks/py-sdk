@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tx_hash** | **str** |  | 
-**vout** | **int** |  | 
+**index** | **int** | The output index (vout) | 
 
 ## Example
 

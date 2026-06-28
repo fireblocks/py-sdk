@@ -38,6 +38,8 @@ class TestGetActionResponse(unittest.TestCase):
         if include_optional:
             return GetActionResponse(
                 id = '660e8400-e29b-41d4-a716-446655440001',
+                vault_account_id = '0',
+                user_id = '550e8400-e29b-41d4-a716-446655440000',
                 status = 'IN_PROGRESS',
                 provider_id = 'MORPHO',
                 action_type = 'DEPOSIT',
@@ -59,6 +61,8 @@ class TestGetActionResponse(unittest.TestCase):
         else:
             return GetActionResponse(
                 id = '660e8400-e29b-41d4-a716-446655440001',
+                vault_account_id = '0',
+                user_id = '550e8400-e29b-41d4-a716-446655440000',
                 status = 'IN_PROGRESS',
                 provider_id = 'MORPHO',
                 action_type = 'DEPOSIT',

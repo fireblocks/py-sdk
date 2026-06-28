@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **country** | **str** | The country for the transfer (ISO 3166-1 alpha-2 code) | 
 **value** | **str** | The PayID identifier (email, phone, ABN, or organization ID) | 
 **type** | **str** | The type of PayID being used | 
-**bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | [optional] 
+**bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | 
 **account_number** | **str** | Australian bank account number | 
 
 ## Example

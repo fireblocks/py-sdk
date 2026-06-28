@@ -53,10 +53,27 @@ class TestPosition2(unittest.TestCase):
                 created_at = '2025-01-15T10:00:00Z',
                 updated_at = '2025-03-20T08:30:00Z',
                 last_synced_at = '2025-03-20T08:29:55Z',
-                available_actions = ["DEPOSIT","WITHDRAW"]
+                available_actions = ["DEPOSIT","WITHDRAW"],
+                var_yield = '1.23'
             )
         else:
             return Position2(
+                id = '660e8400-e29b-41d4-a716-446655440001',
+                status = 'ACTIVE',
+                in_flight = False,
+                position_type = 'LEND',
+                vault_account_id = '12345',
+                opportunity_id = 'morpho-usdc-vault-1',
+                chain_id = '1',
+                provider_id = 'MORPHO',
+                origin = 'NATIVE',
+                principal_asset_id = 'USDC_ETH',
+                position_asset_id = 'MORPHO_USDC_VAULT_ETH',
+                principal_balance = '10000.00',
+                position_balance = '9950.5',
+                created_at = '2025-01-15T10:00:00Z',
+                updated_at = '2025-03-20T08:30:00Z',
+                available_actions = ["DEPOSIT","WITHDRAW"],
         )
         """
 

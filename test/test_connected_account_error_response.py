@@ -39,13 +39,15 @@ class TestConnectedAccountErrorResponse(unittest.TestCase):
         model = ConnectedAccountErrorResponse()
         if include_optional:
             return ConnectedAccountErrorResponse(
+                message = 'Provider 'BINANCE' not found',
+                code = 3228,
                 error_message = 'Insufficient permissions to rename connected account',
                 error_code = 'INSUFFICIENT_PERMISSIONS'
             )
         else:
             return ConnectedAccountErrorResponse(
-                error_message = 'Insufficient permissions to rename connected account',
-                error_code = 'INSUFFICIENT_PERMISSIONS',
+                message = 'Provider 'BINANCE' not found',
+                code = 3228,
         )
         """
 

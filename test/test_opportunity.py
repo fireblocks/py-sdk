@@ -62,6 +62,7 @@ class TestOpportunity(unittest.TestCase):
                     net = 4.05, ),
                 performance_fee = '0.10',
                 management_fee = '0.01',
+                exposure_type = 'VAULT_ALLOCATION',
                 exposure = []
             )
         else:

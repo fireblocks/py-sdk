@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **stake_account_address** | **str** | The stake account address matching the stakeAccountId. | 
 **stake_account_derivation_change_value** | **float** | The value of the change level in the BIP32 path which was used to derive the stake account address. | 
+**rewards_breakdown** | [**SolanaRewardsBreakdown**](SolanaRewardsBreakdown.md) |  | [optional] 
 **is_compounding_validator** | **bool** | Is the validator compounding (i.e it was created with compounding validator type). | 
 **total_withdrawable_amount** | **str** | The total amount available for withdrawal. | 
 **total_inactive_amount** | **str** | The total inactive amount. | 

@@ -52,7 +52,8 @@ class TestTransactionResponse(unittest.TestCase):
                     id = '', 
                     name = '', 
                     wallet_id = '', 
-                    trading_account = '', ),
+                    trading_account = '', 
+                    tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ),
                 source_address = '',
                 tag = '',
                 destination = fireblocks.models.destination_transfer_peer_path_response.DestinationTransferPeerPathResponse(
@@ -61,7 +62,8 @@ class TestTransactionResponse(unittest.TestCase):
                     id = '', 
                     name = '', 
                     wallet_id = '', 
-                    trading_account = '', ),
+                    trading_account = '', 
+                    tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ),
                 destinations = [
                     fireblocks.models.transaction_response_destination.TransactionResponseDestination(
                         amount = '', 
@@ -76,7 +78,8 @@ class TestTransactionResponse(unittest.TestCase):
                             id = '', 
                             name = '', 
                             wallet_id = '', 
-                            trading_account = '', ), 
+                            trading_account = '', 
+                            tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ), 
                         authorization_info = fireblocks.models.authorization_info.AuthorizationInfo(
                             allow_operator_as_authorizer = True, 
                             logic = 'AND', 
@@ -122,14 +125,16 @@ class TestTransactionResponse(unittest.TestCase):
                             id = '', 
                             name = '', 
                             wallet_id = '', 
-                            trading_account = '', ), 
+                            trading_account = '', 
+                            tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ), 
                         destination = fireblocks.models.destination_transfer_peer_path_response.DestinationTransferPeerPathResponse(
                             type = 'VAULT_ACCOUNT', 
                             sub_type = '', 
                             id = '', 
                             name = '', 
                             wallet_id = '', 
-                            trading_account = '', ), 
+                            trading_account = '', 
+                            tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ), 
                         tx_hash = '', 
                         network_fee = '', 
                         asset_id = '', 

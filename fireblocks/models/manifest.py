@@ -18,12 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
 from fireblocks.models.manifest_base import ManifestBase
 from fireblocks.models.manifest_order import ManifestOrder
 from fireblocks.models.manifest_quote import ManifestQuote
-from fireblocks.models.participants_identification_policy import ParticipantsIdentificationPolicy
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,8 +33,7 @@ class Manifest(BaseModel):
     order: ManifestOrder
     quote: ManifestQuote
     rate: ManifestBase
-    participants_identification_policy: Optional[ParticipantsIdentificationPolicy] = Field(default=None, alias="participantsIdentificationPolicy")
-    __properties: ClassVar[List[str]] = ["order", "quote", "rate", "participantsIdentificationPolicy"]
+    __properties: ClassVar[List[str]] = ["order", "quote", "rate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,9 +83,6 @@ class Manifest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of rate
         if self.rate:
             _dict['rate'] = self.rate.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of participants_identification_policy
-        if self.participants_identification_policy:
-            _dict['participantsIdentificationPolicy'] = self.participants_identification_policy.to_dict()
         return _dict
 
     @classmethod
@@ -102,8 +97,7 @@ class Manifest(BaseModel):
         _obj = cls.model_validate({
             "order": ManifestOrder.from_dict(obj["order"]) if obj.get("order") is not None else None,
             "quote": ManifestQuote.from_dict(obj["quote"]) if obj.get("quote") is not None else None,
-            "rate": ManifestBase.from_dict(obj["rate"]) if obj.get("rate") is not None else None,
-            "participantsIdentificationPolicy": ParticipantsIdentificationPolicy.from_dict(obj["participantsIdentificationPolicy"]) if obj.get("participantsIdentificationPolicy") is not None else None
+            "rate": ManifestBase.from_dict(obj["rate"]) if obj.get("rate") is not None else None
         })
         return _obj
 

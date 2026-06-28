@@ -1,13 +1,17 @@
 # Exposure
 
+Vault allocation exposure item (Morpho MetaMorpho allocation slice).
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_address** | **str** | On-chain address of the exposure asset. | [optional] 
-**symbol** | **str** | Ticker for the exposure asset. | [optional] 
-**amount** | **str** | Human-readable decimal string (raw on-chain value scaled by 10^decimals). | [optional] 
+**address** | **str** | Contract address of the exposure token on-chain. | 
+**amount** | **str** | Human-readable token amount (raw on-chain value scaled by 10^decimals). | 
+**symbol** | **str** | Human-readable ticker (e.g. USDC). | [optional] 
+**decimals** | **int** | Token decimals used when interpreting on-chain amounts. | [optional] 
+**asset_id** | **str** | Fireblocks legacy asset identifier (e.g. USDC_ETH, PYUSD); only present when resolved via asset-service. | [optional] 
+**amount_usd** | **str** | USD notional value of the exposure amount. | [optional] 
 
 ## Example
 

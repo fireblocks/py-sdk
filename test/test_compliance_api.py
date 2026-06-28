@@ -83,6 +83,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_legal_entity(self) -> None:
+        """Test case for delete_legal_entity
+
+        Delete a legal entity
+        """
+        pass
+
     def test_get_address_registry_tenant_participation_status(self) -> None:
         """Test case for get_address_registry_tenant_participation_status
 

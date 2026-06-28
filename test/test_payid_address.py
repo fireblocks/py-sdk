@@ -48,7 +48,6 @@ class TestPayidAddress(unittest.TestCase):
                 account_holder = {"name":"John Smith","city":"New York","country":"US","subdivision":"NY","address":"123 Wall Street, Apt 4B","postalCode":"10005"},
                 value = 'john.williams@email.com',
                 type = 'EMAIL',
-                account_number = '12345678',
         )
         """
 

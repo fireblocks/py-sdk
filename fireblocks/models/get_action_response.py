@@ -30,6 +30,8 @@ class GetActionResponse(BaseModel):
     Single lending action (intent plus per-step execution rows).
     """ # noqa: E501
     id: StrictStr = Field(description="Action sequence id (UUID).")
+    vault_account_id: StrictStr = Field(description="Fireblocks vault account that executed the action.", alias="vaultAccountId")
+    user_id: StrictStr = Field(description="User who initiated the action.", alias="userId")
     status: StrictStr = Field(description="Intent status (e.g. CREATED, IN_PROGRESS, COMPLETED).")
     provider_id: StrictStr = Field(description="Lending protocol identifier.", alias="providerId")
     action_type: StrictStr = Field(description="Whether this action is a deposit or withdraw flow.", alias="actionType")
@@ -39,7 +41,7 @@ class GetActionResponse(BaseModel):
     created_at: StrictStr = Field(description="Creation time (ISO-8601).", alias="createdAt")
     updated_at: StrictStr = Field(description="Last update time (ISO-8601).", alias="updatedAt")
     records: Annotated[List[ActionRecord], Field(min_length=1, max_length=4)] = Field(description="Ordered execution steps for this action.")
-    __properties: ClassVar[List[str]] = ["id", "status", "providerId", "actionType", "opportunityId", "positionId", "amount", "createdAt", "updatedAt", "records"]
+    __properties: ClassVar[List[str]] = ["id", "vaultAccountId", "userId", "status", "providerId", "actionType", "opportunityId", "positionId", "amount", "createdAt", "updatedAt", "records"]
 
     @field_validator('provider_id')
     def provider_id_validate_enum(cls, value):
@@ -114,6 +116,8 @@ class GetActionResponse(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "vaultAccountId": obj.get("vaultAccountId"),
+            "userId": obj.get("userId"),
             "status": obj.get("status"),
             "providerId": obj.get("providerId"),
             "actionType": obj.get("actionType"),

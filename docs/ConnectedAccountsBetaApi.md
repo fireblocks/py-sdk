@@ -4,6 +4,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_connected_account**](ConnectedAccountsBetaApi.md#create_connected_account) | **POST** /connected_accounts | Create a connected account
 [**disconnect_connected_account**](ConnectedAccountsBetaApi.md#disconnect_connected_account) | **DELETE** /connected_accounts/{accountId} | Disconnect connected account
 [**get_connected_account**](ConnectedAccountsBetaApi.md#get_connected_account) | **GET** /connected_accounts/{accountId} | Get connected account
 [**get_connected_account_allowlist**](ConnectedAccountsBetaApi.md#get_connected_account_allowlist) | **GET** /connected_accounts/{accountId}/allowlist | Get allowlist for connected account
@@ -15,6 +16,98 @@ Method | HTTP request | Description
 [**rename_connected_account**](ConnectedAccountsBetaApi.md#rename_connected_account) | **POST** /connected_accounts/{accountId}/rename | Rename Connected Account
 [**sync_connected_account_allowlist**](ConnectedAccountsBetaApi.md#sync_connected_account_allowlist) | **POST** /connected_accounts/{accountId}/allowlist/sync | Sync allowlist for connected account
 
+
+# **create_connected_account**
+> CreateConnectedAccountResponse create_connected_account(create_connected_account_request, idempotency_key=idempotency_key)
+
+Create a connected account
+
+Creates a new connected account for the authenticated tenant.
+
+The `creds` field must be a Base64-encoded RSA-encrypted credential blob.
+Use `GET /exchange_accounts/credentials_public_key` to retrieve the public key for encryption.
+
+The `providerType` is derived server-side from the `providerId` — callers do not supply it.
+
+Endpoint Permission: Editor, Admin, Non-Signing Admin.
+
+**Note:** This endpoint is currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.models.create_connected_account_request import CreateConnectedAccountRequest
+from fireblocks.models.create_connected_account_response import CreateConnectedAccountResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_connected_account_request = fireblocks.CreateConnectedAccountRequest() # CreateConnectedAccountRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Create a connected account
+        api_response = fireblocks.connected_accounts_beta.create_connected_account(create_connected_account_request, idempotency_key=idempotency_key).result()
+        print("The response of ConnectedAccountsBetaApi->create_connected_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->create_connected_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_connected_account_request** | [**CreateConnectedAccountRequest**](CreateConnectedAccountRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**CreateConnectedAccountResponse**](CreateConnectedAccountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Account created (or pending approval). |  * X-Request-ID -  <br>  |
+**400** | Bad request — invalid field or provider constraints violated. |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token, or insufficient role (Editor or higher required). |  * X-Request-ID -  <br>  |
+**403** | Feature not enabled for this tenant. |  * X-Request-ID -  <br>  |
+**404** | mainAccountId not found. |  * X-Request-ID -  <br>  |
+**422** | Invalid credentials. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **disconnect_connected_account**
 > disconnect_connected_account(account_id)
@@ -174,7 +267,7 @@ Get allowlist for connected account
 
 Retrieves the address allowlist for a specified connected account.
 
-**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange/Binance accounts only.
 
 
 ### Example
@@ -263,20 +356,20 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connected_account_allowlist_entry**
-> AllowlistEntry get_connected_account_allowlist_entry(account_id, allowlist_id)
+> AllowlistEntryResponse get_connected_account_allowlist_entry(account_id, allowlist_id)
 
 Get a single allowlist entry for a connected account
 
 Retrieves a single allowlist entry by its Fireblocks identifier for a specified connected account.
 
-**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange/Binance accounts only.
 
 
 ### Example
 
 
 ```python
-from fireblocks.models.allowlist_entry import AllowlistEntry
+from fireblocks.models.allowlist_entry_response import AllowlistEntryResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -321,7 +414,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AllowlistEntry**](AllowlistEntry.md)
+[**AllowlistEntryResponse**](AllowlistEntryResponse.md)
 
 ### Authorization
 
@@ -762,7 +855,7 @@ Triggers an on-demand sync from the exchange, bypassing the cache and fetching l
 
 **Rate limit:** 1 request per minute per connected account.
 
-**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange accounts only.
+**Note:** This endpoint is currently in beta and might be subject to changes. Currently supports CoinbaseExchange/Binance accounts only.
 
 
 ### Example

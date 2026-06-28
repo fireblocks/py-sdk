@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **settlement_types** | [**List[SettlementTypeEnum]**](SettlementTypeEnum.md) | Supported settlement types when creating an order. If present - settlement is required. If absent - no need to provide settlement.  | [optional] 
 **execution_types** | [**List[ExecutionRequestDetailsType]**](ExecutionRequestDetailsType.md) | Supported execution types when creating an order. | 
+**requires_reason_for_payment** | **bool** | Information about the source and purpose of the funds being transacted. Used by providers that require additional context for compliance and reporting. Provide this field when the provider manifest indicates it is required.  | [optional] 
 
 ## Example
 

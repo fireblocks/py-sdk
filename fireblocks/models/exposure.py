@@ -18,19 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class Exposure(BaseModel):
     """
-    Exposure
+    Vault allocation exposure item (Morpho MetaMorpho allocation slice).
     """ # noqa: E501
-    asset_address: Optional[StrictStr] = Field(default=None, description="On-chain address of the exposure asset.", alias="assetAddress")
-    symbol: Optional[StrictStr] = Field(default=None, description="Ticker for the exposure asset.")
-    amount: Optional[StrictStr] = Field(default=None, description="Human-readable decimal string (raw on-chain value scaled by 10^decimals).")
-    __properties: ClassVar[List[str]] = ["assetAddress", "symbol", "amount"]
+    address: StrictStr = Field(description="Contract address of the exposure token on-chain.")
+    amount: StrictStr = Field(description="Human-readable token amount (raw on-chain value scaled by 10^decimals).")
+    symbol: Optional[StrictStr] = Field(default=None, description="Human-readable ticker (e.g. USDC).")
+    decimals: Optional[StrictInt] = Field(default=None, description="Token decimals used when interpreting on-chain amounts.")
+    asset_id: Optional[StrictStr] = Field(default=None, description="Fireblocks legacy asset identifier (e.g. USDC_ETH, PYUSD); only present when resolved via asset-service.", alias="assetId")
+    amount_usd: Optional[StrictStr] = Field(default=None, description="USD notional value of the exposure amount.", alias="amountUsd")
+    __properties: ClassVar[List[str]] = ["address", "amount", "symbol", "decimals", "assetId", "amountUsd"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,9 +86,12 @@ class Exposure(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "assetAddress": obj.get("assetAddress"),
+            "address": obj.get("address"),
+            "amount": obj.get("amount"),
             "symbol": obj.get("symbol"),
-            "amount": obj.get("amount")
+            "decimals": obj.get("decimals"),
+            "assetId": obj.get("assetId"),
+            "amountUsd": obj.get("amountUsd")
         })
         return _obj
 

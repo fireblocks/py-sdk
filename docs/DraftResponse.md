@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **status** | **str** | Operation status | 
 **rules** | [**List[PolicyRule]**](PolicyRule.md) | Draft rules | 
 **draft_id** | **str** | Draft unique id | 
-**metadata** | [**PolicyMetadata**](PolicyMetadata.md) |  | 
+**metadata** | [**Dict[str, PolicyMetadataEntry]**](PolicyMetadataEntry.md) | Policy metadata keyed by policy type | 
 
 ## Example
 

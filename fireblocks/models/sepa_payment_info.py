@@ -32,6 +32,8 @@ class SepaPaymentInfo(BaseModel):
     account_holder_given_name: StrictStr = Field(description="The given name (first name) of the account holder", alias="accountHolderGivenName")
     account_holder_surname: StrictStr = Field(description="The surname (last name) of the account holder", alias="accountHolderSurname")
     account_holder_country: Optional[StrictStr] = Field(default=None, description="The country where the account holder resides (ISO 3166-1 alpha-2 code)", alias="accountHolderCountry")
+    account_holder_postal_code: Optional[StrictStr] = Field(default=None, description="The postal code of the account holder's address", alias="accountHolderPostalCode")
+    account_holder_city: Optional[StrictStr] = Field(default=None, description="The city where the account holder resides", alias="accountHolderCity")
     account_holder_address: Optional[StrictStr] = Field(default=None, description="The address of the account holder", alias="accountHolderAddress")
     iban: StrictStr = Field(description="The International Bank Account Number (IBAN)")
     country: StrictStr = Field(description="The country for the transfer (ISO 3166-1 alpha-2 code)")
@@ -41,7 +43,7 @@ class SepaPaymentInfo(BaseModel):
     bank_address: Optional[StrictStr] = Field(default=None, description="The address of the bank", alias="bankAddress")
     purpose_code: Optional[StrictStr] = Field(default=None, description="The purpose code for the transfer", alias="purposeCode")
     tax_id: Optional[StrictStr] = Field(default=None, description="The tax identification number", alias="taxId")
-    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "accountHolderCountry", "accountHolderAddress", "iban", "country", "bic", "bankName", "bankBranch", "bankAddress", "purposeCode", "taxId"]
+    __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "accountHolderCountry", "accountHolderPostalCode", "accountHolderCity", "accountHolderAddress", "iban", "country", "bic", "bankName", "bankBranch", "bankAddress", "purposeCode", "taxId"]
 
     @field_validator('rail')
     def rail_validate_enum(cls, value):
@@ -113,6 +115,8 @@ class SepaPaymentInfo(BaseModel):
             "accountHolderGivenName": obj.get("accountHolderGivenName"),
             "accountHolderSurname": obj.get("accountHolderSurname"),
             "accountHolderCountry": obj.get("accountHolderCountry"),
+            "accountHolderPostalCode": obj.get("accountHolderPostalCode"),
+            "accountHolderCity": obj.get("accountHolderCity"),
             "accountHolderAddress": obj.get("accountHolderAddress"),
             "iban": obj.get("iban"),
             "country": obj.get("country"),

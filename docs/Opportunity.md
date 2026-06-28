@@ -19,7 +19,8 @@ Name | Type | Description | Notes
 **apy** | [**Apy**](Apy.md) | APY breakdown; values are percentages (e.g. 4.25 means 4.25%). | [optional] 
 **performance_fee** | **str** | Performance fee as a human-readable decimal string. | [optional] 
 **management_fee** | **str** | Management fee as a human-readable decimal string. | [optional] 
-**exposure** | [**List[Exposure]**](Exposure.md) | Optional per-asset exposure breakdown. | [optional] 
+**exposure_type** | **str** | What the &#x60;exposure&#x60; rows represent; &#x60;UNSPECIFIED&#x60; when there is no exposure. | [optional] 
+**exposure** | [**List[Exposure]**](Exposure.md) | Per-asset exposure breakdown (vault allocation slices, top 20 by USD notional). Empty when not applicable. | [optional] 
 
 ## Example
 

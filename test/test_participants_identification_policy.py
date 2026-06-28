@@ -39,9 +39,6 @@ class TestParticipantsIdentificationPolicy(unittest.TestCase):
         model = ParticipantsIdentificationPolicy()
         if include_optional:
             return ParticipantsIdentificationPolicy(
-                supported_endpoints = [
-                    'ORDER'
-                    ],
                 default_schema = '{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -241,9 +238,6 @@ class TestParticipantsIdentificationPolicy(unittest.TestCase):
             )
         else:
             return ParticipantsIdentificationPolicy(
-                supported_endpoints = [
-                    'ORDER'
-                    ],
                 default_schema = '{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",

@@ -20,6 +20,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from fireblocks.models.transaction_tag import TransactionTag
 from fireblocks.models.transfer_peer_path_type import TransferPeerPathType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +36,8 @@ class DestinationTransferPeerPathResponse(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="The name of the peer.")
     wallet_id: Optional[StrictStr] = Field(default=None, alias="walletId")
     trading_account: Optional[StrictStr] = Field(default=None, description="If this transaction is an exchange internal transfer, this field will be populated with the type of that trading account.", alias="tradingAccount")
-    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "tradingAccount"]
+    tags: Optional[Annotated[List[TransactionTag], Field(min_length=1, max_length=20)]] = Field(default=None, description="Tags associated with the transaction's destination.")
+    __properties: ClassVar[List[str]] = ["type", "subType", "id", "name", "walletId", "tradingAccount", "tags"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +78,13 @@ class DestinationTransferPeerPathResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item_tags in self.tags:
+                if _item_tags:
+                    _items.append(_item_tags.to_dict())
+            _dict['tags'] = _items
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
@@ -102,7 +112,8 @@ class DestinationTransferPeerPathResponse(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "walletId": obj.get("walletId"),
-            "tradingAccount": obj.get("tradingAccount")
+            "tradingAccount": obj.get("tradingAccount"),
+            "tags": [TransactionTag.from_dict(_item) for _item in obj["tags"]] if obj.get("tags") is not None else None
         })
         return _obj
 

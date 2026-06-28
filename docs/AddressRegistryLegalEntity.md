@@ -6,10 +6,10 @@ Legal entity details for a blockchain address.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**verified** | **bool** | Whether the entity was resolved from verified public registry data (e.g. LEI sources). | 
+**lei_data** | **bool** | Indicates whether LEI (Legal Entity Identifier) data is available for this address from a verified public registry. A value of &#x60;false&#x60; means no LEI record was found. | 
 **entity_name** | **str** | Legal entity display name. | 
 **jurisdiction** | **str** | Jurisdiction (e.g. ISO 3166-1 alpha-2 country code). | 
-**lei** | **str** | Legal Entity Identifier when available; may be empty when unverified. | 
+**lei** | **str** | Legal Entity Identifier when available. Empty when &#x60;leiData&#x60; is &#x60;false&#x60;. | 
 **travel_rule_providers** | [**List[AddressRegistryTravelRuleProvider]**](AddressRegistryTravelRuleProvider.md) |  | 
 **email** | **str** | Travel Rule contact email when available. | 
 

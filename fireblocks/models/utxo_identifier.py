@@ -25,12 +25,12 @@ from typing_extensions import Self
 
 class UtxoIdentifier(BaseModel):
     """
-    Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of that transaction) or a specific on-chain UTXO (txHash + vout). Exactly one of these two forms must be provided.
+    Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of that transaction) or a specific on-chain UTXO (txHash + index). Exactly one of these two forms must be provided.
     """ # noqa: E501
     tx_id: Optional[StrictStr] = Field(default=None, description="Fireblocks transaction ID", alias="txId")
     tx_hash: Optional[StrictStr] = Field(default=None, description="On-chain transaction hash", alias="txHash")
-    vout: Optional[StrictInt] = Field(default=None, description="Output index")
-    __properties: ClassVar[List[str]] = ["txId", "txHash", "vout"]
+    index: Optional[StrictInt] = Field(default=None, description="Output index (vout)")
+    __properties: ClassVar[List[str]] = ["txId", "txHash", "index"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +85,7 @@ class UtxoIdentifier(BaseModel):
         _obj = cls.model_validate({
             "txId": obj.get("txId"),
             "txHash": obj.get("txHash"),
-            "vout": obj.get("vout")
+            "index": obj.get("index")
         })
         return _obj
 

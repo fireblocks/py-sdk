@@ -41,6 +41,13 @@ class TestApiUserApi(unittest.TestCase):
         """
         pass
 
+    def test_issue_api_user_pairing_token(self) -> None:
+        """Test case for issue_api_user_pairing_token
+
+        Issue API user pairing token
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

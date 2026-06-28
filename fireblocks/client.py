@@ -44,8 +44,9 @@ from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
+from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
+from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
@@ -104,8 +105,9 @@ class Fireblocks:
         self._off_exchanges = None
         self._onchain_data = None
         self._payments_payout = None
-        self._policy_editor_v2_beta = None
+        self._policy_editor_v2 = None
         self._policy_editor_beta = None
+        self._reports_beta = None
         self._reset_device = None
         self._smart_transfer = None
         self._staking = None
@@ -306,16 +308,22 @@ class Fireblocks:
         return self._payments_payout
 
     @property
-    def policy_editor_v2_beta(self) -> PolicyEditorV2BetaApi:
-        if self._policy_editor_v2_beta is None:
-            self._policy_editor_v2_beta = PolicyEditorV2BetaApi(self._api_client)
-        return self._policy_editor_v2_beta
+    def policy_editor_v2(self) -> PolicyEditorV2Api:
+        if self._policy_editor_v2 is None:
+            self._policy_editor_v2 = PolicyEditorV2Api(self._api_client)
+        return self._policy_editor_v2
 
     @property
     def policy_editor_beta(self) -> PolicyEditorBetaApi:
         if self._policy_editor_beta is None:
             self._policy_editor_beta = PolicyEditorBetaApi(self._api_client)
         return self._policy_editor_beta
+
+    @property
+    def reports_beta(self) -> ReportsBetaApi:
+        if self._reports_beta is None:
+            self._reports_beta = ReportsBetaApi(self._api_client)
+        return self._reports_beta
 
     @property
     def reset_device(self) -> ResetDeviceApi:

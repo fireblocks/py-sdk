@@ -58,7 +58,7 @@ Name | Type | Description | Notes
 **message** | **str** | The message to be sent to the recipient | 
 **value** | **str** | The PayID identifier (email, phone, ABN, or organization ID) | 
 **type** | **str** | The type of PayID being used | 
-**bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | [optional] 
+**bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | 
 **sort_code** | **str** | UK bank sort code (format XX-XX-XX) | 
 **bank_account_country** | **str** | CHAPS bank account holder name | 
 **bank_account_holder_name** | **str** | CHAPS bank account holder name | 

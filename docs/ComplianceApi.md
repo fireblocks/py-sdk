@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**deactivate_ars_config**](ComplianceApi.md#deactivate_ars_config) | **POST** /screening/ars/config/deactivate | Deactivate ARS (Address Registry Screening)
 [**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 [**delete_counterparty_group**](ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
+[**delete_legal_entity**](ComplianceApi.md#delete_legal_entity) | **DELETE** /legal_entities/{legalEntityId} | Delete a legal entity
 [**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
 [**get_address_registry_vault_opt_out**](ComplianceApi.md#get_address_registry_vault_opt_out) | **GET** /address_registry/vaults/{vaultAccountId} | Get whether a vault account is opted out of the address registry
 [**get_aml_post_screening_policy**](ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
@@ -657,6 +658,78 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_legal_entity**
+> delete_legal_entity(legal_entity_id)
+
+Delete a legal entity
+
+Delete a legal entity will change the status of a legal entity registration to REVOKED. Endpoint Permission: Admin, Non-Signing Admin.
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    legal_entity_id = 'legal_entity_id_example' # str | The unique ID of the legal entity registration to delete
+
+    try:
+        # Delete a legal entity
+        fireblocks.compliance.delete_legal_entity(legal_entity_id).result()
+    except Exception as e:
+        print("Exception when calling ComplianceApi->delete_legal_entity: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **legal_entity_id** | **str**| The unique ID of the legal entity registration to delete | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Legal entity deleted successfully |  * X-Request-ID -  <br>  |
+**400** | Legal entity registration is not in deletable status (PENDING or APPROVED) |  * X-Request-ID -  <br>  |
+**404** | Legal entity registration not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_address_registry_tenant_participation_status**
 > AddressRegistryTenantRegistryResponse get_address_registry_tenant_participation_status()
 
@@ -1247,7 +1320,7 @@ No authorization required
 
 Look up legal entity by blockchain address
 
-Returns legal entity information for the given blockchain address (verification status, LEI, Travel Rule providers, contact email, and related fields — see response schema). URL-encode `{address}` when required.
+Returns legal entity information for the given blockchain address (LEI data availability, LEI identifier, Travel Rule providers, contact email, and related fields — see response schema). URL-encode `{address}` when required.
 
 ### Example
 

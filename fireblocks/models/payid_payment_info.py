@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,7 +34,7 @@ class PayidPaymentInfo(BaseModel):
     country: StrictStr = Field(description="The country for the transfer (ISO 3166-1 alpha-2 code)")
     value: StrictStr = Field(description="The PayID identifier (email, phone, ABN, or organization ID)")
     type: StrictStr = Field(description="The type of PayID being used")
-    bsb: Optional[StrictStr] = Field(default=None, description="Bank State Branch (BSB) number (6 digits, format XXX-XXX)")
+    bsb: StrictStr = Field(description="Bank State Branch (BSB) number (6 digits, format XXX-XXX)")
     account_number: StrictStr = Field(description="Australian bank account number", alias="accountNumber")
     __properties: ClassVar[List[str]] = ["rail", "addressingSystem", "accountHolderGivenName", "accountHolderSurname", "country", "value", "type", "bsb", "accountNumber"]
 

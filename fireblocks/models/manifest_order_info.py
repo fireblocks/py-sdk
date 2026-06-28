@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.execution_request_details_type import ExecutionRequestDetailsType
 from fireblocks.models.settlement_type_enum import SettlementTypeEnum
@@ -31,7 +31,8 @@ class ManifestOrderInfo(BaseModel):
     """ # noqa: E501
     settlement_types: Optional[List[SettlementTypeEnum]] = Field(default=None, description="Supported settlement types when creating an order. If present - settlement is required. If absent - no need to provide settlement. ", alias="settlementTypes")
     execution_types: List[ExecutionRequestDetailsType] = Field(description="Supported execution types when creating an order.", alias="executionTypes")
-    __properties: ClassVar[List[str]] = ["settlementTypes", "executionTypes"]
+    requires_reason_for_payment: Optional[StrictBool] = Field(default=None, description="Information about the source and purpose of the funds being transacted. Used by providers that require additional context for compliance and reporting. Provide this field when the provider manifest indicates it is required. ", alias="requiresReasonForPayment")
+    __properties: ClassVar[List[str]] = ["settlementTypes", "executionTypes", "requiresReasonForPayment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +86,8 @@ class ManifestOrderInfo(BaseModel):
 
         _obj = cls.model_validate({
             "settlementTypes": obj.get("settlementTypes"),
-            "executionTypes": obj.get("executionTypes")
+            "executionTypes": obj.get("executionTypes"),
+            "requiresReasonForPayment": obj.get("requiresReasonForPayment")
         })
         return _obj
 

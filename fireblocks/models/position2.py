@@ -27,31 +27,29 @@ class Position2(BaseModel):
     """
     Position2
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Position UUID.")
-    status: Optional[StrictStr] = Field(default=None, description="Lifecycle status of the position.")
-    in_flight: Optional[StrictBool] = Field(default=None, description="True while an action is in progress for this position.", alias="inFlight")
-    position_type: Optional[StrictStr] = Field(default=None, description="Whether the position is lend- or borrow-side.", alias="positionType")
-    vault_account_id: Optional[StrictStr] = Field(default=None, description="Fireblocks vault account holding the position.", alias="vaultAccountId")
-    opportunity_id: Optional[StrictStr] = Field(default=None, description="Opportunity / vault or market identifier.", alias="opportunityId")
-    chain_id: Optional[StrictStr] = Field(default=None, description="Chain identifier as a string (e.g. \"1\").", alias="chainId")
-    provider_id: Optional[StrictStr] = Field(default=None, description="Lending protocol.", alias="providerId")
-    origin: Optional[StrictStr] = Field(default=None, description="Whether the position was opened natively in Fireblocks or imported externally.")
-    principal_asset_id: Optional[StrictStr] = Field(default=None, description="Fireblocks asset id for the principal (underlying) asset.", alias="principalAssetId")
-    position_asset_id: Optional[StrictStr] = Field(default=None, description="Fireblocks asset id for the position / share token.", alias="positionAssetId")
-    principal_balance: Optional[StrictStr] = Field(default=None, description="Human-readable principal balance.", alias="principalBalance")
-    position_balance: Optional[StrictStr] = Field(default=None, description="Human-readable position token balance.", alias="positionBalance")
-    created_at: Optional[StrictStr] = Field(default=None, description="Creation time (ISO-8601).", alias="createdAt")
-    updated_at: Optional[StrictStr] = Field(default=None, description="Last update time (ISO-8601).", alias="updatedAt")
+    id: StrictStr = Field(description="Position UUID.")
+    status: StrictStr = Field(description="Lifecycle status of the position.")
+    in_flight: StrictBool = Field(description="True while an action is in progress for this position.", alias="inFlight")
+    position_type: StrictStr = Field(description="Whether the position is lend- or borrow-side.", alias="positionType")
+    vault_account_id: StrictStr = Field(description="Fireblocks vault account holding the position.", alias="vaultAccountId")
+    opportunity_id: StrictStr = Field(description="Opportunity / vault or market identifier.", alias="opportunityId")
+    chain_id: StrictStr = Field(description="Chain identifier as a string (e.g. \"1\").", alias="chainId")
+    provider_id: StrictStr = Field(description="Lending protocol.", alias="providerId")
+    origin: StrictStr = Field(description="Whether the position was opened natively in Fireblocks or imported externally.")
+    principal_asset_id: StrictStr = Field(description="Fireblocks asset id for the principal (underlying) asset.", alias="principalAssetId")
+    position_asset_id: StrictStr = Field(description="Fireblocks asset id for the position / share token.", alias="positionAssetId")
+    principal_balance: StrictStr = Field(description="Human-readable principal balance.", alias="principalBalance")
+    position_balance: StrictStr = Field(description="Human-readable position token balance.", alias="positionBalance")
+    created_at: StrictStr = Field(description="Creation time (ISO-8601).", alias="createdAt")
+    updated_at: StrictStr = Field(description="Last update time (ISO-8601).", alias="updatedAt")
     last_synced_at: Optional[StrictStr] = Field(default=None, description="Last successful on-chain sync time (ISO-8601).", alias="lastSyncedAt")
-    available_actions: Optional[List[StrictStr]] = Field(default=None, description="Actions the API allows next for this position.", alias="availableActions")
-    __properties: ClassVar[List[str]] = ["id", "status", "inFlight", "positionType", "vaultAccountId", "opportunityId", "chainId", "providerId", "origin", "principalAssetId", "positionAssetId", "principalBalance", "positionBalance", "createdAt", "updatedAt", "lastSyncedAt", "availableActions"]
+    available_actions: List[StrictStr] = Field(description="Actions the API allows next for this position.", alias="availableActions")
+    var_yield: Optional[StrictStr] = Field(default=None, description="Accrued yield in principal token units (decimal string). Only present for Morpho positions.", alias="yield")
+    __properties: ClassVar[List[str]] = ["id", "status", "inFlight", "positionType", "vaultAccountId", "opportunityId", "chainId", "providerId", "origin", "principalAssetId", "positionAssetId", "principalBalance", "positionBalance", "createdAt", "updatedAt", "lastSyncedAt", "availableActions", "yield"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['ACTIVE', 'INACTIVE']):
             raise ValueError("must be one of enum values ('ACTIVE', 'INACTIVE')")
         return value
@@ -59,9 +57,6 @@ class Position2(BaseModel):
     @field_validator('position_type')
     def position_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['LEND', 'BORROW']):
             raise ValueError("must be one of enum values ('LEND', 'BORROW')")
         return value
@@ -69,9 +64,6 @@ class Position2(BaseModel):
     @field_validator('provider_id')
     def provider_id_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['MORPHO', 'AAVE']):
             raise ValueError("must be one of enum values ('MORPHO', 'AAVE')")
         return value
@@ -79,9 +71,6 @@ class Position2(BaseModel):
     @field_validator('origin')
     def origin_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['NATIVE', 'EXTERNAL']):
             raise ValueError("must be one of enum values ('NATIVE', 'EXTERNAL')")
         return value
@@ -89,9 +78,6 @@ class Position2(BaseModel):
     @field_validator('available_actions')
     def available_actions_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         for i in value:
             if i not in set(['DEPOSIT', 'WITHDRAW']):
                 raise ValueError("each list item must be one of ('DEPOSIT', 'WITHDRAW')")
@@ -164,7 +150,8 @@ class Position2(BaseModel):
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
             "lastSyncedAt": obj.get("lastSyncedAt"),
-            "availableActions": obj.get("availableActions")
+            "availableActions": obj.get("availableActions"),
+            "yield": obj.get("yield")
         })
         return _obj
 

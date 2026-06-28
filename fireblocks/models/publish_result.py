@@ -21,7 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from fireblocks.models.policy_check_result import PolicyCheckResult
-from fireblocks.models.policy_metadata import PolicyMetadata
+from fireblocks.models.policy_metadata_entry import PolicyMetadataEntry
 from fireblocks.models.policy_rule import PolicyRule
 from fireblocks.models.policy_status import PolicyStatus
 from typing import Optional, Set
@@ -34,7 +34,7 @@ class PublishResult(BaseModel):
     status: PolicyStatus
     rules: List[PolicyRule]
     check_result: PolicyCheckResult = Field(alias="checkResult")
-    metadata: PolicyMetadata
+    metadata: Dict[str, PolicyMetadataEntry] = Field(description="Policy metadata keyed by policy type")
     __properties: ClassVar[List[str]] = ["status", "rules", "checkResult", "metadata"]
 
     model_config = ConfigDict(
@@ -86,9 +86,13 @@ class PublishResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of check_result
         if self.check_result:
             _dict['checkResult'] = self.check_result.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
+        # override the default output from pydantic by calling `to_dict()` of each value in metadata (dict)
+        _field_dict = {}
         if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+            for _key_metadata in self.metadata:
+                if self.metadata[_key_metadata]:
+                    _field_dict[_key_metadata] = self.metadata[_key_metadata].to_dict()
+            _dict['metadata'] = _field_dict
         return _dict
 
     @classmethod
@@ -104,7 +108,12 @@ class PublishResult(BaseModel):
             "status": obj.get("status"),
             "rules": [PolicyRule.from_dict(_item) for _item in obj["rules"]] if obj.get("rules") is not None else None,
             "checkResult": PolicyCheckResult.from_dict(obj["checkResult"]) if obj.get("checkResult") is not None else None,
-            "metadata": PolicyMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
+            "metadata": dict(
+                (_k, PolicyMetadataEntry.from_dict(_v))
+                for _k, _v in obj["metadata"].items()
+            )
+            if obj.get("metadata") is not None
+            else None
         })
         return _obj
 

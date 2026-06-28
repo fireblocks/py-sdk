@@ -70,9 +70,11 @@ from fireblocks.models.address_registry_travel_rule_provider import AddressRegis
 from fireblocks.models.address_registry_vault_list_order import AddressRegistryVaultListOrder
 from fireblocks.models.address_registry_vault_opt_out_item import AddressRegistryVaultOptOutItem
 from fireblocks.models.address_reverse_lookup_response import AddressReverseLookupResponse
+from fireblocks.models.addresses_filters import AddressesFilters
 from fireblocks.models.alert_exposure_type_enum import AlertExposureTypeEnum
 from fireblocks.models.alert_level_enum import AlertLevelEnum
 from fireblocks.models.allowlist_entry import AllowlistEntry
+from fireblocks.models.allowlist_entry_response import AllowlistEntryResponse
 from fireblocks.models.allowlist_entry_status import AllowlistEntryStatus
 from fireblocks.models.allowlist_metadata import AllowlistMetadata
 from fireblocks.models.allowlist_response import AllowlistResponse
@@ -257,8 +259,11 @@ from fireblocks.models.counterparty_groups_paginated_response import Counterpart
 from fireblocks.models.create_api_user import CreateAPIUser
 from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
+from fireblocks.models.create_addresses_report_request import CreateAddressesReportRequest
 from fireblocks.models.create_assets_request import CreateAssetsRequest
 from fireblocks.models.create_config_operation_request import CreateConfigOperationRequest
+from fireblocks.models.create_connected_account_request import CreateConnectedAccountRequest
+from fireblocks.models.create_connected_account_response import CreateConnectedAccountResponse
 from fireblocks.models.create_connection_request import CreateConnectionRequest
 from fireblocks.models.create_connection_response import CreateConnectionResponse
 from fireblocks.models.create_console_user import CreateConsoleUser
@@ -283,6 +288,8 @@ from fireblocks.models.create_order_request import CreateOrderRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
 from fireblocks.models.create_quote import CreateQuote
 from fireblocks.models.create_quote_scope_inner import CreateQuoteScopeInner
+from fireblocks.models.create_report_request import CreateReportRequest
+from fireblocks.models.create_report_response import CreateReportResponse
 from fireblocks.models.create_signing_key_dto import CreateSigningKeyDto
 from fireblocks.models.create_signing_key_dto_proof_of_ownership import CreateSigningKeyDtoProofOfOwnership
 from fireblocks.models.create_tag_request import CreateTagRequest
@@ -299,6 +306,7 @@ from fireblocks.models.create_vault_asset_response import CreateVaultAssetRespon
 from fireblocks.models.create_wallet_request import CreateWalletRequest
 from fireblocks.models.create_webhook_request import CreateWebhookRequest
 from fireblocks.models.create_workflow_execution_request_params_inner import CreateWorkflowExecutionRequestParamsInner
+from fireblocks.models.created_connected_account_item import CreatedConnectedAccountItem
 from fireblocks.models.custom_routing_dest import CustomRoutingDest
 from fireblocks.models.d_app_address_config import DAppAddressConfig
 from fireblocks.models.dvp_settlement import DVPSettlement
@@ -490,6 +498,7 @@ from fireblocks.models.internal_transfer_address import InternalTransferAddress
 from fireblocks.models.internal_transfer_destination import InternalTransferDestination
 from fireblocks.models.internal_transfer_response import InternalTransferResponse
 from fireblocks.models.invalid_paramater_value_error import InvalidParamaterValueError
+from fireblocks.models.issue_api_user_pairing_token_response import IssueApiUserPairingTokenResponse
 from fireblocks.models.job_created import JobCreated
 from fireblocks.models.layer_zero_adapter_create_params import LayerZeroAdapterCreateParams
 from fireblocks.models.lbt_payment_info import LbtPaymentInfo
@@ -612,7 +621,6 @@ from fireblocks.models.parameter_with_value import ParameterWithValue
 from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
 from fireblocks.models.participants_identification import ParticipantsIdentification
 from fireblocks.models.participants_identification_policy import ParticipantsIdentificationPolicy
-from fireblocks.models.participants_identification_supported_endpoint import ParticipantsIdentificationSupportedEndpoint
 from fireblocks.models.payee_account import PayeeAccount
 from fireblocks.models.payee_account_response import PayeeAccountResponse
 from fireblocks.models.payee_account_type import PayeeAccountType
@@ -648,7 +656,7 @@ from fireblocks.models.players import Players
 from fireblocks.models.policy_and_validation_response import PolicyAndValidationResponse
 from fireblocks.models.policy_check_result import PolicyCheckResult
 from fireblocks.models.policy_currency import PolicyCurrency
-from fireblocks.models.policy_metadata import PolicyMetadata
+from fireblocks.models.policy_metadata_entry import PolicyMetadataEntry
 from fireblocks.models.policy_operator import PolicyOperator
 from fireblocks.models.policy_response import PolicyResponse
 from fireblocks.models.policy_rule import PolicyRule
@@ -711,6 +719,14 @@ from fireblocks.models.rename_connected_account_request import RenameConnectedAc
 from fireblocks.models.rename_connected_account_response import RenameConnectedAccountResponse
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
+from fireblocks.models.report_conflict_response import ReportConflictResponse
+from fireblocks.models.report_job import ReportJob
+from fireblocks.models.report_job_links import ReportJobLinks
+from fireblocks.models.report_job_response import ReportJobResponse
+from fireblocks.models.report_list_response import ReportListResponse
+from fireblocks.models.report_output_format import ReportOutputFormat
+from fireblocks.models.report_status import ReportStatus
+from fireblocks.models.report_type import ReportType
 from fireblocks.models.resend_by_query_request import ResendByQueryRequest
 from fireblocks.models.resend_by_query_response import ResendByQueryResponse
 from fireblocks.models.resend_failed_notifications_job_status_response import ResendFailedNotificationsJobStatusResponse
@@ -828,6 +844,7 @@ from fireblocks.models.solana_blockchain_data import SolanaBlockchainData
 from fireblocks.models.solana_config import SolanaConfig
 from fireblocks.models.solana_instruction import SolanaInstruction
 from fireblocks.models.solana_instruction_with_value import SolanaInstructionWithValue
+from fireblocks.models.solana_rewards_breakdown import SolanaRewardsBreakdown
 from fireblocks.models.solana_simple_create_params import SolanaSimpleCreateParams
 from fireblocks.models.source_config import SourceConfig
 from fireblocks.models.source_of_funds import SourceOfFunds
@@ -994,6 +1011,7 @@ from fireblocks.models.transaction_request_priority_fee import TransactionReques
 from fireblocks.models.transaction_response import TransactionResponse
 from fireblocks.models.transaction_response_contract_call_decoded_data import TransactionResponseContractCallDecodedData
 from fireblocks.models.transaction_response_destination import TransactionResponseDestination
+from fireblocks.models.transaction_tag import TransactionTag
 from fireblocks.models.transfer_config_operation import TransferConfigOperation
 from fireblocks.models.transfer_operation_config_params import TransferOperationConfigParams
 from fireblocks.models.transfer_operation_execution import TransferOperationExecution

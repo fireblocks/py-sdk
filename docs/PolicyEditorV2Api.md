@@ -1,13 +1,13 @@
-# fireblocks.PolicyEditorV2BetaApi
+# fireblocks.PolicyEditorV2Api
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_active_policy**](PolicyEditorV2BetaApi.md#get_active_policy) | **GET** /policy/active_policy | Get the active policy and its validation by policy type
-[**get_draft**](PolicyEditorV2BetaApi.md#get_draft) | **GET** /policy/draft | Get the active draft by policy type
-[**publish_draft**](PolicyEditorV2BetaApi.md#publish_draft) | **POST** /policy/draft | Send publish request for a certain draft id
-[**update_draft**](PolicyEditorV2BetaApi.md#update_draft) | **PUT** /policy/draft | Update the draft with a new set of rules by policy types
+[**get_active_policy**](PolicyEditorV2Api.md#get_active_policy) | **GET** /policy/active_policy | Get the active policy and its validation by policy type
+[**get_draft**](PolicyEditorV2Api.md#get_draft) | **GET** /policy/draft | Get the active draft by policy type
+[**publish_draft**](PolicyEditorV2Api.md#publish_draft) | **POST** /policy/draft | Send publish request for a certain draft id
+[**update_draft**](PolicyEditorV2Api.md#update_draft) | **PUT** /policy/draft | Update the draft with a new set of rules by policy types
 
 
 # **get_active_policy**
@@ -16,8 +16,6 @@ Method | HTTP request | Description
 Get the active policy and its validation by policy type
 
 Returns the active policy and its validation for a specific policy type.
-
-**Note:** This endpoint is currently in beta and subject to change. If you want to participate in the Policies beta, contact your Fireblocks Customer Success Manager or send an email to csm@fireblocks.com.
 
 Endpoint Permissions: Owner, Admin, Non-Signing Admin.
 
@@ -52,11 +50,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get the active policy and its validation by policy type
-        api_response = fireblocks.policy_editor_v2_beta.get_active_policy(policy_type).result()
-        print("The response of PolicyEditorV2BetaApi->get_active_policy:\n")
+        api_response = fireblocks.policy_editor_v2.get_active_policy(policy_type).result()
+        print("The response of PolicyEditorV2Api->get_active_policy:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorV2BetaApi->get_active_policy: %s\n" % e)
+        print("Exception when calling PolicyEditorV2Api->get_active_policy: %s\n" % e)
 ```
 
 
@@ -95,9 +93,7 @@ No authorization required
 
 Get the active draft by policy type
 
-Returns the active draft and its validation for a specific policy type. 
-**Note:** These endpoints are currently in beta and might be subject to changes.
-
+Returns the active draft and its validation for a specific policy type.
 
 ### Example
 
@@ -129,11 +125,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get the active draft by policy type
-        api_response = fireblocks.policy_editor_v2_beta.get_draft(policy_type).result()
-        print("The response of PolicyEditorV2BetaApi->get_draft:\n")
+        api_response = fireblocks.policy_editor_v2.get_draft(policy_type).result()
+        print("The response of PolicyEditorV2Api->get_draft:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorV2BetaApi->get_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorV2Api->get_draft: %s\n" % e)
 ```
 
 
@@ -172,9 +168,13 @@ No authorization required
 
 Send publish request for a certain draft id
 
-Send publish request of certain draft id and returns the response. 
-**Note:** These endpoints are currently in beta and might be subject to changes.
-If you want to participate and learn more about the Fireblocks Policy Editor, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
+Send publish request of certain draft id and returns the response.
+
+**⚠️ IMPORTANT SECURITY NOTICE:**
+
+The Fireblocks Policy is a critical security guardrail. Programmatically modifying your policy via the API introduces significant security risks. As an industry best practice, Fireblocks strongly recommends manual editing accompanied by strict human oversight and approval workflows for all policy changes. Programmatic updates should only be implemented by advanced users with comprehensive, multi-layer security controls in place.
+
+If you want to learn more about the Fireblocks Policy Editor, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 
 ### Example
@@ -208,11 +208,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Send publish request for a certain draft id
-        api_response = fireblocks.policy_editor_v2_beta.publish_draft(publish_draft_request, idempotency_key=idempotency_key).result()
-        print("The response of PolicyEditorV2BetaApi->publish_draft:\n")
+        api_response = fireblocks.policy_editor_v2.publish_draft(publish_draft_request, idempotency_key=idempotency_key).result()
+        print("The response of PolicyEditorV2Api->publish_draft:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorV2BetaApi->publish_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorV2Api->publish_draft: %s\n" % e)
 ```
 
 
@@ -252,8 +252,11 @@ No authorization required
 
 Update the draft with a new set of rules by policy types
 
-Update the draft and return its validation for specific policy types. 
-**Note:** These endpoints are currently in beta and might be subject to changes.
+Update the draft and return its validation for specific policy types.
+
+**⚠️ IMPORTANT SECURITY NOTICE:**
+
+The Fireblocks Policy is a critical security guardrail. Programmatically modifying your policy via the API introduces significant security risks. As an industry best practice, Fireblocks strongly recommends manual editing accompanied by strict human oversight and approval workflows for all policy changes. Programmatic updates should only be implemented by advanced users with comprehensive, multi-layer security controls in place.
 
 
 ### Example
@@ -287,11 +290,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Update the draft with a new set of rules by policy types
-        api_response = fireblocks.policy_editor_v2_beta.update_draft(update_draft_request, idempotency_key=idempotency_key).result()
-        print("The response of PolicyEditorV2BetaApi->update_draft:\n")
+        api_response = fireblocks.policy_editor_v2.update_draft(update_draft_request, idempotency_key=idempotency_key).result()
+        print("The response of PolicyEditorV2Api->update_draft:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PolicyEditorV2BetaApi->update_draft: %s\n" % e)
+        print("Exception when calling PolicyEditorV2Api->update_draft: %s\n" % e)
 ```
 
 

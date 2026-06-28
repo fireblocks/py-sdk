@@ -56,6 +56,7 @@ class TestPayidPaymentInfo(unittest.TestCase):
                 country = 'AU',
                 value = 'john.williams@email.com',
                 type = 'EMAIL',
+                bsb = '123-456',
                 account_number = '12345678',
         )
         """

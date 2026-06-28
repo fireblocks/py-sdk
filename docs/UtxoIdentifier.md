@@ -1,6 +1,6 @@
 # UtxoIdentifier
 
-Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of that transaction) or a specific on-chain UTXO (txHash + vout). Exactly one of these two forms must be provided.
+Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of that transaction) or a specific on-chain UTXO (txHash + index). Exactly one of these two forms must be provided.
 
 ## Properties
 
@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tx_id** | **str** | Fireblocks transaction ID | [optional] 
 **tx_hash** | **str** | On-chain transaction hash | [optional] 
-**vout** | **int** | Output index | [optional] 
+**index** | **int** | Output index (vout) | [optional] 
 
 ## Example
 

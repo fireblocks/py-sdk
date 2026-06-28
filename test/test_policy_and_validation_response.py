@@ -124,12 +124,7 @@ class TestPolicyAndValidationResponse(unittest.TestCase):
                             derivation_path = {"path":[44,0,0,0,0],"partial":false}, 
                             index = 1, )
                         ], 
-                    metadata = fireblocks.models.policy_metadata.PolicyMetadata(
-                        edited_by = 'user123', 
-                        edited_at = '2024-01-15T10:30:00Z', 
-                        published_by = 'user456', 
-                        published_at = '2024-01-15T11:00:00Z', 
-                        policy_type = 'TRANSFER', ), ),
+                    metadata = {"TRANSFER":{"editedBy":"user123","editedAt":"2024-01-15T10:30:00Z","publishedBy":"user456","publishedAt":"2024-01-15T11:00:00Z"}}, ),
                 validation = fireblocks.models.policy_validation.PolicyValidation(
                     status = '', 
                     check_result = fireblocks.models.policy_check_result.PolicyCheckResult(
@@ -236,12 +231,7 @@ class TestPolicyAndValidationResponse(unittest.TestCase):
                             derivation_path = {"path":[44,0,0,0,0],"partial":false}, 
                             index = 1, )
                         ], 
-                    metadata = fireblocks.models.policy_metadata.PolicyMetadata(
-                        edited_by = 'user123', 
-                        edited_at = '2024-01-15T10:30:00Z', 
-                        published_by = 'user456', 
-                        published_at = '2024-01-15T11:00:00Z', 
-                        policy_type = 'TRANSFER', ), ),
+                    metadata = {"TRANSFER":{"editedBy":"user123","editedAt":"2024-01-15T10:30:00Z","publishedBy":"user456","publishedAt":"2024-01-15T11:00:00Z"}}, ),
                 validation = fireblocks.models.policy_validation.PolicyValidation(
                     status = '', 
                     check_result = fireblocks.models.policy_check_result.PolicyCheckResult(

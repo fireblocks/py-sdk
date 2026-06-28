@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_api_user**](ApiUserApi.md#create_api_user) | **POST** /management/api_users | Create API Key
 [**get_api_users**](ApiUserApi.md#get_api_users) | **GET** /management/api_users | Get API Keys
+[**issue_api_user_pairing_token**](ApiUserApi.md#issue_api_user_pairing_token) | **POST** /management/api_users/{userId}/pairing_token | Issue API user pairing token
 
 
 # **create_api_user**
@@ -157,6 +158,90 @@ No authorization required
 **200** | got api users |  * X-Request-ID -  <br>  |
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Lacking permissions. |  * X-Request-ID -  <br>  |
+**5XX** | Internal error. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **issue_api_user_pairing_token**
+> IssueApiUserPairingTokenResponse issue_api_user_pairing_token(user_id, idempotency_key=idempotency_key)
+
+Issue API user pairing token
+
+Issues a device pairing token for the given user and returns the user's info along with the token.
+- The API user must be in PENDING_ACTIVATION status. If the user is already set up (enabled), the request is rejected with a 409 Conflict.
+- Please note that this endpoint is available only for API keys with Owner/Admin/Non Signing Admin permissions.
+Endpoint Permission: Owner, Admin, Non-Signing Admin.
+
+### Example
+
+
+```python
+from fireblocks.models.issue_api_user_pairing_token_response import IssueApiUserPairingTokenResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    user_id = 'user_id_example' # str | The ID of the api user
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Issue API user pairing token
+        api_response = fireblocks.api_user.issue_api_user_pairing_token(user_id, idempotency_key=idempotency_key).result()
+        print("The response of ApiUserApi->issue_api_user_pairing_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApiUserApi->issue_api_user_pairing_token: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the api user | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**IssueApiUserPairingTokenResponse**](IssueApiUserPairingTokenResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Pairing token issued |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Lacking permissions. |  * X-Request-ID -  <br>  |
+**404** | API user not found for the given userId. |  * X-Request-ID -  <br>  |
+**409** | Conflict. The API user is not in PENDING_ACTIVATION status (e.g. already set up / enabled). |  * X-Request-ID -  <br>  |
 **5XX** | Internal error. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 

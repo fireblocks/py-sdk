@@ -28,8 +28,8 @@ class UtxoInput(BaseModel):
     UtxoInput
     """ # noqa: E501
     tx_hash: StrictStr = Field(alias="txHash")
-    vout: StrictInt
-    __properties: ClassVar[List[str]] = ["txHash", "vout"]
+    index: StrictInt = Field(description="The output index (vout)")
+    __properties: ClassVar[List[str]] = ["txHash", "index"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +83,7 @@ class UtxoInput(BaseModel):
 
         _obj = cls.model_validate({
             "txHash": obj.get("txHash"),
-            "vout": obj.get("vout")
+            "index": obj.get("index")
         })
         return _obj
 

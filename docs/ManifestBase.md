@@ -7,6 +7,8 @@ Base manifest schema with common properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **supported** | **bool** | Indicates whether the endpoint is supported by the provider | 
+**participants_identification_policy** | [**ParticipantsIdentificationPolicy**](ParticipantsIdentificationPolicy.md) |  | [optional] 
+**supported_parties** | [**List[ParticipantRelationshipType]**](ParticipantRelationshipType.md) | The participant party types the provider supports for this endpoint.  | [optional] 
 
 ## Example
 

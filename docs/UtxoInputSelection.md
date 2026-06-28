@@ -6,7 +6,7 @@ Explicitly control which UTXOs to include or exclude. This feature is currently 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inputs_to_spend** | [**List[UtxoInput]**](UtxoInput.md) | Force-include specific UTXOs by txHash and vout. | [optional] 
+**inputs_to_spend** | [**List[UtxoInput]**](UtxoInput.md) | Force-include specific UTXOs by txHash and index. | [optional] 
 **inputs_to_exclude** | [**List[UtxoInput]**](UtxoInput.md) | Exclude specific UTXOs from selection. | [optional] 
 **fill_fee_for_selected_inputs** | **bool** | When true and inputsToSpend is provided, automatically add more UTXOs to cover the transaction fee. Requires inputsToSpend.  | [optional] 
 

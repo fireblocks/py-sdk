@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.policy_metadata import PolicyMetadata
+from fireblocks.models.created_connected_account_item import CreatedConnectedAccountItem
 
 
-class TestPolicyMetadata(unittest.TestCase):
-    """PolicyMetadata unit test stubs"""
+class TestCreatedConnectedAccountItem(unittest.TestCase):
+    """CreatedConnectedAccountItem unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,31 @@ class TestPolicyMetadata(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PolicyMetadata:
-        """Test PolicyMetadata
+    def make_instance(self, include_optional) -> CreatedConnectedAccountItem:
+        """Test CreatedConnectedAccountItem
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `PolicyMetadata`
+        # uncomment below to create an instance of `CreatedConnectedAccountItem`
         """
-        model = PolicyMetadata()
+        model = CreatedConnectedAccountItem()
         if include_optional:
-            return PolicyMetadata(
-                edited_by = 'user123',
-                edited_at = '2024-01-15T10:30:00Z',
-                published_by = 'user456',
-                published_at = '2024-01-15T11:00:00Z',
-                policy_type = 'TRANSFER'
+            return CreatedConnectedAccountItem(
+                account_id = 'acc-789012',
+                name = 'My Exchange Account',
+                parent_account_id = 'acc-parent-001',
+                status = 'WAITING_FOR_APPROVAL'
             )
         else:
-            return PolicyMetadata(
-                policy_type = 'TRANSFER',
+            return CreatedConnectedAccountItem(
+                account_id = 'acc-789012',
+                name = 'My Exchange Account',
+                status = 'WAITING_FOR_APPROVAL',
         )
         """
 
-    def testPolicyMetadata(self):
-        """Test PolicyMetadata"""
+    def testCreatedConnectedAccountItem(self):
+        """Test CreatedConnectedAccountItem"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

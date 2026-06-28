@@ -43,7 +43,7 @@ class TestAttachDetachUtxoLabelsRequest(unittest.TestCase):
                     fireblocks.models.utxo_identifier.UtxoIdentifier(
                         tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e', 
                         tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
-                        vout = 0, )
+                        index = 0, )
                     ],
                 labels_to_attach = ["cold-storage","vip"],
                 labels_to_detach = ["deprecated"]
@@ -54,7 +54,7 @@ class TestAttachDetachUtxoLabelsRequest(unittest.TestCase):
                     fireblocks.models.utxo_identifier.UtxoIdentifier(
                         tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e', 
                         tx_hash = 'b34f0c3ce612f1e5a5c19d6b1e6b5e3e7f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c', 
-                        vout = 0, )
+                        index = 0, )
                     ],
         )
         """

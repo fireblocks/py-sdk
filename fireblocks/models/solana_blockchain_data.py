@@ -19,7 +19,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from fireblocks.models.solana_rewards_breakdown import SolanaRewardsBreakdown
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,8 @@ class SolanaBlockchainData(BaseModel):
     """ # noqa: E501
     stake_account_address: StrictStr = Field(description="The stake account address matching the stakeAccountId.", alias="stakeAccountAddress")
     stake_account_derivation_change_value: Union[StrictFloat, StrictInt] = Field(description="The value of the change level in the BIP32 path which was used to derive the stake account address.", alias="stakeAccountDerivationChangeValue")
-    __properties: ClassVar[List[str]] = ["stakeAccountAddress", "stakeAccountDerivationChangeValue"]
+    rewards_breakdown: Optional[SolanaRewardsBreakdown] = Field(default=None, alias="rewardsBreakdown")
+    __properties: ClassVar[List[str]] = ["stakeAccountAddress", "stakeAccountDerivationChangeValue", "rewardsBreakdown"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,9 @@ class SolanaBlockchainData(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of rewards_breakdown
+        if self.rewards_breakdown:
+            _dict['rewardsBreakdown'] = self.rewards_breakdown.to_dict()
         return _dict
 
     @classmethod
@@ -83,7 +88,8 @@ class SolanaBlockchainData(BaseModel):
 
         _obj = cls.model_validate({
             "stakeAccountAddress": obj.get("stakeAccountAddress"),
-            "stakeAccountDerivationChangeValue": obj.get("stakeAccountDerivationChangeValue")
+            "stakeAccountDerivationChangeValue": obj.get("stakeAccountDerivationChangeValue"),
+            "rewardsBreakdown": SolanaRewardsBreakdown.from_dict(obj["rewardsBreakdown"]) if obj.get("rewardsBreakdown") is not None else None
         })
         return _obj
 

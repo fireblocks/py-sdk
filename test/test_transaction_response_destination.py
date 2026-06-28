@@ -51,7 +51,8 @@ class TestTransactionResponseDestination(unittest.TestCase):
                     id = '', 
                     name = '', 
                     wallet_id = '', 
-                    trading_account = '', ),
+                    trading_account = '', 
+                    tags = [{"id":"df4c0987-30da-4976-8dcf-bc2dd41ae331","label":"VIP"}], ),
                 authorization_info = fireblocks.models.authorization_info.AuthorizationInfo(
                     allow_operator_as_authorizer = True, 
                     logic = 'AND', 

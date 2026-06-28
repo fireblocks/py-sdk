@@ -4,7 +4,6 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_approval_request**](TagsApi.md#cancel_approval_request) | **POST** /tags/approval_requests/{id}/cancel | Cancel an approval request by id
 [**create_tag**](TagsApi.md#create_tag) | **POST** /tags | Create a new tag
 [**delete_tag**](TagsApi.md#delete_tag) | **DELETE** /tags/{tagId} | Delete a tag
 [**get_approval_request**](TagsApi.md#get_approval_request) | **GET** /tags/approval_requests/{id} | Get an approval request by id
@@ -12,81 +11,6 @@ Method | HTTP request | Description
 [**get_tags**](TagsApi.md#get_tags) | **GET** /tags | Get list of tags
 [**update_tag**](TagsApi.md#update_tag) | **PATCH** /tags/{tagId} | Update a tag
 
-
-# **cancel_approval_request**
-> cancel_approval_request(id, idempotency_key=idempotency_key)
-
-Cancel an approval request by id
-
-Cancel an approval request by id. Can only cancel requests in PENDING status. Returns 202 Accepted when the cancellation is processed.
-
-### Example
-
-
-```python
-from fireblocks.client import Fireblocks
-from fireblocks.client_configuration import ClientConfiguration
-from fireblocks.exceptions import ApiException
-from fireblocks.base_path import BasePath
-
-# load the secret key content from a file
-with open('your_secret_key_file_path', 'r') as file:
-    secret_key_value = file.read()
-
-# build the configuration
-configuration = ClientConfiguration(
-        api_key="your_api_key",
-        secret_key=secret_key_value,
-        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
-)
-
-
-# Enter a context with an instance of the API client
-with Fireblocks(configuration) as fireblocks:
-    id = '12345' # str | 
-    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
-
-    try:
-        # Cancel an approval request by id
-        fireblocks.tags.cancel_approval_request(id, idempotency_key=idempotency_key).result()
-    except Exception as e:
-        print("Exception when calling TagsApi->cancel_approval_request: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
- **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** | Approval request cancellation processed |  * X-Request-ID -  <br>  |
-**401** | Unauthorized |  * X-Request-ID -  <br>  |
-**404** | Approval request not found |  * X-Request-ID -  <br>  |
-**409** | Invalid approval request state - cannot cancel request that is not in PENDING status |  * X-Request-ID -  <br>  |
-**0** | Error Response |  * X-Request-ID -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_tag**
 > Tag create_tag(create_tag_request, idempotency_key=idempotency_key)

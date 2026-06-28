@@ -44,8 +44,9 @@ from fireblocks.api.ota_beta_api import OTABetaApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
+from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
+from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
@@ -163,11 +164,14 @@ def test_get_onchain_data(fireblocks_instance):
 def test_get_payments_payout(fireblocks_instance):
     assert isinstance(fireblocks_instance.payments_payout, PaymentsPayoutApi)
 
-def test_get_policy_editor_v2_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.policy_editor_v2_beta, PolicyEditorV2BetaApi)
+def test_get_policy_editor_v2(fireblocks_instance):
+    assert isinstance(fireblocks_instance.policy_editor_v2, PolicyEditorV2Api)
 
 def test_get_policy_editor_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.policy_editor_beta, PolicyEditorBetaApi)
+
+def test_get_reports_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.reports_beta, ReportsBetaApi)
 
 def test_get_reset_device(fireblocks_instance):
     assert isinstance(fireblocks_instance.reset_device, ResetDeviceApi)

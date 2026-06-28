@@ -18,22 +18,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.policy_type import PolicyType
+from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PolicyMetadata(BaseModel):
+class CreateConnectedAccountRequest(BaseModel):
     """
-    Policy metadata
+    CreateConnectedAccountRequest
     """ # noqa: E501
-    edited_by: Optional[StrictStr] = Field(default=None, description="The user ID of the user who last edited the policy", alias="editedBy")
-    edited_at: Optional[StrictStr] = Field(default=None, description="The timestamp of the last edit of the policy", alias="editedAt")
-    published_by: Optional[StrictStr] = Field(default=None, description="The user ID of the user who last published the policy", alias="publishedBy")
-    published_at: Optional[StrictStr] = Field(default=None, description="The timestamp of the last publish of the policy", alias="publishedAt")
-    policy_type: PolicyType = Field(alias="policyType")
-    __properties: ClassVar[List[str]] = ["editedBy", "editedAt", "publishedBy", "publishedAt", "policyType"]
+    provider_id: StrictStr = Field(description="Integration key identifying the provider (e.g. BINANCE, KINGDOM_BANK, GEMINI_NLV2).", alias="providerId")
+    display_name: Optional[StrictStr] = Field(default=None, description="Human-readable account name. Required for non-NLV2 providers.", alias="displayName")
+    creds: Union[StrictBytes, StrictStr] = Field(description="Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /exchange_accounts/credentials_public_key.")
+    api_key: StrictStr = Field(description="Account-level API key.", alias="apiKey")
+    main_account_id: Optional[StrictStr] = Field(default=None, description="Parent main account ID for sub-account creation. Not allowed for NLV2 providers.", alias="mainAccountId")
+    account_id: Optional[StrictStr] = Field(default=None, description="Optional provider-side account ID to associate with the created account.", alias="accountId")
+    on_premise_server_id: Optional[StrictStr] = Field(default=None, description="On-premise server ID for self-hosted integrations.", alias="onPremiseServerId")
+    __properties: ClassVar[List[str]] = ["providerId", "displayName", "creds", "apiKey", "mainAccountId", "accountId", "onPremiseServerId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +54,7 @@ class PolicyMetadata(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PolicyMetadata from a JSON string"""
+        """Create an instance of CreateConnectedAccountRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +79,7 @@ class PolicyMetadata(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PolicyMetadata from a dict"""
+        """Create an instance of CreateConnectedAccountRequest from a dict"""
         if obj is None:
             return None
 
@@ -86,11 +87,13 @@ class PolicyMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "editedBy": obj.get("editedBy"),
-            "editedAt": obj.get("editedAt"),
-            "publishedBy": obj.get("publishedBy"),
-            "publishedAt": obj.get("publishedAt"),
-            "policyType": obj.get("policyType")
+            "providerId": obj.get("providerId"),
+            "displayName": obj.get("displayName"),
+            "creds": obj.get("creds"),
+            "apiKey": obj.get("apiKey"),
+            "mainAccountId": obj.get("mainAccountId"),
+            "accountId": obj.get("accountId"),
+            "onPremiseServerId": obj.get("onPremiseServerId")
         })
         return _obj
 

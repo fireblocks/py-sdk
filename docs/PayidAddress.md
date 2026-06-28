@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **value** | **str** | The PayID identifier (email, phone, ABN, or organization ID) | 
 **type** | **str** | The type of PayID being used | 
 **bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | [optional] 
-**account_number** | **str** | Australian bank account number | 
+**account_number** | **str** | Australian bank account number | [optional] 
 
 ## Example
 

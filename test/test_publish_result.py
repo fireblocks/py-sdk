@@ -138,12 +138,7 @@ class TestPublishResult(unittest.TestCase):
                                     error_field = 'operator', )
                                 ], )
                         ], ),
-                metadata = fireblocks.models.policy_metadata.PolicyMetadata(
-                    edited_by = 'user123', 
-                    edited_at = '2024-01-15T10:30:00Z', 
-                    published_by = 'user456', 
-                    published_at = '2024-01-15T11:00:00Z', 
-                    policy_type = 'TRANSFER', )
+                metadata = {"TRANSFER":{"editedBy":"user123","editedAt":"2024-01-15T10:30:00Z","publishedBy":"user456","publishedAt":"2024-01-15T11:00:00Z"}}
             )
         else:
             return PublishResult(
@@ -248,12 +243,7 @@ class TestPublishResult(unittest.TestCase):
                                     error_field = 'operator', )
                                 ], )
                         ], ),
-                metadata = fireblocks.models.policy_metadata.PolicyMetadata(
-                    edited_by = 'user123', 
-                    edited_at = '2024-01-15T10:30:00Z', 
-                    published_by = 'user456', 
-                    published_at = '2024-01-15T11:00:00Z', 
-                    policy_type = 'TRANSFER', ),
+                metadata = {"TRANSFER":{"editedBy":"user123","editedAt":"2024-01-15T10:30:00Z","publishedBy":"user456","publishedAt":"2024-01-15T11:00:00Z"}},
         )
         """
 

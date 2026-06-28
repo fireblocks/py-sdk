@@ -32,7 +32,7 @@ class PayidAddress(BaseModel):
     value: StrictStr = Field(description="The PayID identifier (email, phone, ABN, or organization ID)")
     type: StrictStr = Field(description="The type of PayID being used")
     bsb: Optional[StrictStr] = Field(default=None, description="Bank State Branch (BSB) number (6 digits, format XXX-XXX)")
-    account_number: StrictStr = Field(description="Australian bank account number", alias="accountNumber")
+    account_number: Optional[StrictStr] = Field(default=None, description="Australian bank account number", alias="accountNumber")
     __properties: ClassVar[List[str]] = ["accountHolder", "value", "type", "bsb", "accountNumber"]
 
     @field_validator('type')

@@ -42,7 +42,8 @@ class TestManifestOrderInfo(unittest.TestCase):
                     ],
                 execution_types = [
                     'QUOTE'
-                    ]
+                    ],
+                requires_reason_for_payment = True
             )
         else:
             return ManifestOrderInfo(

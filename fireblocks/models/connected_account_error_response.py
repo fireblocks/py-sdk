@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,9 +27,11 @@ class ConnectedAccountErrorResponse(BaseModel):
     """
     ConnectedAccountErrorResponse
     """ # noqa: E501
-    error_message: StrictStr = Field(description="Error message describing what went wrong", alias="errorMessage")
-    error_code: StrictStr = Field(description="Error code identifying the type of error", alias="errorCode")
-    __properties: ClassVar[List[str]] = ["errorMessage", "errorCode"]
+    message: StrictStr = Field(description="Error message describing what went wrong.")
+    code: StrictInt = Field(description="Numeric error code identifying the type of error.")
+    error_message: Optional[StrictStr] = Field(default=None, description="Error message describing what went wrong", alias="errorMessage")
+    error_code: Optional[StrictStr] = Field(default=None, description="Error code identifying the type of error", alias="errorCode")
+    __properties: ClassVar[List[str]] = ["message", "code", "errorMessage", "errorCode"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,6 +84,8 @@ class ConnectedAccountErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "message": obj.get("message"),
+            "code": obj.get("code"),
             "errorMessage": obj.get("errorMessage"),
             "errorCode": obj.get("errorCode")
         })

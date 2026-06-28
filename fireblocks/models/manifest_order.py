@@ -21,6 +21,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.execution_request_details_type import ExecutionRequestDetailsType
+from fireblocks.models.participant_relationship_type import ParticipantRelationshipType
+from fireblocks.models.participants_identification_policy import ParticipantsIdentificationPolicy
 from fireblocks.models.settlement_type_enum import SettlementTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,9 +32,12 @@ class ManifestOrder(BaseModel):
     ManifestOrder
     """ # noqa: E501
     supported: StrictBool = Field(description="Indicates whether the endpoint is supported by the provider")
+    participants_identification_policy: Optional[ParticipantsIdentificationPolicy] = Field(default=None, alias="participantsIdentificationPolicy")
+    supported_parties: Optional[List[ParticipantRelationshipType]] = Field(default=None, description="The participant party types the provider supports for this endpoint. ", alias="supportedParties")
     settlement_types: Optional[List[SettlementTypeEnum]] = Field(default=None, description="Supported settlement types when creating an order. If present - settlement is required. If absent - no need to provide settlement. ", alias="settlementTypes")
     execution_types: List[ExecutionRequestDetailsType] = Field(description="Supported execution types when creating an order.", alias="executionTypes")
-    __properties: ClassVar[List[str]] = ["supported", "settlementTypes", "executionTypes"]
+    requires_reason_for_payment: Optional[StrictBool] = Field(default=None, description="Information about the source and purpose of the funds being transacted. Used by providers that require additional context for compliance and reporting. Provide this field when the provider manifest indicates it is required. ", alias="requiresReasonForPayment")
+    __properties: ClassVar[List[str]] = ["supported", "participantsIdentificationPolicy", "supportedParties", "settlementTypes", "executionTypes", "requiresReasonForPayment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +78,9 @@ class ManifestOrder(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of participants_identification_policy
+        if self.participants_identification_policy:
+            _dict['participantsIdentificationPolicy'] = self.participants_identification_policy.to_dict()
         return _dict
 
     @classmethod
@@ -86,8 +94,11 @@ class ManifestOrder(BaseModel):
 
         _obj = cls.model_validate({
             "supported": obj.get("supported"),
+            "participantsIdentificationPolicy": ParticipantsIdentificationPolicy.from_dict(obj["participantsIdentificationPolicy"]) if obj.get("participantsIdentificationPolicy") is not None else None,
+            "supportedParties": obj.get("supportedParties"),
             "settlementTypes": obj.get("settlementTypes"),
-            "executionTypes": obj.get("executionTypes")
+            "executionTypes": obj.get("executionTypes"),
+            "requiresReasonForPayment": obj.get("requiresReasonForPayment")
         })
         return _obj
 

@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class SourceOfFunds(BaseModel):
     """
-    Information about the source and purpose of the funds being transacted. Used by providers that require additional context for compliance and reporting (e.g. CPN cross-border payments). 
+    Information about the source and purpose of the funds being transacted. Used by providers that require additional context for compliance and reporting. Provide this field when the provider manifest indicates it is required. 
     """ # noqa: E501
     reason_for_payment: Optional[ReasonForPaymentEnum] = Field(default=None, alias="reasonForPayment")
     __properties: ClassVar[List[str]] = ["reasonForPayment"]

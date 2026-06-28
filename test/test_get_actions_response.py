@@ -37,14 +37,14 @@ class TestGetActionsResponse(unittest.TestCase):
         model = GetActionsResponse()
         if include_optional:
             return GetActionsResponse(
-                data = [{"id":"660e8400-e29b-41d4-a716-446655440001","status":"IN_PROGRESS","providerId":"MORPHO","actionType":"DEPOSIT","opportunityId":"morpho-usdc-vault-1","amount":"1500.5","createdAt":"2025-01-15T10:00:00Z","updatedAt":"2025-03-20T08:30:00Z","records":[{"actionType":"APPROVE","status":"COMPLETED","txId":"tx_abc123","txHash":"0xabc...","updatedAt":"2025-03-20T08:29:00Z"}]}],
+                data = [{"id":"660e8400-e29b-41d4-a716-446655440001","vaultAccountId":"0","userId":"550e8400-e29b-41d4-a716-446655440000","status":"IN_PROGRESS","providerId":"MORPHO","actionType":"DEPOSIT","opportunityId":"morpho-usdc-vault-1","amount":"1500.5","createdAt":"2025-01-15T10:00:00Z","updatedAt":"2025-03-20T08:30:00Z","records":[{"actionType":"APPROVE","status":"COMPLETED","txId":"tx_abc123","txHash":"0xabc...","updatedAt":"2025-03-20T08:29:00Z"}]}],
                 next = '',
                 prev = '',
                 total = 1
             )
         else:
             return GetActionsResponse(
-                data = [{"id":"660e8400-e29b-41d4-a716-446655440001","status":"IN_PROGRESS","providerId":"MORPHO","actionType":"DEPOSIT","opportunityId":"morpho-usdc-vault-1","amount":"1500.5","createdAt":"2025-01-15T10:00:00Z","updatedAt":"2025-03-20T08:30:00Z","records":[{"actionType":"APPROVE","status":"COMPLETED","txId":"tx_abc123","txHash":"0xabc...","updatedAt":"2025-03-20T08:29:00Z"}]}],
+                data = [{"id":"660e8400-e29b-41d4-a716-446655440001","vaultAccountId":"0","userId":"550e8400-e29b-41d4-a716-446655440000","status":"IN_PROGRESS","providerId":"MORPHO","actionType":"DEPOSIT","opportunityId":"morpho-usdc-vault-1","amount":"1500.5","createdAt":"2025-01-15T10:00:00Z","updatedAt":"2025-03-20T08:30:00Z","records":[{"actionType":"APPROVE","status":"COMPLETED","txId":"tx_abc123","txHash":"0xabc...","updatedAt":"2025-03-20T08:29:00Z"}]}],
                 total = 1,
         )
         """

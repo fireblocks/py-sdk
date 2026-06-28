@@ -27,13 +27,6 @@ class TestTagsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_cancel_approval_request(self) -> None:
-        """Test case for cancel_approval_request
-
-        Cancel an approval request by id
-        """
-        pass
-
     def test_create_tag(self) -> None:
         """Test case for create_tag
 

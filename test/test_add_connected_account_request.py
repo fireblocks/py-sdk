@@ -15,13 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.create_connected_account_request import (
-    CreateConnectedAccountRequest,
-)
+from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
 
 
-class TestCreateConnectedAccountRequest(unittest.TestCase):
-    """CreateConnectedAccountRequest unit test stubs"""
+class TestAddConnectedAccountRequest(unittest.TestCase):
+    """AddConnectedAccountRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,16 +27,16 @@ class TestCreateConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreateConnectedAccountRequest:
-        """Test CreateConnectedAccountRequest
+    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
+        """Test AddConnectedAccountRequest
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreateConnectedAccountRequest`
+        # uncomment below to create an instance of `AddConnectedAccountRequest`
         """
-        model = CreateConnectedAccountRequest()
+        model = AddConnectedAccountRequest()
         if include_optional:
-            return CreateConnectedAccountRequest(
+            return AddConnectedAccountRequest(
                 provider_id = 'BINANCE',
                 display_name = 'My Binance Account',
                 creds = '[B@2d385fe1',
@@ -48,15 +46,15 @@ class TestCreateConnectedAccountRequest(unittest.TestCase):
                 on_premise_server_id = 'on-prem-server-001'
             )
         else:
-            return CreateConnectedAccountRequest(
+            return AddConnectedAccountRequest(
                 provider_id = 'BINANCE',
                 creds = '[B@2d385fe1',
                 api_key = 'api_key_abc123',
         )
         """
 
-    def testCreateConnectedAccountRequest(self):
-        """Test CreateConnectedAccountRequest"""
+    def testAddConnectedAccountRequest(self):
+        """Test AddConnectedAccountRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

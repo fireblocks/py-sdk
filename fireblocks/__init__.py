@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "22.0.0"
+__version__ = "0.0.0"
 
 # import apis into sdk package
 from fireblocks.api.api_user_api import ApiUserApi
@@ -124,11 +124,14 @@ from fireblocks.models.add_asset_to_external_wallet_request import (
     AddAssetToExternalWalletRequest,
 )
 from fireblocks.models.add_collateral_request_body import AddCollateralRequestBody
+from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.add_connected_account_response import AddConnectedAccountResponse
 from fireblocks.models.add_contract_asset_request import AddContractAssetRequest
 from fireblocks.models.add_cosigner_request import AddCosignerRequest
 from fireblocks.models.add_cosigner_response import AddCosignerResponse
 from fireblocks.models.add_exchange_account_request import AddExchangeAccountRequest
 from fireblocks.models.add_exchange_account_response import AddExchangeAccountResponse
+from fireblocks.models.added_connected_account_item import AddedConnectedAccountItem
 from fireblocks.models.additional_info import AdditionalInfo
 from fireblocks.models.additional_info_request import AdditionalInfoRequest
 from fireblocks.models.additional_info_request_additional_info import (
@@ -454,12 +457,6 @@ from fireblocks.models.create_assets_request import CreateAssetsRequest
 from fireblocks.models.create_config_operation_request import (
     CreateConfigOperationRequest,
 )
-from fireblocks.models.create_connected_account_request import (
-    CreateConnectedAccountRequest,
-)
-from fireblocks.models.create_connected_account_response import (
-    CreateConnectedAccountResponse,
-)
 from fireblocks.models.create_connection_request import CreateConnectionRequest
 from fireblocks.models.create_connection_response import CreateConnectionResponse
 from fireblocks.models.create_console_user import CreateConsoleUser
@@ -536,7 +533,6 @@ from fireblocks.models.create_webhook_request import CreateWebhookRequest
 from fireblocks.models.create_workflow_execution_request_params_inner import (
     CreateWorkflowExecutionRequestParamsInner,
 )
-from fireblocks.models.created_connected_account_item import CreatedConnectedAccountItem
 from fireblocks.models.custom_routing_dest import CustomRoutingDest
 from fireblocks.models.d_app_address_config import DAppAddressConfig
 from fireblocks.models.dvp_settlement import DVPSettlement

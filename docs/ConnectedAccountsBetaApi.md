@@ -4,7 +4,7 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_connected_account**](ConnectedAccountsBetaApi.md#create_connected_account) | **POST** /connected_accounts | Create a connected account
+[**add_connected_account**](ConnectedAccountsBetaApi.md#add_connected_account) | **POST** /connected_accounts | Add a connected account
 [**disconnect_connected_account**](ConnectedAccountsBetaApi.md#disconnect_connected_account) | **DELETE** /connected_accounts/{accountId} | Disconnect connected account
 [**get_connected_account**](ConnectedAccountsBetaApi.md#get_connected_account) | **GET** /connected_accounts/{accountId} | Get connected account
 [**get_connected_account_allowlist**](ConnectedAccountsBetaApi.md#get_connected_account_allowlist) | **GET** /connected_accounts/{accountId}/allowlist | Get allowlist for connected account
@@ -17,10 +17,10 @@ Method | HTTP request | Description
 [**sync_connected_account_allowlist**](ConnectedAccountsBetaApi.md#sync_connected_account_allowlist) | **POST** /connected_accounts/{accountId}/allowlist/sync | Sync allowlist for connected account
 
 
-# **create_connected_account**
-> CreateConnectedAccountResponse create_connected_account(create_connected_account_request, idempotency_key=idempotency_key)
+# **add_connected_account**
+> AddConnectedAccountResponse add_connected_account(add_connected_account_request, idempotency_key=idempotency_key)
 
-Create a connected account
+Add a connected account
 
 Creates a new connected account for the authenticated tenant.
 
@@ -38,8 +38,8 @@ Endpoint Permission: Editor, Admin, Non-Signing Admin.
 
 
 ```python
-from fireblocks.models.create_connected_account_request import CreateConnectedAccountRequest
-from fireblocks.models.create_connected_account_response import CreateConnectedAccountResponse
+from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.add_connected_account_response import AddConnectedAccountResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -60,16 +60,16 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    create_connected_account_request = fireblocks.CreateConnectedAccountRequest() # CreateConnectedAccountRequest | 
+    add_connected_account_request = fireblocks.AddConnectedAccountRequest() # AddConnectedAccountRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Create a connected account
-        api_response = fireblocks.connected_accounts_beta.create_connected_account(create_connected_account_request, idempotency_key=idempotency_key).result()
-        print("The response of ConnectedAccountsBetaApi->create_connected_account:\n")
+        # Add a connected account
+        api_response = fireblocks.connected_accounts_beta.add_connected_account(add_connected_account_request, idempotency_key=idempotency_key).result()
+        print("The response of ConnectedAccountsBetaApi->add_connected_account:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConnectedAccountsBetaApi->create_connected_account: %s\n" % e)
+        print("Exception when calling ConnectedAccountsBetaApi->add_connected_account: %s\n" % e)
 ```
 
 
@@ -79,12 +79,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_connected_account_request** | [**CreateConnectedAccountRequest**](CreateConnectedAccountRequest.md)|  | 
+ **add_connected_account_request** | [**AddConnectedAccountRequest**](AddConnectedAccountRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**CreateConnectedAccountResponse**](CreateConnectedAccountResponse.md)
+[**AddConnectedAccountResponse**](AddConnectedAccountResponse.md)
 
 ### Authorization
 

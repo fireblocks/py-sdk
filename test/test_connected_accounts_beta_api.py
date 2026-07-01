@@ -27,10 +27,10 @@ class TestConnectedAccountsBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_create_connected_account(self) -> None:
-        """Test case for create_connected_account
+    def test_add_connected_account(self) -> None:
+        """Test case for add_connected_account
 
-        Create a connected account
+        Add a connected account
         """
         pass
 

@@ -21,6 +21,8 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
+from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.add_connected_account_response import AddConnectedAccountResponse
 from fireblocks.models.allowlist_entry_response import AllowlistEntryResponse
 from fireblocks.models.allowlist_entry_status import AllowlistEntryStatus
 from fireblocks.models.allowlist_response import AllowlistResponse
@@ -29,8 +31,6 @@ from fireblocks.models.connected_account_rate_response import ConnectedAccountRa
 from fireblocks.models.connected_account_trading_pairs_response import ConnectedAccountTradingPairsResponse
 from fireblocks.models.connected_accounts_response import ConnectedAccountsResponse
 from fireblocks.models.connected_single_account_response import ConnectedSingleAccountResponse
-from fireblocks.models.create_connected_account_request import CreateConnectedAccountRequest
-from fireblocks.models.create_connected_account_response import CreateConnectedAccountResponse
 from fireblocks.models.rename_connected_account_request import RenameConnectedAccountRequest
 from fireblocks.models.rename_connected_account_response import RenameConnectedAccountResponse
 
@@ -54,9 +54,9 @@ class ConnectedAccountsBetaApi:
 
 
     @validate_call
-    def create_connected_account(
+    def add_connected_account(
         self,
-        create_connected_account_request: CreateConnectedAccountRequest,
+        add_connected_account_request: AddConnectedAccountRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -70,13 +70,13 @@ class ConnectedAccountsBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[CreateConnectedAccountResponse]]:
-        """Create a connected account
+    ) -> Future[ApiResponse[AddConnectedAccountResponse]]:
+        """Add a connected account
 
         Creates a new connected account for the authenticated tenant.  The `creds` field must be a Base64-encoded RSA-encrypted credential blob. Use `GET /exchange_accounts/credentials_public_key` to retrieve the public key for encryption.  The `providerType` is derived server-side from the `providerId` — callers do not supply it.  Endpoint Permission: Editor, Admin, Non-Signing Admin.  **Note:** This endpoint is currently in beta and might be subject to changes. 
 
-        :param create_connected_account_request: (required)
-        :type create_connected_account_request: CreateConnectedAccountRequest
+        :param add_connected_account_request: (required)
+        :type add_connected_account_request: AddConnectedAccountRequest
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -102,8 +102,8 @@ class ConnectedAccountsBetaApi:
         """ # noqa: E501
 
 
-        _param = self._create_connected_account_serialize(
-            create_connected_account_request=create_connected_account_request,
+        _param = self._add_connected_account_serialize(
+            add_connected_account_request=add_connected_account_request,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -112,7 +112,7 @@ class ConnectedAccountsBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "CreateConnectedAccountResponse",
+            '201': "AddConnectedAccountResponse",
             '400': "ConnectedAccountErrorResponse",
             '401': "ConnectedAccountErrorResponse",
             '403': "ConnectedAccountErrorResponse",
@@ -127,9 +127,9 @@ class ConnectedAccountsBetaApi:
             _response_types_map=_response_types_map,
         )
 
-    def _create_connected_account_serialize(
+    def _add_connected_account_serialize(
         self,
-        create_connected_account_request,
+        add_connected_account_request,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -158,8 +158,8 @@ class ConnectedAccountsBetaApi:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
-        if create_connected_account_request is not None:
-            _body_params = create_connected_account_request
+        if add_connected_account_request is not None:
+            _body_params = add_connected_account_request
 
 
         # set the HTTP header `Accept`

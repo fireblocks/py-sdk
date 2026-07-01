@@ -1,4 +1,4 @@
-# CreateConnectedAccountRequest
+# AddConnectedAccountRequest
 
 
 ## Properties
@@ -16,19 +16,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from fireblocks.models.create_connected_account_request import CreateConnectedAccountRequest
+from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of CreateConnectedAccountRequest from a JSON string
-create_connected_account_request_instance = CreateConnectedAccountRequest.from_json(json)
+# create an instance of AddConnectedAccountRequest from a JSON string
+add_connected_account_request_instance = AddConnectedAccountRequest.from_json(json)
 # print the JSON string representation of the object
-print(CreateConnectedAccountRequest.to_json())
+print(AddConnectedAccountRequest.to_json())
 
 # convert the object into a dict
-create_connected_account_request_dict = create_connected_account_request_instance.to_dict()
-# create an instance of CreateConnectedAccountRequest from a dict
-create_connected_account_request_from_dict = CreateConnectedAccountRequest.from_dict(create_connected_account_request_dict)
+add_connected_account_request_dict = add_connected_account_request_instance.to_dict()
+# create an instance of AddConnectedAccountRequest from a dict
+add_connected_account_request_from_dict = AddConnectedAccountRequest.from_dict(add_connected_account_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

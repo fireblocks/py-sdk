@@ -20,15 +20,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.created_connected_account_item import CreatedConnectedAccountItem
+from fireblocks.models.added_connected_account_item import AddedConnectedAccountItem
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CreateConnectedAccountResponse(BaseModel):
+class AddConnectedAccountResponse(BaseModel):
     """
-    CreateConnectedAccountResponse
+    AddConnectedAccountResponse
     """ # noqa: E501
-    accounts: List[CreatedConnectedAccountItem] = Field(description="Created accounts — main account first, sub-accounts after (NLV2 hierarchy).")
+    accounts: List[AddedConnectedAccountItem] = Field(description="Created accounts — main account first, sub-accounts after (NLV2 hierarchy).")
     __properties: ClassVar[List[str]] = ["accounts"]
 
     model_config = ConfigDict(
@@ -49,7 +49,7 @@ class CreateConnectedAccountResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateConnectedAccountResponse from a JSON string"""
+        """Create an instance of AddConnectedAccountResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,7 +81,7 @@ class CreateConnectedAccountResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateConnectedAccountResponse from a dict"""
+        """Create an instance of AddConnectedAccountResponse from a dict"""
         if obj is None:
             return None
 
@@ -89,7 +89,7 @@ class CreateConnectedAccountResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "accounts": [CreatedConnectedAccountItem.from_dict(_item) for _item in obj["accounts"]] if obj.get("accounts") is not None else None
+            "accounts": [AddedConnectedAccountItem.from_dict(_item) for _item in obj["accounts"]] if obj.get("accounts") is not None else None
         })
         return _obj
 

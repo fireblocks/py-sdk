@@ -286,7 +286,7 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**update_travel_rule_config**](docs/ComplianceApi.md#update_travel_rule_config) | **PUT** /screening/travel_rule/policy_configuration | Update Travel Rule Configuration
 *ComplianceScreeningConfigurationApi* | [**get_aml_screening_configuration**](docs/ComplianceScreeningConfigurationApi.md#get_aml_screening_configuration) | **GET** /screening/aml/policy_configuration | Get AML Screening Policy Configuration
 *ComplianceScreeningConfigurationApi* | [**get_screening_configuration**](docs/ComplianceScreeningConfigurationApi.md#get_screening_configuration) | **GET** /screening/travel_rule/policy_configuration | Get Travel Rule Screening Policy Configuration
-*ConnectedAccountsBetaApi* | [**create_connected_account**](docs/ConnectedAccountsBetaApi.md#create_connected_account) | **POST** /connected_accounts | Create a connected account
+*ConnectedAccountsBetaApi* | [**add_connected_account**](docs/ConnectedAccountsBetaApi.md#add_connected_account) | **POST** /connected_accounts | Add a connected account
 *ConnectedAccountsBetaApi* | [**disconnect_connected_account**](docs/ConnectedAccountsBetaApi.md#disconnect_connected_account) | **DELETE** /connected_accounts/{accountId} | Disconnect connected account
 *ConnectedAccountsBetaApi* | [**get_connected_account**](docs/ConnectedAccountsBetaApi.md#get_connected_account) | **GET** /connected_accounts/{accountId} | Get connected account
 *ConnectedAccountsBetaApi* | [**get_connected_account_allowlist**](docs/ConnectedAccountsBetaApi.md#get_connected_account_allowlist) | **GET** /connected_accounts/{accountId}/allowlist | Get allowlist for connected account
@@ -701,11 +701,14 @@ Class | Method | HTTP request | Description
  - [AddAbiRequestDto](docs/AddAbiRequestDto.md)
  - [AddAssetToExternalWalletRequest](docs/AddAssetToExternalWalletRequest.md)
  - [AddCollateralRequestBody](docs/AddCollateralRequestBody.md)
+ - [AddConnectedAccountRequest](docs/AddConnectedAccountRequest.md)
+ - [AddConnectedAccountResponse](docs/AddConnectedAccountResponse.md)
  - [AddContractAssetRequest](docs/AddContractAssetRequest.md)
  - [AddCosignerRequest](docs/AddCosignerRequest.md)
  - [AddCosignerResponse](docs/AddCosignerResponse.md)
  - [AddExchangeAccountRequest](docs/AddExchangeAccountRequest.md)
  - [AddExchangeAccountResponse](docs/AddExchangeAccountResponse.md)
+ - [AddedConnectedAccountItem](docs/AddedConnectedAccountItem.md)
  - [AdditionalInfo](docs/AdditionalInfo.md)
  - [AdditionalInfoRequest](docs/AdditionalInfoRequest.md)
  - [AdditionalInfoRequestAdditionalInfo](docs/AdditionalInfoRequestAdditionalInfo.md)
@@ -919,8 +922,6 @@ Class | Method | HTTP request | Description
  - [CreateAddressesReportRequest](docs/CreateAddressesReportRequest.md)
  - [CreateAssetsRequest](docs/CreateAssetsRequest.md)
  - [CreateConfigOperationRequest](docs/CreateConfigOperationRequest.md)
- - [CreateConnectedAccountRequest](docs/CreateConnectedAccountRequest.md)
- - [CreateConnectedAccountResponse](docs/CreateConnectedAccountResponse.md)
  - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
  - [CreateConnectionResponse](docs/CreateConnectionResponse.md)
  - [CreateConsoleUser](docs/CreateConsoleUser.md)
@@ -963,7 +964,6 @@ Class | Method | HTTP request | Description
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
  - [CreateWebhookRequest](docs/CreateWebhookRequest.md)
  - [CreateWorkflowExecutionRequestParamsInner](docs/CreateWorkflowExecutionRequestParamsInner.md)
- - [CreatedConnectedAccountItem](docs/CreatedConnectedAccountItem.md)
  - [CustomRoutingDest](docs/CustomRoutingDest.md)
  - [DAppAddressConfig](docs/DAppAddressConfig.md)
  - [DVPSettlement](docs/DVPSettlement.md)

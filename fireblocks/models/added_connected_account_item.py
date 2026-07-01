@@ -18,23 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.connected_account_approval_status import ConnectedAccountApprovalStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CreateConnectedAccountRequest(BaseModel):
+class AddedConnectedAccountItem(BaseModel):
     """
-    CreateConnectedAccountRequest
+    AddedConnectedAccountItem
     """ # noqa: E501
-    provider_id: StrictStr = Field(description="Integration key identifying the provider (e.g. BINANCE, KINGDOM_BANK, GEMINI_NLV2).", alias="providerId")
-    display_name: Optional[StrictStr] = Field(default=None, description="Human-readable account name. Required for non-NLV2 providers.", alias="displayName")
-    creds: Union[StrictBytes, StrictStr] = Field(description="Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /exchange_accounts/credentials_public_key.")
-    api_key: StrictStr = Field(description="Account-level API key.", alias="apiKey")
-    main_account_id: Optional[StrictStr] = Field(default=None, description="Parent main account ID for sub-account creation. Not allowed for NLV2 providers.", alias="mainAccountId")
-    account_id: Optional[StrictStr] = Field(default=None, description="Optional provider-side account ID to associate with the created account.", alias="accountId")
-    on_premise_server_id: Optional[StrictStr] = Field(default=None, description="On-premise server ID for self-hosted integrations.", alias="onPremiseServerId")
-    __properties: ClassVar[List[str]] = ["providerId", "displayName", "creds", "apiKey", "mainAccountId", "accountId", "onPremiseServerId"]
+    account_id: StrictStr = Field(description="ID of the created account.", alias="accountId")
+    name: StrictStr = Field(description="Human-readable account name.")
+    parent_account_id: Optional[StrictStr] = Field(default=None, description="Parent account ID — present only for sub-accounts in an NLV2 hierarchy.", alias="parentAccountId")
+    status: ConnectedAccountApprovalStatus
+    __properties: ClassVar[List[str]] = ["accountId", "name", "parentAccountId", "status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +52,7 @@ class CreateConnectedAccountRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateConnectedAccountRequest from a JSON string"""
+        """Create an instance of AddedConnectedAccountItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,7 +77,7 @@ class CreateConnectedAccountRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateConnectedAccountRequest from a dict"""
+        """Create an instance of AddedConnectedAccountItem from a dict"""
         if obj is None:
             return None
 
@@ -87,13 +85,10 @@ class CreateConnectedAccountRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "providerId": obj.get("providerId"),
-            "displayName": obj.get("displayName"),
-            "creds": obj.get("creds"),
-            "apiKey": obj.get("apiKey"),
-            "mainAccountId": obj.get("mainAccountId"),
             "accountId": obj.get("accountId"),
-            "onPremiseServerId": obj.get("onPremiseServerId")
+            "name": obj.get("name"),
+            "parentAccountId": obj.get("parentAccountId"),
+            "status": obj.get("status")
         })
         return _obj
 

@@ -15,11 +15,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.created_connected_account_item import CreatedConnectedAccountItem
+from fireblocks.models.add_connected_account_response import AddConnectedAccountResponse
 
 
-class TestCreatedConnectedAccountItem(unittest.TestCase):
-    """CreatedConnectedAccountItem unit test stubs"""
+class TestAddConnectedAccountResponse(unittest.TestCase):
+    """AddConnectedAccountResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,31 +27,26 @@ class TestCreatedConnectedAccountItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreatedConnectedAccountItem:
-        """Test CreatedConnectedAccountItem
+    def make_instance(self, include_optional) -> AddConnectedAccountResponse:
+        """Test AddConnectedAccountResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `CreatedConnectedAccountItem`
+        # uncomment below to create an instance of `AddConnectedAccountResponse`
         """
-        model = CreatedConnectedAccountItem()
+        model = AddConnectedAccountResponse()
         if include_optional:
-            return CreatedConnectedAccountItem(
-                account_id = 'acc-789012',
-                name = 'My Exchange Account',
-                parent_account_id = 'acc-parent-001',
-                status = 'WAITING_FOR_APPROVAL'
+            return AddConnectedAccountResponse(
+                accounts = [{"accountId":"acc-789012","name":"My Exchange Account","status":"WAITING_FOR_APPROVAL"}]
             )
         else:
-            return CreatedConnectedAccountItem(
-                account_id = 'acc-789012',
-                name = 'My Exchange Account',
-                status = 'WAITING_FOR_APPROVAL',
+            return AddConnectedAccountResponse(
+                accounts = [{"accountId":"acc-789012","name":"My Exchange Account","status":"WAITING_FOR_APPROVAL"}],
         )
         """
 
-    def testCreatedConnectedAccountItem(self):
-        """Test CreatedConnectedAccountItem"""
+    def testAddConnectedAccountResponse(self):
+        """Test AddConnectedAccountResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

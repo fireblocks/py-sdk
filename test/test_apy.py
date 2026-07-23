@@ -39,7 +39,8 @@ class TestApy(unittest.TestCase):
             return Apy(
                 native = 4.25,
                 gross = 4.4,
-                net = 4.05
+                net = 4.05,
+                supply_incentive_apy = 0.5
             )
         else:
             return Apy(

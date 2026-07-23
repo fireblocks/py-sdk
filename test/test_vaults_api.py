@@ -97,6 +97,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_disable_usdc_gateway_deposit_automation_schedule_beta(self) -> None:
+        """Test case for disable_usdc_gateway_deposit_automation_schedule_beta
+
+        Stop a USDC Gateway deposit automation's schedule
+        """
+        pass
+
     def test_get_asset_wallets(self) -> None:
         """Test case for get_asset_wallets
 
@@ -157,6 +164,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for get_unspent_inputs
 
         Get UTXO unspent inputs information
+        """
+        pass
+
+    def test_get_usdc_gateway_deposit_automation_beta(self) -> None:
+        """Test case for get_usdc_gateway_deposit_automation_beta
+
+        Read the USDC Gateway deposit automations for a vault account
         """
         pass
 
@@ -223,6 +237,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_set_usdc_gateway_deposit_automation_beta(self) -> None:
+        """Test case for set_usdc_gateway_deposit_automation_beta
+
+        Set up a USDC Gateway deposit automation for a vault account
+        """
+        pass
+
     def test_set_vault_account_auto_fuel(self) -> None:
         """Test case for set_vault_account_auto_fuel
 
@@ -241,6 +262,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for unhide_vault_account
 
         Unhide a vault account in the console
+        """
+        pass
+
+    def test_update_usdc_gateway_deposit_automation_beta(self) -> None:
+        """Test case for update_usdc_gateway_deposit_automation_beta
+
+        Change a USDC Gateway deposit automation
         """
         pass
 

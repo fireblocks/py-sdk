@@ -53,6 +53,7 @@ class TestPosition2(unittest.TestCase):
                 created_at = '2025-01-15T10:00:00Z',
                 updated_at = '2025-03-20T08:30:00Z',
                 last_synced_at = '2025-03-20T08:29:55Z',
+                last_modified_at = '2025-03-19T14:00:00Z',
                 available_actions = ["DEPOSIT","WITHDRAW"],
                 var_yield = '1.23'
             )

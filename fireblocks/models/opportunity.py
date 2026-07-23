@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.apy import Apy
 from fireblocks.models.earn_asset import EarnAsset
+from fireblocks.models.earn_curator import EarnCurator
+from fireblocks.models.earn_metadata import EarnMetadata
 from fireblocks.models.exposure import Exposure
 from typing import Optional, Set
 from typing_extensions import Self
@@ -41,13 +43,17 @@ class Opportunity(BaseModel):
     principal_asset: Optional[EarnAsset] = Field(default=None, description="Underlying token the user deposits (principal).", alias="principalAsset")
     position_asset: Optional[EarnAsset] = Field(default=None, description="Token representing the user’s position in the protocol (e.g. vault share).", alias="positionAsset")
     total_assets: Optional[StrictStr] = Field(default=None, description="Human-readable total value locked / assets in the opportunity.", alias="totalAssets")
+    total_assets_usd: Optional[StrictStr] = Field(default=None, description="USD-denominated total assets / TVL.", alias="totalAssetsUsd")
     liquidity: Optional[StrictStr] = Field(default=None, description="Human-readable available liquidity.")
+    liquidity_usd: Optional[StrictStr] = Field(default=None, description="USD-denominated available liquidity.", alias="liquidityUsd")
     apy: Optional[Apy] = Field(default=None, description="APY breakdown; values are percentages (e.g. 4.25 means 4.25%).")
     performance_fee: Optional[StrictStr] = Field(default=None, description="Performance fee as a human-readable decimal string.", alias="performanceFee")
     management_fee: Optional[StrictStr] = Field(default=None, description="Management fee as a human-readable decimal string.", alias="managementFee")
     exposure_type: Optional[StrictStr] = Field(default=None, description="What the `exposure` rows represent; `UNSPECIFIED` when there is no exposure.", alias="exposureType")
     exposure: Optional[Annotated[List[Exposure], Field(min_length=0, max_length=20)]] = Field(default=None, description="Per-asset exposure breakdown (vault allocation slices, top 20 by USD notional). Empty when not applicable.")
-    __properties: ClassVar[List[str]] = ["id", "providerId", "type", "chainId", "address", "name", "symbol", "principalAsset", "positionAsset", "totalAssets", "liquidity", "apy", "performanceFee", "managementFee", "exposureType", "exposure"]
+    curator: Optional[EarnCurator] = Field(default=None, description="Curator information for Morpho vaults.")
+    metadata: Optional[EarnMetadata] = Field(default=None, description="Protocol-level metadata (display name and logo).")
+    __properties: ClassVar[List[str]] = ["id", "providerId", "type", "chainId", "address", "name", "symbol", "principalAsset", "positionAsset", "totalAssets", "totalAssetsUsd", "liquidity", "liquidityUsd", "apy", "performanceFee", "managementFee", "exposureType", "exposure", "curator", "metadata"]
 
     @field_validator('provider_id')
     def provider_id_validate_enum(cls, value):
@@ -134,6 +140,12 @@ class Opportunity(BaseModel):
                 if _item_exposure:
                     _items.append(_item_exposure.to_dict())
             _dict['exposure'] = _items
+        # override the default output from pydantic by calling `to_dict()` of curator
+        if self.curator:
+            _dict['curator'] = self.curator.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -156,12 +168,16 @@ class Opportunity(BaseModel):
             "principalAsset": EarnAsset.from_dict(obj["principalAsset"]) if obj.get("principalAsset") is not None else None,
             "positionAsset": EarnAsset.from_dict(obj["positionAsset"]) if obj.get("positionAsset") is not None else None,
             "totalAssets": obj.get("totalAssets"),
+            "totalAssetsUsd": obj.get("totalAssetsUsd"),
             "liquidity": obj.get("liquidity"),
+            "liquidityUsd": obj.get("liquidityUsd"),
             "apy": Apy.from_dict(obj["apy"]) if obj.get("apy") is not None else None,
             "performanceFee": obj.get("performanceFee"),
             "managementFee": obj.get("managementFee"),
             "exposureType": obj.get("exposureType"),
-            "exposure": [Exposure.from_dict(_item) for _item in obj["exposure"]] if obj.get("exposure") is not None else None
+            "exposure": [Exposure.from_dict(_item) for _item in obj["exposure"]] if obj.get("exposure") is not None else None,
+            "curator": EarnCurator.from_dict(obj["curator"]) if obj.get("curator") is not None else None,
+            "metadata": EarnMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

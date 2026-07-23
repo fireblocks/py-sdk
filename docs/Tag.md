@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **is_protected** | **bool** | Indication if the tag is a protected tag | [default to False]
 **updated_at** | **float** | The date and time the tag was last updated | 
 **type** | [**TagType**](TagType.md) |  | [optional] 
+**allowed_entity_types** | **List[str]** | The entity types this tag may be attached to. Tags created before this field was introduced read back as [&#39;vault_account&#39;]. Known values: vault_account (default), contact. | [optional] 
 **pending_approval_request** | [**ApprovalRequest**](ApprovalRequest.md) |  | [optional] 
 
 ## Example

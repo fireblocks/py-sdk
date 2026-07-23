@@ -15,12 +15,16 @@ Name | Type | Description | Notes
 **principal_asset** | [**EarnAsset**](EarnAsset.md) | Underlying token the user deposits (principal). | [optional] 
 **position_asset** | [**EarnAsset**](EarnAsset.md) | Token representing the user’s position in the protocol (e.g. vault share). | [optional] 
 **total_assets** | **str** | Human-readable total value locked / assets in the opportunity. | [optional] 
+**total_assets_usd** | **str** | USD-denominated total assets / TVL. | [optional] 
 **liquidity** | **str** | Human-readable available liquidity. | [optional] 
+**liquidity_usd** | **str** | USD-denominated available liquidity. | [optional] 
 **apy** | [**Apy**](Apy.md) | APY breakdown; values are percentages (e.g. 4.25 means 4.25%). | [optional] 
 **performance_fee** | **str** | Performance fee as a human-readable decimal string. | [optional] 
 **management_fee** | **str** | Management fee as a human-readable decimal string. | [optional] 
 **exposure_type** | **str** | What the &#x60;exposure&#x60; rows represent; &#x60;UNSPECIFIED&#x60; when there is no exposure. | [optional] 
 **exposure** | [**List[Exposure]**](Exposure.md) | Per-asset exposure breakdown (vault allocation slices, top 20 by USD notional). Empty when not applicable. | [optional] 
+**curator** | [**EarnCurator**](EarnCurator.md) | Curator information for Morpho vaults. | [optional] 
+**metadata** | [**EarnMetadata**](EarnMetadata.md) | Protocol-level metadata (display name and logo). | [optional] 
 
 ## Example
 

@@ -18,18 +18,36 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from fireblocks.models.aml_alert import AmlAlert
+from fireblocks.models.aml_bypass_reason_enum import AmlBypassReasonEnum
+from fireblocks.models.aml_matched_rule import AmlMatchedRule
+from fireblocks.models.screening_status_enum import ScreeningStatusEnum
+from fireblocks.models.screening_verdict_enum import ScreeningVerdictEnum
 from typing import Optional, Set
 from typing_extensions import Self
 
 class AmlScreeningResult(BaseModel):
     """
-    The result of the AML screening.
+    The result of the AML screening. Mirrors the output of the developer-api transaction formatter (IFormattedAmlResult). Not all fields are present in every response — the set depends on the AML provider and screening flow. 
     """ # noqa: E501
-    provider: Optional[StrictStr] = None
-    payload: Optional[Dict[str, Any]] = None
-    __properties: ClassVar[List[str]] = ["provider", "payload"]
+    provider: Optional[StrictStr] = Field(default=None, description="The AML provider name. Known values: CHAINALYSIS, ELLIPTIC, CHAINALYSIS_V2, ELLIPTIC_HOLISTIC, BYORK_SLITE, BYORK_LITE, NONE. ")
+    payload: Optional[Dict[str, Any]] = Field(default=None, description="The raw, unmodified screening response from the provider. Structure varies per provider. ")
+    verdict: Optional[ScreeningVerdictEnum] = None
+    screening_status: Optional[ScreeningStatusEnum] = Field(default=None, alias="screeningStatus")
+    bypass_reason: Optional[AmlBypassReasonEnum] = Field(default=None, alias="bypassReason")
+    timestamp: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp in milliseconds when the screening result was generated.")
+    customer_ref_id: Optional[StrictStr] = Field(default=None, description="Customer-provided reference identifier for tracking.", alias="customerRefId")
+    external_id: Optional[StrictStr] = Field(default=None, description="External identifier for the screening (provider-specific).", alias="externalId")
+    category: Optional[StrictStr] = Field(default=None, description="Risk category classification. The available categories are subject to change depending on the provider. ")
+    category_id: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Numeric identifier for the risk category.", alias="categoryId")
+    risk: Optional[StrictStr] = Field(default=None, description="Provider-specific risk level. Values vary by provider.")
+    dest_address: Optional[StrictStr] = Field(default=None, description="The destination blockchain address associated with the screening.", alias="destAddress")
+    matched_rule: Optional[AmlMatchedRule] = Field(default=None, alias="matchedRule")
+    matched_prescreening_rule: Optional[AmlMatchedRule] = Field(default=None, alias="matchedPrescreeningRule")
+    matched_alert: Optional[AmlAlert] = Field(default=None, alias="matchedAlert")
+    __properties: ClassVar[List[str]] = ["provider", "payload", "verdict", "screeningStatus", "bypassReason", "timestamp", "customerRefId", "externalId", "category", "categoryId", "risk", "destAddress", "matchedRule", "matchedPrescreeningRule", "matchedAlert"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +88,15 @@ class AmlScreeningResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of matched_rule
+        if self.matched_rule:
+            _dict['matchedRule'] = self.matched_rule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of matched_prescreening_rule
+        if self.matched_prescreening_rule:
+            _dict['matchedPrescreeningRule'] = self.matched_prescreening_rule.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of matched_alert
+        if self.matched_alert:
+            _dict['matchedAlert'] = self.matched_alert.to_dict()
         return _dict
 
     @classmethod
@@ -83,7 +110,20 @@ class AmlScreeningResult(BaseModel):
 
         _obj = cls.model_validate({
             "provider": obj.get("provider"),
-            "payload": obj.get("payload")
+            "payload": obj.get("payload"),
+            "verdict": obj.get("verdict"),
+            "screeningStatus": obj.get("screeningStatus"),
+            "bypassReason": obj.get("bypassReason"),
+            "timestamp": obj.get("timestamp"),
+            "customerRefId": obj.get("customerRefId"),
+            "externalId": obj.get("externalId"),
+            "category": obj.get("category"),
+            "categoryId": obj.get("categoryId"),
+            "risk": obj.get("risk"),
+            "destAddress": obj.get("destAddress"),
+            "matchedRule": AmlMatchedRule.from_dict(obj["matchedRule"]) if obj.get("matchedRule") is not None else None,
+            "matchedPrescreeningRule": AmlMatchedRule.from_dict(obj["matchedPrescreeningRule"]) if obj.get("matchedPrescreeningRule") is not None else None,
+            "matchedAlert": AmlAlert.from_dict(obj["matchedAlert"]) if obj.get("matchedAlert") is not None else None
         })
         return _obj
 

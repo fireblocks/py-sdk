@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **provider_id** | **str** | Integration key identifying the provider (e.g. BINANCE, KINGDOM_BANK, GEMINI_NLV2). | 
 **display_name** | **str** | Human-readable account name. Required for non-NLV2 providers. | [optional] 
-**creds** | **bytearray** | Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /exchange_accounts/credentials_public_key. | 
+**creds** | **bytearray** | Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /connected_accounts/credentials/public_key. | 
 **api_key** | **str** | Account-level API key. | 
 **main_account_id** | **str** | Parent main account ID for sub-account creation. Not allowed for NLV2 providers. | [optional] 
 **account_id** | **str** | Optional provider-side account ID to associate with the created account. | [optional] 

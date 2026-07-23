@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **native** | **float** | APY in native format (before fees), as a percentage (e.g. 4.25 means 4.25%, not 0.0425). | [optional] 
 **gross** | **float** | Gross APY before fees, as a percentage (e.g. 4.25 means 4.25%, not 0.0425). | [optional] 
 **net** | **float** | Net APY after fees, as a percentage (e.g. 4.25 means 4.25%, not 0.0425). | [optional] 
+**supply_incentive_apy** | **float** | Additional incentive APY from reward programs (e.g. Merkl rewards on Aave), as a percentage. Only present when the opportunity has active incentives. | [optional] 
 
 ## Example
 

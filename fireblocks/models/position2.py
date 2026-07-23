@@ -43,9 +43,10 @@ class Position2(BaseModel):
     created_at: StrictStr = Field(description="Creation time (ISO-8601).", alias="createdAt")
     updated_at: StrictStr = Field(description="Last update time (ISO-8601).", alias="updatedAt")
     last_synced_at: Optional[StrictStr] = Field(default=None, description="Last successful on-chain sync time (ISO-8601).", alias="lastSyncedAt")
+    last_modified_at: Optional[StrictStr] = Field(default=None, description="Timestamp of the last user-triggered action on this position (ISO-8601). Empty if the user has never interacted with it.", alias="lastModifiedAt")
     available_actions: List[StrictStr] = Field(description="Actions the API allows next for this position.", alias="availableActions")
     var_yield: Optional[StrictStr] = Field(default=None, description="Accrued yield in principal token units (decimal string). Only present for Morpho positions.", alias="yield")
-    __properties: ClassVar[List[str]] = ["id", "status", "inFlight", "positionType", "vaultAccountId", "opportunityId", "chainId", "providerId", "origin", "principalAssetId", "positionAssetId", "principalBalance", "positionBalance", "createdAt", "updatedAt", "lastSyncedAt", "availableActions", "yield"]
+    __properties: ClassVar[List[str]] = ["id", "status", "inFlight", "positionType", "vaultAccountId", "opportunityId", "chainId", "providerId", "origin", "principalAssetId", "positionAssetId", "principalBalance", "positionBalance", "createdAt", "updatedAt", "lastSyncedAt", "lastModifiedAt", "availableActions", "yield"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -150,6 +151,7 @@ class Position2(BaseModel):
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
             "lastSyncedAt": obj.get("lastSyncedAt"),
+            "lastModifiedAt": obj.get("lastModifiedAt"),
             "availableActions": obj.get("availableActions"),
             "yield": obj.get("yield")
         })

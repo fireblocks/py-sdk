@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **created_at** | **str** | Creation time (ISO-8601). | 
 **updated_at** | **str** | Last update time (ISO-8601). | 
 **last_synced_at** | **str** | Last successful on-chain sync time (ISO-8601). | [optional] 
+**last_modified_at** | **str** | Timestamp of the last user-triggered action on this position (ISO-8601). Empty if the user has never interacted with it. | [optional] 
 **available_actions** | **List[str]** | Actions the API allows next for this position. | 
 **var_yield** | **str** | Accrued yield in principal token units (decimal string). Only present for Morpho positions. | [optional] 
 

@@ -584,6 +584,7 @@ class TagsApi:
         include_pending_approvals_info: Annotated[Optional[StrictBool], Field(description="Whether to include pending approval requests info.")] = None,
         is_protected: Optional[StrictBool] = None,
         type: Annotated[Optional[List[TagType]], Field(description="Filter by tag type")] = None,
+        allowed_entity_type: Annotated[Optional[StrictStr], Field(description="Filter tags whose allow-list contains this entity type. Known values: vault_account, contact.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -615,6 +616,8 @@ class TagsApi:
         :type is_protected: bool
         :param type: Filter by tag type
         :type type: List[TagType]
+        :param allowed_entity_type: Filter tags whose allow-list contains this entity type. Known values: vault_account, contact.
+        :type allowed_entity_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -646,6 +649,7 @@ class TagsApi:
             include_pending_approvals_info=include_pending_approvals_info,
             is_protected=is_protected,
             type=type,
+            allowed_entity_type=allowed_entity_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -671,6 +675,7 @@ class TagsApi:
         include_pending_approvals_info,
         is_protected,
         type,
+        allowed_entity_type,
         _request_auth,
         _content_type,
         _headers,
@@ -722,6 +727,10 @@ class TagsApi:
         if type is not None:
             
             _query_params.append(('type', type))
+            
+        if allowed_entity_type is not None:
+            
+            _query_params.append(('allowedEntityType', allowed_entity_type))
             
         # process the header parameters
         # process the form parameters

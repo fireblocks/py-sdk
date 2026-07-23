@@ -16,6 +16,7 @@ from fireblocks.client_configuration import ClientConfiguration
 
 from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
+from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import (
@@ -28,7 +29,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
-from fireblocks.api.earn_beta_api import EarnBetaApi
+from fireblocks.api.earn_api import EarnApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
@@ -45,6 +46,7 @@ from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
+from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
@@ -79,6 +81,7 @@ class Fireblocks:
         # APIs
         self._api_user = None
         self._audit_logs = None
+        self._blockchain_link_beta = None
         self._blockchains_assets = None
         self._compliance = None
         self._compliance_screening_configuration = None
@@ -89,7 +92,7 @@ class Fireblocks:
         self._contracts = None
         self._cosigners_beta = None
         self._deployed_contracts = None
-        self._earn_beta = None
+        self._earn = None
         self._embedded_wallets = None
         self._exchange_accounts = None
         self._external_wallets = None
@@ -106,6 +109,7 @@ class Fireblocks:
         self._onchain_data = None
         self._payments_payout = None
         self._policy_editor_v2 = None
+        self._policy_editor_v2_beta = None
         self._policy_editor_beta = None
         self._reports_beta = None
         self._reset_device = None
@@ -148,6 +152,12 @@ class Fireblocks:
         if self._audit_logs is None:
             self._audit_logs = AuditLogsApi(self._api_client)
         return self._audit_logs
+
+    @property
+    def blockchain_link_beta(self) -> BlockchainLinkBetaApi:
+        if self._blockchain_link_beta is None:
+            self._blockchain_link_beta = BlockchainLinkBetaApi(self._api_client)
+        return self._blockchain_link_beta
 
     @property
     def blockchains_assets(self) -> BlockchainsAssetsApi:
@@ -212,10 +222,10 @@ class Fireblocks:
         return self._deployed_contracts
 
     @property
-    def earn_beta(self) -> EarnBetaApi:
-        if self._earn_beta is None:
-            self._earn_beta = EarnBetaApi(self._api_client)
-        return self._earn_beta
+    def earn(self) -> EarnApi:
+        if self._earn is None:
+            self._earn = EarnApi(self._api_client)
+        return self._earn
 
     @property
     def embedded_wallets(self) -> EmbeddedWalletsApi:
@@ -312,6 +322,12 @@ class Fireblocks:
         if self._policy_editor_v2 is None:
             self._policy_editor_v2 = PolicyEditorV2Api(self._api_client)
         return self._policy_editor_v2
+
+    @property
+    def policy_editor_v2_beta(self) -> PolicyEditorV2BetaApi:
+        if self._policy_editor_v2_beta is None:
+            self._policy_editor_v2_beta = PolicyEditorV2BetaApi(self._api_client)
+        return self._policy_editor_v2_beta
 
     @property
     def policy_editor_beta(self) -> PolicyEditorBetaApi:

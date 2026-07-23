@@ -31,6 +31,7 @@ from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_payer_info import FeePayerInfo
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
 from fireblocks.models.network_record import NetworkRecord
+from fireblocks.models.program_call_decoded_data_item import ProgramCallDecodedDataItem
 from fireblocks.models.reward_info import RewardInfo
 from fireblocks.models.signed_message import SignedMessage
 from fireblocks.models.source_transfer_peer_path_response import SourceTransferPeerPathResponse
@@ -62,6 +63,7 @@ class TransactionResponse(BaseModel):
     destination_address_description: Optional[StrictStr] = Field(default=None, description="Description of the address.", alias="destinationAddressDescription")
     destination_tag: Optional[StrictStr] = Field(default=None, description="Destination address tag for XRP, used as memo for EOS/XLM, or Bank Transfer Description for the fiat provider BLINC (by BCB Group).", alias="destinationTag")
     contract_call_decoded_data: Optional[TransactionResponseContractCallDecodedData] = Field(default=None, alias="contractCallDecodedData")
+    program_call_decoded_data: Optional[List[ProgramCallDecodedDataItem]] = Field(default=None, description="Decoded instruction list for `PROGRAM_CALL` (Solana) operations. Each entry represents one instruction in the transaction, in execution order. Fireblocks-injected instructions (e.g. `AdvanceNonceAccount`, `ComputeBudget`) appear first, followed by the original dApp instructions.", alias="programCallDecodedData")
     amount_info: Optional[AmountInfo] = Field(default=None, alias="amountInfo")
     treat_as_gross_amount: Optional[StrictBool] = Field(default=None, description="For transactions initiated via this Fireblocks workspace, when set to `true`, the fee is deducted from the requested amount.  **Note**: This parameter can only be considered if a transaction's asset is a base asset, such as ETH or MATIC. If the asset can't be used for transaction fees, like USDC, this parameter is ignored and the fee is deducted from the relevant base asset wallet in the source account.", alias="treatAsGrossAmount")
     fee_info: Optional[FeeInfo] = Field(default=None, alias="feeInfo")
@@ -104,7 +106,7 @@ class TransactionResponse(BaseModel):
     replaced_tx_hash: Optional[StrictStr] = Field(default=None, description="if the transaction is a replace by fee (RBF) transaction, this is the hash of the transsaction that was replaced", alias="replacedTxHash")
     nonce: Optional[StrictStr] = Field(default=None, description="blockchain nonce for the transaction")
     blockchain_info: Optional[Dict[str, Any]] = Field(default=None, description="A JSON used to store additional data that is blockchain-specific.", alias="blockchainInfo")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "programCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -171,6 +173,13 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of contract_call_decoded_data
         if self.contract_call_decoded_data:
             _dict['contractCallDecodedData'] = self.contract_call_decoded_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in program_call_decoded_data (list)
+        _items = []
+        if self.program_call_decoded_data:
+            for _item_program_call_decoded_data in self.program_call_decoded_data:
+                if _item_program_call_decoded_data:
+                    _items.append(_item_program_call_decoded_data.to_dict())
+            _dict['programCallDecodedData'] = _items
         # override the default output from pydantic by calling `to_dict()` of amount_info
         if self.amount_info:
             _dict['amountInfo'] = self.amount_info.to_dict()
@@ -254,6 +263,7 @@ class TransactionResponse(BaseModel):
             "destinationAddressDescription": obj.get("destinationAddressDescription"),
             "destinationTag": obj.get("destinationTag"),
             "contractCallDecodedData": TransactionResponseContractCallDecodedData.from_dict(obj["contractCallDecodedData"]) if obj.get("contractCallDecodedData") is not None else None,
+            "programCallDecodedData": [ProgramCallDecodedDataItem.from_dict(_item) for _item in obj["programCallDecodedData"]] if obj.get("programCallDecodedData") is not None else None,
             "amountInfo": AmountInfo.from_dict(obj["amountInfo"]) if obj.get("amountInfo") is not None else None,
             "treatAsGrossAmount": obj.get("treatAsGrossAmount"),
             "feeInfo": FeeInfo.from_dict(obj["feeInfo"]) if obj.get("feeInfo") is not None else None,

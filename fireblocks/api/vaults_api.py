@@ -22,6 +22,8 @@ from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field
 from typing import List, Optional, Union
 from typing_extensions import Annotated
 from fireblocks.models.address_reverse_lookup_response import AddressReverseLookupResponse
+from fireblocks.models.automation_settings_request import AutomationSettingsRequest
+from fireblocks.models.automation_settings_response import AutomationSettingsResponse
 from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
 from fireblocks.models.create_assets_request import CreateAssetsRequest
@@ -31,6 +33,7 @@ from fireblocks.models.create_multiple_deposit_addresses_request import CreateMu
 from fireblocks.models.create_multiple_vault_accounts_job_status import CreateMultipleVaultAccountsJobStatus
 from fireblocks.models.create_vault_account_request import CreateVaultAccountRequest
 from fireblocks.models.create_vault_asset_response import CreateVaultAssetResponse
+from fireblocks.models.get_automation_settings_response import GetAutomationSettingsResponse
 from fireblocks.models.get_max_bip_index_used_response import GetMaxBipIndexUsedResponse
 from fireblocks.models.get_max_spendable_amount_response import GetMaxSpendableAmountResponse
 from fireblocks.models.job_created import JobCreated
@@ -38,10 +41,12 @@ from fireblocks.models.paginated_address_response import PaginatedAddressRespons
 from fireblocks.models.paginated_asset_wallet_response import PaginatedAssetWalletResponse
 from fireblocks.models.public_key_information import PublicKeyInformation
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
+from fireblocks.models.save_automation_settings_response import SaveAutomationSettingsResponse
 from fireblocks.models.set_auto_fuel_request import SetAutoFuelRequest
 from fireblocks.models.set_customer_ref_id_for_address_request import SetCustomerRefIdForAddressRequest
 from fireblocks.models.set_customer_ref_id_request import SetCustomerRefIdRequest
 from fireblocks.models.unspent_inputs_response import UnspentInputsResponse
+from fireblocks.models.update_automation_settings_request import UpdateAutomationSettingsRequest
 from fireblocks.models.update_vault_account_asset_address_request import UpdateVaultAccountAssetAddressRequest
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
 from fireblocks.models.usdc_gateway_wallet_info_response import UsdcGatewayWalletInfoResponse
@@ -1580,6 +1585,143 @@ class VaultsApi:
 
 
     @validate_call
+    def disable_usdc_gateway_deposit_automation_schedule_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        automation_id: Annotated[StrictStr, Field(description="The ID of the deposit automation, returned when it was created or read")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[None]]:
+        """Stop a USDC Gateway deposit automation's schedule
+
+        Stops the schedule for an existing deposit automation. The automation itself stays configured, only its schedule stops. Turn it back on later with PATCH, without setting up the automation again from scratch. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param automation_id: The ID of the deposit automation, returned when it was created or read (required)
+        :type automation_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="disable_usdc_gateway_deposit_automation_schedule_beta", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="disable_usdc_gateway_deposit_automation_schedule_beta", param_name="automation_id", param_value=automation_id)
+
+        _param = self._disable_usdc_gateway_deposit_automation_schedule_beta_serialize(
+            vault_account_id=vault_account_id,
+            automation_id=automation_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _disable_usdc_gateway_deposit_automation_schedule_beta_serialize(
+        self,
+        vault_account_id,
+        automation_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if automation_id is not None:
+            _path_params['automationId'] = automation_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation/{automationId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_asset_wallets(
         self,
         total_amount_larger_than: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="When specified, only vault wallets with total balance greater than this amount are returned.")] = None,
@@ -2154,6 +2296,12 @@ class VaultsApi:
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account, or 'default' for the default vault account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
         manual_signging: Annotated[Optional[StrictBool], Field(description="False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device.")] = None,
+        include_all_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        include_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        exclude_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        min_amount: Annotated[Optional[StrictStr], Field(description="Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        max_amount: Annotated[Optional[StrictStr], Field(description="Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2177,6 +2325,18 @@ class VaultsApi:
         :type asset_id: str
         :param manual_signging: False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device.
         :type manual_signging: bool
+        :param include_all_labels: Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type include_all_labels: List[str]
+        :param include_any_labels: Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type include_any_labels: List[str]
+        :param exclude_any_labels: Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type exclude_any_labels: List[str]
+        :param address: Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type address: str
+        :param min_amount: Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type min_amount: str
+        :param max_amount: Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :type max_amount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2206,6 +2366,12 @@ class VaultsApi:
             vault_account_id=vault_account_id,
             asset_id=asset_id,
             manual_signging=manual_signging,
+            include_all_labels=include_all_labels,
+            include_any_labels=include_any_labels,
+            exclude_any_labels=exclude_any_labels,
+            address=address,
+            min_amount=min_amount,
+            max_amount=max_amount,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2228,6 +2394,12 @@ class VaultsApi:
         vault_account_id,
         asset_id,
         manual_signging,
+        include_all_labels,
+        include_any_labels,
+        exclude_any_labels,
+        address,
+        min_amount,
+        max_amount,
         _request_auth,
         _content_type,
         _headers,
@@ -2237,6 +2409,9 @@ class VaultsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'includeAllLabels': 'multi',
+            'includeAnyLabels': 'multi',
+            'excludeAnyLabels': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2257,6 +2432,30 @@ class VaultsApi:
         if manual_signging is not None:
             
             _query_params.append(('manualSignging', manual_signging))
+            
+        if include_all_labels is not None:
+            
+            _query_params.append(('includeAllLabels', include_all_labels))
+            
+        if include_any_labels is not None:
+            
+            _query_params.append(('includeAnyLabels', include_any_labels))
+            
+        if exclude_any_labels is not None:
+            
+            _query_params.append(('excludeAnyLabels', exclude_any_labels))
+            
+        if address is not None:
+            
+            _query_params.append(('address', address))
+            
+        if min_amount is not None:
+            
+            _query_params.append(('minAmount', min_amount))
+            
+        if max_amount is not None:
+            
+            _query_params.append(('maxAmount', max_amount))
             
         # process the header parameters
         # process the form parameters
@@ -2948,6 +3147,135 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/accounts/{vaultAccountId}/{assetId}/unspent_inputs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_usdc_gateway_deposit_automation_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[GetAutomationSettingsResponse]]:
+        """Read the USDC Gateway deposit automations for a vault account
+
+        Returns the USDC Gateway deposit automations configured for the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_usdc_gateway_deposit_automation_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._get_usdc_gateway_deposit_automation_beta_serialize(
+            vault_account_id=vault_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetAutomationSettingsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_usdc_gateway_deposit_automation_beta_serialize(
+        self,
+        vault_account_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4233,6 +4561,162 @@ class VaultsApi:
 
 
     @validate_call
+    def set_usdc_gateway_deposit_automation_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        automation_settings_request: AutomationSettingsRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SaveAutomationSettingsResponse]]:
+        """Set up a USDC Gateway deposit automation for a vault account
+
+        Turns on automatic deposits into the USDC Gateway wallet for the given vault account, on the schedule you choose. Returns an error if an automation already exists for this vault account and asset. Use PATCH to change it instead. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param automation_settings_request: (required)
+        :type automation_settings_request: AutomationSettingsRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="set_usdc_gateway_deposit_automation_beta", param_name="vault_account_id", param_value=vault_account_id)
+
+        _param = self._set_usdc_gateway_deposit_automation_beta_serialize(
+            vault_account_id=vault_account_id,
+            automation_settings_request=automation_settings_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "SaveAutomationSettingsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _set_usdc_gateway_deposit_automation_beta_serialize(
+        self,
+        vault_account_id,
+        automation_settings_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if automation_settings_request is not None:
+            _body_params = automation_settings_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def set_vault_account_auto_fuel(
         self,
         vault_account_id: Annotated[StrictStr, Field(description="The vault account ID")],
@@ -4665,6 +5149,170 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/vault/accounts/{vaultAccountId}/unhide',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_usdc_gateway_deposit_automation_beta(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
+        automation_id: Annotated[StrictStr, Field(description="The ID of the deposit automation, returned when it was created or read")],
+        update_automation_settings_request: UpdateAutomationSettingsRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AutomationSettingsResponse]]:
+        """Change a USDC Gateway deposit automation
+
+        Changes an existing USDC Gateway deposit automation for a vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+        :param vault_account_id: The ID of the vault account (required)
+        :type vault_account_id: str
+        :param automation_id: The ID of the deposit automation, returned when it was created or read (required)
+        :type automation_id: str
+        :param update_automation_settings_request: (required)
+        :type update_automation_settings_request: UpdateAutomationSettingsRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_usdc_gateway_deposit_automation_beta", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="update_usdc_gateway_deposit_automation_beta", param_name="automation_id", param_value=automation_id)
+
+        _param = self._update_usdc_gateway_deposit_automation_beta_serialize(
+            vault_account_id=vault_account_id,
+            automation_id=automation_id,
+            update_automation_settings_request=update_automation_settings_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AutomationSettingsResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _update_usdc_gateway_deposit_automation_beta_serialize(
+        self,
+        vault_account_id,
+        automation_id,
+        update_automation_settings_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if automation_id is not None:
+            _path_params['automationId'] = automation_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if update_automation_settings_request is not None:
+            _body_params = update_automation_settings_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation/{automationId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

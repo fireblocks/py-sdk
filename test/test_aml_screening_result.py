@@ -37,8 +37,36 @@ class TestAmlScreeningResult(unittest.TestCase):
         model = AmlScreeningResult()
         if include_optional:
             return AmlScreeningResult(
-                provider = '',
-                payload = None
+                provider = 'CHAINALYSIS',
+                payload = { },
+                verdict = 'PASS',
+                screening_status = 'COMPLETED',
+                bypass_reason = 'PASSED_BY_POLICY',
+                timestamp = 1774363599908,
+                customer_ref_id = 'DEFAULT',
+                external_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                category = 'EXCHANGE',
+                category_id = 5,
+                risk = 'lowRisk',
+                dest_address = '0xA2dC2490ED1DcA2D21613508fdb0c82daEAb0715',
+                matched_rule = fireblocks.models.aml_matched_rule.AmlMatchedRule(
+                    rule_id = 'rule_001', 
+                    rule_name = 'High Risk Sanctions Check', 
+                    action = 'ALLOW', ),
+                matched_prescreening_rule = fireblocks.models.aml_matched_rule.AmlMatchedRule(
+                    rule_id = 'rule_001', 
+                    rule_name = 'High Risk Sanctions Check', 
+                    action = 'ALLOW', ),
+                matched_alert = fireblocks.models.aml_alert.AmlAlert(
+                    alert_level = 'HIGH', 
+                    alert_name = 'Sanctions Match', 
+                    category = 'SANCTIONED_ENTITY', 
+                    service = 'CHAINALYSIS', 
+                    external_id = 'alert_12345', 
+                    alert_amount = 1000.5, 
+                    exposure_type = 'DIRECT', 
+                    policy_action = 'BLOCK', 
+                    category_id = 101, )
             )
         else:
             return AmlScreeningResult(

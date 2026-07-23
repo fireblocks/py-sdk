@@ -90,6 +90,13 @@ class TestConnectedAccountsBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_connected_accounts_credentials_public_key(self) -> None:
+        """Test case for get_connected_accounts_credentials_public_key
+
+        Get public key to encrypt connected account credentials
+        """
+        pass
+
     def test_rename_connected_account(self) -> None:
         """Test case for rename_connected_account
 

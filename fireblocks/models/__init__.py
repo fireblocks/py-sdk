@@ -39,6 +39,7 @@ from fireblocks.models.ach_address import AchAddress
 from fireblocks.models.ach_destination import AchDestination
 from fireblocks.models.ach_payment_info import AchPaymentInfo
 from fireblocks.models.action_record import ActionRecord
+from fireblocks.models.activate_blockchain_response import ActivateBlockchainResponse
 from fireblocks.models.active_roles_response import ActiveRolesResponse
 from fireblocks.models.adapter_processing_result import AdapterProcessingResult
 from fireblocks.models.add_abi_request_dto import AddAbiRequestDto
@@ -82,6 +83,7 @@ from fireblocks.models.allowlist_entry_status import AllowlistEntryStatus
 from fireblocks.models.allowlist_metadata import AllowlistMetadata
 from fireblocks.models.allowlist_response import AllowlistResponse
 from fireblocks.models.aml_alert import AmlAlert
+from fireblocks.models.aml_bypass_reason_enum import AmlBypassReasonEnum
 from fireblocks.models.aml_matched_rule import AmlMatchedRule
 from fireblocks.models.aml_registration_result import AmlRegistrationResult
 from fireblocks.models.aml_registration_result_full_payload import AmlRegistrationResultFullPayload
@@ -142,6 +144,8 @@ from fireblocks.models.audit_log_data import AuditLogData
 from fireblocks.models.auditor_data import AuditorData
 from fireblocks.models.authorization_groups import AuthorizationGroups
 from fireblocks.models.authorization_info import AuthorizationInfo
+from fireblocks.models.automation_settings_request import AutomationSettingsRequest
+from fireblocks.models.automation_settings_response import AutomationSettingsResponse
 from fireblocks.models.balance_history_item_dto import BalanceHistoryItemDto
 from fireblocks.models.balance_history_paged_response import BalanceHistoryPagedResponse
 from fireblocks.models.balance_history_paged_response2 import BalanceHistoryPagedResponse2
@@ -149,14 +153,20 @@ from fireblocks.models.bank_address import BankAddress
 from fireblocks.models.base_provider import BaseProvider
 from fireblocks.models.basic_address_request import BasicAddressRequest
 from fireblocks.models.block_info import BlockInfo
+from fireblocks.models.blockchain import Blockchain
 from fireblocks.models.blockchain_address import BlockchainAddress
+from fireblocks.models.blockchain_declared_properties import BlockchainDeclaredProperties
 from fireblocks.models.blockchain_destination import BlockchainDestination
+from fireblocks.models.blockchain_environment import BlockchainEnvironment
 from fireblocks.models.blockchain_explorer import BlockchainExplorer
 from fireblocks.models.blockchain_media import BlockchainMedia
 from fireblocks.models.blockchain_metadata import BlockchainMetadata
 from fireblocks.models.blockchain_not_found_error_response import BlockchainNotFoundErrorResponse
 from fireblocks.models.blockchain_onchain import BlockchainOnchain
 from fireblocks.models.blockchain_response import BlockchainResponse
+from fireblocks.models.blockchain_rpc_auth import BlockchainRpcAuth
+from fireblocks.models.blockchain_sort_field import BlockchainSortField
+from fireblocks.models.blockchain_state_filter import BlockchainStateFilter
 from fireblocks.models.blockchain_transfer import BlockchainTransfer
 from fireblocks.models.bps_fee import BpsFee
 from fireblocks.models.business_entity_type_enum import BusinessEntityTypeEnum
@@ -264,6 +274,8 @@ from fireblocks.models.create_address_request import CreateAddressRequest
 from fireblocks.models.create_address_response import CreateAddressResponse
 from fireblocks.models.create_addresses_report_request import CreateAddressesReportRequest
 from fireblocks.models.create_assets_request import CreateAssetsRequest
+from fireblocks.models.create_blockchain_request import CreateBlockchainRequest
+from fireblocks.models.create_blockchain_response import CreateBlockchainResponse
 from fireblocks.models.create_config_operation_request import CreateConfigOperationRequest
 from fireblocks.models.create_connection_request import CreateConnectionRequest
 from fireblocks.models.create_connection_response import CreateConnectionResponse
@@ -358,6 +370,8 @@ from fireblocks.models.dvn_config import DvnConfig
 from fireblocks.models.dvn_config_with_confirmations import DvnConfigWithConfirmations
 from fireblocks.models.evm_token_create_params_dto import EVMTokenCreateParamsDto
 from fireblocks.models.earn_asset import EarnAsset
+from fireblocks.models.earn_curator import EarnCurator
+from fireblocks.models.earn_metadata import EarnMetadata
 from fireblocks.models.earn_provider import EarnProvider
 from fireblocks.models.edit_gas_station_configuration_response import EditGasStationConfigurationResponse
 from fireblocks.models.embedded_wallet import EmbeddedWallet
@@ -452,7 +466,11 @@ from fireblocks.models.get_api_users_response import GetAPIUsersResponse
 from fireblocks.models.get_action_response import GetActionResponse
 from fireblocks.models.get_actions_response import GetActionsResponse
 from fireblocks.models.get_audit_logs_response import GetAuditLogsResponse
+from fireblocks.models.get_automation_settings_response import GetAutomationSettingsResponse
+from fireblocks.models.get_billing_info_response import GetBillingInfoResponse
+from fireblocks.models.get_blockchain_by_id_response import GetBlockchainByIdResponse
 from fireblocks.models.get_byork_verdict_response import GetByorkVerdictResponse
+from fireblocks.models.get_connected_accounts_credentials_public_key_response import GetConnectedAccountsCredentialsPublicKeyResponse
 from fireblocks.models.get_connections_response import GetConnectionsResponse
 from fireblocks.models.get_console_users_response import GetConsoleUsersResponse
 from fireblocks.models.get_deployable_address_request import GetDeployableAddressRequest
@@ -474,6 +492,7 @@ from fireblocks.models.get_paged_exchange_accounts_response_paging import GetPag
 from fireblocks.models.get_positions_response import GetPositionsResponse
 from fireblocks.models.get_providers_response import GetProvidersResponse
 from fireblocks.models.get_signing_key_response_dto import GetSigningKeyResponseDto
+from fireblocks.models.get_test_wallet_address_response import GetTestWalletAddressResponse
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
 from fireblocks.models.get_validation_key_response_dto import GetValidationKeyResponseDto
 from fireblocks.models.get_whitelist_ip_addresses_response import GetWhitelistIpAddressesResponse
@@ -538,6 +557,7 @@ from fireblocks.models.lei_status import LeiStatus
 from fireblocks.models.linked_tokens_count import LinkedTokensCount
 from fireblocks.models.list_assets_response import ListAssetsResponse
 from fireblocks.models.list_blockchains_response import ListBlockchainsResponse
+from fireblocks.models.list_blockchains_response2 import ListBlockchainsResponse2
 from fireblocks.models.list_legal_entities_response import ListLegalEntitiesResponse
 from fireblocks.models.list_owned_collections_response import ListOwnedCollectionsResponse
 from fireblocks.models.list_owned_tokens_response import ListOwnedTokensResponse
@@ -662,6 +682,9 @@ from fireblocks.models.policy_response import PolicyResponse
 from fireblocks.models.policy_rule import PolicyRule
 from fireblocks.models.policy_rule_check_result import PolicyRuleCheckResult
 from fireblocks.models.policy_rule_error import PolicyRuleError
+from fireblocks.models.policy_rule_quota_participant import PolicyRuleQuotaParticipant
+from fireblocks.models.policy_rule_quota_request import PolicyRuleQuotaRequest
+from fireblocks.models.policy_rule_quota_response import PolicyRuleQuotaResponse
 from fireblocks.models.policy_status import PolicyStatus
 from fireblocks.models.policy_tag import PolicyTag
 from fireblocks.models.policy_type import PolicyType
@@ -676,6 +699,7 @@ from fireblocks.models.pre_screening import PreScreening
 from fireblocks.models.prefunded_settlement import PrefundedSettlement
 from fireblocks.models.prefunded_settlement_type import PrefundedSettlementType
 from fireblocks.models.program_call_config import ProgramCallConfig
+from fireblocks.models.program_call_decoded_data_item import ProgramCallDecodedDataItem
 from fireblocks.models.provider import Provider
 from fireblocks.models.providers_list_response import ProvidersListResponse
 from fireblocks.models.public_key_information import PublicKeyInformation
@@ -727,6 +751,8 @@ from fireblocks.models.report_list_response import ReportListResponse
 from fireblocks.models.report_output_format import ReportOutputFormat
 from fireblocks.models.report_status import ReportStatus
 from fireblocks.models.report_type import ReportType
+from fireblocks.models.rescreen_transaction_request import RescreenTransactionRequest
+from fireblocks.models.rescreen_transaction_response import RescreenTransactionResponse
 from fireblocks.models.resend_by_query_request import ResendByQueryRequest
 from fireblocks.models.resend_by_query_response import ResendByQueryResponse
 from fireblocks.models.resend_failed_notifications_job_status_response import ResendFailedNotificationsJobStatusResponse
@@ -748,6 +774,7 @@ from fireblocks.models.sepa_address import SEPAAddress
 from fireblocks.models.sepa_destination import SEPADestination
 from fireblocks.models.sol_account import SOLAccount
 from fireblocks.models.sol_account_with_value import SOLAccountWithValue
+from fireblocks.models.save_automation_settings_response import SaveAutomationSettingsResponse
 from fireblocks.models.scope_item import ScopeItem
 from fireblocks.models.scope_item_failure import ScopeItemFailure
 from fireblocks.models.screening_alert_exposure_type_enum import ScreeningAlertExposureTypeEnum
@@ -765,6 +792,7 @@ from fireblocks.models.screening_policy_amount_range import ScreeningPolicyAmoun
 from fireblocks.models.screening_policy_currency import ScreeningPolicyCurrency
 from fireblocks.models.screening_policy_response import ScreeningPolicyResponse
 from fireblocks.models.screening_provider_rules_configuration_response import ScreeningProviderRulesConfigurationResponse
+from fireblocks.models.screening_status_enum import ScreeningStatusEnum
 from fireblocks.models.screening_tr_link_amount import ScreeningTRLinkAmount
 from fireblocks.models.screening_tr_link_missing_trm_decision import ScreeningTRLinkMissingTrmDecision
 from fireblocks.models.screening_tr_link_missing_trm_rule import ScreeningTRLinkMissingTrmRule
@@ -969,6 +997,7 @@ from fireblocks.models.tag_type import TagType
 from fireblocks.models.tags_paged_response import TagsPagedResponse
 from fireblocks.models.templates_paginated_response import TemplatesPaginatedResponse
 from fireblocks.models.third_party_routing import ThirdPartyRouting
+from fireblocks.models.time_based_trigger import TimeBasedTrigger
 from fireblocks.models.time_period_config import TimePeriodConfig
 from fireblocks.models.time_period_match_type import TimePeriodMatchType
 from fireblocks.models.to_collateral_transaction import ToCollateralTransaction
@@ -1073,6 +1102,7 @@ from fireblocks.models.travel_rule_validate_transaction_request import TravelRul
 from fireblocks.models.travel_rule_validate_transaction_response import TravelRuleValidateTransactionResponse
 from fireblocks.models.travel_rule_vasp_for_vault import TravelRuleVaspForVault
 from fireblocks.models.travel_rule_verdict_enum import TravelRuleVerdictEnum
+from fireblocks.models.trigger_validation_flow_response import TriggerValidationFlowResponse
 from fireblocks.models.trust_proof_of_address_create_response import TrustProofOfAddressCreateResponse
 from fireblocks.models.trust_proof_of_address_request import TrustProofOfAddressRequest
 from fireblocks.models.trust_proof_of_address_response import TrustProofOfAddressResponse
@@ -1086,6 +1116,8 @@ from fireblocks.models.unspent_input import UnspentInput
 from fireblocks.models.unspent_inputs_response import UnspentInputsResponse
 from fireblocks.models.unstake_request import UnstakeRequest
 from fireblocks.models.update_asset_user_metadata_request import UpdateAssetUserMetadataRequest
+from fireblocks.models.update_automation_settings_request import UpdateAutomationSettingsRequest
+from fireblocks.models.update_blockchain_response import UpdateBlockchainResponse
 from fireblocks.models.update_callback_handler_request import UpdateCallbackHandlerRequest
 from fireblocks.models.update_callback_handler_response import UpdateCallbackHandlerResponse
 from fireblocks.models.update_counterparty_group_request import UpdateCounterpartyGroupRequest

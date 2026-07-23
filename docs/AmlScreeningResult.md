@@ -1,13 +1,26 @@
 # AmlScreeningResult
 
-The result of the AML screening.
+The result of the AML screening. Mirrors the output of the developer-api transaction formatter (IFormattedAmlResult). Not all fields are present in every response — the set depends on the AML provider and screening flow. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**provider** | **str** |  | [optional] 
-**payload** | **object** |  | [optional] 
+**provider** | **str** | The AML provider name. Known values: CHAINALYSIS, ELLIPTIC, CHAINALYSIS_V2, ELLIPTIC_HOLISTIC, BYORK_SLITE, BYORK_LITE, NONE.  | [optional] 
+**payload** | **Dict[str, object]** | The raw, unmodified screening response from the provider. Structure varies per provider.  | [optional] 
+**verdict** | [**ScreeningVerdictEnum**](ScreeningVerdictEnum.md) |  | [optional] 
+**screening_status** | [**ScreeningStatusEnum**](ScreeningStatusEnum.md) |  | [optional] 
+**bypass_reason** | [**AmlBypassReasonEnum**](AmlBypassReasonEnum.md) |  | [optional] 
+**timestamp** | **float** | Unix timestamp in milliseconds when the screening result was generated. | [optional] 
+**customer_ref_id** | **str** | Customer-provided reference identifier for tracking. | [optional] 
+**external_id** | **str** | External identifier for the screening (provider-specific). | [optional] 
+**category** | **str** | Risk category classification. The available categories are subject to change depending on the provider.  | [optional] 
+**category_id** | **float** | Numeric identifier for the risk category. | [optional] 
+**risk** | **str** | Provider-specific risk level. Values vary by provider. | [optional] 
+**dest_address** | **str** | The destination blockchain address associated with the screening. | [optional] 
+**matched_rule** | [**AmlMatchedRule**](AmlMatchedRule.md) |  | [optional] 
+**matched_prescreening_rule** | [**AmlMatchedRule**](AmlMatchedRule.md) |  | [optional] 
+**matched_alert** | [**AmlAlert**](AmlAlert.md) |  | [optional] 
 
 ## Example
 

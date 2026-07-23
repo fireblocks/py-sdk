@@ -56,8 +56,8 @@ class MomoPaymentInfo(BaseModel):
     @field_validator('provider')
     def provider_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE']):
-            raise ValueError("must be one of enum values ('M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE')")
+        if value not in set(['M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE', 'ORANGE']):
+            raise ValueError("must be one of enum values ('M_PESA', 'AIRTEL', 'MTN', 'TIGO', 'WAVE', 'ORANGE')")
         return value
 
     model_config = ConfigDict(

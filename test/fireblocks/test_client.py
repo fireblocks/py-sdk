@@ -18,6 +18,7 @@ from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.threaded_api_client import ThreadedApiClient
 from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
+from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
@@ -28,7 +29,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
-from fireblocks.api.earn_beta_api import EarnBetaApi
+from fireblocks.api.earn_api import EarnApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
@@ -45,6 +46,7 @@ from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
+from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
@@ -86,6 +88,9 @@ def test_get_api_user(fireblocks_instance):
 def test_get_audit_logs(fireblocks_instance):
     assert isinstance(fireblocks_instance.audit_logs, AuditLogsApi)
 
+def test_get_blockchain_link_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.blockchain_link_beta, BlockchainLinkBetaApi)
+
 def test_get_blockchains_assets(fireblocks_instance):
     assert isinstance(fireblocks_instance.blockchains_assets, BlockchainsAssetsApi)
 
@@ -116,8 +121,8 @@ def test_get_cosigners_beta(fireblocks_instance):
 def test_get_deployed_contracts(fireblocks_instance):
     assert isinstance(fireblocks_instance.deployed_contracts, DeployedContractsApi)
 
-def test_get_earn_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.earn_beta, EarnBetaApi)
+def test_get_earn(fireblocks_instance):
+    assert isinstance(fireblocks_instance.earn, EarnApi)
 
 def test_get_embedded_wallets(fireblocks_instance):
     assert isinstance(fireblocks_instance.embedded_wallets, EmbeddedWalletsApi)
@@ -166,6 +171,9 @@ def test_get_payments_payout(fireblocks_instance):
 
 def test_get_policy_editor_v2(fireblocks_instance):
     assert isinstance(fireblocks_instance.policy_editor_v2, PolicyEditorV2Api)
+
+def test_get_policy_editor_v2_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.policy_editor_v2_beta, PolicyEditorV2BetaApi)
 
 def test_get_policy_editor_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.policy_editor_beta, PolicyEditorBetaApi)

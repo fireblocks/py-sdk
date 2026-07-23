@@ -41,7 +41,8 @@ class TestCreateTagRequest(unittest.TestCase):
                 description = 'Tag for VIP customers',
                 color = '#FF5733',
                 is_protected = True,
-                type = 'WALLET_POOL'
+                type = 'WALLET_POOL',
+                allowed_entity_types = ["vault_account"]
             )
         else:
             return CreateTagRequest(

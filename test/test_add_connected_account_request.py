@@ -39,7 +39,7 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
             return AddConnectedAccountRequest(
                 provider_id = 'BINANCE',
                 display_name = 'My Binance Account',
-                creds = '[B@2d385fe1',
+                creds = '[B@6ce03f94',
                 api_key = 'api_key_abc123',
                 main_account_id = 'acc-parent-001',
                 account_id = 'provider-acc-001',
@@ -48,7 +48,7 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
         else:
             return AddConnectedAccountRequest(
                 provider_id = 'BINANCE',
-                creds = '[B@2d385fe1',
+                creds = '[B@6ce03f94',
                 api_key = 'api_key_abc123',
         )
         """

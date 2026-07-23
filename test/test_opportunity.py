@@ -55,15 +55,24 @@ class TestOpportunity(unittest.TestCase):
                     decimals = 6, 
                     asset_id = 'USDC_ETH', ),
                 total_assets = '50000000.0',
+                total_assets_usd = '50000000.00',
                 liquidity = '1200000.0',
+                liquidity_usd = '1200000.00',
                 apy = fireblocks.models.apy.Apy(
                     native = 4.25, 
                     gross = 4.4, 
-                    net = 4.05, ),
+                    net = 4.05, 
+                    supply_incentive_apy = 0.5, ),
                 performance_fee = '0.10',
                 management_fee = '0.01',
                 exposure_type = 'VAULT_ALLOCATION',
-                exposure = []
+                exposure = [],
+                curator = fireblocks.models.earn_curator.EarnCurator(
+                    name = 'Sentora', 
+                    icon_url = 'https://example.com/sentora-icon.png', ),
+                metadata = fireblocks.models.earn_metadata.EarnMetadata(
+                    name = 'Aave', 
+                    icon_url = 'https://example.com/aave-icon.png', )
             )
         else:
             return Opportunity(

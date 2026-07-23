@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_connected_account_rates**](ConnectedAccountsBetaApi.md#get_connected_account_rates) | **GET** /connected_accounts/{accountId}/rates | Get exchange rates for an account
 [**get_connected_account_trading_pairs**](ConnectedAccountsBetaApi.md#get_connected_account_trading_pairs) | **GET** /connected_accounts/{accountId}/manifest/capabilities/trading/pairs | Get supported trading pairs for an account
 [**get_connected_accounts**](ConnectedAccountsBetaApi.md#get_connected_accounts) | **GET** /connected_accounts | Get connected accounts
+[**get_connected_accounts_credentials_public_key**](ConnectedAccountsBetaApi.md#get_connected_accounts_credentials_public_key) | **GET** /connected_accounts/credentials/public_key | Get public key to encrypt connected account credentials
 [**rename_connected_account**](ConnectedAccountsBetaApi.md#rename_connected_account) | **POST** /connected_accounts/{accountId}/rename | Rename Connected Account
 [**sync_connected_account_allowlist**](ConnectedAccountsBetaApi.md#sync_connected_account_allowlist) | **POST** /connected_accounts/{accountId}/allowlist/sync | Sync allowlist for connected account
 
@@ -25,7 +26,7 @@ Add a connected account
 Creates a new connected account for the authenticated tenant.
 
 The `creds` field must be a Base64-encoded RSA-encrypted credential blob.
-Use `GET /exchange_accounts/credentials_public_key` to retrieve the public key for encryption.
+Use `GET /connected_accounts/credentials/public_key` to retrieve the public key for encryption.
 
 The `providerType` is derived server-side from the `providerId` — callers do not supply it.
 
@@ -261,7 +262,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connected_account_allowlist**
-> AllowlistResponse get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> AllowlistResponse get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, order=order)
 
 Get allowlist for connected account
 
@@ -303,12 +304,11 @@ with Fireblocks(configuration) as fireblocks:
     address = 'address_example' # str | Filter by specific address (optional)
     page_cursor = 'page_cursor_example' # str | Pagination cursor for next page (optional)
     page_size = 56 # int | Maximum number of entries to return (optional)
-    sort_by = addedAt # str | Field to sort results by. (optional) (default to addedAt)
     order = DESC # str | Sort order (ASC or DESC). (optional) (default to DESC)
 
     try:
         # Get allowlist for connected account
-        api_response = fireblocks.connected_accounts_beta.get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        api_response = fireblocks.connected_accounts_beta.get_connected_account_allowlist(account_id, status=status, asset_id=asset_id, network_id=network_id, address=address, page_cursor=page_cursor, page_size=page_size, order=order).result()
         print("The response of ConnectedAccountsBetaApi->get_connected_account_allowlist:\n")
         pprint(api_response)
     except Exception as e:
@@ -329,7 +329,6 @@ Name | Type | Description  | Notes
  **address** | **str**| Filter by specific address | [optional] 
  **page_cursor** | **str**| Pagination cursor for next page | [optional] 
  **page_size** | **int**| Maximum number of entries to return | [optional] 
- **sort_by** | **str**| Field to sort results by. | [optional] [default to addedAt]
  **order** | **str**| Sort order (ASC or DESC). | [optional] [default to DESC]
 
 ### Return type
@@ -755,6 +754,81 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Get accounts response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_connected_accounts_credentials_public_key**
+> GetConnectedAccountsCredentialsPublicKeyResponse get_connected_accounts_credentials_public_key()
+
+Get public key to encrypt connected account credentials
+
+Returns the RSA public key used to encrypt the `creds` field before calling `POST /connected_accounts`.
+
+The key is a singleton resource scoped to the connected-accounts credentials domain — there is one per tenant context.
+
+**Note:** This endpoint is currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.models.get_connected_accounts_credentials_public_key_response import GetConnectedAccountsCredentialsPublicKeyResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get public key to encrypt connected account credentials
+        api_response = fireblocks.connected_accounts_beta.get_connected_accounts_credentials_public_key().result()
+        print("The response of ConnectedAccountsBetaApi->get_connected_accounts_credentials_public_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->get_connected_accounts_credentials_public_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetConnectedAccountsCredentialsPublicKeyResponse**](GetConnectedAccountsCredentialsPublicKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Public key retrieved successfully. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

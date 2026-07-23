@@ -3,6 +3,7 @@
 # import apis into api package
 from fireblocks.api.api_user_api import ApiUserApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
+from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
@@ -13,7 +14,7 @@ from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
 from fireblocks.api.cosigners_beta_api import CosignersBetaApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
-from fireblocks.api.earn_beta_api import EarnBetaApi
+from fireblocks.api.earn_api import EarnApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
 from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
@@ -30,6 +31,7 @@ from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
+from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi

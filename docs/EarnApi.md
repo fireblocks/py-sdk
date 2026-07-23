@@ -1,16 +1,16 @@
-# fireblocks.EarnBetaApi
+# fireblocks.EarnApi
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**approve_terms_of_service**](EarnBetaApi.md#approve_terms_of_service) | **POST** /earn/providers/approve_terms_of_service | Approve earn provider terms of service
-[**create_earn_action**](EarnBetaApi.md#create_earn_action) | **POST** /earn/actions | Create and execute a lending action (deposit or withdraw)
-[**get_earn_action**](EarnBetaApi.md#get_earn_action) | **GET** /earn/actions/{id} | Get a single earn lending action
-[**get_earn_actions**](EarnBetaApi.md#get_earn_actions) | **GET** /earn/actions | List earn lending actions
-[**get_earn_opportunities**](EarnBetaApi.md#get_earn_opportunities) | **GET** /earn/opportunities | Get list of earn opportunities
-[**get_earn_positions**](EarnBetaApi.md#get_earn_positions) | **GET** /earn/positions | Get list of earn positions
-[**get_earn_providers**](EarnBetaApi.md#get_earn_providers) | **GET** /earn/providers | Get list of earn providers
+[**approve_terms_of_service**](EarnApi.md#approve_terms_of_service) | **POST** /earn/providers/approve_terms_of_service | Approve earn provider terms of service
+[**create_earn_action**](EarnApi.md#create_earn_action) | **POST** /earn/actions | Create and execute a lending action (deposit or withdraw)
+[**get_earn_action**](EarnApi.md#get_earn_action) | **GET** /earn/actions/{id} | Get a single earn lending action
+[**get_earn_actions**](EarnApi.md#get_earn_actions) | **GET** /earn/actions | List earn lending actions
+[**get_earn_opportunities**](EarnApi.md#get_earn_opportunities) | **GET** /earn/opportunities | Get list of earn opportunities
+[**get_earn_positions**](EarnApi.md#get_earn_positions) | **GET** /earn/positions | Get list of earn positions
+[**get_earn_providers**](EarnApi.md#get_earn_providers) | **GET** /earn/providers | Get list of earn providers
 
 
 # **approve_terms_of_service**
@@ -22,8 +22,6 @@ Approves earn provider terms of service for this workspace (one-time per tenant)
 When `isTermsApprovalRequired` is true on a provider (see list providers),
 call this once before creating or executing earn actions with providers that require it.
 After success, `GET /earn/providers` reflects `isTermsOfServiceApproved`.
-
-**Note:** This endpoint is currently in beta and might be subject to changes.
 
 
 ### Example
@@ -53,9 +51,9 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Approve earn provider terms of service
-        fireblocks.earn_beta.approve_terms_of_service(idempotency_key=idempotency_key).result()
+        fireblocks.earn.approve_terms_of_service(idempotency_key=idempotency_key).result()
     except Exception as e:
-        print("Exception when calling EarnBetaApi->approve_terms_of_service: %s\n" % e)
+        print("Exception when calling EarnApi->approve_terms_of_service: %s\n" % e)
 ```
 
 
@@ -102,8 +100,6 @@ Create and execute a lending action (deposit or withdraw)
 Creates and runs a sequence of on-chain steps for either a deposit into or a withdrawal from an earn
 vault/market. Specify the operation with `action` in the request body (`DEPOSIT` or `WITHDRAW`).
 
-**Note:** This endpoint is currently in beta and might be subject to changes.
-
 
 ### Example
 
@@ -136,11 +132,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Create and execute a lending action (deposit or withdraw)
-        api_response = fireblocks.earn_beta.create_earn_action(create_earn_action_request, idempotency_key=idempotency_key).result()
-        print("The response of EarnBetaApi->create_earn_action:\n")
+        api_response = fireblocks.earn.create_earn_action(create_earn_action_request, idempotency_key=idempotency_key).result()
+        print("The response of EarnApi->create_earn_action:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->create_earn_action: %s\n" % e)
+        print("Exception when calling EarnApi->create_earn_action: %s\n" % e)
 ```
 
 
@@ -187,8 +183,6 @@ Get a single earn lending action
 
 Returns one lending action by its action sequence id (tenant-scoped).
 
-**Note:** This endpoint is currently in beta and might be subject to changes.
-
 
 ### Example
 
@@ -219,11 +213,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get a single earn lending action
-        api_response = fireblocks.earn_beta.get_earn_action(id).result()
-        print("The response of EarnBetaApi->get_earn_action:\n")
+        api_response = fireblocks.earn.get_earn_action(id).result()
+        print("The response of EarnApi->get_earn_action:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->get_earn_action: %s\n" % e)
+        print("Exception when calling EarnApi->get_earn_action: %s\n" % e)
 ```
 
 
@@ -268,8 +262,6 @@ List earn lending actions
 
 Returns a paginated list of lending actions (deposits and withdrawals) for the authenticated tenant.
 
-**Note:** This endpoint is currently in beta and might be subject to changes.
-
 
 ### Example
 
@@ -303,11 +295,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # List earn lending actions
-        api_response = fireblocks.earn_beta.get_earn_actions(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
-        print("The response of EarnBetaApi->get_earn_actions:\n")
+        api_response = fireblocks.earn.get_earn_actions(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of EarnApi->get_earn_actions:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->get_earn_actions: %s\n" % e)
+        print("Exception when calling EarnApi->get_earn_actions: %s\n" % e)
 ```
 
 
@@ -355,8 +347,6 @@ Get list of earn opportunities
 
 Get list of earn opportunities (vaults).
 
-**Note:** This endpoint is currently in beta and might be subject to changes.
-
 
 ### Example
 
@@ -390,11 +380,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of earn opportunities
-        api_response = fireblocks.earn_beta.get_earn_opportunities(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
-        print("The response of EarnBetaApi->get_earn_opportunities:\n")
+        api_response = fireblocks.earn.get_earn_opportunities(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of EarnApi->get_earn_opportunities:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->get_earn_opportunities: %s\n" % e)
+        print("Exception when calling EarnApi->get_earn_opportunities: %s\n" % e)
 ```
 
 
@@ -440,10 +430,8 @@ No authorization required
 
 Get list of earn positions
 
-Get list of earn positions for accounts tracked for this workspace. 
+Get list of earn positions for accounts tracked for this workspace.
 Optional query parameters filter by chain, provider, and pagination.
-
-**Note:** This endpoint is currently in beta and might be subject to changes.
 
 
 ### Example
@@ -480,11 +468,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of earn positions
-        api_response = fireblocks.earn_beta.get_earn_positions(chain_id=chain_id, provider_id=provider_id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
-        print("The response of EarnBetaApi->get_earn_positions:\n")
+        api_response = fireblocks.earn.get_earn_positions(chain_id=chain_id, provider_id=provider_id, page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of EarnApi->get_earn_positions:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->get_earn_positions: %s\n" % e)
+        print("Exception when calling EarnApi->get_earn_positions: %s\n" % e)
 ```
 
 
@@ -534,8 +522,6 @@ Get list of earn providers
 
 Get list of earn providers.
 
-**Note:** This endpoint is currently in beta and might be subject to changes.
-
 
 ### Example
 
@@ -569,11 +555,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of earn providers
-        api_response = fireblocks.earn_beta.get_earn_providers(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
-        print("The response of EarnBetaApi->get_earn_providers:\n")
+        api_response = fireblocks.earn.get_earn_providers(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
+        print("The response of EarnApi->get_earn_providers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling EarnBetaApi->get_earn_providers: %s\n" % e)
+        print("Exception when calling EarnApi->get_earn_providers: %s\n" % e)
 ```
 
 

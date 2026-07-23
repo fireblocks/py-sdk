@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fee_per_byte** | **str** |  | [optional] 
-**gas_price** | **float** |  | [optional] 
+**gas_price** | **str** |  | [optional] 
 **gas_limit** | **str** |  | [optional] 
 **network_fee** | **str** |  | [optional] 
-**base_fee** | **float** | (optional) Base Fee according to EIP-1559 (ETH assets) | [optional] 
-**priority_fee** | **float** | (optional) Priority Fee according to EIP-1559 (ETH assets) | [optional] 
+**base_fee** | **str** | (optional) Base Fee according to EIP-1559 (ETH assets) | [optional] 
+**priority_fee** | **str** | (optional) Priority Fee according to EIP-1559 (ETH assets) | [optional] 
 **max_fee_per_gas_delta** | **str** | Max Fee Per Gas Delta added only for EIP-1559 (ETH assets) | [optional] 
 **l1_fee** | **str** | Layer 1 fee for Layer 2 chains | [optional] 
 

@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **destination_address_description** | **str** | Description of the address. | [optional] 
 **destination_tag** | **str** | Destination address tag for XRP, used as memo for EOS/XLM, or Bank Transfer Description for the fiat provider BLINC (by BCB Group). | [optional] 
 **contract_call_decoded_data** | [**TransactionResponseContractCallDecodedData**](TransactionResponseContractCallDecodedData.md) |  | [optional] 
+**program_call_decoded_data** | [**List[ProgramCallDecodedDataItem]**](ProgramCallDecodedDataItem.md) | Decoded instruction list for &#x60;PROGRAM_CALL&#x60; (Solana) operations. Each entry represents one instruction in the transaction, in execution order. Fireblocks-injected instructions (e.g. &#x60;AdvanceNonceAccount&#x60;, &#x60;ComputeBudget&#x60;) appear first, followed by the original dApp instructions. | [optional] 
 **amount_info** | [**AmountInfo**](AmountInfo.md) |  | [optional] 
 **treat_as_gross_amount** | **bool** | For transactions initiated via this Fireblocks workspace, when set to &#x60;true&#x60;, the fee is deducted from the requested amount.  **Note**: This parameter can only be considered if a transaction&#39;s asset is a base asset, such as ETH or MATIC. If the asset can&#39;t be used for transaction fees, like USDC, this parameter is ignored and the fee is deducted from the relevant base asset wallet in the source account. | [optional] 
 **fee_info** | [**FeeInfo**](FeeInfo.md) |  | [optional] 

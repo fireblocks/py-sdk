@@ -58,6 +58,8 @@ class UTXOManagementBetaApi:
         exclude_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Exclude UTXOs that have ANY of these labels.")] = None,
         include_statuses: Annotated[Optional[List[StrictStr]], Field(description="Filter by UTXO statuses to include.")] = None,
         address: Annotated[Optional[StrictStr], Field(description="Filter by address")] = None,
+        tx_hash: Annotated[Optional[StrictStr], Field(description="Filter by the on-chain hash of the transaction that created the UTXOs. Returns all UTXOs originating from that transaction.")] = None,
+        tx_id: Annotated[Optional[StrictStr], Field(description="Filter by the Fireblocks transaction ID that created the UTXOs.")] = None,
         min_amount: Annotated[Optional[StrictStr], Field(description="Minimum amount filter")] = None,
         max_amount: Annotated[Optional[StrictStr], Field(description="Maximum amount filter")] = None,
         _request_timeout: Union[
@@ -99,6 +101,10 @@ class UTXOManagementBetaApi:
         :type include_statuses: List[str]
         :param address: Filter by address
         :type address: str
+        :param tx_hash: Filter by the on-chain hash of the transaction that created the UTXOs. Returns all UTXOs originating from that transaction.
+        :type tx_hash: str
+        :param tx_id: Filter by the Fireblocks transaction ID that created the UTXOs.
+        :type tx_id: str
         :param min_amount: Minimum amount filter
         :type min_amount: str
         :param max_amount: Maximum amount filter
@@ -140,6 +146,8 @@ class UTXOManagementBetaApi:
             exclude_any_labels=exclude_any_labels,
             include_statuses=include_statuses,
             address=address,
+            tx_hash=tx_hash,
+            tx_id=tx_id,
             min_amount=min_amount,
             max_amount=max_amount,
             _request_auth=_request_auth,
@@ -172,6 +180,8 @@ class UTXOManagementBetaApi:
         exclude_any_labels,
         include_statuses,
         address,
+        tx_hash,
+        tx_id,
         min_amount,
         max_amount,
         _request_auth,
@@ -239,6 +249,14 @@ class UTXOManagementBetaApi:
         if address is not None:
             
             _query_params.append(('address', address))
+            
+        if tx_hash is not None:
+            
+            _query_params.append(('txHash', tx_hash))
+            
+        if tx_id is not None:
+            
+            _query_params.append(('txId', tx_id))
             
         if min_amount is not None:
             

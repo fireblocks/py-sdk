@@ -30,7 +30,8 @@ class Apy(BaseModel):
     native: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="APY in native format (before fees), as a percentage (e.g. 4.25 means 4.25%, not 0.0425).")
     gross: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Gross APY before fees, as a percentage (e.g. 4.25 means 4.25%, not 0.0425).")
     net: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Net APY after fees, as a percentage (e.g. 4.25 means 4.25%, not 0.0425).")
-    __properties: ClassVar[List[str]] = ["native", "gross", "net"]
+    supply_incentive_apy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Additional incentive APY from reward programs (e.g. Merkl rewards on Aave), as a percentage. Only present when the opportunity has active incentives.", alias="supplyIncentiveApy")
+    __properties: ClassVar[List[str]] = ["native", "gross", "net", "supplyIncentiveApy"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +86,8 @@ class Apy(BaseModel):
         _obj = cls.model_validate({
             "native": obj.get("native"),
             "gross": obj.get("gross"),
-            "net": obj.get("net")
+            "net": obj.get("net"),
+            "supplyIncentiveApy": obj.get("supplyIncentiveApy")
         })
         return _obj
 

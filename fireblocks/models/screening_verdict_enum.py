@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class ScreeningVerdictEnum(str, Enum):
     """
-    The final verdict of the screening (unified for AML, Travel Rule, and TRLink). Different providers may return different verdict values: - AML: PASS, FAIL, ALERT - Travel Rule: PASS, FAIL, TRAVEL_RULE_REQUIRED - TRLink: PASS, REJECT, WARN 
+    The final verdict of the screening (unified for AML, Travel Rule, and TRLink). Different providers may return different verdict values: - AML: ACCEPT, REJECT, ALERT - Travel Rule: PASS, FAIL, TRAVEL_RULE_REQUIRED - TRLink: PASS, REJECT, WARN 
     """
 
     """
@@ -35,6 +35,7 @@ class ScreeningVerdictEnum(str, Enum):
     TRAVEL_RULE_REQUIRED = 'TRAVEL_RULE_REQUIRED'
     ACCEPT = 'ACCEPT'
     REVIEW = 'REVIEW'
+    WAIT = 'WAIT'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

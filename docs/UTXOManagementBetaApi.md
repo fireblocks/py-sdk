@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **get_utxos**
-> ListUtxosResponse get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount)
+> ListUtxosResponse get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, tx_hash=tx_hash, tx_id=tx_id, min_amount=min_amount, max_amount=max_amount)
 
 List unspent outputs (UTXOs)
 
@@ -53,12 +53,14 @@ with Fireblocks(configuration) as fireblocks:
     exclude_any_labels = ['[\"deprecated\"]'] # List[str] | Exclude UTXOs that have ANY of these labels. (optional)
     include_statuses = ['[\"AVAILABLE\",\"PENDING\"]'] # List[str] | Filter by UTXO statuses to include. (optional)
     address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa' # str | Filter by address (optional)
+    tx_hash = '0000000000000000000a1b2c3d4e5f60718293a4b5c6d7e8f900112233445566' # str | Filter by the on-chain hash of the transaction that created the UTXOs. Returns all UTXOs originating from that transaction. (optional)
+    tx_id = 'f47ac10b-58cc-4372-a567-0e02b2c3d479' # str | Filter by the Fireblocks transaction ID that created the UTXOs. (optional)
     min_amount = '0.001' # str | Minimum amount filter (optional)
     max_amount = '1.0' # str | Maximum amount filter (optional)
 
     try:
         # List unspent outputs (UTXOs)
-        api_response = fireblocks.utxo_management_beta.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, min_amount=min_amount, max_amount=max_amount).result()
+        api_response = fireblocks.utxo_management_beta.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, tx_hash=tx_hash, tx_id=tx_id, min_amount=min_amount, max_amount=max_amount).result()
         print("The response of UTXOManagementBetaApi->get_utxos:\n")
         pprint(api_response)
     except Exception as e:
@@ -83,6 +85,8 @@ Name | Type | Description  | Notes
  **exclude_any_labels** | [**List[str]**](str.md)| Exclude UTXOs that have ANY of these labels. | [optional] 
  **include_statuses** | [**List[str]**](str.md)| Filter by UTXO statuses to include. | [optional] 
  **address** | **str**| Filter by address | [optional] 
+ **tx_hash** | **str**| Filter by the on-chain hash of the transaction that created the UTXOs. Returns all UTXOs originating from that transaction. | [optional] 
+ **tx_id** | **str**| Filter by the Fireblocks transaction ID that created the UTXOs. | [optional] 
  **min_amount** | **str**| Minimum amount filter | [optional] 
  **max_amount** | **str**| Maximum amount filter | [optional] 
 

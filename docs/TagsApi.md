@@ -309,7 +309,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_tags**
-> TagsPagedResponse get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type)
+> TagsPagedResponse get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type, allowed_entity_type=allowed_entity_type)
 
 Get list of tags
 
@@ -348,10 +348,11 @@ with Fireblocks(configuration) as fireblocks:
     include_pending_approvals_info = False # bool | Whether to include pending approval requests info. (optional) (default to False)
     is_protected = True # bool |  (optional)
     type = [fireblocks.TagType()] # List[TagType] | Filter by tag type (optional)
+    allowed_entity_type = 'contact' # str | Filter tags whose allow-list contains this entity type. Known values: vault_account, contact. (optional)
 
     try:
         # Get list of tags
-        api_response = fireblocks.tags.get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type).result()
+        api_response = fireblocks.tags.get_tags(page_cursor=page_cursor, page_size=page_size, label=label, tag_ids=tag_ids, include_pending_approvals_info=include_pending_approvals_info, is_protected=is_protected, type=type, allowed_entity_type=allowed_entity_type).result()
         print("The response of TagsApi->get_tags:\n")
         pprint(api_response)
     except Exception as e:
@@ -372,6 +373,7 @@ Name | Type | Description  | Notes
  **include_pending_approvals_info** | **bool**| Whether to include pending approval requests info. | [optional] [default to False]
  **is_protected** | **bool**|  | [optional] 
  **type** | [**List[TagType]**](TagType.md)| Filter by tag type | [optional] 
+ **allowed_entity_type** | **str**| Filter tags whose allow-list contains this entity type. Known values: vault_account, contact. | [optional] 
 
 ### Return type
 

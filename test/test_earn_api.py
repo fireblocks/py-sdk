@@ -15,14 +15,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.earn_beta_api import EarnBetaApi
+from fireblocks.api.earn_api import EarnApi
 
 
-class TestEarnBetaApi(unittest.TestCase):
-    """EarnBetaApi unit test stubs"""
+class TestEarnApi(unittest.TestCase):
+    """EarnApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = EarnBetaApi()
+        self.api = EarnApi()
 
     def tearDown(self) -> None:
         pass

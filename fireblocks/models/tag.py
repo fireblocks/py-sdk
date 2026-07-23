@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from fireblocks.models.approval_request import ApprovalRequest
 from fireblocks.models.tag_type import TagType
 from typing import Optional, Set
@@ -36,8 +37,9 @@ class Tag(BaseModel):
     is_protected: StrictBool = Field(description="Indication if the tag is a protected tag", alias="isProtected")
     updated_at: Union[StrictFloat, StrictInt] = Field(description="The date and time the tag was last updated", alias="updatedAt")
     type: Optional[TagType] = None
+    allowed_entity_types: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="The entity types this tag may be attached to. Tags created before this field was introduced read back as ['vault_account']. Known values: vault_account (default), contact.", alias="allowedEntityTypes")
     pending_approval_request: Optional[ApprovalRequest] = Field(default=None, alias="pendingApprovalRequest")
-    __properties: ClassVar[List[str]] = ["id", "label", "description", "color", "isProtected", "updatedAt", "type", "pendingApprovalRequest"]
+    __properties: ClassVar[List[str]] = ["id", "label", "description", "color", "isProtected", "updatedAt", "type", "allowedEntityTypes", "pendingApprovalRequest"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +102,7 @@ class Tag(BaseModel):
             "isProtected": obj.get("isProtected") if obj.get("isProtected") is not None else False,
             "updatedAt": obj.get("updatedAt"),
             "type": obj.get("type"),
+            "allowedEntityTypes": obj.get("allowedEntityTypes"),
             "pendingApprovalRequest": ApprovalRequest.from_dict(obj["pendingApprovalRequest"]) if obj.get("pendingApprovalRequest") is not None else None
         })
         return _obj

@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**create_vault_account_asset**](VaultsApi.md#create_vault_account_asset) | **POST** /vault/accounts/{vaultAccountId}/{assetId} | Create a new vault wallet
 [**create_vault_account_asset_address**](VaultsApi.md#create_vault_account_asset_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses | Create new asset deposit address
 [**deactivate_usdc_gateway_wallet_beta**](VaultsApi.md#deactivate_usdc_gateway_wallet_beta) | **POST** /vault/accounts/{vaultAccountId}/usdc_gateway/deactivate | Deactivate a USDC Gateway wallet
+[**disable_usdc_gateway_deposit_automation_schedule_beta**](VaultsApi.md#disable_usdc_gateway_deposit_automation_schedule_beta) | **DELETE** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation/{automationId} | Stop a USDC Gateway deposit automation&#39;s schedule
 [**get_asset_wallets**](VaultsApi.md#get_asset_wallets) | **GET** /vault/asset_wallets | Get vault wallets (Paginated)
 [**get_create_multiple_deposit_addresses_job_status**](VaultsApi.md#get_create_multiple_deposit_addresses_job_status) | **GET** /vault/accounts/addresses/bulk/{jobId} | Get the job status of the bulk deposit address creation
 [**get_create_multiple_vault_accounts_job_status**](VaultsApi.md#get_create_multiple_vault_accounts_job_status) | **GET** /vault/accounts/bulk/{jobId} | Get job status of bulk creation of new vault accounts
@@ -23,6 +24,7 @@ Method | HTTP request | Description
 [**get_public_key_info**](VaultsApi.md#get_public_key_info) | **GET** /vault/public_key_info | Get the public key for a derivation path
 [**get_public_key_info_for_address**](VaultsApi.md#get_public_key_info_for_address) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/{change}/{addressIndex}/public_key_info | Get an asset&#39;s public key
 [**get_unspent_inputs**](VaultsApi.md#get_unspent_inputs) | **GET** /vault/accounts/{vaultAccountId}/{assetId}/unspent_inputs | Get UTXO unspent inputs information
+[**get_usdc_gateway_deposit_automation_beta**](VaultsApi.md#get_usdc_gateway_deposit_automation_beta) | **GET** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation | Read the USDC Gateway deposit automations for a vault account
 [**get_usdc_gateway_wallet_info_beta**](VaultsApi.md#get_usdc_gateway_wallet_info_beta) | **GET** /vault/accounts/{vaultAccountId}/usdc_gateway | Get USDC Gateway wallet info
 [**get_vault_account**](VaultsApi.md#get_vault_account) | **GET** /vault/accounts/{vaultAccountId} | Get a vault account by ID
 [**get_vault_account_asset**](VaultsApi.md#get_vault_account_asset) | **GET** /vault/accounts/{vaultAccountId}/{assetId} | Get the asset balance for a vault account
@@ -32,9 +34,11 @@ Method | HTTP request | Description
 [**hide_vault_account**](VaultsApi.md#hide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/hide | Hide a vault account in the console
 [**lookup_vault_by_address**](VaultsApi.md#lookup_vault_by_address) | **GET** /vault/lookup_by_address | Look up a vault account by blockchain address
 [**set_customer_ref_id_for_address**](VaultsApi.md#set_customer_ref_id_for_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/set_customer_ref_id | Assign AML customer reference ID
+[**set_usdc_gateway_deposit_automation_beta**](VaultsApi.md#set_usdc_gateway_deposit_automation_beta) | **POST** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation | Set up a USDC Gateway deposit automation for a vault account
 [**set_vault_account_auto_fuel**](VaultsApi.md#set_vault_account_auto_fuel) | **POST** /vault/accounts/{vaultAccountId}/set_auto_fuel | Set auto fueling to on or off
 [**set_vault_account_customer_ref_id**](VaultsApi.md#set_vault_account_customer_ref_id) | **POST** /vault/accounts/{vaultAccountId}/set_customer_ref_id | Set an AML/KYT ID for a vault account
 [**unhide_vault_account**](VaultsApi.md#unhide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/unhide | Unhide a vault account in the console
+[**update_usdc_gateway_deposit_automation_beta**](VaultsApi.md#update_usdc_gateway_deposit_automation_beta) | **PATCH** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation/{automationId} | Change a USDC Gateway deposit automation
 [**update_vault_account**](VaultsApi.md#update_vault_account) | **PUT** /vault/accounts/{vaultAccountId} | Rename a vault account
 [**update_vault_account_asset_address**](VaultsApi.md#update_vault_account_asset_address) | **PUT** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId} | Update address description
 [**update_vault_account_asset_balance**](VaultsApi.md#update_vault_account_asset_balance) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/balance | Refresh asset balance data
@@ -856,6 +860,80 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **disable_usdc_gateway_deposit_automation_schedule_beta**
+> disable_usdc_gateway_deposit_automation_schedule_beta(vault_account_id, automation_id)
+
+Stop a USDC Gateway deposit automation's schedule
+
+Stops the schedule for an existing deposit automation. The automation itself stays configured, only its schedule stops. Turn it back on later with PATCH, without setting up the automation again from scratch.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+    automation_id = 'automation_id_example' # str | The ID of the deposit automation, returned when it was created or read
+
+    try:
+        # Stop a USDC Gateway deposit automation's schedule
+        fireblocks.vaults.disable_usdc_gateway_deposit_automation_schedule_beta(vault_account_id, automation_id).result()
+    except Exception as e:
+        print("Exception when calling VaultsApi->disable_usdc_gateway_deposit_automation_schedule_beta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+ **automation_id** | **str**| The ID of the deposit automation, returned when it was created or read | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Deposit automation schedule disabled |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_asset_wallets**
 > PaginatedAssetWalletResponse get_asset_wallets(total_amount_larger_than=total_amount_larger_than, asset_id=asset_id, order_by=order_by, before=before, after=after, limit=limit)
 
@@ -1174,7 +1252,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_max_spendable_amount**
-> GetMaxSpendableAmountResponse get_max_spendable_amount(vault_account_id, asset_id, manual_signging=manual_signging)
+> GetMaxSpendableAmountResponse get_max_spendable_amount(vault_account_id, asset_id, manual_signging=manual_signging, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, address=address, min_amount=min_amount, max_amount=max_amount)
 
 Get max spendable amount in a transaction
 
@@ -1213,10 +1291,16 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_id = 'vault_account_id_example' # str | The ID of the vault account, or 'default' for the default vault account
     asset_id = 'asset_id_example' # str | The ID of the asset
     manual_signging = True # bool | False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. (optional)
+    include_all_labels = ['include_all_labels_example'] # List[str] | Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    include_any_labels = ['include_any_labels_example'] # List[str] | Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    exclude_any_labels = ['exclude_any_labels_example'] # List[str] | Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    address = 'address_example' # str | Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    min_amount = 'min_amount_example' # str | Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    max_amount = 'max_amount_example' # str | Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
 
     try:
         # Get max spendable amount in a transaction
-        api_response = fireblocks.vaults.get_max_spendable_amount(vault_account_id, asset_id, manual_signging=manual_signging).result()
+        api_response = fireblocks.vaults.get_max_spendable_amount(vault_account_id, asset_id, manual_signging=manual_signging, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, address=address, min_amount=min_amount, max_amount=max_amount).result()
         print("The response of VaultsApi->get_max_spendable_amount:\n")
         pprint(api_response)
     except Exception as e:
@@ -1233,6 +1317,12 @@ Name | Type | Description  | Notes
  **vault_account_id** | **str**| The ID of the vault account, or &#39;default&#39; for the default vault account | 
  **asset_id** | **str**| The ID of the asset | 
  **manual_signging** | **bool**| False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. | [optional] 
+ **include_all_labels** | [**List[str]**](str.md)| Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **include_any_labels** | [**List[str]**](str.md)| Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **exclude_any_labels** | [**List[str]**](str.md)| Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **address** | **str**| Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **min_amount** | **str**| Minimum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **max_amount** | **str**| Maximum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
 
 ### Return type
 
@@ -1586,6 +1676,82 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Unspent information per input |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_usdc_gateway_deposit_automation_beta**
+> GetAutomationSettingsResponse get_usdc_gateway_deposit_automation_beta(vault_account_id)
+
+Read the USDC Gateway deposit automations for a vault account
+
+Returns the USDC Gateway deposit automations configured for the given vault account.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+### Example
+
+
+```python
+from fireblocks.models.get_automation_settings_response import GetAutomationSettingsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+
+    try:
+        # Read the USDC Gateway deposit automations for a vault account
+        api_response = fireblocks.vaults.get_usdc_gateway_deposit_automation_beta(vault_account_id).result()
+        print("The response of VaultsApi->get_usdc_gateway_deposit_automation_beta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->get_usdc_gateway_deposit_automation_beta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+
+### Return type
+
+[**GetAutomationSettingsResponse**](GetAutomationSettingsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | USDC Gateway deposit automations |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2301,6 +2467,87 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **set_usdc_gateway_deposit_automation_beta**
+> SaveAutomationSettingsResponse set_usdc_gateway_deposit_automation_beta(vault_account_id, automation_settings_request, idempotency_key=idempotency_key)
+
+Set up a USDC Gateway deposit automation for a vault account
+
+Turns on automatic deposits into the USDC Gateway wallet for the given vault account, on the schedule you choose. Returns an error if an automation already exists for this vault account and asset. Use PATCH to change it instead.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+### Example
+
+
+```python
+from fireblocks.models.automation_settings_request import AutomationSettingsRequest
+from fireblocks.models.save_automation_settings_response import SaveAutomationSettingsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+    automation_settings_request = fireblocks.AutomationSettingsRequest() # AutomationSettingsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Set up a USDC Gateway deposit automation for a vault account
+        api_response = fireblocks.vaults.set_usdc_gateway_deposit_automation_beta(vault_account_id, automation_settings_request, idempotency_key=idempotency_key).result()
+        print("The response of VaultsApi->set_usdc_gateway_deposit_automation_beta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->set_usdc_gateway_deposit_automation_beta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+ **automation_settings_request** | [**AutomationSettingsRequest**](AutomationSettingsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**SaveAutomationSettingsResponse**](SaveAutomationSettingsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Deposit automation created |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_vault_account_auto_fuel**
 > VaultActionStatus set_vault_account_auto_fuel(vault_account_id, set_auto_fuel_request, idempotency_key=idempotency_key)
 
@@ -2535,6 +2782,89 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | OK |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_usdc_gateway_deposit_automation_beta**
+> AutomationSettingsResponse update_usdc_gateway_deposit_automation_beta(vault_account_id, automation_id, update_automation_settings_request, idempotency_key=idempotency_key)
+
+Change a USDC Gateway deposit automation
+
+Changes an existing USDC Gateway deposit automation for a vault account.
+**Note:** This endpoint is currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+
+### Example
+
+
+```python
+from fireblocks.models.automation_settings_response import AutomationSettingsResponse
+from fireblocks.models.update_automation_settings_request import UpdateAutomationSettingsRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
+    automation_id = 'automation_id_example' # str | The ID of the deposit automation, returned when it was created or read
+    update_automation_settings_request = fireblocks.UpdateAutomationSettingsRequest() # UpdateAutomationSettingsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Change a USDC Gateway deposit automation
+        api_response = fireblocks.vaults.update_usdc_gateway_deposit_automation_beta(vault_account_id, automation_id, update_automation_settings_request, idempotency_key=idempotency_key).result()
+        print("The response of VaultsApi->update_usdc_gateway_deposit_automation_beta:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->update_usdc_gateway_deposit_automation_beta: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account | 
+ **automation_id** | **str**| The ID of the deposit automation, returned when it was created or read | 
+ **update_automation_settings_request** | [**UpdateAutomationSettingsRequest**](UpdateAutomationSettingsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**AutomationSettingsResponse**](AutomationSettingsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Deposit automation updated |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

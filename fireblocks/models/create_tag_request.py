@@ -34,7 +34,8 @@ class CreateTagRequest(BaseModel):
     color: Optional[StrictStr] = Field(default=None, description="The tag color in hex format")
     is_protected: Optional[StrictBool] = Field(default=False, description="Indication if the tag is protected tag", alias="isProtected")
     type: Optional[TagType] = None
-    __properties: ClassVar[List[str]] = ["label", "description", "color", "isProtected", "type"]
+    allowed_entity_types: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="Allow-list of entity types this tag may be attached to. Soft-defaults to ['vault_account'] when omitted, and is immutable after creation. Known values: vault_account (default), contact.", alias="allowedEntityTypes")
+    __properties: ClassVar[List[str]] = ["label", "description", "color", "isProtected", "type", "allowedEntityTypes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +92,8 @@ class CreateTagRequest(BaseModel):
             "description": obj.get("description"),
             "color": obj.get("color"),
             "isProtected": obj.get("isProtected") if obj.get("isProtected") is not None else False,
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "allowedEntityTypes": obj.get("allowedEntityTypes")
         })
         return _obj
 

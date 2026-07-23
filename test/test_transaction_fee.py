@@ -38,11 +38,11 @@ class TestTransactionFee(unittest.TestCase):
         if include_optional:
             return TransactionFee(
                 fee_per_byte = '',
-                gas_price = 1.337,
+                gas_price = '',
                 gas_limit = '',
                 network_fee = '',
-                base_fee = 1.337,
-                priority_fee = 1.337,
+                base_fee = '',
+                priority_fee = '',
                 max_fee_per_gas_delta = '',
                 l1_fee = ''
             )

@@ -29,7 +29,7 @@ class AddConnectedAccountRequest(BaseModel):
     """ # noqa: E501
     provider_id: StrictStr = Field(description="Integration key identifying the provider (e.g. BINANCE, KINGDOM_BANK, GEMINI_NLV2).", alias="providerId")
     display_name: Optional[StrictStr] = Field(default=None, description="Human-readable account name. Required for non-NLV2 providers.", alias="displayName")
-    creds: Union[StrictBytes, StrictStr] = Field(description="Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /exchange_accounts/credentials_public_key.")
+    creds: Union[StrictBytes, StrictStr] = Field(description="Base64-encoded RSA-encrypted credential blob. Encrypt using the public key from GET /connected_accounts/credentials/public_key.")
     api_key: StrictStr = Field(description="Account-level API key.", alias="apiKey")
     main_account_id: Optional[StrictStr] = Field(default=None, description="Parent main account ID for sub-account creation. Not allowed for NLV2 providers.", alias="mainAccountId")
     account_id: Optional[StrictStr] = Field(default=None, description="Optional provider-side account ID to associate with the created account.", alias="accountId")

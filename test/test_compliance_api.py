@@ -237,6 +237,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_rescreen_rejected_transaction(self) -> None:
+        """Test case for rescreen_rejected_transaction
+
+        Rescreen a rejected transaction
+        """
+        pass
+
     def test_retry_rejected_transaction_bypass_screening_checks(self) -> None:
         """Test case for retry_rejected_transaction_bypass_screening_checks
 

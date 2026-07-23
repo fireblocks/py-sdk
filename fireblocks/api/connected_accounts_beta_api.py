@@ -31,6 +31,7 @@ from fireblocks.models.connected_account_rate_response import ConnectedAccountRa
 from fireblocks.models.connected_account_trading_pairs_response import ConnectedAccountTradingPairsResponse
 from fireblocks.models.connected_accounts_response import ConnectedAccountsResponse
 from fireblocks.models.connected_single_account_response import ConnectedSingleAccountResponse
+from fireblocks.models.get_connected_accounts_credentials_public_key_response import GetConnectedAccountsCredentialsPublicKeyResponse
 from fireblocks.models.rename_connected_account_request import RenameConnectedAccountRequest
 from fireblocks.models.rename_connected_account_response import RenameConnectedAccountResponse
 
@@ -73,7 +74,7 @@ class ConnectedAccountsBetaApi:
     ) -> Future[ApiResponse[AddConnectedAccountResponse]]:
         """Add a connected account
 
-        Creates a new connected account for the authenticated tenant.  The `creds` field must be a Base64-encoded RSA-encrypted credential blob. Use `GET /exchange_accounts/credentials_public_key` to retrieve the public key for encryption.  The `providerType` is derived server-side from the `providerId` — callers do not supply it.  Endpoint Permission: Editor, Admin, Non-Signing Admin.  **Note:** This endpoint is currently in beta and might be subject to changes. 
+        Creates a new connected account for the authenticated tenant.  The `creds` field must be a Base64-encoded RSA-encrypted credential blob. Use `GET /connected_accounts/credentials/public_key` to retrieve the public key for encryption.  The `providerType` is derived server-side from the `providerId` — callers do not supply it.  Endpoint Permission: Editor, Admin, Non-Signing Admin.  **Note:** This endpoint is currently in beta and might be subject to changes. 
 
         :param add_connected_account_request: (required)
         :type add_connected_account_request: AddConnectedAccountRequest
@@ -474,7 +475,6 @@ class ConnectedAccountsBetaApi:
         address: Annotated[Optional[StrictStr], Field(description="Filter by specific address")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Pagination cursor for next page")] = None,
         page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Maximum number of entries to return")] = None,
-        sort_by: Annotated[Optional[StrictStr], Field(description="Field to sort results by.")] = None,
         order: Annotated[Optional[StrictStr], Field(description="Sort order (ASC or DESC).")] = None,
         _request_timeout: Union[
             None,
@@ -507,8 +507,6 @@ class ConnectedAccountsBetaApi:
         :type page_cursor: str
         :param page_size: Maximum number of entries to return
         :type page_size: int
-        :param sort_by: Field to sort results by.
-        :type sort_by: str
         :param order: Sort order (ASC or DESC).
         :type order: str
         :param _request_timeout: timeout setting for this request. If one
@@ -543,7 +541,6 @@ class ConnectedAccountsBetaApi:
             address=address,
             page_cursor=page_cursor,
             page_size=page_size,
-            sort_by=sort_by,
             order=order,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -572,7 +569,6 @@ class ConnectedAccountsBetaApi:
         address,
         page_cursor,
         page_size,
-        sort_by,
         order,
         _request_auth,
         _content_type,
@@ -621,10 +617,6 @@ class ConnectedAccountsBetaApi:
         if page_size is not None:
             
             _query_params.append(('pageSize', page_size))
-            
-        if sort_by is not None:
-            
-            _query_params.append(('sortBy', sort_by))
             
         if order is not None:
             
@@ -1380,6 +1372,127 @@ class ConnectedAccountsBetaApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/connected_accounts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_connected_accounts_credentials_public_key(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[GetConnectedAccountsCredentialsPublicKeyResponse]]:
+        """Get public key to encrypt connected account credentials
+
+        Returns the RSA public key used to encrypt the `creds` field before calling `POST /connected_accounts`.  The key is a singleton resource scoped to the connected-accounts credentials domain — there is one per tenant context.  **Note:** This endpoint is currently in beta and might be subject to changes. 
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_connected_accounts_credentials_public_key_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetConnectedAccountsCredentialsPublicKeyResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_connected_accounts_credentials_public_key_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/connected_accounts/credentials/public_key',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

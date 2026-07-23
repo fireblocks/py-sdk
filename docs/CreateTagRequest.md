@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **color** | **str** | The tag color in hex format | [optional] 
 **is_protected** | **bool** | Indication if the tag is protected tag | [optional] [default to False]
 **type** | [**TagType**](TagType.md) |  | [optional] 
+**allowed_entity_types** | **List[str]** | Allow-list of entity types this tag may be attached to. Soft-defaults to [&#39;vault_account&#39;] when omitted, and is immutable after creation. Known values: vault_account (default), contact. | [optional] [default to ["vault_account"]]
 
 ## Example
 

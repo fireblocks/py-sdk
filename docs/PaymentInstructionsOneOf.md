@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
-**address** | [**InternalTransferAddress**](InternalTransferAddress.md) |  | 
+**type** | **str** | The transfer rail type for the destination | 
+**address** | [**PesonetAddress**](PesonetAddress.md) |  | 
 **reference_id** | **str** |  | [optional] 
 
 ## Example

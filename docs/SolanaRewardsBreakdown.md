@@ -6,7 +6,7 @@ A breakdown of the staking rewards earned by the position.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issuance** | **str** | The issuance reward amount earned by the position, measured in the staked asset unit. | 
+**inflation** | **str** | The inflation reward amount earned by the position, measured in the staked asset unit. | 
 **mev** | **str** | The MEV reward amount earned by the position, measured in the staked asset unit. | 
 **last_reward_synced_at** | **datetime** | The last time the rewards were synced (ISO Date). | 
 

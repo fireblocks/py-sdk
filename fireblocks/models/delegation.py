@@ -38,7 +38,7 @@ class Delegation(BaseModel):
     provider_name: StrictStr = Field(description="The destination validator provider name", alias="providerName")
     chain_descriptor: StrictStr = Field(description="The protocol identifier (e.g. \"ETH\"/ \"SOL\") to use", alias="chainDescriptor")
     amount: StrictStr = Field(description="Total value of the staking position. For Solana, Lido and Ethereum (compounding validator): includes the original stake plus accumulated rewards. For MATIC, Cosmos and Ethereum (legacy validator): refers to the amount currently staked.")
-    rewards_amount: StrictStr = Field(description="The amount staked in the position, measured in the staked asset unit.", alias="rewardsAmount")
+    rewards_amount: Optional[StrictStr] = Field(description="The amount staked in the position, measured in the staked asset unit. Returned as null for chains where reward tracking is not supported (Cosmos-family chains), instead of a numeric value.", alias="rewardsAmount")
     date_created: datetime = Field(description="When was the request made (ISO Date).", alias="dateCreated")
     date_updated: datetime = Field(description="When has the position last changed (ISO Date).", alias="dateUpdated")
     status: StrictStr = Field(description="The current status.")
@@ -108,6 +108,11 @@ class Delegation(BaseModel):
                 if _item_related_requests:
                     _items.append(_item_related_requests.to_dict())
             _dict['relatedRequests'] = _items
+        # set to None if rewards_amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.rewards_amount is None and "rewards_amount" in self.model_fields_set:
+            _dict['rewardsAmount'] = None
+
         return _dict
 
     @classmethod

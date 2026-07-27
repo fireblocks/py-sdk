@@ -181,6 +181,8 @@ docs/ChannelDvnConfigWithConfirmationsSendConfig.md
 docs/ChapsAddress.md
 docs/ChapsDestination.md
 docs/ChapsPaymentInfo.md
+docs/CipsAddress.md
+docs/CipsDestination.md
 docs/ClaimRewardsRequest.md
 docs/CollectionBurnRequestDto.md
 docs/CollectionBurnResponseDto.md
@@ -456,6 +458,10 @@ docs/FiatTransfer.md
 docs/FixedAmountTypeEnum.md
 docs/FixedFee.md
 docs/FlowDirection.md
+docs/FpsHkAddress.md
+docs/FpsHkDestination.md
+docs/FpsUkAddress.md
+docs/FpsUkDestination.md
 docs/FreezeTransactionResponse.md
 docs/FunctionDoc.md
 docs/Funds.md
@@ -515,6 +521,8 @@ docs/IdentificationPolicyOverride.md
 docs/IdlType.md
 docs/InitiatorConfig.md
 docs/InitiatorConfigPattern.md
+docs/InstaPayAddress.md
+docs/InstaPayDestination.md
 docs/InstructionAmount.md
 docs/InteracAddress.md
 docs/InteracDestination.md
@@ -599,6 +607,8 @@ docs/MomoPaymentInfo.md
 docs/MpcKey.md
 docs/MultichainDeploymentMetadata.md
 docs/NFTsApi.md
+docs/NequiAddress.md
+docs/NequiDestination.md
 docs/NetworkChannel.md
 docs/NetworkConnection.md
 docs/NetworkConnectionResponse.md
@@ -683,6 +693,8 @@ docs/PersonalIdentification.md
 docs/PersonalIdentificationDocument.md
 docs/PersonalIdentificationFullName.md
 docs/PersonalIdentificationType.md
+docs/PesonetAddress.md
+docs/PesonetDestination.md
 docs/PixAddress.md
 docs/PixDestination.md
 docs/PixPaymentInfo.md
@@ -1206,6 +1218,8 @@ docs/WebhookEvent.md
 docs/WebhookMetric.md
 docs/WebhookMtls.md
 docs/WebhookMtlsCsrResponse.md
+docs/WebhookOAuth.md
+docs/WebhookOAuthResponse.md
 docs/WebhookPaginatedResponse.md
 docs/WebhooksApi.md
 docs/WebhooksV2Api.md
@@ -1460,6 +1474,8 @@ fireblocks/models/channel_dvn_config_with_confirmations_send_config.py
 fireblocks/models/chaps_address.py
 fireblocks/models/chaps_destination.py
 fireblocks/models/chaps_payment_info.py
+fireblocks/models/cips_address.py
+fireblocks/models/cips_destination.py
 fireblocks/models/claim_rewards_request.py
 fireblocks/models/collection_burn_request_dto.py
 fireblocks/models/collection_burn_response_dto.py
@@ -1721,6 +1737,10 @@ fireblocks/models/fiat_transfer.py
 fireblocks/models/fixed_amount_type_enum.py
 fireblocks/models/fixed_fee.py
 fireblocks/models/flow_direction.py
+fireblocks/models/fps_hk_address.py
+fireblocks/models/fps_hk_destination.py
+fireblocks/models/fps_uk_address.py
+fireblocks/models/fps_uk_destination.py
 fireblocks/models/freeze_transaction_response.py
 fireblocks/models/function_doc.py
 fireblocks/models/funds.py
@@ -1778,6 +1798,8 @@ fireblocks/models/identification_policy_override.py
 fireblocks/models/idl_type.py
 fireblocks/models/initiator_config.py
 fireblocks/models/initiator_config_pattern.py
+fireblocks/models/insta_pay_address.py
+fireblocks/models/insta_pay_destination.py
 fireblocks/models/instruction_amount.py
 fireblocks/models/interac_address.py
 fireblocks/models/interac_destination.py
@@ -1858,6 +1880,8 @@ fireblocks/models/modify_validation_key_dto.py
 fireblocks/models/momo_payment_info.py
 fireblocks/models/mpc_key.py
 fireblocks/models/multichain_deployment_metadata.py
+fireblocks/models/nequi_address.py
+fireblocks/models/nequi_destination.py
 fireblocks/models/network_channel.py
 fireblocks/models/network_connection.py
 fireblocks/models/network_connection_response.py
@@ -1937,6 +1961,8 @@ fireblocks/models/personal_identification.py
 fireblocks/models/personal_identification_document.py
 fireblocks/models/personal_identification_full_name.py
 fireblocks/models/personal_identification_type.py
+fireblocks/models/pesonet_address.py
+fireblocks/models/pesonet_destination.py
 fireblocks/models/pix_address.py
 fireblocks/models/pix_destination.py
 fireblocks/models/pix_payment_info.py
@@ -2442,6 +2468,8 @@ fireblocks/models/webhook_event.py
 fireblocks/models/webhook_metric.py
 fireblocks/models/webhook_mtls.py
 fireblocks/models/webhook_mtls_csr_response.py
+fireblocks/models/webhook_o_auth.py
+fireblocks/models/webhook_o_auth_response.py
 fireblocks/models/webhook_paginated_response.py
 fireblocks/models/withdraw_request.py
 fireblocks/models/workflow_config_status.py
@@ -2654,6 +2682,8 @@ test/test_channel_dvn_config_with_confirmations_send_config.py
 test/test_chaps_address.py
 test/test_chaps_destination.py
 test/test_chaps_payment_info.py
+test/test_cips_address.py
+test/test_cips_destination.py
 test/test_claim_rewards_request.py
 test/test_collection_burn_request_dto.py
 test/test_collection_burn_response_dto.py
@@ -2929,6 +2959,10 @@ test/test_fiat_transfer.py
 test/test_fixed_amount_type_enum.py
 test/test_fixed_fee.py
 test/test_flow_direction.py
+test/test_fps_hk_address.py
+test/test_fps_hk_destination.py
+test/test_fps_uk_address.py
+test/test_fps_uk_destination.py
 test/test_freeze_transaction_response.py
 test/test_function_doc.py
 test/test_funds.py
@@ -2988,6 +3022,8 @@ test/test_identification_policy_override.py
 test/test_idl_type.py
 test/test_initiator_config.py
 test/test_initiator_config_pattern.py
+test/test_insta_pay_address.py
+test/test_insta_pay_destination.py
 test/test_instruction_amount.py
 test/test_interac_address.py
 test/test_interac_destination.py
@@ -3071,6 +3107,8 @@ test/test_modify_validation_key_dto.py
 test/test_momo_payment_info.py
 test/test_mpc_key.py
 test/test_multichain_deployment_metadata.py
+test/test_nequi_address.py
+test/test_nequi_destination.py
 test/test_network_channel.py
 test/test_network_connection.py
 test/test_network_connection_response.py
@@ -3156,6 +3194,8 @@ test/test_personal_identification.py
 test/test_personal_identification_document.py
 test/test_personal_identification_full_name.py
 test/test_personal_identification_type.py
+test/test_pesonet_address.py
+test/test_pesonet_destination.py
 test/test_pix_address.py
 test/test_pix_destination.py
 test/test_pix_payment_info.py
@@ -3679,6 +3719,8 @@ test/test_webhook_event.py
 test/test_webhook_metric.py
 test/test_webhook_mtls.py
 test/test_webhook_mtls_csr_response.py
+test/test_webhook_o_auth.py
+test/test_webhook_o_auth_response.py
 test/test_webhook_paginated_response.py
 test/test_webhooks_api.py
 test/test_webhooks_v2_api.py

@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_mtls import WebhookMtls
+from fireblocks.models.webhook_o_auth_response import WebhookOAuthResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -38,7 +39,9 @@ class Webhook(BaseModel):
     created_at: StrictInt = Field(description="The date and time the webhook was created in milliseconds", alias="createdAt")
     updated_at: StrictInt = Field(description="The date and time the webhook was last updated in milliseconds", alias="updatedAt")
     mtls: Optional[WebhookMtls] = None
-    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt", "mtls"]
+    oauth: Optional[WebhookOAuthResponse] = None
+    custom_headers: Optional[List[StrictStr]] = Field(default=None, description="Names of the custom headers configured for this webhook. Header values are never returned.", alias="customHeaders")
+    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt", "mtls", "oauth", "customHeaders"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -89,6 +92,9 @@ class Webhook(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mtls
         if self.mtls:
             _dict['mtls'] = self.mtls.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oauth
+        if self.oauth:
+            _dict['oauth'] = self.oauth.to_dict()
         # set to None if mtls (nullable) is None
         # and model_fields_set contains the field
         if self.mtls is None and "mtls" in self.model_fields_set:
@@ -113,7 +119,9 @@ class Webhook(BaseModel):
             "status": obj.get("status"),
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
-            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None
+            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None,
+            "oauth": WebhookOAuthResponse.from_dict(obj["oauth"]) if obj.get("oauth") is not None else None,
+            "customHeaders": obj.get("customHeaders")
         })
         return _obj
 

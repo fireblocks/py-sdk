@@ -3,6 +3,12 @@ name: Upload Python Package
 on:
   release:
     types: [ published ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to use for this test run (no commit/push/tag/publish will actually happen)'
+        required: false
+        default: '0.0.0-test'
 
 jobs:
   bump-version:
@@ -32,10 +38,15 @@ jobs:
           npm i -g auto-changelog
 
       - name: Bump version
+        env:
+          INITIAL_TAG: ${{ github.event.release.tag_name || inputs.version }}
+          # TEMPORARY DRY-RUN OVERRIDE - forces test mode even for real releases.
+          # Original: ${{ github.event_name == 'workflow_dispatch' }}
+          # Revert this commit before running a real release.
+          IS_TEST_RUN: 'true'
         run: |
-          initialTag=${{ github.event.release.tag_name }}
-          tag="${initialTag//[v]/}"
-          echo $tag
+          tag="${INITIAL_TAG//[v]/}"
+          echo "$tag"
           git remote update
           git fetch
           echo "finished fetching"
@@ -44,19 +55,26 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "Github Actions"
           echo "finished configuration"
-          bump-my-version bump --config-file .bump_version.toml --current-version 0.0.0 --new-version $tag
+          bump-my-version bump --config-file .bump_version.toml --current-version 0.0.0 --new-version "$tag"
           echo "bumpversion finished"
           auto-changelog
           git add .
           git commit -m "release $tag"
-          git push
+          if [ "$IS_TEST_RUN" = "true" ]; then
+            echo "Test run: skipping git push"
+          else
+            git push
+          fi
 
       - name: Move tag
+        # TEMPORARY DRY-RUN OVERRIDE - original: github.event_name == 'release'
+        if: false
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          TAG_NAME=${{ github.event.release.tag_name }}
-          echo $TAG_NAME
-          git tag --force $TAG_NAME
-          git push --force origin $TAG_NAME
+          echo "$TAG_NAME"
+          git tag --force "$TAG_NAME"
+          git push --force origin "$TAG_NAME"
 
   publish:
     needs: bump-version
@@ -85,5 +103,14 @@ jobs:
         run: python -m build
 
       - name: Publish package to PyPI
+        # TEMPORARY DRY-RUN OVERRIDE - original: github.event_name == 'release'
+        if: false
         uses: pypa/gh-action-pypi-publish@release/v1
         # No user/password needed - OIDC handles authentication
+
+      - name: Validate package (dry run)
+        # TEMPORARY DRY-RUN OVERRIDE - original: github.event_name == 'workflow_dispatch'
+        if: true
+        run: |
+          pip install twine
+          twine check dist/*

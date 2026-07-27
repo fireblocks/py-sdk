@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | The type of destination. Use \&quot;BLOCKCHAIN\&quot; for blockchain address destinations. | 
-**address** | [**InternalTransferAddress**](InternalTransferAddress.md) |  | 
+**address** | [**PesonetAddress**](PesonetAddress.md) |  | 
 **reference_id** | **str** |  | [optional] 
 
 ## Example

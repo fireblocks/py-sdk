@@ -20,13 +20,19 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Any, List, Optional
 from fireblocks.models.ach_destination import AchDestination
 from fireblocks.models.chaps_destination import ChapsDestination
+from fireblocks.models.cips_destination import CipsDestination
 from fireblocks.models.european_sepa_destination import EuropeanSEPADestination
+from fireblocks.models.fps_hk_destination import FpsHkDestination
+from fireblocks.models.fps_uk_destination import FpsUkDestination
 from fireblocks.models.iban_destination import IbanDestination
+from fireblocks.models.insta_pay_destination import InstaPayDestination
 from fireblocks.models.interac_destination import InteracDestination
 from fireblocks.models.internal_transfer_destination import InternalTransferDestination
 from fireblocks.models.local_bank_transfer_africa_destination import LocalBankTransferAfricaDestination
 from fireblocks.models.mobile_money_destination import MobileMoneyDestination
+from fireblocks.models.nequi_destination import NequiDestination
 from fireblocks.models.payid_destination import PayidDestination
+from fireblocks.models.pesonet_destination import PesonetDestination
 from fireblocks.models.pix_destination import PixDestination
 from fireblocks.models.sepa_destination import SEPADestination
 from fireblocks.models.spei_destination import SpeiDestination
@@ -36,7 +42,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-FIATDESTINATION_ONE_OF_SCHEMAS = ["AchDestination", "ChapsDestination", "EuropeanSEPADestination", "IbanDestination", "InteracDestination", "InternalTransferDestination", "LocalBankTransferAfricaDestination", "MobileMoneyDestination", "PayidDestination", "PixDestination", "SEPADestination", "SpeiDestination", "SwiftDestination", "USWireDestination"]
+FIATDESTINATION_ONE_OF_SCHEMAS = ["AchDestination", "ChapsDestination", "CipsDestination", "EuropeanSEPADestination", "FpsHkDestination", "FpsUkDestination", "IbanDestination", "InstaPayDestination", "InteracDestination", "InternalTransferDestination", "LocalBankTransferAfricaDestination", "MobileMoneyDestination", "NequiDestination", "PayidDestination", "PesonetDestination", "PixDestination", "SEPADestination", "SpeiDestination", "SwiftDestination", "USWireDestination"]
 
 class FiatDestination(BaseModel):
     """
@@ -70,8 +76,20 @@ class FiatDestination(BaseModel):
     oneof_schema_13_validator: Optional[PayidDestination] = None
     # data type: InternalTransferDestination
     oneof_schema_14_validator: Optional[InternalTransferDestination] = None
-    actual_instance: Optional[Union[AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination]] = None
-    one_of_schemas: Set[str] = { "AchDestination", "ChapsDestination", "EuropeanSEPADestination", "IbanDestination", "InteracDestination", "InternalTransferDestination", "LocalBankTransferAfricaDestination", "MobileMoneyDestination", "PayidDestination", "PixDestination", "SEPADestination", "SpeiDestination", "SwiftDestination", "USWireDestination" }
+    # data type: CipsDestination
+    oneof_schema_15_validator: Optional[CipsDestination] = None
+    # data type: NequiDestination
+    oneof_schema_16_validator: Optional[NequiDestination] = None
+    # data type: FpsUkDestination
+    oneof_schema_17_validator: Optional[FpsUkDestination] = None
+    # data type: FpsHkDestination
+    oneof_schema_18_validator: Optional[FpsHkDestination] = None
+    # data type: InstaPayDestination
+    oneof_schema_19_validator: Optional[InstaPayDestination] = None
+    # data type: PesonetDestination
+    oneof_schema_20_validator: Optional[PesonetDestination] = None
+    actual_instance: Optional[Union[AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination]] = None
+    one_of_schemas: Set[str] = { "AchDestination", "ChapsDestination", "CipsDestination", "EuropeanSEPADestination", "FpsHkDestination", "FpsUkDestination", "IbanDestination", "InstaPayDestination", "InteracDestination", "InternalTransferDestination", "LocalBankTransferAfricaDestination", "MobileMoneyDestination", "NequiDestination", "PayidDestination", "PesonetDestination", "PixDestination", "SEPADestination", "SpeiDestination", "SwiftDestination", "USWireDestination" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -164,12 +182,42 @@ class FiatDestination(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `InternalTransferDestination`")
         else:
             match += 1
+        # validate data type: CipsDestination
+        if not isinstance(v, CipsDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CipsDestination`")
+        else:
+            match += 1
+        # validate data type: NequiDestination
+        if not isinstance(v, NequiDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `NequiDestination`")
+        else:
+            match += 1
+        # validate data type: FpsUkDestination
+        if not isinstance(v, FpsUkDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `FpsUkDestination`")
+        else:
+            match += 1
+        # validate data type: FpsHkDestination
+        if not isinstance(v, FpsHkDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `FpsHkDestination`")
+        else:
+            match += 1
+        # validate data type: InstaPayDestination
+        if not isinstance(v, InstaPayDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InstaPayDestination`")
+        else:
+            match += 1
+        # validate data type: PesonetDestination
+        if not isinstance(v, PesonetDestination):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PesonetDestination`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in FiatDestination with oneOf schemas: AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in FiatDestination with oneOf schemas: AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in FiatDestination with oneOf schemas: AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in FiatDestination with oneOf schemas: AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -268,13 +316,49 @@ class FiatDestination(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into CipsDestination
+        try:
+            instance.actual_instance = CipsDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into NequiDestination
+        try:
+            instance.actual_instance = NequiDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into FpsUkDestination
+        try:
+            instance.actual_instance = FpsUkDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into FpsHkDestination
+        try:
+            instance.actual_instance = FpsHkDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into InstaPayDestination
+        try:
+            instance.actual_instance = InstaPayDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into PesonetDestination
+        try:
+            instance.actual_instance = PesonetDestination.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into FiatDestination with oneOf schemas: AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into FiatDestination with oneOf schemas: AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into FiatDestination with oneOf schemas: AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into FiatDestination with oneOf schemas: AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -288,7 +372,7 @@ class FiatDestination(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AchDestination, ChapsDestination, EuropeanSEPADestination, IbanDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, PayidDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AchDestination, ChapsDestination, CipsDestination, EuropeanSEPADestination, FpsHkDestination, FpsUkDestination, IbanDestination, InstaPayDestination, InteracDestination, InternalTransferDestination, LocalBankTransferAfricaDestination, MobileMoneyDestination, NequiDestination, PayidDestination, PesonetDestination, PixDestination, SEPADestination, SpeiDestination, SwiftDestination, USWireDestination]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

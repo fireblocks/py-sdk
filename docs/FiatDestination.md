@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** |  | 
-**address** | [**InternalTransferAddress**](InternalTransferAddress.md) |  | 
+**address** | [**PesonetAddress**](PesonetAddress.md) |  | 
+**reference_id** | **str** | Optional payment reference | [optional] 
 
 ## Example
 

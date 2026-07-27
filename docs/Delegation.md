@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **provider_name** | **str** | The destination validator provider name | 
 **chain_descriptor** | **str** | The protocol identifier (e.g. \&quot;ETH\&quot;/ \&quot;SOL\&quot;) to use | 
 **amount** | **str** | Total value of the staking position. For Solana, Lido and Ethereum (compounding validator): includes the original stake plus accumulated rewards. For MATIC, Cosmos and Ethereum (legacy validator): refers to the amount currently staked. | 
-**rewards_amount** | **str** | The amount staked in the position, measured in the staked asset unit. | 
+**rewards_amount** | **str** | The amount staked in the position, measured in the staked asset unit. Returned as null for chains where reward tracking is not supported (Cosmos-family chains), instead of a numeric value. | 
 **date_created** | **datetime** | When was the request made (ISO Date). | 
 **date_updated** | **datetime** | When has the position last changed (ISO Date). | 
 **status** | **str** | The current status. | 

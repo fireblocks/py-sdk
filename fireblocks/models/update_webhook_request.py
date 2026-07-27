@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_mtls import WebhookMtls
+from fireblocks.models.webhook_o_auth import WebhookOAuth
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,7 +36,9 @@ class UpdateWebhookRequest(BaseModel):
     events: Optional[List[WebhookEvent]] = Field(default=None, description="The events that the webhook will be subscribed to")
     enabled: Optional[StrictBool] = Field(default=None, description="The status of the webhook")
     mtls: Optional[WebhookMtls] = None
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls"]
+    oauth: Optional[WebhookOAuth] = None
+    custom_headers: Optional[Dict[str, Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1024)]]]] = Field(default=None, description="Custom headers delta: entries with a string value are added or updated, entries with a `null` value delete that header (no-op if absent), and header names omitted from the payload are left untouched. The resulting set is limited to 10 headers. Header names are case-insensitive, up to 128 characters, and limited to valid HTTP header name characters. Some system header names are reserved and cannot be used. Values are write-only — never returned in responses.", alias="customHeaders")
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "oauth", "customHeaders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,10 +82,18 @@ class UpdateWebhookRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mtls
         if self.mtls:
             _dict['mtls'] = self.mtls.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oauth
+        if self.oauth:
+            _dict['oauth'] = self.oauth.to_dict()
         # set to None if mtls (nullable) is None
         # and model_fields_set contains the field
         if self.mtls is None and "mtls" in self.model_fields_set:
             _dict['mtls'] = None
+
+        # set to None if oauth (nullable) is None
+        # and model_fields_set contains the field
+        if self.oauth is None and "oauth" in self.model_fields_set:
+            _dict['oauth'] = None
 
         return _dict
 
@@ -100,7 +111,9 @@ class UpdateWebhookRequest(BaseModel):
             "description": obj.get("description"),
             "events": obj.get("events"),
             "enabled": obj.get("enabled"),
-            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None
+            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None,
+            "oauth": WebhookOAuth.from_dict(obj["oauth"]) if obj.get("oauth") is not None else None,
+            "customHeaders": obj.get("customHeaders")
         })
         return _obj
 

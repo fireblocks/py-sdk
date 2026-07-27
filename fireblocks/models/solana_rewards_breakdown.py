@@ -28,10 +28,10 @@ class SolanaRewardsBreakdown(BaseModel):
     """
     A breakdown of the staking rewards earned by the position.
     """ # noqa: E501
-    issuance: StrictStr = Field(description="The issuance reward amount earned by the position, measured in the staked asset unit.")
+    inflation: StrictStr = Field(description="The inflation reward amount earned by the position, measured in the staked asset unit.")
     mev: StrictStr = Field(description="The MEV reward amount earned by the position, measured in the staked asset unit.")
     last_reward_synced_at: datetime = Field(description="The last time the rewards were synced (ISO Date).", alias="lastRewardSyncedAt")
-    __properties: ClassVar[List[str]] = ["issuance", "mev", "lastRewardSyncedAt"]
+    __properties: ClassVar[List[str]] = ["inflation", "mev", "lastRewardSyncedAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +84,7 @@ class SolanaRewardsBreakdown(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "issuance": obj.get("issuance"),
+            "inflation": obj.get("inflation"),
             "mev": obj.get("mev"),
             "lastRewardSyncedAt": obj.get("lastRewardSyncedAt")
         })

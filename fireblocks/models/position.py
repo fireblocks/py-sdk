@@ -36,7 +36,7 @@ class Position(BaseModel):
     provider_name: StrictStr = Field(description="The destination validator provider name", alias="providerName")
     chain_descriptor: StrictStr = Field(description="The protocol identifier (e.g. \"ETH\"/ \"SOL\") to use", alias="chainDescriptor")
     amount: StrictStr = Field(description="Total value of the staking position. For Solana, Lido and Ethereum (compounding validator): includes the original stake plus accumulated rewards. For MATIC, Cosmos and Ethereum (legacy validator): refers to the amount currently staked.")
-    rewards_amount: StrictStr = Field(description="The amount staked in the position, measured in the staked asset unit.", alias="rewardsAmount")
+    rewards_amount: Optional[StrictStr] = Field(description="The amount staked in the position, measured in the staked asset unit. Returned as null for chains where reward tracking is not supported (Cosmos-family chains), instead of a numeric value.", alias="rewardsAmount")
     date_created: datetime = Field(description="When was the request made (ISO Date).", alias="dateCreated")
     date_updated: datetime = Field(description="When has the position last changed (ISO Date).", alias="dateUpdated")
     status: StrictStr = Field(description="The current status.")
@@ -105,6 +105,11 @@ class Position(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of blockchain_position_info
         if self.blockchain_position_info:
             _dict['blockchainPositionInfo'] = self.blockchain_position_info.to_dict()
+        # set to None if rewards_amount (nullable) is None
+        # and model_fields_set contains the field
+        if self.rewards_amount is None and "rewards_amount" in self.model_fields_set:
+            _dict['rewardsAmount'] = None
+
         return _dict
 
     @classmethod

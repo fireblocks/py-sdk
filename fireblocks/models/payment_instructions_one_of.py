@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.internal_transfer_address import InternalTransferAddress
+from fireblocks.models.pesonet_address import PesonetAddress
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,16 +28,16 @@ class PaymentInstructionsOneOf(BaseModel):
     """
     PaymentInstructionsOneOf
     """ # noqa: E501
-    type: StrictStr
-    address: InternalTransferAddress
+    type: StrictStr = Field(description="The transfer rail type for the destination")
+    address: PesonetAddress
     reference_id: Optional[StrictStr] = Field(default=None, alias="referenceId")
     __properties: ClassVar[List[str]] = ["type", "address", "referenceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['INTERNAL_TRANSFER']):
-            raise ValueError("must be one of enum values ('INTERNAL_TRANSFER')")
+        if value not in set(['PESONET']):
+            raise ValueError("must be one of enum values ('PESONET')")
         return value
 
     model_config = ConfigDict(
@@ -95,7 +95,7 @@ class PaymentInstructionsOneOf(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
-            "address": InternalTransferAddress.from_dict(obj["address"]) if obj.get("address") is not None else None,
+            "address": PesonetAddress.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "referenceId": obj.get("referenceId")
         })
         return _obj

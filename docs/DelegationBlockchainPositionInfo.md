@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **stake_account_derivation_change_value** | **float** | The value of the change level in the BIP32 path which was used to derive the stake account address. | 
 **rewards_breakdown** | [**SolanaRewardsBreakdown**](SolanaRewardsBreakdown.md) |  | [optional] 
 **is_compounding_validator** | **bool** | Is the validator compounding (i.e it was created with compounding validator type). | 
+**estimated_activation_time** | **str** | Estimated time the staked ETH will activate, derived from the beacon-chain deposit queue. Present only while the position is pending/activating; omitted once active. | [optional] 
 **total_withdrawable_amount** | **str** | The total amount available for withdrawal. | 
 **total_inactive_amount** | **str** | The total inactive amount. | 
 

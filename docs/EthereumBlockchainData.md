@@ -7,6 +7,7 @@ Additional fields per blockchain for Ethereum (ETH) - can be empty or missing if
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **is_compounding_validator** | **bool** | Is the validator compounding (i.e it was created with compounding validator type). | 
+**estimated_activation_time** | **str** | Estimated time the staked ETH will activate, derived from the beacon-chain deposit queue. Present only while the position is pending/activating; omitted once active. | [optional] 
 
 ## Example
 

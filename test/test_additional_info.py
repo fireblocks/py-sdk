@@ -36,13 +36,11 @@ class TestAdditionalInfo(unittest.TestCase):
         model = AdditionalInfo()
         if include_optional:
             return AdditionalInfo(
-                estimated_annual_reward = 6.48,
                 lockup_period = 172800000,
                 activation_period = 172800000
             )
         else:
             return AdditionalInfo(
-                estimated_annual_reward = 6.48,
                 lockup_period = 172800000,
                 activation_period = 172800000,
         )

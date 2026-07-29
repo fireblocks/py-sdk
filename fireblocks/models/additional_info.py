@@ -27,10 +27,9 @@ class AdditionalInfo(BaseModel):
     """
     Additional information related to the blockchain. This may include extra details about the blockchain network.
     """ # noqa: E501
-    estimated_annual_reward: Union[StrictFloat, StrictInt] = Field(description="The estimated annual reward rate for the blockchain, represented as a decimal percentage value.", alias="estimatedAnnualReward")
     lockup_period: Union[StrictFloat, StrictInt] = Field(description="The duration of the lockup period for certain actions on the blockchain, measured in milliseconds.", alias="lockupPeriod")
     activation_period: Union[StrictFloat, StrictInt] = Field(description="The duration of the activation period for certain actions on the blockchain, measured in milliseconds.", alias="activationPeriod")
-    __properties: ClassVar[List[str]] = ["estimatedAnnualReward", "lockupPeriod", "activationPeriod"]
+    __properties: ClassVar[List[str]] = ["lockupPeriod", "activationPeriod"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +82,6 @@ class AdditionalInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "estimatedAnnualReward": obj.get("estimatedAnnualReward"),
             "lockupPeriod": obj.get("lockupPeriod"),
             "activationPeriod": obj.get("activationPeriod")
         })

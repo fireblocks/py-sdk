@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,8 @@ class EthereumBlockchainData(BaseModel):
     Additional fields per blockchain for Ethereum (ETH) - can be empty or missing if not initialized or no specific data is available.
     """ # noqa: E501
     is_compounding_validator: StrictBool = Field(description="Is the validator compounding (i.e it was created with compounding validator type).", alias="isCompoundingValidator")
-    __properties: ClassVar[List[str]] = ["isCompoundingValidator"]
+    estimated_activation_time: Optional[StrictStr] = Field(default=None, description="Estimated time the staked ETH will activate, derived from the beacon-chain deposit queue. Present only while the position is pending/activating; omitted once active.", alias="estimatedActivationTime")
+    __properties: ClassVar[List[str]] = ["isCompoundingValidator", "estimatedActivationTime"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +82,8 @@ class EthereumBlockchainData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "isCompoundingValidator": obj.get("isCompoundingValidator")
+            "isCompoundingValidator": obj.get("isCompoundingValidator"),
+            "estimatedActivationTime": obj.get("estimatedActivationTime")
         })
         return _obj
 

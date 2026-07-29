@@ -6,7 +6,6 @@ Additional information related to the blockchain. This may include extra details
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**estimated_annual_reward** | **float** | The estimated annual reward rate for the blockchain, represented as a decimal percentage value. | 
 **lockup_period** | **float** | The duration of the lockup period for certain actions on the blockchain, measured in milliseconds. | 
 **activation_period** | **float** | The duration of the activation period for certain actions on the blockchain, measured in milliseconds. | 
 

@@ -36,7 +36,8 @@ class TestEthereumBlockchainData(unittest.TestCase):
         model = EthereumBlockchainData()
         if include_optional:
             return EthereumBlockchainData(
-                is_compounding_validator = True
+                is_compounding_validator = True,
+                estimated_activation_time = '2024-01-15T14:30:00.000Z'
             )
         else:
             return EthereumBlockchainData(

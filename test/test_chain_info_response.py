@@ -41,7 +41,6 @@ class TestChainInfoResponse(unittest.TestCase):
                 epoch_elapsed = 0.31,
                 epoch_duration = 172800000,
                 additional_info = fireblocks.models.additional_info.AdditionalInfo(
-                    estimated_annual_reward = 6.48, 
                     lockup_period = 172800000, 
                     activation_period = 172800000, ),
                 last_updated = 1706602061938
@@ -53,7 +52,6 @@ class TestChainInfoResponse(unittest.TestCase):
                 epoch_elapsed = 0.31,
                 epoch_duration = 172800000,
                 additional_info = fireblocks.models.additional_info.AdditionalInfo(
-                    estimated_annual_reward = 6.48, 
                     lockup_period = 172800000, 
                     activation_period = 172800000, ),
                 last_updated = 1706602061938,

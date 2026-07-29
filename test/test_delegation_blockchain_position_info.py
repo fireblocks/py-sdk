@@ -42,6 +42,7 @@ class TestDelegationBlockchainPositionInfo(unittest.TestCase):
                 stake_account_derivation_change_value = 7,
                 rewards_breakdown = {"inflation":"0.000856038","mev":"0.000123456","lastRewardSyncedAt":"2023-07-13T15:55:34.256Z"},
                 is_compounding_validator = True,
+                estimated_activation_time = '2024-01-15T14:30:00.000Z',
                 total_withdrawable_amount = '1.5',
                 total_inactive_amount = '2.0'
             )

@@ -183,6 +183,7 @@ docs/ChapsDestination.md
 docs/ChapsPaymentInfo.md
 docs/CipsAddress.md
 docs/CipsDestination.md
+docs/CipsPaymentInfo.md
 docs/ClaimRewardsRequest.md
 docs/CollectionBurnRequestDto.md
 docs/CollectionBurnResponseDto.md
@@ -460,8 +461,10 @@ docs/FixedFee.md
 docs/FlowDirection.md
 docs/FpsHkAddress.md
 docs/FpsHkDestination.md
+docs/FpsHkPaymentInfo.md
 docs/FpsUkAddress.md
 docs/FpsUkDestination.md
+docs/FpsUkPaymentInfo.md
 docs/FreezeTransactionResponse.md
 docs/FunctionDoc.md
 docs/Funds.md
@@ -523,6 +526,7 @@ docs/InitiatorConfig.md
 docs/InitiatorConfigPattern.md
 docs/InstaPayAddress.md
 docs/InstaPayDestination.md
+docs/InstaPayPaymentInfo.md
 docs/InstructionAmount.md
 docs/InteracAddress.md
 docs/InteracDestination.md
@@ -609,6 +613,7 @@ docs/MultichainDeploymentMetadata.md
 docs/NFTsApi.md
 docs/NequiAddress.md
 docs/NequiDestination.md
+docs/NequiPaymentInfo.md
 docs/NetworkChannel.md
 docs/NetworkConnection.md
 docs/NetworkConnectionResponse.md
@@ -695,6 +700,7 @@ docs/PersonalIdentificationFullName.md
 docs/PersonalIdentificationType.md
 docs/PesonetAddress.md
 docs/PesonetDestination.md
+docs/PesonetPaymentInfo.md
 docs/PixAddress.md
 docs/PixDestination.md
 docs/PixPaymentInfo.md
@@ -1476,6 +1482,7 @@ fireblocks/models/chaps_destination.py
 fireblocks/models/chaps_payment_info.py
 fireblocks/models/cips_address.py
 fireblocks/models/cips_destination.py
+fireblocks/models/cips_payment_info.py
 fireblocks/models/claim_rewards_request.py
 fireblocks/models/collection_burn_request_dto.py
 fireblocks/models/collection_burn_response_dto.py
@@ -1739,8 +1746,10 @@ fireblocks/models/fixed_fee.py
 fireblocks/models/flow_direction.py
 fireblocks/models/fps_hk_address.py
 fireblocks/models/fps_hk_destination.py
+fireblocks/models/fps_hk_payment_info.py
 fireblocks/models/fps_uk_address.py
 fireblocks/models/fps_uk_destination.py
+fireblocks/models/fps_uk_payment_info.py
 fireblocks/models/freeze_transaction_response.py
 fireblocks/models/function_doc.py
 fireblocks/models/funds.py
@@ -1800,6 +1809,7 @@ fireblocks/models/initiator_config.py
 fireblocks/models/initiator_config_pattern.py
 fireblocks/models/insta_pay_address.py
 fireblocks/models/insta_pay_destination.py
+fireblocks/models/insta_pay_payment_info.py
 fireblocks/models/instruction_amount.py
 fireblocks/models/interac_address.py
 fireblocks/models/interac_destination.py
@@ -1882,6 +1892,7 @@ fireblocks/models/mpc_key.py
 fireblocks/models/multichain_deployment_metadata.py
 fireblocks/models/nequi_address.py
 fireblocks/models/nequi_destination.py
+fireblocks/models/nequi_payment_info.py
 fireblocks/models/network_channel.py
 fireblocks/models/network_connection.py
 fireblocks/models/network_connection_response.py
@@ -1963,6 +1974,7 @@ fireblocks/models/personal_identification_full_name.py
 fireblocks/models/personal_identification_type.py
 fireblocks/models/pesonet_address.py
 fireblocks/models/pesonet_destination.py
+fireblocks/models/pesonet_payment_info.py
 fireblocks/models/pix_address.py
 fireblocks/models/pix_destination.py
 fireblocks/models/pix_payment_info.py
@@ -2684,6 +2696,7 @@ test/test_chaps_destination.py
 test/test_chaps_payment_info.py
 test/test_cips_address.py
 test/test_cips_destination.py
+test/test_cips_payment_info.py
 test/test_claim_rewards_request.py
 test/test_collection_burn_request_dto.py
 test/test_collection_burn_response_dto.py
@@ -2961,8 +2974,10 @@ test/test_fixed_fee.py
 test/test_flow_direction.py
 test/test_fps_hk_address.py
 test/test_fps_hk_destination.py
+test/test_fps_hk_payment_info.py
 test/test_fps_uk_address.py
 test/test_fps_uk_destination.py
+test/test_fps_uk_payment_info.py
 test/test_freeze_transaction_response.py
 test/test_function_doc.py
 test/test_funds.py
@@ -3024,6 +3039,7 @@ test/test_initiator_config.py
 test/test_initiator_config_pattern.py
 test/test_insta_pay_address.py
 test/test_insta_pay_destination.py
+test/test_insta_pay_payment_info.py
 test/test_instruction_amount.py
 test/test_interac_address.py
 test/test_interac_destination.py
@@ -3109,6 +3125,7 @@ test/test_mpc_key.py
 test/test_multichain_deployment_metadata.py
 test/test_nequi_address.py
 test/test_nequi_destination.py
+test/test_nequi_payment_info.py
 test/test_network_channel.py
 test/test_network_connection.py
 test/test_network_connection_response.py
@@ -3196,6 +3213,7 @@ test/test_personal_identification_full_name.py
 test/test_personal_identification_type.py
 test/test_pesonet_address.py
 test/test_pesonet_destination.py
+test/test_pesonet_payment_info.py
 test/test_pix_address.py
 test/test_pix_destination.py
 test/test_pix_payment_info.py

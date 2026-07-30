@@ -335,6 +335,7 @@ from fireblocks.models.chaps_destination import ChapsDestination
 from fireblocks.models.chaps_payment_info import ChapsPaymentInfo
 from fireblocks.models.cips_address import CipsAddress
 from fireblocks.models.cips_destination import CipsDestination
+from fireblocks.models.cips_payment_info import CipsPaymentInfo
 from fireblocks.models.claim_rewards_request import ClaimRewardsRequest
 from fireblocks.models.collection_burn_request_dto import CollectionBurnRequestDto
 from fireblocks.models.collection_burn_response_dto import CollectionBurnResponseDto
@@ -768,8 +769,10 @@ from fireblocks.models.fixed_fee import FixedFee
 from fireblocks.models.flow_direction import FlowDirection
 from fireblocks.models.fps_hk_address import FpsHkAddress
 from fireblocks.models.fps_hk_destination import FpsHkDestination
+from fireblocks.models.fps_hk_payment_info import FpsHkPaymentInfo
 from fireblocks.models.fps_uk_address import FpsUkAddress
 from fireblocks.models.fps_uk_destination import FpsUkDestination
+from fireblocks.models.fps_uk_payment_info import FpsUkPaymentInfo
 from fireblocks.models.freeze_transaction_response import FreezeTransactionResponse
 from fireblocks.models.function_doc import FunctionDoc
 from fireblocks.models.funds import Funds
@@ -863,6 +866,7 @@ from fireblocks.models.initiator_config import InitiatorConfig
 from fireblocks.models.initiator_config_pattern import InitiatorConfigPattern
 from fireblocks.models.insta_pay_address import InstaPayAddress
 from fireblocks.models.insta_pay_destination import InstaPayDestination
+from fireblocks.models.insta_pay_payment_info import InstaPayPaymentInfo
 from fireblocks.models.instruction_amount import InstructionAmount
 from fireblocks.models.interac_address import InteracAddress
 from fireblocks.models.interac_destination import InteracDestination
@@ -989,6 +993,7 @@ from fireblocks.models.multichain_deployment_metadata import (
 )
 from fireblocks.models.nequi_address import NequiAddress
 from fireblocks.models.nequi_destination import NequiDestination
+from fireblocks.models.nequi_payment_info import NequiPaymentInfo
 from fireblocks.models.network_channel import NetworkChannel
 from fireblocks.models.network_connection import NetworkConnection
 from fireblocks.models.network_connection_response import NetworkConnectionResponse
@@ -1098,6 +1103,7 @@ from fireblocks.models.personal_identification_full_name import (
 from fireblocks.models.personal_identification_type import PersonalIdentificationType
 from fireblocks.models.pesonet_address import PesonetAddress
 from fireblocks.models.pesonet_destination import PesonetDestination
+from fireblocks.models.pesonet_payment_info import PesonetPaymentInfo
 from fireblocks.models.pix_address import PixAddress
 from fireblocks.models.pix_destination import PixDestination
 from fireblocks.models.pix_payment_info import PixPaymentInfo

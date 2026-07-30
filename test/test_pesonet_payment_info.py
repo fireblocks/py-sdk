@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.pesonet_payment_info import PesonetPaymentInfo
 
 
-class TestAddConnectedAccountRequest(unittest.TestCase):
-    """AddConnectedAccountRequest unit test stubs"""
+class TestPesonetPaymentInfo(unittest.TestCase):
+    """PesonetPaymentInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +26,36 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
-        """Test AddConnectedAccountRequest
+    def make_instance(self, include_optional) -> PesonetPaymentInfo:
+        """Test PesonetPaymentInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AddConnectedAccountRequest`
+        # uncomment below to create an instance of `PesonetPaymentInfo`
         """
-        model = AddConnectedAccountRequest()
+        model = PesonetPaymentInfo()
         if include_optional:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                display_name = 'My Binance Account',
-                creds = '[B@2c27bba2',
-                api_key = 'api_key_abc123',
-                main_account_id = 'acc-parent-001',
-                account_id = 'provider-acc-001',
-                on_premise_server_id = 'on-prem-server-001'
+            return PesonetPaymentInfo(
+                rail = 'PESONET',
+                addressing_system = 'PESONET',
+                account_holder_given_name = 'Maria',
+                account_holder_surname = 'Santos',
+                account_number = '001234567890',
+                bank_name = 'BPI'
             )
         else:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                creds = '[B@2c27bba2',
-                api_key = 'api_key_abc123',
+            return PesonetPaymentInfo(
+                rail = 'PESONET',
+                addressing_system = 'PESONET',
+                account_holder_given_name = 'Maria',
+                account_holder_surname = 'Santos',
+                account_number = '001234567890',
+                bank_name = 'BPI',
         )
         """
 
-    def testAddConnectedAccountRequest(self):
-        """Test AddConnectedAccountRequest"""
+    def testPesonetPaymentInfo(self):
+        """Test PesonetPaymentInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

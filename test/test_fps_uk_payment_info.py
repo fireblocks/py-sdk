@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.fps_uk_payment_info import FpsUkPaymentInfo
 
 
-class TestAddConnectedAccountRequest(unittest.TestCase):
-    """AddConnectedAccountRequest unit test stubs"""
+class TestFpsUkPaymentInfo(unittest.TestCase):
+    """FpsUkPaymentInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +26,37 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
-        """Test AddConnectedAccountRequest
+    def make_instance(self, include_optional) -> FpsUkPaymentInfo:
+        """Test FpsUkPaymentInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AddConnectedAccountRequest`
+        # uncomment below to create an instance of `FpsUkPaymentInfo`
         """
-        model = AddConnectedAccountRequest()
+        model = FpsUkPaymentInfo()
         if include_optional:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                display_name = 'My Binance Account',
-                creds = '[B@2c27bba2',
-                api_key = 'api_key_abc123',
-                main_account_id = 'acc-parent-001',
-                account_id = 'provider-acc-001',
-                on_premise_server_id = 'on-prem-server-001'
+            return FpsUkPaymentInfo(
+                rail = 'FPS_UK',
+                addressing_system = 'FPS_UK',
+                account_holder_given_name = 'James',
+                account_holder_surname = 'Wilson',
+                account_number = '12345678',
+                sort_code = '12-34-56',
+                bank_account_country = 'GB'
             )
         else:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                creds = '[B@2c27bba2',
-                api_key = 'api_key_abc123',
+            return FpsUkPaymentInfo(
+                rail = 'FPS_UK',
+                addressing_system = 'FPS_UK',
+                account_holder_given_name = 'James',
+                account_holder_surname = 'Wilson',
+                account_number = '12345678',
+                sort_code = '12-34-56',
         )
         """
 
-    def testAddConnectedAccountRequest(self):
-        """Test AddConnectedAccountRequest"""
+    def testFpsUkPaymentInfo(self):
+        """Test FpsUkPaymentInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

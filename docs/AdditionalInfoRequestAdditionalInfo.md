@@ -22,15 +22,15 @@ Name | Type | Description | Notes
 **aba_country** | **str** | The country for the ABA transfer (ISO 3166-1 alpha-2 code) | 
 **spei_clabe** | **str** | The CLABE (Clave Bancaria Estandarizada) number for SPEI transfers | 
 **spei_name** | **str** | The name associated with the SPEI account | [optional] 
-**rail** | **str** | The payment rail type for CHAPS transfers | 
-**addressing_system** | **str** | The addressing system used for CHAPS transfers | 
+**rail** | **str** | The payment rail type for PesoNet transfers | 
+**addressing_system** | **str** | The addressing system used for PesoNet transfers | 
 **country** | **str** | The country for the transfer (ISO 3166-1 alpha-2 code) | 
-**bank_name** | **str** | The name of the bank | 
+**bank_name** | **str** | Name of the recipient&#39;s bank | 
 **beneficiary_rfc** | **str** | The RFC (Registro Federal de Contribuyentes) of the beneficiary | [optional] 
 **sender_document_id** | **str** | The document ID of the sender | [optional] 
 **clabe** | **str** | The CLABE (Clave Bancaria Estandarizada) number | 
 **pix_key** | **str** | The PIX key used for the transfer | 
-**bank_code** | **str** | The bank code or identifier | 
+**bank_code** | **str** | Hong Kong bank code | 
 **key_type** | **str** | The type of PIX key being used | 
 **account_holder_address** | **str** | The address of the account holder | [optional] 
 **bic** | **str** | The Bank Identifier Code (BIC/SWIFT code) | [optional] 
@@ -38,10 +38,10 @@ Name | Type | Description | Notes
 **bank_address** | **str** | The address of the bank | [optional] 
 **purpose_code** | **str** | The purpose code for the transfer | [optional] 
 **tax_id** | **str** | The tax identification number | [optional] 
-**account_number** | **str** | UK bank account number | 
+**account_number** | **str** | Recipient bank account number | 
 **routing_number** | **str** | The bank routing number (ABA routing number) | 
 **account_type** | **str** | The type of bank account | 
-**swift_code** | **str** | The SWIFT/BIC code of the bank | 
+**swift_code** | **str** | SWIFT/BIC code of the recipient bank | 
 **bank_address_line** | **str** | The street address of the bank | 
 **bank_address_city** | **str** | The city where the bank is located | 
 **bank_address_state** | **str** | The state where the bank is located | [optional] 
@@ -50,7 +50,7 @@ Name | Type | Description | Notes
 **branch_number** | **str** | The branch number of the bank | [optional] 
 **mobile_phone_number** | **str** | The mobile phone number associated with the mobile money account | 
 **provider** | **str** | The mobile money service provider | 
-**email** | **str** | The email address of the account holder | 
+**email** | **str** | Recipient email address | 
 **beneficiary_document_id** | **str** | The document ID of the beneficiary | [optional] 
 **beneficiary_relationship** | **str** | The relationship between sender and beneficiary | [optional] 
 **recipient_handle_type** | **str** | The type of recipient handler being used | 
@@ -59,9 +59,14 @@ Name | Type | Description | Notes
 **value** | **str** | The PayID identifier (email, phone, ABN, or organization ID) | 
 **type** | **str** | The type of PayID being used | 
 **bsb** | **str** | Bank State Branch (BSB) number (6 digits, format XXX-XXX) | 
-**sort_code** | **str** | UK bank sort code (format XX-XX-XX) | 
-**bank_account_country** | **str** | CHAPS bank account holder name | 
+**sort_code** | **str** | UK sort code (format XX-XX-XX) | 
+**bank_account_country** | **str** | ISO 3166-1 alpha-2 country code of the bank account | 
 **bank_account_holder_name** | **str** | CHAPS bank account holder name | 
+**bank_country** | **str** | ISO 3166-1 alpha-2 country code of the bank | 
+**reference_id** | **str** | Optional payment reference | [optional] 
+**phone** | **str** | Recipient phone number in E.164 format | 
+**recipient_legal_name** | **str** | Full legal name of the recipient | [optional] 
+**fps_id** | **str** | Hong Kong FPS identifier | [optional] 
 
 ## Example
 

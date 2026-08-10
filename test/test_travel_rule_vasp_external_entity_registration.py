@@ -14,11 +14,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.contract_attributes import ContractAttributes
+from fireblocks.models.travel_rule_vasp_external_entity_registration import (
+    TravelRuleVASPExternalEntityRegistration,
+)
 
 
-class TestContractAttributes(unittest.TestCase):
-    """ContractAttributes unit test stubs"""
+class TestTravelRuleVASPExternalEntityRegistration(unittest.TestCase):
+    """TravelRuleVASPExternalEntityRegistration unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +28,29 @@ class TestContractAttributes(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ContractAttributes:
-        """Test ContractAttributes
+    def make_instance(
+        self, include_optional
+    ) -> TravelRuleVASPExternalEntityRegistration:
+        """Test TravelRuleVASPExternalEntityRegistration
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ContractAttributes`
+        # uncomment below to create an instance of `TravelRuleVASPExternalEntityRegistration`
         """
-        model = ContractAttributes()
+        model = TravelRuleVASPExternalEntityRegistration()
         if include_optional:
-            return ContractAttributes(
-                use_cases = [
-                    ''
-                    ],
-                standards = [
-                    ''
-                    ],
-                auditor = fireblocks.models.auditor_data.AuditorData(
-                    name = '', 
-                    image_url = '', 
-                    link = '', )
+            return TravelRuleVASPExternalEntityRegistration(
+                status = 'ISSUED',
+                next_renewal_date = '2026-05-19T12:41:57Z',
+                corroboration_level = 'FULLY_CORROBORATED'
             )
         else:
-            return ContractAttributes(
+            return TravelRuleVASPExternalEntityRegistration(
         )
         """
 
-    def testContractAttributes(self):
-        """Test ContractAttributes"""
+    def testTravelRuleVASPExternalEntityRegistration(self):
+        """Test TravelRuleVASPExternalEntityRegistration"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

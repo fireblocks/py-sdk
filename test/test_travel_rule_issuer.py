@@ -36,11 +36,13 @@ class TestTravelRuleIssuer(unittest.TestCase):
         model = TravelRuleIssuer()
         if include_optional:
             return TravelRuleIssuer(
-                issuer_did = ''
+                issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686',
+                issued_date = '2024-07-20T13:27:30.958Z',
+                issuer_name = 'GLEIF'
             )
         else:
             return TravelRuleIssuer(
-                issuer_did = '',
+                issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686',
         )
         """
 

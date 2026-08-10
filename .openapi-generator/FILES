@@ -1134,6 +1134,9 @@ docs/TravelRuleStatusEnum.md
 docs/TravelRuleTransactionBlockchainInfo.md
 docs/TravelRuleUpdateVASPDetails.md
 docs/TravelRuleVASP.md
+docs/TravelRuleVASPExternalEntity.md
+docs/TravelRuleVASPExternalEntityConfig.md
+docs/TravelRuleVASPExternalEntityRegistration.md
 docs/TravelRuleValidateDateAndPlaceOfBirth.md
 docs/TravelRuleValidateFullTransactionRequest.md
 docs/TravelRuleValidateGeographicAddress.md
@@ -2408,6 +2411,9 @@ fireblocks/models/travel_rule_validate_pii_ivms.py
 fireblocks/models/travel_rule_validate_transaction_request.py
 fireblocks/models/travel_rule_validate_transaction_response.py
 fireblocks/models/travel_rule_vasp.py
+fireblocks/models/travel_rule_vasp_external_entity.py
+fireblocks/models/travel_rule_vasp_external_entity_config.py
+fireblocks/models/travel_rule_vasp_external_entity_registration.py
 fireblocks/models/travel_rule_vasp_for_vault.py
 fireblocks/models/travel_rule_verdict_enum.py
 fireblocks/models/trigger_validation_flow_response.py
@@ -3660,6 +3666,9 @@ test/test_travel_rule_validate_pii_ivms.py
 test/test_travel_rule_validate_transaction_request.py
 test/test_travel_rule_validate_transaction_response.py
 test/test_travel_rule_vasp.py
+test/test_travel_rule_vasp_external_entity.py
+test/test_travel_rule_vasp_external_entity_config.py
+test/test_travel_rule_vasp_external_entity_registration.py
 test/test_travel_rule_vasp_for_vault.py
 test/test_travel_rule_verdict_enum.py
 test/test_trigger_validation_flow_response.py

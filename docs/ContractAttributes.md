@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**use_cases** | **List[str]** |  | 
-**standards** | **List[str]** |  | 
-**auditor** | [**AuditorData**](AuditorData.md) |  | 
+**use_cases** | **List[str]** |  | [optional] 
+**standards** | **List[str]** | Token standards implemented by the contract (e.g. ERC-20, ERC-1400). Not returned for templates that do not follow ERC token standards, such as non-EVM templates (e.g. Stellar, Solana Token 2022) | [optional] 
+**auditor** | [**AuditorData**](AuditorData.md) |  | [optional] 
 
 ## Example
 

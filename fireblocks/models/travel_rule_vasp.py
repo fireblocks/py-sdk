@@ -18,63 +18,99 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.travel_rule_issuers import TravelRuleIssuers
+from fireblocks.models.travel_rule_vasp_external_entity_config import TravelRuleVASPExternalEntityConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
 class TravelRuleVASP(BaseModel):
     """
-    TravelRuleVASP
+    A VASP record from the Travel Rule trust framework directory.  The set of keys returned depends on the `fields` query parameter. When `fields` is omitted, or supplied with an empty value, this endpoint returns the complete record.  Additional fields may be present in the response beyond those documented here. Clients must ignore unrecognised fields rather than failing to deserialize.
     """ # noqa: E501
     did: StrictStr = Field(description="The Decentralized Identifier (DID) of the VASP.")
     name: StrictStr = Field(description="The name of the VASP.")
     verification_status: StrictStr = Field(description="The current verification status of the VASP.", alias="verificationStatus")
     address_line1: StrictStr = Field(description="The first line of the VASP's address.", alias="addressLine1")
-    address_line2: Optional[StrictStr] = Field(default=None, description="The second line of the VASP's address (if applicable).", alias="addressLine2")
+    address_line2: Optional[StrictStr] = Field(default=None, description="The second line of the VASP's address (if applicable). May be null.", alias="addressLine2")
     city: StrictStr = Field(description="The city where the VASP is located.")
     country: StrictStr = Field(description="The country where the VASP is registered (ISO-3166 Alpha-2 code).")
-    email_domains: StrictStr = Field(description="Comma-separated list of email domains associated with the VASP.", alias="emailDomains")
+    email_domains: StrictStr = Field(description="The email domains associated with the VASP. The field's type is string; its content is a JSON-encoded array of domains. Clients must parse this value to obtain the array.", alias="emailDomains")
     website: StrictStr = Field(description="The official website of the VASP.")
-    logo: Optional[StrictStr] = Field(default=None, description="URL to the logo of the VASP.")
+    logo: Optional[StrictStr] = Field(default=None, description="URL to the logo of the VASP. May be null.")
     legal_structure: StrictStr = Field(description="The legal structure of the VASP (e.g., Corporation, LLC).", alias="legalStructure")
     legal_name: StrictStr = Field(description="The legal name of the VASP.", alias="legalName")
-    year_founded: StrictStr = Field(description="The year the VASP was founded.", alias="yearFounded")
+    year_founded: StrictStr = Field(description="The year the VASP was founded. Returned as a string, not an integer.", alias="yearFounded")
     incorporation_country: StrictStr = Field(description="The country where the VASP is incorporated (ISO-3166 Alpha-2 code).", alias="incorporationCountry")
     is_regulated: StrictStr = Field(description="Indicates whether the VASP is regulated.", alias="isRegulated")
-    other_names: Optional[StrictStr] = Field(default=None, description="Other names the VASP is known by.", alias="otherNames")
+    other_names: Optional[StrictStr] = Field(default=None, description="Other names the VASP is known by. May be null.", alias="otherNames")
     identification_type: Optional[StrictStr] = Field(default=None, description="The type of identification used by the VASP.", alias="identificationType")
-    identification_country: Optional[StrictStr] = Field(default=None, description="The country of identification for the VASP (ISO-3166 Alpha-2 code).", alias="identificationCountry")
+    identification_country: Optional[StrictStr] = Field(default=None, description="The country of identification for the VASP (ISO-3166 Alpha-2 code). May be null.", alias="identificationCountry")
     business_number: Optional[StrictStr] = Field(default=None, description="The business registration number of the VASP.", alias="businessNumber")
-    regulatory_authorities: Optional[StrictStr] = Field(default=None, description="The regulatory authorities overseeing the VASP.", alias="regulatoryAuthorities")
+    regulatory_authorities: Optional[StrictStr] = Field(default=None, description="The regulatory authorities overseeing the VASP. May be null.", alias="regulatoryAuthorities")
     jurisdictions: StrictStr = Field(description="The jurisdictions where the VASP operates.")
-    street: Optional[StrictStr] = Field(default=None, description="The street name where the VASP is located.")
-    number: Optional[StrictStr] = Field(default=None, description="The building number of the VASP's address.")
-    unit: Optional[StrictStr] = Field(default=None, description="The unit or suite number of the VASP's address.")
+    division: Optional[StrictStr] = Field(default=None, description="The division of the VASP's registered address, where applicable.")
+    street: Optional[StrictStr] = Field(default=None, description="The street name where the VASP is located. May be null.")
+    number: Optional[StrictStr] = Field(default=None, description="The building number of the VASP's address. May be returned as an empty string when not supplied.")
+    unit: Optional[StrictStr] = Field(default=None, description="The unit or suite number of the VASP's address. May be null.")
     post_code: Optional[StrictStr] = Field(default=None, description="The postal code of the VASP's location.", alias="postCode")
     state: Optional[StrictStr] = Field(default=None, description="The state or region where the VASP is located.")
-    certificates: Optional[StrictStr] = Field(default=None, description="Certificates or licenses held by the VASP.")
-    description: Optional[StrictStr] = Field(default=None, description="A brief description of the VASP.")
-    travel_rule_openvasp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for OpenVASP.", alias="travelRule_OPENVASP")
-    travel_rule_sygna: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Sygna.", alias="travelRule_SYGNA")
-    travel_rule_trisa: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRISA.", alias="travelRule_TRISA")
+    other_legal_name: Optional[StrictStr] = Field(default=None, description="Alternative legal names of the VASP, as a comma-separated list. Resolved from an external registry, so it is only populated for VASPs with a resolved entity record.", alias="otherLegalName")
+    gleif_updated_at: Optional[StrictStr] = Field(default=None, description="Timestamp of the last synchronization with the GLEIF registry. Only populated for VASPs with a GLEIF-resolved LEI.", alias="gleifUpdatedAt")
+    lei_number: Optional[StrictStr] = Field(default=None, description="The VASP's Legal Entity Identifier (LEI), a 20-character alphanumeric code. Only populated for VASPs with a GLEIF-resolved LEI.", alias="leiNumber")
+    legal_form: Optional[StrictStr] = Field(default=None, description="The GLEIF Entity Legal Form (ELF) code of the VASP. Only populated for VASPs with a GLEIF-resolved LEI.", alias="legalForm")
+    entity_category: Optional[StrictStr] = Field(default=None, description="The GLEIF entity category of the VASP. Only populated for VASPs with a GLEIF-resolved LEI.", alias="entityCategory")
+    entity_status: Optional[StrictStr] = Field(default=None, description="The GLEIF entity status of the VASP. Only populated for VASPs with a GLEIF-resolved LEI.", alias="entityStatus")
+    external_entity_config: Optional[List[TravelRuleVASPExternalEntityConfig]] = Field(default=None, description="Entity records resolved from external registries, such as GLEIF. Only populated for VASPs that have been resolved against at least one external registry.", alias="externalEntityConfig")
+    hq_street: Optional[StrictStr] = Field(default=None, description="The street of the VASP's headquarters address. Only populated for VASPs with a GLEIF-resolved LEI.", alias="hqStreet")
+    hq_number: Optional[StrictStr] = Field(default=None, description="The building number of the VASP's headquarters address. May be returned as an empty string as well as `null` when not supplied.", alias="hqNumber")
+    hq_postcode: Optional[StrictStr] = Field(default=None, description="The postal code of the VASP's headquarters address. Only populated for VASPs with a GLEIF-resolved LEI.", alias="hqPostcode")
+    hq_region: Optional[StrictStr] = Field(default=None, description="The region of the VASP's headquarters address, as an ISO-3166-2 subdivision code. Only populated for VASPs with a GLEIF-resolved LEI.", alias="hqRegion")
+    hq_city: Optional[StrictStr] = Field(default=None, description="The city of the VASP's headquarters address. Only populated for VASPs with a GLEIF-resolved LEI.", alias="hqCity")
+    hq_country: Optional[StrictStr] = Field(default=None, description="The country of the VASP's headquarters address (ISO-3166 Alpha-2 code). Only populated for VASPs with a GLEIF-resolved LEI.", alias="hqCountry")
+    certificates: Optional[StrictStr] = Field(default=None, description="Certificates or licenses held by the VASP. May be null.")
+    description: Optional[StrictStr] = Field(default=None, description="A brief description of the VASP. May be null.")
+    travel_rule_openvasp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for OpenVASP. Null when the VASP does not support this protocol.", alias="travelRule_OPENVASP")
+    travel_rule_sygna: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Sygna. Null when the VASP does not support this protocol.", alias="travelRule_SYGNA")
+    travel_rule_trisa: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRISA. Null when the VASP does not support this protocol.", alias="travelRule_TRISA")
     travel_rule_trlight: StrictStr = Field(description="Travel rule compliance status for TRLight.", alias="travelRule_TRLIGHT")
-    travel_rule_email: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for EMAIL.", alias="travelRule_EMAIL")
-    travel_rule_trp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRP.", alias="travelRule_TRP")
-    travel_rule_shyft: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Shyft.", alias="travelRule_SHYFT")
-    travel_rule_ustravelrulewg: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for US Travel Rule WG.", alias="travelRule_USTRAVELRULEWG")
+    travel_rule_email: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for EMAIL. Null when the VASP does not support this protocol.", alias="travelRule_EMAIL")
+    travel_rule_trp: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for TRP. Null when the VASP does not support this protocol.", alias="travelRule_TRP")
+    travel_rule_shyft: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for Shyft. Null when the VASP does not support this protocol.", alias="travelRule_SHYFT")
+    travel_rule_ustravelrulewg: Optional[StrictStr] = Field(default=None, description="Travel rule compliance status for US Travel Rule WG. Null when the VASP does not support this protocol.", alias="travelRule_USTRAVELRULEWG")
     created_at: StrictStr = Field(description="Timestamp when the VASP record was created.", alias="createdAt")
-    created_by: Optional[StrictStr] = Field(default=None, description="User or system that created the VASP record.", alias="createdBy")
+    created_by: Optional[StrictStr] = Field(default=None, description="The DID of the party that created the VASP record. May be null.", alias="createdBy")
     updated_at: Optional[StrictStr] = Field(default=None, description="Timestamp of the last update to the VASP record.", alias="updatedAt")
-    updated_by: Optional[StrictStr] = Field(default=None, description="User or system that last updated the VASP record.", alias="updatedBy")
+    updated_by: Optional[StrictStr] = Field(default=None, description="The DID of the party that last updated the VASP record.", alias="updatedBy")
     last_sent_date: Optional[StrictStr] = Field(default=None, description="The last date a transaction was sent by the VASP.", alias="lastSentDate")
     last_received_date: Optional[StrictStr] = Field(default=None, description="The last date a transaction was received by the VASP.", alias="lastReceivedDate")
-    documents: Optional[StrictStr] = Field(default=None, description="Documents associated with the VASP.")
+    documents: Optional[StrictStr] = Field(default=None, description="Documents associated with the VASP. May be null.")
     has_admin: StrictBool = Field(description="Indicates if the VASP has an admin.", alias="hasAdmin")
     is_notifiable: StrictBool = Field(description="Indicates if the VASP is notifiable for compliance reasons.", alias="isNotifiable")
     issuers: TravelRuleIssuers
-    __properties: ClassVar[List[str]] = ["did", "name", "verificationStatus", "addressLine1", "addressLine2", "city", "country", "emailDomains", "website", "logo", "legalStructure", "legalName", "yearFounded", "incorporationCountry", "isRegulated", "otherNames", "identificationType", "identificationCountry", "businessNumber", "regulatoryAuthorities", "jurisdictions", "street", "number", "unit", "postCode", "state", "certificates", "description", "travelRule_OPENVASP", "travelRule_SYGNA", "travelRule_TRISA", "travelRule_TRLIGHT", "travelRule_EMAIL", "travelRule_TRP", "travelRule_SHYFT", "travelRule_USTRAVELRULEWG", "createdAt", "createdBy", "updatedAt", "updatedBy", "lastSentDate", "lastReceivedDate", "documents", "hasAdmin", "isNotifiable", "issuers"]
+    regulatory_status: Optional[StrictStr] = Field(default=None, description="The regulatory status of the VASP, as free text.", alias="regulatoryStatus")
+    supervisory_authority: Optional[StrictStr] = Field(default=None, description="The supervisory authority responsible for the VASP.", alias="supervisoryAuthority")
+    registration_license_id: Optional[StrictStr] = Field(default=None, description="The identifier of the VASP's registration or operating license.", alias="registrationLicenseId")
+    status_start_date: Optional[StrictStr] = Field(default=None, description="The date the VASP's current regulatory status took effect.", alias="statusStartDate")
+    status_expiration_date: Optional[StrictStr] = Field(default=None, description="The date the VASP's current regulatory status expires.", alias="statusExpirationDate")
+    last_checked: Optional[StrictStr] = Field(default=None, description="Timestamp of the last verification of the VASP's regulatory status.", alias="lastChecked")
+    additional_information: Optional[StrictStr] = Field(default=None, description="Additional free-text information about the VASP.", alias="additionalInformation")
+    subsidiary_of: Optional[StrictStr] = Field(default=None, description="The DID of the parent VASP, when this VASP is a subsidiary of another.", alias="subsidiaryOf")
+    pii_didkey: Optional[StrictStr] = Field(default=None, description="The VASP's public PII encryption key, published in the trust framework directory. Use it to encrypt IVMS101 personally identifiable information addressed to this VASP.")
+    compliance_phase: Optional[StrictInt] = Field(default=None, description="The VASP's current compliance onboarding phase.", alias="compliancePhase")
+    compliance_phase_data: Optional[Dict[str, StrictBool]] = Field(default=None, description="The VASP's progress through the Travel Rule compliance onboarding milestones, as a map keyed by milestone code.  Each value indicates whether that milestone has been completed. The set of milestone codes is defined by the Travel Rule provider and may change over time, so clients must not assume any particular key is present. Examples of milestone codes include `TX_SENT`, `TX_NOTIFY_API`, `TF_VASP_VERIFIED`, `RULES_CUSTOM_INCOMING` and `INTEGRATIONS_WIDGET`.", alias="compliancePhaseData")
+    vaspnet_id: Optional[StrictStr] = Field(default=None, description="The VASP's VASPnet identifier.", alias="vaspnetId")
+    vaspnet_updated_at: Optional[StrictStr] = Field(default=None, description="Timestamp of the last synchronization with VASPnet.", alias="vaspnetUpdatedAt")
+    vaspnet_immutable_fields: Optional[List[StrictStr]] = Field(default=None, description="Names of the fields that are managed by VASPnet and cannot be modified locally. Empty when no fields are locked.", alias="vaspnetImmutableFields")
+    node_didkey: Optional[StrictStr] = Field(default=None, description="The public key of the Travel Rule node serving this VASP record. The format has not been confirmed against a live response; every observed value has been null.")
+    ddq: Optional[StrictStr] = Field(default=None, description="The VASP's Due Diligence Questionnaire, as a JSON-encoded string containing a `data` object and an `updatedAt` timestamp. Clients must parse this value.")
+    target_protocol: Optional[StrictStr] = Field(default=None, description="The Travel Rule protocol used to reach this VASP, when a specific one is configured.", alias="targetProtocol")
+    parent_gateway: Optional[StrictStr] = Field(default=None, description="The DID of the gateway VASP that routes messages on this VASP's behalf.", alias="parentGateway")
+    is_active_sender: Optional[StrictBool] = Field(default=None, description="Indicates if the VASP actively sends Travel Rule transfers.", alias="isActiveSender")
+    is_active_receiver: Optional[StrictBool] = Field(default=None, description="Indicates if the VASP actively receives Travel Rule transfers.", alias="isActiveReceiver")
+    subsidiaries: Optional[List[Any]] = Field(default=None, description="The VASP's subsidiary entities. The element schema is not yet documented, as no response containing a populated value has been observed; do not assume a particular element type.")
+    __properties: ClassVar[List[str]] = ["did", "name", "verificationStatus", "addressLine1", "addressLine2", "city", "country", "emailDomains", "website", "logo", "legalStructure", "legalName", "yearFounded", "incorporationCountry", "isRegulated", "otherNames", "identificationType", "identificationCountry", "businessNumber", "regulatoryAuthorities", "jurisdictions", "division", "street", "number", "unit", "postCode", "state", "otherLegalName", "gleifUpdatedAt", "leiNumber", "legalForm", "entityCategory", "entityStatus", "externalEntityConfig", "hqStreet", "hqNumber", "hqPostcode", "hqRegion", "hqCity", "hqCountry", "certificates", "description", "travelRule_OPENVASP", "travelRule_SYGNA", "travelRule_TRISA", "travelRule_TRLIGHT", "travelRule_EMAIL", "travelRule_TRP", "travelRule_SHYFT", "travelRule_USTRAVELRULEWG", "createdAt", "createdBy", "updatedAt", "updatedBy", "lastSentDate", "lastReceivedDate", "documents", "hasAdmin", "isNotifiable", "issuers", "regulatoryStatus", "supervisoryAuthority", "registrationLicenseId", "statusStartDate", "statusExpirationDate", "lastChecked", "additionalInformation", "subsidiaryOf", "pii_didkey", "compliancePhase", "compliancePhaseData", "vaspnetId", "vaspnetUpdatedAt", "vaspnetImmutableFields", "node_didkey", "ddq", "targetProtocol", "parentGateway", "isActiveSender", "isActiveReceiver", "subsidiaries"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -115,9 +151,191 @@ class TravelRuleVASP(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in external_entity_config (list)
+        _items = []
+        if self.external_entity_config:
+            for _item_external_entity_config in self.external_entity_config:
+                if _item_external_entity_config:
+                    _items.append(_item_external_entity_config.to_dict())
+            _dict['externalEntityConfig'] = _items
         # override the default output from pydantic by calling `to_dict()` of issuers
         if self.issuers:
             _dict['issuers'] = self.issuers.to_dict()
+        # set to None if division (nullable) is None
+        # and model_fields_set contains the field
+        if self.division is None and "division" in self.model_fields_set:
+            _dict['division'] = None
+
+        # set to None if other_legal_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.other_legal_name is None and "other_legal_name" in self.model_fields_set:
+            _dict['otherLegalName'] = None
+
+        # set to None if gleif_updated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.gleif_updated_at is None and "gleif_updated_at" in self.model_fields_set:
+            _dict['gleifUpdatedAt'] = None
+
+        # set to None if lei_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.lei_number is None and "lei_number" in self.model_fields_set:
+            _dict['leiNumber'] = None
+
+        # set to None if legal_form (nullable) is None
+        # and model_fields_set contains the field
+        if self.legal_form is None and "legal_form" in self.model_fields_set:
+            _dict['legalForm'] = None
+
+        # set to None if entity_category (nullable) is None
+        # and model_fields_set contains the field
+        if self.entity_category is None and "entity_category" in self.model_fields_set:
+            _dict['entityCategory'] = None
+
+        # set to None if entity_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.entity_status is None and "entity_status" in self.model_fields_set:
+            _dict['entityStatus'] = None
+
+        # set to None if external_entity_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_entity_config is None and "external_entity_config" in self.model_fields_set:
+            _dict['externalEntityConfig'] = None
+
+        # set to None if hq_street (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_street is None and "hq_street" in self.model_fields_set:
+            _dict['hqStreet'] = None
+
+        # set to None if hq_number (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_number is None and "hq_number" in self.model_fields_set:
+            _dict['hqNumber'] = None
+
+        # set to None if hq_postcode (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_postcode is None and "hq_postcode" in self.model_fields_set:
+            _dict['hqPostcode'] = None
+
+        # set to None if hq_region (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_region is None and "hq_region" in self.model_fields_set:
+            _dict['hqRegion'] = None
+
+        # set to None if hq_city (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_city is None and "hq_city" in self.model_fields_set:
+            _dict['hqCity'] = None
+
+        # set to None if hq_country (nullable) is None
+        # and model_fields_set contains the field
+        if self.hq_country is None and "hq_country" in self.model_fields_set:
+            _dict['hqCountry'] = None
+
+        # set to None if regulatory_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.regulatory_status is None and "regulatory_status" in self.model_fields_set:
+            _dict['regulatoryStatus'] = None
+
+        # set to None if supervisory_authority (nullable) is None
+        # and model_fields_set contains the field
+        if self.supervisory_authority is None and "supervisory_authority" in self.model_fields_set:
+            _dict['supervisoryAuthority'] = None
+
+        # set to None if registration_license_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.registration_license_id is None and "registration_license_id" in self.model_fields_set:
+            _dict['registrationLicenseId'] = None
+
+        # set to None if status_start_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_start_date is None and "status_start_date" in self.model_fields_set:
+            _dict['statusStartDate'] = None
+
+        # set to None if status_expiration_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.status_expiration_date is None and "status_expiration_date" in self.model_fields_set:
+            _dict['statusExpirationDate'] = None
+
+        # set to None if last_checked (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_checked is None and "last_checked" in self.model_fields_set:
+            _dict['lastChecked'] = None
+
+        # set to None if additional_information (nullable) is None
+        # and model_fields_set contains the field
+        if self.additional_information is None and "additional_information" in self.model_fields_set:
+            _dict['additionalInformation'] = None
+
+        # set to None if subsidiary_of (nullable) is None
+        # and model_fields_set contains the field
+        if self.subsidiary_of is None and "subsidiary_of" in self.model_fields_set:
+            _dict['subsidiaryOf'] = None
+
+        # set to None if pii_didkey (nullable) is None
+        # and model_fields_set contains the field
+        if self.pii_didkey is None and "pii_didkey" in self.model_fields_set:
+            _dict['pii_didkey'] = None
+
+        # set to None if compliance_phase (nullable) is None
+        # and model_fields_set contains the field
+        if self.compliance_phase is None and "compliance_phase" in self.model_fields_set:
+            _dict['compliancePhase'] = None
+
+        # set to None if compliance_phase_data (nullable) is None
+        # and model_fields_set contains the field
+        if self.compliance_phase_data is None and "compliance_phase_data" in self.model_fields_set:
+            _dict['compliancePhaseData'] = None
+
+        # set to None if vaspnet_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.vaspnet_id is None and "vaspnet_id" in self.model_fields_set:
+            _dict['vaspnetId'] = None
+
+        # set to None if vaspnet_updated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.vaspnet_updated_at is None and "vaspnet_updated_at" in self.model_fields_set:
+            _dict['vaspnetUpdatedAt'] = None
+
+        # set to None if vaspnet_immutable_fields (nullable) is None
+        # and model_fields_set contains the field
+        if self.vaspnet_immutable_fields is None and "vaspnet_immutable_fields" in self.model_fields_set:
+            _dict['vaspnetImmutableFields'] = None
+
+        # set to None if node_didkey (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_didkey is None and "node_didkey" in self.model_fields_set:
+            _dict['node_didkey'] = None
+
+        # set to None if ddq (nullable) is None
+        # and model_fields_set contains the field
+        if self.ddq is None and "ddq" in self.model_fields_set:
+            _dict['ddq'] = None
+
+        # set to None if target_protocol (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_protocol is None and "target_protocol" in self.model_fields_set:
+            _dict['targetProtocol'] = None
+
+        # set to None if parent_gateway (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_gateway is None and "parent_gateway" in self.model_fields_set:
+            _dict['parentGateway'] = None
+
+        # set to None if is_active_sender (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_active_sender is None and "is_active_sender" in self.model_fields_set:
+            _dict['isActiveSender'] = None
+
+        # set to None if is_active_receiver (nullable) is None
+        # and model_fields_set contains the field
+        if self.is_active_receiver is None and "is_active_receiver" in self.model_fields_set:
+            _dict['isActiveReceiver'] = None
+
+        # set to None if subsidiaries (nullable) is None
+        # and model_fields_set contains the field
+        if self.subsidiaries is None and "subsidiaries" in self.model_fields_set:
+            _dict['subsidiaries'] = None
+
         return _dict
 
     @classmethod
@@ -151,11 +369,25 @@ class TravelRuleVASP(BaseModel):
             "businessNumber": obj.get("businessNumber"),
             "regulatoryAuthorities": obj.get("regulatoryAuthorities"),
             "jurisdictions": obj.get("jurisdictions"),
+            "division": obj.get("division"),
             "street": obj.get("street"),
             "number": obj.get("number"),
             "unit": obj.get("unit"),
             "postCode": obj.get("postCode"),
             "state": obj.get("state"),
+            "otherLegalName": obj.get("otherLegalName"),
+            "gleifUpdatedAt": obj.get("gleifUpdatedAt"),
+            "leiNumber": obj.get("leiNumber"),
+            "legalForm": obj.get("legalForm"),
+            "entityCategory": obj.get("entityCategory"),
+            "entityStatus": obj.get("entityStatus"),
+            "externalEntityConfig": [TravelRuleVASPExternalEntityConfig.from_dict(_item) for _item in obj["externalEntityConfig"]] if obj.get("externalEntityConfig") is not None else None,
+            "hqStreet": obj.get("hqStreet"),
+            "hqNumber": obj.get("hqNumber"),
+            "hqPostcode": obj.get("hqPostcode"),
+            "hqRegion": obj.get("hqRegion"),
+            "hqCity": obj.get("hqCity"),
+            "hqCountry": obj.get("hqCountry"),
             "certificates": obj.get("certificates"),
             "description": obj.get("description"),
             "travelRule_OPENVASP": obj.get("travelRule_OPENVASP"),
@@ -175,7 +407,28 @@ class TravelRuleVASP(BaseModel):
             "documents": obj.get("documents"),
             "hasAdmin": obj.get("hasAdmin"),
             "isNotifiable": obj.get("isNotifiable"),
-            "issuers": TravelRuleIssuers.from_dict(obj["issuers"]) if obj.get("issuers") is not None else None
+            "issuers": TravelRuleIssuers.from_dict(obj["issuers"]) if obj.get("issuers") is not None else None,
+            "regulatoryStatus": obj.get("regulatoryStatus"),
+            "supervisoryAuthority": obj.get("supervisoryAuthority"),
+            "registrationLicenseId": obj.get("registrationLicenseId"),
+            "statusStartDate": obj.get("statusStartDate"),
+            "statusExpirationDate": obj.get("statusExpirationDate"),
+            "lastChecked": obj.get("lastChecked"),
+            "additionalInformation": obj.get("additionalInformation"),
+            "subsidiaryOf": obj.get("subsidiaryOf"),
+            "pii_didkey": obj.get("pii_didkey"),
+            "compliancePhase": obj.get("compliancePhase"),
+            "compliancePhaseData": obj.get("compliancePhaseData"),
+            "vaspnetId": obj.get("vaspnetId"),
+            "vaspnetUpdatedAt": obj.get("vaspnetUpdatedAt"),
+            "vaspnetImmutableFields": obj.get("vaspnetImmutableFields"),
+            "node_didkey": obj.get("node_didkey"),
+            "ddq": obj.get("ddq"),
+            "targetProtocol": obj.get("targetProtocol"),
+            "parentGateway": obj.get("parentGateway"),
+            "isActiveSender": obj.get("isActiveSender"),
+            "isActiveReceiver": obj.get("isActiveReceiver"),
+            "subsidiaries": obj.get("subsidiaries")
         })
         return _obj
 

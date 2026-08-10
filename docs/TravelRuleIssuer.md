@@ -1,11 +1,14 @@
 # TravelRuleIssuer
 
+An attestation of a single VASP attribute by an issuing party.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issuer_did** | **str** |  | 
+**issuer_did** | **str** | The Decentralized Identifier (DID) of the party that issued the attestation. | 
+**issued_date** | **str** | Timestamp when the attestation was issued. Present on every attestation observed to date, but not guaranteed, so treat it as optional. | [optional] 
+**issuer_name** | **str** | The human-readable name of the issuing party. Returned only for issuers that publish a name, such as GLEIF; absent for others, including in the same response. | [optional] 
 
 ## Example
 

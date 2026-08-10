@@ -23,14 +23,14 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TravelRuleIssuer(BaseModel):
+class TravelRuleVASPExternalEntityRegistration(BaseModel):
     """
-    An attestation of a single VASP attribute by an issuing party.
+    The registration state of the VASP as reported by an external registry.
     """ # noqa: E501
-    issuer_did: StrictStr = Field(description="The Decentralized Identifier (DID) of the party that issued the attestation.", alias="issuerDid")
-    issued_date: Optional[StrictStr] = Field(default=None, description="Timestamp when the attestation was issued. Present on every attestation observed to date, but not guaranteed, so treat it as optional.", alias="issuedDate")
-    issuer_name: Optional[StrictStr] = Field(default=None, description="The human-readable name of the issuing party. Returned only for issuers that publish a name, such as GLEIF; absent for others, including in the same response.", alias="issuerName")
-    __properties: ClassVar[List[str]] = ["issuerDid", "issuedDate", "issuerName"]
+    status: Optional[StrictStr] = Field(default=None, description="The registration status at the external registry, for example `ISSUED`, `LAPSED` or `RETIRED`. The value set is defined by the registry, not by Fireblocks.")
+    next_renewal_date: Optional[StrictStr] = Field(default=None, description="The date the registration is next due for renewal at the external registry.", alias="nextRenewalDate")
+    corroboration_level: Optional[StrictStr] = Field(default=None, description="The level to which the registry has corroborated the entity data, for example `FULLY_CORROBORATED`. The value set is defined by the registry, not by Fireblocks.", alias="corroborationLevel")
+    __properties: ClassVar[List[str]] = ["status", "nextRenewalDate", "corroborationLevel"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class TravelRuleIssuer(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TravelRuleIssuer from a JSON string"""
+        """Create an instance of TravelRuleVASPExternalEntityRegistration from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +71,26 @@ class TravelRuleIssuer(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
+
+        # set to None if next_renewal_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_renewal_date is None and "next_renewal_date" in self.model_fields_set:
+            _dict['nextRenewalDate'] = None
+
+        # set to None if corroboration_level (nullable) is None
+        # and model_fields_set contains the field
+        if self.corroboration_level is None and "corroboration_level" in self.model_fields_set:
+            _dict['corroborationLevel'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TravelRuleIssuer from a dict"""
+        """Create an instance of TravelRuleVASPExternalEntityRegistration from a dict"""
         if obj is None:
             return None
 
@@ -83,9 +98,9 @@ class TravelRuleIssuer(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "issuerDid": obj.get("issuerDid"),
-            "issuedDate": obj.get("issuedDate"),
-            "issuerName": obj.get("issuerName")
+            "status": obj.get("status"),
+            "nextRenewalDate": obj.get("nextRenewalDate"),
+            "corroborationLevel": obj.get("corroborationLevel")
         })
         return _obj
 

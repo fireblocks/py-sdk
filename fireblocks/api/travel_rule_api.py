@@ -459,8 +459,8 @@ class TravelRuleApi:
     @validate_call
     def get_vaspby_did(
         self,
-        did: StrictStr,
-        fields: Annotated[Optional[List[StrictStr]], Field(description="A CSV of fields to return. Choose from the following options:")] = None,
+        did: Annotated[StrictStr, Field(description="The Decentralized Identifier (DID) of the VASP.")],
+        fields: Annotated[Optional[List[StrictStr]], Field(description="The VASP fields to return.  Optional. If omitted, or supplied with an empty value, the complete VASP record is returned, which is the same as passing `all`.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -476,11 +476,11 @@ class TravelRuleApi:
     ) -> Future[ApiResponse[TravelRuleVASP]]:
         """Get VASP details
 
-        Get VASP Details.  Returns information about a VASP that has the specified DID.
+        Get VASP Details.  Returns information about a VASP that has the specified DID.  The response may contain fields that are not documented in the schema below. Clients must ignore unrecognised fields rather than failing to deserialize.
 
-        :param did: (required)
+        :param did: The Decentralized Identifier (DID) of the VASP. (required)
         :type did: str
-        :param fields: A CSV of fields to return. Choose from the following options:
+        :param fields: The VASP fields to return.  Optional. If omitted, or supplied with an empty value, the complete VASP record is returned, which is the same as passing `all`.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error.
         :type fields: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -601,7 +601,7 @@ class TravelRuleApi:
         self,
         order: Annotated[Optional[StrictStr], Field(description="Field to order by")] = None,
         page_size: Annotated[Optional[Union[Annotated[float, Field(le=1000, strict=True, ge=100)], Annotated[int, Field(le=1000, strict=True, ge=100)]]], Field(description="Records per page")] = None,
-        fields: Annotated[Optional[List[StrictStr]], Field(description="CSV of fields to return (all, \"blank\" or see list of all field names below)")] = None,
+        fields: Annotated[Optional[List[StrictStr]], Field(description="The VASP fields to return.  Optional. If omitted, each VASP is returned with a default subset of six fields: `did`, `name`, `website`, `logo`, `incorporationCountry` and `jurisdictions`. Pass `all` to return the complete record for each VASP.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error.")] = None,
         search: Annotated[Optional[StrictStr], Field(description="Search query")] = None,
         review_value: Annotated[Optional[StrictStr], Field(description="Filter by the VASP's review status. Possible values include: \"TRUSTED\", \"BLOCKED\", \"MANUAL\", or \"NULL\". When provided, only VASPs that match the specified reviewValue will be returned (i.e., VASPs that have already been reviewed to this status).")] = None,
         page_cursor: Annotated[Optional[StrictStr], Field(description="Cursor for pagination. When provided, the response will include the next page of results.")] = None,
@@ -620,13 +620,13 @@ class TravelRuleApi:
     ) -> Future[ApiResponse[TravelRuleGetAllVASPsResponse]]:
         """Get All VASPs
 
-        Get All VASPs.  Returns a list of VASPs. VASPs can be searched and sorted.
+        Get All VASPs.  Returns a list of VASPs. VASPs can be searched and sorted.  Each VASP in the response may contain fields that are not documented in the schema below. Clients must ignore unrecognised fields rather than failing to deserialize.
 
         :param order: Field to order by
         :type order: str
         :param page_size: Records per page
         :type page_size: float
-        :param fields: CSV of fields to return (all, \"blank\" or see list of all field names below)
+        :param fields: The VASP fields to return.  Optional. If omitted, each VASP is returned with a default subset of six fields: `did`, `name`, `website`, `logo`, `incorporationCountry` and `jurisdictions`. Pass `all` to return the complete record for each VASP.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error.
         :type fields: List[str]
         :param search: Search query
         :type search: str

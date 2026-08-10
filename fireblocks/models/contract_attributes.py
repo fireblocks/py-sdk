@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.auditor_data import AuditorData
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,9 +28,9 @@ class ContractAttributes(BaseModel):
     """
     ContractAttributes
     """ # noqa: E501
-    use_cases: List[StrictStr] = Field(alias="useCases")
-    standards: List[StrictStr]
-    auditor: AuditorData
+    use_cases: Optional[List[StrictStr]] = Field(default=None, alias="useCases")
+    standards: Optional[List[StrictStr]] = Field(default=None, description="Token standards implemented by the contract (e.g. ERC-20, ERC-1400). Not returned for templates that do not follow ERC token standards, such as non-EVM templates (e.g. Stellar, Solana Token 2022)")
+    auditor: Optional[AuditorData] = None
     __properties: ClassVar[List[str]] = ["useCases", "standards", "auditor"]
 
     model_config = ConfigDict(

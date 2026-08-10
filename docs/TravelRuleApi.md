@@ -248,6 +248,8 @@ Get VASP Details.
 
 Returns information about a VASP that has the specified DID.
 
+The response may contain fields that are not documented in the schema below. Clients must ignore unrecognised fields rather than failing to deserialize.
+
 ### Example
 
 
@@ -273,8 +275,8 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    did = 'did_example' # str | 
-    fields = ['fields_example'] # List[str] | A CSV of fields to return. Choose from the following options: (optional)
+    did = 'did:ethr:0x17fe2dd11a2daa7f6c1fdf22532a4763f963aea6' # str | The Decentralized Identifier (DID) of the VASP.
+    fields = ['fields_example'] # List[str] | The VASP fields to return.  Optional. If omitted, or supplied with an empty value, the complete VASP record is returned, which is the same as passing `all`.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error. (optional)
 
     try:
         # Get VASP details
@@ -292,8 +294,8 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **did** | **str**|  | 
- **fields** | [**List[str]**](str.md)| A CSV of fields to return. Choose from the following options: | [optional] 
+ **did** | **str**| The Decentralized Identifier (DID) of the VASP. | 
+ **fields** | [**List[str]**](str.md)| The VASP fields to return.  Optional. If omitted, or supplied with an empty value, the complete VASP record is returned, which is the same as passing &#x60;all&#x60;.  Most field names return exactly the requested field. A few behave differently: &#x60;documents&#x60; and &#x60;ddq&#x60; return a small default set of identifying fields instead of the requested one, and &#x60;travelRule_EMAIL&#x60; returns an empty object. An unrecognised field name causes an error. | [optional] 
 
 ### Return type
 
@@ -312,7 +314,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Transaction validated successfully |  -  |
+**200** | VASP details |  -  |
 **400** | Invalid request body |  -  |
 **500** | Internal server error |  -  |
 
@@ -326,6 +328,8 @@ Get All VASPs
 Get All VASPs.
 
 Returns a list of VASPs. VASPs can be searched and sorted.
+
+Each VASP in the response may contain fields that are not documented in the schema below. Clients must ignore unrecognised fields rather than failing to deserialize.
 
 ### Example
 
@@ -354,7 +358,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
     order = 'ASC' # str | Field to order by (optional)
     page_size = 500 # float | Records per page (optional) (default to 500)
-    fields = ['fields_example'] # List[str] | CSV of fields to return (all, \"blank\" or see list of all field names below) (optional)
+    fields = ['fields_example'] # List[str] | The VASP fields to return.  Optional. If omitted, each VASP is returned with a default subset of six fields: `did`, `name`, `website`, `logo`, `incorporationCountry` and `jurisdictions`. Pass `all` to return the complete record for each VASP.  Most field names return exactly the requested field. A few behave differently: `documents` and `ddq` return a small default set of identifying fields instead of the requested one, and `travelRule_EMAIL` returns an empty object. An unrecognised field name causes an error. (optional)
     search = 'Fireblocks' # str | Search query (optional)
     review_value = 'TRUSTED' # str | Filter by the VASP's review status. Possible values include: \"TRUSTED\", \"BLOCKED\", \"MANUAL\", or \"NULL\". When provided, only VASPs that match the specified reviewValue will be returned (i.e., VASPs that have already been reviewed to this status). (optional)
     page_cursor = '100' # str | Cursor for pagination. When provided, the response will include the next page of results. (optional)
@@ -377,7 +381,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order** | **str**| Field to order by | [optional] 
  **page_size** | **float**| Records per page | [optional] [default to 500]
- **fields** | [**List[str]**](str.md)| CSV of fields to return (all, \&quot;blank\&quot; or see list of all field names below) | [optional] 
+ **fields** | [**List[str]**](str.md)| The VASP fields to return.  Optional. If omitted, each VASP is returned with a default subset of six fields: &#x60;did&#x60;, &#x60;name&#x60;, &#x60;website&#x60;, &#x60;logo&#x60;, &#x60;incorporationCountry&#x60; and &#x60;jurisdictions&#x60;. Pass &#x60;all&#x60; to return the complete record for each VASP.  Most field names return exactly the requested field. A few behave differently: &#x60;documents&#x60; and &#x60;ddq&#x60; return a small default set of identifying fields instead of the requested one, and &#x60;travelRule_EMAIL&#x60; returns an empty object. An unrecognised field name causes an error. | [optional] 
  **search** | **str**| Search query | [optional] 
  **review_value** | **str**| Filter by the VASP&#39;s review status. Possible values include: \&quot;TRUSTED\&quot;, \&quot;BLOCKED\&quot;, \&quot;MANUAL\&quot;, or \&quot;NULL\&quot;. When provided, only VASPs that match the specified reviewValue will be returned (i.e., VASPs that have already been reviewed to this status). | [optional] 
  **page_cursor** | **str**| Cursor for pagination. When provided, the response will include the next page of results. | [optional] 

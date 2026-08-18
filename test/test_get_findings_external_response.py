@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.ethereum_blockchain_data import EthereumBlockchainData
+from fireblocks.models.get_findings_external_response import GetFindingsExternalResponse
 
 
-class TestEthereumBlockchainData(unittest.TestCase):
-    """EthereumBlockchainData unit test stubs"""
+class TestGetFindingsExternalResponse(unittest.TestCase):
+    """GetFindingsExternalResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,30 +26,29 @@ class TestEthereumBlockchainData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> EthereumBlockchainData:
-        """Test EthereumBlockchainData
+    def make_instance(self, include_optional) -> GetFindingsExternalResponse:
+        """Test GetFindingsExternalResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `EthereumBlockchainData`
+        # uncomment below to create an instance of `GetFindingsExternalResponse`
         """
-        model = EthereumBlockchainData()
+        model = GetFindingsExternalResponse()
         if include_optional:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
-                estimated_activation_time = '2024-01-15T14:30:00.000Z',
-                estimated_source_exit_time = '2024-01-15T14:30Z',
-                estimated_consolidation_time = '2024-01-15T17:45Z',
-                estimated_withdrawal_time = '2024-01-15T14:30Z'
+            return GetFindingsExternalResponse(
+                data = [],
+                total = 42,
+                next = 'eyJzZXZlcml0eVJhbmsiOjMsImNyZWF0ZWRBdCI6IjIwMjYtMDctMTRUMTA6MDU6NTYuMDAwWiIsImlkIjoiYjJmZTkwYjItMWZlMy00ZTczLTg1YTItNjZlMTlmN2RhYzY2In0='
             )
         else:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
+            return GetFindingsExternalResponse(
+                data = [],
+                total = 42,
         )
         """
 
-    def testEthereumBlockchainData(self):
-        """Test EthereumBlockchainData"""
+    def testGetFindingsExternalResponse(self):
+        """Test GetFindingsExternalResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

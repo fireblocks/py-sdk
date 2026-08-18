@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.ethereum_blockchain_data import EthereumBlockchainData
+from fireblocks.models.gasless_info import GaslessInfo
 
 
-class TestEthereumBlockchainData(unittest.TestCase):
-    """EthereumBlockchainData unit test stubs"""
+class TestGaslessInfo(unittest.TestCase):
+    """GaslessInfo unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,30 +26,28 @@ class TestEthereumBlockchainData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> EthereumBlockchainData:
-        """Test EthereumBlockchainData
+    def make_instance(self, include_optional) -> GaslessInfo:
+        """Test GaslessInfo
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `EthereumBlockchainData`
+        # uncomment below to create an instance of `GaslessInfo`
         """
-        model = EthereumBlockchainData()
+        model = GaslessInfo()
         if include_optional:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
-                estimated_activation_time = '2024-01-15T14:30:00.000Z',
-                estimated_source_exit_time = '2024-01-15T14:30Z',
-                estimated_consolidation_time = '2024-01-15T17:45Z',
-                estimated_withdrawal_time = '2024-01-15T14:30Z'
+            return GaslessInfo(
+                is_meta_tx = True,
+                relay_tenant_id = '97cc731c-f920-5e82-bb56-ba76f292c874',
+                relay_tenant_name = 'Or Manzur - Crypto Journey',
+                relay_vault_account_id = '19'
             )
         else:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
+            return GaslessInfo(
         )
         """
 
-    def testEthereumBlockchainData(self):
-        """Test EthereumBlockchainData"""
+    def testGaslessInfo(self):
+        """Test GaslessInfo"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

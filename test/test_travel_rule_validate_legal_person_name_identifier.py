@@ -40,11 +40,13 @@ class TestTravelRuleValidateLegalPersonNameIdentifier(unittest.TestCase):
         model = TravelRuleValidateLegalPersonNameIdentifier()
         if include_optional:
             return TravelRuleValidateLegalPersonNameIdentifier(
-                legal_person_name = 'Acme Corporation',
-                legal_person_name_identifier_type = 'REGISTERED'
+                name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}],
+                local_name_identifier = [{"legalPersonName":"アクメ株式会社","legalPersonNameIdentifierType":"LEGL"}],
+                phonetic_name_identifier = [{"legalPersonName":"Akume Kabushiki Gaisha","legalPersonNameIdentifierType":"LEGL"}]
             )
         else:
             return TravelRuleValidateLegalPersonNameIdentifier(
+                name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}],
         )
         """
 

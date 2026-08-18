@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | [**TravelRuleValidateLegalPersonNameIdentifier**](TravelRuleValidateLegalPersonNameIdentifier.md) |  | [optional] 
+**name** | [**TravelRuleValidateLegalPersonNameIdentifier**](TravelRuleValidateLegalPersonNameIdentifier.md) |  | 
 **geographic_address** | [**List[TravelRuleValidateGeographicAddress]**](TravelRuleValidateGeographicAddress.md) | The array of geographic addresses associated with the legal person. | [optional] 
 **national_identification** | [**TravelRuleValidateNationalIdentification**](TravelRuleValidateNationalIdentification.md) |  | [optional] 
 **customer_identification** | **str** | A unique identifier that identifies the customer in the organization&#39;s context. | [optional] 

@@ -273,7 +273,7 @@ No authorization required
 List staking positions
 
 Returns all staking positions with core details: amounts, rewards, status, chain, and vault.
-Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -675,7 +675,7 @@ No authorization required
 List staking positions (Paginated)
 
 Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure.
-Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 
@@ -764,7 +764,7 @@ No authorization required
 List staking providers
 
 Returns all available staking providers with metadata such as name, ID, and supported chains.
-Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
 

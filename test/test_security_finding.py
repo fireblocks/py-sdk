@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.ethereum_blockchain_data import EthereumBlockchainData
+from fireblocks.models.security_finding import SecurityFinding
 
 
-class TestEthereumBlockchainData(unittest.TestCase):
-    """EthereumBlockchainData unit test stubs"""
+class TestSecurityFinding(unittest.TestCase):
+    """SecurityFinding unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,30 +26,31 @@ class TestEthereumBlockchainData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> EthereumBlockchainData:
-        """Test EthereumBlockchainData
+    def make_instance(self, include_optional) -> SecurityFinding:
+        """Test SecurityFinding
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `EthereumBlockchainData`
+        # uncomment below to create an instance of `SecurityFinding`
         """
-        model = EthereumBlockchainData()
+        model = SecurityFinding()
         if include_optional:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
-                estimated_activation_time = '2024-01-15T14:30:00.000Z',
-                estimated_source_exit_time = '2024-01-15T14:30Z',
-                estimated_consolidation_time = '2024-01-15T17:45Z',
-                estimated_withdrawal_time = '2024-01-15T14:30Z'
+            return SecurityFinding(
+                id = 'd7ca6101-a65e-4a9c-b6c1-b8bd697e0cd2',
+                type = 'API_COSIGNER_WITH_NO_CALLBACK',
+                status = 'OPEN',
+                severity = 'HIGH',
+                category = 'USER_MANAGEMENT',
+                created_at = '2026-07-28T11:37:05Z',
+                title = 'API co-signer configured without a callback URL'
             )
         else:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
+            return SecurityFinding(
         )
         """
 
-    def testEthereumBlockchainData(self):
-        """Test EthereumBlockchainData"""
+    def testSecurityFinding(self):
+        """Test SecurityFinding"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

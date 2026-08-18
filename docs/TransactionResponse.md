@@ -53,6 +53,7 @@ Name | Type | Description | Notes
 **index** | **float** | For UTXO based assets this is the vOut, for Ethereum based, this is the index of the event of the contract call.  **Note:** This field is not returned if a transaction uses the &#x60;destinations&#x60; object with more than one value. | [optional] 
 **reward_info** | [**RewardInfo**](RewardInfo.md) |  | [optional] 
 **fee_payer_info** | [**FeePayerInfo**](FeePayerInfo.md) |  | [optional] 
+**gasless_info** | [**GaslessInfo**](GaslessInfo.md) |  | [optional] 
 **system_messages** | [**List[SystemMessageInfo]**](SystemMessageInfo.md) |  | [optional] 
 **address_type** | **str** |  | [optional] 
 **requested_amount** | **float** | The amount requested by the user. Deprecated - please use the &#x60;amountInfo&#x60; field for accuracy. | [optional] 

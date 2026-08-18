@@ -50,6 +50,7 @@ from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
 from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
+from fireblocks.api.security_posture_management_api import SecurityPostureManagementApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tr_link_api import TRLinkApi
@@ -113,6 +114,7 @@ class Fireblocks:
         self._policy_editor_beta = None
         self._reports_beta = None
         self._reset_device = None
+        self._security_posture_management = None
         self._smart_transfer = None
         self._staking = None
         self._tr_link = None
@@ -346,6 +348,14 @@ class Fireblocks:
         if self._reset_device is None:
             self._reset_device = ResetDeviceApi(self._api_client)
         return self._reset_device
+
+    @property
+    def security_posture_management(self) -> SecurityPostureManagementApi:
+        if self._security_posture_management is None:
+            self._security_posture_management = SecurityPostureManagementApi(
+                self._api_client
+            )
+        return self._security_posture_management
 
     @property
     def smart_transfer(self) -> SmartTransferApi:

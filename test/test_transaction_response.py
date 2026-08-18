@@ -387,6 +387,11 @@ class TestTransactionResponse(unittest.TestCase):
                     dest_rewards = '', ),
                 fee_payer_info = fireblocks.models.fee_payer_info.FeePayerInfo(
                     fee_payer_account_id = '123', ),
+                gasless_info = fireblocks.models.gasless_info.GaslessInfo(
+                    is_meta_tx = True, 
+                    relay_tenant_id = '97cc731c-f920-5e82-bb56-ba76f292c874', 
+                    relay_tenant_name = 'Or Manzur - Crypto Journey', 
+                    relay_vault_account_id = '19', ),
                 system_messages = [
                     fireblocks.models.system_message_info.SystemMessageInfo(
                         type = 'WARN', 

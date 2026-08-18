@@ -64,6 +64,12 @@ The reason or purpose of the payment. Used by providers (e.g. CPN) that require 
 
 * `REPATRIATION_FUND_SETTLEMENT` (value: `'REPATRIATION_FUND_SETTLEMENT'`)
 
+* `CORPORATE_INVESTMENT` (value: `'CORPORATE_INVESTMENT'`)
+
+* `INTER_COMPANY_TRANSFER` (value: `'INTER_COMPANY_TRANSFER'`)
+
+* `OFFICE_OPERATING_EXPENSES` (value: `'OFFICE_OPERATING_EXPENSES'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

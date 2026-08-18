@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.travel_rule_legal_name_identifier import TravelRuleLegalNameIdentifier
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,9 +28,10 @@ class TravelRuleLegalPersonNameIdentifier(BaseModel):
     """
     TravelRuleLegalPersonNameIdentifier
     """ # noqa: E501
-    legal_person_name: Optional[StrictStr] = Field(default=None, description="Name by which the legal person is known. The value must be encrypted.", alias="legalPersonName")
-    legal_person_name_identifier_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of name for a legal person. Acceptable values are: - 'REGISTERED': The official registered name. - 'TRADE': A trading name or DBA (Doing Business As) name. - 'OTHER': Any other type of name. The value must be encrypted.", alias="legalPersonNameIdentifierType")
-    __properties: ClassVar[List[str]] = ["legalPersonName", "legalPersonNameIdentifierType"]
+    name_identifier: Optional[List[TravelRuleLegalNameIdentifier]] = Field(default=None, description="An array of name identifiers of the legal person.", alias="nameIdentifier")
+    local_name_identifier: Optional[List[TravelRuleLegalNameIdentifier]] = Field(default=None, description="An array of local name identifiers of the legal person.", alias="localNameIdentifier")
+    phonetic_name_identifier: Optional[List[TravelRuleLegalNameIdentifier]] = Field(default=None, description="An array of phonetic name identifiers of the legal person.", alias="phoneticNameIdentifier")
+    __properties: ClassVar[List[str]] = ["nameIdentifier", "localNameIdentifier", "phoneticNameIdentifier"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +72,27 @@ class TravelRuleLegalPersonNameIdentifier(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in name_identifier (list)
+        _items = []
+        if self.name_identifier:
+            for _item_name_identifier in self.name_identifier:
+                if _item_name_identifier:
+                    _items.append(_item_name_identifier.to_dict())
+            _dict['nameIdentifier'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in local_name_identifier (list)
+        _items = []
+        if self.local_name_identifier:
+            for _item_local_name_identifier in self.local_name_identifier:
+                if _item_local_name_identifier:
+                    _items.append(_item_local_name_identifier.to_dict())
+            _dict['localNameIdentifier'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in phonetic_name_identifier (list)
+        _items = []
+        if self.phonetic_name_identifier:
+            for _item_phonetic_name_identifier in self.phonetic_name_identifier:
+                if _item_phonetic_name_identifier:
+                    _items.append(_item_phonetic_name_identifier.to_dict())
+            _dict['phoneticNameIdentifier'] = _items
         return _dict
 
     @classmethod
@@ -82,8 +105,9 @@ class TravelRuleLegalPersonNameIdentifier(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "legalPersonName": obj.get("legalPersonName"),
-            "legalPersonNameIdentifierType": obj.get("legalPersonNameIdentifierType")
+            "nameIdentifier": [TravelRuleLegalNameIdentifier.from_dict(_item) for _item in obj["nameIdentifier"]] if obj.get("nameIdentifier") is not None else None,
+            "localNameIdentifier": [TravelRuleLegalNameIdentifier.from_dict(_item) for _item in obj["localNameIdentifier"]] if obj.get("localNameIdentifier") is not None else None,
+            "phoneticNameIdentifier": [TravelRuleLegalNameIdentifier.from_dict(_item) for _item in obj["phoneticNameIdentifier"]] if obj.get("phoneticNameIdentifier") is not None else None
         })
         return _obj
 

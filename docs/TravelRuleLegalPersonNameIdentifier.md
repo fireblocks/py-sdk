@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**legal_person_name** | **str** | Name by which the legal person is known. The value must be encrypted. | [optional] 
-**legal_person_name_identifier_type** | **str** | Specifies the type of name for a legal person. Acceptable values are: - &#39;REGISTERED&#39;: The official registered name. - &#39;TRADE&#39;: A trading name or DBA (Doing Business As) name. - &#39;OTHER&#39;: Any other type of name. The value must be encrypted. | [optional] 
+**name_identifier** | [**List[TravelRuleLegalNameIdentifier]**](TravelRuleLegalNameIdentifier.md) | An array of name identifiers of the legal person. | [optional] 
+**local_name_identifier** | [**List[TravelRuleLegalNameIdentifier]**](TravelRuleLegalNameIdentifier.md) | An array of local name identifiers of the legal person. | [optional] 
+**phonetic_name_identifier** | [**List[TravelRuleLegalNameIdentifier]**](TravelRuleLegalNameIdentifier.md) | An array of phonetic name identifiers of the legal person. | [optional] 
 
 ## Example
 

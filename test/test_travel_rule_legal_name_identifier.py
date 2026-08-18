@@ -14,11 +14,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.ethereum_blockchain_data import EthereumBlockchainData
+from fireblocks.models.travel_rule_legal_name_identifier import (
+    TravelRuleLegalNameIdentifier,
+)
 
 
-class TestEthereumBlockchainData(unittest.TestCase):
-    """EthereumBlockchainData unit test stubs"""
+class TestTravelRuleLegalNameIdentifier(unittest.TestCase):
+    """TravelRuleLegalNameIdentifier unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,30 +28,28 @@ class TestEthereumBlockchainData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> EthereumBlockchainData:
-        """Test EthereumBlockchainData
+    def make_instance(self, include_optional) -> TravelRuleLegalNameIdentifier:
+        """Test TravelRuleLegalNameIdentifier
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `EthereumBlockchainData`
+        # uncomment below to create an instance of `TravelRuleLegalNameIdentifier`
         """
-        model = EthereumBlockchainData()
+        model = TravelRuleLegalNameIdentifier()
         if include_optional:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
-                estimated_activation_time = '2024-01-15T14:30:00.000Z',
-                estimated_source_exit_time = '2024-01-15T14:30Z',
-                estimated_consolidation_time = '2024-01-15T17:45Z',
-                estimated_withdrawal_time = '2024-01-15T14:30Z'
+            return TravelRuleLegalNameIdentifier(
+                legal_person_name = 'QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q',
+                legal_person_name_identifier_type = 'QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e'
             )
         else:
-            return EthereumBlockchainData(
-                is_compounding_validator = True,
+            return TravelRuleLegalNameIdentifier(
+                legal_person_name = 'QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q',
+                legal_person_name_identifier_type = 'QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e',
         )
         """
 
-    def testEthereumBlockchainData(self):
-        """Test EthereumBlockchainData"""
+    def testTravelRuleLegalNameIdentifier(self):
+        """Test TravelRuleLegalNameIdentifier"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

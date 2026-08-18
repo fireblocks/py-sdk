@@ -540,7 +540,7 @@ class StakingApi:
     ) -> Future[ApiResponse[List[Delegation]]]:
         """List staking positions
 
-        Returns all staking positions with core details: amounts, rewards, status, chain, and vault. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns all staking positions with core details: amounts, rewards, status, chain, and vault. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param chain_descriptor: Protocol identifier to filter positions (e.g., ATOM_COS/AXL/CELESTIA). If omitted, positions across all supported chains are returned.
         :type chain_descriptor: ChainDescriptor
@@ -1240,7 +1240,7 @@ class StakingApi:
     ) -> Future[ApiResponse[StakingPositionsPaginatedResponse]]:
         """List staking positions (Paginated)
 
-        Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns staking positions with core details: amounts, rewards, status, chain, and vault. It supports cursor-based pagination for efficient data retrieval. This endpoint always returns a paginated response with {data, next} structure. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param page_size: Number of results per page. When provided, the response returns a paginated object with {data, next}. If omitted, all results are returned as an array. (required)
         :type page_size: int
@@ -1406,7 +1406,7 @@ class StakingApi:
     ) -> Future[ApiResponse[List[Provider]]]:
         """List staking providers
 
-        Returns all available staking providers with metadata such as name, ID, and supported chains. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Returns all available staking providers with metadata such as name, ID, and supported chains. Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

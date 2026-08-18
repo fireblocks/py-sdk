@@ -103,6 +103,8 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                                 country_of_residence = 'US', 
                                 customer_number = '123456789', ), 
                             legal_person = fireblocks.models.travel_rule_validate_legal_person.TravelRuleValidateLegalPerson(
+                                name = fireblocks.models.travel_rule_validate_legal_person_name_identifier.TravelRuleValidateLegalPersonNameIdentifier(
+                                    name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}], ), 
                                 customer_identification = 'CUST987654', 
                                 customer_number = '123456789', 
                                 country_of_registration = 'US', ), )
@@ -166,6 +168,8 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                                 country_of_residence = 'US', 
                                 customer_number = '123456789', ), 
                             legal_person = fireblocks.models.travel_rule_validate_legal_person.TravelRuleValidateLegalPerson(
+                                name = fireblocks.models.travel_rule_validate_legal_person_name_identifier.TravelRuleValidateLegalPersonNameIdentifier(
+                                    name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}], ), 
                                 customer_identification = 'CUST987654', 
                                 customer_number = '123456789', 
                                 country_of_registration = 'US', ), )
@@ -327,6 +331,8 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                                 country_of_residence = 'US', 
                                 customer_number = '123456789', ), 
                             legal_person = fireblocks.models.travel_rule_validate_legal_person.TravelRuleValidateLegalPerson(
+                                name = fireblocks.models.travel_rule_validate_legal_person_name_identifier.TravelRuleValidateLegalPersonNameIdentifier(
+                                    name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}], ), 
                                 customer_identification = 'CUST987654', 
                                 customer_number = '123456789', 
                                 country_of_registration = 'US', ), )
@@ -390,6 +396,8 @@ class TestTravelRuleValidateFullTransactionRequest(unittest.TestCase):
                                 country_of_residence = 'US', 
                                 customer_number = '123456789', ), 
                             legal_person = fireblocks.models.travel_rule_validate_legal_person.TravelRuleValidateLegalPerson(
+                                name = fireblocks.models.travel_rule_validate_legal_person_name_identifier.TravelRuleValidateLegalPersonNameIdentifier(
+                                    name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}], ), 
                                 customer_identification = 'CUST987654', 
                                 customer_number = '123456789', 
                                 country_of_registration = 'US', ), )

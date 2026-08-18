@@ -29,6 +29,7 @@ from fireblocks.models.destination_transfer_peer_path_response import Destinatio
 from fireblocks.models.extra_parameters import ExtraParameters
 from fireblocks.models.fee_info import FeeInfo
 from fireblocks.models.fee_payer_info import FeePayerInfo
+from fireblocks.models.gasless_info import GaslessInfo
 from fireblocks.models.get_transaction_operation import GetTransactionOperation
 from fireblocks.models.network_record import NetworkRecord
 from fireblocks.models.program_call_decoded_data_item import ProgramCallDecodedDataItem
@@ -93,6 +94,7 @@ class TransactionResponse(BaseModel):
     index: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="For UTXO based assets this is the vOut, for Ethereum based, this is the index of the event of the contract call.  **Note:** This field is not returned if a transaction uses the `destinations` object with more than one value.")
     reward_info: Optional[RewardInfo] = Field(default=None, alias="rewardInfo")
     fee_payer_info: Optional[FeePayerInfo] = Field(default=None, alias="feePayerInfo")
+    gasless_info: Optional[GaslessInfo] = Field(default=None, alias="gaslessInfo")
     system_messages: Optional[List[SystemMessageInfo]] = Field(default=None, alias="systemMessages")
     address_type: Optional[StrictStr] = Field(default=None, alias="addressType")
     requested_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The amount requested by the user. Deprecated - please use the `amountInfo` field for accuracy.", alias="requestedAmount")
@@ -106,7 +108,7 @@ class TransactionResponse(BaseModel):
     replaced_tx_hash: Optional[StrictStr] = Field(default=None, description="if the transaction is a replace by fee (RBF) transaction, this is the hash of the transsaction that was replaced", alias="replacedTxHash")
     nonce: Optional[StrictStr] = Field(default=None, description="blockchain nonce for the transaction")
     blockchain_info: Optional[Dict[str, Any]] = Field(default=None, description="A JSON used to store additional data that is blockchain-specific.", alias="blockchainInfo")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "programCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "programCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "gaslessInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -221,6 +223,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fee_payer_info
         if self.fee_payer_info:
             _dict['feePayerInfo'] = self.fee_payer_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gasless_info
+        if self.gasless_info:
+            _dict['gaslessInfo'] = self.gasless_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in system_messages (list)
         _items = []
         if self.system_messages:
@@ -293,6 +298,7 @@ class TransactionResponse(BaseModel):
             "index": obj.get("index"),
             "rewardInfo": RewardInfo.from_dict(obj["rewardInfo"]) if obj.get("rewardInfo") is not None else None,
             "feePayerInfo": FeePayerInfo.from_dict(obj["feePayerInfo"]) if obj.get("feePayerInfo") is not None else None,
+            "gaslessInfo": GaslessInfo.from_dict(obj["gaslessInfo"]) if obj.get("gaslessInfo") is not None else None,
             "systemMessages": [SystemMessageInfo.from_dict(_item) for _item in obj["systemMessages"]] if obj.get("systemMessages") is not None else None,
             "addressType": obj.get("addressType"),
             "requestedAmount": obj.get("requestedAmount"),

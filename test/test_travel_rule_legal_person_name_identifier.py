@@ -38,8 +38,9 @@ class TestTravelRuleLegalPersonNameIdentifier(unittest.TestCase):
         model = TravelRuleLegalPersonNameIdentifier()
         if include_optional:
             return TravelRuleLegalPersonNameIdentifier(
-                legal_person_name = 'QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q',
-                legal_person_name_identifier_type = 'QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e'
+                name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}],
+                local_name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}],
+                phonetic_name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}]
             )
         else:
             return TravelRuleLegalPersonNameIdentifier(

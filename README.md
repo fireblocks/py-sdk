@@ -477,6 +477,7 @@ Class | Method | HTTP request | Description
 *ReportsBetaApi* | [**get_report**](docs/ReportsBetaApi.md#get_report) | **GET** /reports/{reportId} | Get report status
 *ReportsBetaApi* | [**list_reports**](docs/ReportsBetaApi.md#list_reports) | **GET** /reports | List reports
 *ResetDeviceApi* | [**reset_device**](docs/ResetDeviceApi.md#reset_device) | **POST** /management/users/{id}/reset_device | Resets device
+*SecurityPostureManagementApi* | [**get_security_findings**](docs/SecurityPostureManagementApi.md#get_security_findings) | **GET** /security/fspm/findings | Get FSPM security findings
 *SmartTransferApi* | [**approve_dv_p_ticket_term**](docs/SmartTransferApi.md#approve_dv_p_ticket_term) | **PUT** /smart_transfers/{ticketId}/terms/{termId}/dvp/approve | Set funding source and approval
 *SmartTransferApi* | [**cancel_ticket**](docs/SmartTransferApi.md#cancel_ticket) | **PUT** /smart-transfers/{ticketId}/cancel | Cancel Ticket
 *SmartTransferApi* | [**create_ticket**](docs/SmartTransferApi.md#create_ticket) | **POST** /smart-transfers | Create Ticket
@@ -1139,6 +1140,7 @@ Class | Method | HTTP request | Description
  - [GasStationConfiguration](docs/GasStationConfiguration.md)
  - [GasStationConfigurationResponse](docs/GasStationConfigurationResponse.md)
  - [GasStationPropertiesResponse](docs/GasStationPropertiesResponse.md)
+ - [GaslessInfo](docs/GaslessInfo.md)
  - [GasslessStandardConfigurations](docs/GasslessStandardConfigurations.md)
  - [GasslessStandardConfigurationsGaslessStandardConfigurationsValue](docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md)
  - [GenieChatMessage](docs/GenieChatMessage.md)
@@ -1158,6 +1160,7 @@ Class | Method | HTTP request | Description
  - [GetDeployableAddressRequest](docs/GetDeployableAddressRequest.md)
  - [GetExchangeAccountsCredentialsPublicKeyResponse](docs/GetExchangeAccountsCredentialsPublicKeyResponse.md)
  - [GetFilterParameter](docs/GetFilterParameter.md)
+ - [GetFindingsExternalResponse](docs/GetFindingsExternalResponse.md)
  - [GetLayerZeroDvnConfigResponse](docs/GetLayerZeroDvnConfigResponse.md)
  - [GetLayerZeroPeersResponse](docs/GetLayerZeroPeersResponse.md)
  - [GetLinkedCollectionsPaginatedResponse](docs/GetLinkedCollectionsPaginatedResponse.md)
@@ -1499,6 +1502,7 @@ Class | Method | HTTP request | Description
  - [ScreeningVerdictEnum](docs/ScreeningVerdictEnum.md)
  - [ScreeningVerdictMatchedRule](docs/ScreeningVerdictMatchedRule.md)
  - [SearchNetworkIdsResponse](docs/SearchNetworkIdsResponse.md)
+ - [SecurityFinding](docs/SecurityFinding.md)
  - [SepaPaymentInfo](docs/SepaPaymentInfo.md)
  - [SessionDTO](docs/SessionDTO.md)
  - [SessionMetadata](docs/SessionMetadata.md)
@@ -1760,6 +1764,7 @@ Class | Method | HTTP request | Description
  - [TravelRuleGetAllVASPsResponse](docs/TravelRuleGetAllVASPsResponse.md)
  - [TravelRuleIssuer](docs/TravelRuleIssuer.md)
  - [TravelRuleIssuers](docs/TravelRuleIssuers.md)
+ - [TravelRuleLegalNameIdentifier](docs/TravelRuleLegalNameIdentifier.md)
  - [TravelRuleLegalPerson](docs/TravelRuleLegalPerson.md)
  - [TravelRuleLegalPersonNameIdentifier](docs/TravelRuleLegalPersonNameIdentifier.md)
  - [TravelRuleMatchedRule](docs/TravelRuleMatchedRule.md)
@@ -1784,6 +1789,7 @@ Class | Method | HTTP request | Description
  - [TravelRuleValidateDateAndPlaceOfBirth](docs/TravelRuleValidateDateAndPlaceOfBirth.md)
  - [TravelRuleValidateFullTransactionRequest](docs/TravelRuleValidateFullTransactionRequest.md)
  - [TravelRuleValidateGeographicAddress](docs/TravelRuleValidateGeographicAddress.md)
+ - [TravelRuleValidateLegalNameIdentifier](docs/TravelRuleValidateLegalNameIdentifier.md)
  - [TravelRuleValidateLegalPerson](docs/TravelRuleValidateLegalPerson.md)
  - [TravelRuleValidateLegalPersonNameIdentifier](docs/TravelRuleValidateLegalPersonNameIdentifier.md)
  - [TravelRuleValidateNationalIdentification](docs/TravelRuleValidateNationalIdentification.md)

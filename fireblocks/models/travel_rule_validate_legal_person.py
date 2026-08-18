@@ -30,7 +30,7 @@ class TravelRuleValidateLegalPerson(BaseModel):
     """
     TravelRuleValidateLegalPerson
     """ # noqa: E501
-    name: Optional[TravelRuleValidateLegalPersonNameIdentifier] = None
+    name: TravelRuleValidateLegalPersonNameIdentifier
     geographic_address: Optional[List[TravelRuleValidateGeographicAddress]] = Field(default=None, description="The array of geographic addresses associated with the legal person.", alias="geographicAddress")
     national_identification: Optional[TravelRuleValidateNationalIdentification] = Field(default=None, alias="nationalIdentification")
     customer_identification: Optional[StrictStr] = Field(default=None, description="A unique identifier that identifies the customer in the organization's context.", alias="customerIdentification")

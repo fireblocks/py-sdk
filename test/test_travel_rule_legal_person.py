@@ -37,8 +37,9 @@ class TestTravelRuleLegalPerson(unittest.TestCase):
         if include_optional:
             return TravelRuleLegalPerson(
                 name = fireblocks.models.travel_rule_legal_person_name_identifier.TravelRuleLegalPersonNameIdentifier(
-                    legal_person_name = 'QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q', 
-                    legal_person_name_identifier_type = 'QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e', ),
+                    name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}], 
+                    local_name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}], 
+                    phonetic_name_identifier = [{"legalPersonName":"QmVXXj5BJchhqQTU27uEkeghYMnxR6aVjZxJP9jS6uCg9Q","legalPersonNameIdentifierType":"QmPevsa5xdkxf6Lgt7f9YweRBdgseeAkWVaYyssKF3Q86e"}], ),
                 geographic_address = [
                     fireblocks.models.travel_rule_geographic_address.TravelRuleGeographicAddress(
                         street_name = 'QmZGXXsKPk5iPS97LLjXB5e8Qs555ocdzcpbPMXvt84Ji9', 

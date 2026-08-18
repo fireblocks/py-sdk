@@ -472,6 +472,7 @@ docs/GasStationConfiguration.md
 docs/GasStationConfigurationResponse.md
 docs/GasStationPropertiesResponse.md
 docs/GasStationsApi.md
+docs/GaslessInfo.md
 docs/GasslessStandardConfigurations.md
 docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md
 docs/GenieBetaApi.md
@@ -492,6 +493,7 @@ docs/GetConsoleUsersResponse.md
 docs/GetDeployableAddressRequest.md
 docs/GetExchangeAccountsCredentialsPublicKeyResponse.md
 docs/GetFilterParameter.md
+docs/GetFindingsExternalResponse.md
 docs/GetLayerZeroDvnConfigResponse.md
 docs/GetLayerZeroPeersResponse.md
 docs/GetLinkedCollectionsPaginatedResponse.md
@@ -847,6 +849,8 @@ docs/ScreeningVerdict.md
 docs/ScreeningVerdictEnum.md
 docs/ScreeningVerdictMatchedRule.md
 docs/SearchNetworkIdsResponse.md
+docs/SecurityFinding.md
+docs/SecurityPostureManagementApi.md
 docs/SepaPaymentInfo.md
 docs/SessionDTO.md
 docs/SessionMetadata.md
@@ -1116,6 +1120,7 @@ docs/TravelRuleGeographicAddress.md
 docs/TravelRuleGetAllVASPsResponse.md
 docs/TravelRuleIssuer.md
 docs/TravelRuleIssuers.md
+docs/TravelRuleLegalNameIdentifier.md
 docs/TravelRuleLegalPerson.md
 docs/TravelRuleLegalPersonNameIdentifier.md
 docs/TravelRuleMatchedRule.md
@@ -1140,6 +1145,7 @@ docs/TravelRuleVASPExternalEntityRegistration.md
 docs/TravelRuleValidateDateAndPlaceOfBirth.md
 docs/TravelRuleValidateFullTransactionRequest.md
 docs/TravelRuleValidateGeographicAddress.md
+docs/TravelRuleValidateLegalNameIdentifier.md
 docs/TravelRuleValidateLegalPerson.md
 docs/TravelRuleValidateLegalPersonNameIdentifier.md
 docs/TravelRuleValidateNationalIdentification.md
@@ -1281,6 +1287,7 @@ fireblocks/api/policy_editor_v2_api.py
 fireblocks/api/policy_editor_v2_beta_api.py
 fireblocks/api/reports_beta_api.py
 fireblocks/api/reset_device_api.py
+fireblocks/api/security_posture_management_api.py
 fireblocks/api/smart_transfer_api.py
 fireblocks/api/staking_api.py
 fireblocks/api/tags_api.py
@@ -1759,6 +1766,7 @@ fireblocks/models/funds.py
 fireblocks/models/gas_station_configuration.py
 fireblocks/models/gas_station_configuration_response.py
 fireblocks/models/gas_station_properties_response.py
+fireblocks/models/gasless_info.py
 fireblocks/models/gassless_standard_configurations.py
 fireblocks/models/gassless_standard_configurations_gasless_standard_configurations_value.py
 fireblocks/models/genie_chat_message.py
@@ -1778,6 +1786,7 @@ fireblocks/models/get_console_users_response.py
 fireblocks/models/get_deployable_address_request.py
 fireblocks/models/get_exchange_accounts_credentials_public_key_response.py
 fireblocks/models/get_filter_parameter.py
+fireblocks/models/get_findings_external_response.py
 fireblocks/models/get_layer_zero_dvn_config_response.py
 fireblocks/models/get_layer_zero_peers_response.py
 fireblocks/models/get_linked_collections_paginated_response.py
@@ -2115,6 +2124,7 @@ fireblocks/models/screening_verdict.py
 fireblocks/models/screening_verdict_enum.py
 fireblocks/models/screening_verdict_matched_rule.py
 fireblocks/models/search_network_ids_response.py
+fireblocks/models/security_finding.py
 fireblocks/models/sepa_address.py
 fireblocks/models/sepa_destination.py
 fireblocks/models/sepa_payment_info.py
@@ -2380,6 +2390,7 @@ fireblocks/models/travel_rule_geographic_address.py
 fireblocks/models/travel_rule_get_all_vasps_response.py
 fireblocks/models/travel_rule_issuer.py
 fireblocks/models/travel_rule_issuers.py
+fireblocks/models/travel_rule_legal_name_identifier.py
 fireblocks/models/travel_rule_legal_person.py
 fireblocks/models/travel_rule_legal_person_name_identifier.py
 fireblocks/models/travel_rule_matched_rule.py
@@ -2400,6 +2411,7 @@ fireblocks/models/travel_rule_update_vasp_details.py
 fireblocks/models/travel_rule_validate_date_and_place_of_birth.py
 fireblocks/models/travel_rule_validate_full_transaction_request.py
 fireblocks/models/travel_rule_validate_geographic_address.py
+fireblocks/models/travel_rule_validate_legal_name_identifier.py
 fireblocks/models/travel_rule_validate_legal_person.py
 fireblocks/models/travel_rule_validate_legal_person_name_identifier.py
 fireblocks/models/travel_rule_validate_national_identification.py
@@ -2991,6 +3003,7 @@ test/test_gas_station_configuration.py
 test/test_gas_station_configuration_response.py
 test/test_gas_station_properties_response.py
 test/test_gas_stations_api.py
+test/test_gasless_info.py
 test/test_gassless_standard_configurations.py
 test/test_gassless_standard_configurations_gasless_standard_configurations_value.py
 test/test_genie_beta_api.py
@@ -3011,6 +3024,7 @@ test/test_get_console_users_response.py
 test/test_get_deployable_address_request.py
 test/test_get_exchange_accounts_credentials_public_key_response.py
 test/test_get_filter_parameter.py
+test/test_get_findings_external_response.py
 test/test_get_layer_zero_dvn_config_response.py
 test/test_get_layer_zero_peers_response.py
 test/test_get_linked_collections_paginated_response.py
@@ -3362,6 +3376,8 @@ test/test_screening_verdict.py
 test/test_screening_verdict_enum.py
 test/test_screening_verdict_matched_rule.py
 test/test_search_network_ids_response.py
+test/test_security_finding.py
+test/test_security_posture_management_api.py
 test/test_sepa_address.py
 test/test_sepa_destination.py
 test/test_sepa_payment_info.py
@@ -3635,6 +3651,7 @@ test/test_travel_rule_geographic_address.py
 test/test_travel_rule_get_all_vasps_response.py
 test/test_travel_rule_issuer.py
 test/test_travel_rule_issuers.py
+test/test_travel_rule_legal_name_identifier.py
 test/test_travel_rule_legal_person.py
 test/test_travel_rule_legal_person_name_identifier.py
 test/test_travel_rule_matched_rule.py
@@ -3655,6 +3672,7 @@ test/test_travel_rule_update_vasp_details.py
 test/test_travel_rule_validate_date_and_place_of_birth.py
 test/test_travel_rule_validate_full_transaction_request.py
 test/test_travel_rule_validate_geographic_address.py
+test/test_travel_rule_validate_legal_name_identifier.py
 test/test_travel_rule_validate_legal_person.py
 test/test_travel_rule_validate_legal_person_name_identifier.py
 test/test_travel_rule_validate_national_identification.py

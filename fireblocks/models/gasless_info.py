@@ -18,22 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class EthereumBlockchainData(BaseModel):
+class GaslessInfo(BaseModel):
     """
-    Additional fields per blockchain for Ethereum (ETH) - can be empty or missing if not initialized or no specific data is available.
+    Relay (meta-transaction) details. Returned only for meta-transactions (`isMetaTx` is `true`). For meta-transactions the deprecated top-level `fee` field is omitted; use `feeInfo` instead.
     """ # noqa: E501
-    is_compounding_validator: StrictBool = Field(description="Is the validator compounding (i.e it was created with compounding validator type).", alias="isCompoundingValidator")
-    estimated_activation_time: Optional[StrictStr] = Field(default=None, description="Estimated time the staked ETH will activate, derived from the beacon-chain deposit queue. Present only while the position is pending/activating; omitted once active.", alias="estimatedActivationTime")
-    estimated_source_exit_time: Optional[datetime] = Field(default=None, description="Estimated time the source validator will exit the active set and stop earning rewards, derived from the beacon-chain consolidation queue. Present only while a consolidation is in progress.", alias="estimatedSourceExitTime")
-    estimated_consolidation_time: Optional[datetime] = Field(default=None, description="Estimated time the consolidation will complete, i.e. when the source balance is swept to the destination validator, derived from the beacon-chain consolidation queue. Present only while a consolidation is in progress.", alias="estimatedConsolidationTime")
-    estimated_withdrawal_time: Optional[datetime] = Field(default=None, description="Estimated time the in-flight withdrawal will complete, derived from the beacon-chain exit queue for a full exit or the manual withdrawal queue for a partial one. Present only while a withdrawal is in progress.", alias="estimatedWithdrawalTime")
-    __properties: ClassVar[List[str]] = ["isCompoundingValidator", "estimatedActivationTime", "estimatedSourceExitTime", "estimatedConsolidationTime", "estimatedWithdrawalTime"]
+    is_meta_tx: Optional[StrictBool] = Field(default=None, description="Indicates the transaction is a meta-transaction (gas paid by a relay tenant).", alias="isMetaTx")
+    relay_tenant_id: Optional[StrictStr] = Field(default=None, description="The tenant ID of the relay that sponsors the gas for the meta-transaction.", alias="relayTenantId")
+    relay_tenant_name: Optional[StrictStr] = Field(default=None, description="The tenant name of the relay that sponsors the gas for the meta-transaction.", alias="relayTenantName")
+    relay_vault_account_id: Optional[StrictStr] = Field(default=None, description="The vault account ID of the relay that sponsors the gas for the meta-transaction.", alias="relayVaultAccountId")
+    __properties: ClassVar[List[str]] = ["isMetaTx", "relayTenantId", "relayTenantName", "relayVaultAccountId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class EthereumBlockchainData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of EthereumBlockchainData from a JSON string"""
+        """Create an instance of GaslessInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +76,7 @@ class EthereumBlockchainData(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of EthereumBlockchainData from a dict"""
+        """Create an instance of GaslessInfo from a dict"""
         if obj is None:
             return None
 
@@ -86,11 +84,10 @@ class EthereumBlockchainData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "isCompoundingValidator": obj.get("isCompoundingValidator"),
-            "estimatedActivationTime": obj.get("estimatedActivationTime"),
-            "estimatedSourceExitTime": obj.get("estimatedSourceExitTime"),
-            "estimatedConsolidationTime": obj.get("estimatedConsolidationTime"),
-            "estimatedWithdrawalTime": obj.get("estimatedWithdrawalTime")
+            "isMetaTx": obj.get("isMetaTx"),
+            "relayTenantId": obj.get("relayTenantId"),
+            "relayTenantName": obj.get("relayTenantName"),
+            "relayVaultAccountId": obj.get("relayVaultAccountId")
         })
         return _obj
 

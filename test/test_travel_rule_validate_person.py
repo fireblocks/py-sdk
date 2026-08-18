@@ -87,8 +87,9 @@ class TestTravelRuleValidatePerson(unittest.TestCase):
                     customer_number = '123456789', ),
                 legal_person = fireblocks.models.travel_rule_validate_legal_person.TravelRuleValidateLegalPerson(
                     name = fireblocks.models.travel_rule_validate_legal_person_name_identifier.TravelRuleValidateLegalPersonNameIdentifier(
-                        legal_person_name = 'Acme Corporation', 
-                        legal_person_name_identifier_type = 'REGISTERED', ), 
+                        name_identifier = [{"legalPersonName":"Acme Corporation","legalPersonNameIdentifierType":"LEGL"}], 
+                        local_name_identifier = [{"legalPersonName":"アクメ株式会社","legalPersonNameIdentifierType":"LEGL"}], 
+                        phonetic_name_identifier = [{"legalPersonName":"Akume Kabushiki Gaisha","legalPersonNameIdentifierType":"LEGL"}], ), 
                     geographic_address = [
                         fireblocks.models.travel_rule_validate_geographic_address.TravelRuleValidateGeographicAddress(
                             street_name = '123 Main St', 

@@ -18,6 +18,7 @@
 from fireblocks.models.api_user import APIUser
 from fireblocks.models.aba_payment_info import AbaPaymentInfo
 from fireblocks.models.abi_function import AbiFunction
+from fireblocks.models.accept_finding_request import AcceptFindingRequest
 from fireblocks.models.access_registry_address_item import AccessRegistryAddressItem
 from fireblocks.models.access_registry_current_state_response import AccessRegistryCurrentStateResponse
 from fireblocks.models.access_registry_current_state_response2 import AccessRegistryCurrentStateResponse2
@@ -205,6 +206,7 @@ from fireblocks.models.collection_ownership_response import CollectionOwnershipR
 from fireblocks.models.collection_token_metadata_attribute_dto import CollectionTokenMetadataAttributeDto
 from fireblocks.models.collection_token_metadata_dto import CollectionTokenMetadataDto
 from fireblocks.models.collection_type import CollectionType
+from fireblocks.models.compliance_requirement import ComplianceRequirement
 from fireblocks.models.compliance_result_full_payload import ComplianceResultFullPayload
 from fireblocks.models.compliance_result_statuses_enum import ComplianceResultStatusesEnum
 from fireblocks.models.compliance_results import ComplianceResults
@@ -763,6 +765,7 @@ from fireblocks.models.rename_connected_account_request import RenameConnectedAc
 from fireblocks.models.rename_connected_account_response import RenameConnectedAccountResponse
 from fireblocks.models.rename_cosigner import RenameCosigner
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
+from fireblocks.models.reopen_finding_request import ReopenFindingRequest
 from fireblocks.models.report_conflict_response import ReportConflictResponse
 from fireblocks.models.report_job import ReportJob
 from fireblocks.models.report_job_links import ReportJobLinks
@@ -829,6 +832,7 @@ from fireblocks.models.screening_verdict_enum import ScreeningVerdictEnum
 from fireblocks.models.screening_verdict_matched_rule import ScreeningVerdictMatchedRule
 from fireblocks.models.search_network_ids_response import SearchNetworkIdsResponse
 from fireblocks.models.security_finding import SecurityFinding
+from fireblocks.models.security_finding_detailed import SecurityFindingDetailed
 from fireblocks.models.sepa_payment_info import SepaPaymentInfo
 from fireblocks.models.session_dto import SessionDTO
 from fireblocks.models.session_metadata import SessionMetadata
@@ -1148,6 +1152,7 @@ from fireblocks.models.update_callback_handler_request import UpdateCallbackHand
 from fireblocks.models.update_callback_handler_response import UpdateCallbackHandlerResponse
 from fireblocks.models.update_counterparty_group_request import UpdateCounterpartyGroupRequest
 from fireblocks.models.update_draft_request import UpdateDraftRequest
+from fireblocks.models.update_finding_external_request import UpdateFindingExternalRequest
 from fireblocks.models.update_legal_entity_request import UpdateLegalEntityRequest
 from fireblocks.models.update_tag_request import UpdateTagRequest
 from fireblocks.models.update_token_ownership_status_dto import UpdateTokenOwnershipStatusDto

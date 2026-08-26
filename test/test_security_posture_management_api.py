@@ -26,10 +26,24 @@ class TestSecurityPostureManagementApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_get_security_finding_by_id(self) -> None:
+        """Test case for get_security_finding_by_id
+
+        Get a FSPM security finding by ID
+        """
+        pass
+
     def test_get_security_findings(self) -> None:
         """Test case for get_security_findings
 
         Get FSPM security findings
+        """
+        pass
+
+    def test_update_security_finding_by_id(self) -> None:
+        """Test case for update_security_finding_by_id
+
+        Update a FSPM security finding by ID
         """
         pass
 

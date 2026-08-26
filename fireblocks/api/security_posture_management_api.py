@@ -22,6 +22,8 @@ from pydantic import Field, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from fireblocks.models.get_findings_external_response import GetFindingsExternalResponse
+from fireblocks.models.security_finding_detailed import SecurityFindingDetailed
+from fireblocks.models.update_finding_external_request import UpdateFindingExternalRequest
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -40,6 +42,135 @@ class SecurityPostureManagementApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def get_security_finding_by_id(
+        self,
+        id: Annotated[StrictStr, Field(description="Unique identifier of the finding")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SecurityFindingDetailed]]:
+        """Get a FSPM security finding by ID
+
+        Returns a single FSPM security finding for the workspace, redacted to the public field set. Endpoint Roles: Security Admin, Security Auditor. 
+
+        :param id: Unique identifier of the finding (required)
+        :type id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_security_finding_by_id", param_name="id", param_value=id)
+
+        _param = self._get_security_finding_by_id_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SecurityFindingDetailed",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _get_security_finding_by_id_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/security/fspm/findings/{id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -65,7 +196,7 @@ class SecurityPostureManagementApi:
     ) -> Future[ApiResponse[GetFindingsExternalResponse]]:
         """Get FSPM security findings
 
-        Returns a paginated list of FSPM security findings for the workspace. Endpoint Permissions: Security Admin, Security Auditor. 
+        Returns a paginated list of FSPM security findings for the workspace. Endpoint Roles: Security Admin, Security Auditor. 
 
         :param page_cursor: Cursor indicating the page position. Omit to fetch the first page.
         :type page_cursor: str
@@ -198,6 +329,162 @@ class SecurityPostureManagementApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/security/fspm/findings',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_security_finding_by_id(
+        self,
+        id: Annotated[StrictStr, Field(description="Unique identifier of the finding")],
+        update_finding_external_request: UpdateFindingExternalRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[SecurityFindingDetailed]]:
+        """Update a FSPM security finding by ID
+
+        Accepts or reopens a finding for the workspace. When accepting a finding (`status: \"ACCEPTED\"`), `statusUpdatedReason` is required. Endpoint Roles: Security Admin. 
+
+        :param id: Unique identifier of the finding (required)
+        :type id: str
+        :param update_finding_external_request: (required)
+        :type update_finding_external_request: UpdateFindingExternalRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_security_finding_by_id", param_name="id", param_value=id)
+
+        _param = self._update_security_finding_by_id_serialize(
+            id=id,
+            update_finding_external_request=update_finding_external_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "SecurityFindingDetailed",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _update_security_finding_by_id_serialize(
+        self,
+        id,
+        update_finding_external_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if update_finding_external_request is not None:
+            _body_params = update_finding_external_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/security/fspm/findings/{id}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

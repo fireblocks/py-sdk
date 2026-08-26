@@ -14,11 +14,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.update_finding_external_request import (
+    UpdateFindingExternalRequest,
+)
 
 
-class TestAddConnectedAccountRequest(unittest.TestCase):
-    """AddConnectedAccountRequest unit test stubs"""
+class TestUpdateFindingExternalRequest(unittest.TestCase):
+    """UpdateFindingExternalRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +28,28 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
-        """Test AddConnectedAccountRequest
+    def make_instance(self, include_optional) -> UpdateFindingExternalRequest:
+        """Test UpdateFindingExternalRequest
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AddConnectedAccountRequest`
+        # uncomment below to create an instance of `UpdateFindingExternalRequest`
         """
-        model = AddConnectedAccountRequest()
+        model = UpdateFindingExternalRequest()
         if include_optional:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                display_name = 'My Binance Account',
-                creds = '[B@2670b08d',
-                api_key = 'api_key_abc123',
-                main_account_id = 'acc-parent-001',
-                account_id = 'provider-acc-001',
-                on_premise_server_id = 'on-prem-server-001'
+            return UpdateFindingExternalRequest(
+                status = 'OPEN',
+                status_updated_reason = 'False positive - reviewed and confirmed no risk'
             )
         else:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                creds = '[B@2670b08d',
-                api_key = 'api_key_abc123',
+            return UpdateFindingExternalRequest(
+                status = 'OPEN',
+                status_updated_reason = 'False positive - reviewed and confirmed no risk',
         )
         """
 
-    def testAddConnectedAccountRequest(self):
-        """Test AddConnectedAccountRequest"""
+    def testUpdateFindingExternalRequest(self):
+        """Test UpdateFindingExternalRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

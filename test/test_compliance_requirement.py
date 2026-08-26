@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.compliance_requirement import ComplianceRequirement
 
 
-class TestAddConnectedAccountRequest(unittest.TestCase):
-    """AddConnectedAccountRequest unit test stubs"""
+class TestComplianceRequirement(unittest.TestCase):
+    """ComplianceRequirement unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +26,31 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
-        """Test AddConnectedAccountRequest
+    def make_instance(self, include_optional) -> ComplianceRequirement:
+        """Test ComplianceRequirement
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AddConnectedAccountRequest`
+        # uncomment below to create an instance of `ComplianceRequirement`
         """
-        model = AddConnectedAccountRequest()
+        model = ComplianceRequirement()
         if include_optional:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                display_name = 'My Binance Account',
-                creds = '[B@2670b08d',
-                api_key = 'api_key_abc123',
-                main_account_id = 'acc-parent-001',
-                account_id = 'provider-acc-001',
-                on_premise_server_id = 'on-prem-server-001'
+            return ComplianceRequirement(
+                id = '19894318-338e-4304-848f-9388d140e703',
+                standard = 'SOC 2',
+                criteria = 'CC7.1',
+                description = 'Continuous monitoring and configuration baselines'
             )
         else:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                creds = '[B@2670b08d',
-                api_key = 'api_key_abc123',
+            return ComplianceRequirement(
+                id = '19894318-338e-4304-848f-9388d140e703',
+                standard = 'SOC 2',
+                criteria = 'CC7.1',
         )
         """
 
-    def testAddConnectedAccountRequest(self):
-        """Test AddConnectedAccountRequest"""
+    def testComplianceRequirement(self):
+        """Test ComplianceRequirement"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

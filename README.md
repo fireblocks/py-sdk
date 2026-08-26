@@ -477,7 +477,9 @@ Class | Method | HTTP request | Description
 *ReportsBetaApi* | [**get_report**](docs/ReportsBetaApi.md#get_report) | **GET** /reports/{reportId} | Get report status
 *ReportsBetaApi* | [**list_reports**](docs/ReportsBetaApi.md#list_reports) | **GET** /reports | List reports
 *ResetDeviceApi* | [**reset_device**](docs/ResetDeviceApi.md#reset_device) | **POST** /management/users/{id}/reset_device | Resets device
+*SecurityPostureManagementApi* | [**get_security_finding_by_id**](docs/SecurityPostureManagementApi.md#get_security_finding_by_id) | **GET** /security/fspm/findings/{id} | Get a FSPM security finding by ID
 *SecurityPostureManagementApi* | [**get_security_findings**](docs/SecurityPostureManagementApi.md#get_security_findings) | **GET** /security/fspm/findings | Get FSPM security findings
+*SecurityPostureManagementApi* | [**update_security_finding_by_id**](docs/SecurityPostureManagementApi.md#update_security_finding_by_id) | **PATCH** /security/fspm/findings/{id} | Update a FSPM security finding by ID
 *SmartTransferApi* | [**approve_dv_p_ticket_term**](docs/SmartTransferApi.md#approve_dv_p_ticket_term) | **PUT** /smart_transfers/{ticketId}/terms/{termId}/dvp/approve | Set funding source and approval
 *SmartTransferApi* | [**cancel_ticket**](docs/SmartTransferApi.md#cancel_ticket) | **PUT** /smart-transfers/{ticketId}/cancel | Cancel Ticket
 *SmartTransferApi* | [**create_ticket**](docs/SmartTransferApi.md#create_ticket) | **POST** /smart-transfers | Create Ticket
@@ -692,6 +694,7 @@ Class | Method | HTTP request | Description
  - [APIUser](docs/APIUser.md)
  - [AbaPaymentInfo](docs/AbaPaymentInfo.md)
  - [AbiFunction](docs/AbiFunction.md)
+ - [AcceptFindingRequest](docs/AcceptFindingRequest.md)
  - [AccessRegistryAddressItem](docs/AccessRegistryAddressItem.md)
  - [AccessRegistryCurrentStateResponse](docs/AccessRegistryCurrentStateResponse.md)
  - [AccessRegistryCurrentStateResponse2](docs/AccessRegistryCurrentStateResponse2.md)
@@ -879,6 +882,7 @@ Class | Method | HTTP request | Description
  - [CollectionTokenMetadataAttributeDto](docs/CollectionTokenMetadataAttributeDto.md)
  - [CollectionTokenMetadataDto](docs/CollectionTokenMetadataDto.md)
  - [CollectionType](docs/CollectionType.md)
+ - [ComplianceRequirement](docs/ComplianceRequirement.md)
  - [ComplianceResultFullPayload](docs/ComplianceResultFullPayload.md)
  - [ComplianceResultStatusesEnum](docs/ComplianceResultStatusesEnum.md)
  - [ComplianceResults](docs/ComplianceResults.md)
@@ -1437,6 +1441,7 @@ Class | Method | HTTP request | Description
  - [RenameConnectedAccountResponse](docs/RenameConnectedAccountResponse.md)
  - [RenameCosigner](docs/RenameCosigner.md)
  - [RenameVaultAccountResponse](docs/RenameVaultAccountResponse.md)
+ - [ReopenFindingRequest](docs/ReopenFindingRequest.md)
  - [ReportConflictResponse](docs/ReportConflictResponse.md)
  - [ReportJob](docs/ReportJob.md)
  - [ReportJobLinks](docs/ReportJobLinks.md)
@@ -1503,6 +1508,7 @@ Class | Method | HTTP request | Description
  - [ScreeningVerdictMatchedRule](docs/ScreeningVerdictMatchedRule.md)
  - [SearchNetworkIdsResponse](docs/SearchNetworkIdsResponse.md)
  - [SecurityFinding](docs/SecurityFinding.md)
+ - [SecurityFindingDetailed](docs/SecurityFindingDetailed.md)
  - [SepaPaymentInfo](docs/SepaPaymentInfo.md)
  - [SessionDTO](docs/SessionDTO.md)
  - [SessionMetadata](docs/SessionMetadata.md)
@@ -1822,6 +1828,7 @@ Class | Method | HTTP request | Description
  - [UpdateCallbackHandlerResponse](docs/UpdateCallbackHandlerResponse.md)
  - [UpdateCounterpartyGroupRequest](docs/UpdateCounterpartyGroupRequest.md)
  - [UpdateDraftRequest](docs/UpdateDraftRequest.md)
+ - [UpdateFindingExternalRequest](docs/UpdateFindingExternalRequest.md)
  - [UpdateLegalEntityRequest](docs/UpdateLegalEntityRequest.md)
  - [UpdateTagRequest](docs/UpdateTagRequest.md)
  - [UpdateTokenOwnershipStatusDto](docs/UpdateTokenOwnershipStatusDto.md)

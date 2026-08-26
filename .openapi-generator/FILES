@@ -5,6 +5,7 @@ README.md
 docs/APIUser.md
 docs/AbaPaymentInfo.md
 docs/AbiFunction.md
+docs/AcceptFindingRequest.md
 docs/AccessRegistryAddressItem.md
 docs/AccessRegistryCurrentStateResponse.md
 docs/AccessRegistryCurrentStateResponse2.md
@@ -197,6 +198,7 @@ docs/CollectionTokenMetadataAttributeDto.md
 docs/CollectionTokenMetadataDto.md
 docs/CollectionType.md
 docs/ComplianceApi.md
+docs/ComplianceRequirement.md
 docs/ComplianceResultFullPayload.md
 docs/ComplianceResultStatusesEnum.md
 docs/ComplianceResults.md
@@ -782,6 +784,7 @@ docs/RenameConnectedAccountRequest.md
 docs/RenameConnectedAccountResponse.md
 docs/RenameCosigner.md
 docs/RenameVaultAccountResponse.md
+docs/ReopenFindingRequest.md
 docs/ReportConflictResponse.md
 docs/ReportJob.md
 docs/ReportJobLinks.md
@@ -850,6 +853,7 @@ docs/ScreeningVerdictEnum.md
 docs/ScreeningVerdictMatchedRule.md
 docs/SearchNetworkIdsResponse.md
 docs/SecurityFinding.md
+docs/SecurityFindingDetailed.md
 docs/SecurityPostureManagementApi.md
 docs/SepaPaymentInfo.md
 docs/SessionDTO.md
@@ -1179,6 +1183,7 @@ docs/UpdateCallbackHandlerRequest.md
 docs/UpdateCallbackHandlerResponse.md
 docs/UpdateCounterpartyGroupRequest.md
 docs/UpdateDraftRequest.md
+docs/UpdateFindingExternalRequest.md
 docs/UpdateLegalEntityRequest.md
 docs/UpdateTagRequest.md
 docs/UpdateTokenOwnershipStatusDto.md
@@ -1317,6 +1322,7 @@ fireblocks/exceptions.py
 fireblocks/models/__init__.py
 fireblocks/models/aba_payment_info.py
 fireblocks/models/abi_function.py
+fireblocks/models/accept_finding_request.py
 fireblocks/models/access_registry_address_item.py
 fireblocks/models/access_registry_current_state_response.py
 fireblocks/models/access_registry_current_state_response2.py
@@ -1505,6 +1511,7 @@ fireblocks/models/collection_ownership_response.py
 fireblocks/models/collection_token_metadata_attribute_dto.py
 fireblocks/models/collection_token_metadata_dto.py
 fireblocks/models/collection_type.py
+fireblocks/models/compliance_requirement.py
 fireblocks/models/compliance_result_full_payload.py
 fireblocks/models/compliance_result_statuses_enum.py
 fireblocks/models/compliance_results.py
@@ -2063,6 +2070,7 @@ fireblocks/models/rename_connected_account_request.py
 fireblocks/models/rename_connected_account_response.py
 fireblocks/models/rename_cosigner.py
 fireblocks/models/rename_vault_account_response.py
+fireblocks/models/reopen_finding_request.py
 fireblocks/models/report_conflict_response.py
 fireblocks/models/report_job.py
 fireblocks/models/report_job_links.py
@@ -2125,6 +2133,7 @@ fireblocks/models/screening_verdict_enum.py
 fireblocks/models/screening_verdict_matched_rule.py
 fireblocks/models/search_network_ids_response.py
 fireblocks/models/security_finding.py
+fireblocks/models/security_finding_detailed.py
 fireblocks/models/sepa_address.py
 fireblocks/models/sepa_destination.py
 fireblocks/models/sepa_payment_info.py
@@ -2446,6 +2455,7 @@ fireblocks/models/update_callback_handler_request.py
 fireblocks/models/update_callback_handler_response.py
 fireblocks/models/update_counterparty_group_request.py
 fireblocks/models/update_draft_request.py
+fireblocks/models/update_finding_external_request.py
 fireblocks/models/update_legal_entity_request.py
 fireblocks/models/update_tag_request.py
 fireblocks/models/update_token_ownership_status_dto.py
@@ -2535,6 +2545,7 @@ test/fireblocks/test_user_agent_util.py
 test/fireblocks/test_validation_utils.py
 test/test_aba_payment_info.py
 test/test_abi_function.py
+test/test_accept_finding_request.py
 test/test_access_registry_address_item.py
 test/test_access_registry_current_state_response.py
 test/test_access_registry_current_state_response2.py
@@ -2728,6 +2739,7 @@ test/test_collection_token_metadata_attribute_dto.py
 test/test_collection_token_metadata_dto.py
 test/test_collection_type.py
 test/test_compliance_api.py
+test/test_compliance_requirement.py
 test/test_compliance_result_full_payload.py
 test/test_compliance_result_statuses_enum.py
 test/test_compliance_results.py
@@ -3313,6 +3325,7 @@ test/test_rename_connected_account_request.py
 test/test_rename_connected_account_response.py
 test/test_rename_cosigner.py
 test/test_rename_vault_account_response.py
+test/test_reopen_finding_request.py
 test/test_report_conflict_response.py
 test/test_report_job.py
 test/test_report_job_links.py
@@ -3377,6 +3390,7 @@ test/test_screening_verdict_enum.py
 test/test_screening_verdict_matched_rule.py
 test/test_search_network_ids_response.py
 test/test_security_finding.py
+test/test_security_finding_detailed.py
 test/test_security_posture_management_api.py
 test/test_sepa_address.py
 test/test_sepa_destination.py
@@ -3707,6 +3721,7 @@ test/test_update_callback_handler_request.py
 test/test_update_callback_handler_response.py
 test/test_update_counterparty_group_request.py
 test/test_update_draft_request.py
+test/test_update_finding_external_request.py
 test/test_update_legal_entity_request.py
 test/test_update_tag_request.py
 test/test_update_token_ownership_status_dto.py

@@ -21,28 +21,33 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.compliance_requirement import ComplianceRequirement
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SecurityFinding(BaseModel):
+class SecurityFindingDetailed(BaseModel):
     """
-    A single FSPM finding
+    A single FSPM finding, redacted to the public field set
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the finding")
-    type: Optional[StrictStr] = Field(default=None, description="The finding type identifier")
-    status: Optional[StrictStr] = Field(default=None, description="Current status of the finding")
-    severity: Optional[StrictStr] = Field(default=None, description="Severity level of the finding")
-    category: Optional[StrictStr] = Field(default=None, description="Category of the finding")
-    created_at: Optional[datetime] = Field(default=None, description="When the finding was first detected", alias="createdAt")
-    title: Optional[StrictStr] = Field(default=None, description="Human-readable title of the finding")
-    __properties: ClassVar[List[str]] = ["id", "type", "status", "severity", "category", "createdAt", "title"]
+    id: StrictStr = Field(description="Unique identifier of the finding")
+    type: StrictStr = Field(description="The finding type identifier")
+    status: StrictStr = Field(description="Current status of the finding")
+    severity: StrictStr = Field(description="Severity level of the finding")
+    category: StrictStr = Field(description="Category of the finding")
+    created_at: datetime = Field(description="When the finding was first detected", alias="createdAt")
+    title: StrictStr = Field(description="Human-readable title of the finding")
+    status_updated_at: Optional[datetime] = Field(default=None, description="When the finding status was last updated, omitted if the status was never updated", alias="statusUpdatedAt")
+    status_updated_by_user_id: Optional[StrictStr] = Field(default=None, description="The user who last updated the finding status, omitted if the status was never updated", alias="statusUpdatedByUserId")
+    status_updated_reason: Optional[StrictStr] = Field(default=None, description="The reason provided for the last status update, omitted if none was provided", alias="statusUpdatedReason")
+    info: Dict[str, Any] = Field(description="Additional structured context about the finding. Shape varies by finding type.")
+    compliance_reqs: List[ComplianceRequirement] = Field(description="Compliance requirements this finding relates to", alias="complianceReqs")
+    risk_explanation: StrictStr = Field(description="Explanation of the risk this finding represents", alias="riskExplanation")
+    mitigation_guidance: StrictStr = Field(description="Guidance on how to mitigate this finding", alias="mitigationGuidance")
+    __properties: ClassVar[List[str]] = ["id", "type", "status", "severity", "category", "createdAt", "title", "statusUpdatedAt", "statusUpdatedByUserId", "statusUpdatedReason", "info", "complianceReqs", "riskExplanation", "mitigationGuidance"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['API_USER_NOT_WHITELISTED', 'CONSOLE_IP_ALLOWLIST_DEACTIVATED', 'ADMIN_TH_SET_TO_ALL_AND_MORE_THAN_2_ADMINS', 'API_USERS_COUNT_PASSES_TH_AND_OWNER_NOT_MANDATORY', 'API_COSIGNER_WITH_NO_CALLBACK', 'API_USER_DIDNT_APPROVE_CCR_IN_X_DAYS', 'NON_VIEWER_DIDNT_INITIATE_APPROVE_OR_SIGN_TX_OR_CCR_LAST_X_DAYS', 'TH_SET_TO_1_AND_MORE_THAN_3_APPROVERS', 'ADMIN_TH_SET_TO_1_AND_MORE_THAN_3_ADMINS', 'NON_EVM_DAPP_CONNECTIONS_ENABLED_BUT_UNUSED', 'OTA_ENABLED_BUT_UNUSED', 'POLICY_NOT_UPDATED_RECENTLY', 'RAW_SIGNING_ENABLED_BUT_UNUSED', 'API_USER_UNUSED_FOR_90_DAYS', 'UNUSED_UNLIMITED_TOKEN_ALLOWANCES', 'UNUSED_WHITELISTED_ADDRESS', 'TRANSACTION_REPETITION_ATTACK', 'USER_EMAIL_DOMAIN_NON_BUSINESS', 'OUTDATED_MOBILE_APP_VERSION', 'SINGLE_HOP_DRAIN_ATTACK', 'LATERAL_MOVEMENT_DRAIN_ATTACK', 'WORKSPACE_USER_DORMANT_FOR_X_DAYS']):
             raise ValueError("must be one of enum values ('API_USER_NOT_WHITELISTED', 'CONSOLE_IP_ALLOWLIST_DEACTIVATED', 'ADMIN_TH_SET_TO_ALL_AND_MORE_THAN_2_ADMINS', 'API_USERS_COUNT_PASSES_TH_AND_OWNER_NOT_MANDATORY', 'API_COSIGNER_WITH_NO_CALLBACK', 'API_USER_DIDNT_APPROVE_CCR_IN_X_DAYS', 'NON_VIEWER_DIDNT_INITIATE_APPROVE_OR_SIGN_TX_OR_CCR_LAST_X_DAYS', 'TH_SET_TO_1_AND_MORE_THAN_3_APPROVERS', 'ADMIN_TH_SET_TO_1_AND_MORE_THAN_3_ADMINS', 'NON_EVM_DAPP_CONNECTIONS_ENABLED_BUT_UNUSED', 'OTA_ENABLED_BUT_UNUSED', 'POLICY_NOT_UPDATED_RECENTLY', 'RAW_SIGNING_ENABLED_BUT_UNUSED', 'API_USER_UNUSED_FOR_90_DAYS', 'UNUSED_UNLIMITED_TOKEN_ALLOWANCES', 'UNUSED_WHITELISTED_ADDRESS', 'TRANSACTION_REPETITION_ATTACK', 'USER_EMAIL_DOMAIN_NON_BUSINESS', 'OUTDATED_MOBILE_APP_VERSION', 'SINGLE_HOP_DRAIN_ATTACK', 'LATERAL_MOVEMENT_DRAIN_ATTACK', 'WORKSPACE_USER_DORMANT_FOR_X_DAYS')")
         return value
@@ -50,9 +55,6 @@ class SecurityFinding(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['OPEN', 'ACCEPTED', 'RESOLVED']):
             raise ValueError("must be one of enum values ('OPEN', 'ACCEPTED', 'RESOLVED')")
         return value
@@ -60,9 +62,6 @@ class SecurityFinding(BaseModel):
     @field_validator('severity')
     def severity_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['INFO', 'LOW', 'MEDIUM', 'HIGH']):
             raise ValueError("must be one of enum values ('INFO', 'LOW', 'MEDIUM', 'HIGH')")
         return value
@@ -70,9 +69,6 @@ class SecurityFinding(BaseModel):
     @field_validator('category')
     def category_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in set(['USER_MANAGEMENT', 'APPROVAL_GROUP_MANAGEMENT', 'POLICY_ENGINE_UTILIZATION', 'WORKSPACE_CONFIGURATION', 'DEFI_ACCESS', 'FLEET_MANAGEMENT']):
             raise ValueError("must be one of enum values ('USER_MANAGEMENT', 'APPROVAL_GROUP_MANAGEMENT', 'POLICY_ENGINE_UTILIZATION', 'WORKSPACE_CONFIGURATION', 'DEFI_ACCESS', 'FLEET_MANAGEMENT')")
         return value
@@ -95,7 +91,7 @@ class SecurityFinding(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SecurityFinding from a JSON string"""
+        """Create an instance of SecurityFindingDetailed from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -116,11 +112,18 @@ class SecurityFinding(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in compliance_reqs (list)
+        _items = []
+        if self.compliance_reqs:
+            for _item_compliance_reqs in self.compliance_reqs:
+                if _item_compliance_reqs:
+                    _items.append(_item_compliance_reqs.to_dict())
+            _dict['complianceReqs'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SecurityFinding from a dict"""
+        """Create an instance of SecurityFindingDetailed from a dict"""
         if obj is None:
             return None
 
@@ -134,7 +137,14 @@ class SecurityFinding(BaseModel):
             "severity": obj.get("severity"),
             "category": obj.get("category"),
             "createdAt": obj.get("createdAt"),
-            "title": obj.get("title")
+            "title": obj.get("title"),
+            "statusUpdatedAt": obj.get("statusUpdatedAt"),
+            "statusUpdatedByUserId": obj.get("statusUpdatedByUserId"),
+            "statusUpdatedReason": obj.get("statusUpdatedReason"),
+            "info": obj.get("info"),
+            "complianceReqs": [ComplianceRequirement.from_dict(_item) for _item in obj["complianceReqs"]] if obj.get("complianceReqs") is not None else None,
+            "riskExplanation": obj.get("riskExplanation"),
+            "mitigationGuidance": obj.get("mitigationGuidance")
         })
         return _obj
 

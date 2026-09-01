@@ -25,8 +25,8 @@ Name | Type | Description | Notes
 **is_default** | **bool** | Whether this is a default rule | [optional] [default to False]
 **provider_ident** | **str** | Provider identifier | [optional] 
 **trm_status** | [**TRLinkTrmScreeningStatusEnum**](TRLinkTrmScreeningStatusEnum.md) |  | [optional] 
-**valid_before** | **float** | Unix timestamp when rule expires | [optional] 
-**valid_after** | **float** | Unix timestamp when rule becomes valid | [optional] 
+**valid_before** | **float** | Rule expires once this many seconds have elapsed since the wait/screening step started | [optional] 
+**valid_after** | **float** | Rule applies only after this many seconds have elapsed since the wait/screening step started | [optional] 
 **action** | [**TRLinkVerdictEnum**](TRLinkVerdictEnum.md) |  | 
 
 ## Example

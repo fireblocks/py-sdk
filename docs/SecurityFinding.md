@@ -7,7 +7,6 @@ A single FSPM finding
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique identifier of the finding | [optional] 
-**type** | **str** | The finding type identifier | [optional] 
 **status** | **str** | Current status of the finding | [optional] 
 **severity** | **str** | Severity level of the finding | [optional] 
 **category** | **str** | Category of the finding | [optional] 

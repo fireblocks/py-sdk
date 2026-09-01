@@ -18,52 +18,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SecurityFinding(BaseModel):
+class ContactTagAttachmentPending(BaseModel):
     """
-    A single FSPM finding
+    An attach or detach of this tag to this contact awaiting a quorum decision. Null when the attachment is settled. Distinct from the tag's own `pendingApprovalRequest`, which covers a change to the tag itself rather than to this pairing. When both are open, this is the one to act on from a contact: cancelling a change to the tag's own definition belongs to the tag surface, and `pendingApprovalRequest.id` must not be used to cancel an attachment.
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Unique identifier of the finding")
-    status: Optional[StrictStr] = Field(default=None, description="Current status of the finding")
-    severity: Optional[StrictStr] = Field(default=None, description="Severity level of the finding")
-    category: Optional[StrictStr] = Field(default=None, description="Category of the finding")
-    created_at: Optional[datetime] = Field(default=None, description="When the finding was first detected", alias="createdAt")
-    title: Optional[StrictStr] = Field(default=None, description="Human-readable title of the finding")
-    __properties: ClassVar[List[str]] = ["id", "status", "severity", "category", "createdAt", "title"]
+    action: StrictStr = Field(description="The operation awaiting approval. ATTACH means the tag is not yet attached; DETACH means it is still attached, pending removal.")
+    approval_request_id: Optional[StrictStr] = Field(default=None, description="The identifier of the approval request gating the operation", alias="approvalRequestId")
+    __properties: ClassVar[List[str]] = ["action", "approvalRequestId"]
 
-    @field_validator('status')
-    def status_validate_enum(cls, value):
+    @field_validator('action')
+    def action_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['OPEN', 'ACCEPTED', 'RESOLVED']):
-            raise ValueError("must be one of enum values ('OPEN', 'ACCEPTED', 'RESOLVED')")
-        return value
-
-    @field_validator('severity')
-    def severity_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['INFO', 'LOW', 'MEDIUM', 'HIGH']):
-            raise ValueError("must be one of enum values ('INFO', 'LOW', 'MEDIUM', 'HIGH')")
-        return value
-
-    @field_validator('category')
-    def category_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['USER_MANAGEMENT', 'APPROVAL_GROUP_MANAGEMENT', 'POLICY_ENGINE_UTILIZATION', 'WORKSPACE_CONFIGURATION', 'DEFI_ACCESS', 'FLEET_MANAGEMENT']):
-            raise ValueError("must be one of enum values ('USER_MANAGEMENT', 'APPROVAL_GROUP_MANAGEMENT', 'POLICY_ENGINE_UTILIZATION', 'WORKSPACE_CONFIGURATION', 'DEFI_ACCESS', 'FLEET_MANAGEMENT')")
+        if value not in set(['ATTACH', 'DETACH']):
+            raise ValueError("must be one of enum values ('ATTACH', 'DETACH')")
         return value
 
     model_config = ConfigDict(
@@ -84,7 +56,7 @@ class SecurityFinding(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SecurityFinding from a JSON string"""
+        """Create an instance of ContactTagAttachmentPending from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -109,7 +81,7 @@ class SecurityFinding(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SecurityFinding from a dict"""
+        """Create an instance of ContactTagAttachmentPending from a dict"""
         if obj is None:
             return None
 
@@ -117,12 +89,8 @@ class SecurityFinding(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "status": obj.get("status"),
-            "severity": obj.get("severity"),
-            "category": obj.get("category"),
-            "createdAt": obj.get("createdAt"),
-            "title": obj.get("title")
+            "action": obj.get("action"),
+            "approvalRequestId": obj.get("approvalRequestId")
         })
         return _obj
 

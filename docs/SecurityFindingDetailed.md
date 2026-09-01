@@ -7,7 +7,6 @@ A single FSPM finding, redacted to the public field set
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique identifier of the finding | 
-**type** | **str** | The finding type identifier | 
 **status** | **str** | Current status of the finding | 
 **severity** | **str** | Severity level of the finding | 
 **category** | **str** | Category of the finding | 

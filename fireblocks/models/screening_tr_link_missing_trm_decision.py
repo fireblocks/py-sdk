@@ -51,8 +51,8 @@ class ScreeningTRLinkMissingTrmDecision(BaseModel):
     operation: Optional[TransactionOperationEnum] = None
     description: Optional[StrictStr] = Field(default=None, description="Rule description")
     is_default: Optional[StrictBool] = Field(default=False, description="Whether this is a default rule", alias="isDefault")
-    valid_before: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp when rule expires", alias="validBefore")
-    valid_after: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp when rule becomes valid", alias="validAfter")
+    valid_before: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule expires once this many seconds have elapsed since the wait/screening step started", alias="validBefore")
+    valid_after: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule applies only after this many seconds have elapsed since the wait/screening step started", alias="validAfter")
     action: TRLinkMissingTrmActionEnum
     source: StrictStr = Field(description="TRLink missing TRM source")
     timestamp: Optional[datetime] = Field(default=None, description="Timestamp of the decision")

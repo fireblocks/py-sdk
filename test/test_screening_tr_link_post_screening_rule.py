@@ -61,8 +61,8 @@ class TestScreeningTRLinkPostScreeningRule(unittest.TestCase):
                 is_default = True,
                 provider_ident = 'sumsub',
                 trm_status = 'ACCEPTED',
-                valid_before = 1672531200000,
-                valid_after = 1640995200000,
+                valid_before = 1800,
+                valid_after = 1800,
                 action = 'ACCEPT'
             )
         else:

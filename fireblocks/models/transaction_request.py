@@ -45,6 +45,7 @@ class TransactionRequest(BaseModel):
     operation: Optional[TransactionOperation] = TransactionOperation.TRANSFER
     note: Optional[StrictStr] = Field(default=None, description="Custom note, not sent to the blockchain, to describe the transaction at your Fireblocks workspace.")
     external_tx_id: Optional[StrictStr] = Field(default=None, description="This parameter allows you to add a unique ID of your own to help prevent duplicate transactions. No specific format is required for this parameter. After you submit a transaction with an external ID, Fireblocks will automatically reject all future transactions with the same ID. Using an external ID primarily helps in situations where, even though a submitted transaction responds with an error due to an internet outage,  the transaction was still sent to and processed on the blockchain.  Use the [Get a specific transaction by external transaction ID](https://developers.fireblocks.com/reference/gettransactionbyexternalid)  endpoint to validate whether these transactions have been processed.", alias="externalTxId")
+    fee_currency: Optional[StrictStr] = Field(default=None, description="For Tempo-based transactions only, the asset used to pay the transaction's network fee, as an asset ID ([see supported assets](https://developers.fireblocks.com/api-reference/blockchains-&-assets/list-assets)). For any other blockchain, this value is ignored. This feature is currently in beta and might be subject to changes.", alias="feeCurrency")
     asset_id: Optional[StrictStr] = Field(default=None, description="The ID of the asset to transfer, for `TRANSFER`, `MINT` or `BURN` operations. [See the list of supported assets and their IDs on Fireblocks.](https://developers.fireblocks.com/reference/gettrlinksupportedasset#/)", alias="assetId")
     source: Optional[SourceTransferPeerPath] = None
     destination: Optional[DestinationTransferPeerPath] = None
@@ -72,7 +73,7 @@ class TransactionRequest(BaseModel):
     cpu_staking: Optional[TransactionRequestNetworkStaking] = Field(default=None, alias="cpuStaking")
     use_gasless: Optional[StrictBool] = Field(default=None, description="- Override the default gasless configuration by sending true\\false", alias="useGasless")
     configurations: Optional[TransactionConfigurations] = None
-    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless", "configurations"]
+    __properties: ClassVar[List[str]] = ["operation", "note", "externalTxId", "feeCurrency", "assetId", "source", "destination", "destinations", "amount", "treatAsGrossAmount", "forceSweep", "feeLevel", "fee", "priorityFee", "failOnLowFee", "maxFee", "maxTotalFee", "gasLimit", "gasPrice", "networkFee", "replaceTxByHash", "extraParameters", "utxoSelectionParams", "customerRefId", "travelRuleMessage", "travelRuleMessageId", "autoStaking", "networkStaking", "cpuStaking", "useGasless", "configurations"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -187,6 +188,7 @@ class TransactionRequest(BaseModel):
             "operation": obj.get("operation") if obj.get("operation") is not None else TransactionOperation.TRANSFER,
             "note": obj.get("note"),
             "externalTxId": obj.get("externalTxId"),
+            "feeCurrency": obj.get("feeCurrency"),
             "assetId": obj.get("assetId"),
             "source": SourceTransferPeerPath.from_dict(obj["source"]) if obj.get("source") is not None else None,
             "destination": DestinationTransferPeerPath.from_dict(obj["destination"]) if obj.get("destination") is not None else None,

@@ -57,8 +57,8 @@ class TestTRLinkMissingTrmRule(unittest.TestCase):
                 operation = 'TRANSFER',
                 description = '',
                 is_default = True,
-                valid_before = 1672531200000,
-                valid_after = 1640995200000,
+                valid_before = 1800,
+                valid_after = 1800,
                 action = 'WAIT'
             )
         else:

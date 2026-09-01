@@ -78,8 +78,8 @@ class TestTRLinkPolicyResponse(unittest.TestCase):
                         is_default = False, 
                         provider_ident = 'trm-provider-1', 
                         trm_status = 'ACCEPTED', 
-                        valid_before = 1735689600000, 
-                        valid_after = 1704067200000, 
+                        valid_before = 1800, 
+                        valid_after = 1800, 
                         action = 'ACCEPT', )
                     ],
                 missing_trm_rules = [
@@ -101,8 +101,8 @@ class TestTRLinkPolicyResponse(unittest.TestCase):
                         operation = 'TRANSFER', 
                         description = 'Wait for TRM screening on inbound transactions', 
                         is_default = False, 
-                        valid_before = 1735689600000, 
-                        valid_after = 1704067200000, 
+                        valid_before = 1800, 
+                        valid_after = 1800, 
                         action = 'WAIT', )
                     ]
             )
@@ -150,8 +150,8 @@ class TestTRLinkPolicyResponse(unittest.TestCase):
                         is_default = False, 
                         provider_ident = 'trm-provider-1', 
                         trm_status = 'ACCEPTED', 
-                        valid_before = 1735689600000, 
-                        valid_after = 1704067200000, 
+                        valid_before = 1800, 
+                        valid_after = 1800, 
                         action = 'ACCEPT', )
                     ],
                 missing_trm_rules = [
@@ -173,8 +173,8 @@ class TestTRLinkPolicyResponse(unittest.TestCase):
                         operation = 'TRANSFER', 
                         description = 'Wait for TRM screening on inbound transactions', 
                         is_default = False, 
-                        valid_before = 1735689600000, 
-                        valid_after = 1704067200000, 
+                        valid_before = 1800, 
+                        valid_after = 1800, 
                         action = 'WAIT', )
                     ],
         )

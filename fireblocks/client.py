@@ -24,6 +24,7 @@ from fireblocks.api.compliance_screening_configuration_api import (
 )
 from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
+from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
@@ -88,6 +89,7 @@ class Fireblocks:
         self._compliance_screening_configuration = None
         self._connected_accounts_beta = None
         self._console_user = None
+        self._contacts = None
         self._contract_interactions = None
         self._contract_templates = None
         self._contracts = None
@@ -192,6 +194,12 @@ class Fireblocks:
         if self._console_user is None:
             self._console_user = ConsoleUserApi(self._api_client)
         return self._console_user
+
+    @property
+    def contacts(self) -> ContactsApi:
+        if self._contacts is None:
+            self._contacts = ContactsApi(self._api_client)
+        return self._contacts
 
     @property
     def contract_interactions(self) -> ContractInteractionsApi:

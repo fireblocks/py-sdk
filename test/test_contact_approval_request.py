@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.add_connected_account_request import AddConnectedAccountRequest
+from fireblocks.models.contact_approval_request import ContactApprovalRequest
 
 
-class TestAddConnectedAccountRequest(unittest.TestCase):
-    """AddConnectedAccountRequest unit test stubs"""
+class TestContactApprovalRequest(unittest.TestCase):
+    """ContactApprovalRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,34 +26,28 @@ class TestAddConnectedAccountRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddConnectedAccountRequest:
-        """Test AddConnectedAccountRequest
+    def make_instance(self, include_optional) -> ContactApprovalRequest:
+        """Test ContactApprovalRequest
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AddConnectedAccountRequest`
+        # uncomment below to create an instance of `ContactApprovalRequest`
         """
-        model = AddConnectedAccountRequest()
+        model = ContactApprovalRequest()
         if include_optional:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                display_name = 'My Binance Account',
-                creds = '[B@595629ea',
-                api_key = 'api_key_abc123',
-                main_account_id = 'acc-parent-001',
-                account_id = 'provider-acc-001',
-                on_premise_server_id = 'on-prem-server-001'
+            return ContactApprovalRequest(
+                id = '12345',
+                type = 'CREATE_CONTACT'
             )
         else:
-            return AddConnectedAccountRequest(
-                provider_id = 'BINANCE',
-                creds = '[B@595629ea',
-                api_key = 'api_key_abc123',
+            return ContactApprovalRequest(
+                id = '12345',
+                type = 'CREATE_CONTACT',
         )
         """
 
-    def testAddConnectedAccountRequest(self):
-        """Test AddConnectedAccountRequest"""
+    def testContactApprovalRequest(self):
+        """Test ContactApprovalRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

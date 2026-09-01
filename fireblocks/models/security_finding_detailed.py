@@ -30,7 +30,6 @@ class SecurityFindingDetailed(BaseModel):
     A single FSPM finding, redacted to the public field set
     """ # noqa: E501
     id: StrictStr = Field(description="Unique identifier of the finding")
-    type: StrictStr = Field(description="The finding type identifier")
     status: StrictStr = Field(description="Current status of the finding")
     severity: StrictStr = Field(description="Severity level of the finding")
     category: StrictStr = Field(description="Category of the finding")
@@ -43,14 +42,7 @@ class SecurityFindingDetailed(BaseModel):
     compliance_reqs: List[ComplianceRequirement] = Field(description="Compliance requirements this finding relates to", alias="complianceReqs")
     risk_explanation: StrictStr = Field(description="Explanation of the risk this finding represents", alias="riskExplanation")
     mitigation_guidance: StrictStr = Field(description="Guidance on how to mitigate this finding", alias="mitigationGuidance")
-    __properties: ClassVar[List[str]] = ["id", "type", "status", "severity", "category", "createdAt", "title", "statusUpdatedAt", "statusUpdatedByUserId", "statusUpdatedReason", "info", "complianceReqs", "riskExplanation", "mitigationGuidance"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['API_USER_NOT_WHITELISTED', 'CONSOLE_IP_ALLOWLIST_DEACTIVATED', 'ADMIN_TH_SET_TO_ALL_AND_MORE_THAN_2_ADMINS', 'API_USERS_COUNT_PASSES_TH_AND_OWNER_NOT_MANDATORY', 'API_COSIGNER_WITH_NO_CALLBACK', 'API_USER_DIDNT_APPROVE_CCR_IN_X_DAYS', 'NON_VIEWER_DIDNT_INITIATE_APPROVE_OR_SIGN_TX_OR_CCR_LAST_X_DAYS', 'TH_SET_TO_1_AND_MORE_THAN_3_APPROVERS', 'ADMIN_TH_SET_TO_1_AND_MORE_THAN_3_ADMINS', 'NON_EVM_DAPP_CONNECTIONS_ENABLED_BUT_UNUSED', 'OTA_ENABLED_BUT_UNUSED', 'POLICY_NOT_UPDATED_RECENTLY', 'RAW_SIGNING_ENABLED_BUT_UNUSED', 'API_USER_UNUSED_FOR_90_DAYS', 'UNUSED_UNLIMITED_TOKEN_ALLOWANCES', 'UNUSED_WHITELISTED_ADDRESS', 'TRANSACTION_REPETITION_ATTACK', 'USER_EMAIL_DOMAIN_NON_BUSINESS', 'OUTDATED_MOBILE_APP_VERSION', 'SINGLE_HOP_DRAIN_ATTACK', 'LATERAL_MOVEMENT_DRAIN_ATTACK', 'WORKSPACE_USER_DORMANT_FOR_X_DAYS']):
-            raise ValueError("must be one of enum values ('API_USER_NOT_WHITELISTED', 'CONSOLE_IP_ALLOWLIST_DEACTIVATED', 'ADMIN_TH_SET_TO_ALL_AND_MORE_THAN_2_ADMINS', 'API_USERS_COUNT_PASSES_TH_AND_OWNER_NOT_MANDATORY', 'API_COSIGNER_WITH_NO_CALLBACK', 'API_USER_DIDNT_APPROVE_CCR_IN_X_DAYS', 'NON_VIEWER_DIDNT_INITIATE_APPROVE_OR_SIGN_TX_OR_CCR_LAST_X_DAYS', 'TH_SET_TO_1_AND_MORE_THAN_3_APPROVERS', 'ADMIN_TH_SET_TO_1_AND_MORE_THAN_3_ADMINS', 'NON_EVM_DAPP_CONNECTIONS_ENABLED_BUT_UNUSED', 'OTA_ENABLED_BUT_UNUSED', 'POLICY_NOT_UPDATED_RECENTLY', 'RAW_SIGNING_ENABLED_BUT_UNUSED', 'API_USER_UNUSED_FOR_90_DAYS', 'UNUSED_UNLIMITED_TOKEN_ALLOWANCES', 'UNUSED_WHITELISTED_ADDRESS', 'TRANSACTION_REPETITION_ATTACK', 'USER_EMAIL_DOMAIN_NON_BUSINESS', 'OUTDATED_MOBILE_APP_VERSION', 'SINGLE_HOP_DRAIN_ATTACK', 'LATERAL_MOVEMENT_DRAIN_ATTACK', 'WORKSPACE_USER_DORMANT_FOR_X_DAYS')")
-        return value
+    __properties: ClassVar[List[str]] = ["id", "status", "severity", "category", "createdAt", "title", "statusUpdatedAt", "statusUpdatedByUserId", "statusUpdatedReason", "info", "complianceReqs", "riskExplanation", "mitigationGuidance"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -132,7 +124,6 @@ class SecurityFindingDetailed(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "type": obj.get("type"),
             "status": obj.get("status"),
             "severity": obj.get("severity"),
             "category": obj.get("category"),

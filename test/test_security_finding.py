@@ -37,7 +37,6 @@ class TestSecurityFinding(unittest.TestCase):
         if include_optional:
             return SecurityFinding(
                 id = 'd7ca6101-a65e-4a9c-b6c1-b8bd697e0cd2',
-                type = 'API_COSIGNER_WITH_NO_CALLBACK',
                 status = 'OPEN',
                 severity = 'HIGH',
                 category = 'USER_MANAGEMENT',

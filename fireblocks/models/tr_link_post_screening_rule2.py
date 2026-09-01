@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from fireblocks.models.screening_policy_amount import ScreeningPolicyAmount
 from fireblocks.models.tr_link_post_screening_action import TRLinkPostScreeningAction
 from fireblocks.models.tr_link_transaction_direction import TRLinkTransactionDirection
@@ -50,8 +50,8 @@ class TRLinkPostScreeningRule2(BaseModel):
     is_default: Optional[StrictBool] = Field(default=None, description="Whether this is a default rule", alias="isDefault")
     provider_ident: Optional[StrictStr] = Field(default=None, description="TRP provider identifier", alias="providerIdent")
     trm_status: Optional[TRLinkTrmStatus] = Field(default=None, alias="trmStatus")
-    valid_before: Optional[StrictInt] = Field(default=None, description="Rule is valid before this timestamp (milliseconds)", alias="validBefore")
-    valid_after: Optional[StrictInt] = Field(default=None, description="Rule is valid after this timestamp (milliseconds)", alias="validAfter")
+    valid_before: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule expires once this many seconds have elapsed since the wait/screening step started", alias="validBefore")
+    valid_after: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule applies only after this many seconds have elapsed since the wait/screening step started", alias="validAfter")
     action: TRLinkPostScreeningAction
     __properties: ClassVar[List[str]] = ["customerId", "direction", "sourceType", "sourceSubType", "sourceAddress", "destType", "destSubType", "destAddress", "sourceId", "destId", "asset", "baseAsset", "amount", "networkProtocol", "operation", "description", "isDefault", "providerIdent", "trmStatus", "validBefore", "validAfter", "action"]
 

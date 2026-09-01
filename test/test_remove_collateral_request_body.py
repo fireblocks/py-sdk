@@ -40,6 +40,7 @@ class TestRemoveCollateralRequestBody(unittest.TestCase):
                     operation = 'TRANSFER', 
                     note = 'Ticket 123', 
                     external_tx_id = '00000000-0000-0000-0000-000000000000', 
+                    fee_currency = 'PATHUSD_TEMPO_54V8', 
                     asset_id = 'ETH', 
                     source = fireblocks.models.source_transfer_peer_path.SourceTransferPeerPath(
                         type = 'VAULT_ACCOUNT', 

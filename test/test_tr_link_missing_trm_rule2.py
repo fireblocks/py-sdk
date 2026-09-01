@@ -53,8 +53,8 @@ class TestTRLinkMissingTrmRule2(unittest.TestCase):
                 operation = 'TRANSFER',
                 description = 'Wait for TRM screening on inbound transactions',
                 is_default = False,
-                valid_before = 1735689600000,
-                valid_after = 1704067200000,
+                valid_before = 1800,
+                valid_after = 1800,
                 action = 'WAIT'
             )
         else:

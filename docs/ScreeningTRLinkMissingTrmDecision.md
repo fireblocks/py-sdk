@@ -23,8 +23,8 @@ Name | Type | Description | Notes
 **operation** | [**TransactionOperationEnum**](TransactionOperationEnum.md) |  | [optional] 
 **description** | **str** | Rule description | [optional] 
 **is_default** | **bool** | Whether this is a default rule | [optional] [default to False]
-**valid_before** | **float** | Unix timestamp when rule expires | [optional] 
-**valid_after** | **float** | Unix timestamp when rule becomes valid | [optional] 
+**valid_before** | **float** | Rule expires once this many seconds have elapsed since the wait/screening step started | [optional] 
+**valid_after** | **float** | Rule applies only after this many seconds have elapsed since the wait/screening step started | [optional] 
 **action** | [**TRLinkMissingTrmActionEnum**](TRLinkMissingTrmActionEnum.md) |  | 
 **source** | **str** | TRLink missing TRM source | 
 **timestamp** | **datetime** | Timestamp of the decision | [optional] 

@@ -53,8 +53,8 @@ class TRLinkPostScreeningRule(BaseModel):
     is_default: Optional[StrictBool] = Field(default=False, description="Whether this is a default rule", alias="isDefault")
     provider_ident: Optional[StrictStr] = Field(default=None, description="Provider identifier", alias="providerIdent")
     trm_status: Optional[TRLinkTrmScreeningStatus] = Field(default=None, alias="trmStatus")
-    valid_before: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp when rule expires", alias="validBefore")
-    valid_after: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Unix timestamp when rule becomes valid", alias="validAfter")
+    valid_before: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule expires once this many seconds have elapsed since the wait/screening step started", alias="validBefore")
+    valid_after: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rule applies only after this many seconds have elapsed since the wait/screening step started", alias="validAfter")
     action: TRLinkVerdict
     __properties: ClassVar[List[str]] = ["customerId", "direction", "sourceType", "sourceSubType", "sourceAddress", "destType", "destSubType", "destAddress", "sourceId", "destId", "asset", "baseAsset", "amount", "networkProtocol", "operation", "description", "isDefault", "providerIdent", "trmStatus", "validBefore", "validAfter", "action"]
 

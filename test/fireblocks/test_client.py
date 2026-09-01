@@ -24,6 +24,7 @@ from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
 from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi
+from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
@@ -106,6 +107,9 @@ def test_get_connected_accounts_beta(fireblocks_instance):
 
 def test_get_console_user(fireblocks_instance):
     assert isinstance(fireblocks_instance.console_user, ConsoleUserApi)
+
+def test_get_contacts(fireblocks_instance):
+    assert isinstance(fireblocks_instance.contacts, ContactsApi)
 
 def test_get_contract_interactions(fireblocks_instance):
     assert isinstance(fireblocks_instance.contract_interactions, ContractInteractionsApi)

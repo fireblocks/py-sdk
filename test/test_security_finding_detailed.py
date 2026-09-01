@@ -36,34 +36,32 @@ class TestSecurityFindingDetailed(unittest.TestCase):
         model = SecurityFindingDetailed()
         if include_optional:
             return SecurityFindingDetailed(
-                id = 'd7ca6101-a65e-4a9c-b6c1-b8bd697e0cd2',
-                type = 'API_COSIGNER_WITH_NO_CALLBACK',
+                id = '2f8a132e-623d-3a97-841f-2c5d9b7a3e60',
                 status = 'OPEN',
-                severity = 'HIGH',
+                severity = 'MEDIUM',
                 category = 'USER_MANAGEMENT',
-                created_at = '2026-07-28T11:37:05Z',
-                title = 'The API user 'Security admin api' is paired with a co-signer and has no callback',
+                created_at = '2026-07-21T07:49:28Z',
+                title = 'The API user 'Admin API' is missing an IP allowlist',
                 status_updated_at = '2026-08-16T08:52:57Z',
-                status_updated_by_user_id = '00d77437-3e7a-4e39-8482-55115a7a0892',
-                status_updated_reason = 'False positive, callback is configured via a different mechanism',
-                info = {"apiKey":"e7c3f18c-3060-3748-3563-19c3dbb3fa88","apiUserName":"Security admin api","cosignerId":"02f53cfa-34a3-4393-a451-e13dfab3c157","cosignerName":"Production Co-Signer"},
+                status_updated_by_user_id = '7c2e3a4f-144d-4f23-932c-518b3d7f1a09',
+                status_updated_reason = 'False positive, the API user only ever connects from a fixed, trusted network',
+                info = {"id":"2a6f3c4e-9d33-437e-8f2a-2c9b4d3e1f35","createdAt":"2026-05-12T12:06:26.242Z","email":"","enabled":true,"firstName":"Admin API","isWhitelisted":false,"lastName":"testd6","role":"ADMIN","status":"READY","tenantId":"6d13843c-4e2b-4a22-2c6f-3b8e3d4a7f52","userType":"API"},
                 compliance_reqs = [],
-                risk_explanation = 'An API user that is paired with a co-signer and does not have a callback implementation is vulnerable to auto-approving, allowing malicious transactions to proceed without review.',
-                mitigation_guidance = 'Add a callback implementation to the API user. Alternatively, if the API user is no longer needed, you can delete it. To do so, go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select Delete. Note that by default this action can only be performed by the workspace owner.'
+                risk_explanation = 'This API user has no IP allowlist, so it can be accessed from anywhere, increasing the risk of unauthorized activity.',
+                mitigation_guidance = 'Go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select 'Allowlist IP address'.'
             )
         else:
             return SecurityFindingDetailed(
-                id = 'd7ca6101-a65e-4a9c-b6c1-b8bd697e0cd2',
-                type = 'API_COSIGNER_WITH_NO_CALLBACK',
+                id = '2f8a132e-623d-3a97-841f-2c5d9b7a3e60',
                 status = 'OPEN',
-                severity = 'HIGH',
+                severity = 'MEDIUM',
                 category = 'USER_MANAGEMENT',
-                created_at = '2026-07-28T11:37:05Z',
-                title = 'The API user 'Security admin api' is paired with a co-signer and has no callback',
-                info = {"apiKey":"e7c3f18c-3060-3748-3563-19c3dbb3fa88","apiUserName":"Security admin api","cosignerId":"02f53cfa-34a3-4393-a451-e13dfab3c157","cosignerName":"Production Co-Signer"},
+                created_at = '2026-07-21T07:49:28Z',
+                title = 'The API user 'Admin API' is missing an IP allowlist',
+                info = {"id":"2a6f3c4e-9d33-437e-8f2a-2c9b4d3e1f35","createdAt":"2026-05-12T12:06:26.242Z","email":"","enabled":true,"firstName":"Admin API","isWhitelisted":false,"lastName":"testd6","role":"ADMIN","status":"READY","tenantId":"6d13843c-4e2b-4a22-2c6f-3b8e3d4a7f52","userType":"API"},
                 compliance_reqs = [],
-                risk_explanation = 'An API user that is paired with a co-signer and does not have a callback implementation is vulnerable to auto-approving, allowing malicious transactions to proceed without review.',
-                mitigation_guidance = 'Add a callback implementation to the API user. Alternatively, if the API user is no longer needed, you can delete it. To do so, go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select Delete. Note that by default this action can only be performed by the workspace owner.',
+                risk_explanation = 'This API user has no IP allowlist, so it can be accessed from anywhere, increasing the risk of unauthorized activity.',
+                mitigation_guidance = 'Go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select 'Allowlist IP address'.',
         )
         """
 

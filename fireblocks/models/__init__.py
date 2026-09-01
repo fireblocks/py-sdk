@@ -237,6 +237,11 @@ from fireblocks.models.connected_accounts_response import ConnectedAccountsRespo
 from fireblocks.models.connected_single_account import ConnectedSingleAccount
 from fireblocks.models.connected_single_account_response import ConnectedSingleAccountResponse
 from fireblocks.models.console_user import ConsoleUser
+from fireblocks.models.contact import Contact
+from fireblocks.models.contact_approval_request import ContactApprovalRequest
+from fireblocks.models.contact_tag import ContactTag
+from fireblocks.models.contact_tag_attachment_pending import ContactTagAttachmentPending
+from fireblocks.models.contacts_paged_response import ContactsPagedResponse
 from fireblocks.models.contract_abi_response_dto import ContractAbiResponseDto
 from fireblocks.models.contract_abi_response_dto_abi_inner import ContractAbiResponseDtoAbiInner
 from fireblocks.models.contract_address_response import ContractAddressResponse

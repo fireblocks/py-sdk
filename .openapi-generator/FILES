@@ -232,6 +232,12 @@ docs/ConnectedSingleAccount.md
 docs/ConnectedSingleAccountResponse.md
 docs/ConsoleUser.md
 docs/ConsoleUserApi.md
+docs/Contact.md
+docs/ContactApprovalRequest.md
+docs/ContactTag.md
+docs/ContactTagAttachmentPending.md
+docs/ContactsApi.md
+docs/ContactsPagedResponse.md
 docs/ContractAbiResponseDto.md
 docs/ContractAbiResponseDtoAbiInner.md
 docs/ContractAddressResponse.md
@@ -1266,6 +1272,7 @@ fireblocks/api/compliance_api.py
 fireblocks/api/compliance_screening_configuration_api.py
 fireblocks/api/connected_accounts_beta_api.py
 fireblocks/api/console_user_api.py
+fireblocks/api/contacts_api.py
 fireblocks/api/contract_interactions_api.py
 fireblocks/api/contract_templates_api.py
 fireblocks/api/contracts_api.py
@@ -1542,6 +1549,11 @@ fireblocks/models/connected_accounts_response.py
 fireblocks/models/connected_single_account.py
 fireblocks/models/connected_single_account_response.py
 fireblocks/models/console_user.py
+fireblocks/models/contact.py
+fireblocks/models/contact_approval_request.py
+fireblocks/models/contact_tag.py
+fireblocks/models/contact_tag_attachment_pending.py
+fireblocks/models/contacts_paged_response.py
 fireblocks/models/contract_abi_response_dto.py
 fireblocks/models/contract_abi_response_dto_abi_inner.py
 fireblocks/models/contract_address_response.py
@@ -2773,6 +2785,12 @@ test/test_connected_single_account.py
 test/test_connected_single_account_response.py
 test/test_console_user.py
 test/test_console_user_api.py
+test/test_contact.py
+test/test_contact_approval_request.py
+test/test_contact_tag.py
+test/test_contact_tag_attachment_pending.py
+test/test_contacts_api.py
+test/test_contacts_paged_response.py
 test/test_contract_abi_response_dto.py
 test/test_contract_abi_response_dto_abi_inner.py
 test/test_contract_address_response.py

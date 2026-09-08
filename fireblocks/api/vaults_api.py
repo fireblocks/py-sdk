@@ -99,7 +99,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[CreateVaultAssetResponse]]:
         """Activate a wallet in a vault account
 
-        Initiates activation for a wallet in a vault account.  Activation is required for tokens that need an on-chain transaction for creation (XLM tokens, SOL tokens etc). Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+        Initiates activation for a wallet in a vault account.  Activation is required for tokens that need an on-chain transaction for creation. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
         :param vault_account_id: The ID of the vault account to return, or 'default' for the default vault account (required)
         :type vault_account_id: str

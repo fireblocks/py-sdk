@@ -52,7 +52,8 @@ class TestUtxoOutput(unittest.TestCase):
                 created_by_height = 800100,
                 created_at = '2025-01-16T15:45Z',
                 updated_at = '2025-01-16T15:45Z',
-                labels = ["cold-storage","vip"]
+                labels = ["cold-storage","vip"],
+                has_native_assets = True
             )
         else:
             return UtxoOutput(

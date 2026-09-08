@@ -44,7 +44,8 @@ class UtxoOutput(BaseModel):
     created_at: Optional[datetime] = Field(default=None, description="The timestamp when this UTXO was created", alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, description="The timestamp when this UTXO was last updated", alias="updatedAt")
     labels: Optional[List[StrictStr]] = Field(default=None, description="Labels attached to this UTXO")
-    __properties: ClassVar[List[str]] = ["input", "utxoId", "address", "amount", "confirmations", "status", "isChange", "isCoinbase", "fbTxId", "createdByHash", "spentByFbTxId", "createdByHeight", "createdAt", "updatedAt", "labels"]
+    has_native_assets: Optional[StrictBool] = Field(default=None, description="Whether this UTXO carries Cardano native assets (tokens)", alias="hasNativeAssets")
+    __properties: ClassVar[List[str]] = ["input", "utxoId", "address", "amount", "confirmations", "status", "isChange", "isCoinbase", "fbTxId", "createdByHash", "spentByFbTxId", "createdByHeight", "createdAt", "updatedAt", "labels", "hasNativeAssets"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -121,7 +122,8 @@ class UtxoOutput(BaseModel):
             "createdByHeight": obj.get("createdByHeight"),
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
-            "labels": obj.get("labels")
+            "labels": obj.get("labels"),
+            "hasNativeAssets": obj.get("hasNativeAssets")
         })
         return _obj
 

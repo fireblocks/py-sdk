@@ -50,7 +50,7 @@ Method | HTTP request | Description
 Activate a wallet in a vault account
 
 Initiates activation for a wallet in a vault account. 
-Activation is required for tokens that need an on-chain transaction for creation (XLM tokens, SOL tokens etc).
+Activation is required for tokens that need an on-chain transaction for creation.
 Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
 
 ### Example

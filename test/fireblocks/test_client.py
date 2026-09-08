@@ -17,6 +17,7 @@ from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.threaded_api_client import ThreadedApiClient
 from fireblocks.api.api_user_api import ApiUserApi
+from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
@@ -86,6 +87,9 @@ def test_fireblocks_construction(fireblocks_instance):
 
 def test_get_api_user(fireblocks_instance):
     assert isinstance(fireblocks_instance.api_user, ApiUserApi)
+
+def test_get_approvals_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.approvals_beta, ApprovalsBetaApi)
 
 def test_get_audit_logs(fireblocks_instance):
     assert isinstance(fireblocks_instance.audit_logs, AuditLogsApi)

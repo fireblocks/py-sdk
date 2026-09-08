@@ -22,7 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from fireblocks.models.access_type import AccessType
+from fireblocks.models.access_type_response import AccessTypeResponse
 from fireblocks.models.execution_response_details import ExecutionResponseDetails
 from fireblocks.models.failure import Failure
 from fireblocks.models.fee import Fee
@@ -40,7 +40,7 @@ class OrderDetails(BaseModel):
     OrderDetails
     """ # noqa: E501
     id: StrictStr
-    via: AccessType
+    via: AccessTypeResponse
     status: OrderStatus
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
@@ -149,7 +149,7 @@ class OrderDetails(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "via": AccessType.from_dict(obj["via"]) if obj.get("via") is not None else None,
+            "via": AccessTypeResponse.from_dict(obj["via"]) if obj.get("via") is not None else None,
             "status": obj.get("status"),
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),

@@ -19,6 +19,10 @@ import ssl
 
 import urllib3
 
+from fireblocks.connection_pool import (
+    IdleAwarePoolManager,
+    IdleAwareProxyManager,
+)
 from fireblocks.exceptions import ApiException, ApiValueError
 
 SUPPORTED_SOCKS_PROXIES = {"socks5", "socks5h", "socks4", "socks4a"}
@@ -93,6 +97,9 @@ class RESTClientObject:
         if configuration.connection_pool_maxsize is not None:
             pool_args["maxsize"] = configuration.connection_pool_maxsize
 
+        # Absent when Configuration is built directly; the pool applies the default.
+        idle_timeout_sec = getattr(configuration, "connection_idle_timeout_sec", None)
+
         # https pool manager
         self.pool_manager: urllib3.PoolManager
 
@@ -102,13 +109,18 @@ class RESTClientObject:
 
                 pool_args["proxy_url"] = configuration.proxy
                 pool_args["headers"] = configuration.proxy_headers
+                # SOCKSProxyManager installs its own pool classes.
                 self.pool_manager = SOCKSProxyManager(**pool_args)
             else:
                 pool_args["proxy_url"] = configuration.proxy
                 pool_args["proxy_headers"] = configuration.proxy_headers
-                self.pool_manager = urllib3.ProxyManager(**pool_args)
+                self.pool_manager = IdleAwareProxyManager(
+                    idle_timeout_sec=idle_timeout_sec, **pool_args
+                )
         else:
-            self.pool_manager = urllib3.PoolManager(**pool_args)
+            self.pool_manager = IdleAwarePoolManager(
+                idle_timeout_sec=idle_timeout_sec, **pool_args
+            )
 
     def request(
         self,

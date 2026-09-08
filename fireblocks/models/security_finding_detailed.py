@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class SecurityFindingDetailed(BaseModel):
     """
-    A single FSPM finding, redacted to the public field set
+    SecurityFindingDetailed
     """ # noqa: E501
     id: StrictStr = Field(description="Unique identifier of the finding")
     status: StrictStr = Field(description="Current status of the finding")

@@ -11,6 +11,8 @@
 
 * `TRANSACTION_DOT_NETWORK_RECORDS_DOT_PROCESSING_COMPLETED` (value: `'transaction.network_records.processing_completed'`)
 
+* `TRANSACTION_DOT_ALERT_DOT_STUCK` (value: `'transaction.alert.stuck'`)
+
 * `EXTERNAL_WALLET_DOT_ASSET_DOT_ADDED` (value: `'external_wallet.asset.added'`)
 
 * `EXTERNAL_WALLET_DOT_ASSET_DOT_REMOVED` (value: `'external_wallet.asset.removed'`)
@@ -30,6 +32,14 @@
 * `VAULT_ACCOUNT_DOT_ASSET_DOT_BALANCE_UPDATED` (value: `'vault_account.asset.balance_updated'`)
 
 * `VAULT_ACCOUNT_DOT_NFT_DOT_BALANCE_UPDATED` (value: `'vault_account.nft.balance_updated'`)
+
+* `VAULT_ACCOUNT_DOT_BULK_CREATE_JOB_STARTED` (value: `'vault_account.bulk_create_job_started'`)
+
+* `VAULT_ACCOUNT_DOT_BULK_CREATE_JOB_ENDED` (value: `'vault_account.bulk_create_job_ended'`)
+
+* `VAULT_ACCOUNT_DOT_ASSET_DOT_BULK_ADD_JOB_STARTED` (value: `'vault_account.asset.bulk_add_job_started'`)
+
+* `VAULT_ACCOUNT_DOT_ASSET_DOT_BULK_ADD_JOB_ENDED` (value: `'vault_account.asset.bulk_add_job_ended'`)
 
 * `EMBEDDED_WALLET_DOT_STATUS_DOT_UPDATED` (value: `'embedded_wallet.status.updated'`)
 

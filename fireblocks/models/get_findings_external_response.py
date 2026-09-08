@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class GetFindingsExternalResponse(BaseModel):
     """
-    A paginated list of FSPM findings
+    GetFindingsExternalResponse
     """ # noqa: E501
     data: List[SecurityFinding] = Field(description="List of FSPM findings for the current page.")
     total: StrictInt = Field(description="Total number of findings matching the query.")

@@ -21,7 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from fireblocks.models.access_type import AccessType
+from fireblocks.models.access_type_response import AccessTypeResponse
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,7 @@ class RateOffer(BaseModel):
     """
     RateOffer
     """ # noqa: E501
-    via: AccessType
+    via: AccessTypeResponse
     base_asset_id: StrictStr = Field(description="The source asset identifier", alias="baseAssetId")
     base_asset_rail: Optional[TransferRail] = Field(default=None, alias="baseAssetRail")
     quote_asset_id: StrictStr = Field(description="The target asset identifier", alias="quoteAssetId")
@@ -107,7 +107,7 @@ class RateOffer(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "via": AccessType.from_dict(obj["via"]) if obj.get("via") is not None else None,
+            "via": AccessTypeResponse.from_dict(obj["via"]) if obj.get("via") is not None else None,
             "baseAssetId": obj.get("baseAssetId"),
             "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),

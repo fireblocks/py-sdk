@@ -15,6 +15,7 @@ from fireblocks.threaded_api_client import ThreadedApiClient
 from fireblocks.client_configuration import ClientConfiguration
 
 from fireblocks.api.api_user_api import ApiUserApi
+from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
@@ -82,6 +83,7 @@ class Fireblocks:
 
         # APIs
         self._api_user = None
+        self._approvals_beta = None
         self._audit_logs = None
         self._blockchain_link_beta = None
         self._blockchains_assets = None
@@ -150,6 +152,12 @@ class Fireblocks:
         if self._api_user is None:
             self._api_user = ApiUserApi(self._api_client)
         return self._api_user
+
+    @property
+    def approvals_beta(self) -> ApprovalsBetaApi:
+        if self._approvals_beta is None:
+            self._approvals_beta = ApprovalsBetaApi(self._api_client)
+        return self._approvals_beta
 
     @property
     def audit_logs(self) -> AuditLogsApi:

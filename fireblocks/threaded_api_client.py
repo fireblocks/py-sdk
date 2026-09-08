@@ -16,7 +16,7 @@ from concurrent.futures import ThreadPoolExecutor, Future
 from typing import Tuple, Optional, List, Dict, Union, Any
 from urllib.parse import urlparse
 from fireblocks.api_response import ApiResponse, T as ApiResponseT
-from fireblocks.configuration import Configuration
+from fireblocks.api_client_configuration import ApiClientConfiguration
 from fireblocks.api_client import ApiClient
 from fireblocks.bearer_token_provider import BearerTokenProvider
 from fireblocks.client_configuration import ClientConfiguration
@@ -52,7 +52,11 @@ class ThreadedApiClient(ApiClient):
                 "basePath is required either in the configuration or as environment variable FIREBLOCKS_BASE_PATH"
             )
 
-        super().__init__(configuration=Configuration(host=base_path))
+        api_configuration = ApiClientConfiguration(
+            host=base_path,
+            connection_idle_timeout_sec=client_configuration.additional_options.connection_idle_timeout_sec,
+        )
+        super().__init__(configuration=api_configuration)
 
         self.token_provider = BearerTokenProvider(self._api_key, secret_key)
 

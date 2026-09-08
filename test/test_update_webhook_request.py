@@ -51,7 +51,7 @@ class TestUpdateWebhookRequest(unittest.TestCase):
                     mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----', ),
-                custom_headers = {"X-Gateway-Key":"abc123","X-Region-Tag":null}
+                custom_headers = {"X-Gateway-Key":"abc123","X-Forwarded-For":["203.0.113.7","198.51.100.4"],"X-Region-Tag":null}
             )
         else:
             return UpdateWebhookRequest(

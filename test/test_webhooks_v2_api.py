@@ -33,10 +33,24 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_create_webhook_o_auth(self) -> None:
+        """Test case for create_webhook_o_auth
+
+        Create OAuth credentials
+        """
+        pass
+
     def test_delete_webhook(self) -> None:
         """Test case for delete_webhook
 
         Delete webhook
+        """
+        pass
+
+    def test_delete_webhook_o_auth(self) -> None:
+        """Test case for delete_webhook_o_auth
+
+        Delete OAuth credentials
         """
         pass
 
@@ -96,6 +110,20 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_webhook_o_auth(self) -> None:
+        """Test case for get_webhook_o_auth
+
+        Get OAuth credentials by id
+        """
+        pass
+
+    def test_get_webhook_o_auths(self) -> None:
+        """Test case for get_webhook_o_auths
+
+        Get all OAuth credentials
+        """
+        pass
+
     def test_get_webhooks(self) -> None:
         """Test case for get_webhooks
 
@@ -135,6 +163,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """Test case for update_webhook
 
         Update webhook
+        """
+        pass
+
+    def test_update_webhook_o_auth(self) -> None:
+        """Test case for update_webhook_o_auth
+
+        Update OAuth credentials
         """
         pass
 

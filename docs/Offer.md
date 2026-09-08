@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**via** | [**AccessType**](AccessType.md) |  | 
+**via** | [**AccessTypeResponse**](AccessTypeResponse.md) |  | 
 **base_asset_id** | **str** | The source asset identifier. | 
 **base_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_asset_id** | **str** | The target asset identifier. | 

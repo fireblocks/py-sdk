@@ -37,7 +37,7 @@ class UpdateWebhookRequest(BaseModel):
     enabled: Optional[StrictBool] = Field(default=None, description="The status of the webhook")
     mtls: Optional[WebhookMtls] = None
     oauth: Optional[WebhookOAuth] = None
-    custom_headers: Optional[Dict[str, Optional[Annotated[str, Field(min_length=1, strict=True, max_length=1024)]]]] = Field(default=None, description="Custom headers delta: entries with a string value are added or updated, entries with a `null` value delete that header (no-op if absent), and header names omitted from the payload are left untouched. The resulting set is limited to 10 headers. Header names are case-insensitive, up to 128 characters, and limited to valid HTTP header name characters. Some system header names are reserved and cannot be used. Values are write-only — never returned in responses.", alias="customHeaders")
+    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. A value replaces what is stored under that name rather than adding to it, so an array is the complete new set of lines for that header. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another. Same rules as on create: string or non-empty array, `Cookie` string-only, 10 lines total in the resulting set, the same reserved names, and values write-only. Entries set to `null` do not count towards the limit.", alias="customHeaders")
     __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "oauth", "customHeaders"]
 
     model_config = ConfigDict(
@@ -94,6 +94,11 @@ class UpdateWebhookRequest(BaseModel):
         # and model_fields_set contains the field
         if self.oauth is None and "oauth" in self.model_fields_set:
             _dict['oauth'] = None
+
+        # set to None if custom_headers (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_headers is None and "custom_headers" in self.model_fields_set:
+            _dict['customHeaders'] = None
 
         return _dict
 

@@ -6,7 +6,7 @@ A committed executable quote for a trading pair.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**via** | [**AccessType**](AccessType.md) |  | 
+**via** | [**AccessTypeResponse**](AccessTypeResponse.md) |  | 
 **id** | **str** | The unique identifier of the quote. | 
 **quote_asset_id** | **str** | The target asset identifier. | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 

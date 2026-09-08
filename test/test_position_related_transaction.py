@@ -42,7 +42,8 @@ class TestPositionRelatedTransaction(unittest.TestCase):
                 timestamp = '2024-01-15T10:30Z',
                 status = 'COMPLETED',
                 amount = '32',
-                tx_note = 'stake request of 32ETH created on 02.04.23'
+                tx_note = 'stake request of 32ETH created on 02.04.23',
+                completion_time = '2026-08-09T03:05:06.122864244Z'
             )
         else:
             return PositionRelatedTransaction(

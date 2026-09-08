@@ -11,7 +11,14 @@
 """  # noqa: E501
 
 
+import pytest
+from pydantic import ValidationError
+
 from fireblocks.additional_options import AdditionalOptions
+from fireblocks.connection_pool import (
+    DEFAULT_IDLE_TIMEOUT_SECONDS,
+    MAX_IDLE_TIMEOUT_SECONDS,
+)
 
 def test_is_anonymous_platform_real_value():
     options = AdditionalOptions(is_anonymous_platform=True)
@@ -36,3 +43,38 @@ def test_thread_pool_size_real_value():
 def test_thread_pool_size_default_value():
     options = AdditionalOptions()
     assert options.thread_pool_size == None
+
+def test_connection_idle_timeout_sec_real_value():
+    options = AdditionalOptions(connection_idle_timeout_sec=60)
+    assert options.connection_idle_timeout_sec == 60
+
+def test_connection_idle_timeout_sec_default_value():
+    # Declared on the field rather than left as None, so the value shows up in the
+    # generated docs, IDE hints and the JSON schema.
+    options = AdditionalOptions()
+    assert options.connection_idle_timeout_sec == DEFAULT_IDLE_TIMEOUT_SECONDS
+
+def test_connection_idle_timeout_sec_none_is_still_accepted():
+    # The pool treats None as "not configured" and applies the default, so passing
+    # it explicitly stays safe rather than silently disabling eviction.
+    assert AdditionalOptions(connection_idle_timeout_sec=None).connection_idle_timeout_sec is None
+
+def test_connection_idle_timeout_sec_accepts_the_maximum():
+    options = AdditionalOptions(connection_idle_timeout_sec=MAX_IDLE_TIMEOUT_SECONDS)
+    assert options.connection_idle_timeout_sec == MAX_IDLE_TIMEOUT_SECONDS
+
+def test_connection_idle_timeout_sec_above_the_maximum_is_rejected():
+    with pytest.raises(ValidationError):
+        AdditionalOptions(connection_idle_timeout_sec=MAX_IDLE_TIMEOUT_SECONDS + 1)
+
+def test_the_maximum_does_not_block_disabling():
+    # -1 is below the ceiling, so the cap bounds the positive range without taking
+    # away the escape hatch.
+    assert AdditionalOptions(connection_idle_timeout_sec=-1).connection_idle_timeout_sec == -1
+
+def test_connection_idle_timeout_sec_zero_is_a_real_value():
+    # 0 means "open a fresh connection every request", not "disabled".
+    assert AdditionalOptions(connection_idle_timeout_sec=0).connection_idle_timeout_sec == 0
+
+def test_connection_idle_timeout_sec_negative_means_no_limit():
+    assert AdditionalOptions(connection_idle_timeout_sec=-1).connection_idle_timeout_sec == -1

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **status** | **str** | Transaction outcome. | 
 **amount** | **str** | Portion of position amount this transaction moved (native units). Absent on legacy rows. | [optional] 
 **tx_note** | **str** | User-provided note from the transfer request. Omitted when not set. | [optional] 
+**completion_time** | **datetime** | ISO timestamp when Cosmos unbonding is scheduled to end. Absent on other chains. | [optional] 
 
 ## Example
 

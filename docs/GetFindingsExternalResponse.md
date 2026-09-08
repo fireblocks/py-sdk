@@ -1,6 +1,5 @@
 # GetFindingsExternalResponse
 
-A paginated list of FSPM findings
 
 ## Properties
 

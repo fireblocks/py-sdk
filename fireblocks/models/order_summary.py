@@ -21,7 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.access_type import AccessType
+from fireblocks.models.access_type_response import AccessTypeResponse
 from fireblocks.models.account_reference import AccountReference
 from fireblocks.models.order_status import OrderStatus
 from fireblocks.models.settlement_source_account import SettlementSourceAccount
@@ -34,7 +34,7 @@ class OrderSummary(BaseModel):
     OrderSummary
     """ # noqa: E501
     id: StrictStr
-    via: AccessType
+    via: AccessTypeResponse
     side: Side
     base_amount: StrictStr = Field(alias="baseAmount")
     quote_amount: Optional[StrictStr] = Field(default=None, alias="quoteAmount")
@@ -107,7 +107,7 @@ class OrderSummary(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "via": AccessType.from_dict(obj["via"]) if obj.get("via") is not None else None,
+            "via": AccessTypeResponse.from_dict(obj["via"]) if obj.get("via") is not None else None,
             "side": obj.get("side"),
             "baseAmount": obj.get("baseAmount"),
             "quoteAmount": obj.get("quoteAmount"),

@@ -2,6 +2,7 @@
 
 # import apis into api package
 from fireblocks.api.api_user_api import ApiUserApi
+from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi

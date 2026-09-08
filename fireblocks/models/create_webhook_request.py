@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
@@ -37,7 +37,7 @@ class CreateWebhookRequest(BaseModel):
     enabled: Optional[StrictBool] = Field(default=True, description="The status of the webhook. If false, the webhook will not receive notifications.")
     mtls: Optional[WebhookMtls] = None
     oauth: Optional[WebhookOAuth] = None
-    custom_headers: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True, max_length=1024)]]] = Field(default=None, description="Custom HTTP headers attached to every notification delivered by this webhook (max 10). Header names must be valid RFC 7230 tokens (printable ASCII, no separators), are treated case-insensitively (duplicate names differing only in case are rejected), and may not exceed 128 characters. The following names are reserved and cannot be used: Host, Content-Type, Content-Length, Transfer-Encoding, Connection, User-Agent, Accept, Accept-Encoding, Fireblocks-Signature, Fireblocks-Webhook-Signature. Header values are write-only — never returned in responses.", alias="customHeaders")
+    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="Custom HTTP headers attached to every notification delivered by this webhook. A value is a string, sent as one header line, or an array of strings, sent as one header line per element under the same name. `Cookie` accepts only a string. An empty array is rejected — leave the name out instead. At most 10 header lines in total, counted per array element rather than per name. Names must be valid HTTP header tokens, are case-insensitive, and are at most 128 characters. Values are at most 1024 characters and may be empty. Reserved names: `Host`, `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Connection`, `User-Agent`, `Accept`, `Accept-Encoding`, `Fireblocks-Signature`, `Fireblocks-Webhook-Signature`, `Authorization`. `Authorization` is reserved whether or not this webhook has OAuth credentials attached, because Fireblocks sets it once it does. Values are write-only; responses return only the header names.", alias="customHeaders")
     __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "oauth", "customHeaders"]
 
     model_config = ConfigDict(

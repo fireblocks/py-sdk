@@ -37,7 +37,7 @@ class TestSecurityFindingDetailed(unittest.TestCase):
         if include_optional:
             return SecurityFindingDetailed(
                 id = '2f8a132e-623d-3a97-841f-2c5d9b7a3e60',
-                status = 'OPEN',
+                status = 'ACCEPTED',
                 severity = 'MEDIUM',
                 category = 'USER_MANAGEMENT',
                 created_at = '2026-07-21T07:49:28Z',
@@ -46,20 +46,20 @@ class TestSecurityFindingDetailed(unittest.TestCase):
                 status_updated_by_user_id = '7c2e3a4f-144d-4f23-932c-518b3d7f1a09',
                 status_updated_reason = 'False positive, the API user only ever connects from a fixed, trusted network',
                 info = {"id":"2a6f3c4e-9d33-437e-8f2a-2c9b4d3e1f35","createdAt":"2026-05-12T12:06:26.242Z","email":"","enabled":true,"firstName":"Admin API","isWhitelisted":false,"lastName":"testd6","role":"ADMIN","status":"READY","tenantId":"6d13843c-4e2b-4a22-2c6f-3b8e3d4a7f52","userType":"API"},
-                compliance_reqs = [],
+                compliance_reqs = [{"id":"8a1e6f19-1c4b-2d7e-2f1a-2b6c8d2e4f50","standard":"SOC 2","criteria":"CC6.2","description":"Access provisioning and credential lifecycle"},{"id":"5e2b8e47-ea9c-ef36-8e2d-ea4b9c3e6f18","standard":"SOC 2","criteria":"CC6.3","description":"Least privilege and attack surface, roles and SoD"}],
                 risk_explanation = 'This API user has no IP allowlist, so it can be accessed from anywhere, increasing the risk of unauthorized activity.',
                 mitigation_guidance = 'Go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select 'Allowlist IP address'.'
             )
         else:
             return SecurityFindingDetailed(
                 id = '2f8a132e-623d-3a97-841f-2c5d9b7a3e60',
-                status = 'OPEN',
+                status = 'ACCEPTED',
                 severity = 'MEDIUM',
                 category = 'USER_MANAGEMENT',
                 created_at = '2026-07-21T07:49:28Z',
                 title = 'The API user 'Admin API' is missing an IP allowlist',
                 info = {"id":"2a6f3c4e-9d33-437e-8f2a-2c9b4d3e1f35","createdAt":"2026-05-12T12:06:26.242Z","email":"","enabled":true,"firstName":"Admin API","isWhitelisted":false,"lastName":"testd6","role":"ADMIN","status":"READY","tenantId":"6d13843c-4e2b-4a22-2c6f-3b8e3d4a7f52","userType":"API"},
-                compliance_reqs = [],
+                compliance_reqs = [{"id":"8a1e6f19-1c4b-2d7e-2f1a-2b6c8d2e4f50","standard":"SOC 2","criteria":"CC6.2","description":"Access provisioning and credential lifecycle"},{"id":"5e2b8e47-ea9c-ef36-8e2d-ea4b9c3e6f18","standard":"SOC 2","criteria":"CC6.3","description":"Least privilege and attack surface, roles and SoD"}],
                 risk_explanation = 'This API user has no IP allowlist, so it can be accessed from anywhere, increasing the risk of unauthorized activity.',
                 mitigation_guidance = 'Go to Developer Center > API Users, click the actions button (3 dots) next to the API user, and select 'Allowlist IP address'.',
         )

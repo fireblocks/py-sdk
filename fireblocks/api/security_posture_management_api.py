@@ -63,7 +63,7 @@ class SecurityPostureManagementApi:
     ) -> Future[ApiResponse[SecurityFindingDetailed]]:
         """Get a FSPM security finding by ID
 
-        Returns a single FSPM security finding for the workspace, redacted to the public field set. Endpoint Roles: Security Admin, Security Auditor. 
+        Returns a single FSPM security finding for the workspace, redacted to the public field set. Endpoint Roles: Security Admin, Security Auditor.  **Note:** This endpoint is available only for the FSPM Pro package. It is not available for FSPM Basic. 
 
         :param id: Unique identifier of the finding (required)
         :type id: str
@@ -196,7 +196,7 @@ class SecurityPostureManagementApi:
     ) -> Future[ApiResponse[GetFindingsExternalResponse]]:
         """Get FSPM security findings
 
-        Returns a paginated list of FSPM security findings for the workspace. Endpoint Roles: Security Admin, Security Auditor. 
+        Returns a paginated list of FSPM security findings for the workspace. Endpoint Roles: Security Admin, Security Auditor.  **Note:** This endpoint is available only for the FSPM Pro package. It is not available for FSPM Basic. 
 
         :param page_cursor: Cursor indicating the page position. Omit to fetch the first page.
         :type page_cursor: str
@@ -365,7 +365,7 @@ class SecurityPostureManagementApi:
     ) -> Future[ApiResponse[SecurityFindingDetailed]]:
         """Update a FSPM security finding by ID
 
-        Accepts or reopens a finding for the workspace. When accepting a finding (`status: \"ACCEPTED\"`), `statusUpdatedReason` is required. Endpoint Roles: Security Admin. 
+        Accepts or reopens a finding for the workspace. When accepting a finding (`status: \"ACCEPTED\"`), `statusUpdatedReason` is required. Endpoint Roles: Security Admin.  **Note:** This endpoint is available only for the FSPM Pro package. It is not available for FSPM Basic. 
 
         :param id: Unique identifier of the finding (required)
         :type id: str

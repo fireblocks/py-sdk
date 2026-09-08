@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from fireblocks.models.access_type import AccessType
+from fireblocks.models.access_type_response import AccessTypeResponse
 from fireblocks.models.fee import Fee
 from fireblocks.models.quote_execution_step import QuoteExecutionStep
 from fireblocks.models.side import Side
@@ -32,7 +32,7 @@ class Quote(BaseModel):
     """
     A committed executable quote for a trading pair.
     """ # noqa: E501
-    via: AccessType
+    via: AccessTypeResponse
     id: StrictStr = Field(description="The unique identifier of the quote.")
     quote_asset_id: StrictStr = Field(description="The target asset identifier.", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
@@ -126,7 +126,7 @@ class Quote(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "via": AccessType.from_dict(obj["via"]) if obj.get("via") is not None else None,
+            "via": AccessTypeResponse.from_dict(obj["via"]) if obj.get("via") is not None else None,
             "id": obj.get("id"),
             "quoteAssetId": obj.get("quoteAssetId"),
             "quoteAssetRail": obj.get("quoteAssetRail"),

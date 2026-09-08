@@ -35,7 +35,8 @@ class PositionRelatedTransaction(BaseModel):
     status: StrictStr = Field(description="Transaction outcome.")
     amount: Optional[StrictStr] = Field(default=None, description="Portion of position amount this transaction moved (native units). Absent on legacy rows.")
     tx_note: Optional[StrictStr] = Field(default=None, description="User-provided note from the transfer request. Omitted when not set.", alias="txNote")
-    __properties: ClassVar[List[str]] = ["txId", "txHash", "stakingOperation", "timestamp", "status", "amount", "txNote"]
+    completion_time: Optional[datetime] = Field(default=None, description="ISO timestamp when Cosmos unbonding is scheduled to end. Absent on other chains.", alias="completionTime")
+    __properties: ClassVar[List[str]] = ["txId", "txHash", "stakingOperation", "timestamp", "status", "amount", "txNote", "completionTime"]
 
     @field_validator('staking_operation')
     def staking_operation_validate_enum(cls, value):
@@ -111,7 +112,8 @@ class PositionRelatedTransaction(BaseModel):
             "timestamp": obj.get("timestamp"),
             "status": obj.get("status"),
             "amount": obj.get("amount"),
-            "txNote": obj.get("txNote")
+            "txNote": obj.get("txNote"),
+            "completionTime": obj.get("completionTime")
         })
         return _obj
 

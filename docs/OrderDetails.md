@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**via** | [**AccessType**](AccessType.md) |  | 
+**via** | [**AccessTypeResponse**](AccessTypeResponse.md) |  | 
 **status** | [**OrderStatus**](OrderStatus.md) |  | 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | [optional] 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **enabled** | **bool** | The status of the webhook | [optional] 
 **mtls** | [**WebhookMtls**](WebhookMtls.md) |  | [optional] 
 **oauth** | [**WebhookOAuth**](WebhookOAuth.md) |  | [optional] 
-**custom_headers** | **Dict[str, Optional[str]]** | Custom headers delta: entries with a string value are added or updated, entries with a &#x60;null&#x60; value delete that header (no-op if absent), and header names omitted from the payload are left untouched. The resulting set is limited to 10 headers. Header names are case-insensitive, up to 128 characters, and limited to valid HTTP header name characters. Some system header names are reserved and cannot be used. Values are write-only — never returned in responses. | [optional] 
+**custom_headers** | **Dict[str, object]** | A delta applied to the delivery headers. A header with a value is added or replaced, a header with &#x60;null&#x60; is deleted, and one you leave out is untouched. A value replaces what is stored under that name rather than adding to it, so an array is the complete new set of lines for that header. Send &#x60;customHeaders: null&#x60; to clear every header in one call. That does not collide with a &#x60;null&#x60; value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a &#x60;null&#x60; under one casing deletes a header stored under another. Same rules as on create: string or non-empty array, &#x60;Cookie&#x60; string-only, 10 lines total in the resulting set, the same reserved names, and values write-only. Entries set to &#x60;null&#x60; do not count towards the limit. | [optional] 
 
 ## Example
 

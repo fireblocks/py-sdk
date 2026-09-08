@@ -144,6 +144,7 @@ class TestTransactionResponse(unittest.TestCase):
                     relay_name = 'Tenant Name', 
                     fee_usd = '0.0013', ),
                 fee_currency = '',
+                requested_fee_currency = 'PATH_USD',
                 network_records = [
                     fireblocks.models.network_record.NetworkRecord(
                         source = fireblocks.models.source_transfer_peer_path_response.SourceTransferPeerPathResponse(

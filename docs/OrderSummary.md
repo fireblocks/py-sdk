@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**via** | [**AccessType**](AccessType.md) |  | 
+**via** | [**AccessTypeResponse**](AccessTypeResponse.md) |  | 
 **side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** |  | 
 **quote_amount** | **str** |  | [optional] 

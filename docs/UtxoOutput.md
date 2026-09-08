@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** | The timestamp when this UTXO was created | [optional] 
 **updated_at** | **datetime** | The timestamp when this UTXO was last updated | [optional] 
 **labels** | **List[str]** | Labels attached to this UTXO | [optional] 
+**has_native_assets** | **bool** | Whether this UTXO carries Cardano native assets (tokens) | [optional] 
 
 ## Example
 

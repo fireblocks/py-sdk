@@ -36,13 +36,13 @@ class TestGetFindingsExternalResponse(unittest.TestCase):
         model = GetFindingsExternalResponse()
         if include_optional:
             return GetFindingsExternalResponse(
-                data = [],
+                data = [{"id":"d7ca3131-a35e-3a9c-36c1-38bd697e0cd2","status":"OPEN","severity":"HIGH","category":"USER_MANAGEMENT","createdAt":"2026-07-28T11:37:05.000Z","title":"The API user 'Admin API' is missing an IP allowlist"},{"id":"2f6a9c13-7b2d-4158-9a2f-6c3d8b4e0f37","status":"RESOLVED","severity":"HIGH","category":"USER_MANAGEMENT","createdAt":"2026-08-30T13:36:35.000Z","title":"The API user 'admin api callback' is paired with a co-signer and has no callback"}],
                 total = 42,
                 next = 'eyJzZXZlcml0eVJhbmsiOjMsImNyZWF0ZWRBdCI6IjIwMjYtMDctMTRUMTA6MDU6NTYuMDAwWiIsImlkIjoiYjJmZTkwYjItMWZlMy00ZTczLTg1YTItNjZlMTlmN2RhYzY2In0='
             )
         else:
             return GetFindingsExternalResponse(
-                data = [],
+                data = [{"id":"d7ca3131-a35e-3a9c-36c1-38bd697e0cd2","status":"OPEN","severity":"HIGH","category":"USER_MANAGEMENT","createdAt":"2026-07-28T11:37:05.000Z","title":"The API user 'Admin API' is missing an IP allowlist"},{"id":"2f6a9c13-7b2d-4158-9a2f-6c3d8b4e0f37","status":"RESOLVED","severity":"HIGH","category":"USER_MANAGEMENT","createdAt":"2026-08-30T13:36:35.000Z","title":"The API user 'admin api callback' is paired with a co-signer and has no callback"}],
                 total = 42,
         )
         """

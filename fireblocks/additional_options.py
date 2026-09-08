@@ -13,10 +13,16 @@ Do not edit the class manually.
 from pydantic import Field, BaseModel
 from typing import Optional
 
+from fireblocks.connection_pool import (
+    DEFAULT_IDLE_TIMEOUT_SECONDS,
+    MAX_IDLE_TIMEOUT_SECONDS,
+)
+
 """This class contains additional options for the Fireblocks API client.
 :param is_anonymous_platform: If set to true, the platform will be anonymous.
 :param user_agent: The user agent to use for the client.
 :param thread_pool_size: The number of threads to use for the client.
+:param connection_idle_timeout_sec: How long a pooled connection may sit idle before it is discarded.
 """
 
 
@@ -31,4 +37,15 @@ class AdditionalOptions(BaseModel):
     thread_pool_size: Optional[int] = Field(
         None,
         description="The number of threads to use in the thread pool for the client",
+    )
+    connection_idle_timeout_sec: Optional[float] = Field(
+        DEFAULT_IDLE_TIMEOUT_SECONDS,
+        le=MAX_IDLE_TIMEOUT_SECONDS,
+        # Built from the constants so the text cannot drift from the behaviour.
+        description=(
+            f"How long a pooled connection may sit idle before it is discarded."
+            f" Defaults to {DEFAULT_IDLE_TIMEOUT_SECONDS}s, maximum"
+            f" {MAX_IDLE_TIMEOUT_SECONDS}s."
+            f" -1 disables eviction (not recommended, risks connection issues)."
+        ),
     )

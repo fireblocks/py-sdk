@@ -49,12 +49,7 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                             client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----', ), 
-                        oauth = fireblocks.models.webhook_o_auth_response.WebhookOAuthResponse(
-                            client_id = 'my-client-id', 
-                            url = 'https://auth.example.com/oauth/token', 
-                            mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----', ), 
+                        webhook_oauth_id = '123e4567-e89b-12d3-a456-426614174000', 
                         custom_headers = ["x-gateway-key","x-region-tag"], )
                     ],
                 next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
@@ -74,12 +69,7 @@ class TestWebhookPaginatedResponse(unittest.TestCase):
                             client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----', ), 
-                        oauth = fireblocks.models.webhook_o_auth_response.WebhookOAuthResponse(
-                            client_id = 'my-client-id', 
-                            url = 'https://auth.example.com/oauth/token', 
-                            mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----', ), 
+                        webhook_oauth_id = '123e4567-e89b-12d3-a456-426614174000', 
                         custom_headers = ["x-gateway-key","x-region-tag"], )
                     ],
         )

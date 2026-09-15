@@ -24,7 +24,7 @@ from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CreateWebhookOAuthRequest(BaseModel):
+class CreateWebhookOauthRequest(BaseModel):
     """
     A new reusable OAuth 2.0 client credential set. Attach it to a webhook by passing the returned id as that webhook's `webhookOauthId`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once.
     """ # noqa: E501
@@ -33,9 +33,9 @@ class CreateWebhookOAuthRequest(BaseModel):
     client_secret: Annotated[str, Field(min_length=1, strict=True, max_length=480)] = Field(description="OAuth client secret. Write-only — never returned. Limited to 480 bytes UTF-8 encoded. With `client_secret_jwt` it signs the assertion rather than being sent.", alias="clientSecret")
     url: Annotated[str, Field(strict=True, max_length=2048)] = Field(description="Token endpoint URL. HTTPS on port 443 only, and the host must resolve publicly — localhost and private, link-local or loopback addresses are rejected.")
     auth_method: Optional[StrictStr] = Field(default='client_secret_basic', description="How the client credentials reach the token endpoint. `client_secret_basic` uses an HTTP Basic header, `client_secret_post` uses form fields in the body, and `client_secret_jwt` sends a JWT assertion signed with the secret, so the secret itself is never transmitted. Defaults to `client_secret_basic`.", alias="authMethod")
-    custom_jwt_claims: Optional[Dict[str, Any]] = Field(default=None, description="Extra claims for the JWT assertion. Used only when `authMethod` is `client_secret_jwt`. The usual one to set is `aud`, which defaults to the token endpoint URL; some authorization servers expect their own identifier instead. A value may be any JSON type except `null` — `null` is reserved for deleting a claim on update. `iss`, `sub`, `jti`, `iat` and `exp` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the claim names. On update this merges claim by claim rather than replacing — see `WebhookOAuthCustomJwtClaimsUpdate`.", alias="customJwtClaims")
-    custom_body_params: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra parameters for the token request body — `scope` most commonly, sometimes `audience` or `resource`. Applies to every authentication method. Values must be strings, because the token request body is form-encoded rather than JSON. An empty string is allowed. `grant_type`, `client_id`, `client_secret`, `client_assertion` and `client_assertion_type` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the parameter names. On update this merges key by key rather than replacing — see `WebhookOAuthCustomBodyParamsUpdate`.", alias="customBodyParams")
-    custom_headers: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra HTTP headers for **the token request to your authorization server** — not for the webhook delivery, which has its own separate `customHeaders`. A gateway API key is the usual case. Applies to every authentication method. Values must be strings; an empty string is allowed. Names are matched case-insensitively, so two names differing only in case are a duplicate. Names are stored and returned lowercased, so `X-Api-Key` comes back as `x-api-key`. `Content-Type`, `Authorization`, `Content-Length` and `Host` are set by Fireblocks and cannot be overridden. The whole object must be under 16 KB. Values are write-only; responses return only the header names. On update this merges name by name rather than replacing — see `WebhookOAuthCustomHeadersUpdate`.", alias="customHeaders")
+    custom_jwt_claims: Optional[Dict[str, Any]] = Field(default=None, description="Extra claims for the JWT assertion. Used only when `authMethod` is `client_secret_jwt`. The usual one to set is `aud`, which defaults to the token endpoint URL; some authorization servers expect their own identifier instead. A value may be any JSON type except `null` — `null` is reserved for deleting a claim on update. `iss`, `sub`, `jti`, `iat` and `exp` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the claim names. On update this merges claim by claim rather than replacing — see `WebhookOauthCustomJwtClaimsUpdate`.", alias="customJwtClaims")
+    custom_body_params: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra parameters for the token request body — `scope` most commonly, sometimes `audience` or `resource`. Applies to every authentication method. Values must be strings, because the token request body is form-encoded rather than JSON. An empty string is allowed. `grant_type`, `client_id`, `client_secret`, `client_assertion` and `client_assertion_type` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the parameter names. On update this merges key by key rather than replacing — see `WebhookOauthCustomBodyParamsUpdate`.", alias="customBodyParams")
+    custom_headers: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra HTTP headers for **the token request to your authorization server** — not for the webhook delivery, which has its own separate `customHeaders`. A gateway API key is the usual case. Applies to every authentication method. Values must be strings; an empty string is allowed. Names are matched case-insensitively, so two names differing only in case are a duplicate. Names are stored and returned lowercased, so `X-Api-Key` comes back as `x-api-key`. `Content-Type`, `Content-Length` and `Host` are set by Fireblocks and cannot be overridden. `Authorization` is not sent when `authMethod` is `client_secret_basic`. Values have no length limit of their own; the whole object must be under 16 KB when serialized as UTF-8. Values are write-only; responses return only the header names. On update this merges name by name rather than replacing — see `WebhookOauthCustomHeadersUpdate`.", alias="customHeaders")
     mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="PEM-encoded client certificate for mTLS when fetching tokens. Must be a valid X.509 certificate inside its validity window.", alias="mtlsClientSignedCert")
     __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "mtlsClientSignedCert"]
 
@@ -64,7 +64,7 @@ class CreateWebhookOAuthRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateWebhookOAuthRequest from a JSON string"""
+        """Create an instance of CreateWebhookOauthRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -104,7 +104,7 @@ class CreateWebhookOAuthRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateWebhookOAuthRequest from a dict"""
+        """Create an instance of CreateWebhookOauthRequest from a dict"""
         if obj is None:
             return None
 

@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.update_webhook_o_auth_request import UpdateWebhookOAuthRequest
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 
 
-class TestUpdateWebhookOAuthRequest(unittest.TestCase):
-    """UpdateWebhookOAuthRequest unit test stubs"""
+class TestWebhookOauthCredentials(unittest.TestCase):
+    """WebhookOauthCredentials unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,35 +26,44 @@ class TestUpdateWebhookOAuthRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> UpdateWebhookOAuthRequest:
-        """Test UpdateWebhookOAuthRequest
+    def make_instance(self, include_optional) -> WebhookOauthCredentials:
+        """Test WebhookOauthCredentials
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `UpdateWebhookOAuthRequest`
+        # uncomment below to create an instance of `WebhookOauthCredentials`
         """
-        model = UpdateWebhookOAuthRequest()
+        model = WebhookOauthCredentials()
         if include_optional:
-            return UpdateWebhookOAuthRequest(
+            return WebhookOauthCredentials(
+                id = '123e4567-e89b-12d3-a456-426614174000',
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
-                client_secret = 'my-new-client-secret',
                 url = 'https://auth.example.com/oauth/token',
-                auth_method = 'client_secret_jwt',
-                custom_jwt_claims = {"aud":"https://auth.example.com","resource":null},
-                custom_body_params = {"scope":"payments.read payments.write","audience":null},
-                custom_headers = {"x-api-key":"gateway-key","x-tenant":null},
+                auth_method = 'client_secret_basic',
+                custom_jwt_claims = ["aud","resource"],
+                custom_body_params = ["scope"],
+                custom_headers = ["X-Api-Key"],
                 mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
------END CERTIFICATE-----'
+-----END CERTIFICATE-----',
+                created_at = 1625097600000,
+                updated_at = 1625097600000
             )
         else:
-            return UpdateWebhookOAuthRequest(
+            return WebhookOauthCredentials(
+                id = '123e4567-e89b-12d3-a456-426614174000',
+                name = 'Production treasury gateway',
+                client_id = 'my-client-id',
+                url = 'https://auth.example.com/oauth/token',
+                auth_method = 'client_secret_basic',
+                created_at = 1625097600000,
+                updated_at = 1625097600000,
         )
         """
 
-    def testUpdateWebhookOAuthRequest(self):
-        """Test UpdateWebhookOAuthRequest"""
+    def testWebhookOauthCredentials(self):
+        """Test WebhookOauthCredentials"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -18,28 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
+from fireblocks.models.added_connected_account_item import AddedConnectedAccountItem
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WebhookOAuth(BaseModel):
+class UpdateConnectedAccountCredentialsResponse(BaseModel):
     """
-    OAuth 2.0 client credentials configuration for the webhook. When set, the webhook dispatcher fetches a bearer token from the configured token endpoint before each delivery and attaches it as `Authorization: Bearer {token}`. Send `null` to remove OAuth configuration entirely.
+    UpdateConnectedAccountCredentialsResponse
     """ # noqa: E501
-    client_id: Annotated[str, Field(strict=True, max_length=255)] = Field(description="OAuth client ID used to authenticate with the token endpoint.", alias="clientId")
-    client_secret: Annotated[str, Field(strict=True, max_length=480)] = Field(description="OAuth client secret. Write-only — never returned in responses.", alias="clientSecret")
-    url: Annotated[str, Field(strict=True, max_length=2048)] = Field(description="Token endpoint URL. Must be HTTPS.")
-    mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="Signed client certificate PEM used for mTLS when connecting to the token endpoint. Same format as the webhook mTLS certificate. Send `null` to remove.", alias="mtlsClientSignedCert")
-    __properties: ClassVar[List[str]] = ["clientId", "clientSecret", "url", "mtlsClientSignedCert"]
-
-    @field_validator('url')
-    def url_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^https:\/\/", value):
-            raise ValueError(r"must validate the regular expression /^https:\/\//")
-        return value
+    accounts: List[AddedConnectedAccountItem] = Field(description="The account whose credentials are pending update (status WAITING_FOR_APPROVAL). Old credentials stay live until the change is approved.")
+    __properties: ClassVar[List[str]] = ["accounts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +49,7 @@ class WebhookOAuth(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WebhookOAuth from a JSON string"""
+        """Create an instance of UpdateConnectedAccountCredentialsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,16 +70,18 @@ class WebhookOAuth(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if mtls_client_signed_cert (nullable) is None
-        # and model_fields_set contains the field
-        if self.mtls_client_signed_cert is None and "mtls_client_signed_cert" in self.model_fields_set:
-            _dict['mtlsClientSignedCert'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in accounts (list)
+        _items = []
+        if self.accounts:
+            for _item_accounts in self.accounts:
+                if _item_accounts:
+                    _items.append(_item_accounts.to_dict())
+            _dict['accounts'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WebhookOAuth from a dict"""
+        """Create an instance of UpdateConnectedAccountCredentialsResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,10 +89,7 @@ class WebhookOAuth(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "clientId": obj.get("clientId"),
-            "clientSecret": obj.get("clientSecret"),
-            "url": obj.get("url"),
-            "mtlsClientSignedCert": obj.get("mtlsClientSignedCert")
+            "accounts": [AddedConnectedAccountItem.from_dict(_item) for _item in obj["accounts"]] if obj.get("accounts") is not None else None
         })
         return _obj
 

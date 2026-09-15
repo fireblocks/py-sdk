@@ -60,6 +60,8 @@ class WebhookEvent(str, Enum):
     EXCHANGE_ACCOUNT_DOT_CONNECTED = 'exchange_account.connected'
     FIAT_ACCOUNT_DOT_CONNECTED = 'fiat_account.connected'
     CONNECTED_ACCOUNT_DOT_CONNECTED = 'connected_account.connected'
+    EXCHANGE_ACCOUNT_DOT_CREDENTIALS_REPLACED = 'exchange_account.credentials_replaced'
+    CONNECTED_ACCOUNT_DOT_CREDENTIALS_REPLACED = 'connected_account.credentials_replaced'
     TICKET_DOT_CREATED = 'ticket.created'
     TICKET_DOT_SUBMITTED = 'ticket.submitted'
     TICKET_DOT_EXPIRED = 'ticket.expired'

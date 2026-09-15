@@ -18,19 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
+from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WebhookOAuthResponse(BaseModel):
+class UpdateConnectedAccountCredentialsRequest(BaseModel):
     """
-    OAuth 2.0 client credentials configuration for the webhook. Present only when OAuth is configured. The `clientSecret` is write-only and is never returned.
+    UpdateConnectedAccountCredentialsRequest
     """ # noqa: E501
-    client_id: StrictStr = Field(description="OAuth client ID used to authenticate with the token endpoint.", alias="clientId")
-    url: StrictStr = Field(description="Token endpoint URL.")
-    mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="Signed client certificate PEM used for mTLS when connecting to the token endpoint.", alias="mtlsClientSignedCert")
-    __properties: ClassVar[List[str]] = ["clientId", "url", "mtlsClientSignedCert"]
+    creds: Union[StrictBytes, StrictStr] = Field(description="Base64-encoded RSA-encrypted credential blob (the new secret). Encrypt using the public key from GET /connected_accounts/credentials/public_key.")
+    api_key: StrictStr = Field(description="The new account-level API key. Mandatory for credential update.", alias="apiKey")
+    __properties: ClassVar[List[str]] = ["creds", "apiKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class WebhookOAuthResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WebhookOAuthResponse from a JSON string"""
+        """Create an instance of UpdateConnectedAccountCredentialsRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,16 +70,11 @@ class WebhookOAuthResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if mtls_client_signed_cert (nullable) is None
-        # and model_fields_set contains the field
-        if self.mtls_client_signed_cert is None and "mtls_client_signed_cert" in self.model_fields_set:
-            _dict['mtlsClientSignedCert'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WebhookOAuthResponse from a dict"""
+        """Create an instance of UpdateConnectedAccountCredentialsRequest from a dict"""
         if obj is None:
             return None
 
@@ -88,9 +82,8 @@ class WebhookOAuthResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "clientId": obj.get("clientId"),
-            "url": obj.get("url"),
-            "mtlsClientSignedCert": obj.get("mtlsClientSignedCert")
+            "creds": obj.get("creds"),
+            "apiKey": obj.get("apiKey")
         })
         return _obj
 

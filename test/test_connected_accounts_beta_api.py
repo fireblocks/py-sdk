@@ -110,6 +110,13 @@ class TestConnectedAccountsBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_update_connected_account_credentials(self) -> None:
+        """Test case for update_connected_account_credentials
+
+        Update connected account credentials
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

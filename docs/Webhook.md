@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **created_at** | **int** | The date and time the webhook was created in milliseconds | 
 **updated_at** | **int** | The date and time the webhook was last updated in milliseconds | 
 **mtls** | [**WebhookMtls**](WebhookMtls.md) |  | [optional] 
-**oauth** | [**WebhookOAuthResponse**](WebhookOAuthResponse.md) |  | [optional] 
+**webhook_oauth_id** | **str** | The id of the OAuth credentials this webhook authenticates with. Absent when the webhook does not use OAuth. Read the credentials themselves from &#x60;/v1/webhooks_settings/oauth/{webhookOauthId}&#x60;. | [optional] 
 **custom_headers** | **List[str]** | Names of the custom headers configured for this webhook. Header values are never returned. | [optional] 
 
 ## Example

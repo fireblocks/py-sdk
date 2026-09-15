@@ -21,9 +21,9 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from fireblocks.models.create_webhook_o_auth_request import CreateWebhookOAuthRequest
+from fireblocks.models.create_webhook_oauth_request import CreateWebhookOauthRequest
 from fireblocks.models.create_webhook_request import CreateWebhookRequest
-from fireblocks.models.delete_webhook_o_auth_response import DeleteWebhookOAuthResponse
+from fireblocks.models.delete_webhook_oauth_response import DeleteWebhookOauthResponse
 from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
 from fireblocks.models.notification_paginated_response import NotificationPaginatedResponse
 from fireblocks.models.notification_status import NotificationStatus
@@ -34,13 +34,13 @@ from fireblocks.models.resend_failed_notifications_job_status_response import Re
 from fireblocks.models.resend_failed_notifications_request import ResendFailedNotificationsRequest
 from fireblocks.models.resend_failed_notifications_response import ResendFailedNotificationsResponse
 from fireblocks.models.resend_notifications_by_resource_id_request import ResendNotificationsByResourceIdRequest
-from fireblocks.models.update_webhook_o_auth_request import UpdateWebhookOAuthRequest
+from fireblocks.models.update_webhook_oauth_request import UpdateWebhookOauthRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
 from fireblocks.models.webhook import Webhook
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_metric import WebhookMetric
 from fireblocks.models.webhook_mtls_csr_response import WebhookMtlsCsrResponse
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 from fireblocks.models.webhook_paginated_response import WebhookPaginatedResponse
 
 from fireblocks.api_client import ApiClient, RequestSerialized
@@ -211,9 +211,9 @@ class WebhooksV2Api:
 
 
     @validate_call
-    def create_webhook_o_auth(
+    def create_webhook_oauth(
         self,
-        create_webhook_o_auth_request: CreateWebhookOAuthRequest,
+        create_webhook_oauth_request: CreateWebhookOauthRequest,
         idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
         _request_timeout: Union[
             None,
@@ -227,13 +227,13 @@ class WebhooksV2Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[WebhookOAuthCredentials]]:
+    ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Create OAuth credentials
 
         Creates a reusable OAuth client credential set. Attach it to a webhook by passing the returned id as that webhook's `webhookOauthId`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. The client secret is write-only and is never returned.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
 
-        :param create_webhook_o_auth_request: (required)
-        :type create_webhook_o_auth_request: CreateWebhookOAuthRequest
+        :param create_webhook_oauth_request: (required)
+        :type create_webhook_oauth_request: CreateWebhookOauthRequest
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str
         :param _request_timeout: timeout setting for this request. If one
@@ -259,8 +259,8 @@ class WebhooksV2Api:
         """ # noqa: E501
 
 
-        _param = self._create_webhook_o_auth_serialize(
-            create_webhook_o_auth_request=create_webhook_o_auth_request,
+        _param = self._create_webhook_oauth_serialize(
+            create_webhook_oauth_request=create_webhook_oauth_request,
             idempotency_key=idempotency_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -269,7 +269,7 @@ class WebhooksV2Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "WebhookOAuthCredentials",
+            '201': "WebhookOauthCredentials",
             'default': "ErrorSchema",
         }
 
@@ -279,9 +279,9 @@ class WebhooksV2Api:
             _response_types_map=_response_types_map,
         )
 
-    def _create_webhook_o_auth_serialize(
+    def _create_webhook_oauth_serialize(
         self,
-        create_webhook_o_auth_request,
+        create_webhook_oauth_request,
         idempotency_key,
         _request_auth,
         _content_type,
@@ -310,8 +310,8 @@ class WebhooksV2Api:
             _header_params['Idempotency-Key'] = idempotency_key
         # process the form parameters
         # process the body parameter
-        if create_webhook_o_auth_request is not None:
-            _body_params = create_webhook_o_auth_request
+        if create_webhook_oauth_request is not None:
+            _body_params = create_webhook_oauth_request
 
 
         # set the HTTP header `Accept`
@@ -488,7 +488,7 @@ class WebhooksV2Api:
 
 
     @validate_call
-    def delete_webhook_o_auth(
+    def delete_webhook_oauth(
         self,
         webhook_oauth_id: Annotated[StrictStr, Field(description="The unique identifier of the OAuth credentials")],
         force_delete: Annotated[Optional[StrictBool], Field(description="Delete the credentials even while webhooks still reference them, detaching those webhooks instead of refusing. Leave it unset, or `false`, to get a `409 Conflict` whenever anything still references the credentials.")] = None,
@@ -504,7 +504,7 @@ class WebhooksV2Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[DeleteWebhookOAuthResponse]]:
+    ) -> Future[ApiResponse[DeleteWebhookOauthResponse]]:
         """Delete OAuth credentials
 
         Deletes an OAuth credential set. By default the delete is refused while the credentials are still in use: if any webhook references them, nothing is deleted and the request fails with `409 Conflict`, naming the reason and listing the ids of the referencing webhooks. This protects a shared credential set from being removed out from under the webhooks that depend on it, since several webhooks may reference the same one.  Pass `forceDelete=true` to delete anyway. That detaches every referencing webhook — it clears each webhook's `webhookOauthId`, it does **not** delete the webhook — then deletes the credential set and returns the deleted resource together with `detachedWebhookIds`. The detached webhooks keep delivering notifications, but without an `Authorization` header, so their endpoints will see unauthenticated deliveries from that point on.  When nothing references the credentials the delete succeeds either way, and `detachedWebhookIds` comes back empty.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
@@ -535,9 +535,9 @@ class WebhooksV2Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="delete_webhook_o_auth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
+        validate_not_empty_string(function_name="delete_webhook_oauth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
 
-        _param = self._delete_webhook_o_auth_serialize(
+        _param = self._delete_webhook_oauth_serialize(
             webhook_oauth_id=webhook_oauth_id,
             force_delete=force_delete,
             _request_auth=_request_auth,
@@ -547,7 +547,7 @@ class WebhooksV2Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DeleteWebhookOAuthResponse",
+            '200': "DeleteWebhookOauthResponse",
             '409': "ErrorSchema",
             'default': "ErrorSchema",
         }
@@ -558,7 +558,7 @@ class WebhooksV2Api:
             _response_types_map=_response_types_map,
         )
 
-    def _delete_webhook_o_auth_serialize(
+    def _delete_webhook_oauth_serialize(
         self,
         webhook_oauth_id,
         force_delete,
@@ -1801,7 +1801,7 @@ class WebhooksV2Api:
 
 
     @validate_call
-    def get_webhook_o_auth(
+    def get_webhook_oauth(
         self,
         webhook_oauth_id: Annotated[StrictStr, Field(description="The unique identifier of the OAuth credentials")],
         _request_timeout: Union[
@@ -1816,7 +1816,7 @@ class WebhooksV2Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[WebhookOAuthCredentials]]:
+    ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Get OAuth credentials by id
 
         Retrieve an OAuth credential set by its id. The client secret is never returned. 
@@ -1845,9 +1845,9 @@ class WebhooksV2Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="get_webhook_o_auth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
+        validate_not_empty_string(function_name="get_webhook_oauth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
 
-        _param = self._get_webhook_o_auth_serialize(
+        _param = self._get_webhook_oauth_serialize(
             webhook_oauth_id=webhook_oauth_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1856,7 +1856,7 @@ class WebhooksV2Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "WebhookOAuthCredentials",
+            '200': "WebhookOauthCredentials",
             'default': "ErrorSchema",
         }
 
@@ -1866,7 +1866,7 @@ class WebhooksV2Api:
             _response_types_map=_response_types_map,
         )
 
-    def _get_webhook_o_auth_serialize(
+    def _get_webhook_oauth_serialize(
         self,
         webhook_oauth_id,
         _request_auth,
@@ -1930,7 +1930,7 @@ class WebhooksV2Api:
 
 
     @validate_call
-    def get_webhook_o_auths(
+    def get_webhook_oauths(
         self,
         _request_timeout: Union[
             None,
@@ -1944,7 +1944,7 @@ class WebhooksV2Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[List[WebhookOAuthCredentials]]]:
+    ) -> Future[ApiResponse[List[WebhookOauthCredentials]]]:
         """Get all OAuth credentials
 
         Lists every OAuth credential set for the workspace. Client secrets are never returned. 
@@ -1972,7 +1972,7 @@ class WebhooksV2Api:
         """ # noqa: E501
 
 
-        _param = self._get_webhook_o_auths_serialize(
+        _param = self._get_webhook_oauths_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1980,7 +1980,7 @@ class WebhooksV2Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WebhookOAuthCredentials]",
+            '200': "List[WebhookOauthCredentials]",
             'default': "ErrorSchema",
         }
 
@@ -1990,7 +1990,7 @@ class WebhooksV2Api:
             _response_types_map=_response_types_map,
         )
 
-    def _get_webhook_o_auths_serialize(
+    def _get_webhook_oauths_serialize(
         self,
         _request_auth,
         _content_type,
@@ -2962,10 +2962,10 @@ class WebhooksV2Api:
 
 
     @validate_call
-    def update_webhook_o_auth(
+    def update_webhook_oauth(
         self,
         webhook_oauth_id: Annotated[StrictStr, Field(description="The unique identifier of the OAuth credentials")],
-        update_webhook_o_auth_request: UpdateWebhookOAuthRequest,
+        update_webhook_oauth_request: UpdateWebhookOauthRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2978,15 +2978,15 @@ class WebhooksV2Api:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[WebhookOAuthCredentials]]:
+    ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Update OAuth credentials
 
         Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.  `customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Since a `null` inside a map is the delete mechanism, none of the three accepts `null` for the whole field — `customJwtClaims: null`, `customBodyParams: null` or `customHeaders: null` is rejected with a `400` rather than ignored. Clear a map by listing each of its keys with a `null` value. Because `null` is spent on deletion, a claim cannot be set to JSON `null` either, on this endpoint or on create. `mtlsClientSignedCert` is a scalar rather than a map, so `null` there does remove it.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
 
         :param webhook_oauth_id: The unique identifier of the OAuth credentials (required)
         :type webhook_oauth_id: str
-        :param update_webhook_o_auth_request: (required)
-        :type update_webhook_o_auth_request: UpdateWebhookOAuthRequest
+        :param update_webhook_oauth_request: (required)
+        :type update_webhook_oauth_request: UpdateWebhookOauthRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3009,11 +3009,11 @@ class WebhooksV2Api:
         :return: Returns the result object.
         """ # noqa: E501
 
-        validate_not_empty_string(function_name="update_webhook_o_auth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
+        validate_not_empty_string(function_name="update_webhook_oauth", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
 
-        _param = self._update_webhook_o_auth_serialize(
+        _param = self._update_webhook_oauth_serialize(
             webhook_oauth_id=webhook_oauth_id,
-            update_webhook_o_auth_request=update_webhook_o_auth_request,
+            update_webhook_oauth_request=update_webhook_oauth_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3021,7 +3021,7 @@ class WebhooksV2Api:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "WebhookOAuthCredentials",
+            '200': "WebhookOauthCredentials",
             'default': "ErrorSchema",
         }
 
@@ -3031,10 +3031,10 @@ class WebhooksV2Api:
             _response_types_map=_response_types_map,
         )
 
-    def _update_webhook_o_auth_serialize(
+    def _update_webhook_oauth_serialize(
         self,
         webhook_oauth_id,
-        update_webhook_o_auth_request,
+        update_webhook_oauth_request,
         _request_auth,
         _content_type,
         _headers,
@@ -3062,8 +3062,8 @@ class WebhooksV2Api:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if update_webhook_o_auth_request is not None:
-            _body_params = update_webhook_o_auth_request
+        if update_webhook_oauth_request is not None:
+            _body_params = update_webhook_oauth_request
 
 
         # set the HTTP header `Accept`

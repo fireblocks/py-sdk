@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_connected_accounts_credentials_public_key**](ConnectedAccountsBetaApi.md#get_connected_accounts_credentials_public_key) | **GET** /connected_accounts/credentials/public_key | Get public key to encrypt connected account credentials
 [**rename_connected_account**](ConnectedAccountsBetaApi.md#rename_connected_account) | **POST** /connected_accounts/{accountId}/rename | Rename Connected Account
 [**sync_connected_account_allowlist**](ConnectedAccountsBetaApi.md#sync_connected_account_allowlist) | **POST** /connected_accounts/{accountId}/allowlist/sync | Sync allowlist for connected account
+[**update_connected_account_credentials**](ConnectedAccountsBetaApi.md#update_connected_account_credentials) | **POST** /connected_accounts/{accountId}/credentials | Update connected account credentials
 
 
 # **add_connected_account**
@@ -993,6 +994,106 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Sync request accepted and processing |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_connected_account_credentials**
+> UpdateConnectedAccountCredentialsResponse update_connected_account_credentials(account_id, update_connected_account_credentials_request, idempotency_key=idempotency_key)
+
+Update connected account credentials
+
+Replace the API credentials (secret + API key) of a connected account.
+
+Credentials belong to an API key, which can back a single account or an entire hierarchy.
+Updating them affects all accounts sharing that key, so the endpoint returns an array of modified accounts.
+
+The `creds` field must be a Base64-encoded RSA-encrypted credential blob; use
+`GET /connected_accounts/credentials/public_key` to retrieve the public key for encryption.
+Both `creds` and `apiKey` are mandatory.
+
+Validation against the exchange is synchronous, but the update itself is **pending mobile
+approval** — the existing credentials stay live until the change is approved, so none of the
+affected accounts are disconnected in the meantime.
+
+Endpoint Permission: Admin, Non-Signing Admin.
+
+**Note:** This endpoint is currently in beta and might be subject to changes.
+
+
+### Example
+
+
+```python
+from fireblocks.models.update_connected_account_credentials_request import UpdateConnectedAccountCredentialsRequest
+from fireblocks.models.update_connected_account_credentials_response import UpdateConnectedAccountCredentialsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    account_id = '2c96e3aa-07ca-4524-a026-75579d25e24a' # str | The unique identifier of the connected account whose API key credentials are being replaced.
+    update_connected_account_credentials_request = fireblocks.UpdateConnectedAccountCredentialsRequest() # UpdateConnectedAccountCredentialsRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Update connected account credentials
+        api_response = fireblocks.connected_accounts_beta.update_connected_account_credentials(account_id, update_connected_account_credentials_request, idempotency_key=idempotency_key).result()
+        print("The response of ConnectedAccountsBetaApi->update_connected_account_credentials:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectedAccountsBetaApi->update_connected_account_credentials: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_id** | **str**| The unique identifier of the connected account whose API key credentials are being replaced. | 
+ **update_connected_account_credentials_request** | [**UpdateConnectedAccountCredentialsRequest**](UpdateConnectedAccountCredentialsRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**UpdateConnectedAccountCredentialsResponse**](UpdateConnectedAccountCredentialsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Credential update initiated (pending approval). |  * X-Request-ID -  <br>  |
+**400** | Bad request — credentials cannot be updated on a sub-account, or missing creds / apiKey. |  -  |
+**403** | Insufficient permissions, or feature not enabled for this tenant. |  -  |
+**404** | Connected account not found. |  -  |
+**409** | Account is not in an updatable state, or the credentials belong to a different account. |  -  |
+**422** | The provided credentials were rejected by the exchange. |  -  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

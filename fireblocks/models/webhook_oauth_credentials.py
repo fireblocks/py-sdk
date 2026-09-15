@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WebhookOAuthCredentials(BaseModel):
+class WebhookOauthCredentials(BaseModel):
     """
     A stored OAuth 2.0 client credential set, referenced by webhooks through their `webhookOauthId`. When a webhook references one, the dispatcher fetches a bearer token from `url` before each delivery and attaches it as `Authorization: Bearer {token}`. Secret material is never returned: `clientSecret` is absent from this schema entirely, and the `customJwtClaims`, `customBodyParams` and `customHeaders` fields are reduced to their names, without the configured values.
     """ # noqa: E501
@@ -58,7 +58,7 @@ class WebhookOAuthCredentials(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WebhookOAuthCredentials from a JSON string"""
+        """Create an instance of WebhookOauthCredentials from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +83,7 @@ class WebhookOAuthCredentials(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WebhookOAuthCredentials from a dict"""
+        """Create an instance of WebhookOauthCredentials from a dict"""
         if obj is None:
             return None
 

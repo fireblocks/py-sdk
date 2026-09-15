@@ -18,12 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_mtls import WebhookMtls
-from fireblocks.models.webhook_o_auth import WebhookOAuth
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,9 +35,9 @@ class CreateWebhookRequest(BaseModel):
     events: List[WebhookEvent] = Field(description="event types the webhook will subscribe to")
     enabled: Optional[StrictBool] = Field(default=True, description="The status of the webhook. If false, the webhook will not receive notifications.")
     mtls: Optional[WebhookMtls] = None
-    oauth: Optional[WebhookOAuth] = None
-    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="Custom HTTP headers attached to every notification delivered by this webhook. A value is a string, sent as one header line, or an array of strings, sent as one header line per element under the same name. `Cookie` accepts only a string. An empty array is rejected — leave the name out instead. At most 10 header lines in total, counted per array element rather than per name. Names must be valid HTTP header tokens, are case-insensitive, and are at most 128 characters. Values are at most 1024 characters and may be empty. Reserved names: `Host`, `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Connection`, `User-Agent`, `Accept`, `Accept-Encoding`, `Fireblocks-Signature`, `Fireblocks-Webhook-Signature`, `Authorization`. `Authorization` is reserved whether or not this webhook has OAuth credentials attached, because Fireblocks sets it once it does. Values are write-only; responses return only the header names.", alias="customHeaders")
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "oauth", "customHeaders"]
+    webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with, from `/v1/webhooks_settings/oauth`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. Send `null` to stop using OAuth for this webhook.", alias="webhookOauthId")
+    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="Custom HTTP headers attached to every notification delivered by this webhook. A value is a string, sent as one header line, or an array of strings, sent as one header line per element under the same name. `Cookie` accepts only a string. An empty array is rejected — leave the name out instead. At most 10 header lines in total, counted per array element rather than per name. Names must be valid HTTP header tokens, are case-insensitive, and are at most 128 characters. A value may be empty and has no length limit of its own; the whole object must be under 16 KB when serialized as UTF-8. A value that large may still be refused by your own endpoint, since web servers commonly cap the whole request header block at around 8 KB. Reserved names: `Host`, `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Connection`, `User-Agent`, `Accept`, `Accept-Encoding`, `Fireblocks-Signature`, `Fireblocks-Webhook-Signature`. When this webhook has OAuth credentials attached, an `Authorization` value you set and the bearer token are both sent as separate header lines. Values are write-only; responses return only the header names.", alias="customHeaders")
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "webhookOauthId", "customHeaders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,18 +81,15 @@ class CreateWebhookRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mtls
         if self.mtls:
             _dict['mtls'] = self.mtls.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of oauth
-        if self.oauth:
-            _dict['oauth'] = self.oauth.to_dict()
         # set to None if mtls (nullable) is None
         # and model_fields_set contains the field
         if self.mtls is None and "mtls" in self.model_fields_set:
             _dict['mtls'] = None
 
-        # set to None if oauth (nullable) is None
+        # set to None if webhook_oauth_id (nullable) is None
         # and model_fields_set contains the field
-        if self.oauth is None and "oauth" in self.model_fields_set:
-            _dict['oauth'] = None
+        if self.webhook_oauth_id is None and "webhook_oauth_id" in self.model_fields_set:
+            _dict['webhookOauthId'] = None
 
         return _dict
 
@@ -112,7 +108,7 @@ class CreateWebhookRequest(BaseModel):
             "events": obj.get("events"),
             "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
             "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None,
-            "oauth": WebhookOAuth.from_dict(obj["oauth"]) if obj.get("oauth") is not None else None,
+            "webhookOauthId": obj.get("webhookOauthId"),
             "customHeaders": obj.get("customHeaders")
         })
         return _obj

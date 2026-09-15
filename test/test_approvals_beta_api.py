@@ -40,6 +40,13 @@ class TestApprovalsBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_reject_approval(self) -> None:
+        """Test case for reject_approval
+
+        Reject an approval request
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

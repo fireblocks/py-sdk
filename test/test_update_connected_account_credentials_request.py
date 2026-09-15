@@ -14,11 +14,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.webhook_o_auth import WebhookOAuth
+from fireblocks.models.update_connected_account_credentials_request import (
+    UpdateConnectedAccountCredentialsRequest,
+)
 
 
-class TestWebhookOAuth(unittest.TestCase):
-    """WebhookOAuth unit test stubs"""
+class TestUpdateConnectedAccountCredentialsRequest(unittest.TestCase):
+    """UpdateConnectedAccountCredentialsRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,33 +28,30 @@ class TestWebhookOAuth(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> WebhookOAuth:
-        """Test WebhookOAuth
+    def make_instance(
+        self, include_optional
+    ) -> UpdateConnectedAccountCredentialsRequest:
+        """Test UpdateConnectedAccountCredentialsRequest
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `WebhookOAuth`
+        # uncomment below to create an instance of `UpdateConnectedAccountCredentialsRequest`
         """
-        model = WebhookOAuth()
+        model = UpdateConnectedAccountCredentialsRequest()
         if include_optional:
-            return WebhookOAuth(
-                client_id = 'my-client-id',
-                client_secret = 'my-client-secret',
-                url = 'https://auth.example.com/oauth/token',
-                mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----'
+            return UpdateConnectedAccountCredentialsRequest(
+                creds = '[B@1cad7fc4',
+                api_key = 'api_key_new_abc123'
             )
         else:
-            return WebhookOAuth(
-                client_id = 'my-client-id',
-                client_secret = 'my-client-secret',
-                url = 'https://auth.example.com/oauth/token',
+            return UpdateConnectedAccountCredentialsRequest(
+                creds = '[B@1cad7fc4',
+                api_key = 'api_key_new_abc123',
         )
         """
 
-    def testWebhookOAuth(self):
-        """Test WebhookOAuth"""
+    def testUpdateConnectedAccountCredentialsRequest(self):
+        """Test UpdateConnectedAccountCredentialsRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

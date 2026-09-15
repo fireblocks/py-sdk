@@ -1,6 +1,6 @@
-# DeleteWebhookOAuthResponse
+# WebhookOauthCredentials
 
-The deleted OAuth credential set, plus the ids of any webhooks the delete detached from it. Webhooks are only detached by `forceDelete=true`; without it a delete is refused with `409` while anything still references the credentials.
+A stored OAuth 2.0 client credential set, referenced by webhooks through their `webhookOauthId`. When a webhook references one, the dispatcher fetches a bearer token from `url` before each delivery and attaches it as `Authorization: Bearer {token}`. Secret material is never returned: `clientSecret` is absent from this schema entirely, and the `customJwtClaims`, `customBodyParams` and `customHeaders` fields are reduced to their names, without the configured values.
 
 ## Properties
 
@@ -17,24 +17,23 @@ Name | Type | Description | Notes
 **mtls_client_signed_cert** | **str** | PEM-encoded client certificate used for mTLS when fetching OAuth tokens. | [optional] 
 **created_at** | **int** | The date and time the OAuth credentials were created, in milliseconds. | 
 **updated_at** | **int** | The date and time the OAuth credentials were last updated, in milliseconds. | 
-**detached_webhook_ids** | **List[str]** | Webhooks whose &#x60;webhookOauthId&#x60; was cleared. The webhooks themselves are not deleted and keep delivering, just without an &#x60;Authorization&#x60; header. Empty unless &#x60;forceDelete&#x3D;true&#x60; detached something. | 
 
 ## Example
 
 ```python
-from fireblocks.models.delete_webhook_o_auth_response import DeleteWebhookOAuthResponse
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of DeleteWebhookOAuthResponse from a JSON string
-delete_webhook_o_auth_response_instance = DeleteWebhookOAuthResponse.from_json(json)
+# create an instance of WebhookOauthCredentials from a JSON string
+webhook_oauth_credentials_instance = WebhookOauthCredentials.from_json(json)
 # print the JSON string representation of the object
-print(DeleteWebhookOAuthResponse.to_json())
+print(WebhookOauthCredentials.to_json())
 
 # convert the object into a dict
-delete_webhook_o_auth_response_dict = delete_webhook_o_auth_response_instance.to_dict()
-# create an instance of DeleteWebhookOAuthResponse from a dict
-delete_webhook_o_auth_response_from_dict = DeleteWebhookOAuthResponse.from_dict(delete_webhook_o_auth_response_dict)
+webhook_oauth_credentials_dict = webhook_oauth_credentials_instance.to_dict()
+# create an instance of WebhookOauthCredentials from a dict
+webhook_oauth_credentials_from_dict = WebhookOauthCredentials.from_dict(webhook_oauth_credentials_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

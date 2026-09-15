@@ -14,11 +14,13 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.webhook_o_auth_response import WebhookOAuthResponse
+from fireblocks.models.update_connected_account_credentials_response import (
+    UpdateConnectedAccountCredentialsResponse,
+)
 
 
-class TestWebhookOAuthResponse(unittest.TestCase):
-    """WebhookOAuthResponse unit test stubs"""
+class TestUpdateConnectedAccountCredentialsResponse(unittest.TestCase):
+    """UpdateConnectedAccountCredentialsResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,31 +28,28 @@ class TestWebhookOAuthResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> WebhookOAuthResponse:
-        """Test WebhookOAuthResponse
+    def make_instance(
+        self, include_optional
+    ) -> UpdateConnectedAccountCredentialsResponse:
+        """Test UpdateConnectedAccountCredentialsResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `WebhookOAuthResponse`
+        # uncomment below to create an instance of `UpdateConnectedAccountCredentialsResponse`
         """
-        model = WebhookOAuthResponse()
+        model = UpdateConnectedAccountCredentialsResponse()
         if include_optional:
-            return WebhookOAuthResponse(
-                client_id = 'my-client-id',
-                url = 'https://auth.example.com/oauth/token',
-                mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----'
+            return UpdateConnectedAccountCredentialsResponse(
+                accounts = [{"accountId":"acc-789012","name":"My Exchange Account","status":"WAITING_FOR_APPROVAL"}]
             )
         else:
-            return WebhookOAuthResponse(
-                client_id = 'my-client-id',
-                url = 'https://auth.example.com/oauth/token',
+            return UpdateConnectedAccountCredentialsResponse(
+                accounts = [{"accountId":"acc-789012","name":"My Exchange Account","status":"WAITING_FOR_APPROVAL"}],
         )
         """
 
-    def testWebhookOAuthResponse(self):
-        """Test WebhookOAuthResponse"""
+    def testUpdateConnectedAccountCredentialsResponse(self):
+        """Test UpdateConnectedAccountCredentialsResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

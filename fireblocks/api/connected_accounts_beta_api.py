@@ -34,6 +34,8 @@ from fireblocks.models.connected_single_account_response import ConnectedSingleA
 from fireblocks.models.get_connected_accounts_credentials_public_key_response import GetConnectedAccountsCredentialsPublicKeyResponse
 from fireblocks.models.rename_connected_account_request import RenameConnectedAccountRequest
 from fireblocks.models.rename_connected_account_response import RenameConnectedAccountResponse
+from fireblocks.models.update_connected_account_credentials_request import UpdateConnectedAccountCredentialsRequest
+from fireblocks.models.update_connected_account_credentials_response import UpdateConnectedAccountCredentialsResponse
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -1790,6 +1792,167 @@ class ConnectedAccountsBetaApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/connected_accounts/{accountId}/allowlist/sync',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_connected_account_credentials(
+        self,
+        account_id: Annotated[str, Field(min_length=1, strict=True, description="The unique identifier of the connected account whose API key credentials are being replaced.")],
+        update_connected_account_credentials_request: UpdateConnectedAccountCredentialsRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[UpdateConnectedAccountCredentialsResponse]]:
+        """Update connected account credentials
+
+        Replace the API credentials (secret + API key) of a connected account.  Credentials belong to an API key, which can back a single account or an entire hierarchy. Updating them affects all accounts sharing that key, so the endpoint returns an array of modified accounts.  The `creds` field must be a Base64-encoded RSA-encrypted credential blob; use `GET /connected_accounts/credentials/public_key` to retrieve the public key for encryption. Both `creds` and `apiKey` are mandatory.  Validation against the exchange is synchronous, but the update itself is **pending mobile approval** — the existing credentials stay live until the change is approved, so none of the affected accounts are disconnected in the meantime.  Endpoint Permission: Admin, Non-Signing Admin.  **Note:** This endpoint is currently in beta and might be subject to changes. 
+
+        :param account_id: The unique identifier of the connected account whose API key credentials are being replaced. (required)
+        :type account_id: str
+        :param update_connected_account_credentials_request: (required)
+        :type update_connected_account_credentials_request: UpdateConnectedAccountCredentialsRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_connected_account_credentials", param_name="account_id", param_value=account_id)
+
+        _param = self._update_connected_account_credentials_serialize(
+            account_id=account_id,
+            update_connected_account_credentials_request=update_connected_account_credentials_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "UpdateConnectedAccountCredentialsResponse",
+            '400': "ConnectedAccountErrorResponse",
+            '403': "ConnectedAccountErrorResponse",
+            '404': "ConnectedAccountErrorResponse",
+            '409': "ConnectedAccountErrorResponse",
+            '422': "ConnectedAccountErrorResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _update_connected_account_credentials_serialize(
+        self,
+        account_id,
+        update_connected_account_credentials_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if update_connected_account_credentials_request is not None:
+            _body_params = update_connected_account_credentials_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/connected_accounts/{accountId}/credentials',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

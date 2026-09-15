@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeleteWebhookOAuthResponse(BaseModel):
+class DeleteWebhookOauthResponse(BaseModel):
     """
     The deleted OAuth credential set, plus the ids of any webhooks the delete detached from it. Webhooks are only detached by `forceDelete=true`; without it a delete is refused with `409` while anything still references the credentials.
     """ # noqa: E501
@@ -59,7 +59,7 @@ class DeleteWebhookOAuthResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeleteWebhookOAuthResponse from a JSON string"""
+        """Create an instance of DeleteWebhookOauthResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +84,7 @@ class DeleteWebhookOAuthResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeleteWebhookOAuthResponse from a dict"""
+        """Create an instance of DeleteWebhookOauthResponse from a dict"""
         if obj is None:
             return None
 

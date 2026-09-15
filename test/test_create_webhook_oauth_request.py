@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.delete_webhook_o_auth_response import DeleteWebhookOAuthResponse
+from fireblocks.models.create_webhook_oauth_request import CreateWebhookOauthRequest
 
 
-class TestDeleteWebhookOAuthResponse(unittest.TestCase):
-    """DeleteWebhookOAuthResponse unit test stubs"""
+class TestCreateWebhookOauthRequest(unittest.TestCase):
+    """CreateWebhookOauthRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,46 +26,39 @@ class TestDeleteWebhookOAuthResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeleteWebhookOAuthResponse:
-        """Test DeleteWebhookOAuthResponse
+    def make_instance(self, include_optional) -> CreateWebhookOauthRequest:
+        """Test CreateWebhookOauthRequest
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `DeleteWebhookOAuthResponse`
+        # uncomment below to create an instance of `CreateWebhookOauthRequest`
         """
-        model = DeleteWebhookOAuthResponse()
+        model = CreateWebhookOauthRequest()
         if include_optional:
-            return DeleteWebhookOAuthResponse(
-                id = '123e4567-e89b-12d3-a456-426614174000',
+            return CreateWebhookOauthRequest(
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
+                client_secret = 'my-client-secret',
                 url = 'https://auth.example.com/oauth/token',
                 auth_method = 'client_secret_basic',
-                custom_jwt_claims = [aud, resource],
-                custom_body_params = [scope],
-                custom_headers = [X-Api-Key],
+                custom_jwt_claims = {"aud":"https://auth.example.com","email_verified":true},
+                custom_body_params = {"scope":"payments.read payments.write"},
+                custom_headers = {"x-api-key":"gateway-key"},
                 mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
------END CERTIFICATE-----',
-                created_at = 1625097600000,
-                updated_at = 1625097600000,
-                detached_webhook_ids = ["44fcead0-7053-4831-a53a-df7fb90d440f"]
+-----END CERTIFICATE-----'
             )
         else:
-            return DeleteWebhookOAuthResponse(
-                id = '123e4567-e89b-12d3-a456-426614174000',
+            return CreateWebhookOauthRequest(
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
+                client_secret = 'my-client-secret',
                 url = 'https://auth.example.com/oauth/token',
-                auth_method = 'client_secret_basic',
-                created_at = 1625097600000,
-                updated_at = 1625097600000,
-                detached_webhook_ids = ["44fcead0-7053-4831-a53a-df7fb90d440f"],
         )
         """
 
-    def testDeleteWebhookOAuthResponse(self):
-        """Test DeleteWebhookOAuthResponse"""
+    def testCreateWebhookOauthRequest(self):
+        """Test CreateWebhookOauthRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

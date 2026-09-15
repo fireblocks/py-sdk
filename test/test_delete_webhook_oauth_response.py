@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.delete_webhook_oauth_response import DeleteWebhookOauthResponse
 
 
-class TestWebhookOAuthCredentials(unittest.TestCase):
-    """WebhookOAuthCredentials unit test stubs"""
+class TestDeleteWebhookOauthResponse(unittest.TestCase):
+    """DeleteWebhookOauthResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,32 +26,33 @@ class TestWebhookOAuthCredentials(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> WebhookOAuthCredentials:
-        """Test WebhookOAuthCredentials
+    def make_instance(self, include_optional) -> DeleteWebhookOauthResponse:
+        """Test DeleteWebhookOauthResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `WebhookOAuthCredentials`
+        # uncomment below to create an instance of `DeleteWebhookOauthResponse`
         """
-        model = WebhookOAuthCredentials()
+        model = DeleteWebhookOauthResponse()
         if include_optional:
-            return WebhookOAuthCredentials(
+            return DeleteWebhookOauthResponse(
                 id = '123e4567-e89b-12d3-a456-426614174000',
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
                 url = 'https://auth.example.com/oauth/token',
                 auth_method = 'client_secret_basic',
-                custom_jwt_claims = ["aud","resource"],
-                custom_body_params = ["scope"],
-                custom_headers = ["X-Api-Key"],
+                custom_jwt_claims = [aud, resource],
+                custom_body_params = [scope],
+                custom_headers = [X-Api-Key],
                 mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----',
                 created_at = 1625097600000,
-                updated_at = 1625097600000
+                updated_at = 1625097600000,
+                detached_webhook_ids = ["44fcead0-7053-4831-a53a-df7fb90d440f"]
             )
         else:
-            return WebhookOAuthCredentials(
+            return DeleteWebhookOauthResponse(
                 id = '123e4567-e89b-12d3-a456-426614174000',
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
@@ -59,11 +60,12 @@ class TestWebhookOAuthCredentials(unittest.TestCase):
                 auth_method = 'client_secret_basic',
                 created_at = 1625097600000,
                 updated_at = 1625097600000,
+                detached_webhook_ids = ["44fcead0-7053-4831-a53a-df7fb90d440f"],
         )
         """
 
-    def testWebhookOAuthCredentials(self):
-        """Test WebhookOAuthCredentials"""
+    def testDeleteWebhookOauthResponse(self):
+        """Test DeleteWebhookOauthResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

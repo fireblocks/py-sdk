@@ -5,9 +5,9 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_webhook**](WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create a new webhook
-[**create_webhook_o_auth**](WebhooksV2Api.md#create_webhook_o_auth) | **POST** /webhooks_settings/oauth | Create OAuth credentials
+[**create_webhook_oauth**](WebhooksV2Api.md#create_webhook_oauth) | **POST** /webhooks_settings/oauth | Create OAuth credentials
 [**delete_webhook**](WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
-[**delete_webhook_o_auth**](WebhooksV2Api.md#delete_webhook_o_auth) | **DELETE** /webhooks_settings/oauth/{webhookOauthId} | Delete OAuth credentials
+[**delete_webhook_oauth**](WebhooksV2Api.md#delete_webhook_oauth) | **DELETE** /webhooks_settings/oauth/{webhookOauthId} | Delete OAuth credentials
 [**get_metrics**](WebhooksV2Api.md#get_metrics) | **GET** /webhooks/{webhookId}/metrics/{metricName} | Get webhook metrics
 [**get_mtls_csr**](WebhooksV2Api.md#get_mtls_csr) | **GET** /webhooks/mtls/csr | Get mTLS CSR
 [**get_notification**](WebhooksV2Api.md#get_notification) | **GET** /webhooks/{webhookId}/notifications/{notificationId} | Get notification by id
@@ -16,15 +16,15 @@ Method | HTTP request | Description
 [**get_resend_by_query_job_status**](WebhooksV2Api.md#get_resend_by_query_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_by_query/jobs/{jobId} | Get resend by query job status
 [**get_resend_job_status**](WebhooksV2Api.md#get_resend_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_failed/jobs/{jobId} | Get resend job status
 [**get_webhook**](WebhooksV2Api.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
-[**get_webhook_o_auth**](WebhooksV2Api.md#get_webhook_o_auth) | **GET** /webhooks_settings/oauth/{webhookOauthId} | Get OAuth credentials by id
-[**get_webhook_o_auths**](WebhooksV2Api.md#get_webhook_o_auths) | **GET** /webhooks_settings/oauth | Get all OAuth credentials
+[**get_webhook_oauth**](WebhooksV2Api.md#get_webhook_oauth) | **GET** /webhooks_settings/oauth/{webhookOauthId} | Get OAuth credentials by id
+[**get_webhook_oauths**](WebhooksV2Api.md#get_webhook_oauths) | **GET** /webhooks_settings/oauth | Get all OAuth credentials
 [**get_webhooks**](WebhooksV2Api.md#get_webhooks) | **GET** /webhooks | Get all webhooks
 [**resend_failed_notifications**](WebhooksV2Api.md#resend_failed_notifications) | **POST** /webhooks/{webhookId}/notifications/resend_failed | Resend failed notifications
 [**resend_notification_by_id**](WebhooksV2Api.md#resend_notification_by_id) | **POST** /webhooks/{webhookId}/notifications/{notificationId}/resend | Resend notification by id
 [**resend_notifications_by_query**](WebhooksV2Api.md#resend_notifications_by_query) | **POST** /webhooks/{webhookId}/notifications/resend_by_query | Resend notifications by query
 [**resend_notifications_by_resource_id**](WebhooksV2Api.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
 [**update_webhook**](WebhooksV2Api.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
-[**update_webhook_o_auth**](WebhooksV2Api.md#update_webhook_o_auth) | **PATCH** /webhooks_settings/oauth/{webhookOauthId} | Update OAuth credentials
+[**update_webhook_oauth**](WebhooksV2Api.md#update_webhook_oauth) | **PATCH** /webhooks_settings/oauth/{webhookOauthId} | Update OAuth credentials
 
 
 # **create_webhook**
@@ -107,8 +107,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_webhook_o_auth**
-> WebhookOAuthCredentials create_webhook_o_auth(create_webhook_o_auth_request, idempotency_key=idempotency_key)
+# **create_webhook_oauth**
+> WebhookOauthCredentials create_webhook_oauth(create_webhook_oauth_request, idempotency_key=idempotency_key)
 
 Create OAuth credentials
 
@@ -121,8 +121,8 @@ Creates a reusable OAuth client credential set. Attach it to a webhook by passin
 
 
 ```python
-from fireblocks.models.create_webhook_o_auth_request import CreateWebhookOAuthRequest
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.create_webhook_oauth_request import CreateWebhookOauthRequest
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -143,16 +143,16 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    create_webhook_o_auth_request = fireblocks.CreateWebhookOAuthRequest() # CreateWebhookOAuthRequest | 
+    create_webhook_oauth_request = fireblocks.CreateWebhookOauthRequest() # CreateWebhookOauthRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
         # Create OAuth credentials
-        api_response = fireblocks.webhooks_v2.create_webhook_o_auth(create_webhook_o_auth_request, idempotency_key=idempotency_key).result()
-        print("The response of WebhooksV2Api->create_webhook_o_auth:\n")
+        api_response = fireblocks.webhooks_v2.create_webhook_oauth(create_webhook_oauth_request, idempotency_key=idempotency_key).result()
+        print("The response of WebhooksV2Api->create_webhook_oauth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling WebhooksV2Api->create_webhook_o_auth: %s\n" % e)
+        print("Exception when calling WebhooksV2Api->create_webhook_oauth: %s\n" % e)
 ```
 
 
@@ -162,12 +162,12 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_webhook_o_auth_request** | [**CreateWebhookOAuthRequest**](CreateWebhookOAuthRequest.md)|  | 
+ **create_webhook_oauth_request** | [**CreateWebhookOauthRequest**](CreateWebhookOauthRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
 ### Return type
 
-[**WebhookOAuthCredentials**](WebhookOAuthCredentials.md)
+[**WebhookOauthCredentials**](WebhookOauthCredentials.md)
 
 ### Authorization
 
@@ -264,8 +264,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_webhook_o_auth**
-> DeleteWebhookOAuthResponse delete_webhook_o_auth(webhook_oauth_id, force_delete=force_delete)
+# **delete_webhook_oauth**
+> DeleteWebhookOauthResponse delete_webhook_oauth(webhook_oauth_id, force_delete=force_delete)
 
 Delete OAuth credentials
 
@@ -282,7 +282,7 @@ When nothing references the credentials the delete succeeds either way, and `det
 
 
 ```python
-from fireblocks.models.delete_webhook_o_auth_response import DeleteWebhookOAuthResponse
+from fireblocks.models.delete_webhook_oauth_response import DeleteWebhookOauthResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -308,11 +308,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Delete OAuth credentials
-        api_response = fireblocks.webhooks_v2.delete_webhook_o_auth(webhook_oauth_id, force_delete=force_delete).result()
-        print("The response of WebhooksV2Api->delete_webhook_o_auth:\n")
+        api_response = fireblocks.webhooks_v2.delete_webhook_oauth(webhook_oauth_id, force_delete=force_delete).result()
+        print("The response of WebhooksV2Api->delete_webhook_oauth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling WebhooksV2Api->delete_webhook_o_auth: %s\n" % e)
+        print("Exception when calling WebhooksV2Api->delete_webhook_oauth: %s\n" % e)
 ```
 
 
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteWebhookOAuthResponse**](DeleteWebhookOAuthResponse.md)
+[**DeleteWebhookOauthResponse**](DeleteWebhookOauthResponse.md)
 
 ### Authorization
 
@@ -980,8 +980,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_webhook_o_auth**
-> WebhookOAuthCredentials get_webhook_o_auth(webhook_oauth_id)
+# **get_webhook_oauth**
+> WebhookOauthCredentials get_webhook_oauth(webhook_oauth_id)
 
 Get OAuth credentials by id
 
@@ -992,7 +992,7 @@ Retrieve an OAuth credential set by its id. The client secret is never returned.
 
 
 ```python
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -1017,11 +1017,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get OAuth credentials by id
-        api_response = fireblocks.webhooks_v2.get_webhook_o_auth(webhook_oauth_id).result()
-        print("The response of WebhooksV2Api->get_webhook_o_auth:\n")
+        api_response = fireblocks.webhooks_v2.get_webhook_oauth(webhook_oauth_id).result()
+        print("The response of WebhooksV2Api->get_webhook_oauth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling WebhooksV2Api->get_webhook_o_auth: %s\n" % e)
+        print("Exception when calling WebhooksV2Api->get_webhook_oauth: %s\n" % e)
 ```
 
 
@@ -1035,7 +1035,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WebhookOAuthCredentials**](WebhookOAuthCredentials.md)
+[**WebhookOauthCredentials**](WebhookOauthCredentials.md)
 
 ### Authorization
 
@@ -1055,8 +1055,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_webhook_o_auths**
-> List[WebhookOAuthCredentials] get_webhook_o_auths()
+# **get_webhook_oauths**
+> List[WebhookOauthCredentials] get_webhook_oauths()
 
 Get all OAuth credentials
 
@@ -1067,7 +1067,7 @@ Lists every OAuth credential set for the workspace. Client secrets are never ret
 
 
 ```python
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -1091,11 +1091,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get all OAuth credentials
-        api_response = fireblocks.webhooks_v2.get_webhook_o_auths().result()
-        print("The response of WebhooksV2Api->get_webhook_o_auths:\n")
+        api_response = fireblocks.webhooks_v2.get_webhook_oauths().result()
+        print("The response of WebhooksV2Api->get_webhook_oauths:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling WebhooksV2Api->get_webhook_o_auths: %s\n" % e)
+        print("Exception when calling WebhooksV2Api->get_webhook_oauths: %s\n" % e)
 ```
 
 
@@ -1106,7 +1106,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[WebhookOAuthCredentials]**](WebhookOAuthCredentials.md)
+[**List[WebhookOauthCredentials]**](WebhookOauthCredentials.md)
 
 ### Authorization
 
@@ -1606,8 +1606,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_webhook_o_auth**
-> WebhookOAuthCredentials update_webhook_o_auth(webhook_oauth_id, update_webhook_o_auth_request)
+# **update_webhook_oauth**
+> WebhookOauthCredentials update_webhook_oauth(webhook_oauth_id, update_webhook_oauth_request)
 
 Update OAuth credentials
 
@@ -1622,8 +1622,8 @@ Updates only the fields present in the request; anything omitted is left as it i
 
 
 ```python
-from fireblocks.models.update_webhook_o_auth_request import UpdateWebhookOAuthRequest
-from fireblocks.models.webhook_o_auth_credentials import WebhookOAuthCredentials
+from fireblocks.models.update_webhook_oauth_request import UpdateWebhookOauthRequest
+from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
@@ -1645,15 +1645,15 @@ configuration = ClientConfiguration(
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
     webhook_oauth_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | The unique identifier of the OAuth credentials
-    update_webhook_o_auth_request = fireblocks.UpdateWebhookOAuthRequest() # UpdateWebhookOAuthRequest | 
+    update_webhook_oauth_request = fireblocks.UpdateWebhookOauthRequest() # UpdateWebhookOauthRequest | 
 
     try:
         # Update OAuth credentials
-        api_response = fireblocks.webhooks_v2.update_webhook_o_auth(webhook_oauth_id, update_webhook_o_auth_request).result()
-        print("The response of WebhooksV2Api->update_webhook_o_auth:\n")
+        api_response = fireblocks.webhooks_v2.update_webhook_oauth(webhook_oauth_id, update_webhook_oauth_request).result()
+        print("The response of WebhooksV2Api->update_webhook_oauth:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling WebhooksV2Api->update_webhook_o_auth: %s\n" % e)
+        print("Exception when calling WebhooksV2Api->update_webhook_oauth: %s\n" % e)
 ```
 
 
@@ -1664,11 +1664,11 @@ with Fireblocks(configuration) as fireblocks:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **webhook_oauth_id** | **str**| The unique identifier of the OAuth credentials | 
- **update_webhook_o_auth_request** | [**UpdateWebhookOAuthRequest**](UpdateWebhookOAuthRequest.md)|  | 
+ **update_webhook_oauth_request** | [**UpdateWebhookOauthRequest**](UpdateWebhookOauthRequest.md)|  | 
 
 ### Return type
 
-[**WebhookOAuthCredentials**](WebhookOAuthCredentials.md)
+[**WebhookOauthCredentials**](WebhookOauthCredentials.md)
 
 ### Authorization
 

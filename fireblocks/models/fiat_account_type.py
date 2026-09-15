@@ -21,13 +21,36 @@ from typing_extensions import Self
 
 class FiatAccountType(str, Enum):
     """
-    FiatAccountType
+    OTHER indicates the underlying provider isn't representable by this API version's enum (e.g. a newly onboarded provider, or one removed from this list) — it does not identify a specific provider, so it should not be used to key any client-side logic.
     """
 
     """
     allowed enum values
     """
     BLINC = 'BLINC'
+    BLINC_TEST = 'BLINC_TEST'
+    CROSSRIVER = 'CROSSRIVER'
+    CROSSRIVER_TEST = 'CROSSRIVER_TEST'
+    CUSTOMERSBANK = 'CUSTOMERSBANK'
+    CUSTOMERSBANK_TEST = 'CUSTOMERSBANK_TEST'
+    FIFTHTHIRD = 'FIFTHTHIRD'
+    FIFTHTHIRD_TEST = 'FIFTHTHIRD_TEST'
+    KINGDOM_BANK = 'KINGDOM_BANK'
+    KINGDOM_BANK_TESTNET = 'KINGDOM_BANK_TESTNET'
+    LYNQ = 'LYNQ'
+    LYNQ_DEV = 'LYNQ_DEV'
+    LYNQ_QA = 'LYNQ_QA'
+    LYNQ_UAT = 'LYNQ_UAT'
+    N3XT = 'N3XT'
+    N3_XT_ALPHA = 'N3XT_ALPHA'
+    N3_XT_BETA = 'N3XT_BETA'
+    N3_XT_OMEGA = 'N3XT_OMEGA'
+    SYGNUM_CONNECT = 'SYGNUM_CONNECT'
+    SYGNUM_CONNECT_STAGING = 'SYGNUM_CONNECT_STAGING'
+    TRANSFERO = 'TRANSFERO'
+    TRANSFERO_STAGING = 'TRANSFERO_STAGING'
+    ZENUS_DEV = 'ZENUS_DEV'
+    OTHER = 'OTHER'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

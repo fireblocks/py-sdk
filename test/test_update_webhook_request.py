@@ -44,13 +44,7 @@ class TestUpdateWebhookRequest(unittest.TestCase):
                     client_signed_cert = '-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----', ),
-                oauth = fireblocks.models.webhook_o_auth.WebhookOAuth(
-                    client_id = 'my-client-id', 
-                    client_secret = 'my-client-secret', 
-                    url = 'https://auth.example.com/oauth/token', 
-                    mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----', ),
+                webhook_oauth_id = '123e4567-e89b-12d3-a456-426614174000',
                 custom_headers = {"X-Gateway-Key":"abc123","X-Forwarded-For":["203.0.113.7","198.51.100.4"],"X-Region-Tag":null}
             )
         else:

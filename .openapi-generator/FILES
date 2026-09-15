@@ -346,7 +346,7 @@ docs/CreateVaultAccountConnectionRequest.md
 docs/CreateVaultAccountRequest.md
 docs/CreateVaultAssetResponse.md
 docs/CreateWalletRequest.md
-docs/CreateWebhookOAuthRequest.md
+docs/CreateWebhookOauthRequest.md
 docs/CreateWebhookRequest.md
 docs/CreateWorkflowExecutionRequestParamsInner.md
 docs/CustomRoutingDest.md
@@ -360,7 +360,7 @@ docs/DelegationBlockchainPositionInfo.md
 docs/DelegationSummary.md
 docs/DeleteNetworkConnectionResponse.md
 docs/DeleteNetworkIdResponse.md
-docs/DeleteWebhookOAuthResponse.md
+docs/DeleteWebhookOauthResponse.md
 docs/DeployLayerZeroAdaptersRequest.md
 docs/DeployableAddressResponse.md
 docs/DeployedContractNotFoundError.md
@@ -1236,6 +1236,8 @@ docs/UpdateAutomationSettingsRequest.md
 docs/UpdateBlockchainResponse.md
 docs/UpdateCallbackHandlerRequest.md
 docs/UpdateCallbackHandlerResponse.md
+docs/UpdateConnectedAccountCredentialsRequest.md
+docs/UpdateConnectedAccountCredentialsResponse.md
 docs/UpdateCounterpartyGroupRequest.md
 docs/UpdateDraftRequest.md
 docs/UpdateFindingExternalRequest.md
@@ -1244,7 +1246,7 @@ docs/UpdateTagRequest.md
 docs/UpdateTokenOwnershipStatusDto.md
 docs/UpdateVaultAccountAssetAddressRequest.md
 docs/UpdateVaultAccountRequest.md
-docs/UpdateWebhookOAuthRequest.md
+docs/UpdateWebhookOauthRequest.md
 docs/UpdateWebhookRequest.md
 docs/UsWirePaymentInfo.md
 docs/UsdcGatewayWalletAsset.md
@@ -1294,9 +1296,7 @@ docs/WebhookEvent.md
 docs/WebhookMetric.md
 docs/WebhookMtls.md
 docs/WebhookMtlsCsrResponse.md
-docs/WebhookOAuth.md
-docs/WebhookOAuthCredentials.md
-docs/WebhookOAuthResponse.md
+docs/WebhookOauthCredentials.md
 docs/WebhookPaginatedResponse.md
 docs/WebhooksApi.md
 docs/WebhooksV2Api.md
@@ -1711,7 +1711,7 @@ fireblocks/models/create_vault_account_connection_request.py
 fireblocks/models/create_vault_account_request.py
 fireblocks/models/create_vault_asset_response.py
 fireblocks/models/create_wallet_request.py
-fireblocks/models/create_webhook_o_auth_request.py
+fireblocks/models/create_webhook_oauth_request.py
 fireblocks/models/create_webhook_request.py
 fireblocks/models/create_workflow_execution_request_params_inner.py
 fireblocks/models/custom_routing_dest.py
@@ -1723,7 +1723,7 @@ fireblocks/models/delegation_blockchain_position_info.py
 fireblocks/models/delegation_summary.py
 fireblocks/models/delete_network_connection_response.py
 fireblocks/models/delete_network_id_response.py
-fireblocks/models/delete_webhook_o_auth_response.py
+fireblocks/models/delete_webhook_oauth_response.py
 fireblocks/models/deploy_layer_zero_adapters_request.py
 fireblocks/models/deployable_address_response.py
 fireblocks/models/deployed_contract_not_found_error.py
@@ -2567,6 +2567,8 @@ fireblocks/models/update_automation_settings_request.py
 fireblocks/models/update_blockchain_response.py
 fireblocks/models/update_callback_handler_request.py
 fireblocks/models/update_callback_handler_response.py
+fireblocks/models/update_connected_account_credentials_request.py
+fireblocks/models/update_connected_account_credentials_response.py
 fireblocks/models/update_counterparty_group_request.py
 fireblocks/models/update_draft_request.py
 fireblocks/models/update_finding_external_request.py
@@ -2575,7 +2577,7 @@ fireblocks/models/update_tag_request.py
 fireblocks/models/update_token_ownership_status_dto.py
 fireblocks/models/update_vault_account_asset_address_request.py
 fireblocks/models/update_vault_account_request.py
-fireblocks/models/update_webhook_o_auth_request.py
+fireblocks/models/update_webhook_oauth_request.py
 fireblocks/models/update_webhook_request.py
 fireblocks/models/us_wire_address.py
 fireblocks/models/us_wire_destination.py
@@ -2623,9 +2625,7 @@ fireblocks/models/webhook_event.py
 fireblocks/models/webhook_metric.py
 fireblocks/models/webhook_mtls.py
 fireblocks/models/webhook_mtls_csr_response.py
-fireblocks/models/webhook_o_auth.py
-fireblocks/models/webhook_o_auth_credentials.py
-fireblocks/models/webhook_o_auth_response.py
+fireblocks/models/webhook_oauth_credentials.py
 fireblocks/models/webhook_paginated_response.py
 fireblocks/models/withdraw_request.py
 fireblocks/models/workflow_config_status.py
@@ -3005,7 +3005,7 @@ test/test_create_vault_account_connection_request.py
 test/test_create_vault_account_request.py
 test/test_create_vault_asset_response.py
 test/test_create_wallet_request.py
-test/test_create_webhook_o_auth_request.py
+test/test_create_webhook_oauth_request.py
 test/test_create_webhook_request.py
 test/test_create_workflow_execution_request_params_inner.py
 test/test_custom_routing_dest.py
@@ -3017,7 +3017,7 @@ test/test_delegation_blockchain_position_info.py
 test/test_delegation_summary.py
 test/test_delete_network_connection_response.py
 test/test_delete_network_id_response.py
-test/test_delete_webhook_o_auth_response.py
+test/test_delete_webhook_oauth_response.py
 test/test_deploy_layer_zero_adapters_request.py
 test/test_deployable_address_response.py
 test/test_deployed_contract_not_found_error.py
@@ -3892,6 +3892,8 @@ test/test_update_automation_settings_request.py
 test/test_update_blockchain_response.py
 test/test_update_callback_handler_request.py
 test/test_update_callback_handler_response.py
+test/test_update_connected_account_credentials_request.py
+test/test_update_connected_account_credentials_response.py
 test/test_update_counterparty_group_request.py
 test/test_update_draft_request.py
 test/test_update_finding_external_request.py
@@ -3900,7 +3902,7 @@ test/test_update_tag_request.py
 test/test_update_token_ownership_status_dto.py
 test/test_update_vault_account_asset_address_request.py
 test/test_update_vault_account_request.py
-test/test_update_webhook_o_auth_request.py
+test/test_update_webhook_oauth_request.py
 test/test_update_webhook_request.py
 test/test_us_wire_address.py
 test/test_us_wire_destination.py
@@ -3953,9 +3955,7 @@ test/test_webhook_event.py
 test/test_webhook_metric.py
 test/test_webhook_mtls.py
 test/test_webhook_mtls_csr_response.py
-test/test_webhook_o_auth.py
-test/test_webhook_o_auth_credentials.py
-test/test_webhook_o_auth_response.py
+test/test_webhook_oauth_credentials.py
 test/test_webhook_paginated_response.py
 test/test_webhooks_api.py
 test/test_webhooks_v2_api.py

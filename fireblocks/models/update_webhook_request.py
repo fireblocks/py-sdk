@@ -18,12 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_mtls import WebhookMtls
-from fireblocks.models.webhook_o_auth import WebhookOAuth
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,9 +35,9 @@ class UpdateWebhookRequest(BaseModel):
     events: Optional[List[WebhookEvent]] = Field(default=None, description="The events that the webhook will be subscribed to")
     enabled: Optional[StrictBool] = Field(default=None, description="The status of the webhook")
     mtls: Optional[WebhookMtls] = None
-    oauth: Optional[WebhookOAuth] = None
-    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. A value replaces what is stored under that name rather than adding to it, so an array is the complete new set of lines for that header. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another. Same rules as on create: string or non-empty array, `Cookie` string-only, 10 lines total in the resulting set, the same reserved names, and values write-only. Entries set to `null` do not count towards the limit.", alias="customHeaders")
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "oauth", "customHeaders"]
+    webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with, from `/v1/webhooks_settings/oauth`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. Send `null` to stop using OAuth for this webhook.", alias="webhookOauthId")
+    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. A value replaces what is stored under that name rather than adding to it, so an array is the complete new set of lines for that header. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another. Same rules as on create: string or non-empty array, `Cookie` string-only, 10 lines total and under 16 KB in the resulting set, the same reserved names, and values write-only. Entries set to `null` do not count towards the limit.", alias="customHeaders")
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "webhookOauthId", "customHeaders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,18 +81,15 @@ class UpdateWebhookRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mtls
         if self.mtls:
             _dict['mtls'] = self.mtls.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of oauth
-        if self.oauth:
-            _dict['oauth'] = self.oauth.to_dict()
         # set to None if mtls (nullable) is None
         # and model_fields_set contains the field
         if self.mtls is None and "mtls" in self.model_fields_set:
             _dict['mtls'] = None
 
-        # set to None if oauth (nullable) is None
+        # set to None if webhook_oauth_id (nullable) is None
         # and model_fields_set contains the field
-        if self.oauth is None and "oauth" in self.model_fields_set:
-            _dict['oauth'] = None
+        if self.webhook_oauth_id is None and "webhook_oauth_id" in self.model_fields_set:
+            _dict['webhookOauthId'] = None
 
         # set to None if custom_headers (nullable) is None
         # and model_fields_set contains the field
@@ -117,7 +113,7 @@ class UpdateWebhookRequest(BaseModel):
             "events": obj.get("events"),
             "enabled": obj.get("enabled"),
             "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None,
-            "oauth": WebhookOAuth.from_dict(obj["oauth"]) if obj.get("oauth") is not None else None,
+            "webhookOauthId": obj.get("webhookOauthId"),
             "customHeaders": obj.get("customHeaders")
         })
         return _obj

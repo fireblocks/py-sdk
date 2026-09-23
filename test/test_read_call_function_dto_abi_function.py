@@ -68,7 +68,7 @@ class TestReadCallFunctionDtoAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 description = '',
@@ -105,7 +105,7 @@ class TestReadCallFunctionDtoAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 discriminator = [13],

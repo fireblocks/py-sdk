@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **success** | **bool** | Indicates whether the transfer was successful | 
 **id** | **str** | The transaction ID of the internal transfer | [optional] 
+**status** | **str** | The transfer status returned by the transaction manager. Only present when the transfer was processed via the transaction manager flow. | [optional] 
+**system_messages** | [**List[SystemMessageInfo]**](SystemMessageInfo.md) | System messages returned by the transaction manager about the health of the transfer being performed. Only present when the transfer was processed via the transaction manager flow. | [optional] 
 
 ## Example
 

@@ -20,6 +20,9 @@ from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
+from fireblocks.api.compliance_orchestrator_beta_api import (
+    ComplianceOrchestratorBetaApi,
+)
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
 )
@@ -88,6 +91,7 @@ class Fireblocks:
         self._blockchain_link_beta = None
         self._blockchains_assets = None
         self._compliance = None
+        self._compliance_orchestrator_beta = None
         self._compliance_screening_configuration = None
         self._connected_accounts_beta = None
         self._console_user = None
@@ -182,6 +186,14 @@ class Fireblocks:
         if self._compliance is None:
             self._compliance = ComplianceApi(self._api_client)
         return self._compliance
+
+    @property
+    def compliance_orchestrator_beta(self) -> ComplianceOrchestratorBetaApi:
+        if self._compliance_orchestrator_beta is None:
+            self._compliance_orchestrator_beta = ComplianceOrchestratorBetaApi(
+                self._api_client
+            )
+        return self._compliance_orchestrator_beta
 
     @property
     def compliance_screening_configuration(self) -> ComplianceScreeningConfigurationApi:

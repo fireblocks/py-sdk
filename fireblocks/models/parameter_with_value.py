@@ -33,7 +33,7 @@ class ParameterWithValue(BaseModel):
     internal_type: Optional[StrictStr] = Field(default=None, description="The  internal type of the parameter as it appears in the ABI", alias="internalType")
     type: StrictStr = Field(description="The type of the parameter as it appears in the ABI")
     components: Optional[List[Parameter]] = None
-    value: Optional[StrictStr] = Field(default=None, description="The value of the parameter. can also be ParameterWithValue")
+    value: Optional[Any] = Field(default=None, description="The value of the parameter. The shape follows the ABI `type`: a string for `string`/`address`/`bytes*`, a number for `uint*`/`int*`, a boolean for `bool`, an array for `T[]`, and for `tuple` an array of nested ParameterWithValue objects (one per entry in `components`, in ABI order).")
     function_value: Optional[LeanAbiFunction] = Field(default=None, description="The function value of this param (if has one). If this is set, the `value` shouldn`t be. Used for proxies", alias="functionValue")
     __properties: ClassVar[List[str]] = ["name", "description", "internalType", "type", "components", "value", "functionValue"]
 
@@ -86,6 +86,11 @@ class ParameterWithValue(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of function_value
         if self.function_value:
             _dict['functionValue'] = self.function_value.to_dict()
+        # set to None if value (nullable) is None
+        # and model_fields_set contains the field
+        if self.value is None and "value" in self.model_fields_set:
+            _dict['value'] = None
+
         return _dict
 
     @classmethod

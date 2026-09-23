@@ -54,7 +54,7 @@ class TestParameterWithValue(unittest.TestCase):
                                 type = 'string', )
                             ], )
                     ],
-                value = 'true',
+                value = true,
                 function_value = fireblocks.models.lean_abi_function.LeanAbiFunction(
                     name = 'initialize', 
                     inputs = [
@@ -70,7 +70,7 @@ class TestParameterWithValue(unittest.TestCase):
                                     internal_type = 'string', 
                                     type = 'string', )
                                 ], 
-                            value = 'true', 
+                            value = true, 
                             function_value = null, )
                         ], 
                     outputs = [
@@ -79,7 +79,7 @@ class TestParameterWithValue(unittest.TestCase):
                             description = 'The name of the token', 
                             internal_type = 'string', 
                             type = 'string', 
-                            value = 'true', 
+                            value = true, 
                             function_value = null, )
                         ], 
                     state_mutability = 'nonpayable', )

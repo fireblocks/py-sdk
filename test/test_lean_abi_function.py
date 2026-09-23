@@ -50,7 +50,7 @@ class TestLeanAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 outputs = [
@@ -66,7 +66,7 @@ class TestLeanAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 state_mutability = 'nonpayable'
@@ -86,7 +86,7 @@ class TestLeanAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
         )

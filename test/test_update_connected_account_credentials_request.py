@@ -40,12 +40,12 @@ class TestUpdateConnectedAccountCredentialsRequest(unittest.TestCase):
         model = UpdateConnectedAccountCredentialsRequest()
         if include_optional:
             return UpdateConnectedAccountCredentialsRequest(
-                creds = '[B@1cad7fc4',
+                creds = '[B@70fe91a4',
                 api_key = 'api_key_new_abc123'
             )
         else:
             return UpdateConnectedAccountCredentialsRequest(
-                creds = '[B@1cad7fc4',
+                creds = '[B@70fe91a4',
                 api_key = 'api_key_new_abc123',
         )
         """

@@ -26,10 +26,38 @@ class TestApprovalsBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_approve_approval(self) -> None:
+        """Test case for approve_approval
+
+        Approve an approval request
+        """
+        pass
+
+    def test_create_approval_key(self) -> None:
+        """Test case for create_approval_key
+
+        Register an approval key
+        """
+        pass
+
+    def test_delete_approval_key(self) -> None:
+        """Test case for delete_approval_key
+
+        Delete an approval key
+        """
+        pass
+
     def test_get_approval_by_id(self) -> None:
         """Test case for get_approval_by_id
 
         Get a single approval request
+        """
+        pass
+
+    def test_get_approval_keys(self) -> None:
+        """Test case for get_approval_keys
+
+        List approval keys
         """
         pass
 

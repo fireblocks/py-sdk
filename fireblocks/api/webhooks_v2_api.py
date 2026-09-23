@@ -766,6 +766,7 @@ class WebhooksV2Api:
     @validate_call
     def get_mtls_csr(
         self,
+        key_algorithm: Annotated[Optional[StrictStr], Field(description="Algorithm of the private key the CSR is generated for. ECDSA keys are smaller and quicker to issue, but the certificate authority signing the request has to accept an EC subject key, which some do not by default.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -781,8 +782,10 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[WebhookMtlsCsrResponse]]:
         """Get mTLS CSR
 
-        Returns the Fireblocks Certificate Signing Request (CSR) PEM that customers use to generate their signed client certificate. 
+        Returns the Certificate Signing Request (CSR) PEM that customers use to generate their signed client certificate.  The private key the CSR is built from is held by Fireblocks and is specific to this workspace. It is created on the first request for a given key type, and the same CSR is returned on subsequent requests for that type.  Pass `keyAlgorithm` to choose RSA or ECDSA. A workspace may hold one key of each: the CSR returned is always the one for the type requested, so a certificate signed against it matches the key used at delivery time. 
 
+        :param key_algorithm: Algorithm of the private key the CSR is generated for. ECDSA keys are smaller and quicker to issue, but the certificate authority signing the request has to accept an EC subject key, which some do not by default.
+        :type key_algorithm: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -807,6 +810,7 @@ class WebhooksV2Api:
 
 
         _param = self._get_mtls_csr_serialize(
+            key_algorithm=key_algorithm,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -826,6 +830,7 @@ class WebhooksV2Api:
 
     def _get_mtls_csr_serialize(
         self,
+        key_algorithm,
         _request_auth,
         _content_type,
         _headers,
@@ -848,6 +853,10 @@ class WebhooksV2Api:
 
         # process the path parameters
         # process the query parameters
+        if key_algorithm is not None:
+            
+            _query_params.append(('keyAlgorithm', key_algorithm))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -868,7 +877,7 @@ class WebhooksV2Api:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/webhooks/mtls/csr',
+            resource_path='/webhooks_settings/mtls_csr',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2981,7 +2990,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Update OAuth credentials
 
-        Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.  `customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Since a `null` inside a map is the delete mechanism, none of the three accepts `null` for the whole field — `customJwtClaims: null`, `customBodyParams: null` or `customHeaders: null` is rejected with a `400` rather than ignored. Clear a map by listing each of its keys with a `null` value. Because `null` is spent on deletion, a claim cannot be set to JSON `null` either, on this endpoint or on create. `mtlsClientSignedCert` is a scalar rather than a map, so `null` there does remove it.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+        Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.  `customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Setting one of the three to `null` as a whole clears that map, which is the quick way to empty it without naming every key. There is no ambiguity between the two uses of `null` — one names an entry to delete, the other names the field. A claim cannot be set to JSON `null`, though, on this endpoint or on create, because `null` is spent on deletion. `mtlsClientSignedCert` is a scalar rather than a map, so `null` there does remove it.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
 
         :param webhook_oauth_id: The unique identifier of the OAuth credentials (required)
         :type webhook_oauth_id: str

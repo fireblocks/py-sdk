@@ -66,7 +66,7 @@ class TestReadAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 description = ''
@@ -88,7 +88,7 @@ class TestReadAbiFunction(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
         )

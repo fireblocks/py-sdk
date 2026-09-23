@@ -4,10 +4,250 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**approve_approval**](ApprovalsBetaApi.md#approve_approval) | **POST** /approvals/{requestId}/approve | Approve an approval request
+[**create_approval_key**](ApprovalsBetaApi.md#create_approval_key) | **POST** /management/api_users/{userId}/approval_keys | Register an approval key
+[**delete_approval_key**](ApprovalsBetaApi.md#delete_approval_key) | **DELETE** /management/api_users/{userId}/approval_keys/{keyId} | Delete an approval key
 [**get_approval_by_id**](ApprovalsBetaApi.md#get_approval_by_id) | **GET** /approvals/{requestId} | Get a single approval request
+[**get_approval_keys**](ApprovalsBetaApi.md#get_approval_keys) | **GET** /management/api_users/{userId}/approval_keys | List approval keys
 [**get_approvals**](ApprovalsBetaApi.md#get_approvals) | **GET** /approvals | List approval requests
 [**reject_approval**](ApprovalsBetaApi.md#reject_approval) | **POST** /approvals/{requestId}/reject | Reject an approval request
 
+
+# **approve_approval**
+> approve_approval(request_id, approve_approval_request, idempotency_key=idempotency_key)
+
+Approve an approval request
+
+Approve a pending approval request as the authenticated API user. The caller signs the request's signable data with the private key of a registered approval API key and submits the base64url-encoded signature, optionally with the key ID. The server verifies the signature against the registered public key — using the given key ID, or matching against all of the user's registered keys when the key ID is omitted — and advances the approval quorum.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
+
+### Example
+
+
+```python
+from fireblocks.models.approve_approval_request import ApproveApprovalRequest
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    request_id = '18055' # str | The approval request ID.
+    approve_approval_request = fireblocks.ApproveApprovalRequest() # ApproveApprovalRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Approve an approval request
+        fireblocks.approvals_beta.approve_approval(request_id, approve_approval_request, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling ApprovalsBetaApi->approve_approval: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_id** | **str**| The approval request ID. | 
+ **approve_approval_request** | [**ApproveApprovalRequest**](ApproveApprovalRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The approval request was approved. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_approval_key**
+> RegisterApprovalApiKeyResponse create_approval_key(user_id, register_approval_api_key_request, idempotency_key=idempotency_key)
+
+Register an approval key
+
+Register an approval public key for an API user, used to sign approval requests. Up to 2 active keys are supported per API user. Returns the server-generated key ID used for deletion.
+
+The `userId` must be the authenticated API user's own ID. Registering a key for another user is not supported and is rejected.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
+
+### Example
+
+
+```python
+from fireblocks.models.register_approval_api_key_request import RegisterApprovalApiKeyRequest
+from fireblocks.models.register_approval_api_key_response import RegisterApprovalApiKeyResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94' # str | The ID of the API user to register the approval key for.
+    register_approval_api_key_request = fireblocks.RegisterApprovalApiKeyRequest() # RegisterApprovalApiKeyRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Register an approval key
+        api_response = fireblocks.approvals_beta.create_approval_key(user_id, register_approval_api_key_request, idempotency_key=idempotency_key).result()
+        print("The response of ApprovalsBetaApi->create_approval_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApprovalsBetaApi->create_approval_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the API user to register the approval key for. | 
+ **register_approval_api_key_request** | [**RegisterApprovalApiKeyRequest**](RegisterApprovalApiKeyRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**RegisterApprovalApiKeyResponse**](RegisterApprovalApiKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The approval key was registered. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_approval_key**
+> delete_approval_key(user_id, key_id, idempotency_key=idempotency_key)
+
+Delete an approval key
+
+Delete (revoke) an approval public key for the specified API user. Revoking the last key disables the API user's ability to sign approvals.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
+
+### Example
+
+
+```python
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94' # str | The ID of the API user whose approval key to delete.
+    key_id = 'fab543c0-d6be-414c-aa05-5c6c84269d7a' # str | The ID of the approval key to delete.
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Delete an approval key
+        fireblocks.approvals_beta.delete_approval_key(user_id, key_id, idempotency_key=idempotency_key).result()
+    except Exception as e:
+        print("Exception when calling ApprovalsBetaApi->delete_approval_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the API user whose approval key to delete. | 
+ **key_id** | **str**| The ID of the approval key to delete. | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The approval key was deleted. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_approval_by_id**
 > ApprovalRequestItem get_approval_by_id(request_id, user_id=user_id, quorum_status_mode=quorum_status_mode)
@@ -89,6 +329,86 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The requested approval request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_approval_keys**
+> ListApprovalApiKeysResponse get_approval_keys(user_id, page_size=page_size, page_cursor=page_cursor)
+
+List approval keys
+
+List the approval public keys registered for the specified API user.
+
+Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin, Security Auditor.
+
+### Example
+
+
+```python
+from fireblocks.models.list_approval_api_keys_response import ListApprovalApiKeysResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94' # str | The ID of the API user whose approval keys to list.
+    page_size = 10 # int | Number of results per page. Maximum 15. Defaults to 10. (optional) (default to 10)
+    page_cursor = 'page_cursor_example' # str | Cursor returned from the previous response (the `next` field) to fetch the next page. (optional)
+
+    try:
+        # List approval keys
+        api_response = fireblocks.approvals_beta.get_approval_keys(user_id, page_size=page_size, page_cursor=page_cursor).result()
+        print("The response of ApprovalsBetaApi->get_approval_keys:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApprovalsBetaApi->get_approval_keys: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| The ID of the API user whose approval keys to list. | 
+ **page_size** | **int**| Number of results per page. Maximum 15. Defaults to 10. | [optional] [default to 10]
+ **page_cursor** | **str**| Cursor returned from the previous response (the &#x60;next&#x60; field) to fetch the next page. | [optional] 
+
+### Return type
+
+[**ListApprovalApiKeysResponse**](ListApprovalApiKeysResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The API user&#39;s approval keys. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

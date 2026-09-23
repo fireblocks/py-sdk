@@ -7,6 +7,7 @@ mTLS Certificate Signing Request response
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csr** | **str** | The Fireblocks PEM-encoded Certificate Signing Request (CSR). | 
+**key_algorithm** | [**WebhookMtlsKeyAlgorithm**](WebhookMtlsKeyAlgorithm.md) |  | 
 
 ## Example
 

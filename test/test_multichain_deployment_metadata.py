@@ -55,7 +55,7 @@ class TestMultichainDeploymentMetadata(unittest.TestCase):
                                 internal_type = 'string', 
                                 type = 'string', )
                             ], 
-                        value = 'true', 
+                        value = true, 
                         function_value = null, )
                     ],
                 encoded_init_params = '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'

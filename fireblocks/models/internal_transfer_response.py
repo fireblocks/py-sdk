@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.system_message_info import SystemMessageInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,9 @@ class InternalTransferResponse(BaseModel):
     """ # noqa: E501
     success: StrictBool = Field(description="Indicates whether the transfer was successful")
     id: Optional[StrictStr] = Field(default=None, description="The transaction ID of the internal transfer")
-    __properties: ClassVar[List[str]] = ["success", "id"]
+    status: Optional[StrictStr] = Field(default=None, description="The transfer status returned by the transaction manager. Only present when the transfer was processed via the transaction manager flow.")
+    system_messages: Optional[List[SystemMessageInfo]] = Field(default=None, description="System messages returned by the transaction manager about the health of the transfer being performed. Only present when the transfer was processed via the transaction manager flow.", alias="systemMessages")
+    __properties: ClassVar[List[str]] = ["success", "id", "status", "systemMessages"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,10 +73,27 @@ class InternalTransferResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in system_messages (list)
+        _items = []
+        if self.system_messages:
+            for _item_system_messages in self.system_messages:
+                if _item_system_messages:
+                    _items.append(_item_system_messages.to_dict())
+            _dict['systemMessages'] = _items
         # set to None if id (nullable) is None
         # and model_fields_set contains the field
         if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
+
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
+
+        # set to None if system_messages (nullable) is None
+        # and model_fields_set contains the field
+        if self.system_messages is None and "system_messages" in self.model_fields_set:
+            _dict['systemMessages'] = None
 
         return _dict
 
@@ -88,7 +108,9 @@ class InternalTransferResponse(BaseModel):
 
         _obj = cls.model_validate({
             "success": obj.get("success"),
-            "id": obj.get("id")
+            "id": obj.get("id"),
+            "status": obj.get("status"),
+            "systemMessages": [SystemMessageInfo.from_dict(_item) for _item in obj["systemMessages"]] if obj.get("systemMessages") is not None else None
         })
         return _obj
 

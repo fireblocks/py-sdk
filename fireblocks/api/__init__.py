@@ -7,6 +7,7 @@ from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
+from fireblocks.api.compliance_orchestrator_beta_api import ComplianceOrchestratorBetaApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
 from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
 from fireblocks.api.console_user_api import ConsoleUserApi

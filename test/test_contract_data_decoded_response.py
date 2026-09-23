@@ -53,7 +53,7 @@ class TestContractDataDecodedResponse(unittest.TestCase):
                                         internal_type = 'string', 
                                         type = 'string', )
                                     ], 
-                                value = 'true', 
+                                value = true, 
                                 function_value = null, )
                             ], )
                     ],
@@ -78,7 +78,7 @@ class TestContractDataDecodedResponse(unittest.TestCase):
                                         internal_type = 'string', 
                                         type = 'string', )
                                     ], 
-                                value = 'true', 
+                                value = true, 
                                 function_value = null, )
                             ], )
                     ],

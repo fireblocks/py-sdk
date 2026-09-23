@@ -37,7 +37,9 @@ class TestInternalTransferResponse(unittest.TestCase):
         if include_optional:
             return InternalTransferResponse(
                 success = True,
-                id = ''
+                id = '',
+                status = 'SUCCESS',
+                system_messages = []
             )
         else:
             return InternalTransferResponse(

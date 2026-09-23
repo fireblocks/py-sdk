@@ -38,13 +38,15 @@ class TestWebhookMtlsCsrResponse(unittest.TestCase):
             return WebhookMtlsCsrResponse(
                 csr = '-----BEGIN CERTIFICATE REQUEST-----
 ...
------END CERTIFICATE REQUEST-----'
+-----END CERTIFICATE REQUEST-----',
+                key_algorithm = 'RSA'
             )
         else:
             return WebhookMtlsCsrResponse(
                 csr = '-----BEGIN CERTIFICATE REQUEST-----
 ...
 -----END CERTIFICATE REQUEST-----',
+                key_algorithm = 'RSA',
         )
         """
 

@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from fireblocks.models.webhook_mtls_key_algorithm import WebhookMtlsKeyAlgorithm
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,8 @@ class WebhookMtlsCsrResponse(BaseModel):
     mTLS Certificate Signing Request response
     """ # noqa: E501
     csr: StrictStr = Field(description="The Fireblocks PEM-encoded Certificate Signing Request (CSR).")
-    __properties: ClassVar[List[str]] = ["csr"]
+    key_algorithm: WebhookMtlsKeyAlgorithm = Field(alias="keyAlgorithm")
+    __properties: ClassVar[List[str]] = ["csr", "keyAlgorithm"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +83,8 @@ class WebhookMtlsCsrResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "csr": obj.get("csr")
+            "csr": obj.get("csr"),
+            "keyAlgorithm": obj.get("keyAlgorithm")
         })
         return _obj
 

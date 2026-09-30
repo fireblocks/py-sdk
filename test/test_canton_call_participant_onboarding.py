@@ -44,10 +44,10 @@ class TestCantonCallParticipantOnboarding(unittest.TestCase):
                     asset = 'CANTON', 
                     expires_at = '2026-12-31T23:59:59Z', 
                     operator = 'dtcc-operator::1220abc…', 
-                    provider = 'dtcc-provider::1220abc…', 
                     compliance = 'dtcc-compliance::1220abc…', 
                     registrar = 'dtcc-registrar::1220abc…', 
-                    client_onboarder = 'dtcc-onboarder::1220abc…', )
+                    client_onboarder = 'dtcc-onboarder::1220abc…', 
+                    upgrader = 'dtcc-upgrader::1220abc…', )
             )
         else:
             return CantonCallParticipantOnboarding(
@@ -57,10 +57,10 @@ class TestCantonCallParticipantOnboarding(unittest.TestCase):
                     asset = 'CANTON', 
                     expires_at = '2026-12-31T23:59:59Z', 
                     operator = 'dtcc-operator::1220abc…', 
-                    provider = 'dtcc-provider::1220abc…', 
                     compliance = 'dtcc-compliance::1220abc…', 
                     registrar = 'dtcc-registrar::1220abc…', 
-                    client_onboarder = 'dtcc-onboarder::1220abc…', ),
+                    client_onboarder = 'dtcc-onboarder::1220abc…', 
+                    upgrader = 'dtcc-upgrader::1220abc…', ),
         )
         """
 

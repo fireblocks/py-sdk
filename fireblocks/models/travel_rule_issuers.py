@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.travel_rule_issuer import TravelRuleIssuer
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,9 +30,9 @@ class TravelRuleIssuers(BaseModel):
     """ # noqa: E501
     year_founded: TravelRuleIssuer = Field(alias="yearFounded")
     is_regulated: TravelRuleIssuer = Field(alias="isRegulated")
-    regulatory_authorities: TravelRuleIssuer = Field(alias="regulatoryAuthorities")
+    regulatory_authorities: Optional[TravelRuleIssuer] = Field(default=None, alias="regulatoryAuthorities")
     name: TravelRuleIssuer
-    logo: TravelRuleIssuer
+    logo: Optional[TravelRuleIssuer] = None
     website: TravelRuleIssuer
     legal_name: TravelRuleIssuer = Field(alias="legalName")
     legal_structure: TravelRuleIssuer = Field(alias="legalStructure")
@@ -41,7 +41,7 @@ class TravelRuleIssuers(BaseModel):
     address_line1: TravelRuleIssuer = Field(alias="addressLine1")
     city: TravelRuleIssuer
     country: TravelRuleIssuer
-    description: TravelRuleIssuer
+    description: Optional[TravelRuleIssuer] = None
     __properties: ClassVar[List[str]] = ["yearFounded", "isRegulated", "regulatoryAuthorities", "name", "logo", "website", "legalName", "legalStructure", "incorporationCountry", "businessNumber", "addressLine1", "city", "country", "description"]
 
     model_config = ConfigDict(

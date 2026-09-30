@@ -40,8 +40,9 @@ class TestAddressRegistryLegalEntity(unittest.TestCase):
                 entity_name = 'ACME Corporation',
                 jurisdiction = 'US',
                 lei = '254900GC33RBE6FQA817',
-                travel_rule_providers = ["TRAVEL_RULE_PROVIDER_NOTABENE","TRAVEL_RULE_PROVIDER_SYGNA"],
-                email = 'compliance@example.com'
+                travel_rule_providers = ["NOTABENE","SYGNA"],
+                email = 'compliance@example.com',
+                proof_of_ownership_available = False
             )
         else:
             return AddressRegistryLegalEntity(
@@ -49,8 +50,9 @@ class TestAddressRegistryLegalEntity(unittest.TestCase):
                 entity_name = 'ACME Corporation',
                 jurisdiction = 'US',
                 lei = '254900GC33RBE6FQA817',
-                travel_rule_providers = ["TRAVEL_RULE_PROVIDER_NOTABENE","TRAVEL_RULE_PROVIDER_SYGNA"],
+                travel_rule_providers = ["NOTABENE","SYGNA"],
                 email = 'compliance@example.com',
+                proof_of_ownership_available = False,
         )
         """
 

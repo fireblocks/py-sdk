@@ -32,11 +32,11 @@ class ParticipantOnboardingPayload(BaseModel):
     asset: StrictStr = Field(description="Chain asset — CANTON or CANTON_TEST.")
     expires_at: Optional[datetime] = Field(default=None, description="When the onboarding request expires if it has not been answered. RFC 3339.", alias="expiresAt")
     operator: StrictStr = Field(description="DTCC infra operator party id.")
-    provider: StrictStr = Field(description="DTCC provider party id.")
     compliance: StrictStr = Field(description="DTCC compliance party id.")
     registrar: StrictStr = Field(description="DTCC registrar party id — co-signs the accept.")
     client_onboarder: StrictStr = Field(description="DTCC client onboarder party id — co-signs the accept.", alias="clientOnboarder")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "expiresAt", "operator", "provider", "compliance", "registrar", "clientOnboarder"]
+    upgrader: StrictStr = Field(description="DTCC upgrader party id — the Model Upgrade Tool authority. Supplied by DTCC during the off-chain registration, alongside the other party ids.")
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "expiresAt", "operator", "compliance", "registrar", "clientOnboarder", "upgrader"]
 
     @field_validator('asset')
     def asset_validate_enum(cls, value):
@@ -100,10 +100,10 @@ class ParticipantOnboardingPayload(BaseModel):
             "asset": obj.get("asset"),
             "expiresAt": obj.get("expiresAt"),
             "operator": obj.get("operator"),
-            "provider": obj.get("provider"),
             "compliance": obj.get("compliance"),
             "registrar": obj.get("registrar"),
-            "clientOnboarder": obj.get("clientOnboarder")
+            "clientOnboarder": obj.get("clientOnboarder"),
+            "upgrader": obj.get("upgrader")
         })
         return _obj
 

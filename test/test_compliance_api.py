@@ -54,6 +54,13 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_create_address_registry_proof_of_ownership(self) -> None:
+        """Test case for create_address_registry_proof_of_ownership
+
+        Create a Proof of Ownership PDF for an address
+        """
+        pass
+
     def test_create_counterparty_group(self) -> None:
         """Test case for create_counterparty_group
 
@@ -303,6 +310,13 @@ class TestComplianceApi(unittest.TestCase):
         """Test case for update_travel_rule_config
 
         Update Travel Rule Configuration
+        """
+        pass
+
+    def test_verify_address_registry_proof_of_ownership(self) -> None:
+        """Test case for verify_address_registry_proof_of_ownership
+
+        Verify a Proof of Ownership export
         """
         pass
 

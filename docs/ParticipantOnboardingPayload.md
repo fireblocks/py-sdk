@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **asset** | **str** | Chain asset — CANTON or CANTON_TEST. | 
 **expires_at** | **datetime** | When the onboarding request expires if it has not been answered. RFC 3339. | [optional] 
 **operator** | **str** | DTCC infra operator party id. | 
-**provider** | **str** | DTCC provider party id. | 
 **compliance** | **str** | DTCC compliance party id. | 
 **registrar** | **str** | DTCC registrar party id — co-signs the accept. | 
 **client_onboarder** | **str** | DTCC client onboarder party id — co-signs the accept. | 
+**upgrader** | **str** | DTCC upgrader party id — the Model Upgrade Tool authority. Supplied by DTCC during the off-chain registration, alongside the other party ids. | 
 
 ## Example
 

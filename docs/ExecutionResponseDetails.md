@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**QuoteExecutionTypeEnum**](QuoteExecutionTypeEnum.md) |  | 
+**type** | [**LimitTypeEnum**](LimitTypeEnum.md) |  | 
 **side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount to convert | 
 **base_asset_id** | **str** | Source asset identifier | 
@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **quote_id** | **str** | Quote ID for quote orders | 
 **quote_amount** | **str** | Quote amount for quote orders | 
 **re_quote** | [**ReQuoteDetailsReQuote**](ReQuoteDetailsReQuote.md) |  | [optional] 
+**price** | **str** | Limit price for the order | 
+**time_in_force** | [**TimeInForce**](TimeInForce.md) |  | 
 
 ## Example
 

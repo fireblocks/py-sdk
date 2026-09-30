@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.scope_item import ScopeItem
 from typing import Optional, Set
@@ -32,7 +32,18 @@ class RatesRequest(BaseModel):
     scope: Annotated[List[ScopeItem], Field(min_length=1)] = Field(description="One or more providers/accounts to request rates from. At least one scope item is required.")
     base_asset_id: StrictStr = Field(description="The source asset identifier.", alias="baseAssetId")
     quote_asset_id: StrictStr = Field(description="The target asset identifier.", alias="quoteAssetId")
-    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "quoteAssetId"]
+    base_amount: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The amount to convert from", alias="baseAmount")
+    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "quoteAssetId", "baseAmount"]
+
+    @field_validator('base_amount')
+    def base_amount_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^\d+(\.\d+)?$", value):
+            raise ValueError(r"must validate the regular expression /^\d+(\.\d+)?$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,7 +105,8 @@ class RatesRequest(BaseModel):
         _obj = cls.model_validate({
             "scope": [ScopeItem.from_dict(_item) for _item in obj["scope"]] if obj.get("scope") is not None else None,
             "baseAssetId": obj.get("baseAssetId"),
-            "quoteAssetId": obj.get("quoteAssetId")
+            "quoteAssetId": obj.get("quoteAssetId"),
+            "baseAmount": obj.get("baseAmount")
         })
         return _obj
 

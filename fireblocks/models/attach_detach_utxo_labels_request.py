@@ -29,7 +29,7 @@ class AttachDetachUtxoLabelsRequest(BaseModel):
     """
     AttachDetachUtxoLabelsRequest
     """ # noqa: E501
-    utxo_identifiers: Annotated[List[UtxoIdentifier], Field(min_length=1, max_length=200)] = Field(description="List of UTXO identifiers to apply label changes to", alias="utxoIdentifiers")
+    utxo_identifiers: Annotated[List[UtxoIdentifier], Field(min_length=1, max_length=50)] = Field(description="List of UTXO identifiers to apply label changes to", alias="utxoIdentifiers")
     labels_to_attach: Optional[Annotated[List[Annotated[str, Field(strict=True, max_length=30)]], Field(min_length=1, max_length=5)]] = Field(default=None, description="Labels to attach to the specified UTXOs. At least one of labelsToAttach or labelsToDetach must be provided.", alias="labelsToAttach")
     labels_to_detach: Optional[Annotated[List[Annotated[str, Field(strict=True, max_length=30)]], Field(min_length=1, max_length=5)]] = Field(default=None, description="Labels to detach from the specified UTXOs. At least one of labelsToAttach or labelsToDetach must be provided.", alias="labelsToDetach")
     __properties: ClassVar[List[str]] = ["utxoIdentifiers", "labelsToAttach", "labelsToDetach"]

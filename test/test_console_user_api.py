@@ -33,6 +33,13 @@ class TestConsoleUserApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_console_user(self) -> None:
+        """Test case for delete_console_user
+
+        Request deletion of a console user
+        """
+        pass
+
     def test_get_console_users(self) -> None:
         """Test case for get_console_users
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **scope** | [**List[ScopeItem]**](ScopeItem.md) | One or more providers/accounts to request rates from. At least one scope item is required. | 
 **base_asset_id** | **str** | The source asset identifier. | 
 **quote_asset_id** | **str** | The target asset identifier. | 
+**base_amount** | **str** | The amount to convert from | [optional] 
 
 ## Example
 

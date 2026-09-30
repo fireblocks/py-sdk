@@ -40,7 +40,8 @@ class TestRatesRequest(unittest.TestCase):
                     {"providerId":"prov_8c3f1a4b2d6e9f7c","accountId":"acc_5e9a2d1c4b7f3e8a"}
                     ],
                 base_asset_id = 'BTC',
-                quote_asset_id = 'USD'
+                quote_asset_id = 'USD',
+                base_amount = '100.00'
             )
         else:
             return RatesRequest(

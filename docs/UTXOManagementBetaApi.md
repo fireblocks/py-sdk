@@ -4,9 +4,85 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_utxo_selection_config**](UTXOManagementBetaApi.md#get_utxo_selection_config) | **GET** /utxo_management/selection_config | Get UTXO selection config
 [**get_utxos**](UTXOManagementBetaApi.md#get_utxos) | **GET** /utxo_management/{vaultAccountId}/{assetId}/unspent_outputs | List unspent outputs (UTXOs)
+[**get_vault_asset_utxo_selection_config**](UTXOManagementBetaApi.md#get_vault_asset_utxo_selection_config) | **GET** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Get vault and asset UTXO selection config
 [**update_utxo_labels**](UTXOManagementBetaApi.md#update_utxo_labels) | **PATCH** /utxo_management/{vaultAccountId}/{assetId}/labels | Attach or detach labels to/from UTXOs
+[**upsert_utxo_selection_config**](UTXOManagementBetaApi.md#upsert_utxo_selection_config) | **PUT** /utxo_management/selection_config | Upsert UTXO selection config
+[**upsert_vault_asset_utxo_selection_config**](UTXOManagementBetaApi.md#upsert_vault_asset_utxo_selection_config) | **PUT** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Upsert vault and asset UTXO selection config
 
+
+# **get_utxo_selection_config**
+> UtxoSelectionConfigResponse get_utxo_selection_config()
+
+Get UTXO selection config
+
+Returns the workspace-level configured selection strategy and the effective strategy after runtime resolution. `ADAPTIVE` is the recommended strategy. When no row is stored (source `DEFAULT`), `effective` is `ADAPTIVE` if adaptive selection is serving for this workspace, otherwise `ASC`.
+**Note:** These endpoints are currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+### Example
+
+
+```python
+from fireblocks.models.utxo_selection_config_response import UtxoSelectionConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get UTXO selection config
+        api_response = fireblocks.utxo_management_beta.get_utxo_selection_config().result()
+        print("The response of UTXOManagementBetaApi->get_utxo_selection_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UTXOManagementBetaApi->get_utxo_selection_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UtxoSelectionConfigResponse**](UtxoSelectionConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Current UTXO selection config |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_utxos**
 > ListUtxosResponse get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, tx_hash=tx_hash, tx_id=tx_id, min_amount=min_amount, max_amount=max_amount)
@@ -112,15 +188,113 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_vault_asset_utxo_selection_config**
+> UtxoSelectionConfigResponse get_vault_asset_utxo_selection_config(vault_account_id, asset_id)
+
+Get vault and asset UTXO selection config
+
+Returns the config stored at this vault-and-asset scope, if any, and the effective strategy after workspace fallback and runtime resolution. `ADAPTIVE` is the recommended strategy. When no row is stored at this scope and none is inherited from the workspace (source `DEFAULT`), `effective` is `ADAPTIVE` if adaptive selection is serving for this scope, otherwise `ASC`.
+**Note:** These endpoints are currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+### Example
+
+
+```python
+from fireblocks.models.utxo_selection_config_response import UtxoSelectionConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account.
+    asset_id = 'asset_id_example' # str | The ID of the asset
+
+    try:
+        # Get vault and asset UTXO selection config
+        api_response = fireblocks.utxo_management_beta.get_vault_asset_utxo_selection_config(vault_account_id, asset_id).result()
+        print("The response of UTXOManagementBetaApi->get_vault_asset_utxo_selection_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UTXOManagementBetaApi->get_vault_asset_utxo_selection_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account. | 
+ **asset_id** | **str**| The ID of the asset | 
+
+### Return type
+
+[**UtxoSelectionConfigResponse**](UtxoSelectionConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Current UTXO selection config |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_utxo_labels**
 > AttachDetachUtxoLabelsResponse update_utxo_labels(vault_account_id, asset_id, attach_detach_utxo_labels_request, idempotency_key=idempotency_key)
 
 Attach or detach labels to/from UTXOs
 
-Attach or detach labels to/from UTXOs in a vault account. Labels can be used for organizing and filtering UTXOs.
-Labels are applied additively — `labelsToAttach` adds to the existing label set and `labelsToDetach` removes from it. Neither operation replaces the full set.
-**Note:** These endpoints are currently in beta and might be subject to changes.
-Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+Attach or detach labels to/from UTXOs in a vault account. Labels can be
+used for organizing and filtering UTXOs.
+
+Labels are applied additively — `labelsToAttach` adds to the existing
+label set and `labelsToDetach` removes from it. Neither operation
+replaces the full set.
+
+The request is all-or-nothing: if any identifier cannot be labelled, no
+UTXO is labelled and the request fails with `400`. The response lists
+every failed identifier in `failures`, each with its own `reason` — use
+it, not the status, to decide what to do:
+- `NOT_FOUND` — not found in this vault and asset.
+- `NOT_LABELLABLE` — spent, or removed, and can no longer be labelled.
+
+A UTXO removed within the last hour is reported as `NOT_FOUND` with
+`utxoStatus: REMOVED`; if it does not reappear, it becomes
+`NOT_LABELLABLE` after about an hour. A `400` without `failures` means
+the request itself is malformed.
+
+**Note:** These endpoints are currently in beta and might be subject to
+changes.
+
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver,
+Editor.
 
 ### Example
 
@@ -192,6 +366,169 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | UTXOs with updated labels |  * X-Request-ID -  <br>  |
+**400** | Some identifiers could not be labelled (listed in &#x60;failures&#x60;), or the request is malformed. No UTXO was labelled. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upsert_utxo_selection_config**
+> UtxoSelectionConfigResponse upsert_utxo_selection_config(upsert_utxo_selection_config_request, idempotency_key=idempotency_key)
+
+Upsert UTXO selection config
+
+Creates or updates the workspace-level UTXO selection strategy. `ADAPTIVE` is recommended.
+**Note:** These endpoints are currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin.
+
+### Example
+
+
+```python
+from fireblocks.models.upsert_utxo_selection_config_request import UpsertUtxoSelectionConfigRequest
+from fireblocks.models.utxo_selection_config_response import UtxoSelectionConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    upsert_utxo_selection_config_request = fireblocks.UpsertUtxoSelectionConfigRequest() # UpsertUtxoSelectionConfigRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Upsert UTXO selection config
+        api_response = fireblocks.utxo_management_beta.upsert_utxo_selection_config(upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
+        print("The response of UTXOManagementBetaApi->upsert_utxo_selection_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UTXOManagementBetaApi->upsert_utxo_selection_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upsert_utxo_selection_config_request** | [**UpsertUtxoSelectionConfigRequest**](UpsertUtxoSelectionConfigRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**UtxoSelectionConfigResponse**](UtxoSelectionConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Updated UTXO selection config |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **upsert_vault_asset_utxo_selection_config**
+> UtxoSelectionConfigResponse upsert_vault_asset_utxo_selection_config(vault_account_id, asset_id, upsert_utxo_selection_config_request, idempotency_key=idempotency_key)
+
+Upsert vault and asset UTXO selection config
+
+Creates or updates the UTXO selection strategy for this vault account and asset. `ADAPTIVE` is recommended.
+**Note:** These endpoints are currently in beta and might be subject to changes.
+Endpoint Permission: Admin, Non-Signing Admin.
+
+### Example
+
+
+```python
+from fireblocks.models.upsert_utxo_selection_config_request import UpsertUtxoSelectionConfigRequest
+from fireblocks.models.utxo_selection_config_response import UtxoSelectionConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account.
+    asset_id = 'asset_id_example' # str | The ID of the asset
+    upsert_utxo_selection_config_request = fireblocks.UpsertUtxoSelectionConfigRequest() # UpsertUtxoSelectionConfigRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Upsert vault and asset UTXO selection config
+        api_response = fireblocks.utxo_management_beta.upsert_vault_asset_utxo_selection_config(vault_account_id, asset_id, upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
+        print("The response of UTXOManagementBetaApi->upsert_vault_asset_utxo_selection_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UTXOManagementBetaApi->upsert_vault_asset_utxo_selection_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account. | 
+ **asset_id** | **str**| The ID of the asset | 
+ **upsert_utxo_selection_config_request** | [**UpsertUtxoSelectionConfigRequest**](UpsertUtxoSelectionConfigRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**UtxoSelectionConfigResponse**](UtxoSelectionConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Updated UTXO selection config |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

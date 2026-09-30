@@ -36,14 +36,10 @@ class TestAllocationWithdrawPayload(unittest.TestCase):
         model = AllocationWithdrawPayload()
         if include_optional:
             return AllocationWithdrawPayload(
-                vault_account_id = '12',
-                asset = 'CANTON',
                 allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21'
             )
         else:
             return AllocationWithdrawPayload(
-                vault_account_id = '12',
-                asset = 'CANTON',
                 allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21',
         )
         """

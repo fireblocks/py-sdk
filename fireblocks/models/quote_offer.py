@@ -46,7 +46,7 @@ class QuoteOffer(BaseModel):
     execution_steps: Optional[List[QuoteExecutionStep]] = Field(default=None, description="Ordered list of execution steps for the quote.", alias="executionSteps")
     general_fees: Optional[List[Fee]] = Field(default=None, description="General fees associated with the quote.", alias="generalFees")
     side: Side
-    expires_at: StrictStr = Field(description="The expiration time of the quote in ISO 8601 format.", alias="expiresAt")
+    expires_at: StrictStr = Field(description="The expiration time of the quote in ISO 8601 format, taken verbatim from the provider. This is not safety-margined by the server — integrators must apply their own margin if one is needed. ", alias="expiresAt")
     required_participants_identification_on_order: Optional[StrictStr] = Field(default=None, description="A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending. ", alias="requiredParticipantsIdentificationOnOrder")
     type: StrictStr = Field(description="The type of the quote.")
     offer_type: StrictStr = Field(description="The type of offer — QUOTE for executable committed quotes.", alias="offerType")

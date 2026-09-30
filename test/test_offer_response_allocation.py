@@ -36,12 +36,12 @@ class TestOfferResponseAllocation(unittest.TestCase):
         model = OfferResponseAllocation()
         if include_optional:
             return OfferResponseAllocation(
-                domain = 'ALLOCATIONS',
+                domain = 'ALLOCATION',
                 response = None
             )
         else:
             return OfferResponseAllocation(
-                domain = 'ALLOCATIONS',
+                domain = 'ALLOCATION',
                 response = None,
         )
         """

@@ -19,12 +19,13 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from fireblocks.models.dvp_settlement import DVPSettlement
+from fireblocks.models.post_trade_settlement import PostTradeSettlement
 from fireblocks.models.prefunded_settlement import PrefundedSettlement
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-SETTLEMENT_ONE_OF_SCHEMAS = ["DVPSettlement", "PrefundedSettlement"]
+SETTLEMENT_ONE_OF_SCHEMAS = ["DVPSettlement", "PostTradeSettlement", "PrefundedSettlement"]
 
 class Settlement(BaseModel):
     """
@@ -34,8 +35,10 @@ class Settlement(BaseModel):
     oneof_schema_1_validator: Optional[PrefundedSettlement] = None
     # data type: DVPSettlement
     oneof_schema_2_validator: Optional[DVPSettlement] = None
-    actual_instance: Optional[Union[DVPSettlement, PrefundedSettlement]] = None
-    one_of_schemas: Set[str] = { "DVPSettlement", "PrefundedSettlement" }
+    # data type: PostTradeSettlement
+    oneof_schema_3_validator: Optional[PostTradeSettlement] = None
+    actual_instance: Optional[Union[DVPSettlement, PostTradeSettlement, PrefundedSettlement]] = None
+    one_of_schemas: Set[str] = { "DVPSettlement", "PostTradeSettlement", "PrefundedSettlement" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -71,12 +74,17 @@ class Settlement(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `DVPSettlement`")
         else:
             match += 1
+        # validate data type: PostTradeSettlement
+        if not isinstance(v, PostTradeSettlement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PostTradeSettlement`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Settlement with oneOf schemas: DVPSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Settlement with oneOf schemas: DVPSettlement, PostTradeSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Settlement with oneOf schemas: DVPSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Settlement with oneOf schemas: DVPSettlement, PostTradeSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -103,13 +111,19 @@ class Settlement(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into PostTradeSettlement
+        try:
+            instance.actual_instance = PostTradeSettlement.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Settlement with oneOf schemas: DVPSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Settlement with oneOf schemas: DVPSettlement, PostTradeSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Settlement with oneOf schemas: DVPSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Settlement with oneOf schemas: DVPSettlement, PostTradeSettlement, PrefundedSettlement. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -123,7 +137,7 @@ class Settlement(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DVPSettlement, PrefundedSettlement]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], DVPSettlement, PostTradeSettlement, PrefundedSettlement]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

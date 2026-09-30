@@ -29,6 +29,7 @@ class ExecutionRequestDetailsType(str, Enum):
     """
     QUOTE = 'QUOTE'
     MARKET = 'MARKET'
+    LIMIT = 'LIMIT'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

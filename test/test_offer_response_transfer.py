@@ -36,12 +36,12 @@ class TestOfferResponseTransfer(unittest.TestCase):
         model = OfferResponseTransfer()
         if include_optional:
             return OfferResponseTransfer(
-                domain = 'TRANSFERS',
+                domain = 'TRANSFER',
                 response = None
             )
         else:
             return OfferResponseTransfer(
-                domain = 'TRANSFERS',
+                domain = 'TRANSFER',
                 response = None,
         )
         """

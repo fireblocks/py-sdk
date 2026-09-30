@@ -36,8 +36,8 @@ class CreateWebhookOauthRequest(BaseModel):
     custom_jwt_claims: Optional[Dict[str, Any]] = Field(default=None, description="Extra claims for the JWT assertion. Used only when `authMethod` is `client_secret_jwt`. The usual one to set is `aud`, which defaults to the token endpoint URL; some authorization servers expect their own identifier instead. A value may be any JSON type except `null` — `null` is reserved for deleting a claim on update. `iss`, `sub`, `jti`, `iat` and `exp` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the claim names. On update this merges claim by claim rather than replacing — see `WebhookOauthCustomJwtClaimsUpdate`.", alias="customJwtClaims")
     custom_body_params: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra parameters for the token request body — `scope` most commonly, sometimes `audience` or `resource`. Applies to every authentication method. Values must be strings, because the token request body is form-encoded rather than JSON. An empty string is allowed. `grant_type`, `client_id`, `client_secret`, `client_assertion` and `client_assertion_type` are set by Fireblocks and cannot be overridden. Names are case-sensitive. The whole object must be under 16 KB. Values are write-only; responses return only the parameter names. On update this merges key by key rather than replacing — see `WebhookOauthCustomBodyParamsUpdate`.", alias="customBodyParams")
     custom_headers: Optional[Dict[str, StrictStr]] = Field(default=None, description="Extra HTTP headers for **the token request to your authorization server** — not for the webhook delivery, which has its own separate `customHeaders`. A gateway API key is the usual case. Values must be strings; an empty string is allowed. Names are matched case-insensitively, so two names differing only in case are a duplicate. Names are stored and returned lowercased, so `X-Api-Key` comes back as `x-api-key`. `Content-Type`, `Content-Length` and `Host` are set by Fireblocks and cannot be overridden. `Authorization` can be set with `client_secret_post` or `client_secret_jwt`, which send the credentials in the body — useful when your token endpoint sits behind a gateway. It is rejected with `client_secret_basic`, which sends the credentials in that header. Values have no length limit of their own; the whole object must be under 16 KB when serialized as UTF-8. Values are write-only; responses return only the header names. On update this merges name by name rather than replacing — see `WebhookOauthCustomHeadersUpdate`.", alias="customHeaders")
-    mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="PEM-encoded client certificate for mTLS when fetching tokens. Must be a valid X.509 certificate inside its validity window.", alias="mtlsClientSignedCert")
-    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "mtlsClientSignedCert"]
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint, from `/v1/webhooks_settings/mtls`. It can be the same configuration a webhook uses, so one certificate, signed from `GET /v1/webhooks_settings/mtls_csr`, serves both the token endpoint and the receiver. Omit, or send `null`, for a token request without mTLS. Requires the mTLS feature to be enabled for the workspace (`403` otherwise), a configuration of this workspace (`404` otherwise), and one linked to a private key (`400` otherwise).", alias="webhookMtlsId")
+    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "webhookMtlsId"]
 
     @field_validator('url')
     def url_validate_regular_expression(cls, value):
@@ -100,6 +100,11 @@ class CreateWebhookOauthRequest(BaseModel):
         if self.custom_headers is None and "custom_headers" in self.model_fields_set:
             _dict['customHeaders'] = None
 
+        # set to None if webhook_mtls_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.webhook_mtls_id is None and "webhook_mtls_id" in self.model_fields_set:
+            _dict['webhookMtlsId'] = None
+
         return _dict
 
     @classmethod
@@ -120,7 +125,7 @@ class CreateWebhookOauthRequest(BaseModel):
             "customJwtClaims": obj.get("customJwtClaims"),
             "customBodyParams": obj.get("customBodyParams"),
             "customHeaders": obj.get("customHeaders"),
-            "mtlsClientSignedCert": obj.get("mtlsClientSignedCert")
+            "webhookMtlsId": obj.get("webhookMtlsId")
         })
         return _obj
 

@@ -103,15 +103,7 @@ class TestTravelRuleIssuers(unittest.TestCase):
                     issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
                     issued_date = '2024-07-20T13:27:30.958Z', 
                     issuer_name = 'GLEIF', ),
-                regulatory_authorities = fireblocks.models.travel_rule_issuer.TravelRuleIssuer(
-                    issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
-                    issued_date = '2024-07-20T13:27:30.958Z', 
-                    issuer_name = 'GLEIF', ),
                 name = fireblocks.models.travel_rule_issuer.TravelRuleIssuer(
-                    issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
-                    issued_date = '2024-07-20T13:27:30.958Z', 
-                    issuer_name = 'GLEIF', ),
-                logo = fireblocks.models.travel_rule_issuer.TravelRuleIssuer(
                     issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
                     issued_date = '2024-07-20T13:27:30.958Z', 
                     issuer_name = 'GLEIF', ),
@@ -144,10 +136,6 @@ class TestTravelRuleIssuers(unittest.TestCase):
                     issued_date = '2024-07-20T13:27:30.958Z', 
                     issuer_name = 'GLEIF', ),
                 country = fireblocks.models.travel_rule_issuer.TravelRuleIssuer(
-                    issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
-                    issued_date = '2024-07-20T13:27:30.958Z', 
-                    issuer_name = 'GLEIF', ),
-                description = fireblocks.models.travel_rule_issuer.TravelRuleIssuer(
                     issuer_did = 'did:ethr:0x7947578140ed0fa32cb025d9ad9a6c6e72c52686', 
                     issued_date = '2024-07-20T13:27:30.958Z', 
                     issuer_name = 'GLEIF', ),

@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **year_founded** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
 **is_regulated** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
-**regulatory_authorities** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
+**regulatory_authorities** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | [optional] 
 **name** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
-**logo** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
+**logo** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | [optional] 
 **website** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
 **legal_name** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
 **legal_structure** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **address_line1** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
 **city** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
 **country** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
-**description** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | 
+**description** | [**TravelRuleIssuer**](TravelRuleIssuer.md) |  | [optional] 
 
 ## Example
 

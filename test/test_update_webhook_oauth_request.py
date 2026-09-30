@@ -44,9 +44,7 @@ class TestUpdateWebhookOauthRequest(unittest.TestCase):
                 custom_jwt_claims = {"aud":"https://auth.example.com","resource":null},
                 custom_body_params = {"scope":"payments.read payments.write","audience":null},
                 custom_headers = {"x-api-key":"gateway-key","x-tenant":null},
-                mtls_client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----'
+                webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f'
             )
         else:
             return UpdateWebhookOauthRequest(

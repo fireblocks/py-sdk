@@ -6,7 +6,7 @@ Order execution details
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**QuoteExecutionTypeEnum**](QuoteExecutionTypeEnum.md) |  | 
+**type** | [**LimitTypeEnum**](LimitTypeEnum.md) |  | 
 **side** | [**Side**](Side.md) |  | 
 **base_amount** | **str** | Amount in baseAssetId. BUY &#x3D; base amount to receive; SELL &#x3D; base amount to sell. | 
 **base_asset_id** | **str** | The asset you receive on BUY / give on SELL. | 
@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **quote_id** | **str** | Quote ID for quote orders | 
 **re_quote** | [**ReQuoteDetailsReQuote**](ReQuoteDetailsReQuote.md) |  | [optional] 
+**price** | **str** | Limit price for the order | 
+**time_in_force** | [**TimeInForce**](TimeInForce.md) |  | 
 
 ## Example
 

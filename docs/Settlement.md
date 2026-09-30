@@ -6,7 +6,7 @@ Settlement configuration for the order
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**DVPSettlementType**](DVPSettlementType.md) |  | 
+**type** | [**PostTradeSettlementType**](PostTradeSettlementType.md) |  | 
 **destination_account** | [**AccountReference**](AccountReference.md) |  | 
 **source_account** | [**SettlementSourceAccount**](SettlementSourceAccount.md) |  | 
 

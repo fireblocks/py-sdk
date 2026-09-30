@@ -9,7 +9,7 @@ from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_orchestrator_beta_api import ComplianceOrchestratorBetaApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
-from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
+from fireblocks.api.connected_accounts_api import ConnectedAccountsApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi

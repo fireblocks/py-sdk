@@ -161,10 +161,45 @@ class TravelRuleVASP(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of issuers
         if self.issuers:
             _dict['issuers'] = self.issuers.to_dict()
+        # set to None if address_line2 (nullable) is None
+        # and model_fields_set contains the field
+        if self.address_line2 is None and "address_line2" in self.model_fields_set:
+            _dict['addressLine2'] = None
+
+        # set to None if logo (nullable) is None
+        # and model_fields_set contains the field
+        if self.logo is None and "logo" in self.model_fields_set:
+            _dict['logo'] = None
+
+        # set to None if other_names (nullable) is None
+        # and model_fields_set contains the field
+        if self.other_names is None and "other_names" in self.model_fields_set:
+            _dict['otherNames'] = None
+
+        # set to None if identification_country (nullable) is None
+        # and model_fields_set contains the field
+        if self.identification_country is None and "identification_country" in self.model_fields_set:
+            _dict['identificationCountry'] = None
+
+        # set to None if regulatory_authorities (nullable) is None
+        # and model_fields_set contains the field
+        if self.regulatory_authorities is None and "regulatory_authorities" in self.model_fields_set:
+            _dict['regulatoryAuthorities'] = None
+
         # set to None if division (nullable) is None
         # and model_fields_set contains the field
         if self.division is None and "division" in self.model_fields_set:
             _dict['division'] = None
+
+        # set to None if street (nullable) is None
+        # and model_fields_set contains the field
+        if self.street is None and "street" in self.model_fields_set:
+            _dict['street'] = None
+
+        # set to None if unit (nullable) is None
+        # and model_fields_set contains the field
+        if self.unit is None and "unit" in self.model_fields_set:
+            _dict['unit'] = None
 
         # set to None if other_legal_name (nullable) is None
         # and model_fields_set contains the field
@@ -230,6 +265,61 @@ class TravelRuleVASP(BaseModel):
         # and model_fields_set contains the field
         if self.hq_country is None and "hq_country" in self.model_fields_set:
             _dict['hqCountry'] = None
+
+        # set to None if certificates (nullable) is None
+        # and model_fields_set contains the field
+        if self.certificates is None and "certificates" in self.model_fields_set:
+            _dict['certificates'] = None
+
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if travel_rule_openvasp (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_openvasp is None and "travel_rule_openvasp" in self.model_fields_set:
+            _dict['travelRule_OPENVASP'] = None
+
+        # set to None if travel_rule_sygna (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_sygna is None and "travel_rule_sygna" in self.model_fields_set:
+            _dict['travelRule_SYGNA'] = None
+
+        # set to None if travel_rule_trisa (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_trisa is None and "travel_rule_trisa" in self.model_fields_set:
+            _dict['travelRule_TRISA'] = None
+
+        # set to None if travel_rule_email (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_email is None and "travel_rule_email" in self.model_fields_set:
+            _dict['travelRule_EMAIL'] = None
+
+        # set to None if travel_rule_trp (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_trp is None and "travel_rule_trp" in self.model_fields_set:
+            _dict['travelRule_TRP'] = None
+
+        # set to None if travel_rule_shyft (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_shyft is None and "travel_rule_shyft" in self.model_fields_set:
+            _dict['travelRule_SHYFT'] = None
+
+        # set to None if travel_rule_ustravelrulewg (nullable) is None
+        # and model_fields_set contains the field
+        if self.travel_rule_ustravelrulewg is None and "travel_rule_ustravelrulewg" in self.model_fields_set:
+            _dict['travelRule_USTRAVELRULEWG'] = None
+
+        # set to None if created_by (nullable) is None
+        # and model_fields_set contains the field
+        if self.created_by is None and "created_by" in self.model_fields_set:
+            _dict['createdBy'] = None
+
+        # set to None if documents (nullable) is None
+        # and model_fields_set contains the field
+        if self.documents is None and "documents" in self.model_fields_set:
+            _dict['documents'] = None
 
         # set to None if regulatory_status (nullable) is None
         # and model_fields_set contains the field

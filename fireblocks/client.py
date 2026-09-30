@@ -26,7 +26,7 @@ from fireblocks.api.compliance_orchestrator_beta_api import (
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
 )
-from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
+from fireblocks.api.connected_accounts_api import ConnectedAccountsApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
@@ -93,7 +93,7 @@ class Fireblocks:
         self._compliance = None
         self._compliance_orchestrator_beta = None
         self._compliance_screening_configuration = None
-        self._connected_accounts_beta = None
+        self._connected_accounts = None
         self._console_user = None
         self._contacts = None
         self._contract_interactions = None
@@ -204,10 +204,10 @@ class Fireblocks:
         return self._compliance_screening_configuration
 
     @property
-    def connected_accounts_beta(self) -> ConnectedAccountsBetaApi:
-        if self._connected_accounts_beta is None:
-            self._connected_accounts_beta = ConnectedAccountsBetaApi(self._api_client)
-        return self._connected_accounts_beta
+    def connected_accounts(self) -> ConnectedAccountsApi:
+        if self._connected_accounts is None:
+            self._connected_accounts = ConnectedAccountsApi(self._api_client)
+        return self._connected_accounts
 
     @property
     def console_user(self) -> ConsoleUserApi:

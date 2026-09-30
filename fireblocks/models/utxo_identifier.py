@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,9 +29,19 @@ class UtxoIdentifier(BaseModel):
     Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of that transaction) or a specific on-chain UTXO (txHash + index). Exactly one of these two forms must be provided.
     """ # noqa: E501
     tx_id: Optional[StrictStr] = Field(default=None, description="Fireblocks transaction ID", alias="txId")
-    tx_hash: Optional[StrictStr] = Field(default=None, description="On-chain transaction hash", alias="txHash")
+    tx_hash: Optional[Annotated[str, Field(strict=True, max_length=64)]] = Field(default=None, description="On-chain transaction hash, in lowercase hex as the chain reports it. Matched case-sensitively, so an uppercase hash is never found.", alias="txHash")
     index: Optional[StrictInt] = Field(default=None, description="Output index (vout)")
     __properties: ClassVar[List[str]] = ["txId", "txHash", "index"]
+
+    @field_validator('tx_hash')
+    def tx_hash_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-fA-F]{1,64}$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-fA-F]{1,64}$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

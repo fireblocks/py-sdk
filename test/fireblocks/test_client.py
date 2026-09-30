@@ -24,7 +24,7 @@ from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_orchestrator_beta_api import ComplianceOrchestratorBetaApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
-from fireblocks.api.connected_accounts_beta_api import ConnectedAccountsBetaApi
+from fireblocks.api.connected_accounts_api import ConnectedAccountsApi
 from fireblocks.api.console_user_api import ConsoleUserApi
 from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
@@ -110,8 +110,8 @@ def test_get_compliance_orchestrator_beta(fireblocks_instance):
 def test_get_compliance_screening_configuration(fireblocks_instance):
     assert isinstance(fireblocks_instance.compliance_screening_configuration, ComplianceScreeningConfigurationApi)
 
-def test_get_connected_accounts_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.connected_accounts_beta, ConnectedAccountsBetaApi)
+def test_get_connected_accounts(fireblocks_instance):
+    assert isinstance(fireblocks_instance.connected_accounts, ConnectedAccountsApi)
 
 def test_get_console_user(fireblocks_instance):
     assert isinstance(fireblocks_instance.console_user, ConsoleUserApi)

@@ -43,10 +43,7 @@ class TestWebhook(unittest.TestCase):
                 status = 'ENABLED',
                 created_at = 1625126400000,
                 updated_at = 1625126400000,
-                mtls = fireblocks.models.webhook_mtls.WebhookMtls(
-                    client_signed_cert = '-----BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----', ),
+                webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 webhook_oauth_id = '123e4567-e89b-12d3-a456-426614174000',
                 custom_headers = ["x-gateway-key","x-region-tag"]
             )

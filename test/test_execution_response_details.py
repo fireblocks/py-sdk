@@ -36,7 +36,7 @@ class TestExecutionResponseDetails(unittest.TestCase):
         model = ExecutionResponseDetails()
         if include_optional:
             return ExecutionResponseDetails(
-                type = 'QUOTE',
+                type = 'LIMIT',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
@@ -45,17 +45,21 @@ class TestExecutionResponseDetails(unittest.TestCase):
                 quote_asset_rail = 'BLOCKCHAIN',
                 quote_id = '',
                 quote_amount = '',
-                re_quote = None
+                re_quote = None,
+                price = '60000.00',
+                time_in_force = None
             )
         else:
             return ExecutionResponseDetails(
-                type = 'QUOTE',
+                type = 'LIMIT',
                 side = 'BUY',
                 base_amount = '',
                 base_asset_id = '',
                 quote_asset_id = '',
                 quote_id = '',
                 quote_amount = '',
+                price = '60000.00',
+                time_in_force = None,
         )
         """
 

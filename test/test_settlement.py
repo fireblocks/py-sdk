@@ -36,13 +36,13 @@ class TestSettlement(unittest.TestCase):
         model = Settlement()
         if include_optional:
             return Settlement(
-                type = 'DVP',
+                type = 'POST_TRADE',
                 destination_account = None,
                 source_account = None
             )
         else:
             return Settlement(
-                type = 'DVP',
+                type = 'POST_TRADE',
                 destination_account = None,
                 source_account = None,
         )

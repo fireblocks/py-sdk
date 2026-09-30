@@ -28,7 +28,7 @@ class OnboardingResponseDtccReject(BaseModel):
     """
     Reject a DTCC end-investor onboarding offer.
     """ # noqa: E501
-    response_type: StrictStr = Field(description="How you are answering the offer. Must be one of the values currently listed in the transaction's `additionalInfo.cantonDetails.offerResponse.availableResponses`.", alias="responseType")
+    response_type: StrictStr = Field(description="How you are answering the offer. Must be one of the values listed in the transaction's `cantonDetails.offerResponse.availableResponses` — TOP-LEVEL on the transaction, not nested under an `additionalInfo` envelope, which does not exist on `TransactionResponse`. `availableResponses` states what this offer TYPE accepts. It is set when the offer arrives and does not change, so it does NOT tell you whether the offer is still answerable — check `expiresAt` and the transaction's status for that, and expect this endpoint to be the authority: it re-checks state and expiry on every call and answers 409 when either has moved.", alias="responseType")
     reason: Annotated[str, Field(min_length=1, strict=True, max_length=512)] = Field(description="Why the offer is being rejected. Recorded on-chain, where the counterparty can read it.")
     __properties: ClassVar[List[str]] = ["responseType", "reason"]
 

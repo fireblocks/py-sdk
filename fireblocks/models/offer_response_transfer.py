@@ -35,8 +35,8 @@ class OfferResponseTransfer(BaseModel):
     @field_validator('domain')
     def domain_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['TRANSFERS']):
-            raise ValueError("must be one of enum values ('TRANSFERS')")
+        if value not in set(['TRANSFER']):
+            raise ValueError("must be one of enum values ('TRANSFER')")
         return value
 
     model_config = ConfigDict(

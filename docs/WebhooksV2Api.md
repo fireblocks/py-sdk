@@ -5,8 +5,10 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_webhook**](WebhooksV2Api.md#create_webhook) | **POST** /webhooks | Create a new webhook
+[**create_webhook_mtls_config**](WebhooksV2Api.md#create_webhook_mtls_config) | **POST** /webhooks_settings/mtls | Create an mTLS configuration
 [**create_webhook_oauth**](WebhooksV2Api.md#create_webhook_oauth) | **POST** /webhooks_settings/oauth | Create OAuth credentials
 [**delete_webhook**](WebhooksV2Api.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Delete webhook
+[**delete_webhook_mtls_config**](WebhooksV2Api.md#delete_webhook_mtls_config) | **DELETE** /webhooks_settings/mtls/{webhookMtlsId} | Delete an mTLS configuration
 [**delete_webhook_oauth**](WebhooksV2Api.md#delete_webhook_oauth) | **DELETE** /webhooks_settings/oauth/{webhookOauthId} | Delete OAuth credentials
 [**get_metrics**](WebhooksV2Api.md#get_metrics) | **GET** /webhooks/{webhookId}/metrics/{metricName} | Get webhook metrics
 [**get_mtls_csr**](WebhooksV2Api.md#get_mtls_csr) | **GET** /webhooks_settings/mtls_csr | Get mTLS CSR
@@ -16,6 +18,8 @@ Method | HTTP request | Description
 [**get_resend_by_query_job_status**](WebhooksV2Api.md#get_resend_by_query_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_by_query/jobs/{jobId} | Get resend by query job status
 [**get_resend_job_status**](WebhooksV2Api.md#get_resend_job_status) | **GET** /webhooks/{webhookId}/notifications/resend_failed/jobs/{jobId} | Get resend job status
 [**get_webhook**](WebhooksV2Api.md#get_webhook) | **GET** /webhooks/{webhookId} | Get webhook by id
+[**get_webhook_mtls_config**](WebhooksV2Api.md#get_webhook_mtls_config) | **GET** /webhooks_settings/mtls/{webhookMtlsId} | Get an mTLS configuration by id
+[**get_webhook_mtls_configs**](WebhooksV2Api.md#get_webhook_mtls_configs) | **GET** /webhooks_settings/mtls | List the uploaded mTLS configurations
 [**get_webhook_oauth**](WebhooksV2Api.md#get_webhook_oauth) | **GET** /webhooks_settings/oauth/{webhookOauthId} | Get OAuth credentials by id
 [**get_webhook_oauths**](WebhooksV2Api.md#get_webhook_oauths) | **GET** /webhooks_settings/oauth | Get all OAuth credentials
 [**get_webhooks**](WebhooksV2Api.md#get_webhooks) | **GET** /webhooks | Get all webhooks
@@ -24,6 +28,7 @@ Method | HTTP request | Description
 [**resend_notifications_by_query**](WebhooksV2Api.md#resend_notifications_by_query) | **POST** /webhooks/{webhookId}/notifications/resend_by_query | Resend notifications by query
 [**resend_notifications_by_resource_id**](WebhooksV2Api.md#resend_notifications_by_resource_id) | **POST** /webhooks/{webhookId}/notifications/resend_by_resource | Resend notifications by resource Id
 [**update_webhook**](WebhooksV2Api.md#update_webhook) | **PATCH** /webhooks/{webhookId} | Update webhook
+[**update_webhook_mtls_config**](WebhooksV2Api.md#update_webhook_mtls_config) | **PATCH** /webhooks_settings/mtls/{webhookMtlsId} | Update an mTLS configuration
 [**update_webhook_oauth**](WebhooksV2Api.md#update_webhook_oauth) | **PATCH** /webhooks_settings/oauth/{webhookOauthId} | Update OAuth credentials
 
 
@@ -103,6 +108,90 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created new webhook successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_webhook_mtls_config**
+> WebhookMtlsConfig create_webhook_mtls_config(create_webhook_mtls_config_request, idempotency_key=idempotency_key)
+
+Create an mTLS configuration
+
+Stores a certificate signed against the CSR from `GET /v1/webhooks_settings/mtls_csr` and returns its id, which is then set as `webhookMtlsId` on a webhook or on OAuth credentials. The private key the certificate was issued for is derived from the certificate, so it is never named by the caller.
+
+Re-uploading a certificate already stored returns the existing id rather than creating a second configuration, so several webhooks and OAuth credentials can share one certificate.
+
+A certificate that was not issued for a private key this workspace holds is rejected with a `400`.
+
+**Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.models.create_webhook_mtls_config_request import CreateWebhookMtlsConfigRequest
+from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_webhook_mtls_config_request = fireblocks.CreateWebhookMtlsConfigRequest() # CreateWebhookMtlsConfigRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Create an mTLS configuration
+        api_response = fireblocks.webhooks_v2.create_webhook_mtls_config(create_webhook_mtls_config_request, idempotency_key=idempotency_key).result()
+        print("The response of WebhooksV2Api->create_webhook_mtls_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->create_webhook_mtls_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_webhook_mtls_config_request** | [**CreateWebhookMtlsConfigRequest**](CreateWebhookMtlsConfigRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**WebhookMtlsConfig**](WebhookMtlsConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The stored mTLS configuration |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -260,6 +349,90 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Deleted webhook object |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_webhook_mtls_config**
+> DeleteWebhookMtlsConfigResponse delete_webhook_mtls_config(webhook_mtls_id, force_delete=force_delete)
+
+Delete an mTLS configuration
+
+Deletes an mTLS configuration. By default the delete is refused while the configuration is still in use: if any webhook or OAuth credentials reference it, nothing is deleted and the request fails with `409 Conflict`, naming the reason and listing the ids of what references it. This protects a shared configuration from being removed out from under the webhooks and token requests that depend on it.
+
+Pass `forceDelete=true` to delete anyway. That detaches everything referencing it — it clears `webhookMtlsId` on each webhook and OAuth credentials, it does **not** delete them — then deletes the configuration and returns the deleted resource together with `detachedWebhookIds` and `detachedWebhookOauthIds`. Detached webhooks keep delivering notifications, and detached OAuth credentials keep requesting tokens, but without a client certificate, so an endpoint that requires mTLS will reject them from that point on.
+
+When nothing references the configuration the delete succeeds either way, and both lists come back empty.
+
+**Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.models.delete_webhook_mtls_config_response import DeleteWebhookMtlsConfigResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_mtls_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | The unique identifier of the mTLS configuration
+    force_delete = False # bool | Delete the configuration even while webhooks or OAuth credentials still reference it, detaching them instead of refusing; their ids are returned in `detachedWebhookIds` and `detachedWebhookOauthIds`. Leave it unset, or `false`, to get a `409 Conflict` whenever anything still references the configuration. (optional) (default to False)
+
+    try:
+        # Delete an mTLS configuration
+        api_response = fireblocks.webhooks_v2.delete_webhook_mtls_config(webhook_mtls_id, force_delete=force_delete).result()
+        print("The response of WebhooksV2Api->delete_webhook_mtls_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->delete_webhook_mtls_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_mtls_id** | **str**| The unique identifier of the mTLS configuration | 
+ **force_delete** | **bool**| Delete the configuration even while webhooks or OAuth credentials still reference it, detaching them instead of refusing; their ids are returned in &#x60;detachedWebhookIds&#x60; and &#x60;detachedWebhookOauthIds&#x60;. Leave it unset, or &#x60;false&#x60;, to get a &#x60;409 Conflict&#x60; whenever anything still references the configuration. | [optional] [default to False]
+
+### Return type
+
+[**DeleteWebhookMtlsConfigResponse**](DeleteWebhookMtlsConfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The deleted mTLS configuration, plus the ids of any webhooks and OAuth credentials that were detached from it |  * X-Request-ID -  <br>  |
+**409** | Webhooks or OAuth credentials still reference this configuration and &#x60;forceDelete&#x60; was not set. Nothing was deleted. The error message names the reason and the ids of what references it — detach those webhooks and OAuth credentials, or retry with &#x60;forceDelete&#x3D;true&#x60;. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -988,6 +1161,158 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_webhook_mtls_config**
+> WebhookMtlsConfig get_webhook_mtls_config(webhook_mtls_id)
+
+Get an mTLS configuration by id
+
+Retrieve one stored mTLS configuration by its id.
+
+
+### Example
+
+
+```python
+from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_mtls_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | The unique identifier of the mTLS configuration
+
+    try:
+        # Get an mTLS configuration by id
+        api_response = fireblocks.webhooks_v2.get_webhook_mtls_config(webhook_mtls_id).result()
+        print("The response of WebhooksV2Api->get_webhook_mtls_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->get_webhook_mtls_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_mtls_id** | **str**| The unique identifier of the mTLS configuration | 
+
+### Return type
+
+[**WebhookMtlsConfig**](WebhookMtlsConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | An mTLS configuration |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_webhook_mtls_configs**
+> List[WebhookMtlsConfig] get_webhook_mtls_configs(ids=ids)
+
+List the uploaded mTLS configurations
+
+Lists the workspace's mTLS configurations, newest first. Pass `ids` to ask about
+particular ones instead — useful for resolving the `webhookMtlsId` values on a set of
+webhooks in one call.
+
+
+### Example
+
+
+```python
+from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    ids = ['[\"6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f\"]'] # List[str] | Return only the configurations with these ids, instead of all of them. Repeat the parameter for each id. An id belonging to another workspace, or to nothing, is left out of the response rather than failing the request. (optional)
+
+    try:
+        # List the uploaded mTLS configurations
+        api_response = fireblocks.webhooks_v2.get_webhook_mtls_configs(ids=ids).result()
+        print("The response of WebhooksV2Api->get_webhook_mtls_configs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->get_webhook_mtls_configs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ids** | [**List[str]**](str.md)| Return only the configurations with these ids, instead of all of them. Repeat the parameter for each id. An id belonging to another workspace, or to nothing, is left out of the response rather than failing the request. | [optional] 
+
+### Return type
+
+[**List[WebhookMtlsConfig]**](WebhookMtlsConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The workspace&#39;s mTLS configurations |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_webhook_oauth**
 > WebhookOauthCredentials get_webhook_oauth(webhook_oauth_id)
 
@@ -1614,6 +1939,91 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_webhook_mtls_config**
+> WebhookMtlsConfig update_webhook_mtls_config(webhook_mtls_id, update_webhook_mtls_config_request)
+
+Update an mTLS configuration
+
+Renames a configuration, replaces its certificate, or both. Only the fields present in the request are changed; anything omitted is left as it is, and a request with neither field is rejected with a `400`.
+
+Replacing `signedCert` switches every webhook and OAuth credentials set using this configuration over to the new certificate in one write, and the private key it was issued for is re-derived from the certificate. A replacement that was not issued for a private key this workspace holds is rejected with a `400`.
+
+Sending `name: null` removes the label.
+
+**Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
+
+
+### Example
+
+
+```python
+from fireblocks.models.update_webhook_mtls_config_request import UpdateWebhookMtlsConfigRequest
+from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    webhook_mtls_id = '44fcead0-7053-4831-a53a-df7fb90d440f' # str | The unique identifier of the mTLS configuration
+    update_webhook_mtls_config_request = fireblocks.UpdateWebhookMtlsConfigRequest() # UpdateWebhookMtlsConfigRequest | 
+
+    try:
+        # Update an mTLS configuration
+        api_response = fireblocks.webhooks_v2.update_webhook_mtls_config(webhook_mtls_id, update_webhook_mtls_config_request).result()
+        print("The response of WebhooksV2Api->update_webhook_mtls_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WebhooksV2Api->update_webhook_mtls_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_mtls_id** | **str**| The unique identifier of the mTLS configuration | 
+ **update_webhook_mtls_config_request** | [**UpdateWebhookMtlsConfigRequest**](UpdateWebhookMtlsConfigRequest.md)|  | 
+
+### Return type
+
+[**WebhookMtlsConfig**](WebhookMtlsConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The updated mTLS configuration |  * X-Request-ID -  <br>  |
+**400** | Neither &#x60;name&#x60; nor &#x60;signedCert&#x60; was provided, so there is nothing to change, or the replacement certificate was rejected — it is not valid X.509, or it was not issued for a private key this workspace holds. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_webhook_oauth**
 > WebhookOauthCredentials update_webhook_oauth(webhook_oauth_id, update_webhook_oauth_request)
 
@@ -1621,7 +2031,7 @@ Update OAuth credentials
 
 Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.
 
-`customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Setting one of the three to `null` as a whole clears that map, which is the quick way to empty it without naming every key. There is no ambiguity between the two uses of `null` — one names an entry to delete, the other names the field. A claim cannot be set to JSON `null`, though, on this endpoint or on create, because `null` is spent on deletion. `mtlsClientSignedCert` is a scalar rather than a map, so `null` there does remove it.
+`customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Setting one of the three to `null` as a whole clears that map, which is the quick way to empty it without naming every key. There is no ambiguity between the two uses of `null` — one names an entry to delete, the other names the field. A claim cannot be set to JSON `null`, though, on this endpoint or on create, because `null` is spent on deletion. `webhookMtlsId` is a scalar rather than a map, so `null` there does remove it.
 
 **Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
 

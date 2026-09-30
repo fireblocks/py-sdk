@@ -23,6 +23,8 @@ from typing import Optional
 from typing_extensions import Annotated
 from fireblocks.models.address_registry_add_vault_opt_outs_request import AddressRegistryAddVaultOptOutsRequest
 from fireblocks.models.address_registry_add_vault_opt_outs_response import AddressRegistryAddVaultOptOutsResponse
+from fireblocks.models.address_registry_create_proof_of_ownership_request import AddressRegistryCreateProofOfOwnershipRequest
+from fireblocks.models.address_registry_create_proof_of_ownership_response import AddressRegistryCreateProofOfOwnershipResponse
 from fireblocks.models.address_registry_get_vault_opt_out_response import AddressRegistryGetVaultOptOutResponse
 from fireblocks.models.address_registry_legal_entity import AddressRegistryLegalEntity
 from fireblocks.models.address_registry_list_vault_opt_outs_response import AddressRegistryListVaultOptOutsResponse
@@ -30,6 +32,8 @@ from fireblocks.models.address_registry_remove_all_vault_opt_outs_response impor
 from fireblocks.models.address_registry_remove_vault_opt_out_response import AddressRegistryRemoveVaultOptOutResponse
 from fireblocks.models.address_registry_tenant_registry_response import AddressRegistryTenantRegistryResponse
 from fireblocks.models.address_registry_vault_list_order import AddressRegistryVaultListOrder
+from fireblocks.models.address_registry_verify_proof_of_ownership_request import AddressRegistryVerifyProofOfOwnershipRequest
+from fireblocks.models.address_registry_verify_proof_of_ownership_response import AddressRegistryVerifyProofOfOwnershipResponse
 from fireblocks.models.aml_verdict_manual_request import AmlVerdictManualRequest
 from fireblocks.models.aml_verdict_manual_response import AmlVerdictManualResponse
 from fireblocks.models.ars_config_response import ArsConfigResponse
@@ -395,7 +399,7 @@ class ComplianceApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddressRegistryAddVaultOptOutsResponse",
-            '400': "AddressRegistryError",
+            '400': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -626,6 +630,160 @@ class ComplianceApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/legal_entities/{legalEntityId}/vaults',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_address_registry_proof_of_ownership(
+        self,
+        address_registry_create_proof_of_ownership_request: AddressRegistryCreateProofOfOwnershipRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AddressRegistryCreateProofOfOwnershipResponse]]:
+        """Create a Proof of Ownership PDF for an address
+
+        Creates a Proof of Ownership PDF for a blockchain address owned by the authenticated workspace — for example, to share with a counterparty or bank as compliance evidence. Recipients can confirm it with `POST /v1/address_registry/proof_of_ownership_exports/verify`.  Check `proofOfOwnershipAvailable` on `GET /v1/address_registry/legal_entities/{address}` first if you want to know whether create is likely to succeed.
+
+        :param address_registry_create_proof_of_ownership_request: (required)
+        :type address_registry_create_proof_of_ownership_request: AddressRegistryCreateProofOfOwnershipRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._create_address_registry_proof_of_ownership_serialize(
+            address_registry_create_proof_of_ownership_request=address_registry_create_proof_of_ownership_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "AddressRegistryCreateProofOfOwnershipResponse",
+            '400': "ErrorSchema",
+            '403': "ErrorSchema",
+            '404': "ErrorSchema",
+            '429': "ErrorSchema",
+            '500': "ErrorSchema",
+            '503': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _create_address_registry_proof_of_ownership_serialize(
+        self,
+        address_registry_create_proof_of_ownership_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if address_registry_create_proof_of_ownership_request is not None:
+            _body_params = address_registry_create_proof_of_ownership_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/address_registry/proof_of_ownership_exports',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1485,7 +1643,7 @@ class ComplianceApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddressRegistryGetVaultOptOutResponse",
-            '400': "AddressRegistryError",
+            '400': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -2371,8 +2529,10 @@ class ComplianceApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddressRegistryLegalEntity",
-            '400': "AddressRegistryError",
-            '404': "AddressRegistryError",
+            '400': "ErrorSchema",
+            '403': "ErrorSchema",
+            '404': "ErrorSchema",
+            '429': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -2878,7 +3038,7 @@ class ComplianceApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddressRegistryListVaultOptOutsResponse",
-            '400': "AddressRegistryError",
+            '400': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -3855,7 +4015,7 @@ class ComplianceApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddressRegistryRemoveVaultOptOutResponse",
-            '400': "AddressRegistryError",
+            '400': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -5494,6 +5654,155 @@ class ComplianceApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/screening/travel_rule/policy_configuration',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def verify_address_registry_proof_of_ownership(
+        self,
+        address_registry_verify_proof_of_ownership_request: AddressRegistryVerifyProofOfOwnershipRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[AddressRegistryVerifyProofOfOwnershipResponse]]:
+        """Verify a Proof of Ownership export
+
+        Verifies a Proof of Ownership export against the record Fireblocks stored at creation. Returns `valid: false` (not 404) for an unknown, expired, or mismatched export. Available to any authenticated Fireblocks workspace, not just the export's original owner.
+
+        :param address_registry_verify_proof_of_ownership_request: (required)
+        :type address_registry_verify_proof_of_ownership_request: AddressRegistryVerifyProofOfOwnershipRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._verify_address_registry_proof_of_ownership_serialize(
+            address_registry_verify_proof_of_ownership_request=address_registry_verify_proof_of_ownership_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddressRegistryVerifyProofOfOwnershipResponse",
+            '400': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+        )
+
+    def _verify_address_registry_proof_of_ownership_serialize(
+        self,
+        address_registry_verify_proof_of_ownership_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if address_registry_verify_proof_of_ownership_request is not None:
+            _body_params = address_registry_verify_proof_of_ownership_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/address_registry/proof_of_ownership_exports/verify',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

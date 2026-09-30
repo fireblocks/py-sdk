@@ -18,13 +18,14 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
+from fireblocks.models.limit_execution_request_details import LimitExecutionRequestDetails
 from fireblocks.models.market_execution_request_details import MarketExecutionRequestDetails
 from fireblocks.models.quote_execution_with_requote_request_details import QuoteExecutionWithRequoteRequestDetails
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-EXECUTIONREQUESTDETAILS_ONE_OF_SCHEMAS = ["MarketExecutionRequestDetails", "QuoteExecutionWithRequoteRequestDetails"]
+EXECUTIONREQUESTDETAILS_ONE_OF_SCHEMAS = ["LimitExecutionRequestDetails", "MarketExecutionRequestDetails", "QuoteExecutionWithRequoteRequestDetails"]
 
 class ExecutionRequestDetails(BaseModel):
     """
@@ -34,8 +35,10 @@ class ExecutionRequestDetails(BaseModel):
     oneof_schema_1_validator: Optional[MarketExecutionRequestDetails] = None
     # data type: QuoteExecutionWithRequoteRequestDetails
     oneof_schema_2_validator: Optional[QuoteExecutionWithRequoteRequestDetails] = None
-    actual_instance: Optional[Union[MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails]] = None
-    one_of_schemas: Set[str] = { "MarketExecutionRequestDetails", "QuoteExecutionWithRequoteRequestDetails" }
+    # data type: LimitExecutionRequestDetails
+    oneof_schema_3_validator: Optional[LimitExecutionRequestDetails] = None
+    actual_instance: Optional[Union[LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails]] = None
+    one_of_schemas: Set[str] = { "LimitExecutionRequestDetails", "MarketExecutionRequestDetails", "QuoteExecutionWithRequoteRequestDetails" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -71,12 +74,17 @@ class ExecutionRequestDetails(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `QuoteExecutionWithRequoteRequestDetails`")
         else:
             match += 1
+        # validate data type: LimitExecutionRequestDetails
+        if not isinstance(v, LimitExecutionRequestDetails):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LimitExecutionRequestDetails`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ExecutionRequestDetails with oneOf schemas: MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ExecutionRequestDetails with oneOf schemas: LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ExecutionRequestDetails with oneOf schemas: MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ExecutionRequestDetails with oneOf schemas: LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -103,13 +111,19 @@ class ExecutionRequestDetails(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into LimitExecutionRequestDetails
+        try:
+            instance.actual_instance = LimitExecutionRequestDetails.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ExecutionRequestDetails with oneOf schemas: MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ExecutionRequestDetails with oneOf schemas: LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ExecutionRequestDetails with oneOf schemas: MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ExecutionRequestDetails with oneOf schemas: LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -123,7 +137,7 @@ class ExecutionRequestDetails(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], LimitExecutionRequestDetails, MarketExecutionRequestDetails, QuoteExecutionWithRequoteRequestDetails]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

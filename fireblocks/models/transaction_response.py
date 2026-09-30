@@ -24,6 +24,7 @@ from fireblocks.models.aml_screening_result import AmlScreeningResult
 from fireblocks.models.amount_info import AmountInfo
 from fireblocks.models.authorization_info import AuthorizationInfo
 from fireblocks.models.block_info import BlockInfo
+from fireblocks.models.canton_details import CantonDetails
 from fireblocks.models.compliance_results import ComplianceResults
 from fireblocks.models.destination_transfer_peer_path_response import DestinationTransferPeerPathResponse
 from fireblocks.models.extra_parameters import ExtraParameters
@@ -70,6 +71,7 @@ class TransactionResponse(BaseModel):
     fee_info: Optional[FeeInfo] = Field(default=None, alias="feeInfo")
     fee_currency: Optional[StrictStr] = Field(default=None, description="The asset which was withdrawn to pay the transaction fee, for example ETH for EVM-based blockchains, BTC for Tether Omni.", alias="feeCurrency")
     requested_fee_currency: Optional[StrictStr] = Field(default=None, description="The fee-paying asset requested at transaction creation via the `feeCurrency` field, if any.", alias="requestedFeeCurrency")
+    canton_details: Optional[CantonDetails] = Field(default=None, alias="cantonDetails")
     network_records: Optional[List[NetworkRecord]] = Field(default=None, description="In case a single transaction resulted with multiple transfers, for example a result of a contract call, then this parameter specifies each transfer that took place on the blockchain. In case of a single transfer transaction, this parameter is empty.", alias="networkRecords")
     created_at: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction’s creation date and time, in unix timestamp.", alias="createdAt")
     last_updated: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The transaction’s last update date and time, in unix timestamp.", alias="lastUpdated")
@@ -109,7 +111,7 @@ class TransactionResponse(BaseModel):
     replaced_tx_hash: Optional[StrictStr] = Field(default=None, description="if the transaction is a replace by fee (RBF) transaction, this is the hash of the transsaction that was replaced", alias="replacedTxHash")
     nonce: Optional[StrictStr] = Field(default=None, description="blockchain nonce for the transaction")
     blockchain_info: Optional[Dict[str, Any]] = Field(default=None, description="A JSON used to store additional data that is blockchain-specific.", alias="blockchainInfo")
-    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "programCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "requestedFeeCurrency", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "gaslessInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
+    __properties: ClassVar[List[str]] = ["id", "externalTxId", "status", "subStatus", "txHash", "operation", "note", "assetId", "assetType", "source", "sourceAddress", "tag", "destination", "destinations", "destinationAddress", "destinationAddressDescription", "destinationTag", "contractCallDecodedData", "programCallDecodedData", "amountInfo", "treatAsGrossAmount", "feeInfo", "feeCurrency", "requestedFeeCurrency", "cantonDetails", "networkRecords", "createdAt", "lastUpdated", "expiresAt", "createdBy", "signedBy", "rejectedBy", "authorizationInfo", "exchangeTxId", "customerRefId", "travelRuleMessageId", "amlScreeningResult", "complianceResults", "notBroadcastByFireblocks", "dappUrl", "gasLimit", "blockchainIndex", "paidRent", "extraParameters", "signedMessages", "numOfConfirmations", "blockInfo", "index", "rewardInfo", "feePayerInfo", "gaslessInfo", "systemMessages", "addressType", "requestedAmount", "amount", "netAmount", "amountUSD", "serviceFee", "fee", "networkFee", "errorDescription", "replacedTxHash", "nonce", "blockchainInfo"]
 
     @field_validator('address_type')
     def address_type_validate_enum(cls, value):
@@ -189,6 +191,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fee_info
         if self.fee_info:
             _dict['feeInfo'] = self.fee_info.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of canton_details
+        if self.canton_details:
+            _dict['cantonDetails'] = self.canton_details.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in network_records (list)
         _items = []
         if self.network_records:
@@ -275,6 +280,7 @@ class TransactionResponse(BaseModel):
             "feeInfo": FeeInfo.from_dict(obj["feeInfo"]) if obj.get("feeInfo") is not None else None,
             "feeCurrency": obj.get("feeCurrency"),
             "requestedFeeCurrency": obj.get("requestedFeeCurrency"),
+            "cantonDetails": CantonDetails.from_dict(obj["cantonDetails"]) if obj.get("cantonDetails") is not None else None,
             "networkRecords": [NetworkRecord.from_dict(_item) for _item in obj["networkRecords"]] if obj.get("networkRecords") is not None else None,
             "createdAt": obj.get("createdAt"),
             "lastUpdated": obj.get("lastUpdated"),

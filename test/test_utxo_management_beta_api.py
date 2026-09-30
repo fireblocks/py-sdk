@@ -26,6 +26,13 @@ class TestUTXOManagementBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_get_utxo_selection_config(self) -> None:
+        """Test case for get_utxo_selection_config
+
+        Get UTXO selection config
+        """
+        pass
+
     def test_get_utxos(self) -> None:
         """Test case for get_utxos
 
@@ -33,10 +40,31 @@ class TestUTXOManagementBetaApi(unittest.TestCase):
         """
         pass
 
+    def test_get_vault_asset_utxo_selection_config(self) -> None:
+        """Test case for get_vault_asset_utxo_selection_config
+
+        Get vault and asset UTXO selection config
+        """
+        pass
+
     def test_update_utxo_labels(self) -> None:
         """Test case for update_utxo_labels
 
         Attach or detach labels to/from UTXOs
+        """
+        pass
+
+    def test_upsert_utxo_selection_config(self) -> None:
+        """Test case for upsert_utxo_selection_config
+
+        Upsert UTXO selection config
+        """
+        pass
+
+    def test_upsert_vault_asset_utxo_selection_config(self) -> None:
+        """Test case for upsert_vault_asset_utxo_selection_config
+
+        Upsert vault and asset UTXO selection config
         """
         pass
 

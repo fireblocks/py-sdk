@@ -29,6 +29,7 @@ class SettlementTypeEnum(str, Enum):
     """
     DVP = 'DVP'
     PREFUNDED = 'PREFUNDED'
+    POST_TRADE = 'POST_TRADE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

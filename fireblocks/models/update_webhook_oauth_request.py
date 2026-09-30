@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class UpdateWebhookOauthRequest(BaseModel):
     """
-    A partial update. Every field is optional and an omitted field is left as it is, so `{ \"clientSecret\": \"new-secret\" }` rotates the secret and changes nothing else. A rotation applies to every webhook referencing these credentials.  The three custom maps merge. A key with a value is upserted, a key with `null` is deleted, a key you leave out is untouched, and the whole field set to `null` clears the map. There is no ambiguity between the two uses of `null` — one names an entry, the other names the field. `mtlsClientSignedCert` is a scalar, so `null` there removes it.
+    A partial update. Every field is optional and an omitted field is left as it is, so `{ \"clientSecret\": \"new-secret\" }` rotates the secret and changes nothing else. A rotation applies to every webhook referencing these credentials.  The three custom maps merge. A key with a value is upserted, a key with `null` is deleted, a key you leave out is untouched, and the whole field set to `null` clears the map. There is no ambiguity between the two uses of `null` — one names an entry, the other names the field. `webhookMtlsId` is a scalar, so `null` there removes it.
     """ # noqa: E501
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=128)]] = Field(default=None, description="A label for this credential set. Omit to leave it unchanged.")
     client_id: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="OAuth client ID. Omit to leave it unchanged.", alias="clientId")
@@ -36,8 +36,8 @@ class UpdateWebhookOauthRequest(BaseModel):
     custom_jwt_claims: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the JWT assertion claims. A claim with a value is added or replaced, a claim with `null` is deleted, and a claim you leave out is untouched. So `{ \"aud\": \"https://auth.example.com\", \"resource\": null }` sets `aud`, drops `resource`, and changes nothing else. Send `customJwtClaims: null` to clear every claim in one call. That does not collide with a `null` value on a name: one names the claim to delete, the other names the whole field. Same rules as on create: any JSON type except `null`, `iss`/`sub`/`jti`/`iat`/`exp` reserved, names case-sensitive, resulting set under 16 KB, values write-only.", alias="customJwtClaims")
     custom_body_params: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="A delta applied to the token request body parameters. A parameter with a value is added or replaced, a parameter with `null` is deleted, and one you leave out is untouched. So `{ \"scope\": \"payments.read\", \"audience\": null }` sets `scope`, drops `audience`, and changes nothing else. Send `customBodyParams: null` to clear every parameter in one call. That does not collide with a `null` value on a name: one names the parameter to delete, the other names the whole field. Same rules as on create: string values only, `grant_type`/`client_id`/`client_secret`/ `client_assertion`/`client_assertion_type` reserved, names case-sensitive, resulting set under 16 KB, values write-only.", alias="customBodyParams")
     custom_headers: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="A delta applied to the token request headers — not the webhook delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. So `{ \"X-Api-Key\": \"new-key\", \"X-Tenant\": null }` rotates `X-Api-Key`, drops `X-Tenant`, and changes nothing else. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another, and names are stored and returned lowercased. Same rules as on create: string values only, `Content-Type`, `Content-Length` and `Host` reserved, `Authorization` only with `client_secret_post` or `client_secret_jwt`, resulting set under 16 KB, values write-only.", alias="customHeaders")
-    mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="PEM-encoded client certificate for mTLS. Must be a valid X.509 certificate inside its validity window. Omit to leave it unchanged, or send `null` to remove it.", alias="mtlsClientSignedCert")
-    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "mtlsClientSignedCert"]
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint, from `/v1/webhooks_settings/mtls`. Omit to leave it unchanged, or send `null` to stop using mTLS for the token request. Requires the mTLS feature to be enabled for the workspace (`403` otherwise), a configuration of this workspace (`404` otherwise), and one linked to a private key (`400` otherwise).", alias="webhookMtlsId")
+    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "webhookMtlsId"]
 
     @field_validator('url')
     def url_validate_regular_expression(cls, value):
@@ -103,10 +103,10 @@ class UpdateWebhookOauthRequest(BaseModel):
         if self.custom_headers is None and "custom_headers" in self.model_fields_set:
             _dict['customHeaders'] = None
 
-        # set to None if mtls_client_signed_cert (nullable) is None
+        # set to None if webhook_mtls_id (nullable) is None
         # and model_fields_set contains the field
-        if self.mtls_client_signed_cert is None and "mtls_client_signed_cert" in self.model_fields_set:
-            _dict['mtlsClientSignedCert'] = None
+        if self.webhook_mtls_id is None and "webhook_mtls_id" in self.model_fields_set:
+            _dict['webhookMtlsId'] = None
 
         return _dict
 
@@ -128,7 +128,7 @@ class UpdateWebhookOauthRequest(BaseModel):
             "customJwtClaims": obj.get("customJwtClaims"),
             "customBodyParams": obj.get("customBodyParams"),
             "customHeaders": obj.get("customHeaders"),
-            "mtlsClientSignedCert": obj.get("mtlsClientSignedCert")
+            "webhookMtlsId": obj.get("webhookMtlsId")
         })
         return _obj
 

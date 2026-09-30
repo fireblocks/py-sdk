@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,17 +27,8 @@ class AllocationWithdrawPayload(BaseModel):
     """
     AllocationWithdrawPayload
     """ # noqa: E501
-    vault_account_id: StrictStr = Field(description="The vault account whose Canton wallet acts here.", alias="vaultAccountId")
-    asset: StrictStr = Field(description="Chain asset — `CANTON` or `CANTON_TEST`.")
     allocation_transaction_id: StrictStr = Field(description="The Fireblocks transaction id of the outgoing response that created the allocation. The allocation is resolved from it — Canton contract ids are never accepted here.", alias="allocationTransactionId")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "allocationTransactionId"]
-
-    @field_validator('asset')
-    def asset_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['CANTON', 'CANTON_TEST']):
-            raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
-        return value
+    __properties: ClassVar[List[str]] = ["allocationTransactionId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,8 +81,6 @@ class AllocationWithdrawPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "vaultAccountId": obj.get("vaultAccountId"),
-            "asset": obj.get("asset"),
             "allocationTransactionId": obj.get("allocationTransactionId")
         })
         return _obj

@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.address_registry_travel_rule_provider import AddressRegistryTravelRuleProvider
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,9 +31,10 @@ class AddressRegistryLegalEntity(BaseModel):
     entity_name: StrictStr = Field(description="Legal entity display name.", alias="entityName")
     jurisdiction: StrictStr = Field(description="Jurisdiction (e.g. ISO 3166-1 alpha-2 country code).")
     lei: StrictStr = Field(description="Legal Entity Identifier when available. Empty when `leiData` is `false`.")
-    travel_rule_providers: List[AddressRegistryTravelRuleProvider] = Field(alias="travelRuleProviders")
+    travel_rule_providers: List[StrictStr] = Field(alias="travelRuleProviders")
     email: StrictStr = Field(description="Travel Rule contact email when available.")
-    __properties: ClassVar[List[str]] = ["leiData", "entityName", "jurisdiction", "lei", "travelRuleProviders", "email"]
+    proof_of_ownership_available: StrictBool = Field(description="Whether the caller can currently create a Proof of Ownership PDF for this address (`POST /v1/address_registry/proof_of_ownership_exports`).", alias="proofOfOwnershipAvailable")
+    __properties: ClassVar[List[str]] = ["leiData", "entityName", "jurisdiction", "lei", "travelRuleProviders", "email", "proofOfOwnershipAvailable"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +92,8 @@ class AddressRegistryLegalEntity(BaseModel):
             "jurisdiction": obj.get("jurisdiction"),
             "lei": obj.get("lei"),
             "travelRuleProviders": obj.get("travelRuleProviders"),
-            "email": obj.get("email")
+            "email": obj.get("email"),
+            "proofOfOwnershipAvailable": obj.get("proofOfOwnershipAvailable")
         })
         return _obj
 

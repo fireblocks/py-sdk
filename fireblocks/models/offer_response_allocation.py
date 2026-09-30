@@ -35,8 +35,8 @@ class OfferResponseAllocation(BaseModel):
     @field_validator('domain')
     def domain_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ALLOCATIONS']):
-            raise ValueError("must be one of enum values ('ALLOCATIONS')")
+        if value not in set(['ALLOCATION']):
+            raise ValueError("must be one of enum values ('ALLOCATION')")
         return value
 
     model_config = ConfigDict(

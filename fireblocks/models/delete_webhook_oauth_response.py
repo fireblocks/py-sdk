@@ -35,11 +35,11 @@ class DeleteWebhookOauthResponse(BaseModel):
     custom_jwt_claims: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional claims placed in the JWT assertion. Claim values are write-only and are never returned. Absent when no custom claims are configured.", alias="customJwtClaims")
     custom_body_params: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional parameters added to the token request body. Parameter values are write-only and are never returned. Absent when no custom parameters are configured.", alias="customBodyParams")
     custom_headers: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional HTTP headers added to **the token request sent to the authorization server** — not to the webhook delivery, which has its own separate `customHeaders`. Header values are write-only and are never returned. Absent when no custom headers are configured.", alias="customHeaders")
-    mtls_client_signed_cert: Optional[StrictStr] = Field(default=None, description="PEM-encoded client certificate used for mTLS when fetching OAuth tokens.", alias="mtlsClientSignedCert")
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint. Absent when the token request does not use mTLS. Read the certificate from `/v1/webhooks_settings/mtls/{id}`.", alias="webhookMtlsId")
     created_at: StrictInt = Field(description="The date and time the OAuth credentials were created, in milliseconds.", alias="createdAt")
     updated_at: StrictInt = Field(description="The date and time the OAuth credentials were last updated, in milliseconds.", alias="updatedAt")
     detached_webhook_ids: List[StrictStr] = Field(description="Webhooks whose `webhookOauthId` was cleared. The webhooks themselves are not deleted and keep delivering, just without an `Authorization` header. Empty unless `forceDelete=true` detached something.", alias="detachedWebhookIds")
-    __properties: ClassVar[List[str]] = ["id", "name", "clientId", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "mtlsClientSignedCert", "createdAt", "updatedAt", "detachedWebhookIds"]
+    __properties: ClassVar[List[str]] = ["id", "name", "clientId", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "webhookMtlsId", "createdAt", "updatedAt", "detachedWebhookIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,7 +100,7 @@ class DeleteWebhookOauthResponse(BaseModel):
             "customJwtClaims": obj.get("customJwtClaims"),
             "customBodyParams": obj.get("customBodyParams"),
             "customHeaders": obj.get("customHeaders"),
-            "mtlsClientSignedCert": obj.get("mtlsClientSignedCert"),
+            "webhookMtlsId": obj.get("webhookMtlsId"),
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
             "detachedWebhookIds": obj.get("detachedWebhookIds")

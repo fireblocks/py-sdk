@@ -33,6 +33,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_create_webhook_mtls_config(self) -> None:
+        """Test case for create_webhook_mtls_config
+
+        Create an mTLS configuration
+        """
+        pass
+
     def test_create_webhook_oauth(self) -> None:
         """Test case for create_webhook_oauth
 
@@ -44,6 +51,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """Test case for delete_webhook
 
         Delete webhook
+        """
+        pass
+
+    def test_delete_webhook_mtls_config(self) -> None:
+        """Test case for delete_webhook_mtls_config
+
+        Delete an mTLS configuration
         """
         pass
 
@@ -110,6 +124,20 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_webhook_mtls_config(self) -> None:
+        """Test case for get_webhook_mtls_config
+
+        Get an mTLS configuration by id
+        """
+        pass
+
+    def test_get_webhook_mtls_configs(self) -> None:
+        """Test case for get_webhook_mtls_configs
+
+        List the uploaded mTLS configurations
+        """
+        pass
+
     def test_get_webhook_oauth(self) -> None:
         """Test case for get_webhook_oauth
 
@@ -163,6 +191,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """Test case for update_webhook
 
         Update webhook
+        """
+        pass
+
+    def test_update_webhook_mtls_config(self) -> None:
+        """Test case for update_webhook_mtls_config
+
+        Update an mTLS configuration
         """
         pass
 

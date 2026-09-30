@@ -22,7 +22,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.webhook_event import WebhookEvent
-from fireblocks.models.webhook_mtls import WebhookMtls
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,10 +33,10 @@ class CreateWebhookRequest(BaseModel):
     description: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="description of the webhook. should not contain special characters.")
     events: List[WebhookEvent] = Field(description="event types the webhook will subscribe to")
     enabled: Optional[StrictBool] = Field(default=True, description="The status of the webhook. If false, the webhook will not receive notifications.")
-    mtls: Optional[WebhookMtls] = None
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration this webhook presents when delivering, from `/v1/webhooks_settings/mtls`. Several webhooks may share one configuration, so replacing its certificate covers all of them at once. Send `null` to stop using mTLS for this webhook.", alias="webhookMtlsId")
     webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with, from `/v1/webhooks_settings/oauth`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. Send `null` to stop using OAuth for this webhook. Cannot be combined with an `authorization` custom header on the same webhook; a request that would leave both set is rejected.", alias="webhookOauthId")
     custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="Custom HTTP headers attached to every notification delivered by this webhook. A value is a string, sent as one header line, or an array of strings, sent as one header line per element under the same name. `Cookie` and `Authorization` accept only a string. An empty array is rejected — leave the name out instead. At most 10 headers, counted by name — an array value counts once, however many lines it sends. Names must be valid HTTP header tokens, are case-insensitive, and are at most 128 characters. A value may be empty and has no length limit of its own; the whole object must be under 16 KB when serialized as UTF-8. A value that large may still be refused by your own endpoint, since web servers commonly cap the whole request header block at around 8 KB. Reserved names: `Host`, `Content-Type`, `Content-Length`, `Transfer-Encoding`, `Connection`, `User-Agent`, `Accept`, `Accept-Encoding`, `Fireblocks-Signature`, `Fireblocks-Webhook-Signature`. `Authorization` may be set, but not together with `webhookOauthId`; a request that would leave both set is rejected. Values are write-only; responses return only the header names.", alias="customHeaders")
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "mtls", "webhookOauthId", "customHeaders"]
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "webhookMtlsId", "webhookOauthId", "customHeaders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,13 +77,10 @@ class CreateWebhookRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of mtls
-        if self.mtls:
-            _dict['mtls'] = self.mtls.to_dict()
-        # set to None if mtls (nullable) is None
+        # set to None if webhook_mtls_id (nullable) is None
         # and model_fields_set contains the field
-        if self.mtls is None and "mtls" in self.model_fields_set:
-            _dict['mtls'] = None
+        if self.webhook_mtls_id is None and "webhook_mtls_id" in self.model_fields_set:
+            _dict['webhookMtlsId'] = None
 
         # set to None if webhook_oauth_id (nullable) is None
         # and model_fields_set contains the field
@@ -107,7 +103,7 @@ class CreateWebhookRequest(BaseModel):
             "description": obj.get("description"),
             "events": obj.get("events"),
             "enabled": obj.get("enabled") if obj.get("enabled") is not None else True,
-            "mtls": WebhookMtls.from_dict(obj["mtls"]) if obj.get("mtls") is not None else None,
+            "webhookMtlsId": obj.get("webhookMtlsId"),
             "webhookOauthId": obj.get("webhookOauthId"),
             "customHeaders": obj.get("customHeaders")
         })

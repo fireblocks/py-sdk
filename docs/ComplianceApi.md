@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**activate_byork_config**](ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 [**add_address_registry_vault_opt_outs**](ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list
 [**assign_vaults_to_legal_entity**](ComplianceApi.md#assign_vaults_to_legal_entity) | **POST** /legal_entities/{legalEntityId}/vaults | Assign vault accounts to a legal entity
+[**create_address_registry_proof_of_ownership**](ComplianceApi.md#create_address_registry_proof_of_ownership) | **POST** /address_registry/proof_of_ownership_exports | Create a Proof of Ownership PDF for an address
 [**create_counterparty_group**](ComplianceApi.md#create_counterparty_group) | **POST** /counterparty_groups | Create a counterparty group
 [**deactivate_ars_config**](ComplianceApi.md#deactivate_ars_config) | **POST** /screening/ars/config/deactivate | Deactivate ARS (Address Registry Screening)
 [**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
@@ -44,6 +45,7 @@ Method | HTTP request | Description
 [**update_legal_entity**](ComplianceApi.md#update_legal_entity) | **PUT** /legal_entities/{legalEntityId} | Update legal entity
 [**update_screening_configuration**](ComplianceApi.md#update_screening_configuration) | **PUT** /screening/configurations | Tenant - Screening Configuration
 [**update_travel_rule_config**](ComplianceApi.md#update_travel_rule_config) | **PUT** /screening/travel_rule/policy_configuration | Update Travel Rule Configuration
+[**verify_address_registry_proof_of_ownership**](ComplianceApi.md#verify_address_registry_proof_of_ownership) | **POST** /address_registry/proof_of_ownership_exports/verify | Verify a Proof of Ownership export
 
 
 # **activate_ars_config**
@@ -351,6 +353,91 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | Vault accounts assigned successfully |  * X-Request-ID -  <br>  |
 **404** | Legal entity registration not found |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_address_registry_proof_of_ownership**
+> AddressRegistryCreateProofOfOwnershipResponse create_address_registry_proof_of_ownership(address_registry_create_proof_of_ownership_request, idempotency_key=idempotency_key)
+
+Create a Proof of Ownership PDF for an address
+
+Creates a Proof of Ownership PDF for a blockchain address owned by the authenticated workspace — for example, to share with a counterparty or bank as compliance evidence. Recipients can confirm it with `POST /v1/address_registry/proof_of_ownership_exports/verify`.
+
+Check `proofOfOwnershipAvailable` on `GET /v1/address_registry/legal_entities/{address}` first if you want to know whether create is likely to succeed.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_create_proof_of_ownership_request import AddressRegistryCreateProofOfOwnershipRequest
+from fireblocks.models.address_registry_create_proof_of_ownership_response import AddressRegistryCreateProofOfOwnershipResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    address_registry_create_proof_of_ownership_request = fireblocks.AddressRegistryCreateProofOfOwnershipRequest() # AddressRegistryCreateProofOfOwnershipRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Create a Proof of Ownership PDF for an address
+        api_response = fireblocks.compliance.create_address_registry_proof_of_ownership(address_registry_create_proof_of_ownership_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->create_address_registry_proof_of_ownership:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->create_address_registry_proof_of_ownership: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address_registry_create_proof_of_ownership_request** | [**AddressRegistryCreateProofOfOwnershipRequest**](AddressRegistryCreateProofOfOwnershipRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**AddressRegistryCreateProofOfOwnershipResponse**](AddressRegistryCreateProofOfOwnershipResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | PDF export created |  * X-Request-ID -  <br>  |
+**400** | - Missing, empty, or whitespace-only &#x60;address&#x60;. Error code 4100. - Workspace not opted in to the address registry. Error code 2140.  |  * X-Request-ID -  <br>  |
+**403** | This workspace is blocked from creating Proof of Ownership exports. Error code 2146. |  * X-Request-ID -  <br>  |
+**404** | Address not found, not owned by this workspace, or not usable for export. Error code 2142. |  * X-Request-ID -  <br>  |
+**429** | Rate limited. Error code 2145. Retry-safe after backing off. |  * X-Request-ID -  <br>  |
+**500** | Internal error. No PDF is returned. Not retry-safe. Error code 2143. |  * X-Request-ID -  <br>  |
+**503** | Rate-limit infrastructure temporarily unavailable. Safe to retry with backoff. Error code 2143 — same as the 500 case; use the HTTP status to tell them apart. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1386,8 +1473,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Legal entity found |  * X-Request-ID -  <br>  |
-**400** | Bad request — either request validation (path &#x60;{address}&#x60; empty or whitespace-only after trim, e.g. encoded spaces only; numeric code 4100), or the authenticated workspace is not opted in to the address registry (numeric code 2140). The &#x60;message&#x60; field describes the failure; use &#x60;code&#x60; to distinguish. |  * X-Request-ID -  <br>  |
-**404** | Not found (error code 2142) — unresolved address, no legal entity for a resolved address, or the same not-found outcome in other cases. |  * X-Request-ID -  <br>  |
+**400** | - &#x60;{address}&#x60; empty or whitespace-only after trim. Error code 4100. - Workspace not opted in to the address registry. Error code 2140.  |  * X-Request-ID -  <br>  |
+**403** | This workspace is blocked from Address Registry public lookup. Error code 2146. |  * X-Request-ID -  <br>  |
+**404** | Address not found, owner not opted in, or legal entity not usable for lookup. Error code 2142. |  * X-Request-ID -  <br>  |
+**429** | Rate limited. Error code 2145. Retry-safe after backing off. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3071,6 +3160,84 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Configuration updated successfully. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verify_address_registry_proof_of_ownership**
+> AddressRegistryVerifyProofOfOwnershipResponse verify_address_registry_proof_of_ownership(address_registry_verify_proof_of_ownership_request, idempotency_key=idempotency_key)
+
+Verify a Proof of Ownership export
+
+Verifies a Proof of Ownership export against the record Fireblocks stored at creation. Returns `valid: false` (not 404) for an unknown, expired, or mismatched export. Available to any authenticated Fireblocks workspace, not just the export's original owner.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_verify_proof_of_ownership_request import AddressRegistryVerifyProofOfOwnershipRequest
+from fireblocks.models.address_registry_verify_proof_of_ownership_response import AddressRegistryVerifyProofOfOwnershipResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    address_registry_verify_proof_of_ownership_request = fireblocks.AddressRegistryVerifyProofOfOwnershipRequest() # AddressRegistryVerifyProofOfOwnershipRequest | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Verify a Proof of Ownership export
+        api_response = fireblocks.compliance.verify_address_registry_proof_of_ownership(address_registry_verify_proof_of_ownership_request, idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->verify_address_registry_proof_of_ownership:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->verify_address_registry_proof_of_ownership: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address_registry_verify_proof_of_ownership_request** | [**AddressRegistryVerifyProofOfOwnershipRequest**](AddressRegistryVerifyProofOfOwnershipRequest.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**AddressRegistryVerifyProofOfOwnershipResponse**](AddressRegistryVerifyProofOfOwnershipResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Verification result |  * X-Request-ID -  <br>  |
+**400** | Missing, empty, or whitespace-only &#x60;exportId&#x60;, &#x60;verificationHash&#x60;, or &#x60;address&#x60;, or &#x60;expiresAt&#x60; not empty and not a valid &#x60;YYYY-MM-DD&#x60; date. Error code 4100. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

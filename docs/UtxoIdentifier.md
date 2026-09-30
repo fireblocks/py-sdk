@@ -7,7 +7,7 @@ Identifies a UTXO by either a Fireblocks transaction ID (targets all outputs of 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tx_id** | **str** | Fireblocks transaction ID | [optional] 
-**tx_hash** | **str** | On-chain transaction hash | [optional] 
+**tx_hash** | **str** | On-chain transaction hash, in lowercase hex as the chain reports it. Matched case-sensitively, so an uppercase hash is never found. | [optional] 
 **index** | **int** | Output index (vout) | [optional] 
 
 ## Example

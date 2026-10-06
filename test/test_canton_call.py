@@ -37,18 +37,14 @@ class TestCantonCall(unittest.TestCase):
         if include_optional:
             return CantonCall(
                 type = 'DTCC_PARTICIPANT_ONBOARDING',
-                payload = fireblocks.models.transfer_withdraw_payload.TransferWithdrawPayload(
-                    vault_account_id = '12', 
-                    asset = 'CANTON', 
-                    offer_transaction_id = '2d47ae90-31bb-4f6c-8a17-7e0c5b9f2d63', )
+                payload = fireblocks.models.allocation_withdraw_payload.AllocationWithdrawPayload(
+                    allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21', )
             )
         else:
             return CantonCall(
                 type = 'DTCC_PARTICIPANT_ONBOARDING',
-                payload = fireblocks.models.transfer_withdraw_payload.TransferWithdrawPayload(
-                    vault_account_id = '12', 
-                    asset = 'CANTON', 
-                    offer_transaction_id = '2d47ae90-31bb-4f6c-8a17-7e0c5b9f2d63', ),
+                payload = fireblocks.models.allocation_withdraw_payload.AllocationWithdrawPayload(
+                    allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21', ),
         )
         """
 

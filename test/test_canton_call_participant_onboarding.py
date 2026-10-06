@@ -41,7 +41,7 @@ class TestCantonCallParticipantOnboarding(unittest.TestCase):
                 type = 'DTCC_PARTICIPANT_ONBOARDING',
                 payload = fireblocks.models.participant_onboarding_payload.ParticipantOnboardingPayload(
                     vault_account_id = '12', 
-                    asset = 'CANTON', 
+                    blockchain_id = 'CANTON', 
                     expires_at = '2026-12-31T23:59:59Z', 
                     operator = 'dtcc-operator::1220abc…', 
                     compliance = 'dtcc-compliance::1220abc…', 
@@ -54,7 +54,7 @@ class TestCantonCallParticipantOnboarding(unittest.TestCase):
                 type = 'DTCC_PARTICIPANT_ONBOARDING',
                 payload = fireblocks.models.participant_onboarding_payload.ParticipantOnboardingPayload(
                     vault_account_id = '12', 
-                    asset = 'CANTON', 
+                    blockchain_id = 'CANTON', 
                     expires_at = '2026-12-31T23:59:59Z', 
                     operator = 'dtcc-operator::1220abc…', 
                     compliance = 'dtcc-compliance::1220abc…', 

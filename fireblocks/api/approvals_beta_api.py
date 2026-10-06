@@ -23,6 +23,7 @@ from typing import Optional
 from typing_extensions import Annotated
 from fireblocks.models.approval_request_item import ApprovalRequestItem
 from fireblocks.models.approve_approval_request import ApproveApprovalRequest
+from fireblocks.models.delete_approval_api_key_response import DeleteApprovalApiKeyResponse
 from fireblocks.models.list_approval_api_keys_response import ListApprovalApiKeysResponse
 from fireblocks.models.list_approvals_response import ListApprovalsResponse
 from fireblocks.models.register_approval_api_key_request import RegisterApprovalApiKeyRequest
@@ -224,7 +225,7 @@ class ApprovalsBetaApi:
     ) -> Future[ApiResponse[RegisterApprovalApiKeyResponse]]:
         """Register an approval key
 
-        Register an approval public key for an API user, used to sign approval requests. Up to 2 active keys are supported per API user. Returns the server-generated key ID used for deletion.  The `userId` must be the authenticated API user's own ID. Registering a key for another user is not supported and is rejected.  Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
+        Register an approval public key for an API user, used to sign approval requests. Up to 2 active keys are supported per API user. Returns the server-generated key ID used for deletion.  The `userId` must be the authenticated API user's own ID. Registering a key for another user is not supported and is rejected.  Registration may require approval. In that case the response carries `ccrIdPendingRegistration`, the key reads as `APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION` and cannot sign until the request is approved. A rejected request removes the key.  Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
 
         :param user_id: The ID of the API user to register the approval key for. (required)
         :type user_id: str
@@ -268,6 +269,7 @@ class ApprovalsBetaApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RegisterApprovalApiKeyResponse",
+            '409': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -377,10 +379,10 @@ class ApprovalsBetaApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[None]]:
+    ) -> Future[ApiResponse[DeleteApprovalApiKeyResponse]]:
         """Delete an approval key
 
-        Delete (revoke) an approval public key for the specified API user. Revoking the last key disables the API user's ability to sign approvals.  Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
+        Delete (revoke) an approval public key for the specified API user. The deletion may require approval: it always does for the API user's last key or another user's key. In that case the response carries `ccrIdPendingDeletion`, the key reads as `APPROVAL_API_KEY_STATUS_PENDING_DELETION` and stays active until the request is approved. A rejected request leaves the key enabled.  Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
 
         :param user_id: The ID of the API user whose approval key to delete. (required)
         :type user_id: str
@@ -424,7 +426,8 @@ class ApprovalsBetaApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "DeleteApprovalApiKeyResponse",
+            '409': "ErrorSchema",
             'default': "ErrorSchema",
         }
 

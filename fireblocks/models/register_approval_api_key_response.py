@@ -28,7 +28,8 @@ class RegisterApprovalApiKeyResponse(BaseModel):
     The result of registering an approval API key.
     """ # noqa: E501
     key_id: StrictStr = Field(description="The server-generated ID of the registered key, used for deletion.", alias="keyId")
-    __properties: ClassVar[List[str]] = ["keyId"]
+    ccr_id_pending_registration: StrictStr = Field(description="Always returned. An empty string when the key is active immediately. Otherwise, the ID of the approval request that must be approved before the key becomes active. The request appears in `GET /v1/approvals`.", alias="ccrIdPendingRegistration")
+    __properties: ClassVar[List[str]] = ["keyId", "ccrIdPendingRegistration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +82,8 @@ class RegisterApprovalApiKeyResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "keyId": obj.get("keyId")
+            "keyId": obj.get("keyId"),
+            "ccrIdPendingRegistration": obj.get("ccrIdPendingRegistration")
         })
         return _obj
 

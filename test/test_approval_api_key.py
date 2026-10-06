@@ -45,7 +45,8 @@ class TestApprovalApiKey(unittest.TestCase):
                     public_key_pem = '-----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQ...
 -----END PUBLIC KEY-----', ),
-                user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94'
+                user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94',
+                status = 'APPROVAL_API_KEY_STATUS_ENABLED'
             )
         else:
             return ApprovalApiKey(
@@ -59,6 +60,7 @@ MFkwEwYHKoZIzj0CAQ...
 MFkwEwYHKoZIzj0CAQ...
 -----END PUBLIC KEY-----', ),
                 user_id = '8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94',
+                status = 'APPROVAL_API_KEY_STATUS_ENABLED',
         )
         """
 

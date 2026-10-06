@@ -39,7 +39,7 @@ class TestParticipantOnboardingPayload(unittest.TestCase):
         if include_optional:
             return ParticipantOnboardingPayload(
                 vault_account_id = '12',
-                asset = 'CANTON',
+                blockchain_id = 'CANTON',
                 expires_at = '2026-12-31T23:59:59Z',
                 operator = 'dtcc-operator::1220abc…',
                 compliance = 'dtcc-compliance::1220abc…',
@@ -50,7 +50,7 @@ class TestParticipantOnboardingPayload(unittest.TestCase):
         else:
             return ParticipantOnboardingPayload(
                 vault_account_id = '12',
-                asset = 'CANTON',
+                blockchain_id = 'CANTON',
                 operator = 'dtcc-operator::1220abc…',
                 compliance = 'dtcc-compliance::1220abc…',
                 registrar = 'dtcc-registrar::1220abc…',

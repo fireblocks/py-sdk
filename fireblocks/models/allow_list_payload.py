@@ -29,12 +29,12 @@ class AllowListPayload(BaseModel):
     AllowListPayload
     """ # noqa: E501
     vault_account_id: StrictStr = Field(description="The vault account whose Canton wallet acts here.", alias="vaultAccountId")
-    asset: StrictStr = Field(description="Chain asset — `CANTON` or `CANTON_TEST`.")
+    blockchain_id: StrictStr = Field(description="The blockchain this party is connected to — `CANTON` or `CANTON_TEST`.", alias="blockchainId")
     wallets: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Canton party ids to add or remove.")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "wallets"]
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "blockchainId", "wallets"]
 
-    @field_validator('asset')
-    def asset_validate_enum(cls, value):
+    @field_validator('blockchain_id')
+    def blockchain_id_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['CANTON', 'CANTON_TEST']):
             raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
@@ -92,7 +92,7 @@ class AllowListPayload(BaseModel):
 
         _obj = cls.model_validate({
             "vaultAccountId": obj.get("vaultAccountId"),
-            "asset": obj.get("asset"),
+            "blockchainId": obj.get("blockchainId"),
             "wallets": obj.get("wallets")
         })
         return _obj

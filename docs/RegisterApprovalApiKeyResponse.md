@@ -7,6 +7,7 @@ The result of registering an approval API key.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **key_id** | **str** | The server-generated ID of the registered key, used for deletion. | 
+**ccr_id_pending_registration** | **str** | Always returned. An empty string when the key is active immediately. Otherwise, the ID of the approval request that must be approved before the key becomes active. The request appears in &#x60;GET /v1/approvals&#x60;. | 
 
 ## Example
 

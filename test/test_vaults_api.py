@@ -229,6 +229,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_register_tempo_omnibus_wallet(self) -> None:
+        """Test case for register_tempo_omnibus_wallet
+
+        Register a Tempo omnibus wallet
+        """
+        pass
+
     def test_set_customer_ref_id_for_address(self) -> None:
         """Test case for set_customer_ref_id_for_address
 

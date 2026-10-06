@@ -40,14 +40,14 @@ class TestAddressRegistryCreateProofOfOwnershipResponse(unittest.TestCase):
         model = AddressRegistryCreateProofOfOwnershipResponse()
         if include_optional:
             return AddressRegistryCreateProofOfOwnershipResponse(
-                pdf = '[B@442bdf69',
+                pdf = '[B@21554e81',
                 export_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 verification_hash = 'BHS2QaqGyYegvLBy5qrGhrES3A2n5JPD7ubpgJozRgeA',
                 expires_at = '2027-08-17'
             )
         else:
             return AddressRegistryCreateProofOfOwnershipResponse(
-                pdf = '[B@442bdf69',
+                pdf = '[B@21554e81',
                 export_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 verification_hash = 'BHS2QaqGyYegvLBy5qrGhrES3A2n5JPD7ubpgJozRgeA',
                 expires_at = '2027-08-17',

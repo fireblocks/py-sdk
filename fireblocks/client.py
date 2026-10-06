@@ -60,6 +60,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
+from fireblocks.api.tempo_beta_api import TempoBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
@@ -127,6 +128,7 @@ class Fireblocks:
         self._staking = None
         self._tr_link = None
         self._tags = None
+        self._tempo_beta = None
         self._tokenization = None
         self._trading_beta = None
         self._transactions = None
@@ -408,6 +410,12 @@ class Fireblocks:
         if self._tags is None:
             self._tags = TagsApi(self._api_client)
         return self._tags
+
+    @property
+    def tempo_beta(self) -> TempoBetaApi:
+        if self._tempo_beta is None:
+            self._tempo_beta = TempoBetaApi(self._api_client)
+        return self._tempo_beta
 
     @property
     def tokenization(self) -> TokenizationApi:

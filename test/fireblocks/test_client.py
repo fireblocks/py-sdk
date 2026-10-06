@@ -58,6 +58,7 @@ from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
+from fireblocks.api.tempo_beta_api import TempoBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_beta_api import TradingBetaApi
 from fireblocks.api.transactions_api import TransactionsApi
@@ -211,6 +212,9 @@ def test_get_tr_link(fireblocks_instance):
 
 def test_get_tags(fireblocks_instance):
     assert isinstance(fireblocks_instance.tags, TagsApi)
+
+def test_get_tempo_beta(fireblocks_instance):
+    assert isinstance(fireblocks_instance.tempo_beta, TempoBetaApi)
 
 def test_get_tokenization(fireblocks_instance):
     assert isinstance(fireblocks_instance.tokenization, TokenizationApi)

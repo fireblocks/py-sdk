@@ -29,17 +29,17 @@ class ParticipantOnboardingPayload(BaseModel):
     ParticipantOnboardingPayload
     """ # noqa: E501
     vault_account_id: StrictStr = Field(description="The vault account that acts as the participant. Its Canton party is derived for you.", alias="vaultAccountId")
-    asset: StrictStr = Field(description="Chain asset — CANTON or CANTON_TEST.")
+    blockchain_id: StrictStr = Field(description="The blockchain this party is connected to — `CANTON` or `CANTON_TEST`.", alias="blockchainId")
     expires_at: Optional[datetime] = Field(default=None, description="When the onboarding request expires if it has not been answered. RFC 3339.", alias="expiresAt")
     operator: StrictStr = Field(description="DTCC infra operator party id.")
     compliance: StrictStr = Field(description="DTCC compliance party id.")
     registrar: StrictStr = Field(description="DTCC registrar party id — co-signs the accept.")
     client_onboarder: StrictStr = Field(description="DTCC client onboarder party id — co-signs the accept.", alias="clientOnboarder")
     upgrader: StrictStr = Field(description="DTCC upgrader party id — the Model Upgrade Tool authority. Supplied by DTCC during the off-chain registration, alongside the other party ids.")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "expiresAt", "operator", "compliance", "registrar", "clientOnboarder", "upgrader"]
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "blockchainId", "expiresAt", "operator", "compliance", "registrar", "clientOnboarder", "upgrader"]
 
-    @field_validator('asset')
-    def asset_validate_enum(cls, value):
+    @field_validator('blockchain_id')
+    def blockchain_id_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['CANTON', 'CANTON_TEST']):
             raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
@@ -97,7 +97,7 @@ class ParticipantOnboardingPayload(BaseModel):
 
         _obj = cls.model_validate({
             "vaultAccountId": obj.get("vaultAccountId"),
-            "asset": obj.get("asset"),
+            "blockchainId": obj.get("blockchainId"),
             "expiresAt": obj.get("expiresAt"),
             "operator": obj.get("operator"),
             "compliance": obj.get("compliance"),

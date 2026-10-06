@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **last_used_at** | **str** | Last time the key was used to sign, as epoch time in seconds (0 if never used). | 
 **approval_api_public_key** | [**ApprovalApiPublicKey**](ApprovalApiPublicKey.md) |  | 
 **user_id** | **str** | The ID of the API user who owns this key. | 
+**status** | **str** | The state of the key. &#x60;APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION&#x60; - registered but waiting for approval, cannot sign yet. &#x60;APPROVAL_API_KEY_STATUS_ENABLED&#x60; - active. &#x60;APPROVAL_API_KEY_STATUS_PENDING_DELETION&#x60; - removal is waiting for approval, the key stays active until then. &#x60;APPROVAL_API_KEY_STATUS_UNSPECIFIED&#x60; - unknown. | 
 
 ## Example
 

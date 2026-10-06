@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**get_vault_balance_by_asset**](VaultsApi.md#get_vault_balance_by_asset) | **GET** /vault/assets/{assetId} | Get vault balance by an asset
 [**hide_vault_account**](VaultsApi.md#hide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/hide | Hide a vault account in the console
 [**lookup_vault_by_address**](VaultsApi.md#lookup_vault_by_address) | **GET** /vault/lookup_by_address | Look up a vault account by blockchain address
+[**register_tempo_omnibus_wallet**](VaultsApi.md#register_tempo_omnibus_wallet) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/omnibus/tempo/register | Register a Tempo omnibus wallet
 [**set_customer_ref_id_for_address**](VaultsApi.md#set_customer_ref_id_for_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/set_customer_ref_id | Assign AML customer reference ID
 [**set_usdc_gateway_deposit_automation_beta**](VaultsApi.md#set_usdc_gateway_deposit_automation_beta) | **POST** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation | Set up a USDC Gateway deposit automation for a vault account
 [**set_vault_account_auto_fuel**](VaultsApi.md#set_vault_account_auto_fuel) | **POST** /vault/accounts/{vaultAccountId}/set_auto_fuel | Set auto fueling to on or off
@@ -2379,6 +2380,86 @@ No authorization required
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Feature is not enabled for the workspace. |  * X-Request-ID -  <br>  |
 **404** | Vault account not found for the supplied address |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **register_tempo_omnibus_wallet**
+> CreateVaultAssetResponse register_tempo_omnibus_wallet(vault_account_id, asset_id, idempotency_key=idempotency_key)
+
+Register a Tempo omnibus wallet
+
+Registers a Tempo omnibus wallet for the requested vault account.
+Triggering this flow requires the vault account to hold PATH_USD with a balance sufficient to cover the gas fee.
+Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+
+### Example
+
+
+```python
+from fireblocks.models.create_vault_asset_response import CreateVaultAssetResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account for which to register the Tempo wallet.
+    asset_id = 'asset_id_example' # str | The Tempo network asset to register for the vault account.
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Register a Tempo omnibus wallet
+        api_response = fireblocks.vaults.register_tempo_omnibus_wallet(vault_account_id, asset_id, idempotency_key=idempotency_key).result()
+        print("The response of VaultsApi->register_tempo_omnibus_wallet:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling VaultsApi->register_tempo_omnibus_wallet: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault_account_id** | **str**| The ID of the vault account for which to register the Tempo wallet. | 
+ **asset_id** | **str**| The Tempo network asset to register for the vault account. | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**CreateVaultAssetResponse**](CreateVaultAssetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

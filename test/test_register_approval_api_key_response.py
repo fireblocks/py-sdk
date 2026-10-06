@@ -38,11 +38,13 @@ class TestRegisterApprovalApiKeyResponse(unittest.TestCase):
         model = RegisterApprovalApiKeyResponse()
         if include_optional:
             return RegisterApprovalApiKeyResponse(
-                key_id = 'fab543c0-d6be-414c-aa05-5c6c84269d7a'
+                key_id = 'fab543c0-d6be-414c-aa05-5c6c84269d7a',
+                ccr_id_pending_registration = '19331'
             )
         else:
             return RegisterApprovalApiKeyResponse(
                 key_id = 'fab543c0-d6be-414c-aa05-5c6c84269d7a',
+                ccr_id_pending_registration = '19331',
         )
         """
 

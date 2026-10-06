@@ -41,7 +41,7 @@ class TestCantonCallEndInvestorInvite(unittest.TestCase):
                 type = 'DTCC_END_INVESTOR_INVITE',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
                     vault_account_id = '12', 
-                    asset = 'CANTON', 
+                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', )
             )
         else:
@@ -49,7 +49,7 @@ class TestCantonCallEndInvestorInvite(unittest.TestCase):
                 type = 'DTCC_END_INVESTOR_INVITE',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
                     vault_account_id = '12', 
-                    asset = 'CANTON', 
+                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', ),
         )
         """

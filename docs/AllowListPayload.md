@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vault_account_id** | **str** | The vault account whose Canton wallet acts here. | 
-**asset** | **str** | Chain asset — &#x60;CANTON&#x60; or &#x60;CANTON_TEST&#x60;. | 
+**blockchain_id** | **str** | The blockchain this party is connected to — &#x60;CANTON&#x60; or &#x60;CANTON_TEST&#x60;. | 
 **wallets** | **List[str]** | Canton party ids to add or remove. | 
 
 ## Example

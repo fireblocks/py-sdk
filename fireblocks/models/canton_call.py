@@ -25,12 +25,11 @@ from fireblocks.models.canton_call_end_investor_invite import CantonCallEndInves
 from fireblocks.models.canton_call_end_investor_invite_cancel import CantonCallEndInvestorInviteCancel
 from fireblocks.models.canton_call_end_investor_offboard import CantonCallEndInvestorOffboard
 from fireblocks.models.canton_call_participant_onboarding import CantonCallParticipantOnboarding
-from fireblocks.models.canton_call_transfer_withdraw import CantonCallTransferWithdraw
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-CANTONCALL_ONE_OF_SCHEMAS = ["CantonCallAllocationWithdraw", "CantonCallAllowListAdd", "CantonCallAllowListRemove", "CantonCallEndInvestorInvite", "CantonCallEndInvestorInviteCancel", "CantonCallEndInvestorOffboard", "CantonCallParticipantOnboarding", "CantonCallTransferWithdraw"]
+CANTONCALL_ONE_OF_SCHEMAS = ["CantonCallAllocationWithdraw", "CantonCallAllowListAdd", "CantonCallAllowListRemove", "CantonCallEndInvestorInvite", "CantonCallEndInvestorInviteCancel", "CantonCallEndInvestorOffboard", "CantonCallParticipantOnboarding"]
 
 class CantonCall(BaseModel):
     """
@@ -50,10 +49,8 @@ class CantonCall(BaseModel):
     oneof_schema_6_validator: Optional[CantonCallAllowListRemove] = None
     # data type: CantonCallAllocationWithdraw
     oneof_schema_7_validator: Optional[CantonCallAllocationWithdraw] = None
-    # data type: CantonCallTransferWithdraw
-    oneof_schema_8_validator: Optional[CantonCallTransferWithdraw] = None
-    actual_instance: Optional[Union[CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw]] = None
-    one_of_schemas: Set[str] = { "CantonCallAllocationWithdraw", "CantonCallAllowListAdd", "CantonCallAllowListRemove", "CantonCallEndInvestorInvite", "CantonCallEndInvestorInviteCancel", "CantonCallEndInvestorOffboard", "CantonCallParticipantOnboarding", "CantonCallTransferWithdraw" }
+    actual_instance: Optional[Union[CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding]] = None
+    one_of_schemas: Set[str] = { "CantonCallAllocationWithdraw", "CantonCallAllowListAdd", "CantonCallAllowListRemove", "CantonCallEndInvestorInvite", "CantonCallEndInvestorInviteCancel", "CantonCallEndInvestorOffboard", "CantonCallParticipantOnboarding" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -114,17 +111,12 @@ class CantonCall(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CantonCallAllocationWithdraw`")
         else:
             match += 1
-        # validate data type: CantonCallTransferWithdraw
-        if not isinstance(v, CantonCallTransferWithdraw):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CantonCallTransferWithdraw`")
-        else:
-            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -181,19 +173,13 @@ class CantonCall(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CantonCallTransferWithdraw
-        try:
-            instance.actual_instance = CantonCallTransferWithdraw.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CantonCall with oneOf schemas: CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -207,7 +193,7 @@ class CantonCall(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding, CantonCallTransferWithdraw]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CantonCallAllocationWithdraw, CantonCallAllowListAdd, CantonCallAllowListRemove, CantonCallEndInvestorInvite, CantonCallEndInvestorInviteCancel, CantonCallEndInvestorOffboard, CantonCallParticipantOnboarding]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

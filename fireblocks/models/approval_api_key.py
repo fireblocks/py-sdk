@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from fireblocks.models.approval_api_public_key import ApprovalApiPublicKey
 from typing import Optional, Set
@@ -34,7 +34,15 @@ class ApprovalApiKey(BaseModel):
     last_used_at: StrictStr = Field(description="Last time the key was used to sign, as epoch time in seconds (0 if never used).", alias="lastUsedAt")
     approval_api_public_key: ApprovalApiPublicKey = Field(alias="approvalApiPublicKey")
     user_id: StrictStr = Field(description="The ID of the API user who owns this key.", alias="userId")
-    __properties: ClassVar[List[str]] = ["id", "name", "createdAt", "lastUsedAt", "approvalApiPublicKey", "userId"]
+    status: StrictStr = Field(description="The state of the key. `APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION` - registered but waiting for approval, cannot sign yet. `APPROVAL_API_KEY_STATUS_ENABLED` - active. `APPROVAL_API_KEY_STATUS_PENDING_DELETION` - removal is waiting for approval, the key stays active until then. `APPROVAL_API_KEY_STATUS_UNSPECIFIED` - unknown.")
+    __properties: ClassVar[List[str]] = ["id", "name", "createdAt", "lastUsedAt", "approvalApiPublicKey", "userId", "status"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['APPROVAL_API_KEY_STATUS_UNSPECIFIED', 'APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION', 'APPROVAL_API_KEY_STATUS_ENABLED', 'APPROVAL_API_KEY_STATUS_PENDING_DELETION']):
+            raise ValueError("must be one of enum values ('APPROVAL_API_KEY_STATUS_UNSPECIFIED', 'APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION', 'APPROVAL_API_KEY_STATUS_ENABLED', 'APPROVAL_API_KEY_STATUS_PENDING_DELETION')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +103,8 @@ class ApprovalApiKey(BaseModel):
             "createdAt": obj.get("createdAt"),
             "lastUsedAt": obj.get("lastUsedAt"),
             "approvalApiPublicKey": ApprovalApiPublicKey.from_dict(obj["approvalApiPublicKey"]) if obj.get("approvalApiPublicKey") is not None else None,
-            "userId": obj.get("userId")
+            "userId": obj.get("userId"),
+            "status": obj.get("status")
         })
         return _obj
 

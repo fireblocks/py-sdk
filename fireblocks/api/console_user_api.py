@@ -216,7 +216,7 @@ class ConsoleUserApi:
     ) -> Future[ApiResponse[ConsoleUser]]:
         """Request deletion of a console user
 
-        Requests deletion of a console user. The request is asynchronous: it goes through the workspace's configured \"Delete users\" approval policy (Settings > Quorums), exactly as deleting a user from the console does, and the user is removed only once that approval completes. - Track progress by polling GET /management/users; deletion is complete when the user is disabled. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin permissions. Endpoint Permission: Admin, Non-Signing Admin. **Note:** This endpoint is currently in beta and might be subject to changes.
+        Requests deletion of a console user. The request is asynchronous: it goes through the workspace's configured \"Delete users\" approval policy (Settings > Quorums), exactly as deleting a user from the console does, and the user is removed only once that approval completes. - Track progress by polling GET /management/users; deletion is complete when the user is disabled. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin/Security Admin permissions. Endpoint Permission: Admin, Non-Signing Admin, Security Admin. **Note:** This endpoint is currently in beta and might be subject to changes.
 
         :param id: The ID of the console user to delete (required)
         :type id: str
@@ -257,6 +257,7 @@ class ConsoleUserApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "ConsoleUser",
+            '400': "ErrorSchema",
             '401': "ErrorSchema",
             '403': "ErrorSchema",
             '404': "ErrorSchema",

@@ -38,12 +38,12 @@ class TestListApprovalApiKeysResponse(unittest.TestCase):
         model = ListApprovalApiKeysResponse()
         if include_optional:
             return ListApprovalApiKeysResponse(
-                data = [{"id":"fab543c0-d6be-414c-aa05-5c6c84269d7a","name":"primary signing key","createdAt":"1750000000","lastUsedAt":"1750600000","approvalApiPublicKey":{"algorithm":"ECDSA_SECP256R1","publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQ...\n-----END PUBLIC KEY-----"},"userId":"8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94"}],
+                data = [{"id":"fab543c0-d6be-414c-aa05-5c6c84269d7a","name":"primary signing key","createdAt":"1750000000","lastUsedAt":"1750600000","approvalApiPublicKey":{"algorithm":"ECDSA_SECP256R1","publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQ...\n-----END PUBLIC KEY-----"},"userId":"8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94","status":"APPROVAL_API_KEY_STATUS_ENABLED"}],
                 next = 'cursor for the next page'
             )
         else:
             return ListApprovalApiKeysResponse(
-                data = [{"id":"fab543c0-d6be-414c-aa05-5c6c84269d7a","name":"primary signing key","createdAt":"1750000000","lastUsedAt":"1750600000","approvalApiPublicKey":{"algorithm":"ECDSA_SECP256R1","publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQ...\n-----END PUBLIC KEY-----"},"userId":"8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94"}],
+                data = [{"id":"fab543c0-d6be-414c-aa05-5c6c84269d7a","name":"primary signing key","createdAt":"1750000000","lastUsedAt":"1750600000","approvalApiPublicKey":{"algorithm":"ECDSA_SECP256R1","publicKeyPem":"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQ...\n-----END PUBLIC KEY-----"},"userId":"8f3c1a2e-4b7d-4c91-a0e5-2d6f8b1c3a94","status":"APPROVAL_API_KEY_STATUS_ENABLED"}],
         )
         """
 

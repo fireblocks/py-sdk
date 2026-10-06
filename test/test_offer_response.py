@@ -36,13 +36,15 @@ class TestOfferResponse(unittest.TestCase):
         model = OfferResponse()
         if include_optional:
             return OfferResponse(
-                domain = 'TRANSFER',
-                response = None
+                response_type = 'TRANSFER_WITHDRAW',
+                payload = fireblocks.models.dtcc_onboarding_reject_payload.DtccOnboardingRejectPayload(
+                    reason = 'KYC not completed', )
             )
         else:
             return OfferResponse(
-                domain = 'TRANSFER',
-                response = None,
+                response_type = 'TRANSFER_WITHDRAW',
+                payload = fireblocks.models.dtcc_onboarding_reject_payload.DtccOnboardingRejectPayload(
+                    reason = 'KYC not completed', ),
         )
         """
 

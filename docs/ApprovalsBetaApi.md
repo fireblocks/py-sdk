@@ -99,6 +99,8 @@ Register an approval public key for an API user, used to sign approval requests.
 
 The `userId` must be the authenticated API user's own ID. Registering a key for another user is not supported and is rejected.
 
+Registration may require approval. In that case the response carries `ccrIdPendingRegistration`, the key reads as `APPROVAL_API_KEY_STATUS_PENDING_REGISTRATION` and cannot sign until the request is approved. A rejected request removes the key.
+
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
 
 ### Example
@@ -169,16 +171,17 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The approval key was registered. |  * X-Request-ID -  <br>  |
+**409** | Another approval key request for this API user is already pending approval. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_approval_key**
-> delete_approval_key(user_id, key_id, idempotency_key=idempotency_key)
+> DeleteApprovalApiKeyResponse delete_approval_key(user_id, key_id, idempotency_key=idempotency_key)
 
 Delete an approval key
 
-Delete (revoke) an approval public key for the specified API user. Revoking the last key disables the API user's ability to sign approvals.
+Delete (revoke) an approval public key for the specified API user. The deletion may require approval: it always does for the API user's last key or another user's key. In that case the response carries `ccrIdPendingDeletion`, the key reads as `APPROVAL_API_KEY_STATUS_PENDING_DELETION` and stays active until the request is approved. A rejected request leaves the key enabled.
 
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security Admin.
 
@@ -186,10 +189,12 @@ Endpoint Permission: Owner, Admin, Non-Signing Admin, Approver, Signer, Security
 
 
 ```python
+from fireblocks.models.delete_approval_api_key_response import DeleteApprovalApiKeyResponse
 from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.exceptions import ApiException
 from fireblocks.base_path import BasePath
+from pprint import pprint
 
 # load the secret key content from a file
 with open('your_secret_key_file_path', 'r') as file:
@@ -211,7 +216,9 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Delete an approval key
-        fireblocks.approvals_beta.delete_approval_key(user_id, key_id, idempotency_key=idempotency_key).result()
+        api_response = fireblocks.approvals_beta.delete_approval_key(user_id, key_id, idempotency_key=idempotency_key).result()
+        print("The response of ApprovalsBetaApi->delete_approval_key:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ApprovalsBetaApi->delete_approval_key: %s\n" % e)
 ```
@@ -229,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**DeleteApprovalApiKeyResponse**](DeleteApprovalApiKeyResponse.md)
 
 ### Authorization
 
@@ -244,7 +251,8 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The approval key was deleted. |  * X-Request-ID -  <br>  |
+**200** | The approval key was deleted, or its deletion is pending approval. |  * X-Request-ID -  <br>  |
+**409** | Another approval key request for this API user is already pending approval. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

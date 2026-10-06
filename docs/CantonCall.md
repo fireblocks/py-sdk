@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Which call to make. Selects the shape of &#x60;payload&#x60;. | 
-**payload** | [**TransferWithdrawPayload**](TransferWithdrawPayload.md) |  | 
+**payload** | [**AllocationWithdrawPayload**](AllocationWithdrawPayload.md) |  | 
 
 ## Example
 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vault_account_id** | **str** | The vault account that acts as the participant. Its Canton party is derived for you. | 
-**asset** | **str** | Chain asset — CANTON or CANTON_TEST. | 
+**blockchain_id** | **str** | The blockchain this party is connected to — &#x60;CANTON&#x60; or &#x60;CANTON_TEST&#x60;. | 
 **expires_at** | **datetime** | When the onboarding request expires if it has not been answered. RFC 3339. | [optional] 
 **operator** | **str** | DTCC infra operator party id. | 
 **compliance** | **str** | DTCC compliance party id. | 

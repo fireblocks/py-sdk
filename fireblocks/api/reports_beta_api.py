@@ -115,6 +115,7 @@ class ReportsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_report",
         )
 
     def _create_report_serialize(
@@ -260,6 +261,7 @@ class ReportsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_report",
         )
 
     def _get_report_serialize(
@@ -408,6 +410,7 @@ class ReportsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_reports",
         )
 
     def _list_reports_serialize(

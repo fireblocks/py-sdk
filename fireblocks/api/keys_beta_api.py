@@ -100,6 +100,7 @@ class KeysBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_mpc_keys_list",
         )
 
     def _get_mpc_keys_list_serialize(
@@ -226,6 +227,7 @@ class KeysBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_mpc_keys_list_by_user",
         )
 
     def _get_mpc_keys_list_by_user_serialize(

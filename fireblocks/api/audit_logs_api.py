@@ -151,6 +151,7 @@ class AuditLogsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_audit_logs",
         )
 
     def _get_audit_logs_serialize(

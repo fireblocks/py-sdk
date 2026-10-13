@@ -45,7 +45,7 @@ from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tempo_beta_api import TempoBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
-from fireblocks.api.trading_beta_api import TradingBetaApi
+from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi

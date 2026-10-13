@@ -26,6 +26,13 @@ class TestKeyLinkBetaApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_create_bulk_signing_keys(self) -> None:
+        """Test case for create_bulk_signing_keys
+
+        Register signing keys in bulk
+        """
+        pass
+
     def test_create_signing_key(self) -> None:
         """Test case for create_signing_key
 
@@ -44,6 +51,20 @@ class TestKeyLinkBetaApi(unittest.TestCase):
         """Test case for disable_validation_key
 
         Disables a validation key
+        """
+        pass
+
+    def test_get_bulk_signing_keys_job(self) -> None:
+        """Test case for get_bulk_signing_keys_job
+
+        Get a bulk registration job
+        """
+        pass
+
+    def test_get_bulk_signing_keys_jobs(self) -> None:
+        """Test case for get_bulk_signing_keys_jobs
+
+        Get bulk registration jobs
         """
         pass
 

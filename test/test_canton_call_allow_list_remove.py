@@ -37,17 +37,17 @@ class TestCantonCallAllowListRemove(unittest.TestCase):
         if include_optional:
             return CantonCallAllowListRemove(
                 type = 'DTCC_ALLOW_LIST_REMOVE',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.allow_list_payload.AllowListPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     wallets = ["investor-party::1220abc…"], )
             )
         else:
             return CantonCallAllowListRemove(
                 type = 'DTCC_ALLOW_LIST_REMOVE',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.allow_list_payload.AllowListPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     wallets = ["investor-party::1220abc…"], ),
         )
         """

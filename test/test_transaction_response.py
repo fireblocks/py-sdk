@@ -145,7 +145,7 @@ class TestTransactionResponse(unittest.TestCase):
                     fee_usd = '0.0013', ),
                 fee_currency = '',
                 requested_fee_currency = 'PATH_USD',
-                canton_details = {"call":{"version":1,"domain":"ALLOCATION","type":"ALLOCATION_WITHDRAW","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488"}},
+                canton_details = {"offerResponse":{"version":1,"domain":"ALLOCATION","responseType":"ALLOCATION_WITHDRAW","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488","allocationTransactionId":"5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21"}},
                 network_records = [
                     fireblocks.models.network_record.NetworkRecord(
                         source = fireblocks.models.source_transfer_peer_path_response.SourceTransferPeerPathResponse(

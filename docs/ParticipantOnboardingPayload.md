@@ -1,18 +1,17 @@
 # ParticipantOnboardingPayload
 
+Optional, and so is every field in it: omit `payload` entirely to onboard with DTCC's published parties for the blockchain and the default expiry.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**vault_account_id** | **str** | The vault account that acts as the participant. Its Canton party is derived for you. | 
-**blockchain_id** | **str** | The blockchain this party is connected to — &#x60;CANTON&#x60; or &#x60;CANTON_TEST&#x60;. | 
 **expires_at** | **datetime** | When the onboarding request expires if it has not been answered. RFC 3339. | [optional] 
-**operator** | **str** | DTCC infra operator party id. | 
-**compliance** | **str** | DTCC compliance party id. | 
-**registrar** | **str** | DTCC registrar party id — co-signs the accept. | 
-**client_onboarder** | **str** | DTCC client onboarder party id — co-signs the accept. | 
-**upgrader** | **str** | DTCC upgrader party id — the Model Upgrade Tool authority. Supplied by DTCC during the off-chain registration, alongside the other party ids. | 
+**operator** | **str** | DTCC infra operator party id. Optional — overrides the service&#39;s default for the blockchain. | [optional] 
+**compliance** | **str** | DTCC compliance party id. Optional — overrides the service&#39;s default for the blockchain. | [optional] 
+**registrar** | **str** | DTCC registrar party id — co-signs the accept. Optional — overrides the service&#39;s default for the blockchain. | [optional] 
+**client_onboarder** | **str** | DTCC client onboarder party id — co-signs the accept. Optional — overrides the service&#39;s default for the blockchain. | [optional] 
+**upgrader** | **str** | DTCC upgrader party id — the Model Upgrade Tool authority. Optional — overrides the service&#39;s default for the blockchain. | [optional] 
 
 ## Example
 

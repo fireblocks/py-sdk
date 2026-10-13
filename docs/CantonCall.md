@@ -6,7 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Which call to make. Selects the shape of &#x60;payload&#x60;. | 
-**payload** | [**AllocationWithdrawPayload**](AllocationWithdrawPayload.md) |  | 
+**vault_account_id** | **str** | The vault account whose Canton wallet makes this call. | 
+**blockchain_id** | **str** | The blockchain the vault account&#39;s Canton party is connected to — &#x60;CANTON&#x60; or &#x60;CANTON_TEST&#x60;. | 
+**payload** | [**AllowListPayload**](AllowListPayload.md) |  | 
 
 ## Example
 

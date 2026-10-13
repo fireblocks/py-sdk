@@ -154,6 +154,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="activate_asset_for_vault_account",
         )
 
     def _activate_asset_for_vault_account_serialize(
@@ -298,6 +299,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="activate_usdc_gateway_wallet_beta",
         )
 
     def _activate_usdc_gateway_wallet_beta_serialize(
@@ -434,6 +436,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="attach_or_detach_tags_from_vault_accounts",
         )
 
     def _attach_or_detach_tags_from_vault_accounts_serialize(
@@ -593,6 +596,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_legacy_address",
         )
 
     def _create_legacy_address_serialize(
@@ -734,6 +738,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_multiple_accounts",
         )
 
     def _create_multiple_accounts_serialize(
@@ -882,6 +887,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_multiple_deposit_addresses",
         )
 
     def _create_multiple_deposit_addresses_serialize(
@@ -1030,6 +1036,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_vault_account",
         )
 
     def _create_vault_account_serialize(
@@ -1192,6 +1199,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_vault_account_asset",
         )
 
     def _create_vault_account_asset_serialize(
@@ -1361,6 +1369,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_vault_account_asset_address",
         )
 
     def _create_vault_account_asset_address_serialize(
@@ -1516,6 +1525,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deactivate_usdc_gateway_wallet_beta",
         )
 
     def _deactivate_usdc_gateway_wallet_beta_serialize(
@@ -1653,6 +1663,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="disable_usdc_gateway_deposit_automation_schedule_beta",
         )
 
     def _disable_usdc_gateway_deposit_automation_schedule_beta_serialize(
@@ -1803,6 +1814,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_asset_wallets",
         )
 
     def _get_asset_wallets_serialize(
@@ -1959,6 +1971,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_create_multiple_deposit_addresses_job_status",
         )
 
     def _get_create_multiple_deposit_addresses_job_status_serialize(
@@ -2088,6 +2101,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_create_multiple_vault_accounts_job_status",
         )
 
     def _get_create_multiple_vault_accounts_job_status_serialize(
@@ -2222,6 +2236,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_max_bip_index_used",
         )
 
     def _get_max_bip_index_used_serialize(
@@ -2387,6 +2402,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_max_spendable_amount",
         )
 
     def _get_max_spendable_amount_serialize(
@@ -2595,6 +2611,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_paged_vault_accounts",
         )
 
     def _get_paged_vault_accounts_serialize(
@@ -2788,6 +2805,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_public_key_info",
         )
 
     def _get_public_key_info_serialize(
@@ -2946,6 +2964,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_public_key_info_for_address",
         )
 
     def _get_public_key_info_for_address_serialize(
@@ -3094,6 +3113,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_unspent_inputs",
         )
 
     def _get_unspent_inputs_serialize(
@@ -3226,6 +3246,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_usdc_gateway_deposit_automation_beta",
         )
 
     def _get_usdc_gateway_deposit_automation_beta_serialize(
@@ -3355,6 +3376,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_usdc_gateway_wallet_info_beta",
         )
 
     def _get_usdc_gateway_wallet_info_beta_serialize(
@@ -3484,6 +3506,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_account",
         )
 
     def _get_vault_account_serialize(
@@ -3618,6 +3641,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_account_asset",
         )
 
     def _get_vault_account_asset_serialize(
@@ -3767,6 +3791,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_account_asset_addresses_paginated",
         )
 
     def _get_vault_account_asset_addresses_paginated_serialize(
@@ -3917,6 +3942,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_assets",
         )
 
     def _get_vault_assets_serialize(
@@ -4053,6 +4079,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_balance_by_asset",
         )
 
     def _get_vault_balance_by_asset_serialize(
@@ -4186,6 +4213,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="hide_vault_account",
         )
 
     def _hide_vault_account_serialize(
@@ -4321,6 +4349,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="lookup_vault_by_address",
         )
 
     def _lookup_vault_by_address_serialize(
@@ -4373,150 +4402,6 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/lookup_by_address',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def register_tempo_omnibus_wallet(
-        self,
-        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account for which to register the Tempo wallet.")],
-        asset_id: Annotated[StrictStr, Field(description="The Tempo network asset to register for the vault account.")],
-        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Future[ApiResponse[CreateVaultAssetResponse]]:
-        """Register a Tempo omnibus wallet
-
-        Registers a Tempo omnibus wallet for the requested vault account. Triggering this flow requires the vault account to hold PATH_USD with a balance sufficient to cover the gas fee. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
-
-        :param vault_account_id: The ID of the vault account for which to register the Tempo wallet. (required)
-        :type vault_account_id: str
-        :param asset_id: The Tempo network asset to register for the vault account. (required)
-        :type asset_id: str
-        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
-        :type idempotency_key: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        validate_not_empty_string(function_name="register_tempo_omnibus_wallet", param_name="vault_account_id", param_value=vault_account_id)
-        validate_not_empty_string(function_name="register_tempo_omnibus_wallet", param_name="asset_id", param_value=asset_id)
-
-        _param = self._register_tempo_omnibus_wallet_serialize(
-            vault_account_id=vault_account_id,
-            asset_id=asset_id,
-            idempotency_key=idempotency_key,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateVaultAssetResponse",
-            'default': "ErrorSchema",
-        }
-
-        return self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout,
-            _response_types_map=_response_types_map,
-        )
-
-    def _register_tempo_omnibus_wallet_serialize(
-        self,
-        vault_account_id,
-        asset_id,
-        idempotency_key,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if vault_account_id is not None:
-            _path_params['vaultAccountId'] = vault_account_id
-        if asset_id is not None:
-            _path_params['assetId'] = asset_id
-        # process the query parameters
-        # process the header parameters
-        if idempotency_key is not None:
-            _header_params['Idempotency-Key'] = idempotency_key
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/vault/accounts/{vaultAccountId}/{assetId}/omnibus/tempo/register',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4614,6 +4499,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_customer_ref_id_for_address",
         )
 
     def _set_customer_ref_id_for_address_serialize(
@@ -4776,6 +4662,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_usdc_gateway_deposit_automation_beta",
         )
 
     def _set_usdc_gateway_deposit_automation_beta_serialize(
@@ -4932,6 +4819,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_vault_account_auto_fuel",
         )
 
     def _set_vault_account_auto_fuel_serialize(
@@ -5088,6 +4976,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_vault_account_customer_ref_id",
         )
 
     def _set_vault_account_customer_ref_id_serialize(
@@ -5240,6 +5129,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unhide_vault_account",
         )
 
     def _unhide_vault_account_serialize(
@@ -5385,6 +5275,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_usdc_gateway_deposit_automation_beta",
         )
 
     def _update_usdc_gateway_deposit_automation_beta_serialize(
@@ -5544,6 +5435,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_vault_account",
         )
 
     def _update_vault_account_serialize(
@@ -5710,6 +5602,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_vault_account_asset_address",
         )
 
     def _update_vault_account_asset_address_serialize(
@@ -5873,6 +5766,7 @@ class VaultsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_vault_account_asset_balance",
         )
 
     def _update_vault_account_asset_balance_serialize(

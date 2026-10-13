@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **version** | **int** | The shape of this block. Stamped at creation and never changed, so a reader always knows which version it is holding. | [optional] 
 **domain** | [**CantonDomainEnum**](CantonDomainEnum.md) |  | [optional] 
-**type** | **str** | The call type, matching the &#x60;type&#x60; sent when the call was created. | [optional] 
+**type** | **str** | The call type, matching the &#x60;type&#x60; sent when the call was created. Transactions created before a type moved to the offers endpoint keep the value they were written with — &#x60;ALLOCATION_WITHDRAW&#x60; is one; new withdraws are offer responses. | [optional] 
 **vendor** | [**CantonVendorEnum**](CantonVendorEnum.md) |  | [optional] 
-**original_transaction_id** | **str** | The transaction this call acts on. On a withdraw it is the allocation that was withdrawn, so the withdraw transaction read on its own still says what it withdrew. | [optional] 
+**original_transaction_id** | **str** | The transaction this call acts on, where it acts on one. | [optional] 
 
 ## Example
 

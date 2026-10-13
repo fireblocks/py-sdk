@@ -117,6 +117,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_trust_proof_of_address",
         )
 
     def _create_trust_proof_of_address_serialize(
@@ -262,6 +263,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_trust_proof_of_address",
         )
 
     def _get_trust_proof_of_address_serialize(
@@ -391,6 +393,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vasp_for_vault",
         )
 
     def _get_vasp_for_vault_serialize(
@@ -525,6 +528,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vaspby_did",
         )
 
     def _get_vaspby_did_serialize(
@@ -679,6 +683,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vasps",
         )
 
     def _get_vasps_serialize(
@@ -844,6 +849,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_vasp_for_vault",
         )
 
     def _set_vasp_for_vault_serialize(
@@ -996,6 +1002,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_vasp",
         )
 
     def _update_vasp_serialize(
@@ -1148,6 +1155,7 @@ class TravelRuleApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="validate_full_travel_rule_transaction",
         )
 
     def _validate_full_travel_rule_transaction_serialize(

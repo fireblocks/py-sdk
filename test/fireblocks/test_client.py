@@ -60,7 +60,7 @@ from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tempo_beta_api import TempoBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
-from fireblocks.api.trading_beta_api import TradingBetaApi
+from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
@@ -219,8 +219,8 @@ def test_get_tempo_beta(fireblocks_instance):
 def test_get_tokenization(fireblocks_instance):
     assert isinstance(fireblocks_instance.tokenization, TokenizationApi)
 
-def test_get_trading_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.trading_beta, TradingBetaApi)
+def test_get_trading(fireblocks_instance):
+    assert isinstance(fireblocks_instance.trading, TradingApi)
 
 def test_get_transactions(fireblocks_instance):
     assert isinstance(fireblocks_instance.transactions, TransactionsApi)

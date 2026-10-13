@@ -62,7 +62,7 @@ from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
 from fireblocks.api.tempo_beta_api import TempoBetaApi
 from fireblocks.api.tokenization_api import TokenizationApi
-from fireblocks.api.trading_beta_api import TradingBetaApi
+from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
@@ -130,7 +130,7 @@ class Fireblocks:
         self._tags = None
         self._tempo_beta = None
         self._tokenization = None
-        self._trading_beta = None
+        self._trading = None
         self._transactions = None
         self._travel_rule = None
         self._utxo_management_beta = None
@@ -424,10 +424,10 @@ class Fireblocks:
         return self._tokenization
 
     @property
-    def trading_beta(self) -> TradingBetaApi:
-        if self._trading_beta is None:
-            self._trading_beta = TradingBetaApi(self._api_client)
-        return self._trading_beta
+    def trading(self) -> TradingApi:
+        if self._trading is None:
+            self._trading = TradingApi(self._api_client)
+        return self._trading
 
     @property
     def transactions(self) -> TransactionsApi:

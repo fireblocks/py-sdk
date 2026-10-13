@@ -105,6 +105,7 @@ class PolicyEditorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_active_policy_legacy",
         )
 
     def _get_active_policy_legacy_serialize(
@@ -226,6 +227,7 @@ class PolicyEditorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_draft_legacy",
         )
 
     def _get_draft_legacy_serialize(
@@ -355,6 +357,7 @@ class PolicyEditorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="publish_draft_legacy",
         )
 
     def _publish_draft_legacy_serialize(
@@ -503,6 +506,7 @@ class PolicyEditorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="publish_policy_rules",
         )
 
     def _publish_policy_rules_serialize(
@@ -651,6 +655,7 @@ class PolicyEditorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_draft_legacy",
         )
 
     def _update_draft_legacy_serialize(

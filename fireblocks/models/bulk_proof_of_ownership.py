@@ -18,26 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from fireblocks.models.allocation_withdraw_payload import AllocationWithdrawPayload
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CantonCallAllocationWithdraw(BaseModel):
+class BulkProofOfOwnership(BaseModel):
     """
-    CantonCallAllocationWithdraw
+    Proof that the customer holds the private key. Required for every key, unlike the single key endpoint: bulk registration has no interactive step in which a proof can arrive later.
     """ # noqa: E501
-    type: StrictStr = Field(description="Which call to make. Selects the shape of `payload`.")
-    payload: AllocationWithdrawPayload
-    __properties: ClassVar[List[str]] = ["type", "payload"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['ALLOCATION_WITHDRAW']):
-            raise ValueError("must be one of enum values ('ALLOCATION_WITHDRAW')")
-        return value
+    message: Annotated[str, Field(min_length=64, strict=True, max_length=2048)] = Field(description="The message to be signed by the key as proof of ownership. 64 to 1024 bytes in hexadecimal format.")
+    signature: Annotated[str, Field(min_length=128, strict=True, max_length=128)] = Field(description="The signature of the message. 64 bytes in hexadecimal format.")
+    __properties: ClassVar[List[str]] = ["message", "signature"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +50,7 @@ class CantonCallAllocationWithdraw(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CantonCallAllocationWithdraw from a JSON string"""
+        """Create an instance of BulkProofOfOwnership from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,14 +71,11 @@ class CantonCallAllocationWithdraw(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of payload
-        if self.payload:
-            _dict['payload'] = self.payload.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CantonCallAllocationWithdraw from a dict"""
+        """Create an instance of BulkProofOfOwnership from a dict"""
         if obj is None:
             return None
 
@@ -93,8 +83,8 @@ class CantonCallAllocationWithdraw(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
-            "payload": AllocationWithdrawPayload.from_dict(obj["payload"]) if obj.get("payload") is not None else None
+            "message": obj.get("message"),
+            "signature": obj.get("signature")
         })
         return _obj
 

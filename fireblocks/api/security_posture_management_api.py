@@ -108,6 +108,7 @@ class SecurityPostureManagementApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_security_finding_by_id",
         )
 
     def _get_security_finding_by_id_serialize(
@@ -257,6 +258,7 @@ class SecurityPostureManagementApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_security_findings",
         )
 
     def _get_security_findings_serialize(
@@ -416,6 +418,7 @@ class SecurityPostureManagementApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_security_finding_by_id",
         )
 
     def _update_security_finding_by_id_serialize(

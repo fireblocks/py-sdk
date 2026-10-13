@@ -28,17 +28,19 @@ from typing_extensions import Self
 
 class CantonOfferResponseDetails(BaseModel):
     """
-    The transaction belongs to an offer conversation: the offer itself, the response to it, or a leg that carries no answer of its own. The only block that changes over a transaction's lifetime.
+    The transaction belongs to an offer conversation: the offer itself, a response to it, or a leg that carries no answer of its own. The only block that changes over a transaction's lifetime. An offer can have more than one response — an allocation offer is accepted and later withdrawn — so every response transaction states which answer it is in `responseType`.
     """ # noqa: E501
     version: Optional[StrictInt] = Field(default=None, description="The shape of this block. Stamped at creation and never changed, so a reader always knows which version it is holding.")
     domain: Optional[CantonDomainEnum] = None
     vendor: Optional[CantonVendorEnum] = None
-    available_responses: Optional[List[StrictStr]] = Field(default=None, description="The responses that can be sent for this offer right now. An empty array means nothing is answerable on this transaction — which is the difference between an actionable offer and a linked leg that shares its sub-status.", alias="availableResponses")
+    available_responses: Optional[List[StrictStr]] = Field(default=None, description="The responses this offer accepts — copy one into `responseType` to answer it. Present on the offer only, set when it arrives and never changed: it states what the offer TYPE accepts, not whether it is answerable right now. The respond endpoint is the authority on that, and answers `409` when the offer's state or expiry rules a response out — for example an `ALLOCATION_WITHDRAW` sent before the accept has settled. An empty array means nothing is answerable on this transaction — the difference between an actionable offer and a linked leg that shares its sub-status.", alias="availableResponses")
     expires_at: Optional[datetime] = Field(default=None, description="When the offer expires, where it has a deadline.", alias="expiresAt")
     approval_transaction_id: Optional[StrictStr] = Field(default=None, description="The response transaction, once one has been dispatched for this offer.", alias="approvalTransactionId")
     original_transaction_id: Optional[StrictStr] = Field(default=None, description="The transaction this one relates to — the offer a response answered.", alias="originalTransactionId")
+    response_type: Optional[StrictStr] = Field(default=None, description="On a response transaction, which answer it is — the `responseType` that was sent. Absent on the offer itself.", alias="responseType")
+    allocation_transaction_id: Optional[StrictStr] = Field(default=None, description="On an `ALLOCATION_WITHDRAW` response only — the accept whose allocation this withdraw released, so the withdraw transaction read on its own says what it undid.", alias="allocationTransactionId")
     verdict: Optional[StrictStr] = Field(default=None, description="The outcome, set once the transaction reaches a terminal status.")
-    __properties: ClassVar[List[str]] = ["version", "domain", "vendor", "availableResponses", "expiresAt", "approvalTransactionId", "originalTransactionId", "verdict"]
+    __properties: ClassVar[List[str]] = ["version", "domain", "vendor", "availableResponses", "expiresAt", "approvalTransactionId", "originalTransactionId", "responseType", "allocationTransactionId", "verdict"]
 
     @field_validator('verdict')
     def verdict_validate_enum(cls, value):
@@ -108,6 +110,8 @@ class CantonOfferResponseDetails(BaseModel):
             "expiresAt": obj.get("expiresAt"),
             "approvalTransactionId": obj.get("approvalTransactionId"),
             "originalTransactionId": obj.get("originalTransactionId"),
+            "responseType": obj.get("responseType"),
+            "allocationTransactionId": obj.get("allocationTransactionId"),
             "verdict": obj.get("verdict")
         })
         return _obj

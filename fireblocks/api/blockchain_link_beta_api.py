@@ -122,6 +122,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="activate_blockchain_link_chain",
         )
 
     def _activate_blockchain_link_chain_serialize(
@@ -257,6 +258,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_blockchain_link_chain",
         )
 
     def _create_blockchain_link_chain_serialize(
@@ -402,6 +404,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_blockchain_link_chain",
         )
 
     def _delete_blockchain_link_chain_serialize(
@@ -526,6 +529,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_blockchain_link_billing_info",
         )
 
     def _get_blockchain_link_billing_info_serialize(
@@ -652,6 +656,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_blockchain_link_chain",
         )
 
     def _get_blockchain_link_chain_serialize(
@@ -776,6 +781,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_blockchain_link_test_wallet_address",
         )
 
     def _get_blockchain_link_test_wallet_address_serialize(
@@ -929,6 +935,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_blockchain_link_chains",
         )
 
     def _list_blockchain_link_chains_serialize(
@@ -1101,6 +1108,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="trigger_blockchain_link_validation",
         )
 
     def _trigger_blockchain_link_validation_serialize(
@@ -1241,6 +1249,7 @@ class BlockchainLinkBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_blockchain_link_chain",
         )
 
     def _update_blockchain_link_chain_serialize(

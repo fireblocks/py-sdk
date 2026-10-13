@@ -36,14 +36,10 @@ class TestAllowListPayload(unittest.TestCase):
         model = AllowListPayload()
         if include_optional:
             return AllowListPayload(
-                vault_account_id = '12',
-                blockchain_id = 'CANTON',
                 wallets = ["investor-party::1220abc…"]
             )
         else:
             return AllowListPayload(
-                vault_account_id = '12',
-                blockchain_id = 'CANTON',
                 wallets = ["investor-party::1220abc…"],
         )
         """

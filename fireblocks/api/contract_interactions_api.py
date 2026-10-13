@@ -128,6 +128,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="decode_contract_data",
         )
 
     def _decode_contract_data_serialize(
@@ -288,6 +289,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_address",
         )
 
     def _get_contract_address_serialize(
@@ -432,6 +434,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_deployed_contract_abi",
         )
 
     def _get_deployed_contract_abi_serialize(
@@ -572,6 +575,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_transaction_receipt",
         )
 
     def _get_transaction_receipt_serialize(
@@ -717,6 +721,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="read_call_function",
         )
 
     def _read_call_function_serialize(
@@ -881,6 +886,7 @@ class ContractInteractionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="write_call_function",
         )
 
     def _write_call_function_serialize(

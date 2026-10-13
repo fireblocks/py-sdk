@@ -69,7 +69,6 @@ docs/AddressReverseLookupResponse.md
 docs/AddressesFilters.md
 docs/AlertExposureTypeEnum.md
 docs/AlertLevelEnum.md
-docs/AllocationWithdrawPayload.md
 docs/AllowListPayload.md
 docs/AllowlistEntry.md
 docs/AllowlistEntryResponse.md
@@ -174,6 +173,9 @@ docs/BlockchainStateFilter.md
 docs/BlockchainTransfer.md
 docs/BlockchainsAssetsApi.md
 docs/BpsFee.md
+docs/BulkProofOfOwnership.md
+docs/BulkSigningKey.md
+docs/BulkSigningKeyJob.md
 docs/BusinessEntityTypeEnum.md
 docs/BusinessIdentification.md
 docs/ByorkConfigResponse.md
@@ -190,7 +192,6 @@ docs/CallbackHandler.md
 docs/CallbackHandlerRequest.md
 docs/CancelTransactionResponse.md
 docs/CantonCall.md
-docs/CantonCallAllocationWithdraw.md
 docs/CantonCallAllowListAdd.md
 docs/CantonCallAllowListRemove.md
 docs/CantonCallDetails.md
@@ -319,6 +320,8 @@ docs/CreateAddressesReportRequest.md
 docs/CreateAssetsRequest.md
 docs/CreateBlockchainRequest.md
 docs/CreateBlockchainResponse.md
+docs/CreateBulkSigningKeys.md
+docs/CreateBulkSigningKeysResponse.md
 docs/CreateConfigOperationRequest.md
 docs/CreateConnectionRequest.md
 docs/CreateConnectionResponse.md
@@ -540,6 +543,7 @@ docs/GetAuditLogsResponse.md
 docs/GetAutomationSettingsResponse.md
 docs/GetBillingInfoResponse.md
 docs/GetBlockchainByIdResponse.md
+docs/GetBulkSigningKeysJobsResponse.md
 docs/GetByorkVerdictResponse.md
 docs/GetConnectedAccountsCredentialsPublicKeyResponse.md
 docs/GetConnectionsResponse.md
@@ -705,6 +709,7 @@ docs/OfferResponse.md
 docs/OfferResponseAccepted.md
 docs/OfferResponseAllocationAccept.md
 docs/OfferResponseAllocationReject.md
+docs/OfferResponseAllocationWithdraw.md
 docs/OfferResponseDtccOnboardingAccept.md
 docs/OfferResponseDtccOnboardingReject.md
 docs/OfferResponseTradewebAccept.md
@@ -1174,7 +1179,7 @@ docs/TotalSupplyItemDto.md
 docs/TotalSupplyPagedResponse.md
 docs/TotalSupplyPagedResponse2.md
 docs/TradingAccountType.md
-docs/TradingBetaApi.md
+docs/TradingApi.md
 docs/TradingErrorSchema.md
 docs/TradingProvider.md
 docs/Transaction.md
@@ -1423,7 +1428,7 @@ fireblocks/api/tags_api.py
 fireblocks/api/tempo_beta_api.py
 fireblocks/api/tokenization_api.py
 fireblocks/api/tr_link_api.py
-fireblocks/api/trading_beta_api.py
+fireblocks/api/trading_api.py
 fireblocks/api/transactions_api.py
 fireblocks/api/travel_rule_api.py
 fireblocks/api/user_groups_beta_api.py
@@ -1446,6 +1451,7 @@ fireblocks/client_configuration.py
 fireblocks/configuration.py
 fireblocks/connection_pool.py
 fireblocks/exceptions.py
+fireblocks/lifecycle_warning.py
 fireblocks/models/__init__.py
 fireblocks/models/aba_payment_info.py
 fireblocks/models/abi_function.py
@@ -1513,7 +1519,6 @@ fireblocks/models/address_reverse_lookup_response.py
 fireblocks/models/addresses_filters.py
 fireblocks/models/alert_exposure_type_enum.py
 fireblocks/models/alert_level_enum.py
-fireblocks/models/allocation_withdraw_payload.py
 fireblocks/models/allow_list_payload.py
 fireblocks/models/allowlist_entry.py
 fireblocks/models/allowlist_entry_response.py
@@ -1614,6 +1619,9 @@ fireblocks/models/blockchain_sort_field.py
 fireblocks/models/blockchain_state_filter.py
 fireblocks/models/blockchain_transfer.py
 fireblocks/models/bps_fee.py
+fireblocks/models/bulk_proof_of_ownership.py
+fireblocks/models/bulk_signing_key.py
+fireblocks/models/bulk_signing_key_job.py
 fireblocks/models/business_entity_type_enum.py
 fireblocks/models/business_identification.py
 fireblocks/models/byork_config_response.py
@@ -1630,7 +1638,6 @@ fireblocks/models/callback_handler.py
 fireblocks/models/callback_handler_request.py
 fireblocks/models/cancel_transaction_response.py
 fireblocks/models/canton_call.py
-fireblocks/models/canton_call_allocation_withdraw.py
 fireblocks/models/canton_call_allow_list_add.py
 fireblocks/models/canton_call_allow_list_remove.py
 fireblocks/models/canton_call_details.py
@@ -1749,6 +1756,8 @@ fireblocks/models/create_api_user.py
 fireblocks/models/create_assets_request.py
 fireblocks/models/create_blockchain_request.py
 fireblocks/models/create_blockchain_response.py
+fireblocks/models/create_bulk_signing_keys.py
+fireblocks/models/create_bulk_signing_keys_response.py
 fireblocks/models/create_config_operation_request.py
 fireblocks/models/create_connection_request.py
 fireblocks/models/create_connection_response.py
@@ -1962,6 +1971,7 @@ fireblocks/models/get_audit_logs_response.py
 fireblocks/models/get_automation_settings_response.py
 fireblocks/models/get_billing_info_response.py
 fireblocks/models/get_blockchain_by_id_response.py
+fireblocks/models/get_bulk_signing_keys_jobs_response.py
 fireblocks/models/get_byork_verdict_response.py
 fireblocks/models/get_connected_accounts_credentials_public_key_response.py
 fireblocks/models/get_connections_response.py
@@ -2120,6 +2130,7 @@ fireblocks/models/offer_response.py
 fireblocks/models/offer_response_accepted.py
 fireblocks/models/offer_response_allocation_accept.py
 fireblocks/models/offer_response_allocation_reject.py
+fireblocks/models/offer_response_allocation_withdraw.py
 fireblocks/models/offer_response_dtcc_onboarding_accept.py
 fireblocks/models/offer_response_dtcc_onboarding_reject.py
 fireblocks/models/offer_response_tradeweb_accept.py
@@ -2785,6 +2796,7 @@ test/fireblocks/test_bearer_token_provider.py
 test/fireblocks/test_client.py
 test/fireblocks/test_client_configuration.py
 test/fireblocks/test_connection_pool.py
+test/fireblocks/test_lifecycle_warning.py
 test/fireblocks/test_threaded_api_client.py
 test/fireblocks/test_unknown_model.py
 test/fireblocks/test_user_agent_util.py
@@ -2855,7 +2867,6 @@ test/test_address_reverse_lookup_response.py
 test/test_addresses_filters.py
 test/test_alert_exposure_type_enum.py
 test/test_alert_level_enum.py
-test/test_allocation_withdraw_payload.py
 test/test_allow_list_payload.py
 test/test_allowlist_entry.py
 test/test_allowlist_entry_response.py
@@ -2961,6 +2972,9 @@ test/test_blockchain_state_filter.py
 test/test_blockchain_transfer.py
 test/test_blockchains_assets_api.py
 test/test_bps_fee.py
+test/test_bulk_proof_of_ownership.py
+test/test_bulk_signing_key.py
+test/test_bulk_signing_key_job.py
 test/test_business_entity_type_enum.py
 test/test_business_identification.py
 test/test_byork_config_response.py
@@ -2977,7 +2991,6 @@ test/test_callback_handler.py
 test/test_callback_handler_request.py
 test/test_cancel_transaction_response.py
 test/test_canton_call.py
-test/test_canton_call_allocation_withdraw.py
 test/test_canton_call_allow_list_add.py
 test/test_canton_call_allow_list_remove.py
 test/test_canton_call_details.py
@@ -3106,6 +3119,8 @@ test/test_create_api_user.py
 test/test_create_assets_request.py
 test/test_create_blockchain_request.py
 test/test_create_blockchain_response.py
+test/test_create_bulk_signing_keys.py
+test/test_create_bulk_signing_keys_response.py
 test/test_create_config_operation_request.py
 test/test_create_connection_request.py
 test/test_create_connection_response.py
@@ -3327,6 +3342,7 @@ test/test_get_audit_logs_response.py
 test/test_get_automation_settings_response.py
 test/test_get_billing_info_response.py
 test/test_get_blockchain_by_id_response.py
+test/test_get_bulk_signing_keys_jobs_response.py
 test/test_get_byork_verdict_response.py
 test/test_get_connected_accounts_credentials_public_key_response.py
 test/test_get_connections_response.py
@@ -3491,6 +3507,7 @@ test/test_offer_response.py
 test/test_offer_response_accepted.py
 test/test_offer_response_allocation_accept.py
 test/test_offer_response_allocation_reject.py
+test/test_offer_response_allocation_withdraw.py
 test/test_offer_response_dtcc_onboarding_accept.py
 test/test_offer_response_dtcc_onboarding_reject.py
 test/test_offer_response_tradeweb_accept.py
@@ -3961,7 +3978,7 @@ test/test_tr_link_vasp_national_identification.py
 test/test_tr_link_verdict.py
 test/test_tr_link_verdict_enum.py
 test/test_trading_account_type.py
-test/test_trading_beta_api.py
+test/test_trading_api.py
 test/test_trading_error_schema.py
 test/test_trading_provider.py
 test/test_transaction.py

@@ -122,6 +122,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_contract_asset",
         )
 
     def _add_contract_asset_serialize(
@@ -276,6 +277,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_contract",
         )
 
     def _create_contract_serialize(
@@ -421,6 +423,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_contract",
         )
 
     def _delete_contract_serialize(
@@ -555,6 +558,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_contract_asset",
         )
 
     def _delete_contract_asset_serialize(
@@ -687,6 +691,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract",
         )
 
     def _get_contract_serialize(
@@ -821,6 +826,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_asset",
         )
 
     def _get_contract_asset_serialize(
@@ -948,6 +954,7 @@ class ContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contracts",
         )
 
     def _get_contracts_serialize(

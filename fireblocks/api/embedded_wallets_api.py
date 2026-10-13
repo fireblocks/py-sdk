@@ -135,6 +135,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_embedded_wallet_asset",
         )
 
     def _add_embedded_wallet_asset_serialize(
@@ -277,6 +278,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="assign_embedded_wallet",
         )
 
     def _assign_embedded_wallet_serialize(
@@ -408,6 +410,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_embedded_wallet",
         )
 
     def _create_embedded_wallet_serialize(
@@ -541,6 +544,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_embedded_wallet_account",
         )
 
     def _create_embedded_wallet_account_serialize(
@@ -673,6 +677,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet",
         )
 
     def _get_embedded_wallet_serialize(
@@ -807,6 +812,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_account",
         )
 
     def _get_embedded_wallet_account_serialize(
@@ -969,6 +975,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_addresses",
         )
 
     def _get_embedded_wallet_addresses_serialize(
@@ -1139,6 +1146,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_asset",
         )
 
     def _get_embedded_wallet_asset_serialize(
@@ -1284,6 +1292,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_asset_balance",
         )
 
     def _get_embedded_wallet_asset_balance_serialize(
@@ -1440,6 +1449,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_assets",
         )
 
     def _get_embedded_wallet_assets_serialize(
@@ -1598,6 +1608,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_device",
         )
 
     def _get_embedded_wallet_device_serialize(
@@ -1735,6 +1746,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_device_setup_state",
         )
 
     def _get_embedded_wallet_device_setup_state_serialize(
@@ -1884,6 +1896,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_devices_paginated",
         )
 
     def _get_embedded_wallet_devices_paginated_serialize(
@@ -2034,6 +2047,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_latest_backup",
         )
 
     def _get_embedded_wallet_latest_backup_serialize(
@@ -2190,6 +2204,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_public_key_info_for_address",
         )
 
     def _get_embedded_wallet_public_key_info_for_address_serialize(
@@ -2339,6 +2354,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_setup_status",
         )
 
     def _get_embedded_wallet_setup_status_serialize(
@@ -2475,6 +2491,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallet_supported_assets",
         )
 
     def _get_embedded_wallet_supported_assets_serialize(
@@ -2631,6 +2648,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_embedded_wallets",
         )
 
     def _get_embedded_wallets_serialize(
@@ -2801,6 +2819,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_public_key_info_ncw",
         )
 
     def _get_public_key_info_ncw_serialize(
@@ -2962,6 +2981,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="refresh_embedded_wallet_asset_balance",
         )
 
     def _refresh_embedded_wallet_asset_balance_serialize(
@@ -3113,6 +3133,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_embedded_wallet_device_status",
         )
 
     def _update_embedded_wallet_device_status_serialize(
@@ -3272,6 +3293,7 @@ class EmbeddedWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_embedded_wallet_status",
         )
 
     def _update_embedded_wallet_status_serialize(

@@ -115,6 +115,7 @@ class ConsoleUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_console_user",
         )
 
     def _create_console_user_serialize(
@@ -216,7 +217,7 @@ class ConsoleUserApi:
     ) -> Future[ApiResponse[ConsoleUser]]:
         """Request deletion of a console user
 
-        Requests deletion of a console user. The request is asynchronous: it goes through the workspace's configured \"Delete users\" approval policy (Settings > Quorums), exactly as deleting a user from the console does, and the user is removed only once that approval completes. - Track progress by polling GET /management/users; deletion is complete when the user is disabled. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin/Security Admin permissions. Endpoint Permission: Admin, Non-Signing Admin, Security Admin. **Note:** This endpoint is currently in beta and might be subject to changes.
+        Requests deletion of a console user. The request is asynchronous: it goes through the workspace's configured \"Delete users\" approval policy (Settings > Quorums), exactly as deleting a user from the console does, and the user is removed only once that approval completes. - The workspace must have a \"Delete users\" approval policy (admin quorum or approval group). If \"Delete users\" is Owner-only, which is the default, the request is refused with OWNER_ONLY (2760) and the Owner deletes users in the Console. With an admin quorum, the requesting API user's own approval counts toward the quorum. - Track progress by polling GET /management/users; deletion is complete when the user is disabled. - Please note that this endpoint is available only for API keys with Admin/Non Signing Admin/Security Admin permissions. Endpoint Permission: Admin, Non-Signing Admin, Security Admin. **Note:** This endpoint is currently in beta and might be subject to changes.
 
         :param id: The ID of the console user to delete (required)
         :type id: str
@@ -271,6 +272,7 @@ class ConsoleUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_console_user",
         )
 
     def _delete_console_user_serialize(
@@ -403,6 +405,7 @@ class ConsoleUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_console_users",
         )
 
     def _get_console_users_serialize(

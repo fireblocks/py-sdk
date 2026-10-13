@@ -112,6 +112,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_nft",
         )
 
     def _get_nft_serialize(
@@ -256,6 +257,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_nfts",
         )
 
     def _get_nfts_serialize(
@@ -458,6 +460,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_ownership_tokens",
         )
 
     def _get_ownership_tokens_serialize(
@@ -681,6 +684,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_owned_collections",
         )
 
     def _list_owned_collections_serialize(
@@ -878,6 +882,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_owned_tokens",
         )
 
     def _list_owned_tokens_serialize(
@@ -1057,6 +1062,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="refresh_nft_metadata",
         )
 
     def _refresh_nft_metadata_serialize(
@@ -1193,6 +1199,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_ownership_tokens",
         )
 
     def _update_ownership_tokens_serialize(
@@ -1336,6 +1343,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_token_ownership_status",
         )
 
     def _update_token_ownership_status_serialize(
@@ -1488,6 +1496,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_tokens_ownership_spam",
         )
 
     def _update_tokens_ownership_spam_serialize(
@@ -1638,6 +1647,7 @@ class NFTsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_tokens_ownership_status",
         )
 
     def _update_tokens_ownership_status_serialize(

@@ -112,6 +112,7 @@ class ResetDeviceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="reset_device",
         )
 
     def _reset_device_serialize(

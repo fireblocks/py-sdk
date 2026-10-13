@@ -31,9 +31,9 @@ class CantonCallDetails(BaseModel):
     """ # noqa: E501
     version: Optional[StrictInt] = Field(default=None, description="The shape of this block. Stamped at creation and never changed, so a reader always knows which version it is holding.")
     domain: Optional[CantonDomainEnum] = None
-    type: Optional[StrictStr] = Field(default=None, description="The call type, matching the `type` sent when the call was created.")
+    type: Optional[StrictStr] = Field(default=None, description="The call type, matching the `type` sent when the call was created. Transactions created before a type moved to the offers endpoint keep the value they were written with — `ALLOCATION_WITHDRAW` is one; new withdraws are offer responses.")
     vendor: Optional[CantonVendorEnum] = None
-    original_transaction_id: Optional[StrictStr] = Field(default=None, description="The transaction this call acts on. On a withdraw it is the allocation that was withdrawn, so the withdraw transaction read on its own still says what it withdrew.", alias="originalTransactionId")
+    original_transaction_id: Optional[StrictStr] = Field(default=None, description="The transaction this call acts on, where it acts on one.", alias="originalTransactionId")
     __properties: ClassVar[List[str]] = ["version", "domain", "type", "vendor", "originalTransactionId"]
 
     model_config = ConfigDict(

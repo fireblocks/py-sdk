@@ -133,6 +133,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_webhook",
         )
 
     def _create_webhook_serialize(
@@ -281,6 +282,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_webhook_mtls_config",
         )
 
     def _create_webhook_mtls_config_serialize(
@@ -429,6 +431,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_webhook_oauth",
         )
 
     def _create_webhook_oauth_serialize(
@@ -574,6 +577,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_webhook",
         )
 
     def _delete_webhook_serialize(
@@ -708,6 +712,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_webhook_mtls_config",
         )
 
     def _delete_webhook_mtls_config_serialize(
@@ -847,6 +852,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_webhook_oauth",
         )
 
     def _delete_webhook_oauth_serialize(
@@ -986,6 +992,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_metrics",
         )
 
     def _get_metrics_serialize(
@@ -1117,6 +1124,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_mtls_csr",
         )
 
     def _get_mtls_csr_serialize(
@@ -1257,6 +1265,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_notification",
         )
 
     def _get_notification_serialize(
@@ -1407,6 +1416,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_notification_attempts",
         )
 
     def _get_notification_attempts_serialize(
@@ -1585,6 +1595,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_notifications",
         )
 
     def _get_notifications_serialize(
@@ -1766,6 +1777,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_resend_by_query_job_status",
         )
 
     def _get_resend_by_query_job_status_serialize(
@@ -1903,6 +1915,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_resend_job_status",
         )
 
     def _get_resend_job_status_serialize(
@@ -2035,6 +2048,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhook",
         )
 
     def _get_webhook_serialize(
@@ -2164,6 +2178,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhook_mtls_config",
         )
 
     def _get_webhook_mtls_config_serialize(
@@ -2292,6 +2307,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhook_mtls_configs",
         )
 
     def _get_webhook_mtls_configs_serialize(
@@ -2424,6 +2440,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhook_oauth",
         )
 
     def _get_webhook_oauth_serialize(
@@ -2548,6 +2565,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhook_oauths",
         )
 
     def _get_webhook_oauths_serialize(
@@ -2681,6 +2699,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_webhooks",
         )
 
     def _get_webhooks_serialize(
@@ -2831,6 +2850,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_failed_notifications",
         )
 
     def _resend_failed_notifications_serialize(
@@ -2988,6 +3008,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_notification_by_id",
         )
 
     def _resend_notification_by_id_serialize(
@@ -3132,6 +3153,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_notifications_by_query",
         )
 
     def _resend_notifications_by_query_serialize(
@@ -3288,6 +3310,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_notifications_by_resource_id",
         )
 
     def _resend_notifications_by_resource_id_serialize(
@@ -3440,6 +3463,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_webhook",
         )
 
     def _update_webhook_serialize(
@@ -3590,6 +3614,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_webhook_mtls_config",
         )
 
     def _update_webhook_mtls_config_serialize(
@@ -3739,6 +3764,7 @@ class WebhooksV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_webhook_oauth",
         )
 
     def _update_webhook_oauth_serialize(

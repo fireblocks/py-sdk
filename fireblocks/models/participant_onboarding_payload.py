@@ -19,31 +19,22 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ParticipantOnboardingPayload(BaseModel):
     """
-    ParticipantOnboardingPayload
+    Optional, and so is every field in it: omit `payload` entirely to onboard with DTCC's published parties for the blockchain and the default expiry.
     """ # noqa: E501
-    vault_account_id: StrictStr = Field(description="The vault account that acts as the participant. Its Canton party is derived for you.", alias="vaultAccountId")
-    blockchain_id: StrictStr = Field(description="The blockchain this party is connected to — `CANTON` or `CANTON_TEST`.", alias="blockchainId")
     expires_at: Optional[datetime] = Field(default=None, description="When the onboarding request expires if it has not been answered. RFC 3339.", alias="expiresAt")
-    operator: StrictStr = Field(description="DTCC infra operator party id.")
-    compliance: StrictStr = Field(description="DTCC compliance party id.")
-    registrar: StrictStr = Field(description="DTCC registrar party id — co-signs the accept.")
-    client_onboarder: StrictStr = Field(description="DTCC client onboarder party id — co-signs the accept.", alias="clientOnboarder")
-    upgrader: StrictStr = Field(description="DTCC upgrader party id — the Model Upgrade Tool authority. Supplied by DTCC during the off-chain registration, alongside the other party ids.")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "blockchainId", "expiresAt", "operator", "compliance", "registrar", "clientOnboarder", "upgrader"]
-
-    @field_validator('blockchain_id')
-    def blockchain_id_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['CANTON', 'CANTON_TEST']):
-            raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
-        return value
+    operator: Optional[StrictStr] = Field(default=None, description="DTCC infra operator party id. Optional — overrides the service's default for the blockchain.")
+    compliance: Optional[StrictStr] = Field(default=None, description="DTCC compliance party id. Optional — overrides the service's default for the blockchain.")
+    registrar: Optional[StrictStr] = Field(default=None, description="DTCC registrar party id — co-signs the accept. Optional — overrides the service's default for the blockchain.")
+    client_onboarder: Optional[StrictStr] = Field(default=None, description="DTCC client onboarder party id — co-signs the accept. Optional — overrides the service's default for the blockchain.", alias="clientOnboarder")
+    upgrader: Optional[StrictStr] = Field(default=None, description="DTCC upgrader party id — the Model Upgrade Tool authority. Optional — overrides the service's default for the blockchain.")
+    __properties: ClassVar[List[str]] = ["expiresAt", "operator", "compliance", "registrar", "clientOnboarder", "upgrader"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,8 +87,6 @@ class ParticipantOnboardingPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "vaultAccountId": obj.get("vaultAccountId"),
-            "blockchainId": obj.get("blockchainId"),
             "expiresAt": obj.get("expiresAt"),
             "operator": obj.get("operator"),
             "compliance": obj.get("compliance"),

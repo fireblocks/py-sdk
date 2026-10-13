@@ -38,7 +38,7 @@ class TestCantonCallDetails(unittest.TestCase):
             return CantonCallDetails(
                 version = 1,
                 domain = 'ALLOCATION',
-                type = 'ALLOCATION_WITHDRAW',
+                type = 'DTCC_END_INVESTOR_INVITE',
                 vendor = 'DTCC',
                 original_transaction_id = '9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488'
             )

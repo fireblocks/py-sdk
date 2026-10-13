@@ -4,9 +4,12 @@ All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_bulk_signing_keys**](KeyLinkBetaApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
 [**create_signing_key**](KeyLinkBetaApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
 [**create_validation_key**](KeyLinkBetaApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
 [**disable_validation_key**](KeyLinkBetaApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
+[**get_bulk_signing_keys_job**](KeyLinkBetaApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
+[**get_bulk_signing_keys_jobs**](KeyLinkBetaApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
 [**get_signing_key**](KeyLinkBetaApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
 [**get_signing_keys_list**](KeyLinkBetaApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
 [**get_validation_key**](KeyLinkBetaApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
@@ -14,6 +17,84 @@ Method | HTTP request | Description
 [**set_agent_id**](KeyLinkBetaApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id
 [**update_signing_key**](KeyLinkBetaApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing keyId
 
+
+# **create_bulk_signing_keys**
+> CreateBulkSigningKeysResponse create_bulk_signing_keys(create_bulk_signing_keys, idempotency_key=idempotency_key)
+
+Register signing keys in bulk
+
+Accepts a set of signing keys certified by a single validation key and queues them for registration in the background. Returns a job id to poll. A workspace can have one bulk registration at a time; submitting another while one is QUEUED or IN_PROGRESS is rejected with 409. Bulk registrations from different workspaces share a limited number of slots, so a job may wait QUEUED behind another workspace's before it starts. Keys already registered in the workspace are recognized and skipped, so resubmitting the same request after a failure is safe and only processes what is missing. Every key must carry its own proof of ownership; a bulk registration has no interactive step in which one can arrive later.
+
+### Example
+
+
+```python
+from fireblocks.models.create_bulk_signing_keys import CreateBulkSigningKeys
+from fireblocks.models.create_bulk_signing_keys_response import CreateBulkSigningKeysResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    create_bulk_signing_keys = fireblocks.CreateBulkSigningKeys() # CreateBulkSigningKeys | 
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Register signing keys in bulk
+        api_response = fireblocks.key_link_beta.create_bulk_signing_keys(create_bulk_signing_keys, idempotency_key=idempotency_key).result()
+        print("The response of KeyLinkBetaApi->create_bulk_signing_keys:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KeyLinkBetaApi->create_bulk_signing_keys: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_bulk_signing_keys** | [**CreateBulkSigningKeys**](CreateBulkSigningKeys.md)|  | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**CreateBulkSigningKeysResponse**](CreateBulkSigningKeysResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Registration is queued |  * X-Request-ID -  <br>  |
+**409** | Error Response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_signing_key**
 > SigningKeyDto create_signing_key(create_signing_key_dto, idempotency_key=idempotency_key)
@@ -242,6 +323,156 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Modified validation key data |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_bulk_signing_keys_job**
+> BulkSigningKeyJob get_bulk_signing_keys_job(job_id)
+
+Get a bulk registration job
+
+Returns the progress and outcome of a bulk registration job. `created + alreadyRegistered` reaching `total` means every submitted key is present.
+
+### Example
+
+
+```python
+from fireblocks.models.bulk_signing_key_job import BulkSigningKeyJob
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    job_id = '46a92767-5f93-4a46-9eed-f012196bb4fc' # str | The id of the bulk registration job
+
+    try:
+        # Get a bulk registration job
+        api_response = fireblocks.key_link_beta.get_bulk_signing_keys_job(job_id).result()
+        print("The response of KeyLinkBetaApi->get_bulk_signing_keys_job:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KeyLinkBetaApi->get_bulk_signing_keys_job: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **job_id** | **str**| The id of the bulk registration job | 
+
+### Return type
+
+[**BulkSigningKeyJob**](BulkSigningKeyJob.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The bulk registration job |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_bulk_signing_keys_jobs**
+> GetBulkSigningKeysJobsResponse get_bulk_signing_keys_jobs(page_cursor=page_cursor, page_size=page_size)
+
+Get bulk registration jobs
+
+Returns the workspace's bulk registration jobs, newest first, a page at a time.
+
+### Example
+
+
+```python
+from fireblocks.models.get_bulk_signing_keys_jobs_response import GetBulkSigningKeysJobsResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    page_cursor = 'page_cursor_example' # str | Cursor to the next page (optional)
+    page_size = 10 # int | Amount of results to return in the next page (optional) (default to 10)
+
+    try:
+        # Get bulk registration jobs
+        api_response = fireblocks.key_link_beta.get_bulk_signing_keys_jobs(page_cursor=page_cursor, page_size=page_size).result()
+        print("The response of KeyLinkBetaApi->get_bulk_signing_keys_jobs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KeyLinkBetaApi->get_bulk_signing_keys_jobs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page_cursor** | **str**| Cursor to the next page | [optional] 
+ **page_size** | **int**| Amount of results to return in the next page | [optional] [default to 10]
+
+### Return type
+
+[**GetBulkSigningKeysJobsResponse**](GetBulkSigningKeysJobsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Bulk registration jobs for the workspace |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

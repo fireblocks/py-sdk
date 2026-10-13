@@ -29,14 +29,23 @@ class CantonCallAllowListRemove(BaseModel):
     CantonCallAllowListRemove
     """ # noqa: E501
     type: StrictStr = Field(description="Which call to make. Selects the shape of `payload`.")
+    vault_account_id: StrictStr = Field(description="The vault account whose Canton wallet makes this call.", alias="vaultAccountId")
+    blockchain_id: StrictStr = Field(description="The blockchain the vault account's Canton party is connected to — `CANTON` or `CANTON_TEST`.", alias="blockchainId")
     payload: AllowListPayload
-    __properties: ClassVar[List[str]] = ["type", "payload"]
+    __properties: ClassVar[List[str]] = ["type", "vaultAccountId", "blockchainId", "payload"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['DTCC_ALLOW_LIST_REMOVE']):
             raise ValueError("must be one of enum values ('DTCC_ALLOW_LIST_REMOVE')")
+        return value
+
+    @field_validator('blockchain_id')
+    def blockchain_id_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['CANTON', 'CANTON_TEST']):
+            raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
         return value
 
     model_config = ConfigDict(
@@ -94,6 +103,8 @@ class CantonCallAllowListRemove(BaseModel):
 
         _obj = cls.model_validate({
             "type": obj.get("type"),
+            "vaultAccountId": obj.get("vaultAccountId"),
+            "blockchainId": obj.get("blockchainId"),
             "payload": AllowListPayload.from_dict(obj["payload"]) if obj.get("payload") is not None else None
         })
         return _obj

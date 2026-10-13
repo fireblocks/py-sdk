@@ -116,6 +116,7 @@ class WebhooksApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_transaction_webhooks",
         )
 
     def _resend_transaction_webhooks_serialize(
@@ -263,6 +264,7 @@ class WebhooksApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resend_webhooks",
         )
 
     def _resend_webhooks_serialize(

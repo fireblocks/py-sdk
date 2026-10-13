@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -28,17 +28,8 @@ class AllowListPayload(BaseModel):
     """
     AllowListPayload
     """ # noqa: E501
-    vault_account_id: StrictStr = Field(description="The vault account whose Canton wallet acts here.", alias="vaultAccountId")
-    blockchain_id: StrictStr = Field(description="The blockchain this party is connected to — `CANTON` or `CANTON_TEST`.", alias="blockchainId")
     wallets: Annotated[List[StrictStr], Field(min_length=1)] = Field(description="Canton party ids to add or remove.")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "blockchainId", "wallets"]
-
-    @field_validator('blockchain_id')
-    def blockchain_id_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['CANTON', 'CANTON_TEST']):
-            raise ValueError("must be one of enum values ('CANTON', 'CANTON_TEST')")
-        return value
+    __properties: ClassVar[List[str]] = ["wallets"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,8 +82,6 @@ class AllowListPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "vaultAccountId": obj.get("vaultAccountId"),
-            "blockchainId": obj.get("blockchainId"),
             "wallets": obj.get("wallets")
         })
         return _obj

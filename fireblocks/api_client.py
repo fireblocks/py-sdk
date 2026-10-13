@@ -28,6 +28,7 @@ from typing import Tuple, Optional, List, Dict, Union, Any
 from pydantic import SecretStr
 
 from fireblocks.configuration import Configuration
+from fireblocks.lifecycle_warning import warn_on_lifecycle_state
 from fireblocks.unknown_model import create_unknown_model
 from fireblocks.api_response import ApiResponse, T as ApiResponseT
 import fireblocks.models
@@ -243,6 +244,7 @@ class ApiClient:
         post_params: Optional[List[Tuple[str, Any]]] = None,
         _request_timeout: Optional[Union[int, float, Tuple]] = None,
         _response_types_map: Optional[Dict[str, ApiResponseT]] = None,
+        _operation_id: Optional[str] = None,
     ) -> ApiResponse[ApiResponseT]:
         """Makes the HTTP request (synchronous)
         :param method: Method to call.
@@ -253,6 +255,7 @@ class ApiClient:
         :param post_params dict: Request post form parameters,
             for `application/x-www-form-urlencoded`, `multipart/form-data`.
         :param _request_timeout: timeout setting for this request.
+        :param _operation_id: operation being called, used for the lifecycle warning.
         :return: RESTResponse
         """
         # perform request and return response
@@ -265,6 +268,11 @@ class ApiClient:
             _request_timeout=_request_timeout,
         )
         response_data.read()
+        # Ahead of response_deserialize, which raises on a non-2xx status: the
+        # lifecycle header is present on allowed error responses too.
+        warn_on_lifecycle_state(
+            response_data.getheaders(), _operation_id, response_data.status
+        )
         return self.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,

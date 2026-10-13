@@ -115,6 +115,7 @@ class OffExchangesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_off_exchange",
         )
 
     def _add_off_exchange_serialize(
@@ -260,6 +261,7 @@ class OffExchangesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_off_exchange_collateral_accounts",
         )
 
     def _get_off_exchange_collateral_accounts_serialize(
@@ -389,6 +391,7 @@ class OffExchangesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_off_exchange_settlement_transactions",
         )
 
     def _get_off_exchange_settlement_transactions_serialize(
@@ -523,6 +526,7 @@ class OffExchangesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_off_exchange",
         )
 
     def _remove_off_exchange_serialize(
@@ -671,6 +675,7 @@ class OffExchangesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="settle_off_exchange_trades",
         )
 
     def _settle_off_exchange_trades_serialize(

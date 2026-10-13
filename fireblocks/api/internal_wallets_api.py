@@ -114,6 +114,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_internal_wallet",
         )
 
     def _create_internal_wallet_serialize(
@@ -272,6 +273,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_internal_wallet_asset",
         )
 
     def _create_internal_wallet_asset_serialize(
@@ -423,6 +425,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_internal_wallet",
         )
 
     def _delete_internal_wallet_serialize(
@@ -557,6 +560,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_internal_wallet_asset",
         )
 
     def _delete_internal_wallet_asset_serialize(
@@ -689,6 +693,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_internal_wallet",
         )
 
     def _get_internal_wallet_serialize(
@@ -823,6 +828,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_internal_wallet_asset",
         )
 
     def _get_internal_wallet_asset_serialize(
@@ -963,6 +969,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_internal_wallet_assets_paginated",
         )
 
     def _get_internal_wallet_assets_paginated_serialize(
@@ -1097,6 +1104,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_internal_wallets",
         )
 
     def _get_internal_wallets_serialize(
@@ -1231,6 +1239,7 @@ class InternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_customer_ref_id_for_internal_wallet",
         )
 
     def _set_customer_ref_id_for_internal_wallet_serialize(

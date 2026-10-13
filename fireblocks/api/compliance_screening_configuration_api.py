@@ -97,6 +97,7 @@ class ComplianceScreeningConfigurationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_aml_screening_configuration",
         )
 
     def _get_aml_screening_configuration_serialize(
@@ -217,6 +218,7 @@ class ComplianceScreeningConfigurationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_screening_configuration",
         )
 
     def _get_screening_configuration_serialize(

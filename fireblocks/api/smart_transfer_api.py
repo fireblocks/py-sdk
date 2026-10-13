@@ -137,6 +137,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="approve_dv_p_ticket_term",
         )
 
     def _approve_dv_p_ticket_term_serialize(
@@ -294,6 +295,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="cancel_ticket",
         )
 
     def _cancel_ticket_serialize(
@@ -430,6 +432,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_ticket",
         )
 
     def _create_ticket_serialize(
@@ -584,6 +587,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_ticket_term",
         )
 
     def _create_ticket_term_serialize(
@@ -733,6 +737,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="find_ticket_by_id",
         )
 
     def _find_ticket_by_id_serialize(
@@ -868,6 +873,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="find_ticket_term_by_id",
         )
 
     def _find_ticket_term_by_id_serialize(
@@ -1006,6 +1012,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="fulfill_ticket",
         )
 
     def _fulfill_ticket_serialize(
@@ -1148,6 +1155,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="fund_dvp_ticket",
         )
 
     def _fund_dvp_ticket_serialize(
@@ -1311,6 +1319,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="fund_ticket_term",
         )
 
     def _fund_ticket_term_serialize(
@@ -1458,6 +1467,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_smart_transfer_statistic",
         )
 
     def _get_smart_transfer_statistic_serialize(
@@ -1580,6 +1590,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_smart_transfer_user_groups",
         )
 
     def _get_smart_transfer_user_groups_serialize(
@@ -1721,6 +1732,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="manually_fund_ticket_term",
         )
 
     def _manually_fund_ticket_term_serialize(
@@ -1878,6 +1890,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_ticket_term",
         )
 
     def _remove_ticket_term_serialize(
@@ -2053,6 +2066,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="search_tickets",
         )
 
     def _search_tickets_serialize(
@@ -2268,6 +2282,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_external_ref_id",
         )
 
     def _set_external_ref_id_serialize(
@@ -2426,6 +2441,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_ticket_expiration",
         )
 
     def _set_ticket_expiration_serialize(
@@ -2578,6 +2594,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_user_groups",
         )
 
     def _set_user_groups_serialize(
@@ -2733,6 +2750,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="submit_ticket",
         )
 
     def _submit_ticket_serialize(
@@ -2895,6 +2913,7 @@ class SmartTransferApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_ticket_term",
         )
 
     def _update_ticket_term_serialize(

@@ -130,6 +130,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="approve_terms_of_service_by_provider_id",
         )
 
     def _approve_terms_of_service_by_provider_id_serialize(
@@ -275,6 +276,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="claim_rewards",
         )
 
     def _claim_rewards_serialize(
@@ -436,6 +438,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="consolidate",
         )
 
     def _consolidate_serialize(
@@ -592,6 +595,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_all_delegations",
         )
 
     def _get_all_delegations_serialize(
@@ -732,6 +736,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_chain_info",
         )
 
     def _get_chain_info_serialize(
@@ -860,6 +865,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_chains",
         )
 
     def _get_chains_serialize(
@@ -991,6 +997,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_delegation_by_id",
         )
 
     def _get_delegation_by_id_serialize(
@@ -1137,6 +1144,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_position_related_transactions",
         )
 
     def _get_position_related_transactions_serialize(
@@ -1301,6 +1309,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_positions",
         )
 
     def _get_positions_serialize(
@@ -1451,6 +1460,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_providers",
         )
 
     def _get_providers_serialize(
@@ -1576,6 +1586,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_summary",
         )
 
     def _get_summary_serialize(
@@ -1701,6 +1712,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_summary_by_vault",
         )
 
     def _get_summary_by_vault_serialize(
@@ -1840,6 +1852,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="merge_stake_accounts",
         )
 
     def _merge_stake_accounts_serialize(
@@ -2001,6 +2014,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="split",
         )
 
     def _split_serialize(
@@ -2161,6 +2175,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="stake",
         )
 
     def _stake_serialize(
@@ -2321,6 +2336,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unstake",
         )
 
     def _unstake_serialize(
@@ -2481,6 +2497,7 @@ class StakingApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="withdraw",
         )
 
     def _withdraw_serialize(

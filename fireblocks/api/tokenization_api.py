@@ -153,6 +153,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="burn_collection_token",
         )
 
     def _burn_collection_token_serialize(
@@ -304,6 +305,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_new_collection",
         )
 
     def _create_new_collection_serialize(
@@ -455,6 +457,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deactivate_and_unlink_adapters",
         )
 
     def _deactivate_and_unlink_adapters_serialize(
@@ -607,6 +610,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deploy_and_link_adapters",
         )
 
     def _deploy_and_link_adapters_serialize(
@@ -757,6 +761,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="fetch_collection_token_details",
         )
 
     def _fetch_collection_token_details_serialize(
@@ -889,6 +894,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_collection_by_id",
         )
 
     def _get_collection_by_id_serialize(
@@ -1023,6 +1029,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_deployable_address",
         )
 
     def _get_deployable_address_serialize(
@@ -1174,6 +1181,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_layer_zero_dvn_config",
         )
 
     def _get_layer_zero_dvn_config_serialize(
@@ -1310,6 +1318,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_layer_zero_peers",
         )
 
     def _get_layer_zero_peers_serialize(
@@ -1446,6 +1455,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_linked_collections",
         )
 
     def _get_linked_collections_serialize(
@@ -1587,6 +1597,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_linked_token",
         )
 
     def _get_linked_token_serialize(
@@ -1723,6 +1734,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_linked_tokens",
         )
 
     def _get_linked_tokens_serialize(
@@ -1859,6 +1871,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_linked_tokens_count",
         )
 
     def _get_linked_tokens_count_serialize(
@@ -2001,6 +2014,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_access_registry_addresses",
         )
 
     def _get_token_access_registry_addresses_serialize(
@@ -2150,6 +2164,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_access_registry_summary",
         )
 
     def _get_token_access_registry_summary_serialize(
@@ -2285,6 +2300,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_balance_for_account",
         )
 
     def _get_token_balance_for_account_serialize(
@@ -2451,6 +2467,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_balance_history",
         )
 
     def _get_token_balance_history_serialize(
@@ -2653,6 +2670,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_balances",
         )
 
     def _get_token_balances_serialize(
@@ -2803,6 +2821,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_contract_summary",
         )
 
     def _get_token_contract_summary_serialize(
@@ -2933,6 +2952,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_rbac",
         )
 
     def _get_token_rbac_serialize(
@@ -3091,6 +3111,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_total_supply",
         )
 
     def _get_token_total_supply_serialize(
@@ -3298,6 +3319,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_transactions",
         )
 
     def _get_token_transactions_serialize(
@@ -3508,6 +3530,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_token_transfers",
         )
 
     def _get_token_transfers_serialize(
@@ -3698,6 +3721,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="issue_new_token",
         )
 
     def _issue_new_token_serialize(
@@ -3847,6 +3871,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="issue_token_multi_chain",
         )
 
     def _issue_token_multi_chain_serialize(
@@ -3998,6 +4023,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="link",
         )
 
     def _link_serialize(
@@ -4151,6 +4177,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="mint_collection_token",
         )
 
     def _mint_collection_token_serialize(
@@ -4310,6 +4337,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="re_issue_token_multi_chain",
         )
 
     def _re_issue_token_multi_chain_serialize(
@@ -4464,6 +4492,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_layer_zero_peers",
         )
 
     def _remove_layer_zero_peers_serialize(
@@ -4616,6 +4645,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_layer_zero_dvn_config",
         )
 
     def _set_layer_zero_dvn_config_serialize(
@@ -4768,6 +4798,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_layer_zero_peers",
         )
 
     def _set_layer_zero_peers_serialize(
@@ -4915,6 +4946,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unlink",
         )
 
     def _unlink_serialize(
@@ -5045,6 +5077,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unlink_collection",
         )
 
     def _unlink_collection_serialize(
@@ -5182,6 +5215,7 @@ class TokenizationApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="validate_layer_zero_channel_config",
         )
 
     def _validate_layer_zero_channel_config_serialize(

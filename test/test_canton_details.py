@@ -36,8 +36,8 @@ class TestCantonDetails(unittest.TestCase):
         model = CantonDetails()
         if include_optional:
             return CantonDetails(
-                offer_response = {"version":1,"domain":"ONBOARDING","vendor":"DTCC","availableResponses":["DTCC_END_INVESTOR_ONBOARDING_ACCEPT","DTCC_END_INVESTOR_ONBOARDING_REJECT"],"expiresAt":"2026-12-31T23:59:59Z"},
-                call = {"version":1,"domain":"ALLOCATION","type":"ALLOCATION_WITHDRAW","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488"},
+                offer_response = {"version":1,"domain":"ALLOCATION","responseType":"ALLOCATION_WITHDRAW","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488","allocationTransactionId":"5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21"},
+                call = {"version":1,"domain":"ONBOARDING","type":"DTCC_END_INVESTOR_INVITE","vendor":"DTCC"},
                 settlement = {"version":1,"domain":"ALLOCATION","type":"ALLOCATION_SETTLEMENT","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488"}
             )
         else:

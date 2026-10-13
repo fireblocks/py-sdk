@@ -141,6 +141,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="assess_tr_link_travel_rule_requirement",
         )
 
     def _assess_tr_link_travel_rule_requirement_serialize(
@@ -302,6 +303,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="cancel_tr_link_trm",
         )
 
     def _cancel_tr_link_trm_serialize(
@@ -461,6 +463,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="connect_tr_link_integration",
         )
 
     def _connect_tr_link_integration_serialize(
@@ -612,6 +615,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tr_link_customer",
         )
 
     def _create_tr_link_customer_serialize(
@@ -760,6 +764,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tr_link_integration",
         )
 
     def _create_tr_link_integration_serialize(
@@ -918,6 +923,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tr_link_manual_decision",
         )
 
     def _create_tr_link_manual_decision_serialize(
@@ -1077,6 +1083,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tr_link_trm",
         )
 
     def _create_tr_link_trm_serialize(
@@ -1225,6 +1232,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_tr_link_customer",
         )
 
     def _delete_tr_link_customer_serialize(
@@ -1354,6 +1362,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="disconnect_tr_link_integration",
         )
 
     def _disconnect_tr_link_integration_serialize(
@@ -1483,6 +1492,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_customer_by_id",
         )
 
     def _get_tr_link_customer_by_id_serialize(
@@ -1617,6 +1627,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_customer_integration_by_id",
         )
 
     def _get_tr_link_customer_integration_by_id_serialize(
@@ -1749,6 +1760,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_customer_integrations",
         )
 
     def _get_tr_link_customer_integrations_serialize(
@@ -1873,6 +1885,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_customers",
         )
 
     def _get_tr_link_customers_serialize(
@@ -1999,6 +2012,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_integration_public_key",
         )
 
     def _get_tr_link_integration_public_key_serialize(
@@ -2123,6 +2137,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_partners",
         )
 
     def _get_tr_link_partners_serialize(
@@ -2244,6 +2259,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_policy",
         )
 
     def _get_tr_link_policy_serialize(
@@ -2375,6 +2391,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_supported_asset",
         )
 
     def _get_tr_link_supported_asset_serialize(
@@ -2512,6 +2529,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_trm_by_id",
         )
 
     def _get_tr_link_trm_by_id_serialize(
@@ -2649,6 +2667,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_trm_required_actions",
         )
 
     def _get_tr_link_trm_required_actions_serialize(
@@ -2786,6 +2805,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_vasp_by_id",
         )
 
     def _get_tr_link_vasp_by_id_serialize(
@@ -2926,6 +2946,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_tr_link_supported_assets",
         )
 
     def _list_tr_link_supported_assets_serialize(
@@ -3073,6 +3094,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_tr_link_vasps",
         )
 
     def _list_tr_link_vasps_serialize(
@@ -3225,6 +3247,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="redirect_tr_link_trm",
         )
 
     def _redirect_tr_link_trm_serialize(
@@ -3389,6 +3412,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="resolve_action_tr_link_trm",
         )
 
     def _resolve_action_tr_link_trm_serialize(
@@ -3548,6 +3572,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_tr_link_destination_travel_rule_message_id",
         )
 
     def _set_tr_link_destination_travel_rule_message_id_serialize(
@@ -3704,6 +3729,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_tr_link_transaction_travel_rule_message_id",
         )
 
     def _set_tr_link_transaction_travel_rule_message_id_serialize(
@@ -3856,6 +3882,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="test_tr_link_integration_connection",
         )
 
     def _test_tr_link_integration_connection_serialize(
@@ -3996,6 +4023,7 @@ class TRLinkApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_tr_link_customer",
         )
 
     def _update_tr_link_customer_serialize(

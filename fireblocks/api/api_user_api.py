@@ -115,6 +115,7 @@ class ApiUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_api_user",
         )
 
     def _create_api_user_serialize(
@@ -258,6 +259,7 @@ class ApiUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_api_users",
         )
 
     def _get_api_users_serialize(
@@ -393,6 +395,7 @@ class ApiUserApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="issue_api_user_pairing_token",
         )
 
     def _issue_api_user_pairing_token_serialize(

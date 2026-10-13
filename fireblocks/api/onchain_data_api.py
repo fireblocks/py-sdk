@@ -135,6 +135,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_access_registry_current_state",
         )
 
     def _get_access_registry_current_state_serialize(
@@ -292,6 +293,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_access_registry_summary",
         )
 
     def _get_access_registry_summary_serialize(
@@ -429,6 +431,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_active_roles_for_contract",
         )
 
     def _get_active_roles_for_contract_serialize(
@@ -599,6 +602,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_balance_history",
         )
 
     def _get_contract_balance_history_serialize(
@@ -792,6 +796,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_balances_summary",
         )
 
     def _get_contract_balances_summary_serialize(
@@ -957,6 +962,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_total_supply",
         )
 
     def _get_contract_total_supply_serialize(
@@ -1167,6 +1173,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_latest_balances_for_contract",
         )
 
     def _get_latest_balances_for_contract_serialize(
@@ -1353,6 +1360,7 @@ class OnchainDataApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_onchain_transactions",
         )
 
     def _get_onchain_transactions_serialize(

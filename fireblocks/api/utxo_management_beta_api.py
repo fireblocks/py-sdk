@@ -105,6 +105,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_utxo_selection_config",
         )
 
     def _get_utxo_selection_config_serialize(
@@ -288,6 +289,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_utxos",
         )
 
     def _get_utxos_serialize(
@@ -494,6 +496,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_vault_asset_utxo_selection_config",
         )
 
     def _get_vault_asset_utxo_selection_config_serialize(
@@ -640,6 +643,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_utxo_labels",
         )
 
     def _update_utxo_labels_serialize(
@@ -794,6 +798,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="upsert_utxo_selection_config",
         )
 
     def _upsert_utxo_selection_config_serialize(
@@ -952,6 +957,7 @@ class UTXOManagementBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="upsert_vault_asset_utxo_selection_config",
         )
 
     def _upsert_vault_asset_utxo_selection_config_serialize(

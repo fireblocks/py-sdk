@@ -39,17 +39,17 @@ class TestCantonCallEndInvestorOffboard(unittest.TestCase):
         if include_optional:
             return CantonCallEndInvestorOffboard(
                 type = 'DTCC_END_INVESTOR_OFFBOARD',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', )
             )
         else:
             return CantonCallEndInvestorOffboard(
                 type = 'DTCC_END_INVESTOR_OFFBOARD',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', ),
         )
         """

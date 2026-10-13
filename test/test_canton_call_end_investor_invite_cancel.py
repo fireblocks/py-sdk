@@ -39,17 +39,17 @@ class TestCantonCallEndInvestorInviteCancel(unittest.TestCase):
         if include_optional:
             return CantonCallEndInvestorInviteCancel(
                 type = 'DTCC_END_INVESTOR_INVITE_CANCEL',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', )
             )
         else:
             return CantonCallEndInvestorInviteCancel(
                 type = 'DTCC_END_INVESTOR_INVITE_CANCEL',
+                vault_account_id = '12',
+                blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    vault_account_id = '12', 
-                    blockchain_id = 'CANTON', 
                     end_investor = 'investor-party::1220abc…', ),
         )
         """

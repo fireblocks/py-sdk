@@ -113,6 +113,7 @@ class PaymentsPayoutApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_payout",
         )
 
     def _create_payout_serialize(
@@ -264,6 +265,7 @@ class PaymentsPayoutApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="execute_payout_action",
         )
 
     def _execute_payout_action_serialize(
@@ -398,6 +400,7 @@ class PaymentsPayoutApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_payout",
         )
 
     def _get_payout_serialize(

@@ -113,6 +113,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_contract_template_by_id",
         )
 
     def _delete_contract_template_by_id_serialize(
@@ -251,6 +252,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deploy_contract",
         )
 
     def _deploy_contract_serialize(
@@ -404,6 +406,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_constructor_by_contract_template_id",
         )
 
     def _get_constructor_by_contract_template_id_serialize(
@@ -539,6 +542,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_template_by_id",
         )
 
     def _get_contract_template_by_id_serialize(
@@ -687,6 +691,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_contract_templates",
         )
 
     def _get_contract_templates_serialize(
@@ -849,6 +854,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_function_abi_by_contract_template_id",
         )
 
     def _get_function_abi_by_contract_template_id_serialize(
@@ -984,6 +990,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_supported_blockchains_by_template_id",
         )
 
     def _get_supported_blockchains_by_template_id_serialize(
@@ -1116,6 +1123,7 @@ class ContractTemplatesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="upload_contract_template",
         )
 
     def _upload_contract_template_serialize(

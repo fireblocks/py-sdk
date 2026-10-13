@@ -113,6 +113,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tag",
         )
 
     def _create_tag_serialize(
@@ -257,6 +258,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_tag",
         )
 
     def _delete_tag_serialize(
@@ -381,6 +383,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_approval_request",
         )
 
     def _get_approval_request_serialize(
@@ -509,6 +512,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tag",
         )
 
     def _get_tag_serialize(
@@ -664,6 +668,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_tags",
         )
 
     def _get_tags_serialize(
@@ -839,6 +844,7 @@ class TagsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_tag",
         )
 
     def _update_tag_serialize(

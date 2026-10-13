@@ -18,17 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
+from fireblocks.models.bulk_signing_key import BulkSigningKey
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AllocationWithdrawPayload(BaseModel):
+class CreateBulkSigningKeys(BaseModel):
     """
-    AllocationWithdrawPayload
+    CreateBulkSigningKeys
     """ # noqa: E501
-    allocation_transaction_id: StrictStr = Field(description="The Fireblocks transaction id of the outgoing response that created the allocation. The allocation is resolved from it — Canton contract ids are never accepted here.", alias="allocationTransactionId")
-    __properties: ClassVar[List[str]] = ["allocationTransactionId"]
+    validation_key_id: Annotated[str, Field(strict=True, max_length=64)] = Field(description="The id of the validation key that signed every certificate in this request, as returned when the validation key was registered. Not the signingDeviceKeyId of any signing key.", alias="validationKeyId")
+    keys: Annotated[List[BulkSigningKey], Field(min_length=1, max_length=10000)] = Field(description="The signing keys to register.")
+    __properties: ClassVar[List[str]] = ["validationKeyId", "keys"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +51,7 @@ class AllocationWithdrawPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AllocationWithdrawPayload from a JSON string"""
+        """Create an instance of CreateBulkSigningKeys from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,11 +72,18 @@ class AllocationWithdrawPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in keys (list)
+        _items = []
+        if self.keys:
+            for _item_keys in self.keys:
+                if _item_keys:
+                    _items.append(_item_keys.to_dict())
+            _dict['keys'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AllocationWithdrawPayload from a dict"""
+        """Create an instance of CreateBulkSigningKeys from a dict"""
         if obj is None:
             return None
 
@@ -81,7 +91,8 @@ class AllocationWithdrawPayload(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "allocationTransactionId": obj.get("allocationTransactionId")
+            "validationKeyId": obj.get("validationKeyId"),
+            "keys": [BulkSigningKey.from_dict(_item) for _item in obj["keys"]] if obj.get("keys") is not None else None
         })
         return _obj
 

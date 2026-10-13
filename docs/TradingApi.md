@@ -1,20 +1,20 @@
-# fireblocks.TradingBetaApi
+# fireblocks.TradingApi
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_order**](TradingBetaApi.md#create_order) | **POST** /trading/orders | Create an order
-[**create_quote**](TradingBetaApi.md#create_quote) | **POST** /trading/quotes | Create a quote
-[**fetch_all_offers**](TradingBetaApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
-[**fetch_rates**](TradingBetaApi.md#fetch_rates) | **POST** /trading/rates | Get rates
-[**get_order**](TradingBetaApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
-[**get_order_requirements**](TradingBetaApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
-[**get_orders**](TradingBetaApi.md#get_orders) | **GET** /trading/orders | Get orders
-[**get_trading_provider_by_id**](TradingBetaApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
-[**get_trading_providers**](TradingBetaApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
-[**submit_order_requirements**](TradingBetaApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
-[**upload_order_requirement_file**](TradingBetaApi.md#upload_order_requirement_file) | **POST** /trading/orders/{orderId}/requirement/file | Upload a file for an order requirement
+[**create_order**](TradingApi.md#create_order) | **POST** /trading/orders | Create an order
+[**create_quote**](TradingApi.md#create_quote) | **POST** /trading/quotes | Create a quote
+[**fetch_all_offers**](TradingApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
+[**fetch_rates**](TradingApi.md#fetch_rates) | **POST** /trading/rates | Get rates
+[**get_order**](TradingApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
+[**get_order_requirements**](TradingApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
+[**get_orders**](TradingApi.md#get_orders) | **GET** /trading/orders | Get orders
+[**get_trading_provider_by_id**](TradingApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
+[**get_trading_providers**](TradingApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
+[**submit_order_requirements**](TradingApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
+[**upload_order_requirement_file**](TradingApi.md#upload_order_requirement_file) | **POST** /trading/orders/{orderId}/requirement/file | Upload a file for an order requirement
 
 
 # **create_order**
@@ -23,10 +23,6 @@ Method | HTTP request | Description
 Create an order
 
 Create an order to buy or sell an asset. If no source is given, an external source will be use.
-
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
 
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
 
@@ -63,11 +59,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Create an order
-        api_response = fireblocks.trading_beta.create_order(create_order_request, idempotency_key=idempotency_key).result()
-        print("The response of TradingBetaApi->create_order:\n")
+        api_response = fireblocks.trading.create_order(create_order_request, idempotency_key=idempotency_key).result()
+        print("The response of TradingApi->create_order:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->create_order: %s\n" % e)
+        print("Exception when calling TradingApi->create_order: %s\n" % e)
 ```
 
 
@@ -114,10 +110,6 @@ Create a quote
 
 Generate a time-limited quote for asset conversion, providing exchange rate and amount calculations.
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -153,11 +145,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Create a quote
-        api_response = fireblocks.trading_beta.create_quote(create_quote, idempotency_key=idempotency_key).result()
-        print("The response of TradingBetaApi->create_quote:\n")
+        api_response = fireblocks.trading.create_quote(create_quote, idempotency_key=idempotency_key).result()
+        print("The response of TradingApi->create_quote:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->create_quote: %s\n" % e)
+        print("Exception when calling TradingApi->create_quote: %s\n" % e)
 ```
 
 
@@ -209,10 +201,6 @@ Returns a mix of indicative rates and committed quotes as applicable per provide
 If no slippageBps is provided, it defaults to 50 bps (0.5%).
 Slippage and settlement configuration do not affect the returned rate.
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -248,11 +236,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get all offers
-        api_response = fireblocks.trading_beta.fetch_all_offers(create_offers_request, idempotency_key=idempotency_key).result()
-        print("The response of TradingBetaApi->fetch_all_offers:\n")
+        api_response = fireblocks.trading.fetch_all_offers(create_offers_request, idempotency_key=idempotency_key).result()
+        print("The response of TradingApi->fetch_all_offers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->fetch_all_offers: %s\n" % e)
+        print("Exception when calling TradingApi->fetch_all_offers: %s\n" % e)
 ```
 
 
@@ -300,10 +288,6 @@ Get rates
 Retrieve indicative exchange rate from specified providers for a given asset pair.
 Rates are non-executable price signals intended for discovery and display purposes.
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -339,11 +323,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get rates
-        api_response = fireblocks.trading_beta.fetch_rates(rates_request, idempotency_key=idempotency_key).result()
-        print("The response of TradingBetaApi->fetch_rates:\n")
+        api_response = fireblocks.trading.fetch_rates(rates_request, idempotency_key=idempotency_key).result()
+        print("The response of TradingApi->fetch_rates:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->fetch_rates: %s\n" % e)
+        print("Exception when calling TradingApi->fetch_rates: %s\n" % e)
 ```
 
 
@@ -390,10 +374,6 @@ Get order details
 
 Retrieve detailed information about a specific order by its ID.
 
-Note:These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -427,11 +407,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get order details
-        api_response = fireblocks.trading_beta.get_order(order_id).result()
-        print("The response of TradingBetaApi->get_order:\n")
+        api_response = fireblocks.trading.get_order(order_id).result()
+        print("The response of TradingApi->get_order:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->get_order: %s\n" % e)
+        print("Exception when calling TradingApi->get_order: %s\n" % e)
 ```
 
 
@@ -482,10 +462,6 @@ The response includes `requirementId` and `dueBy` metadata, a
 `POST /trading/orders/{orderId}/requirement/data`, and `requiredFiles` descriptors for any files the
 provider requires (uploaded via `POST /trading/orders/{orderId}/requirement/file`).
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -519,11 +495,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get order requirement details for an order
-        api_response = fireblocks.trading_beta.get_order_requirements(order_id).result()
-        print("The response of TradingBetaApi->get_order_requirements:\n")
+        api_response = fireblocks.trading.get_order_requirements(order_id).result()
+        print("The response of TradingApi->get_order_requirements:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->get_order_requirements: %s\n" % e)
+        print("Exception when calling TradingApi->get_order_requirements: %s\n" % e)
 ```
 
 
@@ -570,10 +546,6 @@ Get orders
 
 Retrieve a paginated list of orders with optional filtering by account, provider, status, and time range.
 
-Note:These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -616,11 +588,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get orders
-        api_response = fireblocks.trading_beta.get_orders(page_size, page_cursor=page_cursor, order=order, account_id=account_id, provider_id=provider_id, statuses=statuses, start_time=start_time, end_time=end_time, asset_conversion_type=asset_conversion_type).result()
-        print("The response of TradingBetaApi->get_orders:\n")
+        api_response = fireblocks.trading.get_orders(page_size, page_cursor=page_cursor, order=order, account_id=account_id, provider_id=provider_id, statuses=statuses, start_time=start_time, end_time=end_time, asset_conversion_type=asset_conversion_type).result()
+        print("The response of TradingApi->get_orders:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->get_orders: %s\n" % e)
+        print("Exception when calling TradingApi->get_orders: %s\n" % e)
 ```
 
 
@@ -673,8 +645,6 @@ Get trading provider by ID
 
 Retrieve a single provider by ID.
 
-**Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 **Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -709,11 +679,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get trading provider by ID
-        api_response = fireblocks.trading_beta.get_trading_provider_by_id(provider_id).result()
-        print("The response of TradingBetaApi->get_trading_provider_by_id:\n")
+        api_response = fireblocks.trading.get_trading_provider_by_id(provider_id).result()
+        print("The response of TradingApi->get_trading_provider_by_id:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->get_trading_provider_by_id: %s\n" % e)
+        print("Exception when calling TradingApi->get_trading_provider_by_id: %s\n" % e)
 ```
 
 
@@ -759,8 +729,6 @@ Get providers
 
 Retrieve a list of all available external providers supporting trading activities through the platform.
 
-**Note:** These endpoints are currently in beta and might be subject to changes. If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 **Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -796,11 +764,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get providers
-        api_response = fireblocks.trading_beta.get_trading_providers(page_size=page_size, page_cursor=page_cursor).result()
-        print("The response of TradingBetaApi->get_trading_providers:\n")
+        api_response = fireblocks.trading.get_trading_providers(page_size=page_size, page_cursor=page_cursor).result()
+        print("The response of TradingApi->get_trading_providers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TradingBetaApi->get_trading_providers: %s\n" % e)
+        print("Exception when calling TradingApi->get_trading_providers: %s\n" % e)
 ```
 
 
@@ -850,10 +818,6 @@ The request body carries `data` — a free-form object conforming to the `requir
 returned by the GET endpoint. Any required files are uploaded separately via
 `POST /trading/orders/{orderId}/requirement/file`.
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -888,9 +852,9 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Submit a response to an order requirement
-        fireblocks.trading_beta.submit_order_requirements(order_id, submit_order_requirement_request, idempotency_key=idempotency_key).result()
+        fireblocks.trading.submit_order_requirements(order_id, submit_order_requirement_request, idempotency_key=idempotency_key).result()
     except Exception as e:
-        print("Exception when calling TradingBetaApi->submit_order_requirements: %s\n" % e)
+        print("Exception when calling TradingApi->submit_order_requirements: %s\n" % e)
 ```
 
 
@@ -946,10 +910,6 @@ must be one of the supported file formats. Fireblocks encrypts each file and upl
 underlying provider. The textual response is submitted separately via
 `POST /trading/orders/{orderId}/requirement/data`.
 
-Note: These endpoints are currently in beta and might be subject to changes.
-
-If you want to participate and learn more about the Fireblocks Trading, please contact your Fireblocks Customer Success Manager or send an email to CSM@fireblocks.com.
-
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Editor.
 
 For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
@@ -984,9 +944,9 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Upload a file for an order requirement
-        fireblocks.trading_beta.upload_order_requirement_file(order_id, file_key, file, idempotency_key=idempotency_key).result()
+        fireblocks.trading.upload_order_requirement_file(order_id, file_key, file, idempotency_key=idempotency_key).result()
     except Exception as e:
-        print("Exception when calling TradingBetaApi->upload_order_requirement_file: %s\n" % e)
+        print("Exception when calling TradingApi->upload_order_requirement_file: %s\n" % e)
 ```
 
 

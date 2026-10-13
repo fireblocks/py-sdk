@@ -99,6 +99,7 @@ class UsersApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_users",
         )
 
     def _get_users_serialize(

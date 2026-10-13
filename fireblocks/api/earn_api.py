@@ -116,6 +116,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="approve_terms_of_service",
         )
 
     def _approve_terms_of_service_serialize(
@@ -253,6 +254,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_earn_action",
         )
 
     def _create_earn_action_serialize(
@@ -402,6 +404,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_earn_action",
         )
 
     def _get_earn_action_serialize(
@@ -546,6 +549,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_earn_actions",
         )
 
     def _get_earn_actions_serialize(
@@ -707,6 +711,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_earn_opportunities",
         )
 
     def _get_earn_opportunities_serialize(
@@ -876,6 +881,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_earn_positions",
         )
 
     def _get_earn_positions_serialize(
@@ -1047,6 +1053,7 @@ class EarnApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_earn_providers",
         )
 
     def _get_earn_providers_serialize(

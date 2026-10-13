@@ -114,6 +114,7 @@ class DeployedContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_contract_abi",
         )
 
     def _add_contract_abi_serialize(
@@ -263,6 +264,7 @@ class DeployedContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="fetch_contract_abi",
         )
 
     def _fetch_contract_abi_serialize(
@@ -413,6 +415,7 @@ class DeployedContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_deployed_contract_by_address",
         )
 
     def _get_deployed_contract_by_address_serialize(
@@ -545,6 +548,7 @@ class DeployedContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_deployed_contract_by_id",
         )
 
     def _get_deployed_contract_by_id_serialize(
@@ -689,6 +693,7 @@ class DeployedContractsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_deployed_contracts",
         )
 
     def _get_deployed_contracts_serialize(

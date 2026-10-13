@@ -20,6 +20,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Any, List, Optional
 from fireblocks.models.offer_response_allocation_accept import OfferResponseAllocationAccept
 from fireblocks.models.offer_response_allocation_reject import OfferResponseAllocationReject
+from fireblocks.models.offer_response_allocation_withdraw import OfferResponseAllocationWithdraw
 from fireblocks.models.offer_response_dtcc_onboarding_accept import OfferResponseDtccOnboardingAccept
 from fireblocks.models.offer_response_dtcc_onboarding_reject import OfferResponseDtccOnboardingReject
 from fireblocks.models.offer_response_tradeweb_accept import OfferResponseTradewebAccept
@@ -31,7 +32,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-OFFERRESPONSE_ONE_OF_SCHEMAS = ["OfferResponseAllocationAccept", "OfferResponseAllocationReject", "OfferResponseDtccOnboardingAccept", "OfferResponseDtccOnboardingReject", "OfferResponseTradewebAccept", "OfferResponseTradewebReject", "OfferResponseTransferAccept", "OfferResponseTransferReject", "OfferResponseTransferWithdraw"]
+OFFERRESPONSE_ONE_OF_SCHEMAS = ["OfferResponseAllocationAccept", "OfferResponseAllocationReject", "OfferResponseAllocationWithdraw", "OfferResponseDtccOnboardingAccept", "OfferResponseDtccOnboardingReject", "OfferResponseTradewebAccept", "OfferResponseTradewebReject", "OfferResponseTransferAccept", "OfferResponseTransferReject", "OfferResponseTransferWithdraw"]
 
 class OfferResponse(BaseModel):
     """
@@ -55,8 +56,10 @@ class OfferResponse(BaseModel):
     oneof_schema_8_validator: Optional[OfferResponseTransferReject] = None
     # data type: OfferResponseTransferWithdraw
     oneof_schema_9_validator: Optional[OfferResponseTransferWithdraw] = None
-    actual_instance: Optional[Union[OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw]] = None
-    one_of_schemas: Set[str] = { "OfferResponseAllocationAccept", "OfferResponseAllocationReject", "OfferResponseDtccOnboardingAccept", "OfferResponseDtccOnboardingReject", "OfferResponseTradewebAccept", "OfferResponseTradewebReject", "OfferResponseTransferAccept", "OfferResponseTransferReject", "OfferResponseTransferWithdraw" }
+    # data type: OfferResponseAllocationWithdraw
+    oneof_schema_10_validator: Optional[OfferResponseAllocationWithdraw] = None
+    actual_instance: Optional[Union[OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw]] = None
+    one_of_schemas: Set[str] = { "OfferResponseAllocationAccept", "OfferResponseAllocationReject", "OfferResponseAllocationWithdraw", "OfferResponseDtccOnboardingAccept", "OfferResponseDtccOnboardingReject", "OfferResponseTradewebAccept", "OfferResponseTradewebReject", "OfferResponseTransferAccept", "OfferResponseTransferReject", "OfferResponseTransferWithdraw" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -127,12 +130,17 @@ class OfferResponse(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `OfferResponseTransferWithdraw`")
         else:
             match += 1
+        # validate data type: OfferResponseAllocationWithdraw
+        if not isinstance(v, OfferResponseAllocationWithdraw):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OfferResponseAllocationWithdraw`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -201,13 +209,19 @@ class OfferResponse(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into OfferResponseAllocationWithdraw
+        try:
+            instance.actual_instance = OfferResponseAllocationWithdraw.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into OfferResponse with oneOf schemas: OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -221,7 +235,7 @@ class OfferResponse(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], OfferResponseAllocationAccept, OfferResponseAllocationReject, OfferResponseAllocationWithdraw, OfferResponseDtccOnboardingAccept, OfferResponseDtccOnboardingReject, OfferResponseTradewebAccept, OfferResponseTradewebReject, OfferResponseTransferAccept, OfferResponseTransferReject, OfferResponseTransferWithdraw]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

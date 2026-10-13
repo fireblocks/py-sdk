@@ -117,6 +117,7 @@ class FiatAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deposit_funds_from_linked_dda",
         )
 
     def _deposit_funds_from_linked_dda_serialize(
@@ -265,6 +266,7 @@ class FiatAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_fiat_account",
         )
 
     def _get_fiat_account_serialize(
@@ -389,6 +391,7 @@ class FiatAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_fiat_accounts",
         )
 
     def _get_fiat_accounts_serialize(
@@ -523,6 +526,7 @@ class FiatAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="redeem_funds_to_linked_dda",
         )
 
     def _redeem_funds_to_linked_dda_serialize(

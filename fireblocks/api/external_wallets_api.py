@@ -123,6 +123,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_asset_to_external_wallet",
         )
 
     def _add_asset_to_external_wallet_serialize(
@@ -277,6 +278,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_external_wallet",
         )
 
     def _create_external_wallet_serialize(
@@ -422,6 +424,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_external_wallet",
         )
 
     def _delete_external_wallet_serialize(
@@ -551,6 +554,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_external_wallet",
         )
 
     def _get_external_wallet_serialize(
@@ -685,6 +689,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_external_wallet_asset",
         )
 
     def _get_external_wallet_asset_serialize(
@@ -812,6 +817,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_external_wallets",
         )
 
     def _get_external_wallets_serialize(
@@ -943,6 +949,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_asset_from_external_wallet",
         )
 
     def _remove_asset_from_external_wallet_serialize(
@@ -1083,6 +1090,7 @@ class ExternalWalletsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_external_wallet_customer_ref_id",
         )
 
     def _set_external_wallet_customer_ref_id_serialize(

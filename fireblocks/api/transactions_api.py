@@ -126,6 +126,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="cancel_transaction",
         )
 
     def _cancel_transaction_serialize(
@@ -268,6 +269,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_transaction",
         )
 
     def _create_transaction_serialize(
@@ -428,6 +430,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="drop_transaction",
         )
 
     def _drop_transaction_serialize(
@@ -579,6 +582,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="estimate_network_fee",
         )
 
     def _estimate_network_fee_serialize(
@@ -713,6 +717,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="estimate_transaction_fee",
         )
 
     def _estimate_transaction_fee_serialize(
@@ -865,6 +870,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="freeze_transaction",
         )
 
     def _freeze_transaction_serialize(
@@ -1001,6 +1007,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_transaction",
         )
 
     def _get_transaction_serialize(
@@ -1130,6 +1137,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_transaction_by_external_id",
         )
 
     def _get_transaction_by_external_id_serialize(
@@ -1318,6 +1326,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_transactions",
         )
 
     def _get_transactions_serialize(
@@ -1532,6 +1541,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_confirmation_threshold_by_transaction_hash",
         )
 
     def _set_confirmation_threshold_by_transaction_hash_serialize(
@@ -1688,6 +1698,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_transaction_confirmation_threshold",
         )
 
     def _set_transaction_confirmation_threshold_serialize(
@@ -1843,6 +1854,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unfreeze_transaction",
         )
 
     def _unfreeze_transaction_serialize(
@@ -1983,6 +1995,7 @@ class TransactionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="validate_address",
         )
 
     def _validate_address_serialize(

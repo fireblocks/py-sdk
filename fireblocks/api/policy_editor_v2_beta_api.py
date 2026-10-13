@@ -115,6 +115,7 @@ class PolicyEditorV2BetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_policy_rule_quota",
         )
 
     def _get_policy_rule_quota_serialize(

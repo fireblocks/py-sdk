@@ -128,6 +128,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_connected_account",
         )
 
     def _add_connected_account_serialize(
@@ -273,6 +274,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="disconnect_connected_account",
         )
 
     def _disconnect_connected_account_serialize(
@@ -402,6 +404,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account",
         )
 
     def _get_connected_account_serialize(
@@ -560,6 +563,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account_allowlist",
         )
 
     def _get_connected_account_allowlist_serialize(
@@ -730,6 +734,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account_allowlist_entry",
         )
 
     def _get_connected_account_allowlist_entry_serialize(
@@ -870,6 +875,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account_balances",
         )
 
     def _get_connected_account_balances_serialize(
@@ -1019,6 +1025,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account_rates",
         )
 
     def _get_connected_account_rates_serialize(
@@ -1166,6 +1173,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_account_trading_pairs",
         )
 
     def _get_connected_account_trading_pairs_serialize(
@@ -1312,6 +1320,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_accounts",
         )
 
     def _get_connected_accounts_serialize(
@@ -1448,6 +1457,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_connected_accounts_credentials_public_key",
         )
 
     def _get_connected_accounts_credentials_public_key_serialize(
@@ -1587,6 +1597,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="rename_connected_account",
         )
 
     def _rename_connected_account_serialize(
@@ -1739,6 +1750,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="sync_connected_account_allowlist",
         )
 
     def _sync_connected_account_allowlist_serialize(
@@ -1884,6 +1896,7 @@ class ConnectedAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_connected_account_credentials",
         )
 
     def _update_connected_account_credentials_serialize(

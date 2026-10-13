@@ -120,6 +120,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_cosigner",
         )
 
     def _add_cosigner_serialize(
@@ -270,6 +271,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_api_key",
         )
 
     def _get_api_key_serialize(
@@ -414,6 +416,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_api_keys",
         )
 
     def _get_api_keys_serialize(
@@ -558,6 +561,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_cosigner",
         )
 
     def _get_cosigner_serialize(
@@ -694,6 +698,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_cosigners",
         )
 
     def _get_cosigners_serialize(
@@ -845,6 +850,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_request_status",
         )
 
     def _get_request_status_serialize(
@@ -993,6 +999,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="pair_api_key",
         )
 
     def _pair_api_key_serialize(
@@ -1148,6 +1155,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="rename_cosigner",
         )
 
     def _rename_cosigner_serialize(
@@ -1298,6 +1306,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="unpair_api_key",
         )
 
     def _unpair_api_key_serialize(
@@ -1439,6 +1448,7 @@ class CosignersBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_callback_handler",
         )
 
     def _update_callback_handler_serialize(

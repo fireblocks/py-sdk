@@ -110,6 +110,7 @@ class PolicyEditorV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_active_policy",
         )
 
     def _get_active_policy_serialize(
@@ -240,6 +241,7 @@ class PolicyEditorV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_draft",
         )
 
     def _get_draft_serialize(
@@ -374,6 +376,7 @@ class PolicyEditorV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="publish_draft",
         )
 
     def _publish_draft_serialize(
@@ -522,6 +525,7 @@ class PolicyEditorV2Api:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_draft",
         )
 
     def _update_draft_serialize(

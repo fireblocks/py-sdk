@@ -94,6 +94,7 @@ class ThreadedApiClient(ApiClient):
         post_params: Optional[List[Tuple[str, Any]]] = None,
         _request_timeout: Optional[Union[int, float, Tuple]] = None,
         _response_types_map: Optional[Dict[str, ApiResponseT]] = None,
+        _operation_id: Optional[str] = None,
     ) -> Future[ApiResponse[ApiResponseT]]:
         header_params = header_params or {}
         parsed_url = urlparse(url)
@@ -112,6 +113,7 @@ class ThreadedApiClient(ApiClient):
             post_params,
             _request_timeout,
             _response_types_map,
+            _operation_id,
         )
 
     def _update_headers(self, header_params, method, path, body):

@@ -124,6 +124,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="check_third_party_routing",
         )
 
     def _check_third_party_routing_serialize(
@@ -259,6 +260,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_network_connection",
         )
 
     def _create_network_connection_serialize(
@@ -407,6 +409,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_network_id",
         )
 
     def _create_network_id_serialize(
@@ -552,6 +555,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_network_connection",
         )
 
     def _delete_network_connection_serialize(
@@ -681,6 +685,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_network_id",
         )
 
     def _delete_network_id_serialize(
@@ -810,6 +815,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_network",
         )
 
     def _get_network_serialize(
@@ -934,6 +940,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_network_connections",
         )
 
     def _get_network_connections_serialize(
@@ -1060,6 +1067,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_network_id",
         )
 
     def _get_network_id_serialize(
@@ -1185,6 +1193,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_network_ids",
         )
 
     def _get_network_ids_serialize(
@@ -1306,6 +1315,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_routing_policy_asset_groups",
         )
 
     def _get_routing_policy_asset_groups_serialize(
@@ -1451,6 +1461,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="search_network_ids",
         )
 
     def _search_network_ids_serialize(
@@ -1611,6 +1622,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_network_id_discoverability",
         )
 
     def _set_network_id_discoverability_serialize(
@@ -1760,6 +1772,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_network_id_name",
         )
 
     def _set_network_id_name_serialize(
@@ -1909,6 +1922,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_network_id_routing_policy",
         )
 
     def _set_network_id_routing_policy_serialize(
@@ -2058,6 +2072,7 @@ class NetworkConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_routing_policy",
         )
 
     def _set_routing_policy_serialize(

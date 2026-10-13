@@ -108,6 +108,7 @@ class WhitelistIpAddressesApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_whitelist_ip_addresses",
         )
 
     def _get_whitelist_ip_addresses_serialize(

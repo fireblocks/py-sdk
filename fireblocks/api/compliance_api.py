@@ -145,6 +145,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="activate_ars_config",
         )
 
     def _activate_ars_config_serialize(
@@ -274,6 +275,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="activate_byork_config",
         )
 
     def _activate_byork_config_serialize(
@@ -407,6 +409,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_address_registry_vault_opt_outs",
         )
 
     def _add_address_registry_vault_opt_outs_serialize(
@@ -561,6 +564,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="assign_vaults_to_legal_entity",
         )
 
     def _assign_vaults_to_legal_entity_serialize(
@@ -718,6 +722,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_address_registry_proof_of_ownership",
         )
 
     def _create_address_registry_proof_of_ownership_serialize(
@@ -866,6 +871,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_counterparty_group",
         )
 
     def _create_counterparty_group_serialize(
@@ -1011,6 +1017,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deactivate_ars_config",
         )
 
     def _deactivate_ars_config_serialize(
@@ -1140,6 +1147,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="deactivate_byork_config",
         )
 
     def _deactivate_byork_config_serialize(
@@ -1270,6 +1278,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_counterparty_group",
         )
 
     def _delete_counterparty_group_serialize(
@@ -1401,6 +1410,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_legal_entity",
         )
 
     def _delete_legal_entity_serialize(
@@ -1525,6 +1535,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_address_registry_tenant_participation_status",
         )
 
     def _get_address_registry_tenant_participation_status_serialize(
@@ -1651,6 +1662,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_address_registry_vault_opt_out",
         )
 
     def _get_address_registry_vault_opt_out_serialize(
@@ -1774,6 +1786,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_aml_post_screening_policy",
         )
 
     def _get_aml_post_screening_policy_serialize(
@@ -1894,6 +1907,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_aml_screening_policy",
         )
 
     def _get_aml_screening_policy_serialize(
@@ -2016,6 +2030,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_byork_config",
         )
 
     def _get_byork_config_serialize(
@@ -2145,6 +2160,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_byork_verdict",
         )
 
     def _get_byork_verdict_serialize(
@@ -2277,6 +2293,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_counterparty_group",
         )
 
     def _get_counterparty_group_serialize(
@@ -2407,6 +2424,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_legal_entity",
         )
 
     def _get_legal_entity_serialize(
@@ -2540,6 +2558,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_legal_entity_for_address",
         )
 
     def _get_legal_entity_for_address_serialize(
@@ -2663,6 +2682,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_post_screening_policy",
         )
 
     def _get_post_screening_policy_serialize(
@@ -2789,6 +2809,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_screening_full_details",
         )
 
     def _get_screening_full_details_serialize(
@@ -2912,6 +2933,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_screening_policy",
         )
 
     def _get_screening_policy_serialize(
@@ -3046,6 +3068,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_address_registry_vault_opt_outs",
         )
 
     def _list_address_registry_vault_opt_outs_serialize(
@@ -3190,6 +3213,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_counterparty_groups",
         )
 
     def _list_counterparty_groups_serialize(
@@ -3333,6 +3357,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_legal_entities",
         )
 
     def _list_legal_entities_serialize(
@@ -3483,6 +3508,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_vaults_for_legal_entity",
         )
 
     def _list_vaults_for_legal_entity_serialize(
@@ -3621,6 +3647,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="opt_in_address_registry_tenant",
         )
 
     def _opt_in_address_registry_tenant_serialize(
@@ -3745,6 +3772,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="opt_out_address_registry_tenant",
         )
 
     def _opt_out_address_registry_tenant_serialize(
@@ -3878,6 +3906,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="register_legal_entity",
         )
 
     def _register_legal_entity_serialize(
@@ -4023,6 +4052,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_address_registry_vault_opt_out",
         )
 
     def _remove_address_registry_vault_opt_out_serialize(
@@ -4147,6 +4177,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove_all_address_registry_vault_opt_outs",
         )
 
     def _remove_all_address_registry_vault_opt_outs_serialize(
@@ -4281,6 +4312,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="rescreen_rejected_transaction",
         )
 
     def _rescreen_rejected_transaction_serialize(
@@ -4433,6 +4465,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="retry_rejected_transaction_bypass_screening_checks",
         )
 
     def _retry_rejected_transaction_bypass_screening_checks_serialize(
@@ -4571,6 +4604,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_aml_verdict",
         )
 
     def _set_aml_verdict_serialize(
@@ -4720,6 +4754,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_byork_timeouts",
         )
 
     def _set_byork_timeouts_serialize(
@@ -4872,6 +4907,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_byork_verdict",
         )
 
     def _set_byork_verdict_serialize(
@@ -5015,6 +5051,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_aml_screening_configuration",
         )
 
     def _update_aml_screening_configuration_serialize(
@@ -5153,6 +5190,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_counterparty_group",
         )
 
     def _update_counterparty_group_serialize(
@@ -5311,6 +5349,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_legal_entity",
         )
 
     def _update_legal_entity_serialize(
@@ -5461,6 +5500,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_screening_configuration",
         )
 
     def _update_screening_configuration_serialize(
@@ -5604,6 +5644,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_travel_rule_config",
         )
 
     def _update_travel_rule_config_serialize(
@@ -5737,6 +5778,7 @@ class ComplianceApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="verify_address_registry_proof_of_ownership",
         )
 
     def _verify_address_registry_proof_of_ownership_serialize(

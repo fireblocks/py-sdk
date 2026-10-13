@@ -120,6 +120,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="approve_approval",
         )
 
     def _approve_approval_serialize(
@@ -277,6 +278,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_approval_key",
         )
 
     def _create_approval_key_serialize(
@@ -435,6 +437,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_approval_key",
         )
 
     def _delete_approval_key_serialize(
@@ -578,6 +581,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_approval_by_id",
         )
 
     def _get_approval_by_id_serialize(
@@ -725,6 +729,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_approval_keys",
         )
 
     def _get_approval_keys_serialize(
@@ -883,6 +888,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_approvals",
         )
 
     def _get_approvals_serialize(
@@ -1043,6 +1049,7 @@ class ApprovalsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="reject_approval",
         )
 
     def _reject_approval_serialize(

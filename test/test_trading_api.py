@@ -14,14 +14,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.trading_beta_api import TradingBetaApi
+from fireblocks.api.trading_api import TradingApi
 
 
-class TestTradingBetaApi(unittest.TestCase):
-    """TradingBetaApi unit test stubs"""
+class TestTradingApi(unittest.TestCase):
+    """TradingApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = TradingBetaApi()
+        self.api = TradingApi()
 
     def tearDown(self) -> None:
         pass

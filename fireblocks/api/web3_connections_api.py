@@ -118,6 +118,7 @@ class Web3ConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create",
         )
 
     def _create_serialize(
@@ -286,6 +287,7 @@ class Web3ConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get",
         )
 
     def _get_serialize(
@@ -445,6 +447,7 @@ class Web3ConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="remove",
         )
 
     def _remove_serialize(
@@ -584,6 +587,7 @@ class Web3ConnectionsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="submit",
         )
 
     def _submit_serialize(

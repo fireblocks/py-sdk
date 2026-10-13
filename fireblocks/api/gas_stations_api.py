@@ -108,6 +108,7 @@ class GasStationsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_gas_station_by_asset_id",
         )
 
     def _get_gas_station_by_asset_id_serialize(
@@ -232,6 +233,7 @@ class GasStationsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_gas_station_info",
         )
 
     def _get_gas_station_info_serialize(
@@ -361,6 +363,7 @@ class GasStationsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_gas_station_configuration",
         )
 
     def _update_gas_station_configuration_serialize(
@@ -514,6 +517,7 @@ class GasStationsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_gas_station_configuration_by_asset_id",
         )
 
     def _update_gas_station_configuration_by_asset_id_serialize(

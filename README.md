@@ -40,6 +40,10 @@ Then import the package:
 import fireblocks
 ```
 
+## Versioning
+
+This SDK follows [semantic versioning](https://semver.org), with one exception: operations in the `beta` lifecycle state. Beta operations are not generally available and may not be accessible to all customers. They can change or be removed without notice.
+
 ## Usage
 
 Please follow the [installation procedure](#installation) first.
@@ -225,6 +229,48 @@ with Fireblocks(configuration) as fireblocks:
         # to print just the data in json format: pprint(api_response.data.to_json())
     except Exception as e:
         print("Exception when calling TransactionsApi->create_transaction: %s\n" % e)
+```
+
+## API Lifecycle Warnings
+
+When you call an operation that is not generally available, the SDK logs a warning
+naming the operation and its lifecycle state. The state is read from a response
+header, so it is always current - it does not depend on the SDK version you have
+installed.
+
+```
+Operation 'create_transaction' is in 'beta' lifecycle state and is not generally available. It may change or be removed without notice.
+```
+
+Deprecated operations report their sunset date, and the replacement and migration
+guide when the API provides them.
+
+An operation that has been closed answers `410 Gone` to most callers and logs nothing.
+If your account still has temporary access to it, calls that are served log a warning
+saying so.
+
+Warnings are emitted through the standard `logging` module at `WARNING` level under
+their own logger, `fireblocks.lifecycle`, so you can silence them without also
+silencing genuine SDK errors:
+
+```python
+import logging
+
+logging.getLogger("fireblocks.lifecycle").setLevel(logging.ERROR)
+```
+
+Or suppress them entirely with an environment variable:
+
+```shell
+export FIREBLOCKS_SDK_SUPPRESS_LIFECYCLE_WARNING=1
+```
+
+You can also route them somewhere of your own:
+
+```python
+lifecycle_log = logging.getLogger("fireblocks.lifecycle")
+lifecycle_log.addHandler(logging.FileHandler("lifecycle.log"))
+lifecycle_log.propagate = False
 ```
 
 ## Documentation for API Endpoints
@@ -425,9 +471,12 @@ Class | Method | HTTP request | Description
 *InternalWalletsApi* | [**get_internal_wallet_assets_paginated**](docs/InternalWalletsApi.md#get_internal_wallet_assets_paginated) | **GET** /internal_wallets/{walletId}/assets | List assets in an internal wallet (Paginated)
 *InternalWalletsApi* | [**get_internal_wallets**](docs/InternalWalletsApi.md#get_internal_wallets) | **GET** /internal_wallets | List internal wallets
 *InternalWalletsApi* | [**set_customer_ref_id_for_internal_wallet**](docs/InternalWalletsApi.md#set_customer_ref_id_for_internal_wallet) | **POST** /internal_wallets/{walletId}/set_customer_ref_id | Set an AML/KYT customer reference ID for internal wallet
+*KeyLinkBetaApi* | [**create_bulk_signing_keys**](docs/KeyLinkBetaApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
 *KeyLinkBetaApi* | [**create_signing_key**](docs/KeyLinkBetaApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
 *KeyLinkBetaApi* | [**create_validation_key**](docs/KeyLinkBetaApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
 *KeyLinkBetaApi* | [**disable_validation_key**](docs/KeyLinkBetaApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
+*KeyLinkBetaApi* | [**get_bulk_signing_keys_job**](docs/KeyLinkBetaApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
+*KeyLinkBetaApi* | [**get_bulk_signing_keys_jobs**](docs/KeyLinkBetaApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
 *KeyLinkBetaApi* | [**get_signing_key**](docs/KeyLinkBetaApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
 *KeyLinkBetaApi* | [**get_signing_keys_list**](docs/KeyLinkBetaApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
 *KeyLinkBetaApi* | [**get_validation_key**](docs/KeyLinkBetaApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
@@ -601,17 +650,17 @@ Class | Method | HTTP request | Description
 *TokenizationApi* | [**unlink**](docs/TokenizationApi.md#unlink) | **DELETE** /tokenization/tokens/{id} | Unlink a token
 *TokenizationApi* | [**unlink_collection**](docs/TokenizationApi.md#unlink_collection) | **DELETE** /tokenization/collections/{id} | Delete a collection link
 *TokenizationApi* | [**validate_layer_zero_channel_config**](docs/TokenizationApi.md#validate_layer_zero_channel_config) | **GET** /tokenization/multichain/bridge/layerzero/validate | Validate LayerZero channel configuration
-*TradingBetaApi* | [**create_order**](docs/TradingBetaApi.md#create_order) | **POST** /trading/orders | Create an order
-*TradingBetaApi* | [**create_quote**](docs/TradingBetaApi.md#create_quote) | **POST** /trading/quotes | Create a quote
-*TradingBetaApi* | [**fetch_all_offers**](docs/TradingBetaApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
-*TradingBetaApi* | [**fetch_rates**](docs/TradingBetaApi.md#fetch_rates) | **POST** /trading/rates | Get rates
-*TradingBetaApi* | [**get_order**](docs/TradingBetaApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
-*TradingBetaApi* | [**get_order_requirements**](docs/TradingBetaApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
-*TradingBetaApi* | [**get_orders**](docs/TradingBetaApi.md#get_orders) | **GET** /trading/orders | Get orders
-*TradingBetaApi* | [**get_trading_provider_by_id**](docs/TradingBetaApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
-*TradingBetaApi* | [**get_trading_providers**](docs/TradingBetaApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
-*TradingBetaApi* | [**submit_order_requirements**](docs/TradingBetaApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
-*TradingBetaApi* | [**upload_order_requirement_file**](docs/TradingBetaApi.md#upload_order_requirement_file) | **POST** /trading/orders/{orderId}/requirement/file | Upload a file for an order requirement
+*TradingApi* | [**create_order**](docs/TradingApi.md#create_order) | **POST** /trading/orders | Create an order
+*TradingApi* | [**create_quote**](docs/TradingApi.md#create_quote) | **POST** /trading/quotes | Create a quote
+*TradingApi* | [**fetch_all_offers**](docs/TradingApi.md#fetch_all_offers) | **POST** /trading/offers | Get all offers
+*TradingApi* | [**fetch_rates**](docs/TradingApi.md#fetch_rates) | **POST** /trading/rates | Get rates
+*TradingApi* | [**get_order**](docs/TradingApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
+*TradingApi* | [**get_order_requirements**](docs/TradingApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
+*TradingApi* | [**get_orders**](docs/TradingApi.md#get_orders) | **GET** /trading/orders | Get orders
+*TradingApi* | [**get_trading_provider_by_id**](docs/TradingApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
+*TradingApi* | [**get_trading_providers**](docs/TradingApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
+*TradingApi* | [**submit_order_requirements**](docs/TradingApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
+*TradingApi* | [**upload_order_requirement_file**](docs/TradingApi.md#upload_order_requirement_file) | **POST** /trading/orders/{orderId}/requirement/file | Upload a file for an order requirement
 *TransactionsApi* | [**cancel_transaction**](docs/TransactionsApi.md#cancel_transaction) | **POST** /transactions/{txId}/cancel | Cancel a transaction
 *TransactionsApi* | [**create_transaction**](docs/TransactionsApi.md#create_transaction) | **POST** /transactions | Create a new transaction
 *TransactionsApi* | [**drop_transaction**](docs/TransactionsApi.md#drop_transaction) | **POST** /transactions/{txId}/drop | Drop ETH (EVM) transaction by ID
@@ -674,7 +723,6 @@ Class | Method | HTTP request | Description
 *VaultsApi* | [**get_vault_balance_by_asset**](docs/VaultsApi.md#get_vault_balance_by_asset) | **GET** /vault/assets/{assetId} | Get vault balance by an asset
 *VaultsApi* | [**hide_vault_account**](docs/VaultsApi.md#hide_vault_account) | **POST** /vault/accounts/{vaultAccountId}/hide | Hide a vault account in the console
 *VaultsApi* | [**lookup_vault_by_address**](docs/VaultsApi.md#lookup_vault_by_address) | **GET** /vault/lookup_by_address | Look up a vault account by blockchain address
-*VaultsApi* | [**register_tempo_omnibus_wallet**](docs/VaultsApi.md#register_tempo_omnibus_wallet) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/omnibus/tempo/register | Register a Tempo omnibus wallet
 *VaultsApi* | [**set_customer_ref_id_for_address**](docs/VaultsApi.md#set_customer_ref_id_for_address) | **POST** /vault/accounts/{vaultAccountId}/{assetId}/addresses/{addressId}/set_customer_ref_id | Assign AML customer reference ID
 *VaultsApi* | [**set_usdc_gateway_deposit_automation_beta**](docs/VaultsApi.md#set_usdc_gateway_deposit_automation_beta) | **POST** /vault/accounts/{vaultAccountId}/virtual_asset_wallet/usdc_gateway/deposit_automation | Set up a USDC Gateway deposit automation for a vault account
 *VaultsApi* | [**set_vault_account_auto_fuel**](docs/VaultsApi.md#set_vault_account_auto_fuel) | **POST** /vault/accounts/{vaultAccountId}/set_auto_fuel | Set auto fueling to on or off
@@ -790,7 +838,6 @@ Class | Method | HTTP request | Description
  - [AddressesFilters](docs/AddressesFilters.md)
  - [AlertExposureTypeEnum](docs/AlertExposureTypeEnum.md)
  - [AlertLevelEnum](docs/AlertLevelEnum.md)
- - [AllocationWithdrawPayload](docs/AllocationWithdrawPayload.md)
  - [AllowListPayload](docs/AllowListPayload.md)
  - [AllowlistEntry](docs/AllowlistEntry.md)
  - [AllowlistEntryResponse](docs/AllowlistEntryResponse.md)
@@ -890,6 +937,9 @@ Class | Method | HTTP request | Description
  - [BlockchainStateFilter](docs/BlockchainStateFilter.md)
  - [BlockchainTransfer](docs/BlockchainTransfer.md)
  - [BpsFee](docs/BpsFee.md)
+ - [BulkProofOfOwnership](docs/BulkProofOfOwnership.md)
+ - [BulkSigningKey](docs/BulkSigningKey.md)
+ - [BulkSigningKeyJob](docs/BulkSigningKeyJob.md)
  - [BusinessEntityTypeEnum](docs/BusinessEntityTypeEnum.md)
  - [BusinessIdentification](docs/BusinessIdentification.md)
  - [ByorkConfigResponse](docs/ByorkConfigResponse.md)
@@ -906,7 +956,6 @@ Class | Method | HTTP request | Description
  - [CallbackHandlerRequest](docs/CallbackHandlerRequest.md)
  - [CancelTransactionResponse](docs/CancelTransactionResponse.md)
  - [CantonCall](docs/CantonCall.md)
- - [CantonCallAllocationWithdraw](docs/CantonCallAllocationWithdraw.md)
  - [CantonCallAllowListAdd](docs/CantonCallAllowListAdd.md)
  - [CantonCallAllowListRemove](docs/CantonCallAllowListRemove.md)
  - [CantonCallDetails](docs/CantonCallDetails.md)
@@ -1025,6 +1074,8 @@ Class | Method | HTTP request | Description
  - [CreateAssetsRequest](docs/CreateAssetsRequest.md)
  - [CreateBlockchainRequest](docs/CreateBlockchainRequest.md)
  - [CreateBlockchainResponse](docs/CreateBlockchainResponse.md)
+ - [CreateBulkSigningKeys](docs/CreateBulkSigningKeys.md)
+ - [CreateBulkSigningKeysResponse](docs/CreateBulkSigningKeysResponse.md)
  - [CreateConfigOperationRequest](docs/CreateConfigOperationRequest.md)
  - [CreateConnectionRequest](docs/CreateConnectionRequest.md)
  - [CreateConnectionResponse](docs/CreateConnectionResponse.md)
@@ -1238,6 +1289,7 @@ Class | Method | HTTP request | Description
  - [GetAutomationSettingsResponse](docs/GetAutomationSettingsResponse.md)
  - [GetBillingInfoResponse](docs/GetBillingInfoResponse.md)
  - [GetBlockchainByIdResponse](docs/GetBlockchainByIdResponse.md)
+ - [GetBulkSigningKeysJobsResponse](docs/GetBulkSigningKeysJobsResponse.md)
  - [GetByorkVerdictResponse](docs/GetByorkVerdictResponse.md)
  - [GetConnectedAccountsCredentialsPublicKeyResponse](docs/GetConnectedAccountsCredentialsPublicKeyResponse.md)
  - [GetConnectionsResponse](docs/GetConnectionsResponse.md)
@@ -1396,6 +1448,7 @@ Class | Method | HTTP request | Description
  - [OfferResponseAccepted](docs/OfferResponseAccepted.md)
  - [OfferResponseAllocationAccept](docs/OfferResponseAllocationAccept.md)
  - [OfferResponseAllocationReject](docs/OfferResponseAllocationReject.md)
+ - [OfferResponseAllocationWithdraw](docs/OfferResponseAllocationWithdraw.md)
  - [OfferResponseDtccOnboardingAccept](docs/OfferResponseDtccOnboardingAccept.md)
  - [OfferResponseDtccOnboardingReject](docs/OfferResponseDtccOnboardingReject.md)
  - [OfferResponseTradewebAccept](docs/OfferResponseTradewebAccept.md)

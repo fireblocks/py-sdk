@@ -36,14 +36,10 @@ class TestEndInvestorPayload(unittest.TestCase):
         model = EndInvestorPayload()
         if include_optional:
             return EndInvestorPayload(
-                vault_account_id = '12',
-                blockchain_id = 'CANTON',
                 end_investor = 'investor-party::1220abc…'
             )
         else:
             return EndInvestorPayload(
-                vault_account_id = '12',
-                blockchain_id = 'CANTON',
                 end_investor = 'investor-party::1220abc…',
         )
         """

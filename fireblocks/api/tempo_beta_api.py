@@ -110,6 +110,7 @@ class TempoBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_tempo_transfer",
         )
 
     def _create_tempo_transfer_serialize(

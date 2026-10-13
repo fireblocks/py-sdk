@@ -113,6 +113,7 @@ class UserGroupsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_user_group",
         )
 
     def _create_user_group_serialize(
@@ -258,6 +259,7 @@ class UserGroupsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="delete_user_group",
         )
 
     def _delete_user_group_serialize(
@@ -387,6 +389,7 @@ class UserGroupsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_user_group",
         )
 
     def _get_user_group_serialize(
@@ -511,6 +514,7 @@ class UserGroupsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_user_groups",
         )
 
     def _get_user_groups_serialize(
@@ -645,6 +649,7 @@ class UserGroupsBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_user_group",
         )
 
     def _update_user_group_serialize(

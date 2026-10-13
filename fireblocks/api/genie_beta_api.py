@@ -107,6 +107,7 @@ class GenieBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="create_genie_session",
         )
 
     def _create_genie_session_serialize(
@@ -244,6 +245,7 @@ class GenieBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="send_genie_message",
         )
 
     def _send_genie_message_serialize(

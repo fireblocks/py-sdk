@@ -123,6 +123,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_asset",
         )
 
     def _get_asset_serialize(
@@ -257,6 +258,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_blockchain",
         )
 
     def _get_blockchain_serialize(
@@ -381,6 +383,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_supported_assets",
         )
 
     def _get_supported_assets_serialize(
@@ -539,6 +542,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_assets",
         )
 
     def _list_assets_serialize(
@@ -729,6 +733,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="list_blockchains",
         )
 
     def _list_blockchains_serialize(
@@ -894,6 +899,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="register_new_asset",
         )
 
     def _register_new_asset_serialize(
@@ -1049,6 +1055,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="set_asset_price",
         )
 
     def _set_asset_price_serialize(
@@ -1207,6 +1214,7 @@ class BlockchainsAssetsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_asset_user_metadata",
         )
 
     def _update_asset_user_metadata_serialize(

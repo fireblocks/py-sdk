@@ -43,6 +43,8 @@ class TestCantonOfferResponseDetails(unittest.TestCase):
                 expires_at = '2026-12-31T23:59:59Z',
                 approval_transaction_id = '2a7f4c31-9d08-4b52-8e6a-1f3c70b9d485',
                 original_transaction_id = '9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488',
+                response_type = 'ALLOCATION_ACCEPT',
+                allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21',
                 verdict = 'ACCEPTED'
             )
         else:

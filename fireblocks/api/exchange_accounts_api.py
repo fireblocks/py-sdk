@@ -118,6 +118,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="add_exchange_account",
         )
 
     def _add_exchange_account_serialize(
@@ -271,6 +272,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="convert_assets",
         )
 
     def _convert_assets_serialize(
@@ -419,6 +421,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_exchange_account",
         )
 
     def _get_exchange_account_serialize(
@@ -553,6 +556,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_exchange_account_asset",
         )
 
     def _get_exchange_account_asset_serialize(
@@ -680,6 +684,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_exchange_accounts_credentials_public_key",
         )
 
     def _get_exchange_accounts_credentials_public_key_serialize(
@@ -813,6 +818,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_paged_exchange_accounts",
         )
 
     def _get_paged_exchange_accounts_serialize(
@@ -962,6 +968,7 @@ class ExchangeAccountsApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="internal_transfer",
         )
 
     def _internal_transfer_serialize(

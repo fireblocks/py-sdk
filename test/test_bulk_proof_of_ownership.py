@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.allocation_withdraw_payload import AllocationWithdrawPayload
+from fireblocks.models.bulk_proof_of_ownership import BulkProofOfOwnership
 
 
-class TestAllocationWithdrawPayload(unittest.TestCase):
-    """AllocationWithdrawPayload unit test stubs"""
+class TestBulkProofOfOwnership(unittest.TestCase):
+    """BulkProofOfOwnership unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,26 +26,28 @@ class TestAllocationWithdrawPayload(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AllocationWithdrawPayload:
-        """Test AllocationWithdrawPayload
+    def make_instance(self, include_optional) -> BulkProofOfOwnership:
+        """Test BulkProofOfOwnership
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `AllocationWithdrawPayload`
+        # uncomment below to create an instance of `BulkProofOfOwnership`
         """
-        model = AllocationWithdrawPayload()
+        model = BulkProofOfOwnership()
         if include_optional:
-            return AllocationWithdrawPayload(
-                allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21'
+            return BulkProofOfOwnership(
+                message = '46697265626c6f636b737c50726f6f66206f66204f776e6572736869702e2e2e',
+                signature = '67bf2628888b677a249c694fe03c90bcb160de5b1c0ad9a6bbd6ab5f3f7c1f9d0a2e4c6b8d0f2a4c6e8b0d2f4a6c8e0b2d4f6a8c0e2b4d6f8a0c2e4b6d8f0a2c4'
             )
         else:
-            return AllocationWithdrawPayload(
-                allocation_transaction_id = '5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21',
+            return BulkProofOfOwnership(
+                message = '46697265626c6f636b737c50726f6f66206f66204f776e6572736869702e2e2e',
+                signature = '67bf2628888b677a249c694fe03c90bcb160de5b1c0ad9a6bbd6ab5f3f7c1f9d0a2e4c6b8d0f2a4c6e8b0d2f4a6c8e0b2d4f6a8c0e2b4d6f8a0c2e4b6d8f0a2c4',
         )
         """
 
-    def testAllocationWithdrawPayload(self):
-        """Test AllocationWithdrawPayload"""
+    def testBulkProofOfOwnership(self):
+        """Test BulkProofOfOwnership"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

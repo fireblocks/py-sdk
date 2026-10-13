@@ -113,6 +113,7 @@ class ComplianceOrchestratorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_screening_result",
         )
 
     def _get_screening_result_serialize(
@@ -244,6 +245,7 @@ class ComplianceOrchestratorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="get_workflow",
         )
 
     def _get_workflow_serialize(
@@ -379,6 +381,7 @@ class ComplianceOrchestratorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="trigger_screening",
         )
 
     def _trigger_screening_serialize(
@@ -534,6 +537,7 @@ class ComplianceOrchestratorBetaApi:
             *_param,
             _request_timeout=_request_timeout,
             _response_types_map=_response_types_map,
+            _operation_id="update_workflow_status",
         )
 
     def _update_workflow_status_serialize(

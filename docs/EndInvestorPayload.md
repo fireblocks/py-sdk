@@ -1,6 +1,6 @@
 # EndInvestorPayload
 
-Shared by invite / invite-cancel / offboard — identical wire shape, different verb.
+The end investor a call acts on.
 
 ## Properties
 

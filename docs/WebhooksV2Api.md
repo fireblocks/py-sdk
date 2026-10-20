@@ -609,6 +609,8 @@ The private key the CSR is built from is held by Fireblocks and is specific to t
 
 Pass `keyAlgorithm` to choose RSA or ECDSA. A workspace may hold one key of each: the CSR returned is always the one for the type requested, so a certificate signed against it matches the key used at delivery time.
 
+**Endpoint Permissions:** Owner, Admin, Non-Signing Admin.
+
 
 ### Example
 

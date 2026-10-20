@@ -19,6 +19,7 @@ from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
+from fireblocks.api.canton_beta_api import CantonBetaApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_orchestrator_beta_api import (
     ComplianceOrchestratorBetaApi,
@@ -91,6 +92,7 @@ class Fireblocks:
         self._audit_logs = None
         self._blockchain_link_beta = None
         self._blockchains_assets = None
+        self._canton_beta = None
         self._compliance = None
         self._compliance_orchestrator_beta = None
         self._compliance_screening_configuration = None
@@ -182,6 +184,12 @@ class Fireblocks:
         if self._blockchains_assets is None:
             self._blockchains_assets = BlockchainsAssetsApi(self._api_client)
         return self._blockchains_assets
+
+    @property
+    def canton_beta(self) -> CantonBetaApi:
+        if self._canton_beta is None:
+            self._canton_beta = CantonBetaApi(self._api_client)
+        return self._canton_beta
 
     @property
     def compliance(self) -> ComplianceApi:

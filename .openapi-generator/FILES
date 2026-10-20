@@ -191,6 +191,7 @@ docs/CallAccepted.md
 docs/CallbackHandler.md
 docs/CallbackHandlerRequest.md
 docs/CancelTransactionResponse.md
+docs/CantonBetaApi.md
 docs/CantonCall.md
 docs/CantonCallAllowListAdd.md
 docs/CantonCallAllowListRemove.md
@@ -1389,6 +1390,7 @@ fireblocks/api/approvals_beta_api.py
 fireblocks/api/audit_logs_api.py
 fireblocks/api/blockchain_link_beta_api.py
 fireblocks/api/blockchains_assets_api.py
+fireblocks/api/canton_beta_api.py
 fireblocks/api/compliance_api.py
 fireblocks/api/compliance_orchestrator_beta_api.py
 fireblocks/api/compliance_screening_configuration_api.py
@@ -2990,6 +2992,7 @@ test/test_call_accepted.py
 test/test_callback_handler.py
 test/test_callback_handler_request.py
 test/test_cancel_transaction_response.py
+test/test_canton_beta_api.py
 test/test_canton_call.py
 test/test_canton_call_allow_list_add.py
 test/test_canton_call_allow_list_remove.py

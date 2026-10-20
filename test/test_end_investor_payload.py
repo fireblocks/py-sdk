@@ -36,11 +36,11 @@ class TestEndInvestorPayload(unittest.TestCase):
         model = EndInvestorPayload()
         if include_optional:
             return EndInvestorPayload(
-                end_investor = 'investor-party::1220abc…'
+                end_investor = 'investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789'
             )
         else:
             return EndInvestorPayload(
-                end_investor = 'investor-party::1220abc…',
+                end_investor = 'investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789',
         )
         """
 

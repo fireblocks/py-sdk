@@ -40,7 +40,7 @@ class TestCantonCallAllowListAdd(unittest.TestCase):
                 vault_account_id = '12',
                 blockchain_id = 'CANTON',
                 payload = fireblocks.models.allow_list_payload.AllowListPayload(
-                    wallets = ["investor-party::1220abc…"], )
+                    wallets = ["investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"], )
             )
         else:
             return CantonCallAllowListAdd(
@@ -48,7 +48,7 @@ class TestCantonCallAllowListAdd(unittest.TestCase):
                 vault_account_id = '12',
                 blockchain_id = 'CANTON',
                 payload = fireblocks.models.allow_list_payload.AllowListPayload(
-                    wallets = ["investor-party::1220abc…"], ),
+                    wallets = ["investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"], ),
         )
         """
 

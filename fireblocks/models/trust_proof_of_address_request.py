@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,7 +32,8 @@ class TrustProofOfAddressRequest(BaseModel):
     asset: StrictStr = Field(description="The asset identifier for which proof of address is being created.")
     prefix: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The prefix to be used for signing messages.")
     trust_uuid: StrictStr = Field(description="A unique identifier (UUID) obtained from TRUST (CreateAddressOwnership)", alias="trustUuid")
-    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "prefix", "trustUuid"]
+    address: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(default=None, description="Optional non-default (derived) address of the vault account to prove. Supported for UTXO assets only (`BTC`, `BTC_TEST`). The address must belong to the vault account for the given asset. Both SegWit and Legacy address forms are accepted. When omitted, the proof is created for the default (index 0) address of the vault account. ")
+    __properties: ClassVar[List[str]] = ["vaultAccountId", "asset", "prefix", "trustUuid", "address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +89,8 @@ class TrustProofOfAddressRequest(BaseModel):
             "vaultAccountId": obj.get("vaultAccountId"),
             "asset": obj.get("asset"),
             "prefix": obj.get("prefix"),
-            "trustUuid": obj.get("trustUuid")
+            "trustUuid": obj.get("trustUuid"),
+            "address": obj.get("address")
         })
         return _obj
 

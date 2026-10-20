@@ -43,11 +43,11 @@ class TestCantonCallParticipantOnboarding(unittest.TestCase):
                 blockchain_id = 'CANTON',
                 payload = fireblocks.models.participant_onboarding_payload.ParticipantOnboardingPayload(
                     expires_at = '2026-12-31T23:59:59Z', 
-                    operator = 'dtcc-operator::1220abc…', 
-                    compliance = 'dtcc-compliance::1220abc…', 
-                    registrar = 'dtcc-registrar::1220abc…', 
-                    client_onboarder = 'dtcc-onboarder::1220abc…', 
-                    upgrader = 'dtcc-upgrader::1220abc…', )
+                    operator = 'dtcc-operator::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', 
+                    compliance = 'dtcc-compliance::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', 
+                    registrar = 'dtcc-registrar::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', 
+                    client_onboarder = 'dtcc-onboarder::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', 
+                    upgrader = 'dtcc-upgrader::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', )
             )
         else:
             return CantonCallParticipantOnboarding(

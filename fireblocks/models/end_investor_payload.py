@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class EndInvestorPayload(BaseModel):
     """
-    Shared by invite / invite-cancel / offboard — identical wire shape, different verb.
+    The end investor a call acts on.
     """ # noqa: E501
     end_investor: StrictStr = Field(description="The end investor's Canton party id.", alias="endInvestor")
     __properties: ClassVar[List[str]] = ["endInvestor"]

@@ -42,7 +42,7 @@ class TestCantonCallEndInvestorInvite(unittest.TestCase):
                 vault_account_id = '12',
                 blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    end_investor = 'investor-party::1220abc…', )
+                    end_investor = 'investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', )
             )
         else:
             return CantonCallEndInvestorInvite(
@@ -50,7 +50,7 @@ class TestCantonCallEndInvestorInvite(unittest.TestCase):
                 vault_account_id = '12',
                 blockchain_id = 'CANTON',
                 payload = fireblocks.models.end_investor_payload.EndInvestorPayload(
-                    end_investor = 'investor-party::1220abc…', ),
+                    end_investor = 'investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789', ),
         )
         """
 

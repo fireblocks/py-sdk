@@ -307,6 +307,8 @@ Class | Method | HTTP request | Description
 *BlockchainsAssetsApi* | [**register_new_asset**](docs/BlockchainsAssetsApi.md#register_new_asset) | **POST** /assets | Register an asset
 *BlockchainsAssetsApi* | [**set_asset_price**](docs/BlockchainsAssetsApi.md#set_asset_price) | **POST** /assets/prices/{id} | Set asset price
 *BlockchainsAssetsApi* | [**update_asset_user_metadata**](docs/BlockchainsAssetsApi.md#update_asset_user_metadata) | **PATCH** /assets/{id} | Update the user’s metadata for an asset
+*CantonBetaApi* | [**create_canton_call**](docs/CantonBetaApi.md#create_canton_call) | **POST** /operations/canton/calls | Make a Canton call
+*CantonBetaApi* | [**respond_to_canton_offer**](docs/CantonBetaApi.md#respond_to_canton_offer) | **POST** /operations/canton/offers/{offerId}/responses | Answer an offer
 *ComplianceApi* | [**activate_ars_config**](docs/ComplianceApi.md#activate_ars_config) | **POST** /screening/ars/config/activate | Activate ARS (Address Registry Screening)
 *ComplianceApi* | [**activate_byork_config**](docs/ComplianceApi.md#activate_byork_config) | **POST** /screening/byork/config/activate | Activate BYORK Light
 *ComplianceApi* | [**add_address_registry_vault_opt_outs**](docs/ComplianceApi.md#add_address_registry_vault_opt_outs) | **POST** /address_registry/vaults | Add vault accounts to the address registry opt-out list

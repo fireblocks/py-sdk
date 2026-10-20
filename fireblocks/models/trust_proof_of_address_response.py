@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.typed_message_transaction_status_enum import TypedMessageTransactionStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +31,8 @@ class TrustProofOfAddressResponse(BaseModel):
     transaction_id: StrictStr = Field(description="Transaction ID from Fireblocks (UUID format)", alias="transactionId")
     status: TypedMessageTransactionStatusEnum
     signature: StrictStr = Field(description="TRUST-compatible encoded signature for proof of address verification. ")
-    __properties: ClassVar[List[str]] = ["transactionId", "status", "signature"]
+    public_key: Optional[StrictStr] = Field(default=None, description="Hex public key of the Fireblocks vault key that produced the signature. Present only when `status` is `SIGNED` or `COMPLETED`, and only if Fireblocks returned it. TRUST requires this key for SUI, TON and XTZ (as `auxProofData.encryptedPublicKey`). ", alias="publicKey")
+    __properties: ClassVar[List[str]] = ["transactionId", "status", "signature", "publicKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +87,8 @@ class TrustProofOfAddressResponse(BaseModel):
         _obj = cls.model_validate({
             "transactionId": obj.get("transactionId"),
             "status": obj.get("status"),
-            "signature": obj.get("signature")
+            "signature": obj.get("signature"),
+            "publicKey": obj.get("publicKey")
         })
         return _obj
 

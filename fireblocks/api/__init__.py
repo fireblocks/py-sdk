@@ -6,6 +6,7 @@ from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
 from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
+from fireblocks.api.canton_beta_api import CantonBetaApi
 from fireblocks.api.compliance_api import ComplianceApi
 from fireblocks.api.compliance_orchestrator_beta_api import ComplianceOrchestratorBetaApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi

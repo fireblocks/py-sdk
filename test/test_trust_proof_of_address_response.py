@@ -40,7 +40,8 @@ class TestTrustProofOfAddressResponse(unittest.TestCase):
             return TrustProofOfAddressResponse(
                 transaction_id = '550e8400-e29b-41d4-a716-446655440000',
                 status = 'PENDING_SIGNATURE',
-                signature = '0x6e6e0da016d49d2eaeefb2ce49efcde627151ce03d3e525963aa541ce07fb41c0f1f70d131f160480b4a68aaefbdae1b6fe3765eee3ceff0a8b47a8c979ccd961c'
+                signature = '0x6e6e0da016d49d2eaeefb2ce49efcde627151ce03d3e525963aa541ce07fb41c0f1f70d131f160480b4a68aaefbdae1b6fe3765eee3ceff0a8b47a8c979ccd961c',
+                public_key = '0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798'
             )
         else:
             return TrustProofOfAddressResponse(

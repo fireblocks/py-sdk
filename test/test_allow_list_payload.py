@@ -36,11 +36,11 @@ class TestAllowListPayload(unittest.TestCase):
         model = AllowListPayload()
         if include_optional:
             return AllowListPayload(
-                wallets = ["investor-party::1220abc…"]
+                wallets = ["investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"]
             )
         else:
             return AllowListPayload(
-                wallets = ["investor-party::1220abc…"],
+                wallets = ["investor-party::1220abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"],
         )
         """
 

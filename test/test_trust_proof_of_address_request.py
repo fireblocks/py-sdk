@@ -39,7 +39,8 @@ class TestTrustProofOfAddressRequest(unittest.TestCase):
                 vault_account_id = '0',
                 asset = 'ETH',
                 prefix = 'trust_verification',
-                trust_uuid = '550e8400-e29b-41d4-a716-446655440000'
+                trust_uuid = '550e8400-e29b-41d4-a716-446655440000',
+                address = 'bc1qexampleexampleexampleexampleexampleexample'
             )
         else:
             return TrustProofOfAddressRequest(

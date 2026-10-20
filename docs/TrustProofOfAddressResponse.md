@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **transaction_id** | **str** | Transaction ID from Fireblocks (UUID format) | 
 **status** | [**TypedMessageTransactionStatusEnum**](TypedMessageTransactionStatusEnum.md) |  | 
 **signature** | **str** | TRUST-compatible encoded signature for proof of address verification.  | 
+**public_key** | **str** | Hex public key of the Fireblocks vault key that produced the signature. Present only when &#x60;status&#x60; is &#x60;SIGNED&#x60; or &#x60;COMPLETED&#x60;, and only if Fireblocks returned it. TRUST requires this key for SUI, TON and XTZ (as &#x60;auxProofData.encryptedPublicKey&#x60;).  | [optional] 
 
 ## Example
 

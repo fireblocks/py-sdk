@@ -96,10 +96,17 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_get_address_registry_customer_participation_status(self) -> None:
+        """Test case for get_address_registry_customer_participation_status
+
+        Get your customer's address registry default
+        """
+        pass
+
     def test_get_address_registry_tenant_participation_status(self) -> None:
         """Test case for get_address_registry_tenant_participation_status
 
-        Get address registry participation status for the authenticated workspace
+        Get address registry status for this workspace
         """
         pass
 
@@ -208,17 +215,31 @@ class TestComplianceApi(unittest.TestCase):
         """
         pass
 
+    def test_opt_in_address_registry_customer(self) -> None:
+        """Test case for opt_in_address_registry_customer
+
+        Opt your customer in to the address registry
+        """
+        pass
+
     def test_opt_in_address_registry_tenant(self) -> None:
         """Test case for opt_in_address_registry_tenant
 
-        Opt the workspace in to the address registry
+        Opt this workspace in to the address registry
+        """
+        pass
+
+    def test_opt_out_address_registry_customer(self) -> None:
+        """Test case for opt_out_address_registry_customer
+
+        Opt your customer out of the address registry
         """
         pass
 
     def test_opt_out_address_registry_tenant(self) -> None:
         """Test case for opt_out_address_registry_tenant
 
-        Opt the workspace out of the address registry
+        Opt this workspace out of the address registry
         """
         pass
 

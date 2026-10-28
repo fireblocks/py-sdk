@@ -43,7 +43,8 @@ class TestRatesResponse(unittest.TestCase):
                         base_asset_rail = 'BLOCKCHAIN', 
                         quote_asset_id = '', 
                         quote_asset_rail = 'BLOCKCHAIN', 
-                        rate = '1.2345', )
+                        rate = '1.2345', 
+                        side = 'BUY', )
                     ],
                 errors = [
                     fireblocks.models.scope_item_failure.ScopeItemFailure(
@@ -61,7 +62,8 @@ class TestRatesResponse(unittest.TestCase):
                         base_asset_rail = 'BLOCKCHAIN', 
                         quote_asset_id = '', 
                         quote_asset_rail = 'BLOCKCHAIN', 
-                        rate = '1.2345', )
+                        rate = '1.2345', 
+                        side = 'BUY', )
                     ],
                 errors = [
                     fireblocks.models.scope_item_failure.ScopeItemFailure(

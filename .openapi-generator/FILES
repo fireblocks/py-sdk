@@ -55,6 +55,7 @@ docs/AddressRegistryAddVaultOptOutsRequestVaultAccountIdsInner.md
 docs/AddressRegistryAddVaultOptOutsResponse.md
 docs/AddressRegistryCreateProofOfOwnershipRequest.md
 docs/AddressRegistryCreateProofOfOwnershipResponse.md
+docs/AddressRegistryCustomerRegistryResponse.md
 docs/AddressRegistryGetVaultOptOutResponse.md
 docs/AddressRegistryLegalEntity.md
 docs/AddressRegistryListVaultOptOutsResponse.md
@@ -819,6 +820,7 @@ docs/PostalAddress.md
 docs/PreScreening.md
 docs/PrefundedSettlement.md
 docs/PrefundedSettlementType.md
+docs/PricingSide.md
 docs/ProgramCallConfig.md
 docs/ProgramCallDecodedDataItem.md
 docs/Provider.md
@@ -1023,6 +1025,7 @@ docs/SolanaInstruction.md
 docs/SolanaInstructionWithValue.md
 docs/SolanaRewardsBreakdown.md
 docs/SolanaSimpleCreateParams.md
+docs/SorobanCallData.md
 docs/SourceConfig.md
 docs/SourceOfFunds.md
 docs/SourceTransferPeerPath.md
@@ -1507,6 +1510,7 @@ fireblocks/models/address_registry_add_vault_opt_outs_request_vault_account_ids_
 fireblocks/models/address_registry_add_vault_opt_outs_response.py
 fireblocks/models/address_registry_create_proof_of_ownership_request.py
 fireblocks/models/address_registry_create_proof_of_ownership_response.py
+fireblocks/models/address_registry_customer_registry_response.py
 fireblocks/models/address_registry_get_vault_opt_out_response.py
 fireblocks/models/address_registry_legal_entity.py
 fireblocks/models/address_registry_list_vault_opt_outs_response.py
@@ -2236,6 +2240,7 @@ fireblocks/models/postal_address.py
 fireblocks/models/pre_screening.py
 fireblocks/models/prefunded_settlement.py
 fireblocks/models/prefunded_settlement_type.py
+fireblocks/models/pricing_side.py
 fireblocks/models/program_call_config.py
 fireblocks/models/program_call_decoded_data_item.py
 fireblocks/models/provider.py
@@ -2436,6 +2441,7 @@ fireblocks/models/solana_instruction.py
 fireblocks/models/solana_instruction_with_value.py
 fireblocks/models/solana_rewards_breakdown.py
 fireblocks/models/solana_simple_create_params.py
+fireblocks/models/soroban_call_data.py
 fireblocks/models/source_config.py
 fireblocks/models/source_of_funds.py
 fireblocks/models/source_transfer_peer_path.py
@@ -2855,6 +2861,7 @@ test/test_address_registry_add_vault_opt_outs_request_vault_account_ids_inner.py
 test/test_address_registry_add_vault_opt_outs_response.py
 test/test_address_registry_create_proof_of_ownership_request.py
 test/test_address_registry_create_proof_of_ownership_response.py
+test/test_address_registry_customer_registry_response.py
 test/test_address_registry_get_vault_opt_out_response.py
 test/test_address_registry_legal_entity.py
 test/test_address_registry_list_vault_opt_outs_response.py
@@ -3620,6 +3627,7 @@ test/test_postal_address.py
 test/test_pre_screening.py
 test/test_prefunded_settlement.py
 test/test_prefunded_settlement_type.py
+test/test_pricing_side.py
 test/test_program_call_config.py
 test/test_program_call_decoded_data_item.py
 test/test_provider.py
@@ -3824,6 +3832,7 @@ test/test_solana_instruction.py
 test/test_solana_instruction_with_value.py
 test/test_solana_rewards_breakdown.py
 test/test_solana_simple_create_params.py
+test/test_soroban_call_data.py
 test/test_source_config.py
 test/test_source_of_funds.py
 test/test_source_transfer_peer_path.py

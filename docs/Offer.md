@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **quote_asset_id** | **str** | The target asset identifier. | 
 **quote_asset_rail** | [**TransferRail**](TransferRail.md) |  | [optional] 
 **rate** | **str** | The indicative exchange rate — the number of units of the quote asset that equal 1 unit of the base asset. For example, if base is BTC and quote is USD, a rate of 75000 means 1 BTC &#x3D; 75,000 USD. | 
+**side** | [**Side**](Side.md) |  | 
 **offer_type** | **str** | The type of offer — QUOTE for executable committed quotes. | 
 **id** | **str** | The unique identifier of the quote. | 
 **base_amount** | **str** | The amount of the base asset. | 
@@ -20,7 +21,6 @@ Name | Type | Description | Notes
 **is_slippage_applied** | **bool** | Indicates if slippage was applied to the quote. | [optional] [default to False]
 **execution_steps** | [**List[QuoteExecutionStep]**](QuoteExecutionStep.md) | Ordered list of execution steps for the quote. | [optional] 
 **general_fees** | [**List[Fee]**](Fee.md) | General fees associated with the quote. | [optional] 
-**side** | [**Side**](Side.md) |  | 
 **expires_at** | **str** | The expiration time of the quote in ISO 8601 format, taken verbatim from the provider. This is not safety-margined by the server — integrators must apply their own margin if one is needed.  | 
 **required_participants_identification_on_order** | **str** | A JSON Schema Draft-7 document in string format describing the fields required when creating an order so clients can validate their order payload before sending.  | [optional] 
 **type** | **str** | The type of the quote. | 

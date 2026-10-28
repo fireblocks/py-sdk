@@ -319,7 +319,8 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**deactivate_byork_config**](docs/ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 *ComplianceApi* | [**delete_counterparty_group**](docs/ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
 *ComplianceApi* | [**delete_legal_entity**](docs/ComplianceApi.md#delete_legal_entity) | **DELETE** /legal_entities/{legalEntityId} | Delete a legal entity
-*ComplianceApi* | [**get_address_registry_tenant_participation_status**](docs/ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
+*ComplianceApi* | [**get_address_registry_customer_participation_status**](docs/ComplianceApi.md#get_address_registry_customer_participation_status) | **GET** /address_registry/customer | Get your customer&#39;s address registry default
+*ComplianceApi* | [**get_address_registry_tenant_participation_status**](docs/ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry status for this workspace
 *ComplianceApi* | [**get_address_registry_vault_opt_out**](docs/ComplianceApi.md#get_address_registry_vault_opt_out) | **GET** /address_registry/vaults/{vaultAccountId} | Get whether a vault account is opted out of the address registry
 *ComplianceApi* | [**get_aml_post_screening_policy**](docs/ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 *ComplianceApi* | [**get_aml_screening_policy**](docs/ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
@@ -335,8 +336,10 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**list_counterparty_groups**](docs/ComplianceApi.md#list_counterparty_groups) | **GET** /counterparty_groups | List counterparty groups
 *ComplianceApi* | [**list_legal_entities**](docs/ComplianceApi.md#list_legal_entities) | **GET** /legal_entities | List legal entities (Paginated)
 *ComplianceApi* | [**list_vaults_for_legal_entity**](docs/ComplianceApi.md#list_vaults_for_legal_entity) | **GET** /legal_entities/{legalEntityId}/vaults | List vault accounts for a legal entity (Paginated)
-*ComplianceApi* | [**opt_in_address_registry_tenant**](docs/ComplianceApi.md#opt_in_address_registry_tenant) | **POST** /address_registry/tenant | Opt the workspace in to the address registry
-*ComplianceApi* | [**opt_out_address_registry_tenant**](docs/ComplianceApi.md#opt_out_address_registry_tenant) | **DELETE** /address_registry/tenant | Opt the workspace out of the address registry
+*ComplianceApi* | [**opt_in_address_registry_customer**](docs/ComplianceApi.md#opt_in_address_registry_customer) | **POST** /address_registry/customer | Opt your customer in to the address registry
+*ComplianceApi* | [**opt_in_address_registry_tenant**](docs/ComplianceApi.md#opt_in_address_registry_tenant) | **POST** /address_registry/tenant | Opt this workspace in to the address registry
+*ComplianceApi* | [**opt_out_address_registry_customer**](docs/ComplianceApi.md#opt_out_address_registry_customer) | **DELETE** /address_registry/customer | Opt your customer out of the address registry
+*ComplianceApi* | [**opt_out_address_registry_tenant**](docs/ComplianceApi.md#opt_out_address_registry_tenant) | **DELETE** /address_registry/tenant | Opt this workspace out of the address registry
 *ComplianceApi* | [**register_legal_entity**](docs/ComplianceApi.md#register_legal_entity) | **POST** /legal_entities | Register a new legal entity
 *ComplianceApi* | [**remove_address_registry_vault_opt_out**](docs/ComplianceApi.md#remove_address_registry_vault_opt_out) | **DELETE** /address_registry/vaults/{vaultAccountId} | Remove a single vault account from the address registry opt-out list
 *ComplianceApi* | [**remove_all_address_registry_vault_opt_outs**](docs/ComplianceApi.md#remove_all_address_registry_vault_opt_outs) | **DELETE** /address_registry/vaults | Remove all vault-level address registry opt-outs for the workspace
@@ -826,6 +829,7 @@ Class | Method | HTTP request | Description
  - [AddressRegistryAddVaultOptOutsResponse](docs/AddressRegistryAddVaultOptOutsResponse.md)
  - [AddressRegistryCreateProofOfOwnershipRequest](docs/AddressRegistryCreateProofOfOwnershipRequest.md)
  - [AddressRegistryCreateProofOfOwnershipResponse](docs/AddressRegistryCreateProofOfOwnershipResponse.md)
+ - [AddressRegistryCustomerRegistryResponse](docs/AddressRegistryCustomerRegistryResponse.md)
  - [AddressRegistryGetVaultOptOutResponse](docs/AddressRegistryGetVaultOptOutResponse.md)
  - [AddressRegistryLegalEntity](docs/AddressRegistryLegalEntity.md)
  - [AddressRegistryListVaultOptOutsResponse](docs/AddressRegistryListVaultOptOutsResponse.md)
@@ -1554,6 +1558,7 @@ Class | Method | HTTP request | Description
  - [PreScreening](docs/PreScreening.md)
  - [PrefundedSettlement](docs/PrefundedSettlement.md)
  - [PrefundedSettlementType](docs/PrefundedSettlementType.md)
+ - [PricingSide](docs/PricingSide.md)
  - [ProgramCallConfig](docs/ProgramCallConfig.md)
  - [ProgramCallDecodedDataItem](docs/ProgramCallDecodedDataItem.md)
  - [Provider](docs/Provider.md)
@@ -1754,6 +1759,7 @@ Class | Method | HTTP request | Description
  - [SolanaInstructionWithValue](docs/SolanaInstructionWithValue.md)
  - [SolanaRewardsBreakdown](docs/SolanaRewardsBreakdown.md)
  - [SolanaSimpleCreateParams](docs/SolanaSimpleCreateParams.md)
+ - [SorobanCallData](docs/SorobanCallData.md)
  - [SourceConfig](docs/SourceConfig.md)
  - [SourceOfFunds](docs/SourceOfFunds.md)
  - [SourceTransferPeerPath](docs/SourceTransferPeerPath.md)

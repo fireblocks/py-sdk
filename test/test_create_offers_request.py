@@ -43,14 +43,13 @@ class TestCreateOffersRequest(unittest.TestCase):
                 base_amount = '100.00',
                 slippage_bps = 1,
                 settlement = {"type":"DVP","sourceAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_3f7e1d9b2c5a8e4f"},"destinationAccount":{"type":"VAULT_ACCOUNT","id":"vault_acc_7b2e5d8f1c4a9e3b"}},
-                side = 'BUY'
+                side = 'SELL'
             )
         else:
             return CreateOffersRequest(
                 base_asset_id = 'BTC',
                 quote_asset_id = 'USD',
                 base_amount = '100.00',
-                side = 'BUY',
         )
         """
 

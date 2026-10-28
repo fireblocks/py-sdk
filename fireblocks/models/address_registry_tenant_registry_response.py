@@ -25,9 +25,9 @@ from typing_extensions import Self
 
 class AddressRegistryTenantRegistryResponse(BaseModel):
     """
-    Workspace participation in the address registry. Same shape for GET, POST (opt in), and DELETE (opt out).
+    Whether this workspace uses the address registry. GET, POST (opt in), and DELETE (opt out) all return this object. On GET, if this workspace has no explicit choice, `status` follows the customer default when one is set, otherwise the workspace is opted in by default.
     """ # noqa: E501
-    status: StrictStr = Field(description="OPTED_IN or OPTED_OUT.")
+    status: StrictStr = Field(description="`OPTED_IN` or `OPTED_OUT`. On GET, uses the customer default when this workspace has no setting of its own and the customer has made an explicit choice; is `OPTED_IN` when neither is set. On POST or DELETE, reflects the choice you just made for this workspace.")
     __properties: ClassVar[List[str]] = ["status"]
 
     @field_validator('status')

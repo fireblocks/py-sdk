@@ -41,7 +41,8 @@ class TestRatesRequest(unittest.TestCase):
                     ],
                 base_asset_id = 'BTC',
                 quote_asset_id = 'USD',
-                base_amount = '100.00'
+                base_amount = '100.00',
+                side = 'SELL'
             )
         else:
             return RatesRequest(

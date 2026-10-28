@@ -1288,7 +1288,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account, or 'default' for the default vault account
+    vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
     asset_id = 'asset_id_example' # str | The ID of the asset
     manual_signging = True # bool | False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. (optional)
     include_all_labels = ['include_all_labels_example'] # List[str] | Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
@@ -1314,7 +1314,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vault_account_id** | **str**| The ID of the vault account, or &#39;default&#39; for the default vault account | 
+ **vault_account_id** | **str**| The ID of the vault account | 
  **asset_id** | **str**| The ID of the asset | 
  **manual_signging** | **bool**| False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. | [optional] 
  **include_all_labels** | [**List[str]**](str.md)| Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 

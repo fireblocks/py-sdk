@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from fireblocks.models.pricing_side import PricingSide
 from fireblocks.models.scope_item import ScopeItem
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +34,8 @@ class RatesRequest(BaseModel):
     base_asset_id: StrictStr = Field(description="The source asset identifier.", alias="baseAssetId")
     quote_asset_id: StrictStr = Field(description="The target asset identifier.", alias="quoteAssetId")
     base_amount: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The amount to convert from", alias="baseAmount")
-    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "quoteAssetId", "baseAmount"]
+    side: Optional[PricingSide] = PricingSide.SELL
+    __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "quoteAssetId", "baseAmount", "side"]
 
     @field_validator('base_amount')
     def base_amount_validate_regular_expression(cls, value):
@@ -106,7 +108,8 @@ class RatesRequest(BaseModel):
             "scope": [ScopeItem.from_dict(_item) for _item in obj["scope"]] if obj.get("scope") is not None else None,
             "baseAssetId": obj.get("baseAssetId"),
             "quoteAssetId": obj.get("quoteAssetId"),
-            "baseAmount": obj.get("baseAmount")
+            "baseAmount": obj.get("baseAmount"),
+            "side": obj.get("side") if obj.get("side") is not None else PricingSide.SELL
         })
         return _obj
 

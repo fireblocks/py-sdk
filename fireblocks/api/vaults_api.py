@@ -2308,7 +2308,7 @@ class VaultsApi:
     @validate_call
     def get_max_spendable_amount(
         self,
-        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account, or 'default' for the default vault account")],
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
         manual_signging: Annotated[Optional[StrictBool], Field(description="False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device.")] = None,
         include_all_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
@@ -2334,7 +2334,7 @@ class VaultsApi:
 
         **UTXO assets only.**  Retrieve the maximum amount of the specified asset that can be spent in a single transaction from the specified vault account.  **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer. 
 
-        :param vault_account_id: The ID of the vault account, or 'default' for the default vault account (required)
+        :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
         :param asset_id: The ID of the asset (required)
         :type asset_id: str

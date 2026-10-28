@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.access_type_response import AccessTypeResponse
+from fireblocks.models.side import Side
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,7 +37,8 @@ class Rate(BaseModel):
     quote_asset_id: StrictStr = Field(description="The target asset identifier", alias="quoteAssetId")
     quote_asset_rail: Optional[TransferRail] = Field(default=None, alias="quoteAssetRail")
     rate: Annotated[str, Field(strict=True)] = Field(description="The indicative exchange rate — the number of units of the quote asset that equal 1 unit of the base asset. For example, if base is BTC and quote is USD, a rate of 75000 means 1 BTC = 75,000 USD.")
-    __properties: ClassVar[List[str]] = ["via", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "rate"]
+    side: Optional[Side] = None
+    __properties: ClassVar[List[str]] = ["via", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "rate", "side"]
 
     @field_validator('rate')
     def rate_validate_regular_expression(cls, value):
@@ -104,7 +106,8 @@ class Rate(BaseModel):
             "baseAssetRail": obj.get("baseAssetRail"),
             "quoteAssetId": obj.get("quoteAssetId"),
             "quoteAssetRail": obj.get("quoteAssetRail"),
-            "rate": obj.get("rate")
+            "rate": obj.get("rate"),
+            "side": obj.get("side")
         })
         return _obj
 

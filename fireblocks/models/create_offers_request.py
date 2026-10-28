@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from fireblocks.models.dvp_settlement import DVPSettlement
-from fireblocks.models.side import Side
+from fireblocks.models.pricing_side import PricingSide
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -38,7 +38,7 @@ class CreateOffersRequest(BaseModel):
     base_amount: Annotated[str, Field(strict=True)] = Field(description="The amount to get offers for", alias="baseAmount")
     slippage_bps: Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]] = Field(default=50, description="Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100%. If not set, defaults to 50 bps (0.5%).", alias="slippageBps")
     settlement: Optional[DVPSettlement] = None
-    side: Side
+    side: Optional[PricingSide] = PricingSide.SELL
     __properties: ClassVar[List[str]] = ["baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "baseAmount", "slippageBps", "settlement", "side"]
 
     @field_validator('base_amount')
@@ -109,7 +109,7 @@ class CreateOffersRequest(BaseModel):
             "baseAmount": obj.get("baseAmount"),
             "slippageBps": obj.get("slippageBps") if obj.get("slippageBps") is not None else 50,
             "settlement": DVPSettlement.from_dict(obj["settlement"]) if obj.get("settlement") is not None else None,
-            "side": obj.get("side")
+            "side": obj.get("side") if obj.get("side") is not None else PricingSide.SELL
         })
         return _obj
 

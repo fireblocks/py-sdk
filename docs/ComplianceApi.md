@@ -14,7 +14,8 @@ Method | HTTP request | Description
 [**deactivate_byork_config**](ComplianceApi.md#deactivate_byork_config) | **POST** /screening/byork/config/deactivate | Deactivate BYORK Light
 [**delete_counterparty_group**](ComplianceApi.md#delete_counterparty_group) | **DELETE** /counterparty_groups/{groupId} | Delete a counterparty group
 [**delete_legal_entity**](ComplianceApi.md#delete_legal_entity) | **DELETE** /legal_entities/{legalEntityId} | Delete a legal entity
-[**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry participation status for the authenticated workspace
+[**get_address_registry_customer_participation_status**](ComplianceApi.md#get_address_registry_customer_participation_status) | **GET** /address_registry/customer | Get your customer&#39;s address registry default
+[**get_address_registry_tenant_participation_status**](ComplianceApi.md#get_address_registry_tenant_participation_status) | **GET** /address_registry/tenant | Get address registry status for this workspace
 [**get_address_registry_vault_opt_out**](ComplianceApi.md#get_address_registry_vault_opt_out) | **GET** /address_registry/vaults/{vaultAccountId} | Get whether a vault account is opted out of the address registry
 [**get_aml_post_screening_policy**](ComplianceApi.md#get_aml_post_screening_policy) | **GET** /screening/aml/post_screening_policy | AML - View Post-Screening Policy
 [**get_aml_screening_policy**](ComplianceApi.md#get_aml_screening_policy) | **GET** /screening/aml/screening_policy | AML - View Screening Policy
@@ -30,8 +31,10 @@ Method | HTTP request | Description
 [**list_counterparty_groups**](ComplianceApi.md#list_counterparty_groups) | **GET** /counterparty_groups | List counterparty groups
 [**list_legal_entities**](ComplianceApi.md#list_legal_entities) | **GET** /legal_entities | List legal entities (Paginated)
 [**list_vaults_for_legal_entity**](ComplianceApi.md#list_vaults_for_legal_entity) | **GET** /legal_entities/{legalEntityId}/vaults | List vault accounts for a legal entity (Paginated)
-[**opt_in_address_registry_tenant**](ComplianceApi.md#opt_in_address_registry_tenant) | **POST** /address_registry/tenant | Opt the workspace in to the address registry
-[**opt_out_address_registry_tenant**](ComplianceApi.md#opt_out_address_registry_tenant) | **DELETE** /address_registry/tenant | Opt the workspace out of the address registry
+[**opt_in_address_registry_customer**](ComplianceApi.md#opt_in_address_registry_customer) | **POST** /address_registry/customer | Opt your customer in to the address registry
+[**opt_in_address_registry_tenant**](ComplianceApi.md#opt_in_address_registry_tenant) | **POST** /address_registry/tenant | Opt this workspace in to the address registry
+[**opt_out_address_registry_customer**](ComplianceApi.md#opt_out_address_registry_customer) | **DELETE** /address_registry/customer | Opt your customer out of the address registry
+[**opt_out_address_registry_tenant**](ComplianceApi.md#opt_out_address_registry_tenant) | **DELETE** /address_registry/tenant | Opt this workspace out of the address registry
 [**register_legal_entity**](ComplianceApi.md#register_legal_entity) | **POST** /legal_entities | Register a new legal entity
 [**remove_address_registry_vault_opt_out**](ComplianceApi.md#remove_address_registry_vault_opt_out) | **DELETE** /address_registry/vaults/{vaultAccountId} | Remove a single vault account from the address registry opt-out list
 [**remove_all_address_registry_vault_opt_outs**](ComplianceApi.md#remove_all_address_registry_vault_opt_outs) | **DELETE** /address_registry/vaults | Remove all vault-level address registry opt-outs for the workspace
@@ -818,12 +821,82 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_address_registry_customer_participation_status**
+> AddressRegistryCustomerRegistryResponse get_address_registry_customer_participation_status()
+
+Get your customer's address registry default
+
+Read your customer's organization-wide address registry setting. Workspaces without their own choice use this as the default. Returns `NOT_SET` when no choice has been made yet, or `OPTED_IN` / `OPTED_OUT` when one has.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_customer_registry_response import AddressRegistryCustomerRegistryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Get your customer's address registry default
+        api_response = fireblocks.compliance.get_address_registry_customer_participation_status().result()
+        print("The response of ComplianceApi->get_address_registry_customer_participation_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->get_address_registry_customer_participation_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AddressRegistryCustomerRegistryResponse**](AddressRegistryCustomerRegistryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Customer registry status in the response body |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_address_registry_tenant_participation_status**
 > AddressRegistryTenantRegistryResponse get_address_registry_tenant_participation_status()
 
-Get address registry participation status for the authenticated workspace
+Get address registry status for this workspace
 
-Returns whether the workspace is `OPTED_IN` or `OPTED_OUT` of the address registry.
+Check whether this workspace uses the address registry. The response is `OPTED_IN` or `OPTED_OUT`. If this workspace has not been configured yet, it follows your customer's default (see `GET /v1/address_registry/customer`) when that default is `OPTED_IN` or `OPTED_OUT`; otherwise the workspace is opted in by default.
 
 ### Example
 
@@ -852,7 +925,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Get address registry participation status for the authenticated workspace
+        # Get address registry status for this workspace
         api_response = fireblocks.compliance.get_address_registry_tenant_participation_status().result()
         print("The response of ComplianceApi->get_address_registry_tenant_participation_status:\n")
         pprint(api_response)
@@ -2012,12 +2085,87 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **opt_in_address_registry_customer**
+> AddressRegistryCustomerRegistryResponse opt_in_address_registry_customer(idempotency_key=idempotency_key)
+
+Opt your customer in to the address registry
+
+Set your customer's default to opted in. Workspaces without their own setting will follow this default. No request body. Returns `OPTED_IN`. If the customer for this workspace cannot be determined, returns HTTP 404 with error code **2147**.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_customer_registry_response import AddressRegistryCustomerRegistryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Opt your customer in to the address registry
+        api_response = fireblocks.compliance.opt_in_address_registry_customer(idempotency_key=idempotency_key).result()
+        print("The response of ComplianceApi->opt_in_address_registry_customer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->opt_in_address_registry_customer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**AddressRegistryCustomerRegistryResponse**](AddressRegistryCustomerRegistryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success; response body includes status OPTED_IN |  * X-Request-ID -  <br>  |
+**404** | The customer for this workspace could not be determined (error code 2147) |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **opt_in_address_registry_tenant**
 > AddressRegistryTenantRegistryResponse opt_in_address_registry_tenant(idempotency_key=idempotency_key)
 
-Opt the workspace in to the address registry
+Opt this workspace in to the address registry
 
-Opts the workspace in. No request body. Response uses the same JSON shape as GET; status is OPTED_IN.
+Turn on the address registry for this workspace. No request body. Returns `OPTED_IN`.
 
 ### Example
 
@@ -2047,7 +2195,7 @@ with Fireblocks(configuration) as fireblocks:
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
     try:
-        # Opt the workspace in to the address registry
+        # Opt this workspace in to the address registry
         api_response = fireblocks.compliance.opt_in_address_registry_tenant(idempotency_key=idempotency_key).result()
         print("The response of ComplianceApi->opt_in_address_registry_tenant:\n")
         pprint(api_response)
@@ -2086,12 +2234,83 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **opt_out_address_registry_customer**
+> AddressRegistryCustomerRegistryResponse opt_out_address_registry_customer()
+
+Opt your customer out of the address registry
+
+Set your customer's default to opted out. Workspaces without their own setting will follow this default. No request body. Returns `OPTED_OUT`. If the customer for this workspace cannot be determined, returns HTTP 404 with error code **2147**.
+
+### Example
+
+
+```python
+from fireblocks.models.address_registry_customer_registry_response import AddressRegistryCustomerRegistryResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+
+    try:
+        # Opt your customer out of the address registry
+        api_response = fireblocks.compliance.opt_out_address_registry_customer().result()
+        print("The response of ComplianceApi->opt_out_address_registry_customer:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ComplianceApi->opt_out_address_registry_customer: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AddressRegistryCustomerRegistryResponse**](AddressRegistryCustomerRegistryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success; response body includes status OPTED_OUT |  * X-Request-ID -  <br>  |
+**404** | The customer for this workspace could not be determined (error code 2147) |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **opt_out_address_registry_tenant**
 > AddressRegistryTenantRegistryResponse opt_out_address_registry_tenant()
 
-Opt the workspace out of the address registry
+Opt this workspace out of the address registry
 
-Opts the workspace out. No request body. Response uses the same JSON shape as GET; status is OPTED_OUT.
+Turn off the address registry for this workspace. No request body. Returns `OPTED_OUT`.
 
 ### Example
 
@@ -2120,7 +2339,7 @@ configuration = ClientConfiguration(
 with Fireblocks(configuration) as fireblocks:
 
     try:
-        # Opt the workspace out of the address registry
+        # Opt this workspace out of the address registry
         api_response = fireblocks.compliance.opt_out_address_registry_tenant().result()
         print("The response of ComplianceApi->opt_out_address_registry_tenant:\n")
         pprint(api_response)

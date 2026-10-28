@@ -670,7 +670,7 @@ class TransactionsApi:
     ) -> Future[ApiResponse[EstimatedTransactionFeeResponse]]:
         """Estimate transaction fee
 
-        Estimates the transaction fee for a specific transaction request. This endpoint simulates a transaction which means that the system will expect to have the requested asset and balance in the specified wallet. **Note**: Supports all Fireblocks assets except ZCash (ZEC). The PROGRAM_CALL operation is not supported by this endpoint — fee estimation for Solana program calls is not available. Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). Endpoint Permission: Admin, Signer, Approver, Editor.
+        Estimates the transaction fee for a specific transaction request. This endpoint simulates a transaction which means that the system will expect to have the requested asset and balance in the specified wallet. **Note**: Supports all Fireblocks assets except ZCash (ZEC). The PROGRAM_CALL operation is not supported by this endpoint — fee estimation for Solana program calls is not available. The SOROBAN_CALL operation is not supported by this endpoint - fee estimation for Stellar Soroban contract calls is not available. Learn more about Fireblocks Fee Management in the following [guide](https://developers.fireblocks.com/reference/estimate-transaction-fee). Endpoint Permission: Admin, Signer, Approver, Editor.
 
         :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
         :type idempotency_key: str

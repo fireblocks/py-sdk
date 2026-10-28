@@ -41,7 +41,8 @@ class TestRate(unittest.TestCase):
                 base_asset_rail = 'BLOCKCHAIN',
                 quote_asset_id = '',
                 quote_asset_rail = 'BLOCKCHAIN',
-                rate = '1.2345'
+                rate = '1.2345',
+                side = 'BUY'
             )
         else:
             return Rate(

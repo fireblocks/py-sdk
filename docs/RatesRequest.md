@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **base_asset_id** | **str** | The source asset identifier. | 
 **quote_asset_id** | **str** | The target asset identifier. | 
 **base_amount** | **str** | The amount to convert from | [optional] 
+**side** | [**PricingSide**](PricingSide.md) |  | [optional] [default to PricingSide.SELL]
 
 ## Example
 

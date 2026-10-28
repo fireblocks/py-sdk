@@ -42,6 +42,7 @@ class TestOffer(unittest.TestCase):
                 quote_asset_id = 'USD',
                 quote_asset_rail = 'BLOCKCHAIN',
                 rate = '1.2345',
+                side = 'BUY',
                 offer_type = 'QUOTE',
                 id = 'quote_8f2e4d1a9c5b7e3f',
                 base_amount = '1000.00',
@@ -55,7 +56,6 @@ class TestOffer(unittest.TestCase):
                 general_fees = [
                     null
                     ],
-                side = 'BUY',
                 expires_at = '2024-01-15T10:35:00.000Z',
                 required_participants_identification_on_order = '',
                 type = 'COMMITTED'
@@ -66,11 +66,11 @@ class TestOffer(unittest.TestCase):
                 base_asset_id = 'BTC',
                 quote_asset_id = 'USD',
                 rate = '1.2345',
+                side = 'BUY',
                 offer_type = 'QUOTE',
                 id = 'quote_8f2e4d1a9c5b7e3f',
                 base_amount = '1000.00',
                 quote_amount = '0.02458',
-                side = 'BUY',
                 expires_at = '2024-01-15T10:35:00.000Z',
                 type = 'COMMITTED',
         )

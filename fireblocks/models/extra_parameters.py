@@ -20,22 +20,24 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.soroban_call_data import SorobanCallData
 from typing import Optional, Set
 from typing_extensions import Self
 
 class ExtraParameters(BaseModel):
     """
-    Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set to the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/getunspentinputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. For **exchange compliance (e.g., Binance) and Travel Rule purposes**, include the key `piiData` containing a **custom JSON structure** with Personally Identifiable Information (PII) relevant to the transaction. This data must be fully **encrypted by the sender** before being submitted to the Fireblocks API. The recommended encryption method is **hybrid encryption** using AES-256-GCM for the payload and RSA-OAEP for key exchange, with the recipient exchange's public key. [development libraries](https://developers.fireblocks.com/docs/a-developers-guide-to-constructing-encrypted-pii-messages-for-binance-via-fireblocks)  **Note:** `rawMessageData`, `contractCallData`, and `inputsSelection` cannot be used together in the same call. 
+    Additional protocol / operation specific key-value parameters:  For UTXO-based blockchain input selection, add the key `inputsSelection` with the value set to the [input selection structure.](https://developers.fireblocks.com/reference/transaction-objects#inputsselection) The inputs can be retrieved from the [Retrieve Unspent Inputs endpoint.](https://developers.fireblocks.com/reference/getunspentinputs)  For `RAW` operations, add the key `rawMessageData` with the value set to the [raw message data structure.](https://developers.fireblocks.com/reference/raw-signing-objects#rawmessagedata)  For `SOROBAN_CALL` operations, add the key `sorobanCallData` with the value set to an object containing `envelopeXdr` - a base64 encoded, unsigned Stellar `TransactionEnvelope` holding the contract invocation.  For `CONTRACT_CALL` operations, add the key `contractCallData` with the value set to the Ethereum smart contract Application Binary Interface (ABI) payload. The Fireblocks [development libraries](https://developers.fireblocks.com/docs/ethereum-development#convenience-libraries) are recommended for building contract call transactions. For **exchange compliance (e.g., Binance) and Travel Rule purposes**, include the key `piiData` containing a **custom JSON structure** with Personally Identifiable Information (PII) relevant to the transaction. This data must be fully **encrypted by the sender** before being submitted to the Fireblocks API. The recommended encryption method is **hybrid encryption** using AES-256-GCM for the payload and RSA-OAEP for key exchange, with the recipient exchange's public key. [development libraries](https://developers.fireblocks.com/docs/a-developers-guide-to-constructing-encrypted-pii-messages-for-binance-via-fireblocks)  **Note:** `rawMessageData`, `contractCallData`, `sorobanCallData`, and `inputsSelection` cannot be used together in the same call. 
     """ # noqa: E501
     node_controls: Optional[Dict[str, Any]] = Field(default=None, alias="nodeControls")
     raw_message_data: Optional[Dict[str, Any]] = Field(default=None, alias="rawMessageData")
     contract_call_data: Optional[StrictStr] = Field(default=None, alias="contractCallData")
     program_call_data: Optional[StrictStr] = Field(default=None, alias="programCallData")
+    soroban_call_data: Optional[SorobanCallData] = Field(default=None, alias="sorobanCallData")
     inputs_selection: Optional[Dict[str, Any]] = Field(default=None, alias="inputsSelection")
     allow_base_asset_address: Optional[StrictBool] = Field(default=None, alias="allowBaseAssetAddress")
     pii_data: Optional[Dict[str, Any]] = Field(default=None, alias="piiData")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["nodeControls", "rawMessageData", "contractCallData", "programCallData", "inputsSelection", "allowBaseAssetAddress", "piiData"]
+    __properties: ClassVar[List[str]] = ["nodeControls", "rawMessageData", "contractCallData", "programCallData", "sorobanCallData", "inputsSelection", "allowBaseAssetAddress", "piiData"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,9 @@ class ExtraParameters(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of soroban_call_data
+        if self.soroban_call_data:
+            _dict['sorobanCallData'] = self.soroban_call_data.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -102,6 +107,11 @@ class ExtraParameters(BaseModel):
         # and model_fields_set contains the field
         if self.program_call_data is None and "program_call_data" in self.model_fields_set:
             _dict['programCallData'] = None
+
+        # set to None if soroban_call_data (nullable) is None
+        # and model_fields_set contains the field
+        if self.soroban_call_data is None and "soroban_call_data" in self.model_fields_set:
+            _dict['sorobanCallData'] = None
 
         # set to None if inputs_selection (nullable) is None
         # and model_fields_set contains the field
@@ -134,6 +144,7 @@ class ExtraParameters(BaseModel):
             "rawMessageData": obj.get("rawMessageData"),
             "contractCallData": obj.get("contractCallData"),
             "programCallData": obj.get("programCallData"),
+            "sorobanCallData": SorobanCallData.from_dict(obj["sorobanCallData"]) if obj.get("sorobanCallData") is not None else None,
             "inputsSelection": obj.get("inputsSelection"),
             "allowBaseAssetAddress": obj.get("allowBaseAssetAddress"),
             "piiData": obj.get("piiData")

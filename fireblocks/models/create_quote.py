@@ -24,7 +24,7 @@ from typing_extensions import Annotated
 from fireblocks.models.create_quote_scope_inner import CreateQuoteScopeInner
 from fireblocks.models.dvp_settlement import DVPSettlement
 from fireblocks.models.participants_identification import ParticipantsIdentification
-from fireblocks.models.side import Side
+from fireblocks.models.pricing_side import PricingSide
 from fireblocks.models.transfer_rail import TransferRail
 from typing import Optional, Set
 from typing_extensions import Self
@@ -41,7 +41,7 @@ class CreateQuote(BaseModel):
     base_amount: Annotated[str, Field(strict=True)] = Field(description="Amount in baseAssetId. BUY = base amount to receive; SELL = base amount to sell.", alias="baseAmount")
     slippage_bps: Optional[Union[Annotated[float, Field(le=10000, strict=True, ge=1)], Annotated[int, Field(le=10000, strict=True, ge=1)]]] = Field(default=50, description="Slippage tolerance in basis points (bps) for defi quotes - 1 is 0.01% and 10000 is 100%", alias="slippageBps")
     settlement: Optional[DVPSettlement] = None
-    side: Side
+    side: Optional[PricingSide] = PricingSide.SELL
     participants_identification: Optional[ParticipantsIdentification] = Field(default=None, alias="participantsIdentification")
     __properties: ClassVar[List[str]] = ["scope", "baseAssetId", "baseAssetRail", "quoteAssetId", "quoteAssetRail", "baseAmount", "slippageBps", "settlement", "side", "participantsIdentification"]
 
@@ -124,7 +124,7 @@ class CreateQuote(BaseModel):
             "baseAmount": obj.get("baseAmount"),
             "slippageBps": obj.get("slippageBps") if obj.get("slippageBps") is not None else 50,
             "settlement": DVPSettlement.from_dict(obj["settlement"]) if obj.get("settlement") is not None else None,
-            "side": obj.get("side"),
+            "side": obj.get("side") if obj.get("side") is not None else PricingSide.SELL,
             "participantsIdentification": ParticipantsIdentification.from_dict(obj["participantsIdentification"]) if obj.get("participantsIdentification") is not None else None
         })
         return _obj

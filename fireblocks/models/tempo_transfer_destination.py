@@ -31,7 +31,8 @@ class TempoTransferDestination(BaseModel):
     type: StrictStr = Field(description="The kind of destination.")
     id: Optional[StrictStr] = Field(default=None, description="Required when type is VAULT_ACCOUNT or UNMANAGED_WALLET.")
     one_time_address: Optional[OneTimeAddress] = Field(default=None, alias="oneTimeAddress")
-    __properties: ClassVar[List[str]] = ["type", "id", "oneTimeAddress"]
+    memo: Optional[StrictStr] = Field(default=None, description="Tempo TIP-20 memo, sent on-chain with the transfer to this destination. Exactly 32 bytes once UTF-8 encoded.  NOTES:     - The memo is public and permanent on-chain, so do not put sensitive data in it.     - A memo is currently supported only for a transfer with a single destination")
+    __properties: ClassVar[List[str]] = ["type", "id", "oneTimeAddress", "memo"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -96,7 +97,8 @@ class TempoTransferDestination(BaseModel):
         _obj = cls.model_validate({
             "type": obj.get("type"),
             "id": obj.get("id"),
-            "oneTimeAddress": OneTimeAddress.from_dict(obj["oneTimeAddress"]) if obj.get("oneTimeAddress") is not None else None
+            "oneTimeAddress": OneTimeAddress.from_dict(obj["oneTimeAddress"]) if obj.get("oneTimeAddress") is not None else None,
+            "memo": obj.get("memo")
         })
         return _obj
 

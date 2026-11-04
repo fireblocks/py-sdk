@@ -26,10 +26,12 @@ LINK_HEADER = "Link"
 # without silencing genuine SDK errors.
 LOGGER_NAME = "fireblocks.lifecycle"
 
+EA_STATE = "ea"
+# Deprecated: use EA_STATE. The beta lifecycle state was renamed to ea and no longer warns.
 BETA_STATE = "beta"
 DEPRECATED_STATE = "deprecated"
 CLOSED_STATE = "closed"
-WARNING_STATES = frozenset({BETA_STATE, DEPRECATED_STATE, CLOSED_STATE})
+WARNING_STATES = frozenset({EA_STATE, DEPRECATED_STATE, CLOSED_STATE})
 
 # The gateway answers a closed operation with 410 Gone to every caller without a
 # temporary exception. That response already says what happened, so no warning.
@@ -38,6 +40,11 @@ GONE_STATUS = 410
 REL_DEPRECATION = "deprecation"
 REL_SUCCESSOR_VERSION = "successor-version"
 
+EA_MESSAGE = (
+    "Operation '{operation_id}' is in EA (Early Availability) and is not generally "
+    "available. It may change or break before it reaches GA."
+)
+# Deprecated: use EA_MESSAGE. No longer used: the beta state does not warn.
 BETA_MESSAGE = (
     "Operation '{operation_id}' is in 'beta' lifecycle state and is not generally "
     "available. It may change or be removed without notice."
@@ -113,8 +120,8 @@ def build_lifecycle_warning(
     if state not in WARNING_STATES:
         return None
 
-    if state == BETA_STATE:
-        return BETA_MESSAGE.format(operation_id=operation_id)
+    if state == EA_STATE:
+        return EA_MESSAGE.format(operation_id=operation_id)
 
     if state == CLOSED_STATE:
         if status_code == GONE_STATUS:

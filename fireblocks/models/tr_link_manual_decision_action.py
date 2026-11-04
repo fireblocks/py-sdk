@@ -21,7 +21,7 @@ from typing_extensions import Self
 
 class TRLinkManualDecisionAction(str, Enum):
     """
-    Decision action for destinations in NoTRM status
+    Decision action for destinations waiting for a Travel Rule message (missing TRM)
     """
 
     """

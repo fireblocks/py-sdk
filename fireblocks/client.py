@@ -33,7 +33,7 @@ from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
-from fireblocks.api.cosigners_beta_api import CosignersBetaApi
+from fireblocks.api.cosigners_api import CosignersApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
 from fireblocks.api.earn_api import EarnApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
@@ -43,8 +43,8 @@ from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.genie_beta_api import GenieBetaApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
-from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
-from fireblocks.api.keys_beta_api import KeysBetaApi
+from fireblocks.api.key_link_api import KeyLinkApi
+from fireblocks.api.keys_api import KeysApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi
@@ -102,7 +102,7 @@ class Fireblocks:
         self._contract_interactions = None
         self._contract_templates = None
         self._contracts = None
-        self._cosigners_beta = None
+        self._cosigners = None
         self._deployed_contracts = None
         self._earn = None
         self._embedded_wallets = None
@@ -112,8 +112,8 @@ class Fireblocks:
         self._gas_stations = None
         self._genie_beta = None
         self._internal_wallets = None
-        self._key_link_beta = None
-        self._keys_beta = None
+        self._key_link = None
+        self._keys = None
         self._nfts = None
         self._network_connections = None
         self._ota_beta = None
@@ -250,10 +250,10 @@ class Fireblocks:
         return self._contracts
 
     @property
-    def cosigners_beta(self) -> CosignersBetaApi:
-        if self._cosigners_beta is None:
-            self._cosigners_beta = CosignersBetaApi(self._api_client)
-        return self._cosigners_beta
+    def cosigners(self) -> CosignersApi:
+        if self._cosigners is None:
+            self._cosigners = CosignersApi(self._api_client)
+        return self._cosigners
 
     @property
     def deployed_contracts(self) -> DeployedContractsApi:
@@ -310,16 +310,16 @@ class Fireblocks:
         return self._internal_wallets
 
     @property
-    def key_link_beta(self) -> KeyLinkBetaApi:
-        if self._key_link_beta is None:
-            self._key_link_beta = KeyLinkBetaApi(self._api_client)
-        return self._key_link_beta
+    def key_link(self) -> KeyLinkApi:
+        if self._key_link is None:
+            self._key_link = KeyLinkApi(self._api_client)
+        return self._key_link
 
     @property
-    def keys_beta(self) -> KeysBetaApi:
-        if self._keys_beta is None:
-            self._keys_beta = KeysBetaApi(self._api_client)
-        return self._keys_beta
+    def keys(self) -> KeysApi:
+        if self._keys is None:
+            self._keys = KeysApi(self._api_client)
+        return self._keys
 
     @property
     def nfts(self) -> NFTsApi:

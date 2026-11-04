@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class TRLinkManualDecisionRequest(BaseModel):
     """
-    Request to manually accept or reject destinations stuck in NoTRM status
+    Request to manually accept or reject destinations waiting for a Travel Rule message (missing TRM)
     """ # noqa: E501
     action: TRLinkManualDecisionAction
     reason: Optional[Annotated[str, Field(strict=True, max_length=500)]] = Field(default=None, description="Optional reason for the manual decision (e.g. 'Internal KYC approved'). Do not include PII.")

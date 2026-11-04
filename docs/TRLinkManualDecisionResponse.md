@@ -1,11 +1,12 @@
 # TRLinkManualDecisionResponse
 
-Response containing the result of the manual decision
+Response containing the result of a manual missing-TRM decision (POST write or GET read).
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**status** | [**TRLinkManualDecisionResponseStatusEnum**](TRLinkManualDecisionResponseStatusEnum.md) |  | 
 **action** | [**TRLinkManualDecisionAction**](TRLinkManualDecisionAction.md) |  | 
 **source** | [**TRLinkManualDecisionSource**](TRLinkManualDecisionSource.md) |  | 
 **tx_id** | **str** | Transaction ID | 

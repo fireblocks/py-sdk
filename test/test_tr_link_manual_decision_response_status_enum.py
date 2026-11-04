@@ -14,31 +14,23 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.keys_beta_api import KeysBetaApi
+from fireblocks.models.tr_link_manual_decision_response_status_enum import (
+    TRLinkManualDecisionResponseStatusEnum,
+)
 
 
-class TestKeysBetaApi(unittest.TestCase):
-    """KeysBetaApi unit test stubs"""
+class TestTRLinkManualDecisionResponseStatusEnum(unittest.TestCase):
+    """TRLinkManualDecisionResponseStatusEnum unit test stubs"""
 
-    def setUp(self) -> None:
-        self.api = KeysBetaApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_get_mpc_keys_list(self) -> None:
-        """Test case for get_mpc_keys_list
-
-        Get list of mpc keys
-        """
+    def tearDown(self):
         pass
 
-    def test_get_mpc_keys_list_by_user(self) -> None:
-        """Test case for get_mpc_keys_list_by_user
-
-        Get list of mpc keys by `userId`
-        """
-        pass
+    def testTRLinkManualDecisionResponseStatusEnum(self):
+        """Test TRLinkManualDecisionResponseStatusEnum"""
+        # inst = TRLinkManualDecisionResponseStatusEnum()
 
 
 if __name__ == "__main__":

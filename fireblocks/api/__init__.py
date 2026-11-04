@@ -16,7 +16,7 @@ from fireblocks.api.contacts_api import ContactsApi
 from fireblocks.api.contract_interactions_api import ContractInteractionsApi
 from fireblocks.api.contract_templates_api import ContractTemplatesApi
 from fireblocks.api.contracts_api import ContractsApi
-from fireblocks.api.cosigners_beta_api import CosignersBetaApi
+from fireblocks.api.cosigners_api import CosignersApi
 from fireblocks.api.deployed_contracts_api import DeployedContractsApi
 from fireblocks.api.earn_api import EarnApi
 from fireblocks.api.embedded_wallets_api import EmbeddedWalletsApi
@@ -26,8 +26,8 @@ from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
 from fireblocks.api.genie_beta_api import GenieBetaApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
-from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
-from fireblocks.api.keys_beta_api import KeysBetaApi
+from fireblocks.api.key_link_api import KeyLinkApi
+from fireblocks.api.keys_api import KeysApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
 from fireblocks.api.ota_beta_api import OTABetaApi

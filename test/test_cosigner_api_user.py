@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.pair_api_key_request import PairApiKeyRequest
+from fireblocks.models.cosigner_api_user import CosignerApiUser
 
 
-class TestPairApiKeyRequest(unittest.TestCase):
-    """PairApiKeyRequest unit test stubs"""
+class TestCosignerApiUser(unittest.TestCase):
+    """CosignerApiUser unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,31 +26,33 @@ class TestPairApiKeyRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PairApiKeyRequest:
-        """Test PairApiKeyRequest
+    def make_instance(self, include_optional) -> CosignerApiUser:
+        """Test CosignerApiUser
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `PairApiKeyRequest`
+        # uncomment below to create an instance of `CosignerApiUser`
         """
-        model = PairApiKeyRequest()
+        model = CosignerApiUser()
         if include_optional:
-            return PairApiKeyRequest(
-                callback_handler = fireblocks.models.callback_handler_request.CallbackHandlerRequest(
+            return CosignerApiUser(
+                id = '44fcead0-7053-4831-a53a-df7fb90d440f',
+                last_seen = '2021-07-01T00:00Z',
+                callback_handler = fireblocks.models.callback_handler.CallbackHandler(
                     url = 'https://example.com/callback-handler', 
                     public_key = '-----BEGIN PUBLIC KEY-----
-... truncated ...-----END PUBLIC KEY-----', 
-                    cert = '-----BEGIN CERTIFICATE-----
 ... truncated ...
------END CERTIFICATE-----', )
+-----END PUBLIC KEY-----', 
+                    cert_public_key_hash = '', )
             )
         else:
-            return PairApiKeyRequest(
+            return CosignerApiUser(
+                id = '44fcead0-7053-4831-a53a-df7fb90d440f',
         )
         """
 
-    def testPairApiKeyRequest(self):
-        """Test PairApiKeyRequest"""
+    def testCosignerApiUser(self):
+        """Test CosignerApiUser"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

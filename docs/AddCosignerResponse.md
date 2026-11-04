@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_key_id** | **str** | The id of the API key to be paired with the cosigner | 
+**api_user_id** | **str** | The id of the API user to be paired with the cosigner | 
 **name** | **str** | The name of the cosigner | 
 **existing_cosigner** | **bool** | Whether the cosigner already exists in another workspace | [optional] [default to False]
 **pending_cosigner_id** | **str** | The unique identifier of a pending cosigner | 

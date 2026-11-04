@@ -36,14 +36,14 @@ class TestAddCosignerResponse(unittest.TestCase):
         model = AddCosignerResponse()
         if include_optional:
             return AddCosignerResponse(
-                api_key_id = '123e4567-e89b-12d3-a456-426614174000',
+                api_user_id = '123e4567-e89b-12d3-a456-426614174000',
                 name = 'My Cosigner 1',
                 existing_cosigner = False,
                 pending_cosigner_id = '44fcead0-7053-4831-a53a-df7fb90d440f'
             )
         else:
             return AddCosignerResponse(
-                api_key_id = '123e4567-e89b-12d3-a456-426614174000',
+                api_user_id = '123e4567-e89b-12d3-a456-426614174000',
                 name = 'My Cosigner 1',
                 pending_cosigner_id = '44fcead0-7053-4831-a53a-df7fb90d440f',
         )

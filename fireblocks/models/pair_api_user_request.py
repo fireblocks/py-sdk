@@ -18,19 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.callback_handler_request import CallbackHandlerRequest
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PairApiKeyResponse(BaseModel):
+class PairApiUserRequest(BaseModel):
     """
-    PairApiKeyResponse
+    PairApiUserRequest
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier of the API key")
     callback_handler: Optional[CallbackHandlerRequest] = Field(default=None, alias="callbackHandler")
-    __properties: ClassVar[List[str]] = ["id", "callbackHandler"]
+    __properties: ClassVar[List[str]] = ["callbackHandler"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class PairApiKeyResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PairApiKeyResponse from a JSON string"""
+        """Create an instance of PairApiUserRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +77,7 @@ class PairApiKeyResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PairApiKeyResponse from a dict"""
+        """Create an instance of PairApiUserRequest from a dict"""
         if obj is None:
             return None
 
@@ -86,7 +85,6 @@ class PairApiKeyResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
             "callbackHandler": CallbackHandlerRequest.from_dict(obj["callbackHandler"]) if obj.get("callbackHandler") is not None else None
         })
         return _obj

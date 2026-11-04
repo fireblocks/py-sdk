@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**get_tr_link_customer_integrations**](TRLinkApi.md#get_tr_link_customer_integrations) | **GET** /screening/trlink/customers/{customerId}/integrations | Get customer integrations
 [**get_tr_link_customers**](TRLinkApi.md#get_tr_link_customers) | **GET** /screening/trlink/customers | Get all customers
 [**get_tr_link_integration_public_key**](TRLinkApi.md#get_tr_link_integration_public_key) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/public_key | Get public key for PII encryption
+[**get_tr_link_manual_decision**](TRLinkApi.md#get_tr_link_manual_decision) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/transactions/{txId}/manual_decision | Get manual decision for missing TRM
 [**get_tr_link_partners**](TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRSupport partners
 [**get_tr_link_policy**](TRLinkApi.md#get_tr_link_policy) | **GET** /screening/trlink/policy | Get TRLink policy
 [**get_tr_link_supported_asset**](TRLinkApi.md#get_tr_link_supported_asset) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets/{assetId} | Get supported asset by ID
@@ -432,7 +433,7 @@ No authorization required
 
 Manual decision for missing TRM
 
-Accept or reject destinations stuck in NoTRM step without waiting for TRP webhook or policy timeout.
+Accept or reject destinations waiting for a Travel Rule message (missing TRM), without waiting for a TRP webhook or the missing-TRM policy timeout. You can submit before a destination enters the missing-TRM wait; if it can't be updated immediately, the decision is applied on the next processing attempt instead (status ACCEPTED). Check `status` in the response to see whether the decision has been applied.
 
 ### Example
 
@@ -503,7 +504,10 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Decision applied successfully |  -  |
+**200** | Decision applied (status APPLIED), accepted for the next processing attempt (status ACCEPTED), or accepted early (status PRE_ACCEPTED). |  * X-Request-ID -  <br>  |
+**404** | Customer integration not found or not owned by tenant (code 2125). |  * X-Request-ID -  <br>  |
+**409** | Manual decision already final for this transaction (code 2127) or transaction screening already completed (code 2129). |  * X-Request-ID -  <br>  |
+**425** | Too Early - screening has not started for this transaction yet. |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1091,6 +1095,83 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Public key retrieved successfully |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_tr_link_manual_decision**
+> TRLinkManualDecisionResponse get_tr_link_manual_decision(customer_integration_id, tx_id)
+
+Get manual decision for missing TRM
+
+Returns the current manual missing-TRM decision for a transaction. Use to follow a decision that is not yet applied, or to check status at any time.
+
+### Example
+
+
+```python
+from fireblocks.models.tr_link_manual_decision_response import TRLinkManualDecisionResponse
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    customer_integration_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6' # str | Customer integration unique identifier
+    tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e' # str | Fireblocks transaction unique identifier
+
+    try:
+        # Get manual decision for missing TRM
+        api_response = fireblocks.tr_link.get_tr_link_manual_decision(customer_integration_id, tx_id).result()
+        print("The response of TRLinkApi->get_tr_link_manual_decision:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TRLinkApi->get_tr_link_manual_decision: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_integration_id** | **str**| Customer integration unique identifier | 
+ **tx_id** | **str**| Fireblocks transaction unique identifier | 
+
+### Return type
+
+[**TRLinkManualDecisionResponse**](TRLinkManualDecisionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Current manual decision (status APPLIED, ACCEPTED, or PRE_ACCEPTED). |  * X-Request-ID -  <br>  |
+**404** | No manual decision for this transaction (code 2128), or customer integration not found or not owned by tenant (code 2125). |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

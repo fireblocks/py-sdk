@@ -124,6 +124,13 @@ class TestTRLinkApi(unittest.TestCase):
         """
         pass
 
+    def test_get_tr_link_manual_decision(self) -> None:
+        """Test case for get_tr_link_manual_decision
+
+        Get manual decision for missing TRM
+        """
+        pass
+
     def test_get_tr_link_partners(self) -> None:
         """Test case for get_tr_link_partners
 

@@ -43,7 +43,9 @@ class TestCreateValidationKeyResponseDto(unittest.TestCase):
                     public_key_pem = '-----BEGIN PUBLIC KEY ...  END PUBLIC KEY-----', 
                     days_till_expired = 365, 
                     enabled = False, 
-                    created_at = 12345633, ),
+                    created_at = 12345633, 
+                    expiration_time = 17098568, 
+                    revoked = False, ),
                 admins = [
                     ''
                     ],
@@ -57,7 +59,9 @@ class TestCreateValidationKeyResponseDto(unittest.TestCase):
                     public_key_pem = '-----BEGIN PUBLIC KEY ...  END PUBLIC KEY-----', 
                     days_till_expired = 365, 
                     enabled = False, 
-                    created_at = 12345633, ),
+                    created_at = 12345633, 
+                    expiration_time = 17098568, 
+                    revoked = False, ),
                 admins = [
                     ''
                     ],

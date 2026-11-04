@@ -38,8 +38,9 @@ class TestTRLinkManualDecisionResponse(unittest.TestCase):
         model = TRLinkManualDecisionResponse()
         if include_optional:
             return TRLinkManualDecisionResponse(
+                status = 'APPLIED',
                 action = 'ACCEPT',
-                source = 'MANUAL',
+                source = 'manual',
                 tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e',
                 destinations_affected = 2,
                 destinations_skipped = 0,
@@ -47,13 +48,14 @@ class TestTRLinkManualDecisionResponse(unittest.TestCase):
                     fireblocks.models.tr_link_manual_decision_destination_detail.TRLinkManualDecisionDestinationDetail(
                         destination_screening_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6', 
                         applied = True, 
-                        skip_reason = '', )
+                        skip_reason = 'deferred apply', )
                     ]
             )
         else:
             return TRLinkManualDecisionResponse(
+                status = 'APPLIED',
                 action = 'ACCEPT',
-                source = 'MANUAL',
+                source = 'manual',
                 tx_id = 'b70701f4-d7b1-4795-a8ee-b09cdb5b850e',
                 destinations_affected = 2,
                 destinations_skipped = 0,
@@ -61,7 +63,7 @@ class TestTRLinkManualDecisionResponse(unittest.TestCase):
                     fireblocks.models.tr_link_manual_decision_destination_detail.TRLinkManualDecisionDestinationDetail(
                         destination_screening_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6', 
                         applied = True, 
-                        skip_reason = '', )
+                        skip_reason = 'deferred apply', )
                     ],
         )
         """

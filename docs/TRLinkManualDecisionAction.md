@@ -1,6 +1,6 @@
 # TRLinkManualDecisionAction
 
-Decision action for destinations in NoTRM status
+Decision action for destinations waiting for a Travel Rule message (missing TRM)
 
 ## Enum
 

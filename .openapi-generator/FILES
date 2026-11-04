@@ -94,9 +94,8 @@ docs/AmountOverTimeConfig.md
 docs/AmountRange.md
 docs/AmountRangeMinMax.md
 docs/AmountRangeMinMax2.md
-docs/ApiKey.md
-docs/ApiKeysPaginatedResponse.md
 docs/ApiUserApi.md
+docs/ApiUsersPaginatedResponse.md
 docs/ApprovalApiKey.md
 docs/ApprovalApiPublicKey.md
 docs/ApprovalRequest.md
@@ -311,7 +310,8 @@ docs/ConversionValidationFailure.md
 docs/ConvertAssetsRequest.md
 docs/ConvertAssetsResponse.md
 docs/Cosigner.md
-docs/CosignersBetaApi.md
+docs/CosignerApiUser.md
+docs/CosignersApi.md
 docs/CosignersPaginatedResponse.md
 docs/CounterpartyGroup.md
 docs/CounterpartyGroupsPaginatedResponse.md
@@ -603,8 +603,8 @@ docs/InternalWalletsApi.md
 docs/InvalidParamaterValueError.md
 docs/IssueApiUserPairingTokenResponse.md
 docs/JobCreated.md
-docs/KeyLinkBetaApi.md
-docs/KeysBetaApi.md
+docs/KeyLinkApi.md
+docs/KeysApi.md
 docs/LayerZeroAdapterCreateParams.md
 docs/LbtPaymentInfo.md
 docs/LeanAbiFunction.md
@@ -746,8 +746,8 @@ docs/PaginatedAssetWalletResponse.md
 docs/PaginatedAssetWalletResponsePaging.md
 docs/PaginatedAssetsResponse.md
 docs/Paging.md
-docs/PairApiKeyRequest.md
-docs/PairApiKeyResponse.md
+docs/PairApiUserRequest.md
+docs/PairApiUserResponse.md
 docs/Parameter.md
 docs/ParameterWithValue.md
 docs/ParticipantOnboardingPayload.md
@@ -1088,6 +1088,7 @@ docs/TRLinkManualDecisionAction.md
 docs/TRLinkManualDecisionDestinationDetail.md
 docs/TRLinkManualDecisionRequest.md
 docs/TRLinkManualDecisionResponse.md
+docs/TRLinkManualDecisionResponseStatusEnum.md
 docs/TRLinkManualDecisionSource.md
 docs/TRLinkMissingTrmAction.md
 docs/TRLinkMissingTrmAction2.md
@@ -1403,7 +1404,7 @@ fireblocks/api/contacts_api.py
 fireblocks/api/contract_interactions_api.py
 fireblocks/api/contract_templates_api.py
 fireblocks/api/contracts_api.py
-fireblocks/api/cosigners_beta_api.py
+fireblocks/api/cosigners_api.py
 fireblocks/api/deployed_contracts_api.py
 fireblocks/api/earn_api.py
 fireblocks/api/embedded_wallets_api.py
@@ -1413,8 +1414,8 @@ fireblocks/api/fiat_accounts_api.py
 fireblocks/api/gas_stations_api.py
 fireblocks/api/genie_beta_api.py
 fireblocks/api/internal_wallets_api.py
-fireblocks/api/key_link_beta_api.py
-fireblocks/api/keys_beta_api.py
+fireblocks/api/key_link_api.py
+fireblocks/api/keys_api.py
 fireblocks/api/network_connections_api.py
 fireblocks/api/nfts_api.py
 fireblocks/api/off_exchanges_api.py
@@ -1549,9 +1550,8 @@ fireblocks/models/amount_over_time_config.py
 fireblocks/models/amount_range.py
 fireblocks/models/amount_range_min_max.py
 fireblocks/models/amount_range_min_max2.py
-fireblocks/models/api_key.py
-fireblocks/models/api_keys_paginated_response.py
 fireblocks/models/api_user.py
+fireblocks/models/api_users_paginated_response.py
 fireblocks/models/approval_api_key.py
 fireblocks/models/approval_api_public_key.py
 fireblocks/models/approval_request.py
@@ -1752,6 +1752,7 @@ fireblocks/models/conversion_validation_failure.py
 fireblocks/models/convert_assets_request.py
 fireblocks/models/convert_assets_response.py
 fireblocks/models/cosigner.py
+fireblocks/models/cosigner_api_user.py
 fireblocks/models/cosigners_paginated_response.py
 fireblocks/models/counterparty_group.py
 fireblocks/models/counterparty_groups_paginated_response.py
@@ -2170,8 +2171,8 @@ fireblocks/models/paginated_asset_wallet_response.py
 fireblocks/models/paginated_asset_wallet_response_paging.py
 fireblocks/models/paginated_assets_response.py
 fireblocks/models/paging.py
-fireblocks/models/pair_api_key_request.py
-fireblocks/models/pair_api_key_response.py
+fireblocks/models/pair_api_user_request.py
+fireblocks/models/pair_api_user_response.py
 fireblocks/models/parameter.py
 fireblocks/models/parameter_with_value.py
 fireblocks/models/participant_onboarding_payload.py
@@ -2533,6 +2534,7 @@ fireblocks/models/tr_link_manual_decision_action.py
 fireblocks/models/tr_link_manual_decision_destination_detail.py
 fireblocks/models/tr_link_manual_decision_request.py
 fireblocks/models/tr_link_manual_decision_response.py
+fireblocks/models/tr_link_manual_decision_response_status_enum.py
 fireblocks/models/tr_link_manual_decision_source.py
 fireblocks/models/tr_link_missing_trm_action.py
 fireblocks/models/tr_link_missing_trm_action2.py
@@ -2900,10 +2902,9 @@ test/test_amount_over_time_config.py
 test/test_amount_range.py
 test/test_amount_range_min_max.py
 test/test_amount_range_min_max2.py
-test/test_api_key.py
-test/test_api_keys_paginated_response.py
 test/test_api_user.py
 test/test_api_user_api.py
+test/test_api_users_paginated_response.py
 test/test_approval_api_key.py
 test/test_approval_api_public_key.py
 test/test_approval_request.py
@@ -3118,7 +3119,8 @@ test/test_conversion_validation_failure.py
 test/test_convert_assets_request.py
 test/test_convert_assets_response.py
 test/test_cosigner.py
-test/test_cosigners_beta_api.py
+test/test_cosigner_api_user.py
+test/test_cosigners_api.py
 test/test_cosigners_paginated_response.py
 test/test_counterparty_group.py
 test/test_counterparty_groups_paginated_response.py
@@ -3410,8 +3412,8 @@ test/test_internal_wallets_api.py
 test/test_invalid_paramater_value_error.py
 test/test_issue_api_user_pairing_token_response.py
 test/test_job_created.py
-test/test_key_link_beta_api.py
-test/test_keys_beta_api.py
+test/test_key_link_api.py
+test/test_keys_api.py
 test/test_layer_zero_adapter_create_params.py
 test/test_lbt_payment_info.py
 test/test_lean_abi_function.py
@@ -3553,8 +3555,8 @@ test/test_paginated_asset_wallet_response.py
 test/test_paginated_asset_wallet_response_paging.py
 test/test_paginated_assets_response.py
 test/test_paging.py
-test/test_pair_api_key_request.py
-test/test_pair_api_key_response.py
+test/test_pair_api_user_request.py
+test/test_pair_api_user_response.py
 test/test_parameter.py
 test/test_parameter_with_value.py
 test/test_participant_onboarding_payload.py
@@ -3929,6 +3931,7 @@ test/test_tr_link_manual_decision_action.py
 test/test_tr_link_manual_decision_destination_detail.py
 test/test_tr_link_manual_decision_request.py
 test/test_tr_link_manual_decision_response.py
+test/test_tr_link_manual_decision_response_status_enum.py
 test/test_tr_link_manual_decision_source.py
 test/test_tr_link_missing_trm_action.py
 test/test_tr_link_missing_trm_action2.py

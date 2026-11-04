@@ -33,7 +33,9 @@ class ValidationKeyDto(BaseModel):
     days_till_expired: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(alias="daysTillExpired")
     enabled: StrictBool = Field(description="True if the validation key is enabled.")
     created_at: Union[StrictFloat, StrictInt] = Field(description="Creation date (timestamp) in milliseconds.", alias="createdAt")
-    __properties: ClassVar[List[str]] = ["keyId", "publicKeyPem", "daysTillExpired", "enabled", "createdAt"]
+    expiration_time: Union[StrictFloat, StrictInt] = Field(description="Expiration date (Unix timestamp) in milliseconds.", alias="expirationTime")
+    revoked: StrictBool = Field(description="True if the validation key is revoked.")
+    __properties: ClassVar[List[str]] = ["keyId", "publicKeyPem", "daysTillExpired", "enabled", "createdAt", "expirationTime", "revoked"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +92,9 @@ class ValidationKeyDto(BaseModel):
             "publicKeyPem": obj.get("publicKeyPem"),
             "daysTillExpired": obj.get("daysTillExpired"),
             "enabled": obj.get("enabled"),
-            "createdAt": obj.get("createdAt")
+            "createdAt": obj.get("createdAt"),
+            "expirationTime": obj.get("expirationTime"),
+            "revoked": obj.get("revoked") if obj.get("revoked") is not None else False
         })
         return _obj
 

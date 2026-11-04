@@ -29,7 +29,7 @@ class TRLinkManualDecisionDestinationDetail(BaseModel):
     """ # noqa: E501
     destination_screening_id: StrictStr = Field(description="Destination screening record ID", alias="destinationScreeningId")
     applied: StrictBool = Field(description="Whether the decision was applied to this destination")
-    skip_reason: Optional[StrictStr] = Field(default=None, description="Reason if the destination was skipped", alias="skipReason")
+    skip_reason: Optional[StrictStr] = Field(default=None, description="Reason when applied is false. Common values: deferred apply (destination could not be updated immediately), already applied, status changed, trmId exists, destination not found.", alias="skipReason")
     __properties: ClassVar[List[str]] = ["destinationScreeningId", "applied", "skipReason"]
 
     model_config = ConfigDict(

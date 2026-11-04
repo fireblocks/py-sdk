@@ -1,11 +1,11 @@
-# fireblocks.KeysBetaApi
+# fireblocks.KeysApi
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_mpc_keys_list**](KeysBetaApi.md#get_mpc_keys_list) | **GET** /keys/mpc/list | Get list of mpc keys
-[**get_mpc_keys_list_by_user**](KeysBetaApi.md#get_mpc_keys_list_by_user) | **GET** /keys/mpc/list/{userId} | Get list of mpc keys by &#x60;userId&#x60;
+[**get_mpc_keys_list**](KeysApi.md#get_mpc_keys_list) | **GET** /keys/mpc/list | Get list of mpc keys
+[**get_mpc_keys_list_by_user**](KeysApi.md#get_mpc_keys_list_by_user) | **GET** /keys/mpc/list/{userId} | Get list of mpc keys by &#x60;userId&#x60;
 
 
 # **get_mpc_keys_list**
@@ -14,8 +14,6 @@ Method | HTTP request | Description
 Get list of mpc keys
 
 Returns a list of MPC signing keys of the workspace. For each key, the list of players associated with it is attached.
-**Note:** 
-This endpoint is currently in beta and might be subject to changes.
 
 ### Example
 
@@ -45,11 +43,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of mpc keys
-        api_response = fireblocks.keys_beta.get_mpc_keys_list().result()
-        print("The response of KeysBetaApi->get_mpc_keys_list:\n")
+        api_response = fireblocks.keys.get_mpc_keys_list().result()
+        print("The response of KeysApi->get_mpc_keys_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeysBetaApi->get_mpc_keys_list: %s\n" % e)
+        print("Exception when calling KeysApi->get_mpc_keys_list: %s\n" % e)
 ```
 
 
@@ -86,8 +84,6 @@ No authorization required
 Get list of mpc keys by `userId`
 
 Returns a list of MPC signing keys of a specific user. For each key, the list of players associated with it is attached.
-**Note:**
-This endpoint is currently in beta and might be subject to changes.
 
 ### Example
 
@@ -118,11 +114,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of mpc keys by `userId`
-        api_response = fireblocks.keys_beta.get_mpc_keys_list_by_user(user_id).result()
-        print("The response of KeysBetaApi->get_mpc_keys_list_by_user:\n")
+        api_response = fireblocks.keys.get_mpc_keys_list_by_user(user_id).result()
+        print("The response of KeysApi->get_mpc_keys_list_by_user:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeysBetaApi->get_mpc_keys_list_by_user: %s\n" % e)
+        print("Exception when calling KeysApi->get_mpc_keys_list_by_user: %s\n" % e)
 ```
 
 

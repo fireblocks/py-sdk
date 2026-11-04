@@ -16,11 +16,15 @@ import logging
 import pytest
 
 from fireblocks.lifecycle_warning import (
+    BETA_MESSAGE,
+    BETA_STATE,
+    EA_STATE,
     LIFECYCLE_STATE_HEADER,
     LINK_HEADER,
     LOGGER_NAME,
     SUNSET_HEADER,
     SUPPRESS_ENV_VAR,
+    WARNING_STATES,
     build_lifecycle_warning,
     is_suppressed,
     warn_on_lifecycle_state,
@@ -60,27 +64,27 @@ def logs(caplog):
 # --- emission ---------------------------------------------------------------
 
 def test_non_ga_state_emits_one_warning(logs):
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert len(logs.records) == 1
     assert "createTransaction" in logs.records[0].getMessage()
-    assert "beta" in logs.records[0].getMessage()
+    assert "EA (Early Availability)" in logs.records[0].getMessage()
 
 
 def test_same_operation_twice_emits_two_warnings(logs):
     """Per-execution, not deduplicated."""
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert len(logs.records) == 2
 
 
 def test_two_different_operations_emit_two_warnings(logs):
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     warn_on_lifecycle_state(_headers(state="closed"), "getVaultAccount", 200)
     assert len(logs.records) == 2
 
 
 def test_warning_is_emitted_at_warning_level(logs):
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert logs.records[0].levelno == logging.WARNING
     assert logs.records[0].name == LOGGER_NAME
 
@@ -93,7 +97,8 @@ def test_warning_is_emitted_at_warning_level(logs):
         "ga",
         "internal",
         "unlisted",
-        "private_beta",  # the old name for beta: no longer recognised
+        "beta",  # retired names for ea: no longer recognised
+        "private_beta",
         "quantum_preview",
         "",
         "   ",
@@ -117,7 +122,7 @@ def test_unknown_state_does_not_raise(logs):
 
 
 def test_missing_operation_id_is_silent(logs):
-    warn_on_lifecycle_state(_headers(state="beta"), None)
+    warn_on_lifecycle_state(_headers(state="ea"), None)
     assert logs.records == []
 
 
@@ -136,14 +141,15 @@ def test_uppercase_state_value_still_warns():
     ["Fireblocks-Lifecycle-State", "fireblocks-lifecycle-state", "FIREBLOCKS-LIFECYCLE-STATE"],
 )
 def test_header_name_lookup_is_case_insensitive(header_name):
-    message = build_lifecycle_warning({header_name: "beta"}, "op")
+    message = build_lifecycle_warning({header_name: "ea"}, "op")
     assert message is not None
 
 
-def test_state_value_is_rendered_verbatim_as_snake_case():
-    message = build_lifecycle_warning(_headers(state="beta"), "op")
-    assert "'beta'" in message
-    assert "Private Beta" not in message
+def test_state_is_named_as_ea():
+    message = build_lifecycle_warning(_headers(state="ea"), "op")
+    assert "EA (Early Availability)" in message
+    assert "'ea'" not in message
+    assert "beta" not in message.lower()
 
 
 # --- deprecated message shapes ----------------------------------------------
@@ -275,7 +281,7 @@ def test_muting_lifecycle_namespace_leaves_other_sdk_logging_intact(caplog):
     lifecycle_logger.setLevel(logging.ERROR)
     try:
         with caplog.at_level(logging.WARNING, logger="fireblocks"):
-            warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+            warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
             logging.getLogger("fireblocks.connection_pool").warning("unrelated sdk warning")
         messages = [record.getMessage() for record in caplog.records]
         assert "unrelated sdk warning" in messages
@@ -324,28 +330,28 @@ def test_is_not_suppressed_for_unset_empty_zero_or_false(value):
 @pytest.mark.parametrize("value", ["1", "true", "yes"])
 def test_env_var_suppresses_warning(logs, monkeypatch, value):
     monkeypatch.setenv(SUPPRESS_ENV_VAR, value)
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert logs.records == []
 
 
 @pytest.mark.parametrize("value", ["0", "false", ""])
 def test_zero_false_and_empty_do_not_suppress(logs, monkeypatch, value):
     monkeypatch.setenv(SUPPRESS_ENV_VAR, value)
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert len(logs.records) == 1
 
 
 def test_unset_env_var_does_not_suppress(logs, monkeypatch):
     monkeypatch.delenv(SUPPRESS_ENV_VAR, raising=False)
-    warn_on_lifecycle_state(_headers(state="beta"), "createTransaction")
+    warn_on_lifecycle_state(_headers(state="ea"), "createTransaction")
     assert len(logs.records) == 1
 
 
-# --- beta wording, closed handling and HTTP status --------------------
+# --- EA wording, closed handling and HTTP status --------------------
 
-BETA_TEXT = (
-    "Operation 'op' is in 'beta' lifecycle state and is not generally available. "
-    "It may change or be removed without notice."
+EA_TEXT = (
+    "Operation 'op' is in EA (Early Availability) and is not generally available. "
+    "It may change or break before it reaches GA."
 )
 CLOSED_TEXT = (
     "Operation 'op' has been closed and is no longer supported. Your access is provided "
@@ -354,13 +360,13 @@ CLOSED_TEXT = (
 )
 
 
-def test_beta_message_text():
-    assert build_lifecycle_warning(_headers(state="beta"), "op") == BETA_TEXT
+def test_ea_message_text():
+    assert build_lifecycle_warning(_headers(state="ea"), "op") == EA_TEXT
 
 
 @pytest.mark.parametrize("status", [None, 200, 400, 403, 500])
-def test_beta_warns_regardless_of_status(status):
-    assert build_lifecycle_warning(_headers(state="beta"), "op", status) == BETA_TEXT
+def test_ea_warns_regardless_of_status(status):
+    assert build_lifecycle_warning(_headers(state="ea"), "op", status) == EA_TEXT
 
 
 def test_closed_with_410_is_silent():
@@ -392,3 +398,10 @@ def test_closed_410_emits_no_log_record(logs):
 def test_closed_200_emits_the_exception_message(logs):
     warn_on_lifecycle_state(_headers(state="closed"), "op", 200)
     assert [r.getMessage() for r in logs.records] == [CLOSED_TEXT]
+
+
+def test_deprecated_beta_aliases_are_exported_but_never_warn():
+    assert BETA_STATE == "beta"
+    assert BETA_STATE not in WARNING_STATES
+    assert EA_STATE in WARNING_STATES
+    assert BETA_MESSAGE

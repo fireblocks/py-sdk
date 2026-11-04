@@ -1,12 +1,12 @@
 # TRLinkManualDecisionSource
 
-Source of the manual decision
+Source of the manual decision. Values are lowercase.
 
 ## Enum
 
-* `MANUAL` (value: `'MANUAL'`)
+* `MANUAL` (value: `'manual'`)
 
-* `POLICY` (value: `'POLICY'`)
+* `POLICY` (value: `'policy'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

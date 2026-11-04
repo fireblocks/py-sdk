@@ -1,21 +1,22 @@
-# fireblocks.KeyLinkBetaApi
+# fireblocks.KeyLinkApi
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_bulk_signing_keys**](KeyLinkBetaApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
-[**create_signing_key**](KeyLinkBetaApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
-[**create_validation_key**](KeyLinkBetaApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
-[**disable_validation_key**](KeyLinkBetaApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
-[**get_bulk_signing_keys_job**](KeyLinkBetaApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
-[**get_bulk_signing_keys_jobs**](KeyLinkBetaApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
-[**get_signing_key**](KeyLinkBetaApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
-[**get_signing_keys_list**](KeyLinkBetaApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
-[**get_validation_key**](KeyLinkBetaApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
-[**get_validation_keys_list**](KeyLinkBetaApi.md#get_validation_keys_list) | **GET** /key_link/validation_keys | Get list of registered validation keys
-[**set_agent_id**](KeyLinkBetaApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id
-[**update_signing_key**](KeyLinkBetaApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing keyId
+[**create_bulk_signing_keys**](KeyLinkApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
+[**create_signing_key**](KeyLinkApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
+[**create_validation_key**](KeyLinkApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
+[**disable_validation_key**](KeyLinkApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
+[**get_bulk_signing_keys_job**](KeyLinkApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
+[**get_bulk_signing_keys_jobs**](KeyLinkApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
+[**get_signing_key**](KeyLinkApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
+[**get_signing_keys_list**](KeyLinkApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
+[**get_validation_key**](KeyLinkApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
+[**get_validation_keys_list**](KeyLinkApi.md#get_validation_keys_list) | **GET** /key_link/validation_keys | Get list of registered validation keys
+[**revoke_validation_key**](KeyLinkApi.md#revoke_validation_key) | **POST** /key_link/validation_keys/{keyId}/revoke | Revokes a validation key
+[**set_agent_id**](KeyLinkApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id
+[**update_signing_key**](KeyLinkApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing keyId
 
 
 # **create_bulk_signing_keys**
@@ -56,11 +57,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Register signing keys in bulk
-        api_response = fireblocks.key_link_beta.create_bulk_signing_keys(create_bulk_signing_keys, idempotency_key=idempotency_key).result()
-        print("The response of KeyLinkBetaApi->create_bulk_signing_keys:\n")
+        api_response = fireblocks.key_link.create_bulk_signing_keys(create_bulk_signing_keys, idempotency_key=idempotency_key).result()
+        print("The response of KeyLinkApi->create_bulk_signing_keys:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->create_bulk_signing_keys: %s\n" % e)
+        print("Exception when calling KeyLinkApi->create_bulk_signing_keys: %s\n" % e)
 ```
 
 
@@ -134,11 +135,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Add a new signing key
-        api_response = fireblocks.key_link_beta.create_signing_key(create_signing_key_dto, idempotency_key=idempotency_key).result()
-        print("The response of KeyLinkBetaApi->create_signing_key:\n")
+        api_response = fireblocks.key_link.create_signing_key(create_signing_key_dto, idempotency_key=idempotency_key).result()
+        print("The response of KeyLinkApi->create_signing_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->create_signing_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->create_signing_key: %s\n" % e)
 ```
 
 
@@ -211,11 +212,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Add a new validation key
-        api_response = fireblocks.key_link_beta.create_validation_key(create_validation_key_dto, idempotency_key=idempotency_key).result()
-        print("The response of KeyLinkBetaApi->create_validation_key:\n")
+        api_response = fireblocks.key_link.create_validation_key(create_validation_key_dto, idempotency_key=idempotency_key).result()
+        print("The response of KeyLinkApi->create_validation_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->create_validation_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->create_validation_key: %s\n" % e)
 ```
 
 
@@ -255,6 +256,7 @@ No authorization required
 
 Disables a validation key
 
+DEPRECATED - Please use `POST /key_link/validation_keys/{keyId}/revoke` instead.
 Allows disabling validation key even if it has not expired yet. It is not allowed to enable the validation key back. Another key has to be used for future validations.
 
 ### Example
@@ -288,11 +290,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Disables a validation key
-        api_response = fireblocks.key_link_beta.disable_validation_key(key_id, modify_validation_key_dto).result()
-        print("The response of KeyLinkBetaApi->disable_validation_key:\n")
+        api_response = fireblocks.key_link.disable_validation_key(key_id, modify_validation_key_dto).result()
+        print("The response of KeyLinkApi->disable_validation_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->disable_validation_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->disable_validation_key: %s\n" % e)
 ```
 
 
@@ -363,11 +365,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get a bulk registration job
-        api_response = fireblocks.key_link_beta.get_bulk_signing_keys_job(job_id).result()
-        print("The response of KeyLinkBetaApi->get_bulk_signing_keys_job:\n")
+        api_response = fireblocks.key_link.get_bulk_signing_keys_job(job_id).result()
+        print("The response of KeyLinkApi->get_bulk_signing_keys_job:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_bulk_signing_keys_job: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_bulk_signing_keys_job: %s\n" % e)
 ```
 
 
@@ -438,11 +440,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get bulk registration jobs
-        api_response = fireblocks.key_link_beta.get_bulk_signing_keys_jobs(page_cursor=page_cursor, page_size=page_size).result()
-        print("The response of KeyLinkBetaApi->get_bulk_signing_keys_jobs:\n")
+        api_response = fireblocks.key_link.get_bulk_signing_keys_jobs(page_cursor=page_cursor, page_size=page_size).result()
+        print("The response of KeyLinkApi->get_bulk_signing_keys_jobs:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_bulk_signing_keys_jobs: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_bulk_signing_keys_jobs: %s\n" % e)
 ```
 
 
@@ -513,11 +515,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get a signing key by `keyId`
-        api_response = fireblocks.key_link_beta.get_signing_key(key_id).result()
-        print("The response of KeyLinkBetaApi->get_signing_key:\n")
+        api_response = fireblocks.key_link.get_signing_key(key_id).result()
+        print("The response of KeyLinkApi->get_signing_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_signing_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_signing_key: %s\n" % e)
 ```
 
 
@@ -597,11 +599,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get list of signing keys
-        api_response = fireblocks.key_link_beta.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available, is_assigned=is_assigned, key_prefix=key_prefix).result()
-        print("The response of KeyLinkBetaApi->get_signing_keys_list:\n")
+        api_response = fireblocks.key_link.get_signing_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, vault_account_id=vault_account_id, agent_user_id=agent_user_id, algorithm=algorithm, enabled=enabled, available=available, is_assigned=is_assigned, key_prefix=key_prefix).result()
+        print("The response of KeyLinkApi->get_signing_keys_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_signing_keys_list: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_signing_keys_list: %s\n" % e)
 ```
 
 
@@ -681,11 +683,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get a validation key by `keyId`
-        api_response = fireblocks.key_link_beta.get_validation_key(key_id).result()
-        print("The response of KeyLinkBetaApi->get_validation_key:\n")
+        api_response = fireblocks.key_link.get_validation_key(key_id).result()
+        print("The response of KeyLinkApi->get_validation_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_validation_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_validation_key: %s\n" % e)
 ```
 
 
@@ -720,11 +722,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_validation_keys_list**
-> GetValidationKeyResponseDto get_validation_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order)
+> GetValidationKeyResponseDto get_validation_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, include_revoked=include_revoked)
 
 Get list of registered validation keys
 
-Returns the list of validation keys in the workspace
+Returns the list of validation keys in the workspace. By default, revoked keys are filtered out. Use `includeRevoked=true` to show all keys.
 
 ### Example
 
@@ -755,14 +757,15 @@ with Fireblocks(configuration) as fireblocks:
     page_size = 10 # float | Amount of results to return in the next page (optional) (default to 10)
     sort_by = createdAt # str | Field(s) to use for sorting (optional) (default to createdAt)
     order = ASC # str | Is the order ascending or descending (optional) (default to ASC)
+    include_revoked = False # bool | Include revoked validation keys in the response (optional) (default to False)
 
     try:
         # Get list of registered validation keys
-        api_response = fireblocks.key_link_beta.get_validation_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order).result()
-        print("The response of KeyLinkBetaApi->get_validation_keys_list:\n")
+        api_response = fireblocks.key_link.get_validation_keys_list(page_cursor=page_cursor, page_size=page_size, sort_by=sort_by, order=order, include_revoked=include_revoked).result()
+        print("The response of KeyLinkApi->get_validation_keys_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->get_validation_keys_list: %s\n" % e)
+        print("Exception when calling KeyLinkApi->get_validation_keys_list: %s\n" % e)
 ```
 
 
@@ -776,6 +779,7 @@ Name | Type | Description  | Notes
  **page_size** | **float**| Amount of results to return in the next page | [optional] [default to 10]
  **sort_by** | **str**| Field(s) to use for sorting | [optional] [default to createdAt]
  **order** | **str**| Is the order ascending or descending | [optional] [default to ASC]
+ **include_revoked** | **bool**| Include revoked validation keys in the response | [optional] [default to False]
 
 ### Return type
 
@@ -795,6 +799,82 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Validation keys list along with data required to request the next page if applicable |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revoke_validation_key**
+> ValidationKeyDto revoke_validation_key(key_id, idempotency_key=idempotency_key)
+
+Revokes a validation key
+
+Revokes a validation key, making it permanently unusable for validation. Once revoked, a key cannot be un-revoked. Another key has to be used for future validations.
+
+### Example
+
+
+```python
+from fireblocks.models.validation_key_dto import ValidationKeyDto
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    key_id = '46a92767-5f93-4a46-9eed-f012196bb4fc' # str | The unique identifier for the validation key provided by Fireblocks
+    idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
+
+    try:
+        # Revokes a validation key
+        api_response = fireblocks.key_link.revoke_validation_key(key_id, idempotency_key=idempotency_key).result()
+        print("The response of KeyLinkApi->revoke_validation_key:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling KeyLinkApi->revoke_validation_key: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key_id** | **str**| The unique identifier for the validation key provided by Fireblocks | 
+ **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
+
+### Return type
+
+[**ValidationKeyDto**](ValidationKeyDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Revoked validation key data |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -835,9 +915,9 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Set agent user id
-        fireblocks.key_link_beta.set_agent_id(key_id, modify_signing_key_agent_id_dto).result()
+        fireblocks.key_link.set_agent_id(key_id, modify_signing_key_agent_id_dto).result()
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->set_agent_id: %s\n" % e)
+        print("Exception when calling KeyLinkApi->set_agent_id: %s\n" % e)
 ```
 
 
@@ -910,11 +990,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Modify the signing keyId
-        api_response = fireblocks.key_link_beta.update_signing_key(key_id, modify_signing_key_dto).result()
-        print("The response of KeyLinkBetaApi->update_signing_key:\n")
+        api_response = fireblocks.key_link.update_signing_key(key_id, modify_signing_key_dto).result()
+        print("The response of KeyLinkApi->update_signing_key:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KeyLinkBetaApi->update_signing_key: %s\n" % e)
+        print("Exception when calling KeyLinkApi->update_signing_key: %s\n" % e)
 ```
 
 

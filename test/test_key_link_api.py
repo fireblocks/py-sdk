@@ -14,14 +14,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.key_link_beta_api import KeyLinkBetaApi
+from fireblocks.api.key_link_api import KeyLinkApi
 
 
-class TestKeyLinkBetaApi(unittest.TestCase):
-    """KeyLinkBetaApi unit test stubs"""
+class TestKeyLinkApi(unittest.TestCase):
+    """KeyLinkApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = KeyLinkBetaApi()
+        self.api = KeyLinkApi()
 
     def tearDown(self) -> None:
         pass
@@ -93,6 +93,13 @@ class TestKeyLinkBetaApi(unittest.TestCase):
         """Test case for get_validation_keys_list
 
         Get list of registered validation keys
+        """
+        pass
+
+    def test_revoke_validation_key(self) -> None:
+        """Test case for revoke_validation_key
+
+        Revokes a validation key
         """
         pass
 

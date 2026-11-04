@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -34,7 +34,19 @@ class CreateMultipleAccountsRequest(BaseModel):
     vault_account_names_starting_index: Optional[StrictInt] = Field(default=None, description="Copy vault accounts names starting from this index. If names array is used it'll fail", alias="vaultAccountNamesStartingIndex")
     prefix: Optional[StrictStr] = Field(default=None, description="When copying from existing vault accounts (vaultAccountNamesStartingIndex) then adding a prefix to the names. If names array is used it'll fail")
     tag_ids: Optional[Annotated[List[StrictStr], Field(max_length=20)]] = Field(default=None, description="Optional list of tag IDs to attach to all created vault accounts", alias="tagIds")
-    __properties: ClassVar[List[str]] = ["count", "baseAssetIds", "names", "vaultAccountNamesStartingIndex", "prefix", "tagIds"]
+    vault_type: Optional[StrictStr] = Field(default='MPC', description="Type of vault accounts to create. The default type is MPC. KEY_LINK creates Key Link vault accounts. It requires a Key Link workspace. With autoAssign set to true, the vault accounts are bound to the workspace's Key Link signing keys, assigned automatically from the available keys, and only one KEY_LINK bulk creation with autoAssign set to true can run per workspace at a time. With autoAssign set to false (the default), the vault accounts are created without keys. With KEY_LINK, names, vaultAccountNamesStartingIndex, prefix and tagIds work as they do for MPC, and baseAssetIds may be empty to create vault accounts without wallets. ", alias="vaultType")
+    auto_assign: Optional[StrictBool] = Field(default=False, description="Applicable only when vaultType is KEY_LINK. For MPC, this parameter is ignored. If set to true, keys are assigned to every created vault account. If there are not enough available keys to assign, the request returns an error and no vault accounts are created. If set to false, the vault accounts are created without any keys, and baseAssetIds must be empty because wallets can only be created for vault accounts that have keys. ", alias="autoAssign")
+    __properties: ClassVar[List[str]] = ["count", "baseAssetIds", "names", "vaultAccountNamesStartingIndex", "prefix", "tagIds", "vaultType", "autoAssign"]
+
+    @field_validator('vault_type')
+    def vault_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MPC', 'KEY_LINK']):
+            raise ValueError("must be one of enum values ('MPC', 'KEY_LINK')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +104,9 @@ class CreateMultipleAccountsRequest(BaseModel):
             "names": obj.get("names"),
             "vaultAccountNamesStartingIndex": obj.get("vaultAccountNamesStartingIndex"),
             "prefix": obj.get("prefix"),
-            "tagIds": obj.get("tagIds")
+            "tagIds": obj.get("tagIds"),
+            "vaultType": obj.get("vaultType") if obj.get("vaultType") is not None else 'MPC',
+            "autoAssign": obj.get("autoAssign") if obj.get("autoAssign") is not None else False
         })
         return _obj
 

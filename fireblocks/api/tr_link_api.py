@@ -868,7 +868,7 @@ class TRLinkApi:
     ) -> Future[ApiResponse[TRLinkManualDecisionResponse]]:
         """Manual decision for missing TRM
 
-        Accept or reject destinations stuck in NoTRM step without waiting for TRP webhook or policy timeout.
+        Accept or reject destinations waiting for a Travel Rule message (missing TRM), without waiting for a TRP webhook or the missing-TRM policy timeout. You can submit before a destination enters the missing-TRM wait; if it can't be updated immediately, the decision is applied on the next processing attempt instead (status ACCEPTED). Check `status` in the response to see whether the decision has been applied.
 
         :param customer_integration_id: Customer integration unique identifier (required)
         :type customer_integration_id: str
@@ -916,6 +916,9 @@ class TRLinkApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "TRLinkManualDecisionResponse",
+            '404': "ErrorSchema",
+            '409': "ErrorSchema",
+            '425': "ErrorSchema",
             'default': "ErrorSchema",
         }
 
@@ -2063,6 +2066,145 @@ class TRLinkApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/public_key',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_tr_link_manual_decision(
+        self,
+        customer_integration_id: Annotated[StrictStr, Field(description="Customer integration unique identifier")],
+        tx_id: Annotated[StrictStr, Field(description="Fireblocks transaction unique identifier")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TRLinkManualDecisionResponse]]:
+        """Get manual decision for missing TRM
+
+        Returns the current manual missing-TRM decision for a transaction. Use to follow a decision that is not yet applied, or to check status at any time.
+
+        :param customer_integration_id: Customer integration unique identifier (required)
+        :type customer_integration_id: str
+        :param tx_id: Fireblocks transaction unique identifier (required)
+        :type tx_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_tr_link_manual_decision", param_name="customer_integration_id", param_value=customer_integration_id)
+        validate_not_empty_string(function_name="get_tr_link_manual_decision", param_name="tx_id", param_value=tx_id)
+
+        _param = self._get_tr_link_manual_decision_serialize(
+            customer_integration_id=customer_integration_id,
+            tx_id=tx_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TRLinkManualDecisionResponse",
+            '404': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_tr_link_manual_decision",
+        )
+
+    def _get_tr_link_manual_decision_serialize(
+        self,
+        customer_integration_id,
+        tx_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if customer_integration_id is not None:
+            _path_params['customerIntegrationId'] = customer_integration_id
+        if tx_id is not None:
+            _path_params['txId'] = tx_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/screening/trlink/customers/integration/{customerIntegrationId}/transactions/{txId}/manual_decision',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -42,7 +42,7 @@ import fireblocks
 
 ## Versioning
 
-This SDK follows [semantic versioning](https://semver.org), with one exception: operations in the `beta` lifecycle state. Beta operations are not generally available and may not be accessible to all customers. They can change or be removed without notice.
+This SDK follows [semantic versioning](https://semver.org), with one exception: operations in the `ea` (Early Availability, EA) lifecycle state. EA operations are not generally available and may not be accessible to all customers. They can change or break before they reach GA.
 
 ## Usage
 
@@ -239,7 +239,7 @@ header, so it is always current - it does not depend on the SDK version you have
 installed.
 
 ```
-Operation 'create_transaction' is in 'beta' lifecycle state and is not generally available. It may change or be removed without notice.
+Operation 'create_transaction' is in EA (Early Availability) and is not generally available. It may change or break before it reaches GA.
 ```
 
 Deprecated operations report their sunset date, and the replacement and migration
@@ -398,16 +398,16 @@ Class | Method | HTTP request | Description
 *ContractsApi* | [**get_contract**](docs/ContractsApi.md#get_contract) | **GET** /contracts/{contractId} | Find a Specific Whitelisted Contract
 *ContractsApi* | [**get_contract_asset**](docs/ContractsApi.md#get_contract_asset) | **GET** /contracts/{contractId}/{assetId} | Find a whitelisted contract&#39;s asset
 *ContractsApi* | [**get_contracts**](docs/ContractsApi.md#get_contracts) | **GET** /contracts | List Whitelisted Contracts
-*CosignersBetaApi* | [**add_cosigner**](docs/CosignersBetaApi.md#add_cosigner) | **POST** /cosigners | Add cosigner
-*CosignersBetaApi* | [**get_api_key**](docs/CosignersBetaApi.md#get_api_key) | **GET** /cosigners/{cosignerId}/api_keys/{apiKeyId} | Get API key
-*CosignersBetaApi* | [**get_api_keys**](docs/CosignersBetaApi.md#get_api_keys) | **GET** /cosigners/{cosignerId}/api_keys | Get all API keys
-*CosignersBetaApi* | [**get_cosigner**](docs/CosignersBetaApi.md#get_cosigner) | **GET** /cosigners/{cosignerId} | Get cosigner
-*CosignersBetaApi* | [**get_cosigners**](docs/CosignersBetaApi.md#get_cosigners) | **GET** /cosigners | Get all cosigners
-*CosignersBetaApi* | [**get_request_status**](docs/CosignersBetaApi.md#get_request_status) | **GET** /cosigners/{cosignerId}/api_keys/{apiKeyId}/{requestId} | Get request status
-*CosignersBetaApi* | [**pair_api_key**](docs/CosignersBetaApi.md#pair_api_key) | **PUT** /cosigners/{cosignerId}/api_keys/{apiKeyId} | Pair API key
-*CosignersBetaApi* | [**rename_cosigner**](docs/CosignersBetaApi.md#rename_cosigner) | **PATCH** /cosigners/{cosignerId} | Rename cosigner
-*CosignersBetaApi* | [**unpair_api_key**](docs/CosignersBetaApi.md#unpair_api_key) | **DELETE** /cosigners/{cosignerId}/api_keys/{apiKeyId} | Unpair API key
-*CosignersBetaApi* | [**update_callback_handler**](docs/CosignersBetaApi.md#update_callback_handler) | **PATCH** /cosigners/{cosignerId}/api_keys/{apiKeyId} | Update API key callback handler
+*CosignersApi* | [**add_cosigner**](docs/CosignersApi.md#add_cosigner) | **POST** /cosigners | Add cosigner
+*CosignersApi* | [**get_cosigner**](docs/CosignersApi.md#get_cosigner) | **GET** /cosigners/{cosignerId} | Get cosigner
+*CosignersApi* | [**get_cosigner_api_user**](docs/CosignersApi.md#get_cosigner_api_user) | **GET** /cosigners/{cosignerId}/api_users/{apiUserId} | Get API user
+*CosignersApi* | [**get_cosigner_api_user_request_status**](docs/CosignersApi.md#get_cosigner_api_user_request_status) | **GET** /cosigners/{cosignerId}/api_users/{apiUserId}/{requestId} | Get API user request status
+*CosignersApi* | [**get_cosigner_api_users**](docs/CosignersApi.md#get_cosigner_api_users) | **GET** /cosigners/{cosignerId}/api_users | Get all API users
+*CosignersApi* | [**get_cosigners**](docs/CosignersApi.md#get_cosigners) | **GET** /cosigners | Get all cosigners
+*CosignersApi* | [**pair_cosigner_api_user**](docs/CosignersApi.md#pair_cosigner_api_user) | **PUT** /cosigners/{cosignerId}/api_users/{apiUserId} | Pair API user
+*CosignersApi* | [**rename_cosigner**](docs/CosignersApi.md#rename_cosigner) | **PATCH** /cosigners/{cosignerId} | Rename cosigner
+*CosignersApi* | [**unpair_cosigner_api_user**](docs/CosignersApi.md#unpair_cosigner_api_user) | **DELETE** /cosigners/{cosignerId}/api_users/{apiUserId} | Unpair API user
+*CosignersApi* | [**update_cosigner_api_user_callback_handler**](docs/CosignersApi.md#update_cosigner_api_user_callback_handler) | **PATCH** /cosigners/{cosignerId}/api_users/{apiUserId} | Update API user callback handler
 *DeployedContractsApi* | [**add_contract_abi**](docs/DeployedContractsApi.md#add_contract_abi) | **POST** /tokenization/contracts/abi | Save contract ABI
 *DeployedContractsApi* | [**fetch_contract_abi**](docs/DeployedContractsApi.md#fetch_contract_abi) | **POST** /tokenization/contracts/fetch_abi | Fetch the contract ABI
 *DeployedContractsApi* | [**get_deployed_contract_by_address**](docs/DeployedContractsApi.md#get_deployed_contract_by_address) | **GET** /tokenization/contracts/{assetId}/{contractAddress} | Return deployed contract data
@@ -476,20 +476,21 @@ Class | Method | HTTP request | Description
 *InternalWalletsApi* | [**get_internal_wallet_assets_paginated**](docs/InternalWalletsApi.md#get_internal_wallet_assets_paginated) | **GET** /internal_wallets/{walletId}/assets | List assets in an internal wallet (Paginated)
 *InternalWalletsApi* | [**get_internal_wallets**](docs/InternalWalletsApi.md#get_internal_wallets) | **GET** /internal_wallets | List internal wallets
 *InternalWalletsApi* | [**set_customer_ref_id_for_internal_wallet**](docs/InternalWalletsApi.md#set_customer_ref_id_for_internal_wallet) | **POST** /internal_wallets/{walletId}/set_customer_ref_id | Set an AML/KYT customer reference ID for internal wallet
-*KeyLinkBetaApi* | [**create_bulk_signing_keys**](docs/KeyLinkBetaApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
-*KeyLinkBetaApi* | [**create_signing_key**](docs/KeyLinkBetaApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
-*KeyLinkBetaApi* | [**create_validation_key**](docs/KeyLinkBetaApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
-*KeyLinkBetaApi* | [**disable_validation_key**](docs/KeyLinkBetaApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
-*KeyLinkBetaApi* | [**get_bulk_signing_keys_job**](docs/KeyLinkBetaApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
-*KeyLinkBetaApi* | [**get_bulk_signing_keys_jobs**](docs/KeyLinkBetaApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
-*KeyLinkBetaApi* | [**get_signing_key**](docs/KeyLinkBetaApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
-*KeyLinkBetaApi* | [**get_signing_keys_list**](docs/KeyLinkBetaApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
-*KeyLinkBetaApi* | [**get_validation_key**](docs/KeyLinkBetaApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
-*KeyLinkBetaApi* | [**get_validation_keys_list**](docs/KeyLinkBetaApi.md#get_validation_keys_list) | **GET** /key_link/validation_keys | Get list of registered validation keys
-*KeyLinkBetaApi* | [**set_agent_id**](docs/KeyLinkBetaApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id
-*KeyLinkBetaApi* | [**update_signing_key**](docs/KeyLinkBetaApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing keyId
-*KeysBetaApi* | [**get_mpc_keys_list**](docs/KeysBetaApi.md#get_mpc_keys_list) | **GET** /keys/mpc/list | Get list of mpc keys
-*KeysBetaApi* | [**get_mpc_keys_list_by_user**](docs/KeysBetaApi.md#get_mpc_keys_list_by_user) | **GET** /keys/mpc/list/{userId} | Get list of mpc keys by &#x60;userId&#x60;
+*KeyLinkApi* | [**create_bulk_signing_keys**](docs/KeyLinkApi.md#create_bulk_signing_keys) | **POST** /key_link/signing_keys/bulk | Register signing keys in bulk
+*KeyLinkApi* | [**create_signing_key**](docs/KeyLinkApi.md#create_signing_key) | **POST** /key_link/signing_keys | Add a new signing key
+*KeyLinkApi* | [**create_validation_key**](docs/KeyLinkApi.md#create_validation_key) | **POST** /key_link/validation_keys | Add a new validation key
+*KeyLinkApi* | [**disable_validation_key**](docs/KeyLinkApi.md#disable_validation_key) | **PATCH** /key_link/validation_keys/{keyId} | Disables a validation key
+*KeyLinkApi* | [**get_bulk_signing_keys_job**](docs/KeyLinkApi.md#get_bulk_signing_keys_job) | **GET** /key_link/signing_keys/bulk/jobs/{jobId} | Get a bulk registration job
+*KeyLinkApi* | [**get_bulk_signing_keys_jobs**](docs/KeyLinkApi.md#get_bulk_signing_keys_jobs) | **GET** /key_link/signing_keys/bulk/jobs | Get bulk registration jobs
+*KeyLinkApi* | [**get_signing_key**](docs/KeyLinkApi.md#get_signing_key) | **GET** /key_link/signing_keys/{keyId} | Get a signing key by &#x60;keyId&#x60;
+*KeyLinkApi* | [**get_signing_keys_list**](docs/KeyLinkApi.md#get_signing_keys_list) | **GET** /key_link/signing_keys | Get list of signing keys
+*KeyLinkApi* | [**get_validation_key**](docs/KeyLinkApi.md#get_validation_key) | **GET** /key_link/validation_keys/{keyId} | Get a validation key by &#x60;keyId&#x60;
+*KeyLinkApi* | [**get_validation_keys_list**](docs/KeyLinkApi.md#get_validation_keys_list) | **GET** /key_link/validation_keys | Get list of registered validation keys
+*KeyLinkApi* | [**revoke_validation_key**](docs/KeyLinkApi.md#revoke_validation_key) | **POST** /key_link/validation_keys/{keyId}/revoke | Revokes a validation key
+*KeyLinkApi* | [**set_agent_id**](docs/KeyLinkApi.md#set_agent_id) | **PATCH** /key_link/signing_keys/{keyId}/agent_user_id | Set agent user id
+*KeyLinkApi* | [**update_signing_key**](docs/KeyLinkApi.md#update_signing_key) | **PATCH** /key_link/signing_keys/{keyId} | Modify the signing keyId
+*KeysApi* | [**get_mpc_keys_list**](docs/KeysApi.md#get_mpc_keys_list) | **GET** /keys/mpc/list | Get list of mpc keys
+*KeysApi* | [**get_mpc_keys_list_by_user**](docs/KeysApi.md#get_mpc_keys_list_by_user) | **GET** /keys/mpc/list/{userId} | Get list of mpc keys by &#x60;userId&#x60;
 *NFTsApi* | [**get_nft**](docs/NFTsApi.md#get_nft) | **GET** /nfts/tokens/{id} | List token data by ID
 *NFTsApi* | [**get_nfts**](docs/NFTsApi.md#get_nfts) | **GET** /nfts/tokens | List tokens by IDs
 *NFTsApi* | [**get_ownership_tokens**](docs/NFTsApi.md#get_ownership_tokens) | **GET** /nfts/ownership/tokens | List all owned tokens (paginated)
@@ -600,6 +601,7 @@ Class | Method | HTTP request | Description
 *TRLinkApi* | [**get_tr_link_customer_integrations**](docs/TRLinkApi.md#get_tr_link_customer_integrations) | **GET** /screening/trlink/customers/{customerId}/integrations | Get customer integrations
 *TRLinkApi* | [**get_tr_link_customers**](docs/TRLinkApi.md#get_tr_link_customers) | **GET** /screening/trlink/customers | Get all customers
 *TRLinkApi* | [**get_tr_link_integration_public_key**](docs/TRLinkApi.md#get_tr_link_integration_public_key) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/public_key | Get public key for PII encryption
+*TRLinkApi* | [**get_tr_link_manual_decision**](docs/TRLinkApi.md#get_tr_link_manual_decision) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/transactions/{txId}/manual_decision | Get manual decision for missing TRM
 *TRLinkApi* | [**get_tr_link_partners**](docs/TRLinkApi.md#get_tr_link_partners) | **GET** /screening/trlink/partners | List available TRSupport partners
 *TRLinkApi* | [**get_tr_link_policy**](docs/TRLinkApi.md#get_tr_link_policy) | **GET** /screening/trlink/policy | Get TRLink policy
 *TRLinkApi* | [**get_tr_link_supported_asset**](docs/TRLinkApi.md#get_tr_link_supported_asset) | **GET** /screening/trlink/customers/integration/{customerIntegrationId}/assets/{assetId} | Get supported asset by ID
@@ -868,8 +870,7 @@ Class | Method | HTTP request | Description
  - [AmountRange](docs/AmountRange.md)
  - [AmountRangeMinMax](docs/AmountRangeMinMax.md)
  - [AmountRangeMinMax2](docs/AmountRangeMinMax2.md)
- - [ApiKey](docs/ApiKey.md)
- - [ApiKeysPaginatedResponse](docs/ApiKeysPaginatedResponse.md)
+ - [ApiUsersPaginatedResponse](docs/ApiUsersPaginatedResponse.md)
  - [ApprovalApiKey](docs/ApprovalApiKey.md)
  - [ApprovalApiPublicKey](docs/ApprovalApiPublicKey.md)
  - [ApprovalRequest](docs/ApprovalRequest.md)
@@ -1070,6 +1071,7 @@ Class | Method | HTTP request | Description
  - [ConvertAssetsRequest](docs/ConvertAssetsRequest.md)
  - [ConvertAssetsResponse](docs/ConvertAssetsResponse.md)
  - [Cosigner](docs/Cosigner.md)
+ - [CosignerApiUser](docs/CosignerApiUser.md)
  - [CosignersPaginatedResponse](docs/CosignersPaginatedResponse.md)
  - [CounterpartyGroup](docs/CounterpartyGroup.md)
  - [CounterpartyGroupsPaginatedResponse](docs/CounterpartyGroupsPaginatedResponse.md)
@@ -1488,8 +1490,8 @@ Class | Method | HTTP request | Description
  - [PaginatedAssetWalletResponsePaging](docs/PaginatedAssetWalletResponsePaging.md)
  - [PaginatedAssetsResponse](docs/PaginatedAssetsResponse.md)
  - [Paging](docs/Paging.md)
- - [PairApiKeyRequest](docs/PairApiKeyRequest.md)
- - [PairApiKeyResponse](docs/PairApiKeyResponse.md)
+ - [PairApiUserRequest](docs/PairApiUserRequest.md)
+ - [PairApiUserResponse](docs/PairApiUserResponse.md)
  - [Parameter](docs/Parameter.md)
  - [ParameterWithValue](docs/ParameterWithValue.md)
  - [ParticipantOnboardingPayload](docs/ParticipantOnboardingPayload.md)
@@ -1820,6 +1822,7 @@ Class | Method | HTTP request | Description
  - [TRLinkManualDecisionDestinationDetail](docs/TRLinkManualDecisionDestinationDetail.md)
  - [TRLinkManualDecisionRequest](docs/TRLinkManualDecisionRequest.md)
  - [TRLinkManualDecisionResponse](docs/TRLinkManualDecisionResponse.md)
+ - [TRLinkManualDecisionResponseStatusEnum](docs/TRLinkManualDecisionResponseStatusEnum.md)
  - [TRLinkManualDecisionSource](docs/TRLinkManualDecisionSource.md)
  - [TRLinkMissingTrmAction](docs/TRLinkMissingTrmAction.md)
  - [TRLinkMissingTrmAction2](docs/TRLinkMissingTrmAction2.md)

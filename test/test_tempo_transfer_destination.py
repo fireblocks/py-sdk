@@ -40,7 +40,8 @@ class TestTempoTransferDestination(unittest.TestCase):
                 id = '1',
                 one_time_address = fireblocks.models.one_time_address.OneTimeAddress(
                     address = '', 
-                    tag = '', )
+                    tag = '', ),
+                memo = 'invoice-4968-reference-83b4-7adc'
             )
         else:
             return TempoTransferDestination(

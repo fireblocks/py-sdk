@@ -58,8 +58,7 @@ class TestCreateTempoTransferRequest(unittest.TestCase):
                 replace_tx_by_hash = '0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c6c445836d8',
                 fee_payer_account_id = '3',
                 nonce_strategy = 'SEQUENTIAL',
-                nonce_lane = 1,
-                memo = 'invoice-1234'
+                nonce_lane = 1
             )
         else:
             return CreateTempoTransferRequest(

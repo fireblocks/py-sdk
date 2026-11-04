@@ -18,21 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.callback_handler import CallbackHandler
+from fireblocks.models.cosigner_api_user import CosignerApiUser
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ApiKey(BaseModel):
+class ApiUsersPaginatedResponse(BaseModel):
     """
-    ApiKey
+    ApiUsersPaginatedResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier of the API key")
-    last_seen: Optional[datetime] = Field(default=None, description="The date the API key was last seen", alias="lastSeen")
-    callback_handler: Optional[CallbackHandler] = Field(default=None, alias="callbackHandler")
-    __properties: ClassVar[List[str]] = ["id", "lastSeen", "callbackHandler"]
+    data: List[CosignerApiUser] = Field(description="The data of the current page")
+    next: Optional[StrictStr] = Field(default=None, description="The ID of the next page")
+    __properties: ClassVar[List[str]] = ["data", "next"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +50,7 @@ class ApiKey(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ApiKey from a JSON string"""
+        """Create an instance of ApiUsersPaginatedResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +71,23 @@ class ApiKey(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of callback_handler
-        if self.callback_handler:
-            _dict['callbackHandler'] = self.callback_handler.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in data (list)
+        _items = []
+        if self.data:
+            for _item_data in self.data:
+                if _item_data:
+                    _items.append(_item_data.to_dict())
+            _dict['data'] = _items
+        # set to None if next (nullable) is None
+        # and model_fields_set contains the field
+        if self.next is None and "next" in self.model_fields_set:
+            _dict['next'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ApiKey from a dict"""
+        """Create an instance of ApiUsersPaginatedResponse from a dict"""
         if obj is None:
             return None
 
@@ -88,9 +95,8 @@ class ApiKey(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "lastSeen": obj.get("lastSeen"),
-            "callbackHandler": CallbackHandler.from_dict(obj["callbackHandler"]) if obj.get("callbackHandler") is not None else None
+            "data": [CosignerApiUser.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "next": obj.get("next")
         })
         return _obj
 

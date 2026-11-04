@@ -23,21 +23,23 @@ from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from fireblocks.models.tr_link_manual_decision_action import TRLinkManualDecisionAction
 from fireblocks.models.tr_link_manual_decision_destination_detail import TRLinkManualDecisionDestinationDetail
+from fireblocks.models.tr_link_manual_decision_response_status_enum import TRLinkManualDecisionResponseStatusEnum
 from fireblocks.models.tr_link_manual_decision_source import TRLinkManualDecisionSource
 from typing import Optional, Set
 from typing_extensions import Self
 
 class TRLinkManualDecisionResponse(BaseModel):
     """
-    Response containing the result of the manual decision
+    Response containing the result of a manual missing-TRM decision (POST write or GET read).
     """ # noqa: E501
+    status: TRLinkManualDecisionResponseStatusEnum
     action: TRLinkManualDecisionAction
     source: TRLinkManualDecisionSource
     tx_id: StrictStr = Field(description="Transaction ID", alias="txId")
     destinations_affected: StrictInt = Field(description="Number of destinations where the decision was applied", alias="destinationsAffected")
     destinations_skipped: StrictInt = Field(description="Number of destinations that were skipped", alias="destinationsSkipped")
     details: Annotated[List[TRLinkManualDecisionDestinationDetail], Field(min_length=0, max_length=100)] = Field(description="Per-destination details")
-    __properties: ClassVar[List[str]] = ["action", "source", "txId", "destinationsAffected", "destinationsSkipped", "details"]
+    __properties: ClassVar[List[str]] = ["status", "action", "source", "txId", "destinationsAffected", "destinationsSkipped", "details"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +99,7 @@ class TRLinkManualDecisionResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status"),
             "action": obj.get("action"),
             "source": obj.get("source"),
             "txId": obj.get("txId"),

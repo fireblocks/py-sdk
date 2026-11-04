@@ -21,14 +21,14 @@ from typing_extensions import Self
 
 class TRLinkManualDecisionSource(str, Enum):
     """
-    Source of the manual decision
+    Source of the manual decision. Values are lowercase.
     """
 
     """
     allowed enum values
     """
-    MANUAL = 'MANUAL'
-    POLICY = 'POLICY'
+    MANUAL = 'manual'
+    POLICY = 'policy'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

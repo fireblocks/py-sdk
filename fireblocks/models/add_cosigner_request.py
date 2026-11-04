@@ -28,10 +28,10 @@ class AddCosignerRequest(BaseModel):
     """
     AddCosignerRequest
     """ # noqa: E501
-    api_key_id: StrictStr = Field(description="The id of the API key to be paired with the cosigner", alias="apiKeyId")
+    api_user_id: StrictStr = Field(description="The id of the API user to be paired with the cosigner", alias="apiUserId")
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The name of the cosigner")
     existing_cosigner: Optional[StrictBool] = Field(default=False, description="Whether the cosigner already exists in another workspace", alias="existingCosigner")
-    __properties: ClassVar[List[str]] = ["apiKeyId", "name", "existingCosigner"]
+    __properties: ClassVar[List[str]] = ["apiUserId", "name", "existingCosigner"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +84,7 @@ class AddCosignerRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "apiKeyId": obj.get("apiKeyId"),
+            "apiUserId": obj.get("apiUserId"),
             "name": obj.get("name"),
             "existingCosigner": obj.get("existingCosigner") if obj.get("existingCosigner") is not None else False
         })

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **destination_screening_id** | **str** | Destination screening record ID | 
 **applied** | **bool** | Whether the decision was applied to this destination | 
-**skip_reason** | **str** | Reason if the destination was skipped | [optional] 
+**skip_reason** | **str** | Reason when applied is false. Common values: deferred apply (destination could not be updated immediately), already applied, status changed, trmId exists, destination not found. | [optional] 
 
 ## Example
 

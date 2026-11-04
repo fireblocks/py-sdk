@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **days_till_expired** | **float** |  | 
 **enabled** | **bool** | True if the validation key is enabled. | 
 **created_at** | **float** | Creation date (timestamp) in milliseconds. | 
+**expiration_time** | **float** | Expiration date (Unix timestamp) in milliseconds. | 
+**revoked** | **bool** | True if the validation key is revoked. | [default to False]
 
 ## Example
 

@@ -40,7 +40,7 @@ class TestTRLinkManualDecisionDestinationDetail(unittest.TestCase):
             return TRLinkManualDecisionDestinationDetail(
                 destination_screening_id = '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 applied = True,
-                skip_reason = ''
+                skip_reason = 'deferred apply'
             )
         else:
             return TRLinkManualDecisionDestinationDetail(

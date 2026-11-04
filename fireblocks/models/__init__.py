@@ -107,8 +107,7 @@ from fireblocks.models.amount_over_time_config import AmountOverTimeConfig
 from fireblocks.models.amount_range import AmountRange
 from fireblocks.models.amount_range_min_max import AmountRangeMinMax
 from fireblocks.models.amount_range_min_max2 import AmountRangeMinMax2
-from fireblocks.models.api_key import ApiKey
-from fireblocks.models.api_keys_paginated_response import ApiKeysPaginatedResponse
+from fireblocks.models.api_users_paginated_response import ApiUsersPaginatedResponse
 from fireblocks.models.approval_api_key import ApprovalApiKey
 from fireblocks.models.approval_api_public_key import ApprovalApiPublicKey
 from fireblocks.models.approval_request import ApprovalRequest
@@ -309,6 +308,7 @@ from fireblocks.models.conversion_validation_failure import ConversionValidation
 from fireblocks.models.convert_assets_request import ConvertAssetsRequest
 from fireblocks.models.convert_assets_response import ConvertAssetsResponse
 from fireblocks.models.cosigner import Cosigner
+from fireblocks.models.cosigner_api_user import CosignerApiUser
 from fireblocks.models.cosigners_paginated_response import CosignersPaginatedResponse
 from fireblocks.models.counterparty_group import CounterpartyGroup
 from fireblocks.models.counterparty_groups_paginated_response import CounterpartyGroupsPaginatedResponse
@@ -727,8 +727,8 @@ from fireblocks.models.paginated_asset_wallet_response import PaginatedAssetWall
 from fireblocks.models.paginated_asset_wallet_response_paging import PaginatedAssetWalletResponsePaging
 from fireblocks.models.paginated_assets_response import PaginatedAssetsResponse
 from fireblocks.models.paging import Paging
-from fireblocks.models.pair_api_key_request import PairApiKeyRequest
-from fireblocks.models.pair_api_key_response import PairApiKeyResponse
+from fireblocks.models.pair_api_user_request import PairApiUserRequest
+from fireblocks.models.pair_api_user_response import PairApiUserResponse
 from fireblocks.models.parameter import Parameter
 from fireblocks.models.parameter_with_value import ParameterWithValue
 from fireblocks.models.participant_onboarding_payload import ParticipantOnboardingPayload
@@ -1059,6 +1059,7 @@ from fireblocks.models.tr_link_manual_decision_action import TRLinkManualDecisio
 from fireblocks.models.tr_link_manual_decision_destination_detail import TRLinkManualDecisionDestinationDetail
 from fireblocks.models.tr_link_manual_decision_request import TRLinkManualDecisionRequest
 from fireblocks.models.tr_link_manual_decision_response import TRLinkManualDecisionResponse
+from fireblocks.models.tr_link_manual_decision_response_status_enum import TRLinkManualDecisionResponseStatusEnum
 from fireblocks.models.tr_link_manual_decision_source import TRLinkManualDecisionSource
 from fireblocks.models.tr_link_missing_trm_action import TRLinkMissingTrmAction
 from fireblocks.models.tr_link_missing_trm_action2 import TRLinkMissingTrmAction2

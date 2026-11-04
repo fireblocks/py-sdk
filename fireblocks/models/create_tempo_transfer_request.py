@@ -54,8 +54,7 @@ class CreateTempoTransferRequest(BaseModel):
     fee_payer_account_id: Optional[StrictStr] = Field(default=None, description="Vault account ID of the fee payer sponsoring this transfer.", alias="feePayerAccountId")
     nonce_strategy: Optional[StrictStr] = Field(default=None, description="Tempo's 2-dimensional nonce strategy: `SEQUENTIAL` runs under a single nonce lane (lane 0); `USER_DEFINED_LANE` runs in parallel under a specified lane (1–16), and requires `nonceLane`; `EXPIRING` marks the transaction with an expiry of up to 5 minutes (Tempo-defined) and does not use `nonceLane`.", alias="nonceStrategy")
     nonce_lane: Optional[Annotated[int, Field(le=16, strict=True, ge=1)]] = Field(default=None, description="The nonce lane to use, 1–16. Required and only meaningful when nonceStrategy is USER_DEFINED_LANE; not used for SEQUENTIAL or EXPIRING.", alias="nonceLane")
-    memo: Optional[StrictStr] = Field(default=None, description="Beta. Tempo TIP-20 memo (max 32 bytes).")
-    __properties: ClassVar[List[str]] = ["note", "externalTxId", "feeCurrency", "assetId", "source", "destination", "amount", "treatAsGrossAmount", "feeLevel", "travelRuleMessage", "travelRuleMessageId", "useGasless", "configurations", "maxFeePerGas", "maxPriorityFeePerGas", "destinations", "failOnLowFee", "gasLimit", "replaceTxByHash", "feePayerAccountId", "nonceStrategy", "nonceLane", "memo"]
+    __properties: ClassVar[List[str]] = ["note", "externalTxId", "feeCurrency", "assetId", "source", "destination", "amount", "treatAsGrossAmount", "feeLevel", "travelRuleMessage", "travelRuleMessageId", "useGasless", "configurations", "maxFeePerGas", "maxPriorityFeePerGas", "destinations", "failOnLowFee", "gasLimit", "replaceTxByHash", "feePayerAccountId", "nonceStrategy", "nonceLane"]
 
     @field_validator('fee_level')
     def fee_level_validate_enum(cls, value):
@@ -165,8 +164,7 @@ class CreateTempoTransferRequest(BaseModel):
             "replaceTxByHash": obj.get("replaceTxByHash"),
             "feePayerAccountId": obj.get("feePayerAccountId"),
             "nonceStrategy": obj.get("nonceStrategy"),
-            "nonceLane": obj.get("nonceLane"),
-            "memo": obj.get("memo")
+            "nonceLane": obj.get("nonceLane")
         })
         return _obj
 

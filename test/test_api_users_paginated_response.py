@@ -14,11 +14,11 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.models.api_key import ApiKey
+from fireblocks.models.api_users_paginated_response import ApiUsersPaginatedResponse
 
 
-class TestApiKey(unittest.TestCase):
-    """ApiKey unit test stubs"""
+class TestApiUsersPaginatedResponse(unittest.TestCase):
+    """ApiUsersPaginatedResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,33 +26,27 @@ class TestApiKey(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ApiKey:
-        """Test ApiKey
+    def make_instance(self, include_optional) -> ApiUsersPaginatedResponse:
+        """Test ApiUsersPaginatedResponse
         include_optional is a boolean, when False only required
         params are included, when True both required and
         optional params are included"""
-        # uncomment below to create an instance of `ApiKey`
+        # uncomment below to create an instance of `ApiUsersPaginatedResponse`
         """
-        model = ApiKey()
+        model = ApiUsersPaginatedResponse()
         if include_optional:
-            return ApiKey(
-                id = '44fcead0-7053-4831-a53a-df7fb90d440f',
-                last_seen = '2021-07-01T00:00Z',
-                callback_handler = fireblocks.models.callback_handler.CallbackHandler(
-                    url = 'https://example.com/callback-handler', 
-                    public_key = '-----BEGIN PUBLIC KEY-----
-... truncated ...
------END PUBLIC KEY-----', 
-                    cert_public_key_hash = '', )
+            return ApiUsersPaginatedResponse(
+                data = [{"id":"44fcead0-7053-4831-a53a-df7fb90d440f","lastSeen":"2021-07-01T00:00:00.000Z"}],
+                next = 'eJ0eXAiOiJKV1QiLCJhbGcOiJIUzI1NiJ9'
             )
         else:
-            return ApiKey(
-                id = '44fcead0-7053-4831-a53a-df7fb90d440f',
+            return ApiUsersPaginatedResponse(
+                data = [{"id":"44fcead0-7053-4831-a53a-df7fb90d440f","lastSeen":"2021-07-01T00:00:00.000Z"}],
         )
         """
 
-    def testApiKey(self):
-        """Test ApiKey"""
+    def testApiUsersPaginatedResponse(self):
+        """Test ApiUsersPaginatedResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

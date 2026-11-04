@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **type** | **str** | The kind of destination. | 
 **id** | **str** | Required when type is VAULT_ACCOUNT or UNMANAGED_WALLET. | [optional] 
 **one_time_address** | [**OneTimeAddress**](OneTimeAddress.md) |  | [optional] 
+**memo** | **str** | Tempo TIP-20 memo, sent on-chain with the transfer to this destination. Exactly 32 bytes once UTF-8 encoded.  NOTES:     - The memo is public and permanent on-chain, so do not put sensitive data in it.     - A memo is currently supported only for a transfer with a single destination | [optional] 
 
 ## Example
 

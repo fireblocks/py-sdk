@@ -45,7 +45,13 @@ class TestFeeInfo(unittest.TestCase):
                 relay_type = 'LOCAL',
                 relay_id = '1',
                 relay_name = 'Tenant Name',
-                fee_usd = '0.0013'
+                fee_usd = '0.0013',
+                sender = fireblocks.models.role_fee_info.RoleFeeInfo(
+                    fees_deducted = '0.017686415', 
+                    value_credited = '0.000000001', ),
+                recipient = fireblocks.models.role_fee_info.RoleFeeInfo(
+                    fees_deducted = '0.017686415', 
+                    value_credited = '0.000000001', )
             )
         else:
             return FeeInfo(

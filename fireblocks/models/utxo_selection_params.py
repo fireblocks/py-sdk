@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class UtxoSelectionParams(BaseModel):
     """
-    For UTXO-based blockchains only. Controls which UTXOs are used for automatic selection. Cannot be used together with extraParameters.inputsSelection. This feature is currently in beta and might be subject to changes. 
+    For UTXO-based blockchains only. Controls which UTXOs are used for automatic selection. Cannot be used together with extraParameters.inputsSelection. 
     """ # noqa: E501
     selection_strategy: Optional[StrictStr] = Field(default=None, description="Optional override for the UTXO selection strategy configured at the vault/tenant level. ", alias="selectionStrategy")
     filters: Optional[UtxoSelectionFilters] = None

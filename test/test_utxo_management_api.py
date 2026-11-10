@@ -14,14 +14,14 @@ Do not edit the class manually.
 
 import unittest
 
-from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
+from fireblocks.api.utxo_management_api import UTXOManagementApi
 
 
-class TestUTXOManagementBetaApi(unittest.TestCase):
-    """UTXOManagementBetaApi unit test stubs"""
+class TestUTXOManagementApi(unittest.TestCase):
+    """UTXOManagementApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = UTXOManagementBetaApi()
+        self.api = UTXOManagementApi()
 
     def tearDown(self) -> None:
         pass

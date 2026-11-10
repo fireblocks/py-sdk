@@ -664,6 +664,7 @@ Class | Method | HTTP request | Description
 *TradingApi* | [**get_order**](docs/TradingApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
 *TradingApi* | [**get_order_requirements**](docs/TradingApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
 *TradingApi* | [**get_orders**](docs/TradingApi.md#get_orders) | **GET** /trading/orders | Get orders
+*TradingApi* | [**get_trading_pairs**](docs/TradingApi.md#get_trading_pairs) | **GET** /trading/pairs | Get trading pairs
 *TradingApi* | [**get_trading_provider_by_id**](docs/TradingApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
 *TradingApi* | [**get_trading_providers**](docs/TradingApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
 *TradingApi* | [**submit_order_requirements**](docs/TradingApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
@@ -689,12 +690,12 @@ Class | Method | HTTP request | Description
 *TravelRuleApi* | [**set_vasp_for_vault**](docs/TravelRuleApi.md#set_vasp_for_vault) | **POST** /screening/travel_rule/vault/{vaultAccountId}/vasp | Assign VASP to vault
 *TravelRuleApi* | [**update_vasp**](docs/TravelRuleApi.md#update_vasp) | **PUT** /screening/travel_rule/vasp/update | Add jsonDidKey to VASP details
 *TravelRuleApi* | [**validate_full_travel_rule_transaction**](docs/TravelRuleApi.md#validate_full_travel_rule_transaction) | **POST** /screening/travel_rule/transaction/validate/full | Validate Full Travel Rule Transaction
-*UTXOManagementBetaApi* | [**get_utxo_selection_config**](docs/UTXOManagementBetaApi.md#get_utxo_selection_config) | **GET** /utxo_management/selection_config | Get UTXO selection config
-*UTXOManagementBetaApi* | [**get_utxos**](docs/UTXOManagementBetaApi.md#get_utxos) | **GET** /utxo_management/{vaultAccountId}/{assetId}/unspent_outputs | List unspent outputs (UTXOs)
-*UTXOManagementBetaApi* | [**get_vault_asset_utxo_selection_config**](docs/UTXOManagementBetaApi.md#get_vault_asset_utxo_selection_config) | **GET** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Get vault and asset UTXO selection config
-*UTXOManagementBetaApi* | [**update_utxo_labels**](docs/UTXOManagementBetaApi.md#update_utxo_labels) | **PATCH** /utxo_management/{vaultAccountId}/{assetId}/labels | Attach or detach labels to/from UTXOs
-*UTXOManagementBetaApi* | [**upsert_utxo_selection_config**](docs/UTXOManagementBetaApi.md#upsert_utxo_selection_config) | **PUT** /utxo_management/selection_config | Upsert UTXO selection config
-*UTXOManagementBetaApi* | [**upsert_vault_asset_utxo_selection_config**](docs/UTXOManagementBetaApi.md#upsert_vault_asset_utxo_selection_config) | **PUT** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Upsert vault and asset UTXO selection config
+*UTXOManagementApi* | [**get_utxo_selection_config**](docs/UTXOManagementApi.md#get_utxo_selection_config) | **GET** /utxo_management/selection_config | Get UTXO selection config
+*UTXOManagementApi* | [**get_utxos**](docs/UTXOManagementApi.md#get_utxos) | **GET** /utxo_management/{vaultAccountId}/{assetId}/unspent_outputs | List unspent outputs (UTXOs)
+*UTXOManagementApi* | [**get_vault_asset_utxo_selection_config**](docs/UTXOManagementApi.md#get_vault_asset_utxo_selection_config) | **GET** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Get vault and asset UTXO selection config
+*UTXOManagementApi* | [**update_utxo_labels**](docs/UTXOManagementApi.md#update_utxo_labels) | **PATCH** /utxo_management/{vaultAccountId}/{assetId}/labels | Attach or detach labels to/from UTXOs
+*UTXOManagementApi* | [**upsert_utxo_selection_config**](docs/UTXOManagementApi.md#upsert_utxo_selection_config) | **PUT** /utxo_management/selection_config | Upsert UTXO selection config
+*UTXOManagementApi* | [**upsert_vault_asset_utxo_selection_config**](docs/UTXOManagementApi.md#upsert_vault_asset_utxo_selection_config) | **PUT** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Upsert vault and asset UTXO selection config
 *UserGroupsBetaApi* | [**create_user_group**](docs/UserGroupsBetaApi.md#create_user_group) | **POST** /management/user_groups | Create user group
 *UserGroupsBetaApi* | [**delete_user_group**](docs/UserGroupsBetaApi.md#delete_user_group) | **DELETE** /management/user_groups/{groupId} | Delete user group
 *UserGroupsBetaApi* | [**get_user_group**](docs/UserGroupsBetaApi.md#get_user_group) | **GET** /management/user_groups/{groupId} | Get user group
@@ -1643,6 +1644,7 @@ Class | Method | HTTP request | Description
  - [RiskLevelEnum](docs/RiskLevelEnum.md)
  - [RoleDetails](docs/RoleDetails.md)
  - [RoleDetails2](docs/RoleDetails2.md)
+ - [RoleFeeInfo](docs/RoleFeeInfo.md)
  - [RoleGrantee](docs/RoleGrantee.md)
  - [Rule](docs/Rule.md)
  - [RuleActionEnum](docs/RuleActionEnum.md)
@@ -1914,8 +1916,12 @@ Class | Method | HTTP request | Description
  - [TotalSupplyItemDto](docs/TotalSupplyItemDto.md)
  - [TotalSupplyPagedResponse](docs/TotalSupplyPagedResponse.md)
  - [TotalSupplyPagedResponse2](docs/TotalSupplyPagedResponse2.md)
+ - [TradeClass](docs/TradeClass.md)
  - [TradingAccountType](docs/TradingAccountType.md)
  - [TradingErrorSchema](docs/TradingErrorSchema.md)
+ - [TradingPair](docs/TradingPair.md)
+ - [TradingPairSide](docs/TradingPairSide.md)
+ - [TradingPairsListPage](docs/TradingPairsListPage.md)
  - [TradingProvider](docs/TradingProvider.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionConfigurations](docs/TransactionConfigurations.md)

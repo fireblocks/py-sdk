@@ -905,6 +905,7 @@ docs/RewardsInfo.md
 docs/RiskLevelEnum.md
 docs/RoleDetails.md
 docs/RoleDetails2.md
+docs/RoleFeeInfo.md
 docs/RoleGrantee.md
 docs/Rule.md
 docs/RuleActionEnum.md
@@ -1183,9 +1184,13 @@ docs/TokensPaginatedResponse.md
 docs/TotalSupplyItemDto.md
 docs/TotalSupplyPagedResponse.md
 docs/TotalSupplyPagedResponse2.md
+docs/TradeClass.md
 docs/TradingAccountType.md
 docs/TradingApi.md
 docs/TradingErrorSchema.md
+docs/TradingPair.md
+docs/TradingPairSide.md
+docs/TradingPairsListPage.md
 docs/TradingProvider.md
 docs/Transaction.md
 docs/TransactionConfigurations.md
@@ -1287,7 +1292,7 @@ docs/TxLog.md
 docs/TypedMessageTransactionStatusEnum.md
 docs/USWireAddress.md
 docs/USWireDestination.md
-docs/UTXOManagementBetaApi.md
+docs/UTXOManagementApi.md
 docs/UnfreezeTransactionResponse.md
 docs/UnmanagedWallet.md
 docs/UnspentInput.md
@@ -1439,7 +1444,7 @@ fireblocks/api/transactions_api.py
 fireblocks/api/travel_rule_api.py
 fireblocks/api/user_groups_beta_api.py
 fireblocks/api/users_api.py
-fireblocks/api/utxo_management_beta_api.py
+fireblocks/api/utxo_management_api.py
 fireblocks/api/vaults_api.py
 fireblocks/api/web3_connections_api.py
 fireblocks/api/webhooks_api.py
@@ -2324,6 +2329,7 @@ fireblocks/models/rewards_info.py
 fireblocks/models/risk_level_enum.py
 fireblocks/models/role_details.py
 fireblocks/models/role_details2.py
+fireblocks/models/role_fee_info.py
 fireblocks/models/role_grantee.py
 fireblocks/models/rule.py
 fireblocks/models/rule_action_enum.py
@@ -2595,8 +2601,12 @@ fireblocks/models/tr_link_vasp_list_dto.py
 fireblocks/models/tr_link_vasp_national_identification.py
 fireblocks/models/tr_link_verdict.py
 fireblocks/models/tr_link_verdict_enum.py
+fireblocks/models/trade_class.py
 fireblocks/models/trading_account_type.py
 fireblocks/models/trading_error_schema.py
+fireblocks/models/trading_pair.py
+fireblocks/models/trading_pair_side.py
+fireblocks/models/trading_pairs_list_page.py
 fireblocks/models/trading_provider.py
 fireblocks/models/transaction.py
 fireblocks/models/transaction_configurations.py
@@ -3714,6 +3724,7 @@ test/test_rewards_info.py
 test/test_risk_level_enum.py
 test/test_role_details.py
 test/test_role_details2.py
+test/test_role_fee_info.py
 test/test_role_grantee.py
 test/test_rule.py
 test/test_rule_action_enum.py
@@ -3992,9 +4003,13 @@ test/test_tr_link_vasp_list_dto.py
 test/test_tr_link_vasp_national_identification.py
 test/test_tr_link_verdict.py
 test/test_tr_link_verdict_enum.py
+test/test_trade_class.py
 test/test_trading_account_type.py
 test/test_trading_api.py
 test/test_trading_error_schema.py
+test/test_trading_pair.py
+test/test_trading_pair_side.py
+test/test_trading_pairs_list_page.py
 test/test_trading_provider.py
 test/test_transaction.py
 test/test_transaction_configurations.py
@@ -4142,7 +4157,7 @@ test/test_utxo_input2.py
 test/test_utxo_input_selection.py
 test/test_utxo_label_failure.py
 test/test_utxo_labels_error_response.py
-test/test_utxo_management_beta_api.py
+test/test_utxo_management_api.py
 test/test_utxo_output.py
 test/test_utxo_selection_config_entry.py
 test/test_utxo_selection_config_response.py

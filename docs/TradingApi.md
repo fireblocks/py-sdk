@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_order**](TradingApi.md#get_order) | **GET** /trading/orders/{orderId} | Get order details
 [**get_order_requirements**](TradingApi.md#get_order_requirements) | **GET** /trading/orders/{orderId}/requirement | Get order requirement details for an order
 [**get_orders**](TradingApi.md#get_orders) | **GET** /trading/orders | Get orders
+[**get_trading_pairs**](TradingApi.md#get_trading_pairs) | **GET** /trading/pairs | Get trading pairs
 [**get_trading_provider_by_id**](TradingApi.md#get_trading_provider_by_id) | **GET** /trading/providers/{providerId} | Get trading provider by ID
 [**get_trading_providers**](TradingApi.md#get_trading_providers) | **GET** /trading/providers | Get providers
 [**submit_order_requirements**](TradingApi.md#submit_order_requirements) | **POST** /trading/orders/{orderId}/requirement/data | Submit a response to an order requirement
@@ -636,6 +637,128 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Orders response |  * X-Request-ID -  <br>  |
+**401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
+**403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
+**429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |
+**5XX** | Internal error while processing the request. |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_trading_pairs**
+> TradingPairsListPage get_trading_pairs(base_asset=base_asset, quote_asset=quote_asset, base_chain=base_chain, quote_chain=quote_chain, base_rail=base_rail, quote_rail=quote_rail, side=side, trade_class=trade_class, provider_id=provider_id, account_id=account_id, prefunded=prefunded, min=min, max=max, page_size=page_size, page_cursor=page_cursor)
+
+Get trading pairs
+
+Retrieve the base/quote trading pairs supported by the tenant's trading providers. All filters are optional and combined with AND.
+
+A provider can return several rows for one pair, one per side and per connected account, each with its own `tradeClass`. Rows may use the wildcard `*` asset ID or the `BOTH` side and are returned unexpanded (see the `baseAsset`, `side` and `baseChain` filters for how they match).
+
+**Examples**
+  - Which providers support ETH/USDC: `?baseAsset=ETH&quoteAsset=USDC`. Add `providerId` to check one provider; an empty `data` array means it does not support the pair.
+  - All pairs of one account: `?providerId=ACME&accountId=<ACCOUNT_ID>`. Page through large results with `pageSize` and `pageCursor`.
+  - Everything you can buy with euro: `?baseAsset=EUR&tradeClass=ON_RAMP`.
+
+**Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes).
+
+
+### Example
+
+
+```python
+from fireblocks.models.trade_class import TradeClass
+from fireblocks.models.trading_pair_side import TradingPairSide
+from fireblocks.models.trading_pairs_list_page import TradingPairsListPage
+from fireblocks.models.transfer_rail import TransferRail
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    base_asset = 'base_asset_example' # str | Filter by base asset ID. Also matches `*` rows on the chain of this asset. (optional)
+    quote_asset = 'quote_asset_example' # str | Filter by quote asset ID. Also matches `*` rows on the chain of this asset. (optional)
+    base_chain = 'base_chain_example' # str | Filter by base asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain. (optional)
+    quote_chain = 'quote_chain_example' # str | Filter by quote asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain. (optional)
+    base_rail = fireblocks.TransferRail() # TransferRail | Filter by base asset transfer rail. (optional)
+    quote_rail = fireblocks.TransferRail() # TransferRail | Filter by quote asset transfer rail. (optional)
+    side = fireblocks.TradingPairSide() # TradingPairSide | Filter by trading side. `BUY` or `SELL` also matches rows whose side is `BOTH`; `BOTH` matches rows of any side. (optional)
+    trade_class = fireblocks.TradeClass() # TradeClass | Filter by trade class. (optional)
+    provider_id = ['provider_id_example'] # List[str] | Filter by provider ID. Repeat the parameter to match any of several providers, up to 50. (optional)
+    account_id = ['account_id_example'] # List[str] | Filter by connected account ID. Repeat the parameter to match any of several accounts, up to 50. (optional)
+    prefunded = True # bool | Filter by whether the pair requires prefunding. (optional)
+    min = 'min_example' # str | An order-size filter, not a bound on the result. Only returns pairs whose own `min` field (the smallest base-asset amount the pair accepts) is at most this value, i.e. pairs that can serve an order of this size. For example, `min=10` returns pairs with a `min` of 10 or less. (optional)
+    max = 'max_example' # str | An order-size filter, not a bound on the result. Only returns pairs whose own `max` field (the largest base-asset amount the pair accepts) is at least this value. For example, `max=1000` returns pairs with a `max` of 1000 or more. (optional)
+    page_size = 100 # int | Page size for pagination. (optional) (default to 100)
+    page_cursor = 'page_cursor_example' # str | Page cursor for pagination. (optional)
+
+    try:
+        # Get trading pairs
+        api_response = fireblocks.trading.get_trading_pairs(base_asset=base_asset, quote_asset=quote_asset, base_chain=base_chain, quote_chain=quote_chain, base_rail=base_rail, quote_rail=quote_rail, side=side, trade_class=trade_class, provider_id=provider_id, account_id=account_id, prefunded=prefunded, min=min, max=max, page_size=page_size, page_cursor=page_cursor).result()
+        print("The response of TradingApi->get_trading_pairs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TradingApi->get_trading_pairs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **base_asset** | **str**| Filter by base asset ID. Also matches &#x60;*&#x60; rows on the chain of this asset. | [optional] 
+ **quote_asset** | **str**| Filter by quote asset ID. Also matches &#x60;*&#x60; rows on the chain of this asset. | [optional] 
+ **base_chain** | **str**| Filter by base asset blockchain &#x60;legacyId&#x60; (e.g. &#x60;ETH&#x60;, &#x60;BASECHAIN_ETH&#x60;, &#x60;SOL&#x60;). Matches both concrete-asset rows and &#x60;*&#x60; rows on that chain. | [optional] 
+ **quote_chain** | **str**| Filter by quote asset blockchain &#x60;legacyId&#x60; (e.g. &#x60;ETH&#x60;, &#x60;BASECHAIN_ETH&#x60;, &#x60;SOL&#x60;). Matches both concrete-asset rows and &#x60;*&#x60; rows on that chain. | [optional] 
+ **base_rail** | [**TransferRail**](.md)| Filter by base asset transfer rail. | [optional] 
+ **quote_rail** | [**TransferRail**](.md)| Filter by quote asset transfer rail. | [optional] 
+ **side** | [**TradingPairSide**](.md)| Filter by trading side. &#x60;BUY&#x60; or &#x60;SELL&#x60; also matches rows whose side is &#x60;BOTH&#x60;; &#x60;BOTH&#x60; matches rows of any side. | [optional] 
+ **trade_class** | [**TradeClass**](.md)| Filter by trade class. | [optional] 
+ **provider_id** | [**List[str]**](str.md)| Filter by provider ID. Repeat the parameter to match any of several providers, up to 50. | [optional] 
+ **account_id** | [**List[str]**](str.md)| Filter by connected account ID. Repeat the parameter to match any of several accounts, up to 50. | [optional] 
+ **prefunded** | **bool**| Filter by whether the pair requires prefunding. | [optional] 
+ **min** | **str**| An order-size filter, not a bound on the result. Only returns pairs whose own &#x60;min&#x60; field (the smallest base-asset amount the pair accepts) is at most this value, i.e. pairs that can serve an order of this size. For example, &#x60;min&#x3D;10&#x60; returns pairs with a &#x60;min&#x60; of 10 or less. | [optional] 
+ **max** | **str**| An order-size filter, not a bound on the result. Only returns pairs whose own &#x60;max&#x60; field (the largest base-asset amount the pair accepts) is at least this value. For example, &#x60;max&#x3D;1000&#x60; returns pairs with a &#x60;max&#x60; of 1000 or more. | [optional] 
+ **page_size** | **int**| Page size for pagination. | [optional] [default to 100]
+ **page_cursor** | **str**| Page cursor for pagination. | [optional] 
+
+### Return type
+
+[**TradingPairsListPage**](TradingPairsListPage.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Trading pairs response |  * X-Request-ID -  <br>  |
+**400** | Bad request: invalid input parameters, malformed request body, or validation failure. |  * X-Request-ID -  <br>  |
 **401** | Unauthorized. Missing / invalid JWT token in Authorization header. |  * X-Request-ID -  <br>  |
 **403** | Forbidden: insufficient permissions, disabled feature, or restricted access. |  * X-Request-ID -  <br>  |
 **429** | Rate limit exceeded: slow down and retry later. |  * X-Request-ID -  <br>  |

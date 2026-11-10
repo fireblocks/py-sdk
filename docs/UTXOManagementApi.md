@@ -1,15 +1,15 @@
-# fireblocks.UTXOManagementBetaApi
+# fireblocks.UTXOManagementApi
 
 All URIs are relative to *https://api.fireblocks.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_utxo_selection_config**](UTXOManagementBetaApi.md#get_utxo_selection_config) | **GET** /utxo_management/selection_config | Get UTXO selection config
-[**get_utxos**](UTXOManagementBetaApi.md#get_utxos) | **GET** /utxo_management/{vaultAccountId}/{assetId}/unspent_outputs | List unspent outputs (UTXOs)
-[**get_vault_asset_utxo_selection_config**](UTXOManagementBetaApi.md#get_vault_asset_utxo_selection_config) | **GET** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Get vault and asset UTXO selection config
-[**update_utxo_labels**](UTXOManagementBetaApi.md#update_utxo_labels) | **PATCH** /utxo_management/{vaultAccountId}/{assetId}/labels | Attach or detach labels to/from UTXOs
-[**upsert_utxo_selection_config**](UTXOManagementBetaApi.md#upsert_utxo_selection_config) | **PUT** /utxo_management/selection_config | Upsert UTXO selection config
-[**upsert_vault_asset_utxo_selection_config**](UTXOManagementBetaApi.md#upsert_vault_asset_utxo_selection_config) | **PUT** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Upsert vault and asset UTXO selection config
+[**get_utxo_selection_config**](UTXOManagementApi.md#get_utxo_selection_config) | **GET** /utxo_management/selection_config | Get UTXO selection config
+[**get_utxos**](UTXOManagementApi.md#get_utxos) | **GET** /utxo_management/{vaultAccountId}/{assetId}/unspent_outputs | List unspent outputs (UTXOs)
+[**get_vault_asset_utxo_selection_config**](UTXOManagementApi.md#get_vault_asset_utxo_selection_config) | **GET** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Get vault and asset UTXO selection config
+[**update_utxo_labels**](UTXOManagementApi.md#update_utxo_labels) | **PATCH** /utxo_management/{vaultAccountId}/{assetId}/labels | Attach or detach labels to/from UTXOs
+[**upsert_utxo_selection_config**](UTXOManagementApi.md#upsert_utxo_selection_config) | **PUT** /utxo_management/selection_config | Upsert UTXO selection config
+[**upsert_vault_asset_utxo_selection_config**](UTXOManagementApi.md#upsert_vault_asset_utxo_selection_config) | **PUT** /utxo_management/{vaultAccountId}/{assetId}/selection_config | Upsert vault and asset UTXO selection config
 
 
 # **get_utxo_selection_config**
@@ -18,7 +18,6 @@ Method | HTTP request | Description
 Get UTXO selection config
 
 Returns the workspace-level configured selection strategy and the effective strategy after runtime resolution. `ADAPTIVE` is the recommended strategy. When no row is stored (source `DEFAULT`), `effective` is `ADAPTIVE` if adaptive selection is serving for this workspace, otherwise `ASC`.
-**Note:** These endpoints are currently in beta and might be subject to changes.
 Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
@@ -49,11 +48,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get UTXO selection config
-        api_response = fireblocks.utxo_management_beta.get_utxo_selection_config().result()
-        print("The response of UTXOManagementBetaApi->get_utxo_selection_config:\n")
+        api_response = fireblocks.utxo_management.get_utxo_selection_config().result()
+        print("The response of UTXOManagementApi->get_utxo_selection_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->get_utxo_selection_config: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->get_utxo_selection_config: %s\n" % e)
 ```
 
 
@@ -90,7 +89,6 @@ No authorization required
 List unspent outputs (UTXOs)
 
 Returns a paginated list of unspent transaction outputs (UTXOs) for a UTXO-based asset in a vault account, with optional filters for labels, statuses, amounts, and more.
-**Note:** These endpoints are currently in beta and might be subject to changes.
 Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
@@ -136,11 +134,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # List unspent outputs (UTXOs)
-        api_response = fireblocks.utxo_management_beta.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, tx_hash=tx_hash, tx_id=tx_id, min_amount=min_amount, max_amount=max_amount).result()
-        print("The response of UTXOManagementBetaApi->get_utxos:\n")
+        api_response = fireblocks.utxo_management.get_utxos(vault_account_id, asset_id, page_cursor=page_cursor, page_size=page_size, sort=sort, order=order, include_all_labels=include_all_labels, include_any_labels=include_any_labels, exclude_any_labels=exclude_any_labels, include_statuses=include_statuses, address=address, tx_hash=tx_hash, tx_id=tx_id, min_amount=min_amount, max_amount=max_amount).result()
+        print("The response of UTXOManagementApi->get_utxos:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->get_utxos: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->get_utxos: %s\n" % e)
 ```
 
 
@@ -194,7 +192,6 @@ No authorization required
 Get vault and asset UTXO selection config
 
 Returns the config stored at this vault-and-asset scope, if any, and the effective strategy after workspace fallback and runtime resolution. `ADAPTIVE` is the recommended strategy. When no row is stored at this scope and none is inherited from the workspace (source `DEFAULT`), `effective` is `ADAPTIVE` if adaptive selection is serving for this scope, otherwise `ASC`.
-**Note:** These endpoints are currently in beta and might be subject to changes.
 Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
 ### Example
@@ -227,11 +224,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Get vault and asset UTXO selection config
-        api_response = fireblocks.utxo_management_beta.get_vault_asset_utxo_selection_config(vault_account_id, asset_id).result()
-        print("The response of UTXOManagementBetaApi->get_vault_asset_utxo_selection_config:\n")
+        api_response = fireblocks.utxo_management.get_vault_asset_utxo_selection_config(vault_account_id, asset_id).result()
+        print("The response of UTXOManagementApi->get_vault_asset_utxo_selection_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->get_vault_asset_utxo_selection_config: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->get_vault_asset_utxo_selection_config: %s\n" % e)
 ```
 
 
@@ -290,9 +287,6 @@ A UTXO removed within the last hour is reported as `NOT_FOUND` with
 `NOT_LABELLABLE` after about an hour. A `400` without `failures` means
 the request itself is malformed.
 
-**Note:** These endpoints are currently in beta and might be subject to
-changes.
-
 Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver,
 Editor.
 
@@ -329,11 +323,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Attach or detach labels to/from UTXOs
-        api_response = fireblocks.utxo_management_beta.update_utxo_labels(vault_account_id, asset_id, attach_detach_utxo_labels_request, idempotency_key=idempotency_key).result()
-        print("The response of UTXOManagementBetaApi->update_utxo_labels:\n")
+        api_response = fireblocks.utxo_management.update_utxo_labels(vault_account_id, asset_id, attach_detach_utxo_labels_request, idempotency_key=idempotency_key).result()
+        print("The response of UTXOManagementApi->update_utxo_labels:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->update_utxo_labels: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->update_utxo_labels: %s\n" % e)
 ```
 
 
@@ -377,7 +371,6 @@ No authorization required
 Upsert UTXO selection config
 
 Creates or updates the workspace-level UTXO selection strategy. `ADAPTIVE` is recommended.
-**Note:** These endpoints are currently in beta and might be subject to changes.
 Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
@@ -411,11 +404,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Upsert UTXO selection config
-        api_response = fireblocks.utxo_management_beta.upsert_utxo_selection_config(upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
-        print("The response of UTXOManagementBetaApi->upsert_utxo_selection_config:\n")
+        api_response = fireblocks.utxo_management.upsert_utxo_selection_config(upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
+        print("The response of UTXOManagementApi->upsert_utxo_selection_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->upsert_utxo_selection_config: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->upsert_utxo_selection_config: %s\n" % e)
 ```
 
 
@@ -456,7 +449,6 @@ No authorization required
 Upsert vault and asset UTXO selection config
 
 Creates or updates the UTXO selection strategy for this vault account and asset. `ADAPTIVE` is recommended.
-**Note:** These endpoints are currently in beta and might be subject to changes.
 Endpoint Permission: Admin, Non-Signing Admin.
 
 ### Example
@@ -492,11 +484,11 @@ with Fireblocks(configuration) as fireblocks:
 
     try:
         # Upsert vault and asset UTXO selection config
-        api_response = fireblocks.utxo_management_beta.upsert_vault_asset_utxo_selection_config(vault_account_id, asset_id, upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
-        print("The response of UTXOManagementBetaApi->upsert_vault_asset_utxo_selection_config:\n")
+        api_response = fireblocks.utxo_management.upsert_vault_asset_utxo_selection_config(vault_account_id, asset_id, upsert_utxo_selection_config_request, idempotency_key=idempotency_key).result()
+        print("The response of UTXOManagementApi->upsert_vault_asset_utxo_selection_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UTXOManagementBetaApi->upsert_vault_asset_utxo_selection_config: %s\n" % e)
+        print("Exception when calling UTXOManagementApi->upsert_vault_asset_utxo_selection_config: %s\n" % e)
 ```
 
 

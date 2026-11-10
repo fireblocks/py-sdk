@@ -64,7 +64,7 @@ from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
-from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
+from fireblocks.api.utxo_management_api import UTXOManagementApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -232,8 +232,8 @@ def test_get_transactions(fireblocks_instance):
 def test_get_travel_rule(fireblocks_instance):
     assert isinstance(fireblocks_instance.travel_rule, TravelRuleApi)
 
-def test_get_utxo_management_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.utxo_management_beta, UTXOManagementBetaApi)
+def test_get_utxo_management(fireblocks_instance):
+    assert isinstance(fireblocks_instance.utxo_management, UTXOManagementApi)
 
 def test_get_user_groups_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.user_groups_beta, UserGroupsBetaApi)

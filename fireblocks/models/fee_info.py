@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.role_fee_info import RoleFeeInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -37,7 +38,9 @@ class FeeInfo(BaseModel):
     relay_id: Optional[StrictStr] = Field(default=None, description="The vault account ID of the relay", alias="relayId")
     relay_name: Optional[StrictStr] = Field(default=None, description="The name of the tenant, only for THIRD_PARTY relays", alias="relayName")
     fee_usd: Optional[StrictStr] = Field(default=None, description="The USD value of the fee", alias="feeUSD")
-    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "L1networkFee", "L2networkFee", "paidByRelay", "relayType", "relayId", "relayName", "feeUSD"]
+    sender: Optional[RoleFeeInfo] = None
+    recipient: Optional[RoleFeeInfo] = None
+    __properties: ClassVar[List[str]] = ["networkFee", "serviceFee", "gasPrice", "L1networkFee", "L2networkFee", "paidByRelay", "relayType", "relayId", "relayName", "feeUSD", "sender", "recipient"]
 
     @field_validator('relay_type')
     def relay_type_validate_enum(cls, value):
@@ -88,6 +91,12 @@ class FeeInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of sender
+        if self.sender:
+            _dict['sender'] = self.sender.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recipient
+        if self.recipient:
+            _dict['recipient'] = self.recipient.to_dict()
         return _dict
 
     @classmethod
@@ -109,7 +118,9 @@ class FeeInfo(BaseModel):
             "relayType": obj.get("relayType"),
             "relayId": obj.get("relayId"),
             "relayName": obj.get("relayName"),
-            "feeUSD": obj.get("feeUSD")
+            "feeUSD": obj.get("feeUSD"),
+            "sender": RoleFeeInfo.from_dict(obj["sender"]) if obj.get("sender") is not None else None,
+            "recipient": RoleFeeInfo.from_dict(obj["recipient"]) if obj.get("recipient") is not None else None
         })
         return _obj
 

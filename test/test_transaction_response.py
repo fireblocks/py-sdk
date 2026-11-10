@@ -142,7 +142,13 @@ class TestTransactionResponse(unittest.TestCase):
                     relay_type = 'LOCAL', 
                     relay_id = '1', 
                     relay_name = 'Tenant Name', 
-                    fee_usd = '0.0013', ),
+                    fee_usd = '0.0013', 
+                    sender = fireblocks.models.role_fee_info.RoleFeeInfo(
+                        fees_deducted = '0.017686415', 
+                        value_credited = '0.000000001', ), 
+                    recipient = fireblocks.models.role_fee_info.RoleFeeInfo(
+                        fees_deducted = '0.017686415', 
+                        value_credited = '0.000000001', ), ),
                 fee_currency = '',
                 requested_fee_currency = 'PATH_USD',
                 canton_details = {"offerResponse":{"version":1,"domain":"ALLOCATION","responseType":"ALLOCATION_WITHDRAW","originalTransactionId":"9f2b7c14-8d55-4a02-b6e1-5c3f90a7d488","allocationTransactionId":"5a1d8b0f-2c31-4c7e-9d0a-118e7b6c4a21"}},

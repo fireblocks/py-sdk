@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **relay_id** | **str** | The vault account ID of the relay | [optional] 
 **relay_name** | **str** | The name of the tenant, only for THIRD_PARTY relays | [optional] 
 **fee_usd** | **str** | The USD value of the fee | [optional] 
+**sender** | [**RoleFeeInfo**](RoleFeeInfo.md) |  | [optional] 
+**recipient** | [**RoleFeeInfo**](RoleFeeInfo.md) |  | [optional] 
 
 ## Example
 

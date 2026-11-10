@@ -18,7 +18,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBytes, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictBytes, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
 from fireblocks.models.create_offers_request import CreateOffersRequest
@@ -34,7 +34,11 @@ from fireblocks.models.quotes_response import QuotesResponse
 from fireblocks.models.rates_request import RatesRequest
 from fireblocks.models.rates_response import RatesResponse
 from fireblocks.models.submit_order_requirement_request import SubmitOrderRequirementRequest
+from fireblocks.models.trade_class import TradeClass
+from fireblocks.models.trading_pair_side import TradingPairSide
+from fireblocks.models.trading_pairs_list_page import TradingPairsListPage
 from fireblocks.models.trading_provider import TradingProvider
+from fireblocks.models.transfer_rail import TransferRail
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -1137,6 +1141,270 @@ class TradingApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/trading/orders',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_trading_pairs(
+        self,
+        base_asset: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Filter by base asset ID. Also matches `*` rows on the chain of this asset.")] = None,
+        quote_asset: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Filter by quote asset ID. Also matches `*` rows on the chain of this asset.")] = None,
+        base_chain: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Filter by base asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain.")] = None,
+        quote_chain: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Filter by quote asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain.")] = None,
+        base_rail: Annotated[Optional[TransferRail], Field(description="Filter by base asset transfer rail.")] = None,
+        quote_rail: Annotated[Optional[TransferRail], Field(description="Filter by quote asset transfer rail.")] = None,
+        side: Annotated[Optional[TradingPairSide], Field(description="Filter by trading side. `BUY` or `SELL` also matches rows whose side is `BOTH`; `BOTH` matches rows of any side.")] = None,
+        trade_class: Annotated[Optional[TradeClass], Field(description="Filter by trade class.")] = None,
+        provider_id: Annotated[Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True)]], Field(max_length=50)]], Field(description="Filter by provider ID. Repeat the parameter to match any of several providers, up to 50.")] = None,
+        account_id: Annotated[Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True)]], Field(max_length=50)]], Field(description="Filter by connected account ID. Repeat the parameter to match any of several accounts, up to 50.")] = None,
+        prefunded: Annotated[Optional[StrictBool], Field(description="Filter by whether the pair requires prefunding.")] = None,
+        min: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="An order-size filter, not a bound on the result. Only returns pairs whose own `min` field (the smallest base-asset amount the pair accepts) is at most this value, i.e. pairs that can serve an order of this size. For example, `min=10` returns pairs with a `min` of 10 or less.")] = None,
+        max: Annotated[Optional[Annotated[str, Field(strict=True)]], Field(description="An order-size filter, not a bound on the result. Only returns pairs whose own `max` field (the largest base-asset amount the pair accepts) is at least this value. For example, `max=1000` returns pairs with a `max` of 1000 or more.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Page size for pagination.")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="Page cursor for pagination.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TradingPairsListPage]]:
+        """Get trading pairs
+
+        Retrieve the base/quote trading pairs supported by the tenant's trading providers. All filters are optional and combined with AND.  A provider can return several rows for one pair, one per side and per connected account, each with its own `tradeClass`. Rows may use the wildcard `*` asset ID or the `BOTH` side and are returned unexpanded (see the `baseAsset`, `side` and `baseChain` filters for how they match).  **Examples**   - Which providers support ETH/USDC: `?baseAsset=ETH&quoteAsset=USDC`. Add `providerId` to check one provider; an empty `data` array means it does not support the pair.   - All pairs of one account: `?providerId=ACME&accountId=<ACCOUNT_ID>`. Page through large results with `pageSize` and `pageCursor`.   - Everything you can buy with euro: `?baseAsset=EUR&tradeClass=ON_RAMP`.  **Endpoint Permission:** Owner, Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.  For detailed information about error codes and troubleshooting, please refer to our [API Error Codes documentation](https://developers.fireblocks.com/reference/api-error-codes). 
+
+        :param base_asset: Filter by base asset ID. Also matches `*` rows on the chain of this asset.
+        :type base_asset: str
+        :param quote_asset: Filter by quote asset ID. Also matches `*` rows on the chain of this asset.
+        :type quote_asset: str
+        :param base_chain: Filter by base asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain.
+        :type base_chain: str
+        :param quote_chain: Filter by quote asset blockchain `legacyId` (e.g. `ETH`, `BASECHAIN_ETH`, `SOL`). Matches both concrete-asset rows and `*` rows on that chain.
+        :type quote_chain: str
+        :param base_rail: Filter by base asset transfer rail.
+        :type base_rail: TransferRail
+        :param quote_rail: Filter by quote asset transfer rail.
+        :type quote_rail: TransferRail
+        :param side: Filter by trading side. `BUY` or `SELL` also matches rows whose side is `BOTH`; `BOTH` matches rows of any side.
+        :type side: TradingPairSide
+        :param trade_class: Filter by trade class.
+        :type trade_class: TradeClass
+        :param provider_id: Filter by provider ID. Repeat the parameter to match any of several providers, up to 50.
+        :type provider_id: List[str]
+        :param account_id: Filter by connected account ID. Repeat the parameter to match any of several accounts, up to 50.
+        :type account_id: List[str]
+        :param prefunded: Filter by whether the pair requires prefunding.
+        :type prefunded: bool
+        :param min: An order-size filter, not a bound on the result. Only returns pairs whose own `min` field (the smallest base-asset amount the pair accepts) is at most this value, i.e. pairs that can serve an order of this size. For example, `min=10` returns pairs with a `min` of 10 or less.
+        :type min: str
+        :param max: An order-size filter, not a bound on the result. Only returns pairs whose own `max` field (the largest base-asset amount the pair accepts) is at least this value. For example, `max=1000` returns pairs with a `max` of 1000 or more.
+        :type max: str
+        :param page_size: Page size for pagination.
+        :type page_size: int
+        :param page_cursor: Page cursor for pagination.
+        :type page_cursor: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_trading_pairs_serialize(
+            base_asset=base_asset,
+            quote_asset=quote_asset,
+            base_chain=base_chain,
+            quote_chain=quote_chain,
+            base_rail=base_rail,
+            quote_rail=quote_rail,
+            side=side,
+            trade_class=trade_class,
+            provider_id=provider_id,
+            account_id=account_id,
+            prefunded=prefunded,
+            min=min,
+            max=max,
+            page_size=page_size,
+            page_cursor=page_cursor,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TradingPairsListPage",
+            '400': "TradingErrorSchema",
+            '401': "TradingErrorSchema",
+            '403': "TradingErrorSchema",
+            '429': "TradingErrorSchema",
+            '5XX': "TradingErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_trading_pairs",
+        )
+
+    def _get_trading_pairs_serialize(
+        self,
+        base_asset,
+        quote_asset,
+        base_chain,
+        quote_chain,
+        base_rail,
+        quote_rail,
+        side,
+        trade_class,
+        provider_id,
+        account_id,
+        prefunded,
+        min,
+        max,
+        page_size,
+        page_cursor,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'providerId': 'multi',
+            'accountId': 'multi',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if base_asset is not None:
+            
+            _query_params.append(('baseAsset', base_asset))
+            
+        if quote_asset is not None:
+            
+            _query_params.append(('quoteAsset', quote_asset))
+            
+        if base_chain is not None:
+            
+            _query_params.append(('baseChain', base_chain))
+            
+        if quote_chain is not None:
+            
+            _query_params.append(('quoteChain', quote_chain))
+            
+        if base_rail is not None:
+            
+            _query_params.append(('baseRail', base_rail.value))
+            
+        if quote_rail is not None:
+            
+            _query_params.append(('quoteRail', quote_rail.value))
+            
+        if side is not None:
+            
+            _query_params.append(('side', side.value))
+            
+        if trade_class is not None:
+            
+            _query_params.append(('tradeClass', trade_class.value))
+            
+        if provider_id is not None:
+            
+            _query_params.append(('providerId', provider_id))
+            
+        if account_id is not None:
+            
+            _query_params.append(('accountId', account_id))
+            
+        if prefunded is not None:
+            
+            _query_params.append(('prefunded', prefunded))
+            
+        if min is not None:
+            
+            _query_params.append(('min', min))
+            
+        if max is not None:
+            
+            _query_params.append(('max', max))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/trading/pairs',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

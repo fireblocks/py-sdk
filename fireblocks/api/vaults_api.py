@@ -2311,12 +2311,12 @@ class VaultsApi:
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account")],
         asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
         manual_signging: Annotated[Optional[StrictBool], Field(description="False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device.")] = None,
-        include_all_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
-        include_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
-        exclude_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
-        address: Annotated[Optional[StrictStr], Field(description="Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
-        min_amount: Annotated[Optional[StrictStr], Field(description="Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
-        max_amount: Annotated[Optional[StrictStr], Field(description="Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.")] = None,
+        include_all_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager.")] = None,
+        include_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager.")] = None,
+        exclude_any_labels: Annotated[Optional[List[StrictStr]], Field(description="Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager.")] = None,
+        address: Annotated[Optional[StrictStr], Field(description="Only include UTXOs from this specific address. Requires the UTXO Manager.")] = None,
+        min_amount: Annotated[Optional[StrictStr], Field(description="Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager.")] = None,
+        max_amount: Annotated[Optional[StrictStr], Field(description="Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2340,17 +2340,17 @@ class VaultsApi:
         :type asset_id: str
         :param manual_signging: False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device.
         :type manual_signging: bool
-        :param include_all_labels: Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param include_all_labels: Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager.
         :type include_all_labels: List[str]
-        :param include_any_labels: Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param include_any_labels: Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager.
         :type include_any_labels: List[str]
-        :param exclude_any_labels: Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param exclude_any_labels: Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager.
         :type exclude_any_labels: List[str]
-        :param address: Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param address: Only include UTXOs from this specific address. Requires the UTXO Manager.
         :type address: str
-        :param min_amount: Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param min_amount: Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager.
         :type min_amount: str
-        :param max_amount: Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes.
+        :param max_amount: Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager.
         :type max_amount: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

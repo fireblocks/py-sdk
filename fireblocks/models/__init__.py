@@ -880,6 +880,7 @@ from fireblocks.models.rewards_info import RewardsInfo
 from fireblocks.models.risk_level_enum import RiskLevelEnum
 from fireblocks.models.role_details import RoleDetails
 from fireblocks.models.role_details2 import RoleDetails2
+from fireblocks.models.role_fee_info import RoleFeeInfo
 from fireblocks.models.role_grantee import RoleGrantee
 from fireblocks.models.rule import Rule
 from fireblocks.models.rule_action_enum import RuleActionEnum
@@ -1151,8 +1152,12 @@ from fireblocks.models.tokens_paginated_response import TokensPaginatedResponse
 from fireblocks.models.total_supply_item_dto import TotalSupplyItemDto
 from fireblocks.models.total_supply_paged_response import TotalSupplyPagedResponse
 from fireblocks.models.total_supply_paged_response2 import TotalSupplyPagedResponse2
+from fireblocks.models.trade_class import TradeClass
 from fireblocks.models.trading_account_type import TradingAccountType
 from fireblocks.models.trading_error_schema import TradingErrorSchema
+from fireblocks.models.trading_pair import TradingPair
+from fireblocks.models.trading_pair_side import TradingPairSide
+from fireblocks.models.trading_pairs_list_page import TradingPairsListPage
 from fireblocks.models.trading_provider import TradingProvider
 from fireblocks.models.transaction import Transaction
 from fireblocks.models.transaction_configurations import TransactionConfigurations

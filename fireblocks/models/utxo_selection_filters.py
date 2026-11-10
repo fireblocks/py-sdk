@@ -25,7 +25,7 @@ from typing_extensions import Self
 
 class UtxoSelectionFilters(BaseModel):
     """
-    Narrow the UTXO candidate pool. All specified filters are AND-ed together. This feature is currently in beta and might be subject to changes. 
+    Narrow the UTXO candidate pool. All specified filters are AND-ed together. 
     """ # noqa: E501
     include_all_labels: Optional[List[StrictStr]] = Field(default=None, description="Only include UTXOs that have ALL of these labels.", alias="includeAllLabels")
     include_any_labels: Optional[List[StrictStr]] = Field(default=None, description="Only include UTXOs that have at least one of these labels.", alias="includeAnyLabels")

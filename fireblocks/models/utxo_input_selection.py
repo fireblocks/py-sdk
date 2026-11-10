@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class UtxoInputSelection(BaseModel):
     """
-    Explicitly control which UTXOs to include or exclude. This feature is currently in beta and might be subject to changes. 
+    Explicitly control which UTXOs to include or exclude. 
     """ # noqa: E501
     inputs_to_spend: Optional[List[UtxoInput]] = Field(default=None, description="Force-include specific UTXOs by txHash and index.", alias="inputsToSpend")
     inputs_to_exclude: Optional[List[UtxoInput]] = Field(default=None, description="Exclude specific UTXOs from selection.", alias="inputsToExclude")

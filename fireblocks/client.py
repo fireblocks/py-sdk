@@ -66,7 +66,7 @@ from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
-from fireblocks.api.utxo_management_beta_api import UTXOManagementBetaApi
+from fireblocks.api.utxo_management_api import UTXOManagementApi
 from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
@@ -135,7 +135,7 @@ class Fireblocks:
         self._trading = None
         self._transactions = None
         self._travel_rule = None
-        self._utxo_management_beta = None
+        self._utxo_management = None
         self._user_groups_beta = None
         self._users = None
         self._vaults = None
@@ -450,10 +450,10 @@ class Fireblocks:
         return self._travel_rule
 
     @property
-    def utxo_management_beta(self) -> UTXOManagementBetaApi:
-        if self._utxo_management_beta is None:
-            self._utxo_management_beta = UTXOManagementBetaApi(self._api_client)
-        return self._utxo_management_beta
+    def utxo_management(self) -> UTXOManagementApi:
+        if self._utxo_management is None:
+            self._utxo_management = UTXOManagementApi(self._api_client)
+        return self._utxo_management
 
     @property
     def user_groups_beta(self) -> UserGroupsBetaApi:

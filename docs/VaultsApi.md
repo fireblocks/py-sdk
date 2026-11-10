@@ -1292,12 +1292,12 @@ with Fireblocks(configuration) as fireblocks:
     vault_account_id = 'vault_account_id_example' # str | The ID of the vault account
     asset_id = 'asset_id_example' # str | The ID of the asset
     manual_signging = True # bool | False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. (optional)
-    include_all_labels = ['include_all_labels_example'] # List[str] | Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
-    include_any_labels = ['include_any_labels_example'] # List[str] | Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
-    exclude_any_labels = ['exclude_any_labels_example'] # List[str] | Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
-    address = 'address_example' # str | Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
-    min_amount = 'min_amount_example' # str | Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
-    max_amount = 'max_amount_example' # str | Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. (optional)
+    include_all_labels = ['include_all_labels_example'] # List[str] | Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. (optional)
+    include_any_labels = ['include_any_labels_example'] # List[str] | Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. (optional)
+    exclude_any_labels = ['exclude_any_labels_example'] # List[str] | Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. (optional)
+    address = 'address_example' # str | Only include UTXOs from this specific address. Requires the UTXO Manager. (optional)
+    min_amount = 'min_amount_example' # str | Minimum UTXO amount in the asset's base unit. Requires the UTXO Manager. (optional)
+    max_amount = 'max_amount_example' # str | Maximum UTXO amount in the asset's base unit. Requires the UTXO Manager. (optional)
 
     try:
         # Get max spendable amount in a transaction
@@ -1318,12 +1318,12 @@ Name | Type | Description  | Notes
  **vault_account_id** | **str**| The ID of the vault account | 
  **asset_id** | **str**| The ID of the asset | 
  **manual_signging** | **bool**| False by default. The maximum number of inputs depends if the transaction will be signed by an automated co-signer server or on a mobile device. | [optional] 
- **include_all_labels** | [**List[str]**](str.md)| Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
- **include_any_labels** | [**List[str]**](str.md)| Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
- **exclude_any_labels** | [**List[str]**](str.md)| Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
- **address** | **str**| Only include UTXOs from this specific address. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
- **min_amount** | **str**| Minimum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
- **max_amount** | **str**| Maximum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. This feature is currently in beta and might be subject to changes. | [optional] 
+ **include_all_labels** | [**List[str]**](str.md)| Only include UTXOs that have ALL of these labels (AND logic). Requires the UTXO Manager. | [optional] 
+ **include_any_labels** | [**List[str]**](str.md)| Only include UTXOs that have ANY of these labels (OR logic). Requires the UTXO Manager. | [optional] 
+ **exclude_any_labels** | [**List[str]**](str.md)| Exclude UTXOs that have ANY of these labels. Requires the UTXO Manager. | [optional] 
+ **address** | **str**| Only include UTXOs from this specific address. Requires the UTXO Manager. | [optional] 
+ **min_amount** | **str**| Minimum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. | [optional] 
+ **max_amount** | **str**| Maximum UTXO amount in the asset&#39;s base unit. Requires the UTXO Manager. | [optional] 
 
 ### Return type
 

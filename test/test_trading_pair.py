@@ -40,6 +40,8 @@ class TestTradingPair(unittest.TestCase):
                 account_id = '7f1a2b3c-9d4e-4a5b-8c6d-1e2f3a4b5c6d',
                 base_asset_id = 'ETH',
                 quote_asset_id = 'USDC',
+                base_symbol = 'ETH',
+                quote_symbol = 'USDC',
                 base_chain = 'ETH',
                 quote_chain = 'ETH',
                 side = 'BUY',

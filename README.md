@@ -539,11 +539,6 @@ Class | Method | HTTP request | Description
 *PolicyEditorV2Api* | [**publish_draft**](docs/PolicyEditorV2Api.md#publish_draft) | **POST** /policy/draft | Send publish request for a certain draft id
 *PolicyEditorV2Api* | [**update_draft**](docs/PolicyEditorV2Api.md#update_draft) | **PUT** /policy/draft | Update the draft with a new set of rules by policy types
 *PolicyEditorV2BetaApi* | [**get_policy_rule_quota**](docs/PolicyEditorV2BetaApi.md#get_policy_rule_quota) | **POST** /policy/rules/quota | Calculate the AOT quota for a policy rule
-*PolicyEditorBetaApi* | [**get_active_policy_legacy**](docs/PolicyEditorBetaApi.md#get_active_policy_legacy) | **GET** /tap/active_policy | Get the active policy and its validation
-*PolicyEditorBetaApi* | [**get_draft_legacy**](docs/PolicyEditorBetaApi.md#get_draft_legacy) | **GET** /tap/draft | Get the active draft
-*PolicyEditorBetaApi* | [**publish_draft_legacy**](docs/PolicyEditorBetaApi.md#publish_draft_legacy) | **POST** /tap/draft | Send publish request for a certain draft id
-*PolicyEditorBetaApi* | [**publish_policy_rules**](docs/PolicyEditorBetaApi.md#publish_policy_rules) | **POST** /tap/publish | Send publish request for a set of policy rules
-*PolicyEditorBetaApi* | [**update_draft_legacy**](docs/PolicyEditorBetaApi.md#update_draft_legacy) | **PUT** /tap/draft | Update the draft with a new set of rules
 *ReportsBetaApi* | [**create_report**](docs/ReportsBetaApi.md#create_report) | **POST** /reports | Create a report
 *ReportsBetaApi* | [**get_report**](docs/ReportsBetaApi.md#get_report) | **GET** /reports/{reportId} | Get report status
 *ReportsBetaApi* | [**list_reports**](docs/ReportsBetaApi.md#list_reports) | **GET** /reports | List reports
@@ -1360,34 +1355,6 @@ Class | Method | HTTP request | Description
  - [LeanAbiFunction](docs/LeanAbiFunction.md)
  - [LeanContractDto](docs/LeanContractDto.md)
  - [LeanDeployedContractResponseDto](docs/LeanDeployedContractResponseDto.md)
- - [LegacyAmountAggregationTimePeriodMethod](docs/LegacyAmountAggregationTimePeriodMethod.md)
- - [LegacyDraftResponse](docs/LegacyDraftResponse.md)
- - [LegacyDraftReviewAndValidationResponse](docs/LegacyDraftReviewAndValidationResponse.md)
- - [LegacyPolicyAndValidationResponse](docs/LegacyPolicyAndValidationResponse.md)
- - [LegacyPolicyCheckResult](docs/LegacyPolicyCheckResult.md)
- - [LegacyPolicyMetadata](docs/LegacyPolicyMetadata.md)
- - [LegacyPolicyResponse](docs/LegacyPolicyResponse.md)
- - [LegacyPolicyRule](docs/LegacyPolicyRule.md)
- - [LegacyPolicyRuleAmount](docs/LegacyPolicyRuleAmount.md)
- - [LegacyPolicyRuleAmountAggregation](docs/LegacyPolicyRuleAmountAggregation.md)
- - [LegacyPolicyRuleAuthorizationGroups](docs/LegacyPolicyRuleAuthorizationGroups.md)
- - [LegacyPolicyRuleAuthorizationGroupsGroupsInner](docs/LegacyPolicyRuleAuthorizationGroupsGroupsInner.md)
- - [LegacyPolicyRuleCheckResult](docs/LegacyPolicyRuleCheckResult.md)
- - [LegacyPolicyRuleDesignatedSigners](docs/LegacyPolicyRuleDesignatedSigners.md)
- - [LegacyPolicyRuleDst](docs/LegacyPolicyRuleDst.md)
- - [LegacyPolicyRuleError](docs/LegacyPolicyRuleError.md)
- - [LegacyPolicyRuleOperators](docs/LegacyPolicyRuleOperators.md)
- - [LegacyPolicyRuleRawMessageSigning](docs/LegacyPolicyRuleRawMessageSigning.md)
- - [LegacyPolicyRuleRawMessageSigningDerivationPath](docs/LegacyPolicyRuleRawMessageSigningDerivationPath.md)
- - [LegacyPolicyRuleSrc](docs/LegacyPolicyRuleSrc.md)
- - [LegacyPolicyRules](docs/LegacyPolicyRules.md)
- - [LegacyPolicySrcOrDestSubType](docs/LegacyPolicySrcOrDestSubType.md)
- - [LegacyPolicySrcOrDestType](docs/LegacyPolicySrcOrDestType.md)
- - [LegacyPolicyStatus](docs/LegacyPolicyStatus.md)
- - [LegacyPolicyValidation](docs/LegacyPolicyValidation.md)
- - [LegacyPublishDraftRequest](docs/LegacyPublishDraftRequest.md)
- - [LegacyPublishResult](docs/LegacyPublishResult.md)
- - [LegacySrcOrDestAttributesInner](docs/LegacySrcOrDestAttributesInner.md)
  - [LegalEntityRegistration](docs/LegalEntityRegistration.md)
  - [LeiStatus](docs/LeiStatus.md)
  - [LimitExecutionRequestDetails](docs/LimitExecutionRequestDetails.md)
@@ -1699,8 +1666,6 @@ Class | Method | HTTP request | Description
  - [SepaPaymentInfo](docs/SepaPaymentInfo.md)
  - [SessionDTO](docs/SessionDTO.md)
  - [SessionMetadata](docs/SessionMetadata.md)
- - [SetAdminQuorumThresholdRequest](docs/SetAdminQuorumThresholdRequest.md)
- - [SetAdminQuorumThresholdResponse](docs/SetAdminQuorumThresholdResponse.md)
  - [SetAssetPriceRequest](docs/SetAssetPriceRequest.md)
  - [SetAutoFuelRequest](docs/SetAutoFuelRequest.md)
  - [SetConfirmationsThresholdRequest](docs/SetConfirmationsThresholdRequest.md)

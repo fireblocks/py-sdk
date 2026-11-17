@@ -35,6 +35,8 @@ class TradingPair(BaseModel):
     account_id: Optional[StrictStr] = Field(default=None, description="The connected account the pair is scoped to. Absent for direct-access providers, and for provider-level pairs that describe what a provider supports before any account is connected. Its absence therefore does not imply the provider is direct-access.", alias="accountId")
     base_asset_id: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Fireblocks asset ID of the base asset, or `*` for any asset on `baseChain`. A `*` value always comes with `baseChain` set.", alias="baseAssetId")
     quote_asset_id: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Fireblocks asset ID of the quote asset, or `*` for any asset on `quoteChain`. A `*` value always comes with `quoteChain` set.", alias="quoteAssetId")
+    base_symbol: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="Display symbol of the base asset, for readability when `baseAssetId` is not self-explanatory (a privately listed asset or a UUID). `*` when `baseAssetId` is `*`. Absent when the asset could not be resolved. Informational only, not an identifier.", alias="baseSymbol")
+    quote_symbol: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="Display symbol of the quote asset, for readability when `quoteAssetId` is not self-explanatory (a privately listed asset or a UUID). `*` when `quoteAssetId` is `*`. Absent when the asset could not be resolved. Informational only, not an identifier.", alias="quoteSymbol")
     base_chain: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="Blockchain `legacyId` of the base asset (e.g. `ETH`, `BASECHAIN_ETH`, `ETH-AETH`, `SOL`). Set for leaf crypto assets; absent for fiat and virtual assets.", alias="baseChain")
     quote_chain: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="Blockchain `legacyId` of the quote asset (e.g. `ETH`, `BASECHAIN_ETH`, `ETH-AETH`, `SOL`). Set for leaf crypto assets; absent for fiat and virtual assets.", alias="quoteChain")
     side: TradingPairSide
@@ -44,7 +46,7 @@ class TradingPair(BaseModel):
     prefunded: Optional[StrictBool] = Field(default=None, description="Whether the provider requires the funds to be prefunded on the provider account before the order can execute.")
     min: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Minimum amount of the base asset for this pair/side, as a decimal string.")
     max: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Maximum amount of the base asset for this pair/side, as a decimal string.")
-    __properties: ClassVar[List[str]] = ["providerId", "accountId", "baseAssetId", "quoteAssetId", "baseChain", "quoteChain", "side", "tradeClass", "baseAssetRail", "quoteAssetRail", "prefunded", "min", "max"]
+    __properties: ClassVar[List[str]] = ["providerId", "accountId", "baseAssetId", "quoteAssetId", "baseSymbol", "quoteSymbol", "baseChain", "quoteChain", "side", "tradeClass", "baseAssetRail", "quoteAssetRail", "prefunded", "min", "max"]
 
     @field_validator('min')
     def min_validate_regular_expression(cls, value):
@@ -121,6 +123,8 @@ class TradingPair(BaseModel):
             "accountId": obj.get("accountId"),
             "baseAssetId": obj.get("baseAssetId"),
             "quoteAssetId": obj.get("quoteAssetId"),
+            "baseSymbol": obj.get("baseSymbol"),
+            "quoteSymbol": obj.get("quoteSymbol"),
             "baseChain": obj.get("baseChain"),
             "quoteChain": obj.get("quoteChain"),
             "side": obj.get("side"),

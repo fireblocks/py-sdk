@@ -62,7 +62,7 @@ class PaymentsPayoutApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[PayoutResponse]]:
-        """Create a payout instruction set
+        """(Deprecated) Create a payout instruction set
 
         **Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only for customers with Payments Engine enabled on their accounts.  These endpoints are currently in beta and might be subject to changes.  If you want to learn more about Fireblocks Payments Engine, please contact your Fireblocks Customer Success Manager or email CSM@fireblocks.com.  **Create a payout instruction set.**  A payout instruction set is a set of instructions for distributing payments from a single payment account to a list of payee accounts.  The instruction set defines:  - the payment account and its account type (vault, exchange, or fiat). - the account type (vault account, exchange account, whitelisted address,   network connection, fiat account, or merchant account), the amount, and the   asset of payment for each payee account.  Learn more about Fireblocks Payments - Payouts in the following [guide](https://developers.fireblocks.com/docs/create-payouts).  Endpoint Permission: Admin, Non-Signing Admin. 
 
@@ -91,6 +91,7 @@ class PaymentsPayoutApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("POST /payments/payout is deprecated.", DeprecationWarning)
 
 
         _param = self._create_payout_serialize(
@@ -213,7 +214,7 @@ class PaymentsPayoutApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[DispatchPayoutResponse]]:
-        """Execute a payout instruction set
+        """(Deprecated) Execute a payout instruction set
 
         **Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only for customers with Payments Engine enabled on their accounts.  These endpoints are currently in beta and might be subject to changes.  If you want to learn more about Fireblocks Payments Engine, please contact your Fireblocks Customer Success Manager or email CSM@fireblocks.com.  **Execute a payout instruction set.**  The instruction set will be verified and executed.  **Source locking**  If you are executing a payout instruction set from a payment account with an already active payout the active payout will complete before the new payout instruction set can be executed.  You cannot execute the same payout instruction set more than once. 
 
@@ -242,6 +243,7 @@ class PaymentsPayoutApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("POST /payments/payout/{payoutId}/actions/execute is deprecated.", DeprecationWarning)
 
         validate_not_empty_string(function_name="execute_payout_action", param_name="payout_id", param_value=payout_id)
 
@@ -351,7 +353,7 @@ class PaymentsPayoutApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> Future[ApiResponse[PayoutResponse]]:
-        """Get the status of a payout instruction set
+        """(Deprecated) Get the status of a payout instruction set
 
         **Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only for customers with Payments Engine enabled on their accounts.  These endpoints are currently in beta and might be subject to changes. If you want to learn more about Fireblocks Payments Engine, please contact your Fireblocks Customer Success Manager or email CSM@fireblocks.com.  Endpoint Permission: Admin, Non-Signing Admin. 
 
@@ -378,6 +380,7 @@ class PaymentsPayoutApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /payments/payout/{payoutId} is deprecated.", DeprecationWarning)
 
         validate_not_empty_string(function_name="get_payout", param_name="payout_id", param_value=payout_id)
 

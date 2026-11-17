@@ -41,7 +41,7 @@ class TestExtraParameters(unittest.TestCase):
                 contract_call_data = '',
                 program_call_data = '',
                 soroban_call_data = fireblocks.models.soroban_call_data.SorobanCallData(
-                    envelope_xdr = '[B@3e9618af', ),
+                    envelope_xdr = '[B@52c46116', ),
                 inputs_selection = { },
                 allow_base_asset_address = True,
                 pii_data = { }

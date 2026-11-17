@@ -36,11 +36,11 @@ class TestSorobanCallData(unittest.TestCase):
         model = SorobanCallData()
         if include_optional:
             return SorobanCallData(
-                envelope_xdr = '[B@3e9618af'
+                envelope_xdr = '[B@52c46116'
             )
         else:
             return SorobanCallData(
-                envelope_xdr = '[B@3e9618af',
+                envelope_xdr = '[B@52c46116',
         )
         """
 

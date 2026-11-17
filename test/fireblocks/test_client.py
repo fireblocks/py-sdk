@@ -51,7 +51,6 @@ from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
-from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.security_posture_management_api import SecurityPostureManagementApi
@@ -192,9 +191,6 @@ def test_get_policy_editor_v2(fireblocks_instance):
 
 def test_get_policy_editor_v2_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.policy_editor_v2_beta, PolicyEditorV2BetaApi)
-
-def test_get_policy_editor_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.policy_editor_beta, PolicyEditorBetaApi)
 
 def test_get_reports_beta(fireblocks_instance):
     assert isinstance(fireblocks_instance.reports_beta, ReportsBetaApi)

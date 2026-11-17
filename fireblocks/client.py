@@ -53,7 +53,6 @@ from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
 from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
-from fireblocks.api.policy_editor_beta_api import PolicyEditorBetaApi
 from fireblocks.api.reports_beta_api import ReportsBetaApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.security_posture_management_api import SecurityPostureManagementApi
@@ -122,7 +121,6 @@ class Fireblocks:
         self._payments_payout = None
         self._policy_editor_v2 = None
         self._policy_editor_v2_beta = None
-        self._policy_editor_beta = None
         self._reports_beta = None
         self._reset_device = None
         self._security_posture_management = None
@@ -368,12 +366,6 @@ class Fireblocks:
         if self._policy_editor_v2_beta is None:
             self._policy_editor_v2_beta = PolicyEditorV2BetaApi(self._api_client)
         return self._policy_editor_v2_beta
-
-    @property
-    def policy_editor_beta(self) -> PolicyEditorBetaApi:
-        if self._policy_editor_beta is None:
-            self._policy_editor_beta = PolicyEditorBetaApi(self._api_client)
-        return self._policy_editor_beta
 
     @property
     def reports_beta(self) -> ReportsBetaApi:

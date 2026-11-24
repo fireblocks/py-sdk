@@ -152,6 +152,13 @@ class TestEmbeddedWalletsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_public_key_info_for_address_ncw(self) -> None:
+        """Test case for get_public_key_info_for_address_ncw
+
+        Get the public key of an asset
+        """
+        pass
+
     def test_get_public_key_info_ncw(self) -> None:
         """Test case for get_public_key_info_ncw
 

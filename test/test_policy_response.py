@@ -46,7 +46,7 @@ class TestPolicyResponse(unittest.TestCase):
                         initiator = null, 
                         asset = fireblocks.models.asset_config.AssetConfig(
                             nft_transfer = False, 
-                            asset_types = ["FUNGIBLE","NFT","*"], 
+                            asset_types = ["BTC","USDC_ETH"], 
                             operator = 'INCLUDES', ), 
                         source = fireblocks.models.source_config.SourceConfig(
                             ids = [
@@ -110,7 +110,7 @@ class TestPolicyResponse(unittest.TestCase):
                             dest_address = '0x456...', ), 
                         quote_asset = fireblocks.models.asset_config.AssetConfig(
                             nft_transfer = False, 
-                            asset_types = ["FUNGIBLE","NFT","*"], ), 
+                            asset_types = ["BTC","USDC_ETH"], ), 
                         base_asset = , 
                         quote_amount = {"range":{"min":"100","max":"10000"}}, 
                         base_amount = {"range":{"min":"100","max":"10000"}}, 
@@ -136,7 +136,7 @@ class TestPolicyResponse(unittest.TestCase):
                         initiator = null, 
                         asset = fireblocks.models.asset_config.AssetConfig(
                             nft_transfer = False, 
-                            asset_types = ["FUNGIBLE","NFT","*"], 
+                            asset_types = ["BTC","USDC_ETH"], 
                             operator = 'INCLUDES', ), 
                         source = fireblocks.models.source_config.SourceConfig(
                             ids = [
@@ -200,7 +200,7 @@ class TestPolicyResponse(unittest.TestCase):
                             dest_address = '0x456...', ), 
                         quote_asset = fireblocks.models.asset_config.AssetConfig(
                             nft_transfer = False, 
-                            asset_types = ["FUNGIBLE","NFT","*"], ), 
+                            asset_types = ["BTC","USDC_ETH"], ), 
                         base_asset = , 
                         quote_amount = {"range":{"min":"100","max":"10000"}}, 
                         base_amount = {"range":{"min":"100","max":"10000"}}, 

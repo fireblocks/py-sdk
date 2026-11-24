@@ -38,8 +38,8 @@ class Webhook(BaseModel):
     updated_at: StrictInt = Field(description="The date and time the webhook was last updated in milliseconds", alias="updatedAt")
     webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration this webhook presents when delivering, from `/v1/webhooks_settings/mtls`. Absent when the webhook does not use mTLS.", alias="webhookMtlsId")
     webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with. Absent when the webhook does not use OAuth. Read the credentials themselves from `/v1/webhooks_settings/oauth/{webhookOauthId}`.", alias="webhookOauthId")
-    custom_headers: Optional[List[StrictStr]] = Field(default=None, description="Names of the custom headers configured for this webhook. Header values are never returned.", alias="customHeaders")
-    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt", "webhookMtlsId", "webhookOauthId", "customHeaders"]
+    webhook_custom_headers_id: Optional[StrictStr] = Field(default=None, description="The id of the set of custom headers sent with this webhook's notifications. Absent when the webhook sends none. Read the set itself from `/v1/webhooks_settings/custom_headers/{webhookCustomHeadersId}`.", alias="webhookCustomHeadersId")
+    __properties: ClassVar[List[str]] = ["id", "url", "description", "events", "status", "createdAt", "updatedAt", "webhookMtlsId", "webhookOauthId", "webhookCustomHeadersId"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -108,7 +108,7 @@ class Webhook(BaseModel):
             "updatedAt": obj.get("updatedAt"),
             "webhookMtlsId": obj.get("webhookMtlsId"),
             "webhookOauthId": obj.get("webhookOauthId"),
-            "customHeaders": obj.get("customHeaders")
+            "webhookCustomHeadersId": obj.get("webhookCustomHeadersId")
         })
         return _obj
 

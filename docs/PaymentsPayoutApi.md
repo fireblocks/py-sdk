@@ -18,9 +18,6 @@ Create a payout instruction set
 Engine endpoint. The Payments Engine endpoints include APIs available only
 for customers with Payments Engine enabled on their accounts.
 
-These endpoints are currently in beta and might be subject to
-changes.
-
 If you want to learn more about Fireblocks Payments Engine, please
 contact your Fireblocks Customer Success Manager or email
 CSM@fireblocks.com.
@@ -124,9 +121,6 @@ Execute a payout instruction set
 Engine endpoint. The Payments Engine endpoints include APIs available only
 for customers with Payments Engine enabled on their accounts.
 
-These endpoints are currently in beta and might be subject to
-changes.
-
 If you want to learn more about Fireblocks Payments Engine, please
 contact your Fireblocks Customer Success Manager or email
 CSM@fireblocks.com.
@@ -221,7 +215,6 @@ No authorization required
 Get the status of a payout instruction set
 
 **Note:** The reference content in this section documents the Payments Engine endpoint. The Payments Engine endpoints include APIs available only for customers with Payments Engine enabled on their accounts. 
-These endpoints are currently in beta and might be subject to changes.
 If you want to learn more about Fireblocks Payments Engine, please contact your Fireblocks Customer Success Manager or email CSM@fireblocks.com. 
 Endpoint Permission: Admin, Non-Signing Admin.
 

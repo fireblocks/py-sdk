@@ -41,12 +41,14 @@ class TestWebhookOauthCredentials(unittest.TestCase):
                 client_id = 'my-client-id',
                 url = 'https://auth.example.com/oauth/token',
                 auth_method = 'client_secret_basic',
+                signing_alg = 'RS256',
                 custom_jwt_claims = ["aud","resource"],
                 custom_body_params = ["scope"],
-                custom_headers = ["X-Api-Key"],
+                webhook_custom_headers_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 created_at = 1625097600000,
-                updated_at = 1625097600000
+                updated_at = 1625097600000,
+                jwks_uri = 'https://keys.fireblocks.io/webhooks-oauth/123e4567-e89b-12d3-a456-426614174000/.well-known/jwks.json'
             )
         else:
             return WebhookOauthCredentials(

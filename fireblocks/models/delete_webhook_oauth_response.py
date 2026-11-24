@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.webhook_oauth_signing_alg import WebhookOauthSigningAlg
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,15 +32,17 @@ class DeleteWebhookOauthResponse(BaseModel):
     name: StrictStr = Field(description="The label given to this credential set.")
     client_id: StrictStr = Field(description="OAuth client ID used to authenticate with the token endpoint.", alias="clientId")
     url: StrictStr = Field(description="Token endpoint URL.")
-    auth_method: StrictStr = Field(description="How the client credentials are presented to the token endpoint: `client_secret_basic`, `client_secret_post` or `client_secret_jwt`. Credentials created without this field report `client_secret_basic`, which is what they use.", alias="authMethod")
+    auth_method: StrictStr = Field(description="How the client credentials are presented to the token endpoint: `client_secret_basic`, `client_secret_post`, `client_secret_jwt` or `private_key_jwt`. Credentials created without this field report `client_secret_basic`, which is what they use.", alias="authMethod")
+    signing_alg: Optional[WebhookOauthSigningAlg] = Field(default=None, description="Algorithm of the key pairs, and of the assertions signed with them. Present only when `authMethod` is `private_key_jwt`. Which key is signing is never returned; each assertion names it in its `kid` header. Defaults to `RS256` on create only.", alias="signingAlg")
     custom_jwt_claims: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional claims placed in the JWT assertion. Claim values are write-only and are never returned. Absent when no custom claims are configured.", alias="customJwtClaims")
     custom_body_params: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional parameters added to the token request body. Parameter values are write-only and are never returned. Absent when no custom parameters are configured.", alias="customBodyParams")
-    custom_headers: Optional[List[StrictStr]] = Field(default=None, description="Names of the additional HTTP headers added to **the token request sent to the authorization server** — not to the webhook delivery, which has its own separate `customHeaders`. Header values are write-only and are never returned. Absent when no custom headers are configured.", alias="customHeaders")
+    webhook_custom_headers_id: Optional[StrictStr] = Field(default=None, description="The id of the set of custom headers added to **the token request sent to the authorization server** — not to the webhook delivery. Absent when the token request adds none. Header values are write-only and are never returned; read the header names from `/v1/webhooks_settings/custom_headers/{webhookCustomHeadersId}`.", alias="webhookCustomHeadersId")
     webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint. Absent when the token request does not use mTLS. Read the certificate from `/v1/webhooks_settings/mtls/{id}`.", alias="webhookMtlsId")
     created_at: StrictInt = Field(description="The date and time the OAuth credentials were created, in milliseconds.", alias="createdAt")
     updated_at: StrictInt = Field(description="The date and time the OAuth credentials were last updated, in milliseconds.", alias="updatedAt")
+    jwks_uri: Optional[StrictStr] = Field(default=None, description="The public URL of these credentials' JWKS. Register it as the client's jwks_uri on your authorization server. Present for private_key_jwt only.", alias="jwksUri")
     detached_webhook_ids: List[StrictStr] = Field(description="Webhooks whose `webhookOauthId` was cleared. The webhooks themselves are not deleted and keep delivering, just without an `Authorization` header. Empty unless `forceDelete=true` detached something.", alias="detachedWebhookIds")
-    __properties: ClassVar[List[str]] = ["id", "name", "clientId", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "webhookMtlsId", "createdAt", "updatedAt", "detachedWebhookIds"]
+    __properties: ClassVar[List[str]] = ["id", "name", "clientId", "url", "authMethod", "signingAlg", "customJwtClaims", "customBodyParams", "webhookCustomHeadersId", "webhookMtlsId", "createdAt", "updatedAt", "jwksUri", "detachedWebhookIds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,8 +74,10 @@ class DeleteWebhookOauthResponse(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "jwks_uri",
         ])
 
         _dict = self.model_dump(
@@ -97,12 +102,14 @@ class DeleteWebhookOauthResponse(BaseModel):
             "clientId": obj.get("clientId"),
             "url": obj.get("url"),
             "authMethod": obj.get("authMethod") if obj.get("authMethod") is not None else 'client_secret_basic',
+            "signingAlg": obj.get("signingAlg"),
             "customJwtClaims": obj.get("customJwtClaims"),
             "customBodyParams": obj.get("customBodyParams"),
-            "customHeaders": obj.get("customHeaders"),
+            "webhookCustomHeadersId": obj.get("webhookCustomHeadersId"),
             "webhookMtlsId": obj.get("webhookMtlsId"),
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt"),
+            "jwksUri": obj.get("jwksUri"),
             "detachedWebhookIds": obj.get("detachedWebhookIds")
         })
         return _obj

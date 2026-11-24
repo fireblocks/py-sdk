@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from fireblocks.models.connected_account_credit import ConnectedAccountCredit
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,9 @@ class ConnectedSingleAccount(BaseModel):
     ConnectedSingleAccount
     """ # noqa: E501
     sub_accounts_ids: Optional[List[StrictStr]] = Field(default=None, description="IDs of sub-accounts associated with this connected account.", alias="subAccountsIds")
-    __properties: ClassVar[List[str]] = ["subAccountsIds"]
+    total_credit: Optional[ConnectedAccountCredit] = Field(default=None, description="Total credit line available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when total credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit.", alias="totalCredit")
+    available_credit: Optional[ConnectedAccountCredit] = Field(default=None, description="Remaining unused credit available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when available credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit.", alias="availableCredit")
+    __properties: ClassVar[List[str]] = ["subAccountsIds", "totalCredit", "availableCredit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -69,6 +72,12 @@ class ConnectedSingleAccount(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of total_credit
+        if self.total_credit:
+            _dict['totalCredit'] = self.total_credit.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of available_credit
+        if self.available_credit:
+            _dict['availableCredit'] = self.available_credit.to_dict()
         return _dict
 
     @classmethod
@@ -81,7 +90,9 @@ class ConnectedSingleAccount(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "subAccountsIds": obj.get("subAccountsIds")
+            "subAccountsIds": obj.get("subAccountsIds"),
+            "totalCredit": ConnectedAccountCredit.from_dict(obj["totalCredit"]) if obj.get("totalCredit") is not None else None,
+            "availableCredit": ConnectedAccountCredit.from_dict(obj["availableCredit"]) if obj.get("availableCredit") is not None else None
         })
         return _obj
 

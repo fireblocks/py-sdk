@@ -21,9 +21,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
+from fireblocks.models.create_webhook_custom_headers_request import CreateWebhookCustomHeadersRequest
 from fireblocks.models.create_webhook_mtls_config_request import CreateWebhookMtlsConfigRequest
 from fireblocks.models.create_webhook_oauth_request import CreateWebhookOauthRequest
 from fireblocks.models.create_webhook_request import CreateWebhookRequest
+from fireblocks.models.delete_webhook_custom_headers_response import DeleteWebhookCustomHeadersResponse
 from fireblocks.models.delete_webhook_mtls_config_response import DeleteWebhookMtlsConfigResponse
 from fireblocks.models.delete_webhook_oauth_response import DeleteWebhookOauthResponse
 from fireblocks.models.notification_attempts_paginated_response import NotificationAttemptsPaginatedResponse
@@ -36,10 +38,15 @@ from fireblocks.models.resend_failed_notifications_job_status_response import Re
 from fireblocks.models.resend_failed_notifications_request import ResendFailedNotificationsRequest
 from fireblocks.models.resend_failed_notifications_response import ResendFailedNotificationsResponse
 from fireblocks.models.resend_notifications_by_resource_id_request import ResendNotificationsByResourceIdRequest
+from fireblocks.models.revoke_webhook_oauth_key_request import RevokeWebhookOauthKeyRequest
+from fireblocks.models.revoke_webhook_oauth_key_response import RevokeWebhookOauthKeyResponse
+from fireblocks.models.rotate_webhook_oauth_key_response import RotateWebhookOauthKeyResponse
+from fireblocks.models.update_webhook_custom_headers_request import UpdateWebhookCustomHeadersRequest
 from fireblocks.models.update_webhook_mtls_config_request import UpdateWebhookMtlsConfigRequest
 from fireblocks.models.update_webhook_oauth_request import UpdateWebhookOauthRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
 from fireblocks.models.webhook import Webhook
+from fireblocks.models.webhook_custom_headers_set import WebhookCustomHeadersSet
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_metric import WebhookMetric
 from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
@@ -200,6 +207,155 @@ class WebhooksV2Api:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/webhooks',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_webhook_custom_headers(
+        self,
+        create_webhook_custom_headers_request: CreateWebhookCustomHeadersRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[WebhookCustomHeadersSet]]:
+        """Create a custom headers set
+
+        Creates a reusable set of custom HTTP headers. Attach it to a webhook by passing the returned id as that webhook's `webhookCustomHeadersId`, to send the headers with that webhook's notifications, or to OAuth credentials as their `webhookCustomHeadersId`, to send them on the token request to your authorization server. Several webhooks and OAuth credentials may share one set, so changing it covers all of them at once. Header values are write-only and are never returned.  One set of rules applies to every use of a set, whether a webhook or OAuth credentials attach it: a value is a string or an array of strings (one header line per element), except `Cookie` and `Authorization`, which take a single string. Where Fireblocks sends its own `Authorization` header (an OAuth bearer token on a delivery, `client_secret_basic` on a token request), a custom `Authorization` header is not sent. Attaching a set checks only that it exists in your workspace.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+
+        :param create_webhook_custom_headers_request: (required)
+        :type create_webhook_custom_headers_request: CreateWebhookCustomHeadersRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._create_webhook_custom_headers_serialize(
+            create_webhook_custom_headers_request=create_webhook_custom_headers_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "WebhookCustomHeadersSet",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="create_webhook_custom_headers",
+        )
+
+    def _create_webhook_custom_headers_serialize(
+        self,
+        create_webhook_custom_headers_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if create_webhook_custom_headers_request is not None:
+            _body_params = create_webhook_custom_headers_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/webhooks_settings/custom_headers',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -384,7 +540,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Create OAuth credentials
 
-        Creates a reusable OAuth client credential set. Attach it to a webhook by passing the returned id as that webhook's `webhookOauthId`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. The client secret is write-only and is never returned.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+        Creates a reusable OAuth client credential set. Attach it to a webhook by passing the returned id as that webhook's `webhookOauthId`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. The client secret is write-only and is never returned.  With `authMethod` `private_key_jwt` no client secret is sent: Fireblocks generates two key pairs for the credentials, the signing key and its successor, and keeps the private halves. The public halves are published at the `jwksUri` returned with the credentials; register that URL as the client's `jwks_uri` on your authorization server.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
 
         :param create_webhook_oauth_request: (required)
         :type create_webhook_oauth_request: CreateWebhookOauthRequest
@@ -628,6 +784,146 @@ class WebhooksV2Api:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/webhooks/{webhookId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_webhook_custom_headers(
+        self,
+        webhook_custom_headers_id: Annotated[StrictStr, Field(description="The unique identifier of the custom headers set")],
+        force_delete: Annotated[Optional[StrictBool], Field(description="Delete the set even while webhooks or OAuth credentials still use it, detaching them instead of refusing. Leave it unset, or `false`, to get a `409 Conflict` whenever anything still uses the set.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[DeleteWebhookCustomHeadersResponse]]:
+        """Delete a custom headers set
+
+        Deletes a custom headers set. By default the delete is refused while the set is still in use: if any webhook or OAuth credentials use it, nothing is deleted and the request fails with `409 Conflict`, naming the reason and listing the ids of the webhooks and OAuth credentials using it. This protects a shared set from being removed out from under the things that depend on it.  Pass `forceDelete=true` to delete anyway. That detaches everything using the set — it clears each webhook's and each OAuth credential set's `webhookCustomHeadersId`, it does **not** delete the webhook or the credentials — then deletes the set and returns the deleted resource together with `detachedWebhookIds` and `detachedWebhookOauthIds`. A detached webhook stops sending these headers with its notifications, and detached OAuth credentials stop sending them on the token request.  When nothing uses the set the delete succeeds either way, and both lists come back empty.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+
+        :param webhook_custom_headers_id: The unique identifier of the custom headers set (required)
+        :type webhook_custom_headers_id: str
+        :param force_delete: Delete the set even while webhooks or OAuth credentials still use it, detaching them instead of refusing. Leave it unset, or `false`, to get a `409 Conflict` whenever anything still uses the set.
+        :type force_delete: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="delete_webhook_custom_headers", param_name="webhook_custom_headers_id", param_value=webhook_custom_headers_id)
+
+        _param = self._delete_webhook_custom_headers_serialize(
+            webhook_custom_headers_id=webhook_custom_headers_id,
+            force_delete=force_delete,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DeleteWebhookCustomHeadersResponse",
+            '409': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="delete_webhook_custom_headers",
+        )
+
+    def _delete_webhook_custom_headers_serialize(
+        self,
+        webhook_custom_headers_id,
+        force_delete,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if webhook_custom_headers_id is not None:
+            _path_params['webhookCustomHeadersId'] = webhook_custom_headers_id
+        # process the query parameters
+        if force_delete is not None:
+            
+            _query_params.append(('forceDelete', force_delete))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/webhooks_settings/custom_headers/{webhookCustomHeadersId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2115,6 +2411,258 @@ class WebhooksV2Api:
 
 
     @validate_call
+    def get_webhook_custom_headers(
+        self,
+        webhook_custom_headers_id: Annotated[StrictStr, Field(description="The unique identifier of the custom headers set")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[WebhookCustomHeadersSet]]:
+        """Get a custom headers set by id
+
+        Retrieve a custom headers set by its id. Header values are never returned, only the header names. 
+
+        :param webhook_custom_headers_id: The unique identifier of the custom headers set (required)
+        :type webhook_custom_headers_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_webhook_custom_headers", param_name="webhook_custom_headers_id", param_value=webhook_custom_headers_id)
+
+        _param = self._get_webhook_custom_headers_serialize(
+            webhook_custom_headers_id=webhook_custom_headers_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WebhookCustomHeadersSet",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_webhook_custom_headers",
+        )
+
+    def _get_webhook_custom_headers_serialize(
+        self,
+        webhook_custom_headers_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if webhook_custom_headers_id is not None:
+            _path_params['webhookCustomHeadersId'] = webhook_custom_headers_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/webhooks_settings/custom_headers/{webhookCustomHeadersId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_webhook_custom_headers_list(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[List[WebhookCustomHeadersSet]]]:
+        """Get all custom headers sets
+
+        Lists every custom headers set for the workspace. Header values are never returned, only the header names. 
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+
+        _param = self._get_webhook_custom_headers_list_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[WebhookCustomHeadersSet]",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_webhook_custom_headers_list",
+        )
+
+    def _get_webhook_custom_headers_list_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/webhooks_settings/custom_headers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_webhook_mtls_config(
         self,
         webhook_mtls_id: Annotated[StrictStr, Field(description="The unique identifier of the mTLS configuration")],
@@ -3396,6 +3944,304 @@ class WebhooksV2Api:
 
 
     @validate_call
+    def revoke_webhook_oauth_key(
+        self,
+        webhook_oauth_id: Annotated[StrictStr, Field(description="The unique identifier of the OAuth credentials")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        revoke_webhook_oauth_key_request: Optional[RevokeWebhookOauthKeyRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[RevokeWebhookOauthKeyResponse]]:
+        """Revoke a signing key of OAuth credentials
+
+        Deletes a key of OAuth credentials at once, for when a key may have leaked: it drops out of the published set immediately rather than being kept for 30 days. Revoking never causes an outage.  Without a `kid`, revokes the key Fireblocks is signing with: signing switches to the successor, which your authorization server already holds, and a new successor is generated. A cached access token is discarded, so the next delivery fetches a new one.  With the successor's `kid`, deletes the successor and generates a new one; signing is unchanged. With the `kid` of a key rotated out by `rotate_key` and still published, deletes that key, and a cached access token is discarded as well. Keys left behind by a `signingAlg` change drop out of the published set after 5 minutes but are kept for 30 days, and can be revoked by `kid` until then. Credentials using `private_key_jwt` always keep a key to sign with.  On credentials that no longer use `private_key_jwt`, whose keys stay published for 30 days after the switch, a `kid` is required: that key is deleted and nothing is generated. The last key they hold can be revoked too, leaving an empty set.  Returns the `kid` of the key revoked, which without a `kid` in the request is the key Fireblocks was signing with. The public keys are at the `jwksUri` of the credentials: fetch them again, or register the new successor with your authorization server. Use `rotate_key` for a routine rotation, which keeps the replaced key published for 30 days.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+
+        :param webhook_oauth_id: The unique identifier of the OAuth credentials (required)
+        :type webhook_oauth_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param revoke_webhook_oauth_key_request:
+        :type revoke_webhook_oauth_key_request: RevokeWebhookOauthKeyRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="revoke_webhook_oauth_key", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
+
+        _param = self._revoke_webhook_oauth_key_serialize(
+            webhook_oauth_id=webhook_oauth_id,
+            idempotency_key=idempotency_key,
+            revoke_webhook_oauth_key_request=revoke_webhook_oauth_key_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RevokeWebhookOauthKeyResponse",
+            '400': "ErrorSchema",
+            '404': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="revoke_webhook_oauth_key",
+        )
+
+    def _revoke_webhook_oauth_key_serialize(
+        self,
+        webhook_oauth_id,
+        idempotency_key,
+        revoke_webhook_oauth_key_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if webhook_oauth_id is not None:
+            _path_params['webhookOauthId'] = webhook_oauth_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if revoke_webhook_oauth_key_request is not None:
+            _body_params = revoke_webhook_oauth_key_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/webhooks_settings/oauth/{webhookOauthId}/revoke_key',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def rotate_webhook_oauth_key(
+        self,
+        webhook_oauth_id: Annotated[StrictStr, Field(description="The unique identifier of the OAuth credentials")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[RotateWebhookOauthKeyResponse]]:
+        """Rotate the signing key of OAuth credentials
+
+        Switches the OAuth credentials to their successor key and generates a new successor, for credentials using `private_key_jwt`. Takes no body. The new signing key is one your authorization server already holds, since the successor is published from the start, so the switch causes no outage.  The key replaced is no longer used to sign, but stays in the published set for 30 days and is then deleted. Rotating again within those 30 days is allowed: each key rotated out keeps its own 30 days, and any of them can be revoked by `kid`. The credentials can hold at most 5 keys in their signing algorithm at once, counting the active key, its successor and those rotated out; at that limit, revoke a rotated-out key (the error names the oldest) and rotate again. To stop trusting a key at once — after a leak — use `revoke_key` instead.  Returns the `kid` of the key rotated out. The public keys are at the `jwksUri` of the credentials: fetch them again, or register the new successor with your authorization server, before the next rotation.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+
+        :param webhook_oauth_id: The unique identifier of the OAuth credentials (required)
+        :type webhook_oauth_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="rotate_webhook_oauth_key", param_name="webhook_oauth_id", param_value=webhook_oauth_id)
+
+        _param = self._rotate_webhook_oauth_key_serialize(
+            webhook_oauth_id=webhook_oauth_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RotateWebhookOauthKeyResponse",
+            '400': "ErrorSchema",
+            '404': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="rotate_webhook_oauth_key",
+        )
+
+    def _rotate_webhook_oauth_key_serialize(
+        self,
+        webhook_oauth_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if webhook_oauth_id is not None:
+            _path_params['webhookOauthId'] = webhook_oauth_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/webhooks_settings/oauth/{webhookOauthId}/rotate_key',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_webhook(
         self,
         webhook_id: Annotated[StrictStr, Field(description="The unique identifier of the webhook")],
@@ -3530,6 +4376,157 @@ class WebhooksV2Api:
         return self.api_client.param_serialize(
             method='PATCH',
             resource_path='/webhooks/{webhookId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_webhook_custom_headers(
+        self,
+        webhook_custom_headers_id: Annotated[StrictStr, Field(description="The unique identifier of the custom headers set")],
+        update_webhook_custom_headers_request: UpdateWebhookCustomHeadersRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[WebhookCustomHeadersSet]]:
+        """Update a custom headers set
+
+        Updates only the fields present in the request; anything omitted is left as it is. `headers` is merged name by name rather than replaced: a header sent with a value is added or overwritten, a header sent as `null` is deleted, and a header you omit is left alone. The change applies to every webhook and OAuth credential set that uses the set.  A change that would leave the set with no headers is refused with a `400` — delete the set instead. Where Fireblocks sends its own `Authorization` header, a custom `Authorization` header is not sent: on a webhook that has OAuth credentials attached (the OAuth bearer token), and on the token request of OAuth credentials that use `client_secret_basic`.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+
+        :param webhook_custom_headers_id: The unique identifier of the custom headers set (required)
+        :type webhook_custom_headers_id: str
+        :param update_webhook_custom_headers_request: (required)
+        :type update_webhook_custom_headers_request: UpdateWebhookCustomHeadersRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="update_webhook_custom_headers", param_name="webhook_custom_headers_id", param_value=webhook_custom_headers_id)
+
+        _param = self._update_webhook_custom_headers_serialize(
+            webhook_custom_headers_id=webhook_custom_headers_id,
+            update_webhook_custom_headers_request=update_webhook_custom_headers_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "WebhookCustomHeadersSet",
+            '400': "ErrorSchema",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="update_webhook_custom_headers",
+        )
+
+    def _update_webhook_custom_headers_serialize(
+        self,
+        webhook_custom_headers_id,
+        update_webhook_custom_headers_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if webhook_custom_headers_id is not None:
+            _path_params['webhookCustomHeadersId'] = webhook_custom_headers_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_webhook_custom_headers_request is not None:
+            _body_params = update_webhook_custom_headers_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/webhooks_settings/custom_headers/{webhookCustomHeadersId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3716,7 +4713,7 @@ class WebhooksV2Api:
     ) -> Future[ApiResponse[WebhookOauthCredentials]]:
         """Update OAuth credentials
 
-        Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.  `customJwtClaims`, `customBodyParams` and `customHeaders` are all merged key by key rather than replaced, the same way a webhook's own `customHeaders` behaves: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Setting one of the three to `null` as a whole clears that map, which is the quick way to empty it without naming every key. There is no ambiguity between the two uses of `null` — one names an entry to delete, the other names the field. A claim cannot be set to JSON `null`, though, on this endpoint or on create, because `null` is spent on deletion. `webhookMtlsId` is a scalar rather than a map, so `null` there does remove it.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
+        Updates only the fields present in the request; anything omitted is left as it is. Sending `clientSecret` on its own rotates the secret for every webhook using these credentials.  `customJwtClaims` and `customBodyParams` are merged key by key rather than replaced: a key sent with a value is added or overwritten, a key sent with a `null` value is deleted, and a key you omit is left alone. Setting one of the two to `null` as a whole clears that map, which is the quick way to empty it without naming every key. There is no ambiguity between the two uses of `null` — one names an entry to delete, the other names the field. A claim cannot be set to JSON `null`, though, on this endpoint or on create, because `null` is spent on deletion. `webhookMtlsId` and `webhookCustomHeadersId` are scalars rather than maps, so `null` there does remove them. `webhookCustomHeadersId` points the credentials at a set of extra token request headers from `/v1/webhooks_settings/custom_headers`; under `client_secret_basic` Fireblocks sends its own `Authorization` header with the credentials, so a custom `Authorization` header in the set is not sent.  **Endpoint Permissions:** Owner, Admin, Non-Signing Admin. 
 
         :param webhook_oauth_id: The unique identifier of the OAuth credentials (required)
         :type webhook_oauth_id: str

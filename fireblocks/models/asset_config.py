@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from fireblocks.models.asset_types_config_inner import AssetTypesConfigInner
 from fireblocks.models.policy_operator import PolicyOperator
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +29,7 @@ class AssetConfig(BaseModel):
     Policy asset configuration
     """ # noqa: E501
     nft_transfer: StrictBool = Field(description="Whether this is an NFT transfer", alias="nftTransfer")
-    asset_types: Optional[List[AssetTypesConfigInner]] = Field(default=None, description="List of asset types", alias="assetTypes")
+    asset_types: Optional[List[StrictStr]] = Field(default=None, description="List of asset IDs the rule applies to", alias="assetTypes")
     operator: Optional[PolicyOperator] = None
     __properties: ClassVar[List[str]] = ["nftTransfer", "assetTypes", "operator"]
 
@@ -73,13 +72,6 @@ class AssetConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in asset_types (list)
-        _items = []
-        if self.asset_types:
-            for _item_asset_types in self.asset_types:
-                if _item_asset_types:
-                    _items.append(_item_asset_types.to_dict())
-            _dict['assetTypes'] = _items
         return _dict
 
     @classmethod
@@ -93,7 +85,7 @@ class AssetConfig(BaseModel):
 
         _obj = cls.model_validate({
             "nftTransfer": obj.get("nftTransfer"),
-            "assetTypes": [AssetTypesConfigInner.from_dict(_item) for _item in obj["assetTypes"]] if obj.get("assetTypes") is not None else None,
+            "assetTypes": obj.get("assetTypes"),
             "operator": obj.get("operator")
         })
         return _obj

@@ -2737,6 +2737,184 @@ class EmbeddedWalletsApi:
 
 
     @validate_call
+    def get_public_key_info_for_address_ncw(
+        self,
+        x_end_user_wallet_id: Annotated[StrictStr, Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")],
+        wallet_id: Annotated[StrictStr, Field(description="The ID of the Non-Custodial wallet")],
+        account_id: Annotated[StrictStr, Field(description="The ID of the account")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        change: Annotated[Union[StrictFloat, StrictInt], Field(description="BIP44 derivation path - change value")],
+        address_index: Annotated[Union[StrictFloat, StrictInt], Field(description="BIP44 derivation path - index value")],
+        compressed: Annotated[Optional[StrictBool], Field(description="Compressed/Uncompressed public key format")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[PublicKeyInformation]]:
+        """(Deprecated) Get the public key of an asset
+
+        Gets the public key of an asset associated with a specific account within a Non-Custodial Wallet
+
+        :param x_end_user_wallet_id: Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. (required)
+        :type x_end_user_wallet_id: str
+        :param wallet_id: The ID of the Non-Custodial wallet (required)
+        :type wallet_id: str
+        :param account_id: The ID of the account (required)
+        :type account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param change: BIP44 derivation path - change value (required)
+        :type change: float
+        :param address_index: BIP44 derivation path - index value (required)
+        :type address_index: float
+        :param compressed: Compressed/Uncompressed public key format
+        :type compressed: bool
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+        warnings.warn("GET /ncw/{walletId}/accounts/{accountId}/{assetId}/{change}/{addressIndex}/public_key_info is deprecated.", DeprecationWarning)
+
+        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="x_end_user_wallet_id", param_value=x_end_user_wallet_id)
+        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="wallet_id", param_value=wallet_id)
+        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="account_id", param_value=account_id)
+        validate_not_empty_string(function_name="get_public_key_info_for_address_ncw", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_public_key_info_for_address_ncw_serialize(
+            x_end_user_wallet_id=x_end_user_wallet_id,
+            wallet_id=wallet_id,
+            account_id=account_id,
+            asset_id=asset_id,
+            change=change,
+            address_index=address_index,
+            compressed=compressed,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PublicKeyInformation",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_public_key_info_for_address_ncw",
+        )
+
+    def _get_public_key_info_for_address_ncw_serialize(
+        self,
+        x_end_user_wallet_id,
+        wallet_id,
+        account_id,
+        asset_id,
+        change,
+        address_index,
+        compressed,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if wallet_id is not None:
+            _path_params['walletId'] = wallet_id
+        if account_id is not None:
+            _path_params['accountId'] = account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        if change is not None:
+            _path_params['change'] = change
+        if address_index is not None:
+            _path_params['addressIndex'] = address_index
+        # process the query parameters
+        if compressed is not None:
+            
+            _query_params.append(('compressed', compressed))
+            
+        # process the header parameters
+        if x_end_user_wallet_id is not None:
+            _header_params['X-End-User-Wallet-Id'] = x_end_user_wallet_id
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/ncw/{walletId}/accounts/{accountId}/{assetId}/{change}/{addressIndex}/public_key_info',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_public_key_info_ncw(
         self,
         x_end_user_wallet_id: Annotated[StrictStr, Field(description="Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.")],

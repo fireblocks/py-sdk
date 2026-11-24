@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** | The amount to transfer to this destination, as a numeric string. | [optional] 
 **destination** | [**TempoTransferDestination**](TempoTransferDestination.md) |  | [optional] 
-**travel_rule_message_id** | **str** | Beta. An identifier of a TravelRule message, already sent to the TravelRule provider. | [optional] 
+**travel_rule_message_id** | **str** | Early availability. An identifier of a TravelRule message, already sent to the TravelRule provider. | [optional] 
 **customer_ref_id** | **str** | The ID for AML providers to associate the owner of funds with transactions. | [optional] 
 
 ## Example

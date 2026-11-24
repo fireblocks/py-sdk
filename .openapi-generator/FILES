@@ -100,7 +100,7 @@ docs/ApprovalApiKey.md
 docs/ApprovalApiPublicKey.md
 docs/ApprovalRequest.md
 docs/ApprovalRequestItem.md
-docs/ApprovalsBetaApi.md
+docs/ApprovalsApi.md
 docs/ApproveApprovalRequest.md
 docs/ApproversConfig.md
 docs/ApproversConfigApprovalGroupsInner.md
@@ -133,7 +133,6 @@ docs/AssetPriceResponse.md
 docs/AssetResponse.md
 docs/AssetScope.md
 docs/AssetTypeResponse.md
-docs/AssetTypesConfigInner.md
 docs/AssetWallet.md
 docs/AssignVaultsToLegalEntityRequest.md
 docs/AssignVaultsToLegalEntityResponse.md
@@ -161,7 +160,7 @@ docs/BlockchainDeclaredProperties.md
 docs/BlockchainDestination.md
 docs/BlockchainEnvironment.md
 docs/BlockchainExplorer.md
-docs/BlockchainLinkBetaApi.md
+docs/BlockchainLinkApi.md
 docs/BlockchainMedia.md
 docs/BlockchainMetadata.md
 docs/BlockchainNotFoundErrorResponse.md
@@ -191,7 +190,7 @@ docs/CallAccepted.md
 docs/CallbackHandler.md
 docs/CallbackHandlerRequest.md
 docs/CancelTransactionResponse.md
-docs/CantonBetaApi.md
+docs/CantonApi.md
 docs/CantonCall.md
 docs/CantonCallAllowListAdd.md
 docs/CantonCallAllowListRemove.md
@@ -229,7 +228,7 @@ docs/CollectionTokenMetadataAttributeDto.md
 docs/CollectionTokenMetadataDto.md
 docs/CollectionType.md
 docs/ComplianceApi.md
-docs/ComplianceOrchestratorBetaApi.md
+docs/ComplianceOrchestratorApi.md
 docs/ComplianceRequirement.md
 docs/ComplianceResultFullPayload.md
 docs/ComplianceResultStatusesEnum.md
@@ -251,6 +250,7 @@ docs/ConnectedAccountAssetType.md
 docs/ConnectedAccountBalances.md
 docs/ConnectedAccountBalancesResponse.md
 docs/ConnectedAccountCapability.md
+docs/ConnectedAccountCredit.md
 docs/ConnectedAccountErrorResponse.md
 docs/ConnectedAccountManifest.md
 docs/ConnectedAccountRateResponse.md
@@ -345,6 +345,8 @@ docs/CreateMultipleVaultAccountsJobStatus.md
 docs/CreateNcwConnectionRequest.md
 docs/CreateNetworkIdRequest.md
 docs/CreateOffersRequest.md
+docs/CreateOmnibusAddressesRequest.md
+docs/CreateOmnibusAddressesResponse.md
 docs/CreateOrderRequest.md
 docs/CreatePayoutRequest.md
 docs/CreateQuote.md
@@ -367,6 +369,7 @@ docs/CreateVaultAccountConnectionRequest.md
 docs/CreateVaultAccountRequest.md
 docs/CreateVaultAssetResponse.md
 docs/CreateWalletRequest.md
+docs/CreateWebhookCustomHeadersRequest.md
 docs/CreateWebhookMtlsConfigRequest.md
 docs/CreateWebhookOauthRequest.md
 docs/CreateWebhookRequest.md
@@ -383,6 +386,7 @@ docs/DelegationSummary.md
 docs/DeleteApprovalApiKeyResponse.md
 docs/DeleteNetworkConnectionResponse.md
 docs/DeleteNetworkIdResponse.md
+docs/DeleteWebhookCustomHeadersResponse.md
 docs/DeleteWebhookMtlsConfigResponse.md
 docs/DeleteWebhookOauthResponse.md
 docs/DeployLayerZeroAdaptersRequest.md
@@ -534,7 +538,7 @@ docs/GasStationsApi.md
 docs/GaslessInfo.md
 docs/GasslessStandardConfigurations.md
 docs/GasslessStandardConfigurationsGaslessStandardConfigurationsValue.md
-docs/GenieBetaApi.md
+docs/GenieApi.md
 docs/GenieChatMessage.md
 docs/GenieCreateSessionResponse.md
 docs/GenieSendMessageRequest.md
@@ -623,6 +627,7 @@ docs/ListAssetsResponse.md
 docs/ListBlockchainsResponse.md
 docs/ListBlockchainsResponse2.md
 docs/ListLegalEntitiesResponse.md
+docs/ListOmnibusAddressesResponse.md
 docs/ListOwnedCollectionsResponse.md
 docs/ListOwnedTokensResponse.md
 docs/ListUtxosResponse.md
@@ -676,7 +681,7 @@ docs/NotificationAttemptsPaginatedResponse.md
 docs/NotificationPaginatedResponse.md
 docs/NotificationStatus.md
 docs/NotificationWithData.md
-docs/OTABetaApi.md
+docs/OTAApi.md
 docs/OffExchangesApi.md
 docs/Offer.md
 docs/OfferResponse.md
@@ -692,6 +697,7 @@ docs/OfferResponseTransferAccept.md
 docs/OfferResponseTransferReject.md
 docs/OfferResponseTransferWithdraw.md
 docs/OffersResponse.md
+docs/OmnibusAddress.md
 docs/OnchainDataApi.md
 docs/OnchainTransaction.md
 docs/OnchainTransactionsPagedResponse.md
@@ -766,7 +772,6 @@ docs/PolicyAndValidationResponse.md
 docs/PolicyCheckResult.md
 docs/PolicyCurrency.md
 docs/PolicyEditorV2Api.md
-docs/PolicyEditorV2BetaApi.md
 docs/PolicyMetadataEntry.md
 docs/PolicyOperator.md
 docs/PolicyResponse.md
@@ -826,6 +831,8 @@ docs/ReQuoteDetailsReQuote.md
 docs/ReadAbiFunction.md
 docs/ReadCallFunctionDto.md
 docs/ReadCallFunctionDtoAbiFunction.md
+docs/ReadOnlyDraftResponse.md
+docs/ReadOnlyDraftReviewAndValidationResponse.md
 docs/ReasonForPaymentEnum.md
 docs/RecipientHandle.md
 docs/RedeemFundsToLinkedDDAResponse.md
@@ -833,6 +840,7 @@ docs/RegisterApprovalApiKeyRequest.md
 docs/RegisterApprovalApiKeyResponse.md
 docs/RegisterLegalEntityRequest.md
 docs/RegisterNewAssetRequest.md
+docs/RegisterTempoOmnibusResponse.md
 docs/ReissueMultichainTokenRequest.md
 docs/RelatedRequest.md
 docs/RelatedTransaction.md
@@ -855,7 +863,7 @@ docs/ReportListResponse.md
 docs/ReportOutputFormat.md
 docs/ReportStatus.md
 docs/ReportType.md
-docs/ReportsBetaApi.md
+docs/ReportsApi.md
 docs/RescreenTransactionRequest.md
 docs/RescreenTransactionResponse.md
 docs/ResendByQueryRequest.md
@@ -871,6 +879,8 @@ docs/ResetDeviceApi.md
 docs/RespondToConnectionRequest.md
 docs/RetryRequoteRequestDetails.md
 docs/RetryRequoteTypeEnum.md
+docs/RevokeWebhookOauthKeyRequest.md
+docs/RevokeWebhookOauthKeyResponse.md
 docs/RewardInfo.md
 docs/RewardsInfo.md
 docs/RiskLevelEnum.md
@@ -878,6 +888,7 @@ docs/RoleDetails.md
 docs/RoleDetails2.md
 docs/RoleFeeInfo.md
 docs/RoleGrantee.md
+docs/RotateWebhookOauthKeyResponse.md
 docs/Rule.md
 docs/RuleActionEnum.md
 docs/RuleCondition.md
@@ -1125,7 +1136,7 @@ docs/TagType.md
 docs/TagsApi.md
 docs/TagsPagedResponse.md
 docs/TemplatesPaginatedResponse.md
-docs/TempoBetaApi.md
+docs/TempoApi.md
 docs/TempoTransferDestination.md
 docs/TempoTransferDestinationItem.md
 docs/TempoTransferSource.md
@@ -1282,6 +1293,7 @@ docs/UpdateTagRequest.md
 docs/UpdateTokenOwnershipStatusDto.md
 docs/UpdateVaultAccountAssetAddressRequest.md
 docs/UpdateVaultAccountRequest.md
+docs/UpdateWebhookCustomHeadersRequest.md
 docs/UpdateWebhookMtlsConfigRequest.md
 docs/UpdateWebhookOauthRequest.md
 docs/UpdateWebhookRequest.md
@@ -1296,7 +1308,7 @@ docs/UserGroupCreateRequest.md
 docs/UserGroupCreateResponse.md
 docs/UserGroupResponse.md
 docs/UserGroupUpdateRequest.md
-docs/UserGroupsBetaApi.md
+docs/UserGroupsApi.md
 docs/UserResponse.md
 docs/UserRole.md
 docs/UserStatus.md
@@ -1338,12 +1350,14 @@ docs/WalletAsset.md
 docs/WalletAssetAdditionalInfo.md
 docs/Web3ConnectionsApi.md
 docs/Webhook.md
+docs/WebhookCustomHeadersSet.md
 docs/WebhookEvent.md
 docs/WebhookMetric.md
 docs/WebhookMtlsConfig.md
 docs/WebhookMtlsCsrResponse.md
 docs/WebhookMtlsKeyAlgorithm.md
 docs/WebhookOauthCredentials.md
+docs/WebhookOauthSigningAlg.md
 docs/WebhookPaginatedResponse.md
 docs/WebhooksApi.md
 docs/WebhooksV2Api.md
@@ -1355,7 +1369,7 @@ docs/WorkflowExecutionOperation.md
 docs/WorkflowStatusEnum.md
 docs/Workspace.md
 docs/WorkspaceApi.md
-docs/WorkspaceStatusBetaApi.md
+docs/WorkspaceStatusApi.md
 docs/WriteAbiFunction.md
 docs/WriteCallFunctionDto.md
 docs/WriteCallFunctionDtoAbiFunction.md
@@ -1364,13 +1378,13 @@ fireblocks/__init__.py
 fireblocks/additional_options.py
 fireblocks/api/__init__.py
 fireblocks/api/api_user_api.py
-fireblocks/api/approvals_beta_api.py
+fireblocks/api/approvals_api.py
 fireblocks/api/audit_logs_api.py
-fireblocks/api/blockchain_link_beta_api.py
+fireblocks/api/blockchain_link_api.py
 fireblocks/api/blockchains_assets_api.py
-fireblocks/api/canton_beta_api.py
+fireblocks/api/canton_api.py
 fireblocks/api/compliance_api.py
-fireblocks/api/compliance_orchestrator_beta_api.py
+fireblocks/api/compliance_orchestrator_api.py
 fireblocks/api/compliance_screening_configuration_api.py
 fireblocks/api/connected_accounts_api.py
 fireblocks/api/console_user_api.py
@@ -1386,7 +1400,7 @@ fireblocks/api/exchange_accounts_api.py
 fireblocks/api/external_wallets_api.py
 fireblocks/api/fiat_accounts_api.py
 fireblocks/api/gas_stations_api.py
-fireblocks/api/genie_beta_api.py
+fireblocks/api/genie_api.py
 fireblocks/api/internal_wallets_api.py
 fireblocks/api/key_link_api.py
 fireblocks/api/keys_api.py
@@ -1394,23 +1408,22 @@ fireblocks/api/network_connections_api.py
 fireblocks/api/nfts_api.py
 fireblocks/api/off_exchanges_api.py
 fireblocks/api/onchain_data_api.py
-fireblocks/api/ota_beta_api.py
+fireblocks/api/ota_api.py
 fireblocks/api/payments_payout_api.py
 fireblocks/api/policy_editor_v2_api.py
-fireblocks/api/policy_editor_v2_beta_api.py
-fireblocks/api/reports_beta_api.py
+fireblocks/api/reports_api.py
 fireblocks/api/reset_device_api.py
 fireblocks/api/security_posture_management_api.py
 fireblocks/api/smart_transfer_api.py
 fireblocks/api/staking_api.py
 fireblocks/api/tags_api.py
-fireblocks/api/tempo_beta_api.py
+fireblocks/api/tempo_api.py
 fireblocks/api/tokenization_api.py
 fireblocks/api/tr_link_api.py
 fireblocks/api/trading_api.py
 fireblocks/api/transactions_api.py
 fireblocks/api/travel_rule_api.py
-fireblocks/api/user_groups_beta_api.py
+fireblocks/api/user_groups_api.py
 fireblocks/api/users_api.py
 fireblocks/api/utxo_management_api.py
 fireblocks/api/vaults_api.py
@@ -1419,7 +1432,7 @@ fireblocks/api/webhooks_api.py
 fireblocks/api/webhooks_v2_api.py
 fireblocks/api/whitelist_ip_addresses_api.py
 fireblocks/api/workspace_api.py
-fireblocks/api/workspace_status_beta_api.py
+fireblocks/api/workspace_status_api.py
 fireblocks/api_client.py
 fireblocks/api_client_configuration.py
 fireblocks/api_response.py
@@ -1561,7 +1574,6 @@ fireblocks/models/asset_price_response.py
 fireblocks/models/asset_response.py
 fireblocks/models/asset_scope.py
 fireblocks/models/asset_type_response.py
-fireblocks/models/asset_types_config_inner.py
 fireblocks/models/asset_wallet.py
 fireblocks/models/assign_vaults_to_legal_entity_request.py
 fireblocks/models/assign_vaults_to_legal_entity_response.py
@@ -1672,6 +1684,7 @@ fireblocks/models/connected_account_asset_type.py
 fireblocks/models/connected_account_balances.py
 fireblocks/models/connected_account_balances_response.py
 fireblocks/models/connected_account_capability.py
+fireblocks/models/connected_account_credit.py
 fireblocks/models/connected_account_error_response.py
 fireblocks/models/connected_account_manifest.py
 fireblocks/models/connected_account_rate_response.py
@@ -1759,6 +1772,8 @@ fireblocks/models/create_multiple_vault_accounts_job_status.py
 fireblocks/models/create_ncw_connection_request.py
 fireblocks/models/create_network_id_request.py
 fireblocks/models/create_offers_request.py
+fireblocks/models/create_omnibus_addresses_request.py
+fireblocks/models/create_omnibus_addresses_response.py
 fireblocks/models/create_order_request.py
 fireblocks/models/create_payout_request.py
 fireblocks/models/create_quote.py
@@ -1781,6 +1796,7 @@ fireblocks/models/create_vault_account_connection_request.py
 fireblocks/models/create_vault_account_request.py
 fireblocks/models/create_vault_asset_response.py
 fireblocks/models/create_wallet_request.py
+fireblocks/models/create_webhook_custom_headers_request.py
 fireblocks/models/create_webhook_mtls_config_request.py
 fireblocks/models/create_webhook_oauth_request.py
 fireblocks/models/create_webhook_request.py
@@ -1795,6 +1811,7 @@ fireblocks/models/delegation_summary.py
 fireblocks/models/delete_approval_api_key_response.py
 fireblocks/models/delete_network_connection_response.py
 fireblocks/models/delete_network_id_response.py
+fireblocks/models/delete_webhook_custom_headers_response.py
 fireblocks/models/delete_webhook_mtls_config_response.py
 fireblocks/models/delete_webhook_oauth_response.py
 fireblocks/models/deploy_layer_zero_adapters_request.py
@@ -2026,6 +2043,7 @@ fireblocks/models/list_assets_response.py
 fireblocks/models/list_blockchains_response.py
 fireblocks/models/list_blockchains_response2.py
 fireblocks/models/list_legal_entities_response.py
+fireblocks/models/list_omnibus_addresses_response.py
 fireblocks/models/list_owned_collections_response.py
 fireblocks/models/list_owned_tokens_response.py
 fireblocks/models/list_utxos_response.py
@@ -2091,6 +2109,7 @@ fireblocks/models/offer_response_transfer_accept.py
 fireblocks/models/offer_response_transfer_reject.py
 fireblocks/models/offer_response_transfer_withdraw.py
 fireblocks/models/offers_response.py
+fireblocks/models/omnibus_address.py
 fireblocks/models/onchain_transaction.py
 fireblocks/models/onchain_transactions_paged_response.py
 fireblocks/models/onchain_transactions_paged_response2.py
@@ -2221,6 +2240,8 @@ fireblocks/models/re_quote_details_re_quote.py
 fireblocks/models/read_abi_function.py
 fireblocks/models/read_call_function_dto.py
 fireblocks/models/read_call_function_dto_abi_function.py
+fireblocks/models/read_only_draft_response.py
+fireblocks/models/read_only_draft_review_and_validation_response.py
 fireblocks/models/reason_for_payment_enum.py
 fireblocks/models/recipient_handle.py
 fireblocks/models/redeem_funds_to_linked_dda_response.py
@@ -2228,6 +2249,7 @@ fireblocks/models/register_approval_api_key_request.py
 fireblocks/models/register_approval_api_key_response.py
 fireblocks/models/register_legal_entity_request.py
 fireblocks/models/register_new_asset_request.py
+fireblocks/models/register_tempo_omnibus_response.py
 fireblocks/models/reissue_multichain_token_request.py
 fireblocks/models/related_request.py
 fireblocks/models/related_transaction.py
@@ -2264,6 +2286,8 @@ fireblocks/models/resend_webhooks_response.py
 fireblocks/models/respond_to_connection_request.py
 fireblocks/models/retry_requote_request_details.py
 fireblocks/models/retry_requote_type_enum.py
+fireblocks/models/revoke_webhook_oauth_key_request.py
+fireblocks/models/revoke_webhook_oauth_key_response.py
 fireblocks/models/reward_info.py
 fireblocks/models/rewards_info.py
 fireblocks/models/risk_level_enum.py
@@ -2271,6 +2295,7 @@ fireblocks/models/role_details.py
 fireblocks/models/role_details2.py
 fireblocks/models/role_fee_info.py
 fireblocks/models/role_grantee.py
+fireblocks/models/rotate_webhook_oauth_key_response.py
 fireblocks/models/rule.py
 fireblocks/models/rule_action_enum.py
 fireblocks/models/rule_condition.py
@@ -2662,6 +2687,7 @@ fireblocks/models/update_tag_request.py
 fireblocks/models/update_token_ownership_status_dto.py
 fireblocks/models/update_vault_account_asset_address_request.py
 fireblocks/models/update_vault_account_request.py
+fireblocks/models/update_webhook_custom_headers_request.py
 fireblocks/models/update_webhook_mtls_config_request.py
 fireblocks/models/update_webhook_oauth_request.py
 fireblocks/models/update_webhook_request.py
@@ -2716,12 +2742,14 @@ fireblocks/models/version_summary.py
 fireblocks/models/wallet_asset.py
 fireblocks/models/wallet_asset_additional_info.py
 fireblocks/models/webhook.py
+fireblocks/models/webhook_custom_headers_set.py
 fireblocks/models/webhook_event.py
 fireblocks/models/webhook_metric.py
 fireblocks/models/webhook_mtls_config.py
 fireblocks/models/webhook_mtls_csr_response.py
 fireblocks/models/webhook_mtls_key_algorithm.py
 fireblocks/models/webhook_oauth_credentials.py
+fireblocks/models/webhook_oauth_signing_alg.py
 fireblocks/models/webhook_paginated_response.py
 fireblocks/models/withdraw_request.py
 fireblocks/models/workflow_config_status.py
@@ -2857,7 +2885,7 @@ test/test_approval_api_key.py
 test/test_approval_api_public_key.py
 test/test_approval_request.py
 test/test_approval_request_item.py
-test/test_approvals_beta_api.py
+test/test_approvals_api.py
 test/test_approve_approval_request.py
 test/test_approvers_config.py
 test/test_approvers_config_approval_groups_inner.py
@@ -2890,7 +2918,6 @@ test/test_asset_price_response.py
 test/test_asset_response.py
 test/test_asset_scope.py
 test/test_asset_type_response.py
-test/test_asset_types_config_inner.py
 test/test_asset_wallet.py
 test/test_assign_vaults_to_legal_entity_request.py
 test/test_assign_vaults_to_legal_entity_response.py
@@ -2918,7 +2945,7 @@ test/test_blockchain_declared_properties.py
 test/test_blockchain_destination.py
 test/test_blockchain_environment.py
 test/test_blockchain_explorer.py
-test/test_blockchain_link_beta_api.py
+test/test_blockchain_link_api.py
 test/test_blockchain_media.py
 test/test_blockchain_metadata.py
 test/test_blockchain_not_found_error_response.py
@@ -2948,7 +2975,7 @@ test/test_call_accepted.py
 test/test_callback_handler.py
 test/test_callback_handler_request.py
 test/test_cancel_transaction_response.py
-test/test_canton_beta_api.py
+test/test_canton_api.py
 test/test_canton_call.py
 test/test_canton_call_allow_list_add.py
 test/test_canton_call_allow_list_remove.py
@@ -2986,7 +3013,7 @@ test/test_collection_token_metadata_attribute_dto.py
 test/test_collection_token_metadata_dto.py
 test/test_collection_type.py
 test/test_compliance_api.py
-test/test_compliance_orchestrator_beta_api.py
+test/test_compliance_orchestrator_api.py
 test/test_compliance_requirement.py
 test/test_compliance_result_full_payload.py
 test/test_compliance_result_statuses_enum.py
@@ -3008,6 +3035,7 @@ test/test_connected_account_asset_type.py
 test/test_connected_account_balances.py
 test/test_connected_account_balances_response.py
 test/test_connected_account_capability.py
+test/test_connected_account_credit.py
 test/test_connected_account_error_response.py
 test/test_connected_account_manifest.py
 test/test_connected_account_rate_response.py
@@ -3102,6 +3130,8 @@ test/test_create_multiple_vault_accounts_job_status.py
 test/test_create_ncw_connection_request.py
 test/test_create_network_id_request.py
 test/test_create_offers_request.py
+test/test_create_omnibus_addresses_request.py
+test/test_create_omnibus_addresses_response.py
 test/test_create_order_request.py
 test/test_create_payout_request.py
 test/test_create_quote.py
@@ -3124,6 +3154,7 @@ test/test_create_vault_account_connection_request.py
 test/test_create_vault_account_request.py
 test/test_create_vault_asset_response.py
 test/test_create_wallet_request.py
+test/test_create_webhook_custom_headers_request.py
 test/test_create_webhook_mtls_config_request.py
 test/test_create_webhook_oauth_request.py
 test/test_create_webhook_request.py
@@ -3138,6 +3169,7 @@ test/test_delegation_summary.py
 test/test_delete_approval_api_key_response.py
 test/test_delete_network_connection_response.py
 test/test_delete_network_id_response.py
+test/test_delete_webhook_custom_headers_response.py
 test/test_delete_webhook_mtls_config_response.py
 test/test_delete_webhook_oauth_response.py
 test/test_deploy_layer_zero_adapters_request.py
@@ -3291,7 +3323,7 @@ test/test_gas_stations_api.py
 test/test_gasless_info.py
 test/test_gassless_standard_configurations.py
 test/test_gassless_standard_configurations_gasless_standard_configurations_value.py
-test/test_genie_beta_api.py
+test/test_genie_api.py
 test/test_genie_chat_message.py
 test/test_genie_create_session_response.py
 test/test_genie_send_message_request.py
@@ -3380,6 +3412,7 @@ test/test_list_assets_response.py
 test/test_list_blockchains_response.py
 test/test_list_blockchains_response2.py
 test/test_list_legal_entities_response.py
+test/test_list_omnibus_addresses_response.py
 test/test_list_owned_collections_response.py
 test/test_list_owned_tokens_response.py
 test/test_list_utxos_response.py
@@ -3448,6 +3481,7 @@ test/test_offer_response_transfer_accept.py
 test/test_offer_response_transfer_reject.py
 test/test_offer_response_transfer_withdraw.py
 test/test_offers_response.py
+test/test_omnibus_address.py
 test/test_onchain_data_api.py
 test/test_onchain_transaction.py
 test/test_onchain_transactions_paged_response.py
@@ -3468,7 +3502,7 @@ test/test_order_requirement_file.py
 test/test_order_side.py
 test/test_order_status.py
 test/test_order_summary.py
-test/test_ota_beta_api.py
+test/test_ota_api.py
 test/test_paginated_address_response.py
 test/test_paginated_address_response_paging.py
 test/test_paginated_asset_wallet_response.py
@@ -3523,7 +3557,6 @@ test/test_policy_and_validation_response.py
 test/test_policy_check_result.py
 test/test_policy_currency.py
 test/test_policy_editor_v2_api.py
-test/test_policy_editor_v2_beta_api.py
 test/test_policy_metadata_entry.py
 test/test_policy_operator.py
 test/test_policy_response.py
@@ -3583,6 +3616,8 @@ test/test_re_quote_details_re_quote.py
 test/test_read_abi_function.py
 test/test_read_call_function_dto.py
 test/test_read_call_function_dto_abi_function.py
+test/test_read_only_draft_response.py
+test/test_read_only_draft_review_and_validation_response.py
 test/test_reason_for_payment_enum.py
 test/test_recipient_handle.py
 test/test_redeem_funds_to_linked_dda_response.py
@@ -3590,6 +3625,7 @@ test/test_register_approval_api_key_request.py
 test/test_register_approval_api_key_response.py
 test/test_register_legal_entity_request.py
 test/test_register_new_asset_request.py
+test/test_register_tempo_omnibus_response.py
 test/test_reissue_multichain_token_request.py
 test/test_related_request.py
 test/test_related_transaction.py
@@ -3612,7 +3648,7 @@ test/test_report_list_response.py
 test/test_report_output_format.py
 test/test_report_status.py
 test/test_report_type.py
-test/test_reports_beta_api.py
+test/test_reports_api.py
 test/test_rescreen_transaction_request.py
 test/test_rescreen_transaction_response.py
 test/test_resend_by_query_request.py
@@ -3628,6 +3664,8 @@ test/test_reset_device_api.py
 test/test_respond_to_connection_request.py
 test/test_retry_requote_request_details.py
 test/test_retry_requote_type_enum.py
+test/test_revoke_webhook_oauth_key_request.py
+test/test_revoke_webhook_oauth_key_response.py
 test/test_reward_info.py
 test/test_rewards_info.py
 test/test_risk_level_enum.py
@@ -3635,6 +3673,7 @@ test/test_role_details.py
 test/test_role_details2.py
 test/test_role_fee_info.py
 test/test_role_grantee.py
+test/test_rotate_webhook_oauth_key_response.py
 test/test_rule.py
 test/test_rule_action_enum.py
 test/test_rule_condition.py
@@ -3790,7 +3829,7 @@ test/test_tag_type.py
 test/test_tags_api.py
 test/test_tags_paged_response.py
 test/test_templates_paginated_response.py
-test/test_tempo_beta_api.py
+test/test_tempo_api.py
 test/test_tempo_transfer_destination.py
 test/test_tempo_transfer_destination_item.py
 test/test_tempo_transfer_source.py
@@ -4036,6 +4075,7 @@ test/test_update_tag_request.py
 test/test_update_token_ownership_status_dto.py
 test/test_update_vault_account_asset_address_request.py
 test/test_update_vault_account_request.py
+test/test_update_webhook_custom_headers_request.py
 test/test_update_webhook_mtls_config_request.py
 test/test_update_webhook_oauth_request.py
 test/test_update_webhook_request.py
@@ -4052,7 +4092,7 @@ test/test_user_group_create_request.py
 test/test_user_group_create_response.py
 test/test_user_group_response.py
 test/test_user_group_update_request.py
-test/test_user_groups_beta_api.py
+test/test_user_groups_api.py
 test/test_user_response.py
 test/test_user_role.py
 test/test_user_status.py
@@ -4095,12 +4135,14 @@ test/test_wallet_asset.py
 test/test_wallet_asset_additional_info.py
 test/test_web3_connections_api.py
 test/test_webhook.py
+test/test_webhook_custom_headers_set.py
 test/test_webhook_event.py
 test/test_webhook_metric.py
 test/test_webhook_mtls_config.py
 test/test_webhook_mtls_csr_response.py
 test/test_webhook_mtls_key_algorithm.py
 test/test_webhook_oauth_credentials.py
+test/test_webhook_oauth_signing_alg.py
 test/test_webhook_paginated_response.py
 test/test_webhooks_api.py
 test/test_webhooks_v2_api.py
@@ -4112,7 +4154,7 @@ test/test_workflow_execution_operation.py
 test/test_workflow_status_enum.py
 test/test_workspace.py
 test/test_workspace_api.py
-test/test_workspace_status_beta_api.py
+test/test_workspace_status_api.py
 test/test_write_abi_function.py
 test/test_write_call_function_dto.py
 test/test_write_call_function_dto_abi_function.py

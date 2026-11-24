@@ -26,6 +26,13 @@ class TestWorkspaceApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_freeze_workspace(self) -> None:
+        """Test case for freeze_workspace
+
+        Freeze
+        """
+        pass
+
     def test_get_workspace(self) -> None:
         """Test case for get_workspace
 

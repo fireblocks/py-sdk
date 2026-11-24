@@ -25,6 +25,7 @@ from fireblocks.models.travel_rule_get_all_vasps_response import TravelRuleGetAl
 from fireblocks.models.travel_rule_update_vasp_details import TravelRuleUpdateVASPDetails
 from fireblocks.models.travel_rule_vasp import TravelRuleVASP
 from fireblocks.models.travel_rule_validate_full_transaction_request import TravelRuleValidateFullTransactionRequest
+from fireblocks.models.travel_rule_validate_transaction_request import TravelRuleValidateTransactionRequest
 from fireblocks.models.travel_rule_validate_transaction_response import TravelRuleValidateTransactionResponse
 from fireblocks.models.travel_rule_vasp_for_vault import TravelRuleVaspForVault
 from fireblocks.models.trust_proof_of_address_create_response import TrustProofOfAddressCreateResponse
@@ -1228,6 +1229,166 @@ class TravelRuleApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/screening/travel_rule/transaction/validate/full',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def validate_travel_rule_transaction(
+        self,
+        travel_rule_validate_transaction_request: TravelRuleValidateTransactionRequest,
+        notation: Annotated[Optional[List[StrictStr]], Field(description="Specifies the notation of the transaction. Possible values are: - `notabene`: Uses Notabene notation (default behavior). - `fireblocks`: Uses Fireblocks notation, with automatic translation of asset tickers and amounts. - `<none>`: Defaults to `notabene` for backward compatibility. **Note:** The default value for the `notation` parameter will change from `notabene` to `fireblocks` Update your integrations accordingly.")] = None,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[TravelRuleValidateTransactionResponse]]:
+        """(Deprecated) Validate Travel Rule Transaction
+
+        Validate Travel Rule transactions. Checks what beneficiary VASP details are required by your jurisdiction and the beneficiary's jurisdiction. **Deprecation Notice** This endpoint will be deprecated soon in favor of the [validate full](https://developers.fireblocks.com/reference/validatefulltravelruletransaction) endpoint. Please update your integrations to use the  [validate full](https://developers.fireblocks.com/reference/validatefulltravelruletransaction) endpoint to ensure compatibility with future releases. Checks what beneficiary VASP details are required by your jurisdiction and the beneficiary's jurisdiction. Learn more about Fireblocks Travel Rule management in the following [guide](https://developers.fireblocks.com/docs/define-travel-rule-policies).  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param travel_rule_validate_transaction_request: (required)
+        :type travel_rule_validate_transaction_request: TravelRuleValidateTransactionRequest
+        :param notation: Specifies the notation of the transaction. Possible values are: - `notabene`: Uses Notabene notation (default behavior). - `fireblocks`: Uses Fireblocks notation, with automatic translation of asset tickers and amounts. - `<none>`: Defaults to `notabene` for backward compatibility. **Note:** The default value for the `notation` parameter will change from `notabene` to `fireblocks` Update your integrations accordingly.
+        :type notation: List[str]
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+        warnings.warn("POST /screening/travel_rule/transaction/validate is deprecated.", DeprecationWarning)
+
+
+        _param = self._validate_travel_rule_transaction_serialize(
+            travel_rule_validate_transaction_request=travel_rule_validate_transaction_request,
+            notation=notation,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TravelRuleValidateTransactionResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="validate_travel_rule_transaction",
+        )
+
+    def _validate_travel_rule_transaction_serialize(
+        self,
+        travel_rule_validate_transaction_request,
+        notation,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'notation': 'multi',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if notation is not None:
+            
+            _query_params.append(('notation', notation))
+            
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if travel_rule_validate_transaction_request is not None:
+            _body_params = travel_rule_validate_transaction_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/screening/travel_rule/transaction/validate',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

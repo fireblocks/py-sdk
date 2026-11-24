@@ -37,7 +37,7 @@ class TestAssetConfig(unittest.TestCase):
         if include_optional:
             return AssetConfig(
                 nft_transfer = False,
-                asset_types = ["FUNGIBLE","NFT","*"],
+                asset_types = ["BTC","USDC_ETH"],
                 operator = 'INCLUDES'
             )
         else:

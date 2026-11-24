@@ -18,9 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
+from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,8 +30,10 @@ class SolanaRewardsBreakdown(BaseModel):
     """ # noqa: E501
     inflation: StrictStr = Field(description="The inflation reward amount earned by the position, measured in the staked asset unit.")
     mev: StrictStr = Field(description="The MEV reward amount earned by the position, measured in the staked asset unit.")
-    last_reward_synced_at: datetime = Field(description="The last time the rewards were synced (ISO Date).", alias="lastRewardSyncedAt")
-    __properties: ClassVar[List[str]] = ["inflation", "mev", "lastRewardSyncedAt"]
+    last_reward_synced_at: datetime = Field(description="The time (UTC) of the last sync that fetched this position's rewards from the rewards provider. It is updated on every sync, including when nothing new was found, so it is not the date of the newest reward (see latestInflationRewardDate and latestMevRewardDate).", alias="lastRewardSyncedAt")
+    latest_inflation_reward_date: Optional[date] = Field(default=None, description="The date (UTC, YYYY-MM-DD) of the newest inflation reward the rewards provider has returned for this stake account. Null until the provider returns one.", alias="latestInflationRewardDate")
+    latest_mev_reward_date: Optional[date] = Field(default=None, description="The date (UTC, YYYY-MM-DD) of the newest MEV reward the rewards provider has returned for this stake account. Null until the provider returns one, and for validators without MEV rewards.", alias="latestMevRewardDate")
+    __properties: ClassVar[List[str]] = ["inflation", "mev", "lastRewardSyncedAt", "latestInflationRewardDate", "latestMevRewardDate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,16 @@ class SolanaRewardsBreakdown(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if latest_inflation_reward_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.latest_inflation_reward_date is None and "latest_inflation_reward_date" in self.model_fields_set:
+            _dict['latestInflationRewardDate'] = None
+
+        # set to None if latest_mev_reward_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.latest_mev_reward_date is None and "latest_mev_reward_date" in self.model_fields_set:
+            _dict['latestMevRewardDate'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +98,9 @@ class SolanaRewardsBreakdown(BaseModel):
         _obj = cls.model_validate({
             "inflation": obj.get("inflation"),
             "mev": obj.get("mev"),
-            "lastRewardSyncedAt": obj.get("lastRewardSyncedAt")
+            "lastRewardSyncedAt": obj.get("lastRewardSyncedAt"),
+            "latestInflationRewardDate": obj.get("latestInflationRewardDate"),
+            "latestMevRewardDate": obj.get("latestMevRewardDate")
         })
         return _obj
 

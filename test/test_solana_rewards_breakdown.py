@@ -38,13 +38,15 @@ class TestSolanaRewardsBreakdown(unittest.TestCase):
             return SolanaRewardsBreakdown(
                 inflation = '0.000856038',
                 mev = '0.000123456',
-                last_reward_synced_at = '2023-07-13T15:55:34.256Z'
+                last_reward_synced_at = '2026-11-12T08:30Z',
+                latest_inflation_reward_date = 'Tue Nov 10 00:00:00 GMT 2026',
+                latest_mev_reward_date = 'Tue Nov 10 00:00:00 GMT 2026'
             )
         else:
             return SolanaRewardsBreakdown(
                 inflation = '0.000856038',
                 mev = '0.000123456',
-                last_reward_synced_at = '2023-07-13T15:55:34.256Z',
+                last_reward_synced_at = '2026-11-12T08:30Z',
         )
         """
 

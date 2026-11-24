@@ -30,7 +30,7 @@ class TempoTransferDestinationItem(BaseModel):
     """ # noqa: E501
     amount: Optional[StrictStr] = Field(default=None, description="The amount to transfer to this destination, as a numeric string.")
     destination: Optional[TempoTransferDestination] = None
-    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="Beta. An identifier of a TravelRule message, already sent to the TravelRule provider.", alias="travelRuleMessageId")
+    travel_rule_message_id: Optional[StrictStr] = Field(default=None, description="Early availability. An identifier of a TravelRule message, already sent to the TravelRule provider.", alias="travelRuleMessageId")
     customer_ref_id: Optional[StrictStr] = Field(default=None, description="The ID for AML providers to associate the owner of funds with transactions.", alias="customerRefId")
     __properties: ClassVar[List[str]] = ["amount", "destination", "travelRuleMessageId", "customerRefId"]
 

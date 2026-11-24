@@ -53,7 +53,13 @@ class TestConnectedSingleAccountResponse(unittest.TestCase):
                 api_key = 'rk_live_abc123',
                 provider_account_name = 'Main Account',
                 account_type = 'CONNECTED_ACCOUNT',
-                sub_accounts_ids = [acc-sub-001, acc-sub-002]
+                sub_accounts_ids = [acc-sub-001, acc-sub-002],
+                total_credit = fireblocks.models.connected_account_credit.ConnectedAccountCredit(
+                    amount = '500.00', 
+                    denominated_asset_id = 'ea6c3cb7-355a-4ee3-82ff-267c69970214', ),
+                available_credit = fireblocks.models.connected_account_credit.ConnectedAccountCredit(
+                    amount = '500.00', 
+                    denominated_asset_id = 'ea6c3cb7-355a-4ee3-82ff-267c69970214', )
             )
         else:
             return ConnectedSingleAccountResponse(

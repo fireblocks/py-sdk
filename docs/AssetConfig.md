@@ -7,7 +7,7 @@ Policy asset configuration
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nft_transfer** | **bool** | Whether this is an NFT transfer | 
-**asset_types** | [**List[AssetTypesConfigInner]**](AssetTypesConfigInner.md) | List of asset types | [optional] 
+**asset_types** | **List[str]** | List of asset IDs the rule applies to | [optional] 
 **operator** | [**PolicyOperator**](PolicyOperator.md) |  | [optional] 
 
 ## Example

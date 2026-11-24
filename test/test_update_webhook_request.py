@@ -42,7 +42,7 @@ class TestUpdateWebhookRequest(unittest.TestCase):
                 enabled = False,
                 webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 webhook_oauth_id = '123e4567-e89b-12d3-a456-426614174000',
-                custom_headers = {"X-Gateway-Key":"abc123","X-Forwarded-For":["203.0.113.7","198.51.100.4"],"X-Region-Tag":null}
+                webhook_custom_headers_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f'
             )
         else:
             return UpdateWebhookRequest(

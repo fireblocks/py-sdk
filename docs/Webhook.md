@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **updated_at** | **int** | The date and time the webhook was last updated in milliseconds | 
 **webhook_mtls_id** | **str** | The id of the mTLS configuration this webhook presents when delivering, from &#x60;/v1/webhooks_settings/mtls&#x60;. Absent when the webhook does not use mTLS. | [optional] 
 **webhook_oauth_id** | **str** | The id of the OAuth credentials this webhook authenticates with. Absent when the webhook does not use OAuth. Read the credentials themselves from &#x60;/v1/webhooks_settings/oauth/{webhookOauthId}&#x60;. | [optional] 
-**custom_headers** | **List[str]** | Names of the custom headers configured for this webhook. Header values are never returned. | [optional] 
+**webhook_custom_headers_id** | **str** | The id of the set of custom headers sent with this webhook&#39;s notifications. Absent when the webhook sends none. Read the set itself from &#x60;/v1/webhooks_settings/custom_headers/{webhookCustomHeadersId}&#x60;. | [optional] 
 
 ## Example
 

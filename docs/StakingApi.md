@@ -106,7 +106,7 @@ No authorization required
 
 Claim accrued rewards
 
-Claims available staking rewards for the specified chain and vault. Supported chains: Solana and Polygon (POL/Matic). Behavior depends on protocol reward distribution.
+Claims available staking rewards for the specified chain and vault. Supported chains: Solana, Polygon (POL/Matic) and Celestia. Behavior depends on protocol reward distribution.
 
 ### Example
 
@@ -132,7 +132,7 @@ configuration = ClientConfiguration(
 
 # Enter a context with an instance of the API client
 with Fireblocks(configuration) as fireblocks:
-    chain_descriptor = 'SOL' # str | Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL).
+    chain_descriptor = 'SOL' # str | Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL/CELESTIA).
     claim_rewards_request = fireblocks.ClaimRewardsRequest() # ClaimRewardsRequest | 
     idempotency_key = 'idempotency_key_example' # str | A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. (optional)
 
@@ -150,7 +150,7 @@ with Fireblocks(configuration) as fireblocks:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chain_descriptor** | **str**| Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL). | 
+ **chain_descriptor** | **str**| Protocol identifier for the claim rewards staking operation (e.g., POL/MATIC/SOL/CELESTIA). | 
  **claim_rewards_request** | [**ClaimRewardsRequest**](ClaimRewardsRequest.md)|  | 
  **idempotency_key** | **str**| A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours. | [optional] 
 
@@ -188,7 +188,6 @@ Consolidate staking positions (ETH validator consolidation)
 
 Consolidates the source staking position into the destination, merging the balance into the destination and closing the source position once complete. Both positions must be from the same vault account (i.e. same withdrawal credentials).  On chain, this translates into a consolidation transaction, where the  source validator is consolidated into the destination validator.  Supported chains: Ethereum (ETH) only.
 Endpoint Permission: Owner, Admin, Non-Signing Admin, Signer, Approver, Editor.
-**Note:** This endpoint is currently in beta and might be subject to changes.
 
 ### Example
 

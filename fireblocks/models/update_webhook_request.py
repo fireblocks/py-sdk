@@ -33,10 +33,10 @@ class UpdateWebhookRequest(BaseModel):
     description: Optional[Annotated[str, Field(min_length=1, strict=True)]] = Field(default=None, description="description of the webhook of what it is used for.should not contain special characters.")
     events: Optional[List[WebhookEvent]] = Field(default=None, description="The events that the webhook will be subscribed to")
     enabled: Optional[StrictBool] = Field(default=None, description="The status of the webhook")
-    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration this webhook presents when delivering, from `/v1/webhooks_settings/mtls`. Several webhooks may share one configuration, so replacing its certificate covers all of them at once. Send `null` to stop using mTLS for this webhook.", alias="webhookMtlsId")
-    webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with, from `/v1/webhooks_settings/oauth`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. Send `null` to stop using OAuth for this webhook. Cannot be combined with an `authorization` custom header on the same webhook; a request that would leave both set is rejected.", alias="webhookOauthId")
-    custom_headers: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. A value replaces what is stored under that name rather than adding to it, so an array is the complete new set of lines for that header. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another. Same rules as on create: string or non-empty array, `Cookie` and `Authorization` string-only, 10 headers and under 16 KB in the resulting set, the same reserved names, and values write-only. Entries set to `null` do not count towards the limit. `Authorization` cannot be combined with `webhookOauthId`, though one request may add it and detach the credentials together.", alias="customHeaders")
-    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "webhookMtlsId", "webhookOauthId", "customHeaders"]
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration this webhook presents when delivering, from `/v1/webhooks_settings/mtls`. Several webhooks may share one configuration, so replacing its certificate covers all of them at once. Send `null` to stop using mTLS for this webhook. Requires advanced webhook controls to be enabled for the workspace (`403` otherwise), except to detach.", alias="webhookMtlsId")
+    webhook_oauth_id: Optional[StrictStr] = Field(default=None, description="The id of the OAuth credentials this webhook authenticates with, from `/v1/webhooks_settings/oauth`. Several webhooks may share one credential set, so rotating its client secret covers all of them at once. Send `null` to stop using OAuth for this webhook. When the webhook has OAuth credentials, Fireblocks sends its own `Authorization` header (the bearer token), and a custom `Authorization` header from the attached set is not sent. Requires advanced webhook controls to be enabled for the workspace (`403` otherwise), except to detach.", alias="webhookOauthId")
+    webhook_custom_headers_id: Optional[StrictStr] = Field(default=None, description="The id of the set of custom HTTP headers sent with this webhook's notifications, from `/v1/webhooks_settings/custom_headers`. Several webhooks, and OAuth credentials, may share one set, so changing it covers all of them at once. Validated when the set is created or changed; attaching checks only that it exists in your workspace. Send `null` to stop sending custom headers with this webhook. Replaces the inline `customHeaders` field, which is now refused with a `400`, so use `webhookCustomHeadersId`. Requires advanced webhook controls to be enabled for the workspace (`403` otherwise), except to detach. An unknown id, or one belonging to another workspace, is a `404`.", alias="webhookCustomHeadersId")
+    __properties: ClassVar[List[str]] = ["url", "description", "events", "enabled", "webhookMtlsId", "webhookOauthId", "webhookCustomHeadersId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,10 +87,10 @@ class UpdateWebhookRequest(BaseModel):
         if self.webhook_oauth_id is None and "webhook_oauth_id" in self.model_fields_set:
             _dict['webhookOauthId'] = None
 
-        # set to None if custom_headers (nullable) is None
+        # set to None if webhook_custom_headers_id (nullable) is None
         # and model_fields_set contains the field
-        if self.custom_headers is None and "custom_headers" in self.model_fields_set:
-            _dict['customHeaders'] = None
+        if self.webhook_custom_headers_id is None and "webhook_custom_headers_id" in self.model_fields_set:
+            _dict['webhookCustomHeadersId'] = None
 
         return _dict
 
@@ -110,7 +110,7 @@ class UpdateWebhookRequest(BaseModel):
             "enabled": obj.get("enabled"),
             "webhookMtlsId": obj.get("webhookMtlsId"),
             "webhookOauthId": obj.get("webhookOauthId"),
-            "customHeaders": obj.get("customHeaders")
+            "webhookCustomHeadersId": obj.get("webhookCustomHeadersId")
         })
         return _obj
 

@@ -144,7 +144,6 @@ from fireblocks.models.asset_price_response import AssetPriceResponse
 from fireblocks.models.asset_response import AssetResponse
 from fireblocks.models.asset_scope import AssetScope
 from fireblocks.models.asset_type_response import AssetTypeResponse
-from fireblocks.models.asset_types_config_inner import AssetTypesConfigInner
 from fireblocks.models.asset_wallet import AssetWallet
 from fireblocks.models.assign_vaults_to_legal_entity_request import AssignVaultsToLegalEntityRequest
 from fireblocks.models.assign_vaults_to_legal_entity_response import AssignVaultsToLegalEntityResponse
@@ -255,6 +254,7 @@ from fireblocks.models.connected_account_asset_type import ConnectedAccountAsset
 from fireblocks.models.connected_account_balances import ConnectedAccountBalances
 from fireblocks.models.connected_account_balances_response import ConnectedAccountBalancesResponse
 from fireblocks.models.connected_account_capability import ConnectedAccountCapability
+from fireblocks.models.connected_account_credit import ConnectedAccountCredit
 from fireblocks.models.connected_account_error_response import ConnectedAccountErrorResponse
 from fireblocks.models.connected_account_manifest import ConnectedAccountManifest
 from fireblocks.models.connected_account_rate_response import ConnectedAccountRateResponse
@@ -342,6 +342,8 @@ from fireblocks.models.create_multiple_vault_accounts_job_status import CreateMu
 from fireblocks.models.create_ncw_connection_request import CreateNcwConnectionRequest
 from fireblocks.models.create_network_id_request import CreateNetworkIdRequest
 from fireblocks.models.create_offers_request import CreateOffersRequest
+from fireblocks.models.create_omnibus_addresses_request import CreateOmnibusAddressesRequest
+from fireblocks.models.create_omnibus_addresses_response import CreateOmnibusAddressesResponse
 from fireblocks.models.create_order_request import CreateOrderRequest
 from fireblocks.models.create_payout_request import CreatePayoutRequest
 from fireblocks.models.create_quote import CreateQuote
@@ -364,6 +366,7 @@ from fireblocks.models.create_vault_account_connection_request import CreateVaul
 from fireblocks.models.create_vault_account_request import CreateVaultAccountRequest
 from fireblocks.models.create_vault_asset_response import CreateVaultAssetResponse
 from fireblocks.models.create_wallet_request import CreateWalletRequest
+from fireblocks.models.create_webhook_custom_headers_request import CreateWebhookCustomHeadersRequest
 from fireblocks.models.create_webhook_mtls_config_request import CreateWebhookMtlsConfigRequest
 from fireblocks.models.create_webhook_oauth_request import CreateWebhookOauthRequest
 from fireblocks.models.create_webhook_request import CreateWebhookRequest
@@ -380,6 +383,7 @@ from fireblocks.models.delegation_summary import DelegationSummary
 from fireblocks.models.delete_approval_api_key_response import DeleteApprovalApiKeyResponse
 from fireblocks.models.delete_network_connection_response import DeleteNetworkConnectionResponse
 from fireblocks.models.delete_network_id_response import DeleteNetworkIdResponse
+from fireblocks.models.delete_webhook_custom_headers_response import DeleteWebhookCustomHeadersResponse
 from fireblocks.models.delete_webhook_mtls_config_response import DeleteWebhookMtlsConfigResponse
 from fireblocks.models.delete_webhook_oauth_response import DeleteWebhookOauthResponse
 from fireblocks.models.deploy_layer_zero_adapters_request import DeployLayerZeroAdaptersRequest
@@ -609,6 +613,7 @@ from fireblocks.models.list_assets_response import ListAssetsResponse
 from fireblocks.models.list_blockchains_response import ListBlockchainsResponse
 from fireblocks.models.list_blockchains_response2 import ListBlockchainsResponse2
 from fireblocks.models.list_legal_entities_response import ListLegalEntitiesResponse
+from fireblocks.models.list_omnibus_addresses_response import ListOmnibusAddressesResponse
 from fireblocks.models.list_owned_collections_response import ListOwnedCollectionsResponse
 from fireblocks.models.list_owned_tokens_response import ListOwnedTokensResponse
 from fireblocks.models.list_utxos_response import ListUtxosResponse
@@ -674,6 +679,7 @@ from fireblocks.models.offer_response_transfer_accept import OfferResponseTransf
 from fireblocks.models.offer_response_transfer_reject import OfferResponseTransferReject
 from fireblocks.models.offer_response_transfer_withdraw import OfferResponseTransferWithdraw
 from fireblocks.models.offers_response import OffersResponse
+from fireblocks.models.omnibus_address import OmnibusAddress
 from fireblocks.models.onchain_transaction import OnchainTransaction
 from fireblocks.models.onchain_transactions_paged_response import OnchainTransactionsPagedResponse
 from fireblocks.models.onchain_transactions_paged_response2 import OnchainTransactionsPagedResponse2
@@ -804,6 +810,8 @@ from fireblocks.models.re_quote_details_re_quote import ReQuoteDetailsReQuote
 from fireblocks.models.read_abi_function import ReadAbiFunction
 from fireblocks.models.read_call_function_dto import ReadCallFunctionDto
 from fireblocks.models.read_call_function_dto_abi_function import ReadCallFunctionDtoAbiFunction
+from fireblocks.models.read_only_draft_response import ReadOnlyDraftResponse
+from fireblocks.models.read_only_draft_review_and_validation_response import ReadOnlyDraftReviewAndValidationResponse
 from fireblocks.models.reason_for_payment_enum import ReasonForPaymentEnum
 from fireblocks.models.recipient_handle import RecipientHandle
 from fireblocks.models.redeem_funds_to_linked_dda_response import RedeemFundsToLinkedDDAResponse
@@ -811,6 +819,7 @@ from fireblocks.models.register_approval_api_key_request import RegisterApproval
 from fireblocks.models.register_approval_api_key_response import RegisterApprovalApiKeyResponse
 from fireblocks.models.register_legal_entity_request import RegisterLegalEntityRequest
 from fireblocks.models.register_new_asset_request import RegisterNewAssetRequest
+from fireblocks.models.register_tempo_omnibus_response import RegisterTempoOmnibusResponse
 from fireblocks.models.reissue_multichain_token_request import ReissueMultichainTokenRequest
 from fireblocks.models.related_request import RelatedRequest
 from fireblocks.models.related_transaction import RelatedTransaction
@@ -847,6 +856,8 @@ from fireblocks.models.resend_webhooks_response import ResendWebhooksResponse
 from fireblocks.models.respond_to_connection_request import RespondToConnectionRequest
 from fireblocks.models.retry_requote_request_details import RetryRequoteRequestDetails
 from fireblocks.models.retry_requote_type_enum import RetryRequoteTypeEnum
+from fireblocks.models.revoke_webhook_oauth_key_request import RevokeWebhookOauthKeyRequest
+from fireblocks.models.revoke_webhook_oauth_key_response import RevokeWebhookOauthKeyResponse
 from fireblocks.models.reward_info import RewardInfo
 from fireblocks.models.rewards_info import RewardsInfo
 from fireblocks.models.risk_level_enum import RiskLevelEnum
@@ -854,6 +865,7 @@ from fireblocks.models.role_details import RoleDetails
 from fireblocks.models.role_details2 import RoleDetails2
 from fireblocks.models.role_fee_info import RoleFeeInfo
 from fireblocks.models.role_grantee import RoleGrantee
+from fireblocks.models.rotate_webhook_oauth_key_response import RotateWebhookOauthKeyResponse
 from fireblocks.models.rule import Rule
 from fireblocks.models.rule_action_enum import RuleActionEnum
 from fireblocks.models.rule_condition import RuleCondition
@@ -1247,6 +1259,7 @@ from fireblocks.models.update_tag_request import UpdateTagRequest
 from fireblocks.models.update_token_ownership_status_dto import UpdateTokenOwnershipStatusDto
 from fireblocks.models.update_vault_account_asset_address_request import UpdateVaultAccountAssetAddressRequest
 from fireblocks.models.update_vault_account_request import UpdateVaultAccountRequest
+from fireblocks.models.update_webhook_custom_headers_request import UpdateWebhookCustomHeadersRequest
 from fireblocks.models.update_webhook_mtls_config_request import UpdateWebhookMtlsConfigRequest
 from fireblocks.models.update_webhook_oauth_request import UpdateWebhookOauthRequest
 from fireblocks.models.update_webhook_request import UpdateWebhookRequest
@@ -1299,12 +1312,14 @@ from fireblocks.models.version_summary import VersionSummary
 from fireblocks.models.wallet_asset import WalletAsset
 from fireblocks.models.wallet_asset_additional_info import WalletAssetAdditionalInfo
 from fireblocks.models.webhook import Webhook
+from fireblocks.models.webhook_custom_headers_set import WebhookCustomHeadersSet
 from fireblocks.models.webhook_event import WebhookEvent
 from fireblocks.models.webhook_metric import WebhookMetric
 from fireblocks.models.webhook_mtls_config import WebhookMtlsConfig
 from fireblocks.models.webhook_mtls_csr_response import WebhookMtlsCsrResponse
 from fireblocks.models.webhook_mtls_key_algorithm import WebhookMtlsKeyAlgorithm
 from fireblocks.models.webhook_oauth_credentials import WebhookOauthCredentials
+from fireblocks.models.webhook_oauth_signing_alg import WebhookOauthSigningAlg
 from fireblocks.models.webhook_paginated_response import WebhookPaginatedResponse
 from fireblocks.models.withdraw_request import WithdrawRequest
 from fireblocks.models.workflow_config_status import WorkflowConfigStatus

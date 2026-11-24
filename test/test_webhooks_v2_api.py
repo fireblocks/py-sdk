@@ -33,6 +33,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_create_webhook_custom_headers(self) -> None:
+        """Test case for create_webhook_custom_headers
+
+        Create a custom headers set
+        """
+        pass
+
     def test_create_webhook_mtls_config(self) -> None:
         """Test case for create_webhook_mtls_config
 
@@ -51,6 +58,13 @@ class TestWebhooksV2Api(unittest.TestCase):
         """Test case for delete_webhook
 
         Delete webhook
+        """
+        pass
+
+    def test_delete_webhook_custom_headers(self) -> None:
+        """Test case for delete_webhook_custom_headers
+
+        Delete a custom headers set
         """
         pass
 
@@ -124,6 +138,20 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_webhook_custom_headers(self) -> None:
+        """Test case for get_webhook_custom_headers
+
+        Get a custom headers set by id
+        """
+        pass
+
+    def test_get_webhook_custom_headers_list(self) -> None:
+        """Test case for get_webhook_custom_headers_list
+
+        Get all custom headers sets
+        """
+        pass
+
     def test_get_webhook_mtls_config(self) -> None:
         """Test case for get_webhook_mtls_config
 
@@ -187,10 +215,31 @@ class TestWebhooksV2Api(unittest.TestCase):
         """
         pass
 
+    def test_revoke_webhook_oauth_key(self) -> None:
+        """Test case for revoke_webhook_oauth_key
+
+        Revoke a signing key of OAuth credentials
+        """
+        pass
+
+    def test_rotate_webhook_oauth_key(self) -> None:
+        """Test case for rotate_webhook_oauth_key
+
+        Rotate the signing key of OAuth credentials
+        """
+        pass
+
     def test_update_webhook(self) -> None:
         """Test case for update_webhook
 
         Update webhook
+        """
+        pass
+
+    def test_update_webhook_custom_headers(self) -> None:
+        """Test case for update_webhook_custom_headers
+
+        Update a custom headers set
         """
         pass
 

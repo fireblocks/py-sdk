@@ -38,13 +38,13 @@ class TestAuditLogEntry(unittest.TestCase):
             return AuditLogEntry(
                 timestamp = '1700000000',
                 event_type = 'STATUS_TRANSITION',
-                data = '[B@3e5b79bb'
+                data = '[B@1871b4b2'
             )
         else:
             return AuditLogEntry(
                 timestamp = '1700000000',
                 event_type = 'STATUS_TRANSITION',
-                data = '[B@3e5b79bb',
+                data = '[B@1871b4b2',
         )
         """
 

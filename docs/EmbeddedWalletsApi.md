@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**get_embedded_wallet_setup_status**](EmbeddedWalletsApi.md#get_embedded_wallet_setup_status) | **GET** /ncw/wallets/{walletId}/setup_status | Get wallet key setup state
 [**get_embedded_wallet_supported_assets**](EmbeddedWalletsApi.md#get_embedded_wallet_supported_assets) | **GET** /ncw/wallets/supported_assets | Retrieve supported assets
 [**get_embedded_wallets**](EmbeddedWalletsApi.md#get_embedded_wallets) | **GET** /ncw/wallets | List wallets
+[**get_public_key_info_for_address_ncw**](EmbeddedWalletsApi.md#get_public_key_info_for_address_ncw) | **GET** /ncw/{walletId}/accounts/{accountId}/{assetId}/{change}/{addressIndex}/public_key_info | Get the public key of an asset
 [**get_public_key_info_ncw**](EmbeddedWalletsApi.md#get_public_key_info_ncw) | **GET** /ncw/wallets/{walletId}/public_key_info | Get the public key for a derivation path
 [**refresh_embedded_wallet_asset_balance**](EmbeddedWalletsApi.md#refresh_embedded_wallet_asset_balance) | **PUT** /ncw/wallets/{walletId}/accounts/{accountId}/assets/{assetId}/balance | Refresh asset balance
 [**update_embedded_wallet_device_status**](EmbeddedWalletsApi.md#update_embedded_wallet_device_status) | **PATCH** /ncw/wallets/{walletId}/devices/{deviceId}/status | Update device status
@@ -1437,6 +1438,92 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response |  * X-Request-ID -  <br>  |
+**0** | Error Response |  * X-Request-ID -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_public_key_info_for_address_ncw**
+> PublicKeyInformation get_public_key_info_for_address_ncw(x_end_user_wallet_id, wallet_id, account_id, asset_id, change, address_index, compressed=compressed)
+
+Get the public key of an asset
+
+Gets the public key of an asset associated with a specific account within a Non-Custodial Wallet
+
+### Example
+
+
+```python
+from fireblocks.models.public_key_information import PublicKeyInformation
+from fireblocks.client import Fireblocks
+from fireblocks.client_configuration import ClientConfiguration
+from fireblocks.exceptions import ApiException
+from fireblocks.base_path import BasePath
+from pprint import pprint
+
+# load the secret key content from a file
+with open('your_secret_key_file_path', 'r') as file:
+    secret_key_value = file.read()
+
+# build the configuration
+configuration = ClientConfiguration(
+        api_key="your_api_key",
+        secret_key=secret_key_value,
+        base_path=BasePath.Sandbox, # or set it directly to a string "https://sandbox-api.fireblocks.io/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with Fireblocks(configuration) as fireblocks:
+    x_end_user_wallet_id = 'x_end_user_wallet_id_example' # str | Unique ID of the End-User wallet to the API request. Required for end-user wallet operations.
+    wallet_id = '550e8400-e29b-41d4-a716-446655440000' # str | The ID of the Non-Custodial wallet
+    account_id = '0' # str | The ID of the account
+    asset_id = 'BTC' # str | The ID of the asset
+    change = 0 # float | BIP44 derivation path - change value
+    address_index = 0 # float | BIP44 derivation path - index value
+    compressed = true # bool | Compressed/Uncompressed public key format (optional)
+
+    try:
+        # Get the public key of an asset
+        api_response = fireblocks.embedded_wallets.get_public_key_info_for_address_ncw(x_end_user_wallet_id, wallet_id, account_id, asset_id, change, address_index, compressed=compressed).result()
+        print("The response of EmbeddedWalletsApi->get_public_key_info_for_address_ncw:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling EmbeddedWalletsApi->get_public_key_info_for_address_ncw: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **x_end_user_wallet_id** | **str**| Unique ID of the End-User wallet to the API request. Required for end-user wallet operations. | 
+ **wallet_id** | **str**| The ID of the Non-Custodial wallet | 
+ **account_id** | **str**| The ID of the account | 
+ **asset_id** | **str**| The ID of the asset | 
+ **change** | **float**| BIP44 derivation path - change value | 
+ **address_index** | **float**| BIP44 derivation path - index value | 
+ **compressed** | **bool**| Compressed/Uncompressed public key format | [optional] 
+
+### Return type
+
+[**PublicKeyInformation**](PublicKeyInformation.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Public Key Information |  * X-Request-ID -  <br>  |
 **0** | Error Response |  * X-Request-ID -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **inflation** | **str** | The inflation reward amount earned by the position, measured in the staked asset unit. | 
 **mev** | **str** | The MEV reward amount earned by the position, measured in the staked asset unit. | 
-**last_reward_synced_at** | **datetime** | The last time the rewards were synced (ISO Date). | 
+**last_reward_synced_at** | **datetime** | The time (UTC) of the last sync that fetched this position&#39;s rewards from the rewards provider. It is updated on every sync, including when nothing new was found, so it is not the date of the newest reward (see latestInflationRewardDate and latestMevRewardDate). | 
+**latest_inflation_reward_date** | **date** | The date (UTC, YYYY-MM-DD) of the newest inflation reward the rewards provider has returned for this stake account. Null until the provider returns one. | [optional] 
+**latest_mev_reward_date** | **date** | The date (UTC, YYYY-MM-DD) of the newest MEV reward the rewards provider has returned for this stake account. Null until the provider returns one, and for validators without MEV rewards. | [optional] 
 
 ## Example
 

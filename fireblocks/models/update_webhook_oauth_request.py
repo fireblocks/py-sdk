@@ -21,23 +21,25 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from fireblocks.models.webhook_oauth_signing_alg import WebhookOauthSigningAlg
 from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateWebhookOauthRequest(BaseModel):
     """
-    A partial update. Every field is optional and an omitted field is left as it is, so `{ \"clientSecret\": \"new-secret\" }` rotates the secret and changes nothing else. A rotation applies to every webhook referencing these credentials.  The three custom maps merge. A key with a value is upserted, a key with `null` is deleted, a key you leave out is untouched, and the whole field set to `null` clears the map. There is no ambiguity between the two uses of `null` — one names an entry, the other names the field. `webhookMtlsId` is a scalar, so `null` there removes it.
+    A partial update. Every field is optional and an omitted field is left as it is, so `{ \"clientSecret\": \"new-secret\" }` rotates the secret and changes nothing else. A rotation applies to every webhook referencing these credentials.  The result is checked against the resulting `authMethod`, not just the fields sent: the secret methods must end up with a `clientSecret`, and a `signingAlg` value is only valid when the resulting method is `private_key_jwt`.  The two custom maps merge. A key with a value is upserted, a key with `null` is deleted, a key you leave out is untouched, and the whole field set to `null` clears the map. There is no ambiguity between the two uses of `null` — one names an entry, the other names the field. `webhookMtlsId` and `webhookCustomHeadersId` are scalars, so `null` there removes them.
     """ # noqa: E501
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=128)]] = Field(default=None, description="A label for this credential set. Omit to leave it unchanged.")
     client_id: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="OAuth client ID. Omit to leave it unchanged.", alias="clientId")
-    client_secret: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=480)]] = Field(default=None, description="A new OAuth client secret. Limited to 480 bytes when UTF-8 encoded, so a secret using non-ASCII characters fits fewer than 480 of them. Write-only — never returned in any response. Send this on its own to rotate the secret without changing anything else. Omit to leave it unchanged.", alias="clientSecret")
+    client_secret: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=480)]] = Field(default=None, description="A new OAuth client secret. Limited to 480 bytes when UTF-8 encoded, so a secret using non-ASCII characters fits fewer than 480 of them. Write-only — never returned in any response. Send this on its own to rotate the secret without changing anything else. Omit to leave it unchanged. Must not be sent with a value when the resulting `authMethod` is `private_key_jwt` (`400` otherwise). A secret already stored from before a switch to `private_key_jwt` is kept, unused, so switching back needs no new one; send `null` to clear it. A secret method must still end up with a secret, so `null` is refused unless the resulting method is `private_key_jwt`.", alias="clientSecret")
     url: Optional[Annotated[str, Field(strict=True, max_length=2048)]] = Field(default=None, description="Token endpoint URL. HTTPS on port 443 only, and the host must resolve publicly. Omit to leave it unchanged.")
-    auth_method: Optional[StrictStr] = Field(default=None, description="`client_secret_basic`, `client_secret_post` or `client_secret_jwt`. Omit to leave it unchanged — it does not revert to the default.", alias="authMethod")
+    auth_method: Optional[StrictStr] = Field(default=None, description="`client_secret_basic`, `client_secret_post`, `client_secret_jwt` or `private_key_jwt`. Omit to leave it unchanged — it does not revert to the default.  Switching to `private_key_jwt` brings back the key pairs these credentials held before, if they are still kept, and otherwise generates a signing key and its successor. Either way the first assertion names a `kid` your authorization server may not hold yet, so it fetches the JWKS again. Switching away from `private_key_jwt` empties `signingAlg`, and keeps the key pairs published for 30 days before deleting them, so switching back within that time restores them; it needs a `clientSecret`, either sent here or still stored.", alias="authMethod")
+    signing_alg: Optional[WebhookOauthSigningAlg] = Field(default=None, description="A new algorithm for the key pairs of `private_key_jwt` credentials. Omit to leave it unchanged. A value is only valid when the resulting `authMethod` is `private_key_jwt` (`400` otherwise); a switch to `private_key_jwt` that omits it uses `RS256`, or the algorithm of the key pairs it brings back. `null` means no algorithm, and is accepted only when the resulting method is `client_secret_basic`, `client_secret_post` or `client_secret_jwt`; with `private_key_jwt` it is a `400`.  A change generates a new signing key and successor in the new algorithm, and signing switches to them at once. The previous keys stay published for 5 minutes and are kept for 30 days: changing back within that time restores them, with their original expiry, instead of generating new ones, and `revoke_key` can delete them by `kid` until then.", alias="signingAlg")
     custom_jwt_claims: Optional[Dict[str, Any]] = Field(default=None, description="A delta applied to the JWT assertion claims. A claim with a value is added or replaced, a claim with `null` is deleted, and a claim you leave out is untouched. So `{ \"aud\": \"https://auth.example.com\", \"resource\": null }` sets `aud`, drops `resource`, and changes nothing else. Send `customJwtClaims: null` to clear every claim in one call. That does not collide with a `null` value on a name: one names the claim to delete, the other names the whole field. Same rules as on create: any JSON type except `null`, `iss`/`sub`/`jti`/`iat`/`exp` reserved, names case-sensitive, resulting set under 16 KB, values write-only.", alias="customJwtClaims")
     custom_body_params: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="A delta applied to the token request body parameters. A parameter with a value is added or replaced, a parameter with `null` is deleted, and one you leave out is untouched. So `{ \"scope\": \"payments.read\", \"audience\": null }` sets `scope`, drops `audience`, and changes nothing else. Send `customBodyParams: null` to clear every parameter in one call. That does not collide with a `null` value on a name: one names the parameter to delete, the other names the whole field. Same rules as on create: string values only, `grant_type`/`client_id`/`client_secret`/ `client_assertion`/`client_assertion_type` reserved, names case-sensitive, resulting set under 16 KB, values write-only.", alias="customBodyParams")
-    custom_headers: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="A delta applied to the token request headers — not the webhook delivery headers. A header with a value is added or replaced, a header with `null` is deleted, and one you leave out is untouched. So `{ \"X-Api-Key\": \"new-key\", \"X-Tenant\": null }` rotates `X-Api-Key`, drops `X-Tenant`, and changes nothing else. Send `customHeaders: null` to clear every header in one call. That does not collide with a `null` value on a name: one names the header to delete, the other names the whole field. Names are case-insensitive, so a `null` under one casing deletes a header stored under another, and names are stored and returned lowercased. Same rules as on create: string values only, `Content-Type`, `Content-Length` and `Host` reserved, `Authorization` only with `client_secret_post` or `client_secret_jwt`, resulting set under 16 KB, values write-only.", alias="customHeaders")
-    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint, from `/v1/webhooks_settings/mtls`. Omit to leave it unchanged, or send `null` to stop using mTLS for the token request. Requires the mTLS feature to be enabled for the workspace (`403` otherwise), a configuration of this workspace (`404` otherwise), and one linked to a private key (`400` otherwise).", alias="webhookMtlsId")
-    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "customJwtClaims", "customBodyParams", "customHeaders", "webhookMtlsId"]
+    webhook_custom_headers_id: Optional[StrictStr] = Field(default=None, description="The id of the set of custom HTTP headers added to the token request, from `/v1/webhooks_settings/custom_headers`. Omit to leave it unchanged, or send `null` to stop sending extra headers. The same rules apply as for a webhook delivery, including the reserved header names. Under `client_secret_basic` Fireblocks sends its own `Authorization` header with the credentials, and a custom `Authorization` header is not sent. Replaces the inline `customHeaders` field, which is now refused with a `400`: use `webhookCustomHeadersId`. An unknown id, or one belonging to another workspace, is a `404`.", alias="webhookCustomHeadersId")
+    webhook_mtls_id: Optional[StrictStr] = Field(default=None, description="The id of the mTLS configuration presented to the token endpoint, from `/v1/webhooks_settings/mtls`. Omit to leave it unchanged, or send `null` to stop using mTLS for the token request. Requires a configuration of this workspace (`404` otherwise) that is linked to a private key (`400` otherwise).", alias="webhookMtlsId")
+    __properties: ClassVar[List[str]] = ["name", "clientId", "clientSecret", "url", "authMethod", "signingAlg", "customJwtClaims", "customBodyParams", "webhookCustomHeadersId", "webhookMtlsId"]
 
     @field_validator('url')
     def url_validate_regular_expression(cls, value):
@@ -88,6 +90,16 @@ class UpdateWebhookOauthRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if client_secret (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_secret is None and "client_secret" in self.model_fields_set:
+            _dict['clientSecret'] = None
+
+        # set to None if signing_alg (nullable) is None
+        # and model_fields_set contains the field
+        if self.signing_alg is None and "signing_alg" in self.model_fields_set:
+            _dict['signingAlg'] = None
+
         # set to None if custom_jwt_claims (nullable) is None
         # and model_fields_set contains the field
         if self.custom_jwt_claims is None and "custom_jwt_claims" in self.model_fields_set:
@@ -98,10 +110,10 @@ class UpdateWebhookOauthRequest(BaseModel):
         if self.custom_body_params is None and "custom_body_params" in self.model_fields_set:
             _dict['customBodyParams'] = None
 
-        # set to None if custom_headers (nullable) is None
+        # set to None if webhook_custom_headers_id (nullable) is None
         # and model_fields_set contains the field
-        if self.custom_headers is None and "custom_headers" in self.model_fields_set:
-            _dict['customHeaders'] = None
+        if self.webhook_custom_headers_id is None and "webhook_custom_headers_id" in self.model_fields_set:
+            _dict['webhookCustomHeadersId'] = None
 
         # set to None if webhook_mtls_id (nullable) is None
         # and model_fields_set contains the field
@@ -125,9 +137,10 @@ class UpdateWebhookOauthRequest(BaseModel):
             "clientSecret": obj.get("clientSecret"),
             "url": obj.get("url"),
             "authMethod": obj.get("authMethod"),
+            "signingAlg": obj.get("signingAlg"),
             "customJwtClaims": obj.get("customJwtClaims"),
             "customBodyParams": obj.get("customBodyParams"),
-            "customHeaders": obj.get("customHeaders"),
+            "webhookCustomHeadersId": obj.get("webhookCustomHeadersId"),
             "webhookMtlsId": obj.get("webhookMtlsId")
         })
         return _obj

@@ -82,6 +82,13 @@ class TestTravelRuleApi(unittest.TestCase):
         """
         pass
 
+    def test_validate_travel_rule_transaction(self) -> None:
+        """Test case for validate_travel_rule_transaction
+
+        Validate Travel Rule Transaction
+        """
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()

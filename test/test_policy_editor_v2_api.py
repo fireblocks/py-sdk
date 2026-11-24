@@ -40,6 +40,20 @@ class TestPolicyEditorV2Api(unittest.TestCase):
         """
         pass
 
+    def test_get_draft_read_only(self) -> None:
+        """Test case for get_draft_read_only
+
+        Get the current draft without starting an edit session
+        """
+        pass
+
+    def test_get_policy_rule_quota(self) -> None:
+        """Test case for get_policy_rule_quota
+
+        Calculate the AOT quota for a policy rule
+        """
+        pass
+
     def test_publish_draft(self) -> None:
         """Test case for publish_draft
 

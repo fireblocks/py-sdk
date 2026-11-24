@@ -15,15 +15,13 @@ from fireblocks.threaded_api_client import ThreadedApiClient
 from fireblocks.client_configuration import ClientConfiguration
 
 from fireblocks.api.api_user_api import ApiUserApi
-from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
+from fireblocks.api.approvals_api import ApprovalsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
-from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
+from fireblocks.api.blockchain_link_api import BlockchainLinkApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
-from fireblocks.api.canton_beta_api import CantonBetaApi
+from fireblocks.api.canton_api import CantonApi
 from fireblocks.api.compliance_api import ComplianceApi
-from fireblocks.api.compliance_orchestrator_beta_api import (
-    ComplianceOrchestratorBetaApi,
-)
+from fireblocks.api.compliance_orchestrator_api import ComplianceOrchestratorApi
 from fireblocks.api.compliance_screening_configuration_api import (
     ComplianceScreeningConfigurationApi,
 )
@@ -41,39 +39,38 @@ from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
-from fireblocks.api.genie_beta_api import GenieBetaApi
+from fireblocks.api.genie_api import GenieApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.key_link_api import KeyLinkApi
 from fireblocks.api.keys_api import KeysApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
-from fireblocks.api.ota_beta_api import OTABetaApi
+from fireblocks.api.ota_api import OTAApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
-from fireblocks.api.reports_beta_api import ReportsBetaApi
+from fireblocks.api.reports_api import ReportsApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.security_posture_management_api import SecurityPostureManagementApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
-from fireblocks.api.tempo_beta_api import TempoBetaApi
+from fireblocks.api.tempo_api import TempoApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.utxo_management_api import UTXOManagementApi
-from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
+from fireblocks.api.user_groups_api import UserGroupsApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
 from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_api import WorkspaceApi
-from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
+from fireblocks.api.workspace_status_api import WorkspaceStatusApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
 """This class contains the Fireblocks API client.
@@ -87,13 +84,13 @@ class Fireblocks:
 
         # APIs
         self._api_user = None
-        self._approvals_beta = None
+        self._approvals = None
         self._audit_logs = None
-        self._blockchain_link_beta = None
+        self._blockchain_link = None
         self._blockchains_assets = None
-        self._canton_beta = None
+        self._canton = None
         self._compliance = None
-        self._compliance_orchestrator_beta = None
+        self._compliance_orchestrator = None
         self._compliance_screening_configuration = None
         self._connected_accounts = None
         self._console_user = None
@@ -109,39 +106,38 @@ class Fireblocks:
         self._external_wallets = None
         self._fiat_accounts = None
         self._gas_stations = None
-        self._genie_beta = None
+        self._genie = None
         self._internal_wallets = None
         self._key_link = None
         self._keys = None
         self._nfts = None
         self._network_connections = None
-        self._ota_beta = None
+        self._ota = None
         self._off_exchanges = None
         self._onchain_data = None
         self._payments_payout = None
         self._policy_editor_v2 = None
-        self._policy_editor_v2_beta = None
-        self._reports_beta = None
+        self._reports = None
         self._reset_device = None
         self._security_posture_management = None
         self._smart_transfer = None
         self._staking = None
         self._tr_link = None
         self._tags = None
-        self._tempo_beta = None
+        self._tempo = None
         self._tokenization = None
         self._trading = None
         self._transactions = None
         self._travel_rule = None
         self._utxo_management = None
-        self._user_groups_beta = None
+        self._user_groups = None
         self._users = None
         self._vaults = None
         self._web3_connections = None
         self._webhooks = None
         self._webhooks_v2 = None
         self._workspace = None
-        self._workspace_status_beta = None
+        self._workspace_status = None
         self._whitelist_ip_addresses = None
 
     def __enter__(self):
@@ -160,10 +156,10 @@ class Fireblocks:
         return self._api_user
 
     @property
-    def approvals_beta(self) -> ApprovalsBetaApi:
-        if self._approvals_beta is None:
-            self._approvals_beta = ApprovalsBetaApi(self._api_client)
-        return self._approvals_beta
+    def approvals(self) -> ApprovalsApi:
+        if self._approvals is None:
+            self._approvals = ApprovalsApi(self._api_client)
+        return self._approvals
 
     @property
     def audit_logs(self) -> AuditLogsApi:
@@ -172,10 +168,10 @@ class Fireblocks:
         return self._audit_logs
 
     @property
-    def blockchain_link_beta(self) -> BlockchainLinkBetaApi:
-        if self._blockchain_link_beta is None:
-            self._blockchain_link_beta = BlockchainLinkBetaApi(self._api_client)
-        return self._blockchain_link_beta
+    def blockchain_link(self) -> BlockchainLinkApi:
+        if self._blockchain_link is None:
+            self._blockchain_link = BlockchainLinkApi(self._api_client)
+        return self._blockchain_link
 
     @property
     def blockchains_assets(self) -> BlockchainsAssetsApi:
@@ -184,10 +180,10 @@ class Fireblocks:
         return self._blockchains_assets
 
     @property
-    def canton_beta(self) -> CantonBetaApi:
-        if self._canton_beta is None:
-            self._canton_beta = CantonBetaApi(self._api_client)
-        return self._canton_beta
+    def canton(self) -> CantonApi:
+        if self._canton is None:
+            self._canton = CantonApi(self._api_client)
+        return self._canton
 
     @property
     def compliance(self) -> ComplianceApi:
@@ -196,12 +192,10 @@ class Fireblocks:
         return self._compliance
 
     @property
-    def compliance_orchestrator_beta(self) -> ComplianceOrchestratorBetaApi:
-        if self._compliance_orchestrator_beta is None:
-            self._compliance_orchestrator_beta = ComplianceOrchestratorBetaApi(
-                self._api_client
-            )
-        return self._compliance_orchestrator_beta
+    def compliance_orchestrator(self) -> ComplianceOrchestratorApi:
+        if self._compliance_orchestrator is None:
+            self._compliance_orchestrator = ComplianceOrchestratorApi(self._api_client)
+        return self._compliance_orchestrator
 
     @property
     def compliance_screening_configuration(self) -> ComplianceScreeningConfigurationApi:
@@ -296,10 +290,10 @@ class Fireblocks:
         return self._gas_stations
 
     @property
-    def genie_beta(self) -> GenieBetaApi:
-        if self._genie_beta is None:
-            self._genie_beta = GenieBetaApi(self._api_client)
-        return self._genie_beta
+    def genie(self) -> GenieApi:
+        if self._genie is None:
+            self._genie = GenieApi(self._api_client)
+        return self._genie
 
     @property
     def internal_wallets(self) -> InternalWalletsApi:
@@ -332,10 +326,10 @@ class Fireblocks:
         return self._network_connections
 
     @property
-    def ota_beta(self) -> OTABetaApi:
-        if self._ota_beta is None:
-            self._ota_beta = OTABetaApi(self._api_client)
-        return self._ota_beta
+    def ota(self) -> OTAApi:
+        if self._ota is None:
+            self._ota = OTAApi(self._api_client)
+        return self._ota
 
     @property
     def off_exchanges(self) -> OffExchangesApi:
@@ -362,16 +356,10 @@ class Fireblocks:
         return self._policy_editor_v2
 
     @property
-    def policy_editor_v2_beta(self) -> PolicyEditorV2BetaApi:
-        if self._policy_editor_v2_beta is None:
-            self._policy_editor_v2_beta = PolicyEditorV2BetaApi(self._api_client)
-        return self._policy_editor_v2_beta
-
-    @property
-    def reports_beta(self) -> ReportsBetaApi:
-        if self._reports_beta is None:
-            self._reports_beta = ReportsBetaApi(self._api_client)
-        return self._reports_beta
+    def reports(self) -> ReportsApi:
+        if self._reports is None:
+            self._reports = ReportsApi(self._api_client)
+        return self._reports
 
     @property
     def reset_device(self) -> ResetDeviceApi:
@@ -412,10 +400,10 @@ class Fireblocks:
         return self._tags
 
     @property
-    def tempo_beta(self) -> TempoBetaApi:
-        if self._tempo_beta is None:
-            self._tempo_beta = TempoBetaApi(self._api_client)
-        return self._tempo_beta
+    def tempo(self) -> TempoApi:
+        if self._tempo is None:
+            self._tempo = TempoApi(self._api_client)
+        return self._tempo
 
     @property
     def tokenization(self) -> TokenizationApi:
@@ -448,10 +436,10 @@ class Fireblocks:
         return self._utxo_management
 
     @property
-    def user_groups_beta(self) -> UserGroupsBetaApi:
-        if self._user_groups_beta is None:
-            self._user_groups_beta = UserGroupsBetaApi(self._api_client)
-        return self._user_groups_beta
+    def user_groups(self) -> UserGroupsApi:
+        if self._user_groups is None:
+            self._user_groups = UserGroupsApi(self._api_client)
+        return self._user_groups
 
     @property
     def users(self) -> UsersApi:
@@ -490,10 +478,10 @@ class Fireblocks:
         return self._workspace
 
     @property
-    def workspace_status_beta(self) -> WorkspaceStatusBetaApi:
-        if self._workspace_status_beta is None:
-            self._workspace_status_beta = WorkspaceStatusBetaApi(self._api_client)
-        return self._workspace_status_beta
+    def workspace_status(self) -> WorkspaceStatusApi:
+        if self._workspace_status is None:
+            self._workspace_status = WorkspaceStatusApi(self._api_client)
+        return self._workspace_status
 
     @property
     def whitelist_ip_addresses(self) -> WhitelistIpAddressesApi:

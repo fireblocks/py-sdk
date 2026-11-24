@@ -41,9 +41,10 @@ class TestUpdateWebhookOauthRequest(unittest.TestCase):
                 client_secret = 'my-new-client-secret',
                 url = 'https://auth.example.com/oauth/token',
                 auth_method = 'client_secret_jwt',
+                signing_alg = 'RS256',
                 custom_jwt_claims = {"aud":"https://auth.example.com","resource":null},
                 custom_body_params = {"scope":"payments.read payments.write","audience":null},
-                custom_headers = {"x-api-key":"gateway-key","x-tenant":null},
+                webhook_custom_headers_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f'
             )
         else:

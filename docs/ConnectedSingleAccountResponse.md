@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **provider_account_name** | **str** | The account name provided by the provider. | [optional] 
 **account_type** | [**ConnectedAccountType**](ConnectedAccountType.md) |  | 
 **sub_accounts_ids** | **List[str]** | IDs of sub-accounts associated with this connected account. | [optional] 
+**total_credit** | [**ConnectedAccountCredit**](ConnectedAccountCredit.md) | Total credit line available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when total credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit. | [optional] 
+**available_credit** | [**ConnectedAccountCredit**](ConnectedAccountCredit.md) | Remaining unused credit available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when available credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit. | [optional] 
 
 ## Example
 

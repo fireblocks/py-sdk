@@ -40,7 +40,7 @@ class TestDelegationBlockchainPositionInfo(unittest.TestCase):
             return DelegationBlockchainPositionInfo(
                 stake_account_address = '3Ru67FyzMTcdENmmRL4Eve4dtPd6AdpuypR21q5EQCdq',
                 stake_account_derivation_change_value = 7,
-                rewards_breakdown = {"inflation":"0.000856038","mev":"0.000123456","lastRewardSyncedAt":"2023-07-13T15:55:34.256Z"},
+                rewards_breakdown = {"inflation":"0.000856038","mev":"0.000123456","lastRewardSyncedAt":"2026-11-12T08:30:00.000Z","latestInflationRewardDate":"2026-11-10","latestMevRewardDate":"2026-11-10"},
                 is_compounding_validator = True,
                 estimated_activation_time = '2024-01-15T14:30:00.000Z',
                 estimated_source_exit_time = '2024-01-15T14:30Z',

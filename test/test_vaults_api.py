@@ -68,6 +68,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_create_omnibus_addresses(self) -> None:
+        """Test case for create_omnibus_addresses
+
+        Create omnibus deposit addresses
+        """
+        pass
+
     def test_create_vault_account(self) -> None:
         """Test case for create_vault_account
 
@@ -138,6 +145,13 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_omnibus_addresses(self) -> None:
+        """Test case for get_omnibus_addresses
+
+        List omnibus deposit addresses
+        """
+        pass
+
     def test_get_paged_vault_accounts(self) -> None:
         """Test case for get_paged_vault_accounts
 
@@ -194,10 +208,24 @@ class TestVaultsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_vault_account_asset_addresses(self) -> None:
+        """Test case for get_vault_account_asset_addresses
+
+        Get asset addresses
+        """
+        pass
+
     def test_get_vault_account_asset_addresses_paginated(self) -> None:
         """Test case for get_vault_account_asset_addresses_paginated
 
         Get addresses (Paginated)
+        """
+        pass
+
+    def test_get_vault_accounts(self) -> None:
+        """Test case for get_vault_accounts
+
+        Get vault accounts
         """
         pass
 
@@ -226,6 +254,13 @@ class TestVaultsApi(unittest.TestCase):
         """Test case for lookup_vault_by_address
 
         Look up a vault account by blockchain address
+        """
+        pass
+
+    def test_register_tempo_omnibus_wallet(self) -> None:
+        """Test case for register_tempo_omnibus_wallet
+
+        Register a Tempo omnibus wallet
         """
         pass
 

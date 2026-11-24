@@ -41,16 +41,16 @@ class TestCreateWebhookOauthRequest(unittest.TestCase):
                 client_secret = 'my-client-secret',
                 url = 'https://auth.example.com/oauth/token',
                 auth_method = 'client_secret_basic',
+                signing_alg = 'RS256',
                 custom_jwt_claims = {"aud":"https://auth.example.com","email_verified":true},
                 custom_body_params = {"scope":"payments.read payments.write"},
-                custom_headers = {"x-api-key":"gateway-key"},
+                webhook_custom_headers_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f',
                 webhook_mtls_id = '6f1b7c62-0f2e-4f1a-9a5e-9f2b1c3d4e5f'
             )
         else:
             return CreateWebhookOauthRequest(
                 name = 'Production treasury gateway',
                 client_id = 'my-client-id',
-                client_secret = 'my-client-secret',
                 url = 'https://auth.example.com/oauth/token',
         )
         """

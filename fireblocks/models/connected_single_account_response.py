@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from fireblocks.models.connected_account_approval_status import ConnectedAccountApprovalStatus
+from fireblocks.models.connected_account_credit import ConnectedAccountCredit
 from fireblocks.models.connected_account_manifest import ConnectedAccountManifest
 from fireblocks.models.connected_account_total_balance import ConnectedAccountTotalBalance
 from fireblocks.models.connected_account_type import ConnectedAccountType
@@ -42,7 +43,9 @@ class ConnectedSingleAccountResponse(BaseModel):
     provider_account_name: Optional[StrictStr] = Field(default=None, description="The account name provided by the provider.", alias="providerAccountName")
     account_type: ConnectedAccountType = Field(alias="accountType")
     sub_accounts_ids: Optional[List[StrictStr]] = Field(default=None, description="IDs of sub-accounts associated with this connected account.", alias="subAccountsIds")
-    __properties: ClassVar[List[str]] = ["id", "name", "providerId", "status", "totalBalance", "manifest", "parentId", "apiKey", "providerAccountName", "accountType", "subAccountsIds"]
+    total_credit: Optional[ConnectedAccountCredit] = Field(default=None, description="Total credit line available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when total credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit.", alias="totalCredit")
+    available_credit: Optional[ConnectedAccountCredit] = Field(default=None, description="Remaining unused credit available on the account. Returned only by the single-account endpoint (Get connected account); the list endpoint does not retrieve balances and never populates it. Omitted when available credit data is unavailable or balance retrieval is skipped. Absence does not imply zero credit.", alias="availableCredit")
+    __properties: ClassVar[List[str]] = ["id", "name", "providerId", "status", "totalBalance", "manifest", "parentId", "apiKey", "providerAccountName", "accountType", "subAccountsIds", "totalCredit", "availableCredit"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +92,12 @@ class ConnectedSingleAccountResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of manifest
         if self.manifest:
             _dict['manifest'] = self.manifest.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of total_credit
+        if self.total_credit:
+            _dict['totalCredit'] = self.total_credit.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of available_credit
+        if self.available_credit:
+            _dict['availableCredit'] = self.available_credit.to_dict()
         return _dict
 
     @classmethod
@@ -111,7 +120,9 @@ class ConnectedSingleAccountResponse(BaseModel):
             "apiKey": obj.get("apiKey"),
             "providerAccountName": obj.get("providerAccountName"),
             "accountType": obj.get("accountType"),
-            "subAccountsIds": obj.get("subAccountsIds")
+            "subAccountsIds": obj.get("subAccountsIds"),
+            "totalCredit": ConnectedAccountCredit.from_dict(obj["totalCredit"]) if obj.get("totalCredit") is not None else None,
+            "availableCredit": ConnectedAccountCredit.from_dict(obj["availableCredit"]) if obj.get("availableCredit") is not None else None
         })
         return _obj
 

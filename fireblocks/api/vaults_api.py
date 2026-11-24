@@ -31,15 +31,19 @@ from fireblocks.models.create_multiple_accounts_request import CreateMultipleAcc
 from fireblocks.models.create_multiple_deposit_addresses_job_status import CreateMultipleDepositAddressesJobStatus
 from fireblocks.models.create_multiple_deposit_addresses_request import CreateMultipleDepositAddressesRequest
 from fireblocks.models.create_multiple_vault_accounts_job_status import CreateMultipleVaultAccountsJobStatus
+from fireblocks.models.create_omnibus_addresses_request import CreateOmnibusAddressesRequest
+from fireblocks.models.create_omnibus_addresses_response import CreateOmnibusAddressesResponse
 from fireblocks.models.create_vault_account_request import CreateVaultAccountRequest
 from fireblocks.models.create_vault_asset_response import CreateVaultAssetResponse
 from fireblocks.models.get_automation_settings_response import GetAutomationSettingsResponse
 from fireblocks.models.get_max_bip_index_used_response import GetMaxBipIndexUsedResponse
 from fireblocks.models.get_max_spendable_amount_response import GetMaxSpendableAmountResponse
 from fireblocks.models.job_created import JobCreated
+from fireblocks.models.list_omnibus_addresses_response import ListOmnibusAddressesResponse
 from fireblocks.models.paginated_address_response import PaginatedAddressResponse
 from fireblocks.models.paginated_asset_wallet_response import PaginatedAssetWalletResponse
 from fireblocks.models.public_key_information import PublicKeyInformation
+from fireblocks.models.register_tempo_omnibus_response import RegisterTempoOmnibusResponse
 from fireblocks.models.rename_vault_account_response import RenameVaultAccountResponse
 from fireblocks.models.save_automation_settings_response import SaveAutomationSettingsResponse
 from fireblocks.models.set_auto_fuel_request import SetAutoFuelRequest
@@ -57,6 +61,7 @@ from fireblocks.models.vault_accounts_tag_attachment_operations_request import V
 from fireblocks.models.vault_accounts_tag_attachment_operations_response import VaultAccountsTagAttachmentOperationsResponse
 from fireblocks.models.vault_action_status import VaultActionStatus
 from fireblocks.models.vault_asset import VaultAsset
+from fireblocks.models.vault_wallet_address import VaultWalletAddress
 
 from fireblocks.api_client import ApiClient, RequestSerialized
 from fireblocks.api_response import ApiResponse
@@ -251,7 +256,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
         """Activate a USDC Gateway wallet
 
-        Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Activates the USDC Gateway wallet associated with the given vault account. If the wallet does not yet exist it is created in an activated state. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -691,7 +696,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[JobCreated]]:
         """Bulk creation of new vault accounts
 
-        Create multiple vault accounts by running an async job.       - The HBAR, TON, SUI, TERRA, ALGO, and DOT blockchains are not supported. - These endpoints are currently in beta and might be subject to changes. - Limited to a maximum of 10,000 accounts per operation. - With `vaultType: KEY_LINK`, creates Key Link vault accounts; set `autoAssign: true` to bind them to the workspace's signing keys (see `vaultType` and `autoAssign`).  **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor. 
+        Create multiple vault accounts by running an async job.       - The HBAR, TON, SUI, TERRA, ALGO, and DOT blockchains are not supported. - Limited to a maximum of 10,000 accounts per operation. - With `vaultType: KEY_LINK`, creates Key Link vault accounts; set `autoAssign: true` to bind them to the workspace's signing keys (see `vaultType` and `autoAssign`).  **Endpoint Permissions:** Admin, Non-Signing Admin, Signer, Approver, Editor. 
 
         :param create_multiple_accounts_request: (required)
         :type create_multiple_accounts_request: CreateMultipleAccountsRequest
@@ -954,6 +959,179 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/vault/accounts/addresses/bulk',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_omnibus_addresses(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the omnibus vault account")],
+        protocol: Annotated[StrictStr, Field(description="The omnibus protocol")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        create_omnibus_addresses_request: CreateOmnibusAddressesRequest,
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[CreateOmnibusAddressesResponse]]:
+        """Create omnibus deposit addresses
+
+        Creates a batch of deposit addresses for the omnibus account of the given vault account, protocol and asset. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+
+        :param vault_account_id: The ID of the omnibus vault account (required)
+        :type vault_account_id: str
+        :param protocol: The omnibus protocol (required)
+        :type protocol: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param create_omnibus_addresses_request: (required)
+        :type create_omnibus_addresses_request: CreateOmnibusAddressesRequest
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="create_omnibus_addresses", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="create_omnibus_addresses", param_name="protocol", param_value=protocol)
+        validate_not_empty_string(function_name="create_omnibus_addresses", param_name="asset_id", param_value=asset_id)
+
+        _param = self._create_omnibus_addresses_serialize(
+            vault_account_id=vault_account_id,
+            protocol=protocol,
+            asset_id=asset_id,
+            create_omnibus_addresses_request=create_omnibus_addresses_request,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CreateOmnibusAddressesResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="create_omnibus_addresses",
+        )
+
+    def _create_omnibus_addresses_serialize(
+        self,
+        vault_account_id,
+        protocol,
+        asset_id,
+        create_omnibus_addresses_request,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if protocol is not None:
+            _path_params['protocol'] = protocol
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+        if create_omnibus_addresses_request is not None:
+            _body_params = create_omnibus_addresses_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/{vaultAccountId}/omnibus/{protocol}/{assetId}/addresses/bulk',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1477,7 +1655,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletStatusResponse]]:
         """Deactivate a USDC Gateway wallet
 
-        Deactivates the USDC Gateway wallet associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Deactivates the USDC Gateway wallet associated with the given vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -1614,7 +1792,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[None]]:
         """Stop a USDC Gateway deposit automation's schedule
 
-        Stops the schedule for an existing deposit automation. The automation itself stays configured, only its schedule stops. Turn it back on later with PATCH, without setting up the automation again from scratch. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Stops the schedule for an existing deposit automation. The automation itself stays configured, only its schedule stops. Turn it back on later with PATCH, without setting up the automation again from scratch. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -2510,6 +2688,188 @@ class VaultsApi:
 
 
     @validate_call
+    def get_omnibus_addresses(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the omnibus vault account")],
+        protocol: Annotated[StrictStr, Field(description="The omnibus protocol")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        from_index: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Return only addresses with an index greater than or equal to this value.")] = None,
+        search: Annotated[Optional[Annotated[str, Field(strict=True, max_length=255)]], Field(description="Return only addresses that start with this value (case-insensitive). Surrounding whitespace is ignored.")] = None,
+        page_cursor: Annotated[Optional[StrictStr], Field(description="The cursor returned in `next` of the previous page. Omit for the first page.")] = None,
+        page_size: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="The number of addresses per page.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[ListOmnibusAddressesResponse]]:
+        """List omnibus deposit addresses
+
+        Returns a page of the deposit addresses of the omnibus account of the given vault account, protocol and asset, ordered by index, highest first. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param vault_account_id: The ID of the omnibus vault account (required)
+        :type vault_account_id: str
+        :param protocol: The omnibus protocol (required)
+        :type protocol: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param from_index: Return only addresses with an index greater than or equal to this value.
+        :type from_index: int
+        :param search: Return only addresses that start with this value (case-insensitive). Surrounding whitespace is ignored.
+        :type search: str
+        :param page_cursor: The cursor returned in `next` of the previous page. Omit for the first page.
+        :type page_cursor: str
+        :param page_size: The number of addresses per page.
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="get_omnibus_addresses", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_omnibus_addresses", param_name="protocol", param_value=protocol)
+        validate_not_empty_string(function_name="get_omnibus_addresses", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_omnibus_addresses_serialize(
+            vault_account_id=vault_account_id,
+            protocol=protocol,
+            asset_id=asset_id,
+            from_index=from_index,
+            search=search,
+            page_cursor=page_cursor,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListOmnibusAddressesResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_omnibus_addresses",
+        )
+
+    def _get_omnibus_addresses_serialize(
+        self,
+        vault_account_id,
+        protocol,
+        asset_id,
+        from_index,
+        search,
+        page_cursor,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if protocol is not None:
+            _path_params['protocol'] = protocol
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        if from_index is not None:
+            
+            _query_params.append(('fromIndex', from_index))
+            
+        if search is not None:
+            
+            _query_params.append(('search', search))
+            
+        if page_cursor is not None:
+            
+            _query_params.append(('pageCursor', page_cursor))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/{vaultAccountId}/omnibus/{protocol}/{assetId}/addresses',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_paged_vault_accounts(
         self,
         name_prefix: Optional[StrictStr] = None,
@@ -3201,7 +3561,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[GetAutomationSettingsResponse]]:
         """Read the USDC Gateway deposit automations for a vault account
 
-        Returns the USDC Gateway deposit automations configured for the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns the USDC Gateway deposit automations configured for the given vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -3331,7 +3691,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[UsdcGatewayWalletInfoResponse]]:
         """Get USDC Gateway wallet info
 
-        Returns the USDC Gateway wallet information associated with the given vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+        Returns the USDC Gateway wallet information associated with the given vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -3711,6 +4071,145 @@ class VaultsApi:
 
 
     @validate_call
+    def get_vault_account_asset_addresses(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account to return")],
+        asset_id: Annotated[StrictStr, Field(description="The ID of the asset")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[List[VaultWalletAddress]]]:
+        """(Deprecated) Get asset addresses
+
+        DEPRECATED!  - If your application logic or scripts rely on the deprecated endpoint, you should update to account for GET/V1/vault/accounts/{vaultAccountId}/{assetId}/addresses_paginated before Mar 31,2024. - All workspaces created after Mar 31,2024. will have it disabled. If it is disabled for your workspace and you attempt to use it, you will receive the following error message: \"This endpoint is unavailable. - Please use the GET /v1/vault/accounts/{vaultAccountId}/{assetId}/addresses_paginated endpoint to return all the wallet addresses associated with the specified vault account and asset in a paginated list.  Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param vault_account_id: The ID of the vault account to return (required)
+        :type vault_account_id: str
+        :param asset_id: The ID of the asset (required)
+        :type asset_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+        warnings.warn("GET /vault/accounts/{vaultAccountId}/{assetId}/addresses is deprecated.", DeprecationWarning)
+
+        validate_not_empty_string(function_name="get_vault_account_asset_addresses", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="get_vault_account_asset_addresses", param_name="asset_id", param_value=asset_id)
+
+        _param = self._get_vault_account_asset_addresses_serialize(
+            vault_account_id=vault_account_id,
+            asset_id=asset_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[VaultWalletAddress]",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_vault_account_asset_addresses",
+        )
+
+    def _get_vault_account_asset_addresses_serialize(
+        self,
+        vault_account_id,
+        asset_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts/{vaultAccountId}/{assetId}/addresses',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_vault_account_asset_addresses_paginated(
         self,
         vault_account_id: Annotated[StrictStr, Field(description="The ID of the vault account to return")],
@@ -3860,6 +4359,165 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/accounts/{vaultAccountId}/{assetId}/addresses_paginated',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_vault_accounts(
+        self,
+        name_prefix: Optional[StrictStr] = None,
+        name_suffix: Optional[StrictStr] = None,
+        min_amount_threshold: Optional[Union[StrictFloat, StrictInt]] = None,
+        asset_id: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[List[VaultAccount]]]:
+        """(Deprecated) Get vault accounts
+
+        DEPRECATED - Please use `/vault/accounts_paged` endpoint instead. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor, Viewer.
+
+        :param name_prefix:
+        :type name_prefix: str
+        :param name_suffix:
+        :type name_suffix: str
+        :param min_amount_threshold:
+        :type min_amount_threshold: float
+        :param asset_id:
+        :type asset_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+        warnings.warn("GET /vault/accounts is deprecated.", DeprecationWarning)
+
+
+        _param = self._get_vault_accounts_serialize(
+            name_prefix=name_prefix,
+            name_suffix=name_suffix,
+            min_amount_threshold=min_amount_threshold,
+            asset_id=asset_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[VaultAccount]",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="get_vault_accounts",
+        )
+
+    def _get_vault_accounts_serialize(
+        self,
+        name_prefix,
+        name_suffix,
+        min_amount_threshold,
+        asset_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if name_prefix is not None:
+            
+            _query_params.append(('namePrefix', name_prefix))
+            
+        if name_suffix is not None:
+            
+            _query_params.append(('nameSuffix', name_suffix))
+            
+        if min_amount_threshold is not None:
+            
+            _query_params.append(('minAmountThreshold', min_amount_threshold))
+            
+        if asset_id is not None:
+            
+            _query_params.append(('assetId', asset_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/vault/accounts',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4301,7 +4959,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[AddressReverseLookupResponse]]:
         """Look up a vault account by blockchain address
 
-        Resolves a blockchain address to the vault account that owns it. Returns the vault account ID and the blockchains associated with the address. **Note:** This endpoint is currently in beta and might be subject to changes. 
+        Resolves a blockchain address to the vault account that owns it. Returns the vault account ID and the blockchains associated with the address. 
 
         :param address: The blockchain address to resolve. (required)
         :type address: str
@@ -4402,6 +5060,152 @@ class VaultsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/vault/lookup_by_address',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def register_tempo_omnibus_wallet(
+        self,
+        vault_account_id: Annotated[StrictStr, Field(description="The ID of the omnibus vault account")],
+        asset_id: Annotated[StrictStr, Field(description="The Tempo network asset to register for the vault account.")],
+        idempotency_key: Annotated[Optional[StrictStr], Field(description="A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> Future[ApiResponse[RegisterTempoOmnibusResponse]]:
+        """Register a Tempo omnibus wallet
+
+        Registers a Tempo omnibus wallet for the given vault account and asset. Triggering this flow requires the vault account to hold PATH_USD with a balance sufficient to cover the gas fee. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver, Editor.
+
+        :param vault_account_id: The ID of the omnibus vault account (required)
+        :type vault_account_id: str
+        :param asset_id: The Tempo network asset to register for the vault account. (required)
+        :type asset_id: str
+        :param idempotency_key: A unique identifier for the request. If the request is sent multiple times with the same idempotency key, the server will return the same response as the first request. The idempotency key is valid for 24 hours.
+        :type idempotency_key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        validate_not_empty_string(function_name="register_tempo_omnibus_wallet", param_name="vault_account_id", param_value=vault_account_id)
+        validate_not_empty_string(function_name="register_tempo_omnibus_wallet", param_name="asset_id", param_value=asset_id)
+
+        _param = self._register_tempo_omnibus_wallet_serialize(
+            vault_account_id=vault_account_id,
+            asset_id=asset_id,
+            idempotency_key=idempotency_key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RegisterTempoOmnibusResponse",
+            '202': "RegisterTempoOmnibusResponse",
+            'default': "ErrorSchema",
+        }
+
+        return self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout,
+            _response_types_map=_response_types_map,
+            _operation_id="register_tempo_omnibus_wallet",
+        )
+
+    def _register_tempo_omnibus_wallet_serialize(
+        self,
+        vault_account_id,
+        asset_id,
+        idempotency_key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if vault_account_id is not None:
+            _path_params['vaultAccountId'] = vault_account_id
+        if asset_id is not None:
+            _path_params['assetId'] = asset_id
+        # process the query parameters
+        # process the header parameters
+        if idempotency_key is not None:
+            _header_params['Idempotency-Key'] = idempotency_key
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/vault/accounts/{vaultAccountId}/omnibus/TEMPO/{assetId}/register',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -4611,7 +5415,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[SaveAutomationSettingsResponse]]:
         """Set up a USDC Gateway deposit automation for a vault account
 
-        Turns on automatic deposits into the USDC Gateway wallet for the given vault account, on the schedule you choose. Returns an error if an automation already exists for this vault account and asset. Use PATCH to change it instead. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Turns on automatic deposits into the USDC Gateway wallet for the given vault account, on the schedule you choose. Returns an error if an automation already exists for this vault account and asset. Use PATCH to change it instead. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str
@@ -5220,7 +6024,7 @@ class VaultsApi:
     ) -> Future[ApiResponse[AutomationSettingsResponse]]:
         """Change a USDC Gateway deposit automation
 
-        Changes an existing USDC Gateway deposit automation for a vault account. **Note:** This endpoint is currently in beta and might be subject to changes. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
+        Changes an existing USDC Gateway deposit automation for a vault account. Endpoint Permission: Admin, Non-Signing Admin, Signer, Approver.
 
         :param vault_account_id: The ID of the vault account (required)
         :type vault_account_id: str

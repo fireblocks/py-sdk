@@ -17,13 +17,13 @@ from fireblocks.client import Fireblocks
 from fireblocks.client_configuration import ClientConfiguration
 from fireblocks.threaded_api_client import ThreadedApiClient
 from fireblocks.api.api_user_api import ApiUserApi
-from fireblocks.api.approvals_beta_api import ApprovalsBetaApi
+from fireblocks.api.approvals_api import ApprovalsApi
 from fireblocks.api.audit_logs_api import AuditLogsApi
-from fireblocks.api.blockchain_link_beta_api import BlockchainLinkBetaApi
+from fireblocks.api.blockchain_link_api import BlockchainLinkApi
 from fireblocks.api.blockchains_assets_api import BlockchainsAssetsApi
-from fireblocks.api.canton_beta_api import CantonBetaApi
+from fireblocks.api.canton_api import CantonApi
 from fireblocks.api.compliance_api import ComplianceApi
-from fireblocks.api.compliance_orchestrator_beta_api import ComplianceOrchestratorBetaApi
+from fireblocks.api.compliance_orchestrator_api import ComplianceOrchestratorApi
 from fireblocks.api.compliance_screening_configuration_api import ComplianceScreeningConfigurationApi
 from fireblocks.api.connected_accounts_api import ConnectedAccountsApi
 from fireblocks.api.console_user_api import ConsoleUserApi
@@ -39,39 +39,38 @@ from fireblocks.api.exchange_accounts_api import ExchangeAccountsApi
 from fireblocks.api.external_wallets_api import ExternalWalletsApi
 from fireblocks.api.fiat_accounts_api import FiatAccountsApi
 from fireblocks.api.gas_stations_api import GasStationsApi
-from fireblocks.api.genie_beta_api import GenieBetaApi
+from fireblocks.api.genie_api import GenieApi
 from fireblocks.api.internal_wallets_api import InternalWalletsApi
 from fireblocks.api.key_link_api import KeyLinkApi
 from fireblocks.api.keys_api import KeysApi
 from fireblocks.api.nfts_api import NFTsApi
 from fireblocks.api.network_connections_api import NetworkConnectionsApi
-from fireblocks.api.ota_beta_api import OTABetaApi
+from fireblocks.api.ota_api import OTAApi
 from fireblocks.api.off_exchanges_api import OffExchangesApi
 from fireblocks.api.onchain_data_api import OnchainDataApi
 from fireblocks.api.payments_payout_api import PaymentsPayoutApi
 from fireblocks.api.policy_editor_v2_api import PolicyEditorV2Api
-from fireblocks.api.policy_editor_v2_beta_api import PolicyEditorV2BetaApi
-from fireblocks.api.reports_beta_api import ReportsBetaApi
+from fireblocks.api.reports_api import ReportsApi
 from fireblocks.api.reset_device_api import ResetDeviceApi
 from fireblocks.api.security_posture_management_api import SecurityPostureManagementApi
 from fireblocks.api.smart_transfer_api import SmartTransferApi
 from fireblocks.api.staking_api import StakingApi
 from fireblocks.api.tr_link_api import TRLinkApi
 from fireblocks.api.tags_api import TagsApi
-from fireblocks.api.tempo_beta_api import TempoBetaApi
+from fireblocks.api.tempo_api import TempoApi
 from fireblocks.api.tokenization_api import TokenizationApi
 from fireblocks.api.trading_api import TradingApi
 from fireblocks.api.transactions_api import TransactionsApi
 from fireblocks.api.travel_rule_api import TravelRuleApi
 from fireblocks.api.utxo_management_api import UTXOManagementApi
-from fireblocks.api.user_groups_beta_api import UserGroupsBetaApi
+from fireblocks.api.user_groups_api import UserGroupsApi
 from fireblocks.api.users_api import UsersApi
 from fireblocks.api.vaults_api import VaultsApi
 from fireblocks.api.web3_connections_api import Web3ConnectionsApi
 from fireblocks.api.webhooks_api import WebhooksApi
 from fireblocks.api.webhooks_v2_api import WebhooksV2Api
 from fireblocks.api.workspace_api import WorkspaceApi
-from fireblocks.api.workspace_status_beta_api import WorkspaceStatusBetaApi
+from fireblocks.api.workspace_status_api import WorkspaceStatusApi
 from fireblocks.api.whitelist_ip_addresses_api import WhitelistIpAddressesApi
 
 @pytest.fixture
@@ -90,26 +89,26 @@ def test_fireblocks_construction(fireblocks_instance):
 def test_get_api_user(fireblocks_instance):
     assert isinstance(fireblocks_instance.api_user, ApiUserApi)
 
-def test_get_approvals_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.approvals_beta, ApprovalsBetaApi)
+def test_get_approvals(fireblocks_instance):
+    assert isinstance(fireblocks_instance.approvals, ApprovalsApi)
 
 def test_get_audit_logs(fireblocks_instance):
     assert isinstance(fireblocks_instance.audit_logs, AuditLogsApi)
 
-def test_get_blockchain_link_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.blockchain_link_beta, BlockchainLinkBetaApi)
+def test_get_blockchain_link(fireblocks_instance):
+    assert isinstance(fireblocks_instance.blockchain_link, BlockchainLinkApi)
 
 def test_get_blockchains_assets(fireblocks_instance):
     assert isinstance(fireblocks_instance.blockchains_assets, BlockchainsAssetsApi)
 
-def test_get_canton_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.canton_beta, CantonBetaApi)
+def test_get_canton(fireblocks_instance):
+    assert isinstance(fireblocks_instance.canton, CantonApi)
 
 def test_get_compliance(fireblocks_instance):
     assert isinstance(fireblocks_instance.compliance, ComplianceApi)
 
-def test_get_compliance_orchestrator_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.compliance_orchestrator_beta, ComplianceOrchestratorBetaApi)
+def test_get_compliance_orchestrator(fireblocks_instance):
+    assert isinstance(fireblocks_instance.compliance_orchestrator, ComplianceOrchestratorApi)
 
 def test_get_compliance_screening_configuration(fireblocks_instance):
     assert isinstance(fireblocks_instance.compliance_screening_configuration, ComplianceScreeningConfigurationApi)
@@ -156,8 +155,8 @@ def test_get_fiat_accounts(fireblocks_instance):
 def test_get_gas_stations(fireblocks_instance):
     assert isinstance(fireblocks_instance.gas_stations, GasStationsApi)
 
-def test_get_genie_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.genie_beta, GenieBetaApi)
+def test_get_genie(fireblocks_instance):
+    assert isinstance(fireblocks_instance.genie, GenieApi)
 
 def test_get_internal_wallets(fireblocks_instance):
     assert isinstance(fireblocks_instance.internal_wallets, InternalWalletsApi)
@@ -174,8 +173,8 @@ def test_get_nfts(fireblocks_instance):
 def test_get_network_connections(fireblocks_instance):
     assert isinstance(fireblocks_instance.network_connections, NetworkConnectionsApi)
 
-def test_get_ota_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.ota_beta, OTABetaApi)
+def test_get_ota(fireblocks_instance):
+    assert isinstance(fireblocks_instance.ota, OTAApi)
 
 def test_get_off_exchanges(fireblocks_instance):
     assert isinstance(fireblocks_instance.off_exchanges, OffExchangesApi)
@@ -189,11 +188,8 @@ def test_get_payments_payout(fireblocks_instance):
 def test_get_policy_editor_v2(fireblocks_instance):
     assert isinstance(fireblocks_instance.policy_editor_v2, PolicyEditorV2Api)
 
-def test_get_policy_editor_v2_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.policy_editor_v2_beta, PolicyEditorV2BetaApi)
-
-def test_get_reports_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.reports_beta, ReportsBetaApi)
+def test_get_reports(fireblocks_instance):
+    assert isinstance(fireblocks_instance.reports, ReportsApi)
 
 def test_get_reset_device(fireblocks_instance):
     assert isinstance(fireblocks_instance.reset_device, ResetDeviceApi)
@@ -213,8 +209,8 @@ def test_get_tr_link(fireblocks_instance):
 def test_get_tags(fireblocks_instance):
     assert isinstance(fireblocks_instance.tags, TagsApi)
 
-def test_get_tempo_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.tempo_beta, TempoBetaApi)
+def test_get_tempo(fireblocks_instance):
+    assert isinstance(fireblocks_instance.tempo, TempoApi)
 
 def test_get_tokenization(fireblocks_instance):
     assert isinstance(fireblocks_instance.tokenization, TokenizationApi)
@@ -231,8 +227,8 @@ def test_get_travel_rule(fireblocks_instance):
 def test_get_utxo_management(fireblocks_instance):
     assert isinstance(fireblocks_instance.utxo_management, UTXOManagementApi)
 
-def test_get_user_groups_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.user_groups_beta, UserGroupsBetaApi)
+def test_get_user_groups(fireblocks_instance):
+    assert isinstance(fireblocks_instance.user_groups, UserGroupsApi)
 
 def test_get_users(fireblocks_instance):
     assert isinstance(fireblocks_instance.users, UsersApi)
@@ -252,8 +248,8 @@ def test_get_webhooks_v2(fireblocks_instance):
 def test_get_workspace(fireblocks_instance):
     assert isinstance(fireblocks_instance.workspace, WorkspaceApi)
 
-def test_get_workspace_status_beta(fireblocks_instance):
-    assert isinstance(fireblocks_instance.workspace_status_beta, WorkspaceStatusBetaApi)
+def test_get_workspace_status(fireblocks_instance):
+    assert isinstance(fireblocks_instance.workspace_status, WorkspaceStatusApi)
 
 def test_get_whitelist_ip_addresses(fireblocks_instance):
     assert isinstance(fireblocks_instance.whitelist_ip_addresses, WhitelistIpAddressesApi)
